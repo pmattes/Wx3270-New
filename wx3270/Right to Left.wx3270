@@ -1,0 +1,787 @@
+﻿{
+  "Version": {
+    "Major": 1,
+    "Minor": 0
+  },
+  "ProfileType": "KeyboardMapTemplate",
+  "KeypadPosition": "Centered",
+  "KeyClick": false,
+  "AudibleBell": true,
+  "Colors": {
+    "HostColors": {
+      "NeutralBlack": "Black",
+      "Blue": "RoyalBlue",
+      "Red": "Red",
+      "Pink": "HotPink",
+      "Green": "0, 164, 0",
+      "Turquoise": "Turquoise",
+      "Yellow": "Yellow",
+      "NeutralWhite": "White",
+      "Black": "Black",
+      "DeepBlue": "Blue",
+      "Orange": "Orange",
+      "Purple": "DarkViolet",
+      "PaleGreen": "PaleGreen",
+      "PaleTurquoise": "PaleTurquoise",
+      "Grey": "Gray",
+      "White": "White"
+    },
+    "MonoColors": {
+      "Normal": "0, 178, 0",
+      "Intensified": "Lime",
+      "Background": "Black"
+    },
+    "SelectBackground": "DarkGray",
+    "CrosshairColor": "Purple"
+  },
+  "Font": {
+    "Name": "3270",
+    "EmSize": 10.0,
+    "Style": "Regular"
+  },
+  "HostCodePage": "bracket",
+  "Model": 4,
+  "ExtendedMode": true,
+  "TerminalNameOverride": "",
+  "ColorMode": true,
+  "CursorType": "Block",
+  "CursorBlink": false,
+  "CrosshairCursor": false,
+  "Monocase": false,
+  "Maximize": false,
+  "Typeahead": true,
+  "ShowTiming": false,
+  "AlwaysInsert": false,
+  "Macros": [],
+  "Hosts": [],
+  "KeypadMap": {
+    "PF1 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF1",
+      "TextSize": 8.25,
+      "Actions": "PF(1)"
+    },
+    "PF1 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF13",
+      "TextSize": 8.25,
+      "Actions": "PF(13)"
+    },
+    "PF2 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF2",
+      "TextSize": 8.25,
+      "Actions": "PF(2)"
+    },
+    "PF2 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF14",
+      "TextSize": 8.25,
+      "Actions": "PF(14)"
+    },
+    "PF3 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF3",
+      "TextSize": 8.25,
+      "Actions": "PF(3)"
+    },
+    "PF3 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF15",
+      "TextSize": 8.25,
+      "Actions": "PF(15)"
+    },
+    "PF4 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF4",
+      "TextSize": 8.25,
+      "Actions": "PF(4)"
+    },
+    "PF4 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF16",
+      "TextSize": 8.25,
+      "Actions": "PF(16)"
+    },
+    "PF5 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF5",
+      "TextSize": 8.25,
+      "Actions": "PF(5)"
+    },
+    "PF5 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF17",
+      "TextSize": 8.25,
+      "Actions": "PF(17)"
+    },
+    "PF6 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF6",
+      "TextSize": 8.25,
+      "Actions": "PF(6)"
+    },
+    "PF6 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF18",
+      "TextSize": 8.25,
+      "Actions": "PF(18)"
+    },
+    "PF7 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF7",
+      "TextSize": 8.25,
+      "Actions": "PF(7)"
+    },
+    "PF7 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF19",
+      "TextSize": 8.25,
+      "Actions": "PF(19)"
+    },
+    "PF8 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF8",
+      "TextSize": 8.25,
+      "Actions": "PF(8)"
+    },
+    "PF8 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF20",
+      "TextSize": 8.25,
+      "Actions": "PF(20)"
+    },
+    "PF9 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF9",
+      "TextSize": 8.25,
+      "Actions": "PF(9)"
+    },
+    "PF9 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF21",
+      "TextSize": 8.25,
+      "Actions": "PF(21)"
+    },
+    "PF10 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF10",
+      "TextSize": 8.25,
+      "Actions": "PF(10)"
+    },
+    "PF10 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF22",
+      "TextSize": 8.25,
+      "Actions": "PF(22)"
+    },
+    "PF11 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF11",
+      "TextSize": 8.25,
+      "Actions": "PF(11)"
+    },
+    "PF11 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF23",
+      "TextSize": 8.25,
+      "Actions": "PF(23)"
+    },
+    "PF12 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF12",
+      "TextSize": 8.25,
+      "Actions": "PF(12)"
+    },
+    "PF12 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF24",
+      "TextSize": 8.25,
+      "Actions": "PF(24)"
+    },
+    "PA1 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PA1",
+      "TextSize": 8.25,
+      "Actions": "PA(1)"
+    },
+    "PA2 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PA2",
+      "TextSize": 8.25,
+      "Actions": "PA(2)"
+    },
+    "Not None": {
+      "BackgroundImage": "Blank",
+      "Text": "¬",
+      "TextSize": 14.0,
+      "Actions": "Key(U+00AC)"
+    },
+    "Tab None": {
+      "BackgroundImage": "Blank",
+      "Text": "→|",
+      "TextSize": 14.25,
+      "Actions": "Tab()"
+    },
+    "BackTab None": {
+      "BackgroundImage": "Blank",
+      "Text": "|←",
+      "TextSize": 14.25,
+      "Actions": "BackTab()"
+    },
+    "Erase None": {
+      "BackgroundImage": "Blank",
+      "Text": "←",
+      "TextSize": 14.25,
+      "Actions": "Erase()"
+    },
+    "Newline None": {
+      "BackgroundImage": "Blank",
+      "Text": "⤶",
+      "TextSize": 27.75,
+      "Actions": "Newline()"
+    },
+    "Reset None": {
+      "BackgroundImage": "Blank",
+      "Text": "RESET",
+      "TextSize": 6.75,
+      "Actions": "Reset()"
+    },
+    "Enter None": {
+      "BackgroundImage": "Blank",
+      "Text": "ENTER",
+      "TextSize": 6.75,
+      "Actions": "Enter()"
+    },
+    "EraseInput None": {
+      "BackgroundImage": "Blank",
+      "Text": "ERASE\r\nINPUT",
+      "TextSize": 6.0,
+      "Actions": "EraseInput()"
+    },
+    "CursorSelect None": {
+      "BackgroundImage": "Blank",
+      "Text": "CURSR\r\nSEL",
+      "TextSize": 6.0,
+      "Actions": "CursorSelect()"
+    },
+    "Clear None": {
+      "BackgroundImage": "Blank",
+      "Text": "CLEAR",
+      "TextSize": 6.0,
+      "Actions": "Clear()"
+    },
+    "EraseEOF None": {
+      "BackgroundImage": "Blank",
+      "Text": "ERASE\r\nEOF",
+      "TextSize": 6.0,
+      "Actions": "EraseEOF()"
+    },
+    "Dup None": {
+      "BackgroundImage": "Blank",
+      "Text": "DUP",
+      "TextSize": 6.0,
+      "Actions": "Dup()"
+    },
+    "FieldMark None": {
+      "BackgroundImage": "Blank",
+      "Text": "FIELD\r\nMARK",
+      "TextSize": 6.0,
+      "Actions": "FieldMark()"
+    },
+    "Attn None": {
+      "BackgroundImage": "Blank",
+      "Text": "ATTN",
+      "TextSize": 6.0,
+      "Actions": "Attn()"
+    },
+    "CursorBlink None": {
+      "BackgroundImage": "Blank",
+      "Text": "CURSR\r\nBLINK",
+      "TextSize": 6.0,
+      "Actions": "Toggle(cursorBlink)"
+    },
+    "SysReq None": {
+      "BackgroundImage": "Blank",
+      "Text": "SYS\r\nREQ",
+      "TextSize": 6.0,
+      "Actions": "SysReq()"
+    },
+    "Insert None": {
+      "BackgroundImage": "Insert",
+      "Text": "",
+      "TextSize": 6.75,
+      "Actions": "Toggle(insertMode)"
+    },
+    "Up None": {
+      "BackgroundImage": "Blank",
+      "Text": "↑",
+      "TextSize": 14.25,
+      "Actions": "Up()"
+    },
+    "Delete None": {
+      "BackgroundImage": "Delete",
+      "Text": "",
+      "TextSize": 6.75,
+      "Actions": "Delete()"
+    },
+    "Left None": {
+      "BackgroundImage": "Blank",
+      "Text": "←",
+      "TextSize": 14.25,
+      "Actions": "Left()"
+    },
+    "Down None": {
+      "BackgroundImage": "Blank",
+      "Text": "↓",
+      "TextSize": 14.25,
+      "Actions": "Down()"
+    },
+    "Right None": {
+      "BackgroundImage": "Blank",
+      "Text": "→",
+      "TextSize": 14.25,
+      "Actions": "Right()"
+    },
+    "grave None": {
+      "BackgroundImage": "Blank",
+      "Text": "⋄",
+      "TextSize": 16.0,
+      "Actions": "Key(apl_diamond)"
+    },
+    "one None": {
+      "BackgroundImage": "Blank",
+      "Text": "¨",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_diaeresis)"
+    },
+    "one Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⌶",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_downtackup)"
+    },
+    "two None": {
+      "BackgroundImage": "Blank",
+      "Text": "¯",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_overbar)"
+    },
+    "two Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍫",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_deltilde)"
+    },
+    "three None": {
+      "BackgroundImage": "Blank",
+      "Text": "<",
+      "TextSize": 14.0,
+      "Actions": "Key(\"<\")"
+    },
+    "three Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍒",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_delstile)"
+    },
+    "four None": {
+      "BackgroundImage": "Blank",
+      "Text": "≤",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_notgreater)"
+    },
+    "four Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍋",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_deltastile)"
+    },
+    "five None": {
+      "BackgroundImage": "Blank",
+      "Text": "=",
+      "TextSize": 14.0,
+      "Actions": "Key(=)"
+    },
+    "five Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⌽",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_circlestile)"
+    },
+    "six None": {
+      "BackgroundImage": "Blank",
+      "Text": "≥",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_notless)"
+    },
+    "six Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍉",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_circleslope)"
+    },
+    "seven None": {
+      "BackgroundImage": "Blank",
+      "Text": ">",
+      "TextSize": 14.0,
+      "Actions": "Key(\">\")"
+    },
+    "seven Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⊖",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_circlebar)"
+    },
+    "eight None": {
+      "BackgroundImage": "Blank",
+      "Text": "≠",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_notequal)"
+    },
+    "eight Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍟",
+      "TextSize": 16.0,
+      "Actions": "Key(apl_circlestar)"
+    },
+    "nine None": {
+      "BackgroundImage": "Blank",
+      "Text": "∨",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_downcaret)"
+    },
+    "nine Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍱",
+      "TextSize": 16.0,
+      "Actions": "Key(apl_downcarettilde)"
+    },
+    "zero None": {
+      "BackgroundImage": "Blank",
+      "Text": "∧",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_upcaret)"
+    },
+    "zero Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍲",
+      "TextSize": 16.0,
+      "Actions": "Key(apl_upcarettilde)"
+    },
+    "minus None": {
+      "BackgroundImage": "Blank",
+      "Text": "×",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_multiply)"
+    },
+    "minus Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "!",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_quotedot)"
+    },
+    "equals None": {
+      "BackgroundImage": "Blank",
+      "Text": "÷",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_divide)"
+    },
+    "equals Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⌹",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_quaddivide)"
+    },
+    "q None": {
+      "BackgroundImage": "Blank",
+      "Text": "?",
+      "TextSize": 14.0,
+      "Actions": "Key(?)"
+    },
+    "w None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍵",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_omega)"
+    },
+    "e None": {
+      "BackgroundImage": "Blank",
+      "Text": "∊",
+      "TextSize": 20.0,
+      "Actions": "Key(apl_epsilon)"
+    },
+    "e Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍷",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_epsilonunderbar)"
+    },
+    "r None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍴",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_rho)"
+    },
+    "t None": {
+      "BackgroundImage": "Blank",
+      "Text": "~",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_tilde)"
+    },
+    "y None": {
+      "BackgroundImage": "Blank",
+      "Text": "↑",
+      "TextSize": 12.0,
+      "Actions": "Key(apl_uparrow)"
+    },
+    "u None": {
+      "BackgroundImage": "Blank",
+      "Text": "↓",
+      "TextSize": 12.0,
+      "Actions": "Key(apl_downarrow)"
+    },
+    "i None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍳",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_iota)"
+    },
+    "i Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍸",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_iotaunderbar)"
+    },
+    "o None": {
+      "BackgroundImage": "Blank",
+      "Text": "○",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_circle)"
+    },
+    "o Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍥",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_diaeresiscircle)"
+    },
+    "p None": {
+      "BackgroundImage": "Blank",
+      "Text": "*",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_star)"
+    },
+    "leftBracket None": {
+      "BackgroundImage": "Blank",
+      "Text": "←",
+      "TextSize": 12.0,
+      "Actions": "Key(apl_leftarrow)"
+    },
+    "leftBracket Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍞",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_quadquote)"
+    },
+    "rightBracket None": {
+      "BackgroundImage": "Blank",
+      "Text": "→",
+      "TextSize": 12.0,
+      "Actions": "Key(apl_rightarrow)"
+    },
+    "backslash None": {
+      "BackgroundImage": "Blank",
+      "Text": "⊢",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_righttack)"
+    },
+    "backslash Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⊣",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_lefttack)"
+    },
+    "a None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍺",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_alpha)"
+    },
+    "s None": {
+      "BackgroundImage": "Blank",
+      "Text": "⌈",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_upstile)"
+    },
+    "d None": {
+      "BackgroundImage": "Blank",
+      "Text": "⌊",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_downstile)"
+    },
+    "f None": {
+      "BackgroundImage": "Blank",
+      "Text": "_",
+      "TextSize": 14.0,
+      "Actions": "Key(_)"
+    },
+    "g None": {
+      "BackgroundImage": "Blank",
+      "Text": "∇",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_del)"
+    },
+    "h None": {
+      "BackgroundImage": "Blank",
+      "Text": "∆",
+      "TextSize": 11.0,
+      "Actions": "Key(apl_delta)"
+    },
+    "j None": {
+      "BackgroundImage": "Blank",
+      "Text": "∘",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_jot)"
+    },
+    "j Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍤",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_diaeresisjot)"
+    },
+    "k None": {
+      "BackgroundImage": "Blank",
+      "Text": "'",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_quote)"
+    },
+    "l None": {
+      "BackgroundImage": "Blank",
+      "Text": "⎕",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_quad)"
+    },
+    "l Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⌷",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_squad)"
+    },
+    "semicolon None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍎",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_downtackjot)"
+    },
+    "semicolon Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "≡",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_equalunderbar)"
+    },
+    "apostrophe None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍕",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_uptackjot)"
+    },
+    "z None": {
+      "BackgroundImage": "Blank",
+      "Text": "⊂",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_leftshoe)"
+    },
+    "x None": {
+      "BackgroundImage": "Blank",
+      "Text": "⊃",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_rightshoe)"
+    },
+    "c None": {
+      "BackgroundImage": "Blank",
+      "Text": "∩",
+      "TextSize": 8.0,
+      "Actions": "Key(apl_upshoe)"
+    },
+    "v None": {
+      "BackgroundImage": "Blank",
+      "Text": "∪",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_downshoe)"
+    },
+    "b None": {
+      "BackgroundImage": "Blank",
+      "Text": "⊥",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_uptack)"
+    },
+    "n None": {
+      "BackgroundImage": "Blank",
+      "Text": "⊤",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_downtack)"
+    },
+    "m None": {
+      "BackgroundImage": "Blank",
+      "Text": "|",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_stile)"
+    },
+    "comma None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍝",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_upshoejot)"
+    },
+    "comma Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍪",
+      "TextSize": 20.0,
+      "Actions": "Key(apl_commabar)"
+    },
+    "period None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍀",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_slopebar)"
+    },
+    "period Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍙",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_deltaunderbar)"
+    },
+    "slash None": {
+      "BackgroundImage": "Blank",
+      "Text": "⌿",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_slashbar)"
+    }
+  },
+  "KeyboardMap": {
+    "F Alt": {
+      "Actions": "Toggle(RightToLeftMode)"
+    },
+    "V Alt, Mode3270": {
+      "Actions": "Toggle(ReverseInputMode)"
+    }
+  },
+  "ListenPort": {},
+  "Printer": "",
+  "PrinterCodePage": "",
+  "PrinterOptions": "",
+  "NopInterval": 0,
+  "Location": "942, 109",
+  "Size": null,
+  "Proxy": {
+    "Type": null,
+    "Address": null,
+    "Port": null,
+    "Username": null,
+    "Password": null
+  },
+  "OpacityPercent": 100,
+  "Description": "Right-to-left languages",
+  "WindowTitle": null,
+  "MiscSettings": {}
+}

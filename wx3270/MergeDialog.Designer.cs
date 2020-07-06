@@ -1,0 +1,572 @@
+﻿namespace Wx3270
+{
+    partial class MergeDialog
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MergeDialog));
+            this.whitePanel = new System.Windows.Forms.Panel();
+            this.categoriesGroupBox = new System.Windows.Forms.GroupBox();
+            this.categoriesLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.legendLabel = new System.Windows.Forms.Label();
+            this.importButton = new System.Windows.Forms.Button();
+            this.categoriesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.otherSettingsCheckBox = new System.Windows.Forms.CheckBox();
+            this.keyboardMapPanel = new System.Windows.Forms.Panel();
+            this.keyboardReplaceRadioButton = new System.Windows.Forms.RadioButton();
+            this.keyboardMergeradioButton = new System.Windows.Forms.RadioButton();
+            this.keyboardCheckBox = new System.Windows.Forms.CheckBox();
+            this.keypadMapPanel = new System.Windows.Forms.Panel();
+            this.keypadReplaceRadioButton = new System.Windows.Forms.RadioButton();
+            this.keypadMergeRadioButton = new System.Windows.Forms.RadioButton();
+            this.keypadCheckBox = new System.Windows.Forms.CheckBox();
+            this.macrosPanel = new System.Windows.Forms.Panel();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.macrosCheckBox = new System.Windows.Forms.CheckBox();
+            this.fontPanel = new System.Windows.Forms.Panel();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.fontCheckBox = new System.Windows.Forms.CheckBox();
+            this.hostListPanel = new System.Windows.Forms.Panel();
+            this.hostsReplaceRadioButton = new System.Windows.Forms.RadioButton();
+            this.hostsMergeRadioButton = new System.Windows.Forms.RadioButton();
+            this.hostsCheckBox = new System.Windows.Forms.CheckBox();
+            this.colorsPanel = new System.Windows.Forms.Panel();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.colorsCheckBox = new System.Windows.Forms.CheckBox();
+            this.sourceProfileLabel = new System.Windows.Forms.Label();
+            this.purplePanel = new System.Windows.Forms.Panel();
+            this.whitePanel.SuspendLayout();
+            this.categoriesGroupBox.SuspendLayout();
+            this.categoriesLayoutPanel.SuspendLayout();
+            this.categoriesTableLayoutPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.keyboardMapPanel.SuspendLayout();
+            this.keypadMapPanel.SuspendLayout();
+            this.macrosPanel.SuspendLayout();
+            this.fontPanel.SuspendLayout();
+            this.hostListPanel.SuspendLayout();
+            this.colorsPanel.SuspendLayout();
+            this.purplePanel.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // whitePanel
+            // 
+            this.whitePanel.AutoSize = true;
+            this.whitePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.whitePanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.whitePanel.Controls.Add(this.categoriesGroupBox);
+            this.whitePanel.Location = new System.Drawing.Point(15, 15);
+            this.whitePanel.Margin = new System.Windows.Forms.Padding(0);
+            this.whitePanel.Name = "whitePanel";
+            this.whitePanel.Size = new System.Drawing.Size(432, 431);
+            this.whitePanel.TabIndex = 0;
+            // 
+            // categoriesGroupBox
+            // 
+            this.categoriesGroupBox.AutoSize = true;
+            this.categoriesGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.categoriesGroupBox.Controls.Add(this.categoriesLayoutPanel);
+            this.categoriesGroupBox.Location = new System.Drawing.Point(15, 15);
+            this.categoriesGroupBox.Margin = new System.Windows.Forms.Padding(15);
+            this.categoriesGroupBox.Name = "categoriesGroupBox";
+            this.categoriesGroupBox.Size = new System.Drawing.Size(402, 401);
+            this.categoriesGroupBox.TabIndex = 32;
+            this.categoriesGroupBox.TabStop = false;
+            this.categoriesGroupBox.Text = "Select Categories";
+            // 
+            // categoriesLayoutPanel
+            // 
+            this.categoriesLayoutPanel.AutoSize = true;
+            this.categoriesLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.categoriesLayoutPanel.ColumnCount = 1;
+            this.categoriesLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.categoriesLayoutPanel.Controls.Add(this.legendLabel, 0, 1);
+            this.categoriesLayoutPanel.Controls.Add(this.importButton, 0, 3);
+            this.categoriesLayoutPanel.Controls.Add(this.categoriesTableLayoutPanel, 0, 2);
+            this.categoriesLayoutPanel.Controls.Add(this.sourceProfileLabel, 0, 0);
+            this.categoriesLayoutPanel.Location = new System.Drawing.Point(21, 29);
+            this.categoriesLayoutPanel.Name = "categoriesLayoutPanel";
+            this.categoriesLayoutPanel.RowCount = 4;
+            this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.categoriesLayoutPanel.Size = new System.Drawing.Size(375, 353);
+            this.categoriesLayoutPanel.TabIndex = 31;
+            // 
+            // legendLabel
+            // 
+            this.legendLabel.AutoSize = true;
+            this.legendLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.legendLabel.Location = new System.Drawing.Point(3, 49);
+            this.legendLabel.Name = "legendLabel";
+            this.legendLabel.Size = new System.Drawing.Size(369, 24);
+            this.legendLabel.TabIndex = 29;
+            this.legendLabel.Text = "Replace: The entire category will be replaced by the contents of the source profi" +
+    "le\r\nMerge: Items with new names will be added; items with the same names will be" +
+    " replaced";
+            // 
+            // importButton
+            // 
+            this.importButton.Enabled = false;
+            this.importButton.Location = new System.Drawing.Point(3, 327);
+            this.importButton.Name = "importButton";
+            this.importButton.Size = new System.Drawing.Size(110, 23);
+            this.importButton.TabIndex = 27;
+            this.importButton.Text = "Merge";
+            this.importButton.UseVisualStyleBackColor = true;
+            this.importButton.Click += new System.EventHandler(this.ImportButton_Click);
+            // 
+            // categoriesTableLayoutPanel
+            // 
+            this.categoriesTableLayoutPanel.AutoSize = true;
+            this.categoriesTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.categoriesTableLayoutPanel.ColumnCount = 1;
+            this.categoriesTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.categoriesTableLayoutPanel.Controls.Add(this.panel1, 0, 6);
+            this.categoriesTableLayoutPanel.Controls.Add(this.keyboardMapPanel, 0, 0);
+            this.categoriesTableLayoutPanel.Controls.Add(this.keypadMapPanel, 0, 1);
+            this.categoriesTableLayoutPanel.Controls.Add(this.macrosPanel, 0, 3);
+            this.categoriesTableLayoutPanel.Controls.Add(this.fontPanel, 0, 5);
+            this.categoriesTableLayoutPanel.Controls.Add(this.hostListPanel, 0, 2);
+            this.categoriesTableLayoutPanel.Controls.Add(this.colorsPanel, 0, 4);
+            this.categoriesTableLayoutPanel.Location = new System.Drawing.Point(3, 76);
+            this.categoriesTableLayoutPanel.Name = "categoriesTableLayoutPanel";
+            this.categoriesTableLayoutPanel.RowCount = 7;
+            this.categoriesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.categoriesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.categoriesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.categoriesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.categoriesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.categoriesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.categoriesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.categoriesTableLayoutPanel.Size = new System.Drawing.Size(341, 245);
+            this.categoriesTableLayoutPanel.TabIndex = 30;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.radioButton5);
+            this.panel1.Controls.Add(this.otherSettingsCheckBox);
+            this.panel1.Location = new System.Drawing.Point(3, 213);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(335, 29);
+            this.panel1.TabIndex = 29;
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Checked = true;
+            this.radioButton5.Enabled = false;
+            this.radioButton5.Location = new System.Drawing.Point(119, 4);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(65, 17);
+            this.radioButton5.TabIndex = 4;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Tag = "OtherSettingsReplace";
+            this.radioButton5.Text = "Replace";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // otherSettingsCheckBox
+            // 
+            this.otherSettingsCheckBox.AutoSize = true;
+            this.otherSettingsCheckBox.Location = new System.Drawing.Point(4, 5);
+            this.otherSettingsCheckBox.Name = "otherSettingsCheckBox";
+            this.otherSettingsCheckBox.Size = new System.Drawing.Size(91, 17);
+            this.otherSettingsCheckBox.TabIndex = 1;
+            this.otherSettingsCheckBox.Tag = "OtherSettingsReplace";
+            this.otherSettingsCheckBox.Text = "Other settings";
+            this.otherSettingsCheckBox.UseVisualStyleBackColor = true;
+            this.otherSettingsCheckBox.CheckedChanged += new System.EventHandler(this.MergeCheckBox_CheckedChanged);
+            // 
+            // keyboardMapPanel
+            // 
+            this.keyboardMapPanel.Controls.Add(this.keyboardReplaceRadioButton);
+            this.keyboardMapPanel.Controls.Add(this.keyboardMergeradioButton);
+            this.keyboardMapPanel.Controls.Add(this.keyboardCheckBox);
+            this.keyboardMapPanel.Location = new System.Drawing.Point(3, 3);
+            this.keyboardMapPanel.Name = "keyboardMapPanel";
+            this.keyboardMapPanel.Size = new System.Drawing.Size(335, 29);
+            this.keyboardMapPanel.TabIndex = 22;
+            // 
+            // keyboardReplaceRadioButton
+            // 
+            this.keyboardReplaceRadioButton.AutoSize = true;
+            this.keyboardReplaceRadioButton.Checked = true;
+            this.keyboardReplaceRadioButton.Enabled = false;
+            this.keyboardReplaceRadioButton.Location = new System.Drawing.Point(119, 4);
+            this.keyboardReplaceRadioButton.Name = "keyboardReplaceRadioButton";
+            this.keyboardReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.keyboardReplaceRadioButton.TabIndex = 3;
+            this.keyboardReplaceRadioButton.TabStop = true;
+            this.keyboardReplaceRadioButton.Tag = "KeyboardReplace";
+            this.keyboardReplaceRadioButton.Text = "Replace";
+            this.keyboardReplaceRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // keyboardMergeradioButton
+            // 
+            this.keyboardMergeradioButton.AutoSize = true;
+            this.keyboardMergeradioButton.Enabled = false;
+            this.keyboardMergeradioButton.Location = new System.Drawing.Point(218, 5);
+            this.keyboardMergeradioButton.Name = "keyboardMergeradioButton";
+            this.keyboardMergeradioButton.Size = new System.Drawing.Size(55, 17);
+            this.keyboardMergeradioButton.TabIndex = 2;
+            this.keyboardMergeradioButton.Tag = "KeyboardMerge";
+            this.keyboardMergeradioButton.Text = "Merge";
+            this.keyboardMergeradioButton.UseVisualStyleBackColor = true;
+            // 
+            // keyboardCheckBox
+            // 
+            this.keyboardCheckBox.AutoSize = true;
+            this.keyboardCheckBox.Location = new System.Drawing.Point(4, 5);
+            this.keyboardCheckBox.Name = "keyboardCheckBox";
+            this.keyboardCheckBox.Size = new System.Drawing.Size(94, 17);
+            this.keyboardCheckBox.TabIndex = 1;
+            this.keyboardCheckBox.Tag = "";
+            this.keyboardCheckBox.Text = "Keyboard map";
+            this.keyboardCheckBox.UseVisualStyleBackColor = true;
+            this.keyboardCheckBox.CheckedChanged += new System.EventHandler(this.MergeCheckBox_CheckedChanged);
+            // 
+            // keypadMapPanel
+            // 
+            this.keypadMapPanel.Controls.Add(this.keypadReplaceRadioButton);
+            this.keypadMapPanel.Controls.Add(this.keypadMergeRadioButton);
+            this.keypadMapPanel.Controls.Add(this.keypadCheckBox);
+            this.keypadMapPanel.Location = new System.Drawing.Point(3, 38);
+            this.keypadMapPanel.Name = "keypadMapPanel";
+            this.keypadMapPanel.Size = new System.Drawing.Size(335, 29);
+            this.keypadMapPanel.TabIndex = 23;
+            // 
+            // keypadReplaceRadioButton
+            // 
+            this.keypadReplaceRadioButton.AutoSize = true;
+            this.keypadReplaceRadioButton.Checked = true;
+            this.keypadReplaceRadioButton.Enabled = false;
+            this.keypadReplaceRadioButton.Location = new System.Drawing.Point(119, 4);
+            this.keypadReplaceRadioButton.Name = "keypadReplaceRadioButton";
+            this.keypadReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.keypadReplaceRadioButton.TabIndex = 3;
+            this.keypadReplaceRadioButton.TabStop = true;
+            this.keypadReplaceRadioButton.Tag = "KeypadReplace";
+            this.keypadReplaceRadioButton.Text = "Replace";
+            this.keypadReplaceRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // keypadMergeRadioButton
+            // 
+            this.keypadMergeRadioButton.AutoSize = true;
+            this.keypadMergeRadioButton.Enabled = false;
+            this.keypadMergeRadioButton.Location = new System.Drawing.Point(218, 4);
+            this.keypadMergeRadioButton.Name = "keypadMergeRadioButton";
+            this.keypadMergeRadioButton.Size = new System.Drawing.Size(55, 17);
+            this.keypadMergeRadioButton.TabIndex = 2;
+            this.keypadMergeRadioButton.Tag = "KeypadMerge";
+            this.keypadMergeRadioButton.Text = "Merge";
+            this.keypadMergeRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // keypadCheckBox
+            // 
+            this.keypadCheckBox.AutoSize = true;
+            this.keypadCheckBox.Location = new System.Drawing.Point(4, 5);
+            this.keypadCheckBox.Name = "keypadCheckBox";
+            this.keypadCheckBox.Size = new System.Drawing.Size(85, 17);
+            this.keypadCheckBox.TabIndex = 1;
+            this.keypadCheckBox.Tag = "";
+            this.keypadCheckBox.Text = "Keypad map";
+            this.keypadCheckBox.UseVisualStyleBackColor = true;
+            this.keypadCheckBox.CheckedChanged += new System.EventHandler(this.MergeCheckBox_CheckedChanged);
+            // 
+            // macrosPanel
+            // 
+            this.macrosPanel.Controls.Add(this.radioButton1);
+            this.macrosPanel.Controls.Add(this.radioButton2);
+            this.macrosPanel.Controls.Add(this.macrosCheckBox);
+            this.macrosPanel.Location = new System.Drawing.Point(3, 108);
+            this.macrosPanel.Name = "macrosPanel";
+            this.macrosPanel.Size = new System.Drawing.Size(335, 29);
+            this.macrosPanel.TabIndex = 28;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Enabled = false;
+            this.radioButton1.Location = new System.Drawing.Point(119, 4);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(65, 17);
+            this.radioButton1.TabIndex = 3;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Tag = "MacrosReplace";
+            this.radioButton1.Text = "Replace";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Enabled = false;
+            this.radioButton2.Location = new System.Drawing.Point(218, 4);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(55, 17);
+            this.radioButton2.TabIndex = 2;
+            this.radioButton2.Tag = "MacrosMerge";
+            this.radioButton2.Text = "Merge";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // macrosCheckBox
+            // 
+            this.macrosCheckBox.AutoSize = true;
+            this.macrosCheckBox.Location = new System.Drawing.Point(4, 5);
+            this.macrosCheckBox.Name = "macrosCheckBox";
+            this.macrosCheckBox.Size = new System.Drawing.Size(61, 17);
+            this.macrosCheckBox.TabIndex = 1;
+            this.macrosCheckBox.Tag = "";
+            this.macrosCheckBox.Text = "Macros";
+            this.macrosCheckBox.UseVisualStyleBackColor = true;
+            this.macrosCheckBox.CheckedChanged += new System.EventHandler(this.MergeCheckBox_CheckedChanged);
+            // 
+            // fontPanel
+            // 
+            this.fontPanel.Controls.Add(this.radioButton4);
+            this.fontPanel.Controls.Add(this.fontCheckBox);
+            this.fontPanel.Location = new System.Drawing.Point(3, 178);
+            this.fontPanel.Name = "fontPanel";
+            this.fontPanel.Size = new System.Drawing.Size(335, 29);
+            this.fontPanel.TabIndex = 25;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Checked = true;
+            this.radioButton4.Enabled = false;
+            this.radioButton4.Location = new System.Drawing.Point(119, 4);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(65, 17);
+            this.radioButton4.TabIndex = 4;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Tag = "FontReplace";
+            this.radioButton4.Text = "Replace";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // fontCheckBox
+            // 
+            this.fontCheckBox.AutoSize = true;
+            this.fontCheckBox.Location = new System.Drawing.Point(4, 5);
+            this.fontCheckBox.Name = "fontCheckBox";
+            this.fontCheckBox.Size = new System.Drawing.Size(47, 17);
+            this.fontCheckBox.TabIndex = 1;
+            this.fontCheckBox.Tag = "FontReplace";
+            this.fontCheckBox.Text = "Font";
+            this.fontCheckBox.UseVisualStyleBackColor = true;
+            this.fontCheckBox.CheckedChanged += new System.EventHandler(this.MergeCheckBox_CheckedChanged);
+            // 
+            // hostListPanel
+            // 
+            this.hostListPanel.Controls.Add(this.hostsReplaceRadioButton);
+            this.hostListPanel.Controls.Add(this.hostsMergeRadioButton);
+            this.hostListPanel.Controls.Add(this.hostsCheckBox);
+            this.hostListPanel.Location = new System.Drawing.Point(3, 73);
+            this.hostListPanel.Name = "hostListPanel";
+            this.hostListPanel.Size = new System.Drawing.Size(335, 29);
+            this.hostListPanel.TabIndex = 26;
+            // 
+            // hostsReplaceRadioButton
+            // 
+            this.hostsReplaceRadioButton.AutoSize = true;
+            this.hostsReplaceRadioButton.Checked = true;
+            this.hostsReplaceRadioButton.Enabled = false;
+            this.hostsReplaceRadioButton.Location = new System.Drawing.Point(119, 4);
+            this.hostsReplaceRadioButton.Name = "hostsReplaceRadioButton";
+            this.hostsReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.hostsReplaceRadioButton.TabIndex = 3;
+            this.hostsReplaceRadioButton.TabStop = true;
+            this.hostsReplaceRadioButton.Tag = "HostsReplace";
+            this.hostsReplaceRadioButton.Text = "Replace";
+            this.hostsReplaceRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // hostsMergeRadioButton
+            // 
+            this.hostsMergeRadioButton.AutoSize = true;
+            this.hostsMergeRadioButton.Enabled = false;
+            this.hostsMergeRadioButton.Location = new System.Drawing.Point(218, 4);
+            this.hostsMergeRadioButton.Name = "hostsMergeRadioButton";
+            this.hostsMergeRadioButton.Size = new System.Drawing.Size(55, 17);
+            this.hostsMergeRadioButton.TabIndex = 2;
+            this.hostsMergeRadioButton.Tag = "HostsMerge";
+            this.hostsMergeRadioButton.Text = "Merge";
+            this.hostsMergeRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // hostsCheckBox
+            // 
+            this.hostsCheckBox.AutoSize = true;
+            this.hostsCheckBox.Location = new System.Drawing.Point(4, 5);
+            this.hostsCheckBox.Name = "hostsCheckBox";
+            this.hostsCheckBox.Size = new System.Drawing.Size(63, 17);
+            this.hostsCheckBox.TabIndex = 1;
+            this.hostsCheckBox.Tag = "";
+            this.hostsCheckBox.Text = "Host list";
+            this.hostsCheckBox.UseVisualStyleBackColor = true;
+            this.hostsCheckBox.CheckedChanged += new System.EventHandler(this.MergeCheckBox_CheckedChanged);
+            // 
+            // colorsPanel
+            // 
+            this.colorsPanel.Controls.Add(this.radioButton3);
+            this.colorsPanel.Controls.Add(this.colorsCheckBox);
+            this.colorsPanel.Location = new System.Drawing.Point(3, 143);
+            this.colorsPanel.Name = "colorsPanel";
+            this.colorsPanel.Size = new System.Drawing.Size(335, 29);
+            this.colorsPanel.TabIndex = 24;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Checked = true;
+            this.radioButton3.Enabled = false;
+            this.radioButton3.Location = new System.Drawing.Point(119, 4);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(65, 17);
+            this.radioButton3.TabIndex = 4;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Tag = "ColorsReplace";
+            this.radioButton3.Text = "Replace";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // colorsCheckBox
+            // 
+            this.colorsCheckBox.AutoSize = true;
+            this.colorsCheckBox.Location = new System.Drawing.Point(4, 5);
+            this.colorsCheckBox.Name = "colorsCheckBox";
+            this.colorsCheckBox.Size = new System.Drawing.Size(55, 17);
+            this.colorsCheckBox.TabIndex = 1;
+            this.colorsCheckBox.Tag = "ColorsReplace";
+            this.colorsCheckBox.Text = "Colors";
+            this.colorsCheckBox.UseVisualStyleBackColor = true;
+            this.colorsCheckBox.CheckedChanged += new System.EventHandler(this.MergeCheckBox_CheckedChanged);
+            // 
+            // sourceProfileLabel
+            // 
+            this.sourceProfileLabel.AutoSize = true;
+            this.sourceProfileLabel.Location = new System.Drawing.Point(3, 0);
+            this.sourceProfileLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
+            this.sourceProfileLabel.Name = "sourceProfileLabel";
+            this.sourceProfileLabel.Size = new System.Drawing.Size(114, 39);
+            this.sourceProfileLabel.TabIndex = 31;
+            this.sourceProfileLabel.Tag = "`";
+            this.sourceProfileLabel.Text = "`Source Profile: Foo\r\n\r\nDestination Profile: Bar";
+            // 
+            // purplePanel
+            // 
+            this.purplePanel.AutoSize = true;
+            this.purplePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.purplePanel.Controls.Add(this.whitePanel);
+            this.purplePanel.Location = new System.Drawing.Point(0, 0);
+            this.purplePanel.Name = "purplePanel";
+            this.purplePanel.Padding = new System.Windows.Forms.Padding(15);
+            this.purplePanel.Size = new System.Drawing.Size(462, 461);
+            this.purplePanel.TabIndex = 1;
+            // 
+            // MergeDialog
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(58)))), ((int)(((byte)(132)))));
+            this.ClientSize = new System.Drawing.Size(702, 631);
+            this.Controls.Add(this.purplePanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "MergeDialog";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.Text = "Merge Options";
+            this.Activated += new System.EventHandler(this.MergeDialog_Activated);
+            this.whitePanel.ResumeLayout(false);
+            this.whitePanel.PerformLayout();
+            this.categoriesGroupBox.ResumeLayout(false);
+            this.categoriesGroupBox.PerformLayout();
+            this.categoriesLayoutPanel.ResumeLayout(false);
+            this.categoriesLayoutPanel.PerformLayout();
+            this.categoriesTableLayoutPanel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.keyboardMapPanel.ResumeLayout(false);
+            this.keyboardMapPanel.PerformLayout();
+            this.keypadMapPanel.ResumeLayout(false);
+            this.keypadMapPanel.PerformLayout();
+            this.macrosPanel.ResumeLayout(false);
+            this.macrosPanel.PerformLayout();
+            this.fontPanel.ResumeLayout(false);
+            this.fontPanel.PerformLayout();
+            this.hostListPanel.ResumeLayout(false);
+            this.hostListPanel.PerformLayout();
+            this.colorsPanel.ResumeLayout(false);
+            this.colorsPanel.PerformLayout();
+            this.purplePanel.ResumeLayout(false);
+            this.purplePanel.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel whitePanel;
+        private System.Windows.Forms.TableLayoutPanel categoriesLayoutPanel;
+        private System.Windows.Forms.Label legendLabel;
+        private System.Windows.Forms.Button importButton;
+        private System.Windows.Forms.TableLayoutPanel categoriesTableLayoutPanel;
+        private System.Windows.Forms.Panel keyboardMapPanel;
+        private System.Windows.Forms.RadioButton keyboardReplaceRadioButton;
+        private System.Windows.Forms.RadioButton keyboardMergeradioButton;
+        private System.Windows.Forms.CheckBox keyboardCheckBox;
+        private System.Windows.Forms.Panel keypadMapPanel;
+        private System.Windows.Forms.RadioButton keypadReplaceRadioButton;
+        private System.Windows.Forms.RadioButton keypadMergeRadioButton;
+        private System.Windows.Forms.CheckBox keypadCheckBox;
+        private System.Windows.Forms.Panel macrosPanel;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.CheckBox macrosCheckBox;
+        private System.Windows.Forms.Panel fontPanel;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.CheckBox fontCheckBox;
+        private System.Windows.Forms.Panel hostListPanel;
+        private System.Windows.Forms.RadioButton hostsReplaceRadioButton;
+        private System.Windows.Forms.RadioButton hostsMergeRadioButton;
+        private System.Windows.Forms.CheckBox hostsCheckBox;
+        private System.Windows.Forms.Panel colorsPanel;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.CheckBox colorsCheckBox;
+        private System.Windows.Forms.Panel purplePanel;
+        private System.Windows.Forms.GroupBox categoriesGroupBox;
+        private System.Windows.Forms.Label sourceProfileLabel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.CheckBox otherSettingsCheckBox;
+    }
+}

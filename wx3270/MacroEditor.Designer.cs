@@ -1,0 +1,1002 @@
+﻿namespace Wx3270
+{
+    partial class MacroEditor
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MacroEditor));
+            this.saveButton = new System.Windows.Forms.Button();
+            this.EditorCancelButton = new System.Windows.Forms.Button();
+            this.MacroBox = new System.Windows.Forms.TextBox();
+            this.StringButton = new System.Windows.Forms.Button();
+            this.TabButton = new System.Windows.Forms.Button();
+            this.PFButton = new System.Windows.Forms.Button();
+            this.EnterButton = new System.Windows.Forms.Button();
+            this.UpButton = new System.Windows.Forms.Button();
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.PAButton = new System.Windows.Forms.Button();
+            this.RightButton = new System.Windows.Forms.Button();
+            this.LeftButton = new System.Windows.Forms.Button();
+            this.DownButton = new System.Windows.Forms.Button();
+            this.KeyButton = new System.Windows.Forms.Button();
+            this.BackTabButton = new System.Windows.Forms.Button();
+            this.WaitButton = new System.Windows.Forms.Button();
+            this.DisconnectButton = new System.Windows.Forms.Button();
+            this.cursorToButton = new System.Windows.Forms.Button();
+            this.TransferFromButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.TextBoxLabel = new System.Windows.Forms.Label();
+            this.snippetsLabel = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.requiredLabel = new System.Windows.Forms.Label();
+            this.sourceDialog = new System.Windows.Forms.OpenFileDialog();
+            this.sourceButton = new System.Windows.Forms.Button();
+            this.scriptContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.newPythonScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newPowershellScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newVBScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newJScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptButton = new System.Windows.Forms.Button();
+            this.newScriptDialog = new System.Windows.Forms.SaveFileDialog();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.editScriptButton = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.snippetLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.paContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pfContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem20 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem21 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem24 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem25 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem26 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem27 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem28 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem30 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem29 = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.otherToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.switchProfileContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.otherToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.nameLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.scriptContextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
+            this.snippetLayoutPanel.SuspendLayout();
+            this.paContextMenuStrip.SuspendLayout();
+            this.pfContextMenuStrip.SuspendLayout();
+            this.connectContextMenuStrip.SuspendLayout();
+            this.switchProfileContextMenuStrip.SuspendLayout();
+            this.nameLayoutPanel.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(227, 495);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 20;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.OkayButton_Click);
+            // 
+            // EditorCancelButton
+            // 
+            this.EditorCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.EditorCancelButton.Location = new System.Drawing.Point(308, 495);
+            this.EditorCancelButton.Name = "EditorCancelButton";
+            this.EditorCancelButton.Size = new System.Drawing.Size(75, 23);
+            this.EditorCancelButton.TabIndex = 21;
+            this.EditorCancelButton.Text = "Cancel";
+            this.EditorCancelButton.UseVisualStyleBackColor = true;
+            this.EditorCancelButton.Click += new System.EventHandler(this.NotOkayButton_Click);
+            // 
+            // MacroBox
+            // 
+            this.MacroBox.AcceptsReturn = true;
+            this.MacroBox.Location = new System.Drawing.Point(13, 72);
+            this.MacroBox.Multiline = true;
+            this.MacroBox.Name = "MacroBox";
+            this.MacroBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.MacroBox.Size = new System.Drawing.Size(401, 248);
+            this.MacroBox.TabIndex = 1;
+            this.MacroBox.WordWrap = false;
+            this.MacroBox.Validating += new System.ComponentModel.CancelEventHandler(this.MacroBox_Validating);
+            // 
+            // StringButton
+            // 
+            this.StringButton.Location = new System.Drawing.Point(3, 90);
+            this.StringButton.Name = "StringButton";
+            this.StringButton.Size = new System.Drawing.Size(75, 23);
+            this.StringButton.TabIndex = 14;
+            this.StringButton.Tag = "String(\"xxx\")";
+            this.StringButton.Text = "String";
+            this.StringButton.UseVisualStyleBackColor = true;
+            this.StringButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // TabButton
+            // 
+            this.TabButton.Location = new System.Drawing.Point(165, 90);
+            this.TabButton.Name = "TabButton";
+            this.TabButton.Size = new System.Drawing.Size(75, 23);
+            this.TabButton.TabIndex = 15;
+            this.TabButton.Tag = "Tab()";
+            this.TabButton.Text = "Tab";
+            this.TabButton.UseVisualStyleBackColor = true;
+            this.TabButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // PFButton
+            // 
+            this.PFButton.Location = new System.Drawing.Point(84, 61);
+            this.PFButton.Name = "PFButton";
+            this.PFButton.Size = new System.Drawing.Size(75, 23);
+            this.PFButton.TabIndex = 12;
+            this.PFButton.Tag = "PF(1)";
+            this.PFButton.Text = "PF";
+            this.PFButton.UseVisualStyleBackColor = true;
+            this.PFButton.Click += new System.EventHandler(this.PF_Click);
+            // 
+            // EnterButton
+            // 
+            this.EnterButton.Location = new System.Drawing.Point(3, 32);
+            this.EnterButton.Name = "EnterButton";
+            this.EnterButton.Size = new System.Drawing.Size(75, 23);
+            this.EnterButton.TabIndex = 7;
+            this.EnterButton.Tag = "Enter()";
+            this.EnterButton.Text = "Enter";
+            this.EnterButton.UseVisualStyleBackColor = true;
+            this.EnterButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // UpButton
+            // 
+            this.UpButton.Location = new System.Drawing.Point(3, 119);
+            this.UpButton.Name = "UpButton";
+            this.UpButton.Size = new System.Drawing.Size(75, 23);
+            this.UpButton.TabIndex = 18;
+            this.UpButton.Tag = "Up()";
+            this.UpButton.Text = "Up";
+            this.UpButton.UseVisualStyleBackColor = true;
+            this.UpButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.Location = new System.Drawing.Point(84, 3);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(75, 23);
+            this.ClearButton.TabIndex = 3;
+            this.ClearButton.Tag = "Clear()";
+            this.ClearButton.Text = "Clear";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // PAButton
+            // 
+            this.PAButton.Location = new System.Drawing.Point(3, 61);
+            this.PAButton.Name = "PAButton";
+            this.PAButton.Size = new System.Drawing.Size(75, 23);
+            this.PAButton.TabIndex = 11;
+            this.PAButton.Tag = "PA(1)";
+            this.PAButton.Text = "PA";
+            this.PAButton.UseVisualStyleBackColor = true;
+            this.PAButton.Click += new System.EventHandler(this.PA_Click);
+            // 
+            // RightButton
+            // 
+            this.RightButton.Location = new System.Drawing.Point(165, 61);
+            this.RightButton.Name = "RightButton";
+            this.RightButton.Size = new System.Drawing.Size(75, 23);
+            this.RightButton.TabIndex = 13;
+            this.RightButton.Tag = "Right()";
+            this.RightButton.Text = "Right";
+            this.RightButton.UseVisualStyleBackColor = true;
+            this.RightButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // LeftButton
+            // 
+            this.LeftButton.Location = new System.Drawing.Point(165, 32);
+            this.LeftButton.Name = "LeftButton";
+            this.LeftButton.Size = new System.Drawing.Size(75, 23);
+            this.LeftButton.TabIndex = 9;
+            this.LeftButton.Tag = "Left()";
+            this.LeftButton.Text = "Left";
+            this.LeftButton.UseVisualStyleBackColor = true;
+            this.LeftButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // DownButton
+            // 
+            this.DownButton.Location = new System.Drawing.Point(327, 3);
+            this.DownButton.Name = "DownButton";
+            this.DownButton.Size = new System.Drawing.Size(75, 23);
+            this.DownButton.TabIndex = 6;
+            this.DownButton.Tag = "Down()";
+            this.DownButton.Text = "Down";
+            this.DownButton.UseVisualStyleBackColor = true;
+            this.DownButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // KeyButton
+            // 
+            this.KeyButton.Location = new System.Drawing.Point(84, 32);
+            this.KeyButton.Name = "KeyButton";
+            this.KeyButton.Size = new System.Drawing.Size(75, 23);
+            this.KeyButton.TabIndex = 8;
+            this.KeyButton.Tag = "Key(U+0065)";
+            this.KeyButton.Text = "Key";
+            this.KeyButton.UseVisualStyleBackColor = true;
+            this.KeyButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // BackTabButton
+            // 
+            this.BackTabButton.Location = new System.Drawing.Point(3, 3);
+            this.BackTabButton.Name = "BackTabButton";
+            this.BackTabButton.Size = new System.Drawing.Size(75, 23);
+            this.BackTabButton.TabIndex = 2;
+            this.BackTabButton.Tag = "BackTab()";
+            this.BackTabButton.Text = "BackTab";
+            this.BackTabButton.UseVisualStyleBackColor = true;
+            this.BackTabButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // WaitButton
+            // 
+            this.WaitButton.Location = new System.Drawing.Point(84, 119);
+            this.WaitButton.Name = "WaitButton";
+            this.WaitButton.Size = new System.Drawing.Size(75, 23);
+            this.WaitButton.TabIndex = 19;
+            this.WaitButton.Tag = "Wait(0.5,seconds)";
+            this.WaitButton.Text = "Wait 🕓";
+            this.WaitButton.UseVisualStyleBackColor = true;
+            this.WaitButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // DisconnectButton
+            // 
+            this.DisconnectButton.Location = new System.Drawing.Point(246, 3);
+            this.DisconnectButton.Name = "DisconnectButton";
+            this.DisconnectButton.Size = new System.Drawing.Size(75, 23);
+            this.DisconnectButton.TabIndex = 5;
+            this.DisconnectButton.Tag = "Disconnect()";
+            this.DisconnectButton.Text = "Disconnect";
+            this.DisconnectButton.UseVisualStyleBackColor = true;
+            this.DisconnectButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // cursorToButton
+            // 
+            this.cursorToButton.Location = new System.Drawing.Point(327, 32);
+            this.cursorToButton.Name = "cursorToButton";
+            this.cursorToButton.Size = new System.Drawing.Size(75, 23);
+            this.cursorToButton.TabIndex = 10;
+            this.cursorToButton.Tag = "MoveCursor1(24,80)";
+            this.cursorToButton.Text = "MoveCursor1";
+            this.cursorToButton.UseVisualStyleBackColor = true;
+            this.cursorToButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // TransferFromButton
+            // 
+            this.TransferFromButton.Location = new System.Drawing.Point(327, 90);
+            this.TransferFromButton.Name = "TransferFromButton";
+            this.TransferFromButton.Size = new System.Drawing.Size(75, 23);
+            this.TransferFromButton.TabIndex = 17;
+            this.TransferFromButton.Tag = "Transfer(direction=receive,host=vm,hostfile,\"FOO TEXT A\",localfile,\"C:\\My Dir\\foo" +
+    ".txt\",mode=ascii)";
+            this.TransferFromButton.Text = "Transfer ↓";
+            this.TransferFromButton.UseVisualStyleBackColor = true;
+            this.TransferFromButton.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(246, 90);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Tag = "Transfer(direction=send,host=vm,localfile,\"C:\\My Dir\\foo.txt\",hostfile,\"FOO TEXT " +
+    "A\",mode=ascii)";
+            this.button1.Text = "Transfer ↑";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // TextBoxLabel
+            // 
+            this.TextBoxLabel.AutoSize = true;
+            this.TextBoxLabel.Location = new System.Drawing.Point(12, 53);
+            this.TextBoxLabel.Name = "TextBoxLabel";
+            this.TextBoxLabel.Size = new System.Drawing.Size(57, 13);
+            this.TextBoxLabel.TabIndex = 21;
+            this.TextBoxLabel.Text = "Macro text";
+            // 
+            // snippetsLabel
+            // 
+            this.snippetsLabel.AutoSize = true;
+            this.snippetsLabel.Location = new System.Drawing.Point(15, 327);
+            this.snippetsLabel.Name = "snippetsLabel";
+            this.snippetsLabel.Size = new System.Drawing.Size(74, 13);
+            this.snippetsLabel.TabIndex = 22;
+            this.snippetsLabel.Text = "Code snippets";
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Location = new System.Drawing.Point(3, 6);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(35, 13);
+            this.nameLabel.TabIndex = 23;
+            this.nameLabel.Text = "Name";
+            // 
+            // nameTextBox
+            // 
+            this.nameTextBox.Location = new System.Drawing.Point(44, 3);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(229, 20);
+            this.nameTextBox.TabIndex = 0;
+            this.nameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NameTextBox_Validating);
+            // 
+            // requiredLabel
+            // 
+            this.requiredLabel.AutoSize = true;
+            this.requiredLabel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.requiredLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.requiredLabel.Location = new System.Drawing.Point(235, 26);
+            this.requiredLabel.Name = "requiredLabel";
+            this.requiredLabel.Size = new System.Drawing.Size(38, 12);
+            this.requiredLabel.TabIndex = 25;
+            this.requiredLabel.Text = "required";
+            this.requiredLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // sourceDialog
+            // 
+            this.sourceDialog.Filter = "All files|*.*";
+            this.sourceDialog.Title = "Select file to read";
+            // 
+            // sourceButton
+            // 
+            this.sourceButton.Location = new System.Drawing.Point(327, 61);
+            this.sourceButton.Name = "sourceButton";
+            this.sourceButton.Size = new System.Drawing.Size(75, 23);
+            this.sourceButton.TabIndex = 26;
+            this.sourceButton.Tag = "";
+            this.sourceButton.Text = "Source";
+            this.sourceButton.UseVisualStyleBackColor = true;
+            this.sourceButton.Click += new System.EventHandler(this.Source_clicked);
+            // 
+            // scriptContextMenuStrip
+            // 
+            this.scriptContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newPythonScriptToolStripMenuItem,
+            this.newPowershellScriptToolStripMenuItem,
+            this.newVBScriptToolStripMenuItem,
+            this.newJScriptToolStripMenuItem,
+            this.otherToolStripMenuItem});
+            this.scriptContextMenuStrip.Name = "scriptContextMenuStrip";
+            this.scriptContextMenuStrip.ShowImageMargin = false;
+            this.scriptContextMenuStrip.Size = new System.Drawing.Size(140, 114);
+            // 
+            // newPythonScriptToolStripMenuItem
+            // 
+            this.newPythonScriptToolStripMenuItem.Name = "newPythonScriptToolStripMenuItem";
+            this.newPythonScriptToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.newPythonScriptToolStripMenuItem.Tag = "Python3";
+            this.newPythonScriptToolStripMenuItem.Text = "Python 3 script";
+            this.newPythonScriptToolStripMenuItem.Click += new System.EventHandler(this.ScriptContextMenuStrip_Click);
+            // 
+            // newPowershellScriptToolStripMenuItem
+            // 
+            this.newPowershellScriptToolStripMenuItem.Name = "newPowershellScriptToolStripMenuItem";
+            this.newPowershellScriptToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.newPowershellScriptToolStripMenuItem.Tag = "PowerShell";
+            this.newPowershellScriptToolStripMenuItem.Text = "PowerShell script";
+            this.newPowershellScriptToolStripMenuItem.Click += new System.EventHandler(this.ScriptContextMenuStrip_Click);
+            // 
+            // newVBScriptToolStripMenuItem
+            // 
+            this.newVBScriptToolStripMenuItem.Name = "newVBScriptToolStripMenuItem";
+            this.newVBScriptToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.newVBScriptToolStripMenuItem.Tag = "VBScript";
+            this.newVBScriptToolStripMenuItem.Text = "VBScript";
+            this.newVBScriptToolStripMenuItem.Click += new System.EventHandler(this.ScriptContextMenuStrip_Click);
+            // 
+            // newJScriptToolStripMenuItem
+            // 
+            this.newJScriptToolStripMenuItem.Name = "newJScriptToolStripMenuItem";
+            this.newJScriptToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.newJScriptToolStripMenuItem.Tag = "JScript";
+            this.newJScriptToolStripMenuItem.Text = "JScript";
+            this.newJScriptToolStripMenuItem.Click += new System.EventHandler(this.ScriptContextMenuStrip_Click);
+            // 
+            // otherToolStripMenuItem
+            // 
+            this.otherToolStripMenuItem.Name = "otherToolStripMenuItem";
+            this.otherToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.otherToolStripMenuItem.Tag = "Other";
+            this.otherToolStripMenuItem.Text = "Other";
+            this.otherToolStripMenuItem.Click += new System.EventHandler(this.ScriptContextMenuStrip_Click);
+            // 
+            // scriptButton
+            // 
+            this.scriptButton.ContextMenuStrip = this.scriptContextMenuStrip;
+            this.scriptButton.Location = new System.Drawing.Point(246, 61);
+            this.scriptButton.Name = "scriptButton";
+            this.scriptButton.Size = new System.Drawing.Size(75, 23);
+            this.scriptButton.TabIndex = 28;
+            this.scriptButton.Tag = "";
+            this.scriptButton.Text = "Script";
+            this.scriptButton.UseVisualStyleBackColor = true;
+            this.scriptButton.Click += new System.EventHandler(this.ScriptButton_Click);
+            // 
+            // newScriptDialog
+            // 
+            this.newScriptDialog.OverwritePrompt = false;
+            this.newScriptDialog.Title = "Select new script name";
+            // 
+            // helpPictureBox
+            // 
+            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox.Location = new System.Drawing.Point(389, 495);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.helpPictureBox.TabIndex = 29;
+            this.helpPictureBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
+            this.helpPictureBox.Click += new System.EventHandler(this.Help_Click);
+            // 
+            // editScriptButton
+            // 
+            this.editScriptButton.Location = new System.Drawing.Point(14, 494);
+            this.editScriptButton.Name = "editScriptButton";
+            this.editScriptButton.Size = new System.Drawing.Size(75, 23);
+            this.editScriptButton.TabIndex = 34;
+            this.editScriptButton.Text = "🖉 Edit @";
+            this.toolTip1.SetToolTip(this.editScriptButton, "Edit the target of a Script() or Source() action");
+            this.editScriptButton.UseVisualStyleBackColor = true;
+            this.editScriptButton.Click += new System.EventHandler(this.EditScriptButtonClick);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(246, 32);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 30;
+            this.button2.Tag = "uMacro(xxx)";
+            this.button2.Text = "uMacro";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Macro_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(165, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 31;
+            this.button3.Tag = "uConnect(xxx)";
+            this.button3.Text = "uConnect";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Connect_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(84, 90);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 32;
+            this.button4.Tag = "uSwitchProfile(xxx)";
+            this.button4.Text = "uSwitchProfile";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.SwitchProfile_Click);
+            // 
+            // snippetLayoutPanel
+            // 
+            this.snippetLayoutPanel.Controls.Add(this.BackTabButton);
+            this.snippetLayoutPanel.Controls.Add(this.ClearButton);
+            this.snippetLayoutPanel.Controls.Add(this.button3);
+            this.snippetLayoutPanel.Controls.Add(this.DisconnectButton);
+            this.snippetLayoutPanel.Controls.Add(this.DownButton);
+            this.snippetLayoutPanel.Controls.Add(this.EnterButton);
+            this.snippetLayoutPanel.Controls.Add(this.KeyButton);
+            this.snippetLayoutPanel.Controls.Add(this.LeftButton);
+            this.snippetLayoutPanel.Controls.Add(this.button2);
+            this.snippetLayoutPanel.Controls.Add(this.cursorToButton);
+            this.snippetLayoutPanel.Controls.Add(this.PAButton);
+            this.snippetLayoutPanel.Controls.Add(this.PFButton);
+            this.snippetLayoutPanel.Controls.Add(this.RightButton);
+            this.snippetLayoutPanel.Controls.Add(this.scriptButton);
+            this.snippetLayoutPanel.Controls.Add(this.sourceButton);
+            this.snippetLayoutPanel.Controls.Add(this.StringButton);
+            this.snippetLayoutPanel.Controls.Add(this.button4);
+            this.snippetLayoutPanel.Controls.Add(this.TabButton);
+            this.snippetLayoutPanel.Controls.Add(this.button1);
+            this.snippetLayoutPanel.Controls.Add(this.TransferFromButton);
+            this.snippetLayoutPanel.Controls.Add(this.UpButton);
+            this.snippetLayoutPanel.Controls.Add(this.WaitButton);
+            this.snippetLayoutPanel.Location = new System.Drawing.Point(12, 343);
+            this.snippetLayoutPanel.Name = "snippetLayoutPanel";
+            this.snippetLayoutPanel.Size = new System.Drawing.Size(406, 146);
+            this.snippetLayoutPanel.TabIndex = 33;
+            this.snippetLayoutPanel.Tag = "<nowalk>";
+            // 
+            // paContextMenuStrip
+            // 
+            this.paContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4});
+            this.paContextMenuStrip.Name = "paContextMenuStrip";
+            this.paContextMenuStrip.ShowImageMargin = false;
+            this.paContextMenuStrip.Size = new System.Drawing.Size(56, 70);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(55, 22);
+            this.toolStripMenuItem2.Tag = "PA(1)";
+            this.toolStripMenuItem2.Text = "1";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(55, 22);
+            this.toolStripMenuItem3.Tag = "PA(2)";
+            this.toolStripMenuItem3.Text = "2";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(55, 22);
+            this.toolStripMenuItem4.Tag = "PA(3)";
+            this.toolStripMenuItem4.Text = "3";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // pfContextMenuStrip
+            // 
+            this.pfContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem6});
+            this.pfContextMenuStrip.Name = "pfContextMenuStrip";
+            this.pfContextMenuStrip.ShowImageMargin = false;
+            this.pfContextMenuStrip.Size = new System.Drawing.Size(79, 48);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem7,
+            this.toolStripMenuItem8,
+            this.toolStripMenuItem9,
+            this.toolStripMenuItem10,
+            this.toolStripMenuItem11,
+            this.toolStripMenuItem12,
+            this.toolStripMenuItem13,
+            this.toolStripMenuItem14,
+            this.toolStripMenuItem15,
+            this.toolStripMenuItem16,
+            this.toolStripMenuItem17,
+            this.toolStripMenuItem18});
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(78, 22);
+            this.toolStripMenuItem5.Text = "1-12";
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem7.Tag = "PF(1)";
+            this.toolStripMenuItem7.Text = "1";
+            this.toolStripMenuItem7.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem8.Tag = "PF(2)";
+            this.toolStripMenuItem8.Text = "2";
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem9.Tag = "PF(3)";
+            this.toolStripMenuItem9.Text = "3";
+            this.toolStripMenuItem9.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem10.Tag = "PF(4)";
+            this.toolStripMenuItem10.Text = "4";
+            this.toolStripMenuItem10.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem11
+            // 
+            this.toolStripMenuItem11.Name = "toolStripMenuItem11";
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem11.Tag = "PF(5)";
+            this.toolStripMenuItem11.Text = "5";
+            this.toolStripMenuItem11.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem12.Tag = "PF(6)";
+            this.toolStripMenuItem12.Text = "6";
+            this.toolStripMenuItem12.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem13
+            // 
+            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem13.Tag = "PF(7)";
+            this.toolStripMenuItem13.Text = "7";
+            this.toolStripMenuItem13.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem14
+            // 
+            this.toolStripMenuItem14.Name = "toolStripMenuItem14";
+            this.toolStripMenuItem14.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem14.Tag = "PF(8)";
+            this.toolStripMenuItem14.Text = "8";
+            this.toolStripMenuItem14.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem15
+            // 
+            this.toolStripMenuItem15.Name = "toolStripMenuItem15";
+            this.toolStripMenuItem15.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem15.Tag = "PF(9)";
+            this.toolStripMenuItem15.Text = "9";
+            this.toolStripMenuItem15.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem16
+            // 
+            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
+            this.toolStripMenuItem16.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem16.Tag = "PF(10)";
+            this.toolStripMenuItem16.Text = "10";
+            this.toolStripMenuItem16.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem17
+            // 
+            this.toolStripMenuItem17.Name = "toolStripMenuItem17";
+            this.toolStripMenuItem17.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem17.Tag = "PF(11)";
+            this.toolStripMenuItem17.Text = "11";
+            this.toolStripMenuItem17.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem18
+            // 
+            this.toolStripMenuItem18.Name = "toolStripMenuItem18";
+            this.toolStripMenuItem18.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem18.Tag = "PF(12)";
+            this.toolStripMenuItem18.Text = "12";
+            this.toolStripMenuItem18.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem19,
+            this.toolStripMenuItem20,
+            this.toolStripMenuItem21,
+            this.toolStripMenuItem22,
+            this.toolStripMenuItem23,
+            this.toolStripMenuItem24,
+            this.toolStripMenuItem25,
+            this.toolStripMenuItem26,
+            this.toolStripMenuItem27,
+            this.toolStripMenuItem28,
+            this.toolStripMenuItem30,
+            this.toolStripMenuItem29});
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(78, 22);
+            this.toolStripMenuItem6.Text = "13-24";
+            // 
+            // toolStripMenuItem19
+            // 
+            this.toolStripMenuItem19.Name = "toolStripMenuItem19";
+            this.toolStripMenuItem19.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem19.Tag = "PF(13)";
+            this.toolStripMenuItem19.Text = "13";
+            this.toolStripMenuItem19.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem20
+            // 
+            this.toolStripMenuItem20.Name = "toolStripMenuItem20";
+            this.toolStripMenuItem20.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem20.Tag = "PF(14)";
+            this.toolStripMenuItem20.Text = "14";
+            this.toolStripMenuItem20.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem21
+            // 
+            this.toolStripMenuItem21.Name = "toolStripMenuItem21";
+            this.toolStripMenuItem21.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem21.Tag = "PF(15)";
+            this.toolStripMenuItem21.Text = "15";
+            this.toolStripMenuItem21.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem22
+            // 
+            this.toolStripMenuItem22.Name = "toolStripMenuItem22";
+            this.toolStripMenuItem22.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem22.Tag = "PF(16)";
+            this.toolStripMenuItem22.Text = "16";
+            this.toolStripMenuItem22.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem23
+            // 
+            this.toolStripMenuItem23.Name = "toolStripMenuItem23";
+            this.toolStripMenuItem23.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem23.Tag = "PF(17)";
+            this.toolStripMenuItem23.Text = "17";
+            this.toolStripMenuItem23.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem24
+            // 
+            this.toolStripMenuItem24.Name = "toolStripMenuItem24";
+            this.toolStripMenuItem24.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem24.Tag = "PF(18)";
+            this.toolStripMenuItem24.Text = "18";
+            this.toolStripMenuItem24.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem25
+            // 
+            this.toolStripMenuItem25.Name = "toolStripMenuItem25";
+            this.toolStripMenuItem25.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem25.Tag = "PF(19)";
+            this.toolStripMenuItem25.Text = "19";
+            this.toolStripMenuItem25.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem26
+            // 
+            this.toolStripMenuItem26.Name = "toolStripMenuItem26";
+            this.toolStripMenuItem26.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem26.Tag = "PF(20)";
+            this.toolStripMenuItem26.Text = "20";
+            this.toolStripMenuItem26.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem27
+            // 
+            this.toolStripMenuItem27.Name = "toolStripMenuItem27";
+            this.toolStripMenuItem27.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem27.Tag = "PF(21)";
+            this.toolStripMenuItem27.Text = "21";
+            this.toolStripMenuItem27.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem28
+            // 
+            this.toolStripMenuItem28.Name = "toolStripMenuItem28";
+            this.toolStripMenuItem28.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem28.Tag = "PF(22)";
+            this.toolStripMenuItem28.Text = "22";
+            this.toolStripMenuItem28.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem30
+            // 
+            this.toolStripMenuItem30.Name = "toolStripMenuItem30";
+            this.toolStripMenuItem30.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem30.Tag = "PF(24)";
+            this.toolStripMenuItem30.Text = "24";
+            this.toolStripMenuItem30.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // toolStripMenuItem29
+            // 
+            this.toolStripMenuItem29.Name = "toolStripMenuItem29";
+            this.toolStripMenuItem29.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem29.Tag = "PF(23)";
+            this.toolStripMenuItem29.Text = "23";
+            this.toolStripMenuItem29.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // connectContextMenuStrip
+            // 
+            this.connectContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.otherToolStripMenuItem1});
+            this.connectContextMenuStrip.Name = "connectContextMenuStrip";
+            this.connectContextMenuStrip.ShowImageMargin = false;
+            this.connectContextMenuStrip.Size = new System.Drawing.Size(80, 26);
+            // 
+            // otherToolStripMenuItem1
+            // 
+            this.otherToolStripMenuItem1.Name = "otherToolStripMenuItem1";
+            this.otherToolStripMenuItem1.Size = new System.Drawing.Size(79, 22);
+            this.otherToolStripMenuItem1.Tag = "uConnect(SomeHost)";
+            this.otherToolStripMenuItem1.Text = "Other";
+            this.otherToolStripMenuItem1.Click += new System.EventHandler(this.FixedContextMenuClick);
+            // 
+            // switchProfileContextMenuStrip
+            // 
+            this.switchProfileContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.otherToolStripMenuItem2});
+            this.switchProfileContextMenuStrip.Name = "switchProfileContextMenuStrip";
+            this.switchProfileContextMenuStrip.ShowImageMargin = false;
+            this.switchProfileContextMenuStrip.Size = new System.Drawing.Size(80, 26);
+            // 
+            // otherToolStripMenuItem2
+            // 
+            this.otherToolStripMenuItem2.Name = "otherToolStripMenuItem2";
+            this.otherToolStripMenuItem2.Size = new System.Drawing.Size(79, 22);
+            this.otherToolStripMenuItem2.Text = "Other";
+            // 
+            // nameLayoutPanel
+            // 
+            this.nameLayoutPanel.AutoSize = true;
+            this.nameLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.nameLayoutPanel.ColumnCount = 2;
+            this.nameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.nameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.nameLayoutPanel.Controls.Add(this.nameLabel, 0, 0);
+            this.nameLayoutPanel.Controls.Add(this.nameTextBox, 1, 0);
+            this.nameLayoutPanel.Controls.Add(this.requiredLabel, 1, 1);
+            this.nameLayoutPanel.Location = new System.Drawing.Point(12, 5);
+            this.nameLayoutPanel.Name = "nameLayoutPanel";
+            this.nameLayoutPanel.RowCount = 2;
+            this.nameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.nameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.nameLayoutPanel.Size = new System.Drawing.Size(276, 38);
+            this.nameLayoutPanel.TabIndex = 35;
+            // 
+            // MacroEditor
+            // 
+            this.AcceptButton = this.saveButton;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.EditorCancelButton;
+            this.ClientSize = new System.Drawing.Size(427, 529);
+            this.Controls.Add(this.nameLayoutPanel);
+            this.Controls.Add(this.editScriptButton);
+            this.Controls.Add(this.snippetLayoutPanel);
+            this.Controls.Add(this.helpPictureBox);
+            this.Controls.Add(this.snippetsLabel);
+            this.Controls.Add(this.TextBoxLabel);
+            this.Controls.Add(this.MacroBox);
+            this.Controls.Add(this.EditorCancelButton);
+            this.Controls.Add(this.saveButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "MacroEditor";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Macro Editor";
+            this.Activated += new System.EventHandler(this.MacroEditorActivate);
+            this.scriptContextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.snippetLayoutPanel.ResumeLayout(false);
+            this.paContextMenuStrip.ResumeLayout(false);
+            this.pfContextMenuStrip.ResumeLayout(false);
+            this.connectContextMenuStrip.ResumeLayout(false);
+            this.switchProfileContextMenuStrip.ResumeLayout(false);
+            this.nameLayoutPanel.ResumeLayout(false);
+            this.nameLayoutPanel.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button EditorCancelButton;
+        private System.Windows.Forms.TextBox MacroBox;
+        private System.Windows.Forms.Button StringButton;
+        private System.Windows.Forms.Button TabButton;
+        private System.Windows.Forms.Button PFButton;
+        private System.Windows.Forms.Button EnterButton;
+        private System.Windows.Forms.Button UpButton;
+        private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.Button PAButton;
+        private System.Windows.Forms.Button RightButton;
+        private System.Windows.Forms.Button LeftButton;
+        private System.Windows.Forms.Button DownButton;
+        private System.Windows.Forms.Button KeyButton;
+        private System.Windows.Forms.Button BackTabButton;
+        private System.Windows.Forms.Button WaitButton;
+        private System.Windows.Forms.Button DisconnectButton;
+        private System.Windows.Forms.Button cursorToButton;
+        private System.Windows.Forms.Button TransferFromButton;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label TextBoxLabel;
+        private System.Windows.Forms.Label snippetsLabel;
+        private System.Windows.Forms.Label nameLabel;
+        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.Label requiredLabel;
+        private System.Windows.Forms.OpenFileDialog sourceDialog;
+        private System.Windows.Forms.Button sourceButton;
+        private System.Windows.Forms.ContextMenuStrip scriptContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem newPythonScriptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newPowershellScriptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newVBScriptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newJScriptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem otherToolStripMenuItem;
+        private System.Windows.Forms.Button scriptButton;
+        private System.Windows.Forms.SaveFileDialog newScriptDialog;
+        private System.Windows.Forms.PictureBox helpPictureBox;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.FlowLayoutPanel snippetLayoutPanel;
+        private System.Windows.Forms.ContextMenuStrip paContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ContextMenuStrip pfContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem10;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem11;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem12;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem13;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem14;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem15;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem16;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem17;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem18;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem19;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem20;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem21;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem22;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem23;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem24;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem25;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem26;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem27;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem28;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem30;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem29;
+        private System.Windows.Forms.ContextMenuStrip connectContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem otherToolStripMenuItem1;
+        private System.Windows.Forms.ContextMenuStrip switchProfileContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem otherToolStripMenuItem2;
+        private System.Windows.Forms.Button editScriptButton;
+        private System.Windows.Forms.TableLayoutPanel nameLayoutPanel;
+    }
+}
