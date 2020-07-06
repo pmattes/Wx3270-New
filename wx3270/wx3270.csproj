@@ -698,6 +698,18 @@
     <Analyzer Include="packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\extern\x3270-win64\b3270.exe">
+      <Link>b3270.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\extern\x3270-win64\pr3287.exe">
+      <Link>pr3287.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\extern\x3270-win64\x3270if.exe">
+      <Link>x3270if.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Python\x3270if\common.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
