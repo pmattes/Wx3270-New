@@ -356,7 +356,7 @@ namespace Wx3270
                                 string line;
                                 while ((line = reader.ReadLine()) != null)
                                 {
-                                    writer.WriteLine(line.Replace("%DLL%", Path.Combine(Application.StartupPath, "x3270is.dll")));
+                                    writer.WriteLine(line.Replace("%DLL%", X3270is.PathName));
                                 }
                             }
                         }

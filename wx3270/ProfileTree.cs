@@ -1015,7 +1015,10 @@ namespace Wx3270
         private void SafeHide()
         {
             this.Hide();
-            this.Owner.BringToFront();
+            if (this.Owner != null)
+            {
+                this.Owner.BringToFront();
+            }
         }
 
         /// <summary>

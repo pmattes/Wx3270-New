@@ -455,6 +455,7 @@
       <DependentUpon>VisibleControls.cs</DependentUpon>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="x3270is.cs" />
     <EmbeddedResource Include="Actions.resx">
       <DependentUpon>Actions.cs</DependentUpon>
       <SubType>Designer</SubType>
