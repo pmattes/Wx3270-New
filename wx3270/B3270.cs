@@ -1308,6 +1308,11 @@ namespace Wx3270
             public const string Set = "Set";
 
             /// <summary>
+            /// Source action.
+            /// </summary>
+            public const string Source = "Source";
+
+            /// <summary>
             /// System request action.
             /// </summary>
             public const string SysReq = "SysReq";
@@ -1460,6 +1465,17 @@ namespace Wx3270
             /// Unlock delay.
             /// </summary>
             public const string UnlockDelay = "unlockDelay";
+        }
+
+        /// <summary>
+        /// Options for the Script action.
+        /// </summary>
+        public class ScriptOption
+        {
+            /// <summary>
+            /// Share the console between wx3270 and the child process.
+            /// </summary>
+            public const string ShareConsole = "-shareconsole";
         }
     }
 }

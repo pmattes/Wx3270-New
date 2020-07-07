@@ -707,6 +707,10 @@
       <Link>pr3287.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\extern\x3270-win64\s3270.exe">
+      <Link>s3270.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\extern\x3270-win64\x3270if.exe">
       <Link>x3270if.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

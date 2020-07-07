@@ -114,7 +114,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(Message.InvalidMacroSyntax, "Invalid macro syntax");
             I18n.LocalizeGlobal(Message.UnrecognizedScriptType, "Unrecognized script type");
             I18n.LocalizeGlobal(Message.MissingFileName, "Missing file name");
-            I18n.LocalizeGlobal(Message.NoEdit, "No Script() or Source() action under the cursor");
+            I18n.LocalizeGlobal(Message.NoEdit, "No " + B3270.Action.Script + "() or " + B3270.Action.Source + "() action under the cursor");
         }
 
         /// <summary>
@@ -265,7 +265,7 @@ namespace Wx3270
             this.sourceDialog.InitialDirectory = ProfileManager.ProfileDirectory;
             if (this.sourceDialog.ShowDialog(this) == DialogResult.OK)
             {
-                this.InsertText(string.Format("Source({0})", BackEndAction.Quote(this.sourceDialog.FileName)));
+                this.InsertText(string.Format(B3270.Action.Source + "({0})", BackEndAction.Quote(this.sourceDialog.FileName)));
             }
 
             this.MacroBox.Focus();
@@ -323,7 +323,7 @@ namespace Wx3270
                 ErrorBox.Show(e.Message, I18n.Get(Title.ScriptCreation));
             }
 
-            this.InsertText(string.Format("Script(pyw,{0})", BackEndAction.Quote(this.newScriptDialog.FileName)));
+            this.InsertText(string.Format(B3270.Action.Script + "(pyw,{0})", BackEndAction.Quote(this.newScriptDialog.FileName)));
         }
 
         /// <summary>
@@ -377,7 +377,7 @@ namespace Wx3270
                 ErrorBox.Show(e.Message, I18n.Get(Title.ScriptCreation));
             }
 
-            this.InsertText(string.Format("Script(PowerShell.exe,-File,{0})", BackEndAction.Quote(this.newScriptDialog.FileName)));
+            this.InsertText(string.Format(B3270.Action.Script + "(" + B3270.ScriptOption.ShareConsole + ",PowerShell.exe,-File,{0})", BackEndAction.Quote(this.newScriptDialog.FileName)));
         }
 
         /// <summary>
@@ -427,7 +427,7 @@ namespace Wx3270
                 ErrorBox.Show(e.Message, I18n.Get(Title.ScriptCreation));
             }
 
-            this.InsertText(string.Format("Script(wscript.exe,{0})", BackEndAction.Quote(this.newScriptDialog.FileName)));
+            this.InsertText(string.Format(B3270.Action.Script + "(wscript.exe,{0})", BackEndAction.Quote(this.newScriptDialog.FileName)));
         }
 
         /// <summary>
@@ -477,7 +477,7 @@ namespace Wx3270
                 ErrorBox.Show(e.Message, I18n.Get(Title.ScriptCreation));
             }
 
-            this.InsertText(string.Format("Script(wscript.exe,{0})", BackEndAction.Quote(this.newScriptDialog.FileName)));
+            this.InsertText(string.Format(B3270.Action.Script + "(wscript.exe,{0})", BackEndAction.Quote(this.newScriptDialog.FileName)));
         }
 
         /// <summary>
@@ -504,7 +504,7 @@ namespace Wx3270
                     this.NewJScript();
                     break;
                 case "Other":
-                    this.InsertText("Script(\"xxx\")");
+                    this.InsertText(B3270.Action.Script + "(\"xxx\")");
                     break;
                 default:
                     break;
@@ -739,7 +739,7 @@ namespace Wx3270
             string editArg = null;
 
             // Make sure the line looks like a Script() action.
-            if (currentLine.TrimStart(' ').StartsWith("Script("))
+            if (currentLine.TrimStart(' ').StartsWith(B3270.Action.Script + "("))
             {
                 // Figure out what kind of script it is, by looking for arguments that end with known suffixes like .py, .ps1, .vbs and .js.
                 int ix = 0;
@@ -766,7 +766,7 @@ namespace Wx3270
                     return;
                 }
             }
-            else if (currentLine.TrimStart(' ').StartsWith("Source("))
+            else if (currentLine.TrimStart(' ').StartsWith(B3270.Action.Source + "("))
             {
                 int ix = 0;
                 if (!ActionSyntax.CheckLine(currentLine, out int column, ref ix, out string errorText, out string[] args))
