@@ -2,6 +2,7 @@
 $inno = 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
 $cert = 'C:\Users\Paul Mattes\Documents\Cert2020.p12'
 $signtool = 'C:\Program Files (x86)\Windows Kits\10\bin\x86\signtool.exe'
+$timestamp = 'http://timestamp.digicert.com'
 
 # Any error kills the script.
 $ErrorActionPreference = 'Stop'
@@ -22,9 +23,9 @@ $files = `
    (Get-ChildItem -Path Wx3270\bin\x86\Release, Wx3270\bin\x64\Release -Recurse -Filter "*.exe").FullName `
  + (Get-ChildItem -Path Wx3270\bin\x86\Release, Wx3270\bin\x64\Release -Recurse -Filter "*.dll" -Exclude $exclude).FullName
 Write-Host -ForegroundColor Green 'Signing', $files.Count, 'binaries'
-& $signtool sign /q /f $cert /p $pass /td SHA256 /tr http://timestamp.comodoca.com $files
+& $signtool sign /f $cert /p $pass /td SHA256 /tr $timestamp $files
 
 # Run Inno Setup to create the installer.
 Write-Host -ForegroundColor Green 'Running Inno Setup'
-$signparm = '/smystandard="' + "$signtool sign /f `$q$cert`$q /p $pass /td SHA256 /tr http://timestamp.comodoca.com `$p" + '"'
+$signparm = '/smystandard="' + "$signtool sign /f `$q$cert`$q /p $pass /td SHA256 /tr $timestamp `$p" + '"'
 & $inno $signparm /Qp wx3270.iss
