@@ -10,6 +10,9 @@ namespace Wx3270
     using System.IO;
     using System.Runtime.InteropServices;
     using System.Text;
+    using System.Windows.Forms;
+
+    using I18nBase;
     using Wx3270.Contracts;
 
     /// <summary>
@@ -28,30 +31,63 @@ namespace Wx3270
         public const string KeyClick = "keyclick";
 
         /// <summary>
+        /// Title name, for localization.
+        /// </summary>
+        private static readonly string TitleName = I18n.TitleName(nameof(Sound));
+
+        /// <summary>
+        /// Message name, for localization.
+        /// </summary>
+        private static readonly string MessageName = I18n.MessageName(nameof(Sound));
+
+        /// <summary>
         /// Mapping of sound names to temporary file names for the WAV files.
         /// </summary>
         private readonly Dictionary<string, string> soundLoaded = new Dictionary<string, string>();
 
         /// <summary>
+        /// Set of failed sound files.
+        /// </summary>
+        private readonly HashSet<string> soundFailed = new HashSet<string>();
+
+        /// <summary>
         /// Send a command to MCI.
         /// </summary>
-        /// <param name="command">Command text</param>
-        /// <param name="buffer">Buffer (we do not use this)</param>
-        /// <param name="bufferSize">Buffer size (we do not use this)></param>
-        /// <param name="hwndCallback">Callback (we do not use this)</param>
-        /// <returns>Zero for success</returns>
+        /// <param name="command">Command text.</param>
+        /// <param name="buffer">Buffer (we do not use this).</param>
+        /// <param name="bufferSize">Buffer size (we do not use this)>.</param>
+        /// <param name="hwndCallback">Callback (we do not use this).</param>
+        /// <returns>Zero for success.</returns>
         [DllImport("winmm.dll")]
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Imposed by external DLL.")]
         public static extern int mciSendString(string command, StringBuilder buffer, int bufferSize, IntPtr hwndCallback);
 
+        /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
+        public static void Localize()
+        {
+            I18n.LocalizeGlobal(Title.SoundError, "Sound Error");
+
+            I18n.LocalizeGlobal(Message.CannotLoad, "Cannot load sound '{0}'");
+            I18n.LocalizeGlobal(Message.CannotPlay, "Cannot play sound '{0}'");
+            I18n.LocalizeGlobal(Message.CannotStop, "Cannot stop sound '{0}'");
+            I18n.LocalizeGlobal(Message.CannotClose, "Cannot close sound '{0}'");
+        }
+
         /// <inheritdoc />
         public void Play(string name, int offset = 0)
         {
-            this.Load(name);
+            if (!this.Load(name))
+            {
+                return;
+            }
+
             var result = mciSendString("play " + name + " from " + offset, null, 0, IntPtr.Zero);
             if (result != 0)
             {
-                throw new ArgumentException("Can't play file", name);
+                ErrorBox.Show(string.Format(I18n.Get(Message.CannotPlay), name), I18n.Get(Title.SoundError), MessageBoxIcon.Error);
             }
         }
 
@@ -61,7 +97,7 @@ namespace Wx3270
             var result = mciSendString("stop " + name, null, 0, IntPtr.Zero);
             if (result != 0)
             {
-                throw new ArgumentException("Can't stop file", name);
+                ErrorBox.Show(string.Format(I18n.Get(Message.CannotStop), name), I18n.Get(Title.SoundError), MessageBoxIcon.Error);
             }
         }
 
@@ -73,23 +109,30 @@ namespace Wx3270
                 var result = mciSendString("close " + pair.Key, null, 0, IntPtr.Zero);
                 if (result != 0)
                 {
-                    throw new InvalidOperationException("Can't close " + pair.Key);
+                    throw new InvalidOperationException(string.Format(I18n.Get(Message.CannotClose), pair.Key));
                 }
 
                 File.Delete(pair.Value);
             }
+
+            this.soundLoaded.Clear();
         }
 
         /// <summary>
         /// Load a sound file.
         /// </summary>
-        /// <param name="name">Name of the resource</param>
-        private void Load(string name)
+        /// <param name="name">Name of the resource.</param>
+        /// <returns>True if sound loaded successfully.</returns>
+        private bool Load(string name)
         {
-            string tempFile;
-            if (this.soundLoaded.TryGetValue(name, out tempFile))
+            if (this.soundFailed.Contains(name))
             {
-                return;
+                return false;
+            }
+
+            if (this.soundLoaded.ContainsKey(name))
+            {
+                return true;
             }
 
             // Find the resource.
@@ -97,11 +140,12 @@ namespace Wx3270
             Stream s = a.GetManifestResourceStream("Wx3270.Resources." + name + ".wav");
             if (s == null)
             {
-                return;
+                this.soundFailed.Add(name);
+                return false;
             }
 
             // Copy it to a temporary file.
-            tempFile = Path.GetTempFileName();
+            var tempFile = Path.GetTempFileName();
             StreamWriter streamWriter = File.AppendText(tempFile);
             s.CopyTo(streamWriter.BaseStream);
             s.Close();
@@ -111,7 +155,9 @@ namespace Wx3270
             var result = mciSendString("open \"" + tempFile + "\" type waveaudio alias " + name, null, 0, IntPtr.Zero);
             if (result != 0)
             {
-                throw new ArgumentException("Can't open file", name);
+                this.soundFailed.Add(name);
+                ErrorBox.Show(string.Format(I18n.Get(Message.CannotLoad), name), I18n.Get(Title.SoundError), MessageBoxIcon.Error);
+                return false;
             }
 
             // Remember it.
@@ -120,6 +166,44 @@ namespace Wx3270
             // Note:
             // To get notifications, look here:
             //  https://stackoverflow.com/questions/3905732/how-do-i-repeat-a-midi-file-in-c
+            return true;
+        }
+
+        /// <summary>
+        /// Miscellaneous messages.
+        /// </summary>
+        private class Message
+        {
+            /// <summary>
+            /// Cannot load message.
+            /// </summary>
+            public static readonly string CannotLoad = I18n.Combine(MessageName, "cannotLoad");
+
+            /// <summary>
+            /// Cannot play message.
+            /// </summary>
+            public static readonly string CannotPlay = I18n.Combine(MessageName, "cannotPlay");
+
+            /// <summary>
+            /// Cannot stop message.
+            /// </summary>
+            public static readonly string CannotStop = I18n.Combine(MessageName, "cannotStop");
+
+            /// <summary>
+            /// Cannot close message.
+            /// </summary>
+            public static readonly string CannotClose = I18n.Combine(MessageName, "cannotClose");
+        }
+
+        /// <summary>
+        /// Message box titles.
+        /// </summary>
+        private class Title
+        {
+            /// <summary>
+            /// Profile edit.
+            /// </summary>
+            public static readonly string SoundError = I18n.Combine(TitleName, "soundError");
         }
     }
 }
