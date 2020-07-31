@@ -10,9 +10,7 @@ namespace Wx3270
     using System.IO;
     using System.Runtime.InteropServices;
     using System.Text;
-    using System.Windows.Forms;
 
-    using I18nBase;
     using Wx3270.Contracts;
 
     /// <summary>
@@ -29,6 +27,16 @@ namespace Wx3270
         /// The name of the keyboard click sound.
         /// </summary>
         public const string KeyClick = "keyclick";
+
+        /// <summary>
+        /// Prefix for aliases.
+        /// </summary>
+        public const string Prefix = "wc3270-";
+
+        /// <summary>
+        /// Substitution token.
+        /// </summary>
+        public const string NameToken = "@";
 
         /// <summary>
         /// Title name, for localization.
@@ -62,42 +70,21 @@ namespace Wx3270
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Imposed by external DLL.")]
         public static extern int mciSendString(string command, StringBuilder buffer, int bufferSize, IntPtr hwndCallback);
 
-        /// <summary>
-        /// Static localization.
-        /// </summary>
-        [I18nInit]
-        public static void Localize()
-        {
-            I18n.LocalizeGlobal(Title.SoundError, "Sound Error");
-
-            I18n.LocalizeGlobal(Message.CannotLoad, "Cannot load sound '{0}'");
-            I18n.LocalizeGlobal(Message.CannotPlay, "Cannot play sound '{0}'");
-            I18n.LocalizeGlobal(Message.CannotStop, "Cannot stop sound '{0}'");
-            I18n.LocalizeGlobal(Message.CannotClose, "Cannot close sound '{0}'");
-        }
-
         /// <inheritdoc />
         public void Play(string name, int offset = 0)
         {
-            if (!this.Load(name))
+            if (this.Load(name))
             {
-                return;
-            }
-
-            var result = mciSendString("play " + name + " from " + offset, null, 0, IntPtr.Zero);
-            if (result != 0)
-            {
-                ErrorBox.Show(string.Format(I18n.Get(Message.CannotPlay), name), I18n.Get(Title.SoundError), MessageBoxIcon.Error);
+                this.SoundOperation("play", name, $"{NameToken} from {offset}");
             }
         }
 
         /// <inheritdoc />
         public void Stop(string name)
         {
-            var result = mciSendString("stop " + name, null, 0, IntPtr.Zero);
-            if (result != 0)
+            if (this.Load(name))
             {
-                ErrorBox.Show(string.Format(I18n.Get(Message.CannotStop), name), I18n.Get(Title.SoundError), MessageBoxIcon.Error);
+                this.SoundOperation("stop", name);
             }
         }
 
@@ -106,12 +93,7 @@ namespace Wx3270
         {
             foreach (var pair in this.soundLoaded)
             {
-                var result = mciSendString("close " + pair.Key, null, 0, IntPtr.Zero);
-                if (result != 0)
-                {
-                    throw new InvalidOperationException(string.Format(I18n.Get(Message.CannotClose), pair.Key));
-                }
-
+                this.SoundOperation("close", pair.Key);
                 File.Delete(pair.Value);
             }
 
@@ -136,10 +118,11 @@ namespace Wx3270
             }
 
             // Find the resource.
-            var a = System.Reflection.Assembly.GetExecutingAssembly();
-            Stream s = a.GetManifestResourceStream("Wx3270.Resources." + name + ".wav");
-            if (s == null)
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            Stream stream = assembly.GetManifestResourceStream("Wx3270.Resources." + name + ".wav");
+            if (stream == null)
             {
+                Trace.Line(Trace.Type.Sound, $"Cannot find resource for sound {name}");
                 this.soundFailed.Add(name);
                 return false;
             }
@@ -147,16 +130,14 @@ namespace Wx3270
             // Copy it to a temporary file.
             var tempFile = Path.GetTempFileName();
             StreamWriter streamWriter = File.AppendText(tempFile);
-            s.CopyTo(streamWriter.BaseStream);
-            s.Close();
+            stream.CopyTo(streamWriter.BaseStream);
+            stream.Close();
             streamWriter.Close();
 
             // Load it.
-            var result = mciSendString("open \"" + tempFile + "\" type waveaudio alias " + name, null, 0, IntPtr.Zero);
-            if (result != 0)
+            if (!this.SoundOperation("open", name, "\"" + tempFile + "\" type waveaudio alias " + NameToken))
             {
                 this.soundFailed.Add(name);
-                ErrorBox.Show(string.Format(I18n.Get(Message.CannotLoad), name), I18n.Get(Title.SoundError), MessageBoxIcon.Error);
                 return false;
             }
 
@@ -170,40 +151,22 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Miscellaneous messages.
+        /// Perform a sound operation.
         /// </summary>
-        private class Message
+        /// <param name="verb">Command verb.</param>
+        /// <param name="name">Sound name.</param>
+        /// <param name="template">Command template.</param>
+        /// <returns>True if command succeeded.</returns>
+        private bool SoundOperation(string verb, string name, string template = NameToken)
         {
-            /// <summary>
-            /// Cannot load message.
-            /// </summary>
-            public static readonly string CannotLoad = I18n.Combine(MessageName, "cannotLoad");
+            var command = verb + " " + template.Replace(NameToken, Prefix + name);
+            var result = mciSendString(command, null, 0, IntPtr.Zero);
+            if (result != 0)
+            {
+                Trace.Line(Trace.Type.Sound, $"Cannot {command} sound {name}: {result}");
+            }
 
-            /// <summary>
-            /// Cannot play message.
-            /// </summary>
-            public static readonly string CannotPlay = I18n.Combine(MessageName, "cannotPlay");
-
-            /// <summary>
-            /// Cannot stop message.
-            /// </summary>
-            public static readonly string CannotStop = I18n.Combine(MessageName, "cannotStop");
-
-            /// <summary>
-            /// Cannot close message.
-            /// </summary>
-            public static readonly string CannotClose = I18n.Combine(MessageName, "cannotClose");
-        }
-
-        /// <summary>
-        /// Message box titles.
-        /// </summary>
-        private class Title
-        {
-            /// <summary>
-            /// Profile edit.
-            /// </summary>
-            public static readonly string SoundError = I18n.Combine(TitleName, "soundError");
+            return result == 0;
         }
     }
 }

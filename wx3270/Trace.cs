@@ -42,9 +42,14 @@ namespace Wx3270
             Clipboard = 0x10,
 
             /// <summary>
+            /// Sound operations.
+            /// </summary>
+            Sound = 0x20,
+
+            /// <summary>
             /// All events.
             /// </summary>
-            All = Window | Key | Profile | BackEnd | Clipboard,
+            All = Window | Key | Profile | BackEnd | Clipboard | Sound,
         }
 
         /// <summary>
