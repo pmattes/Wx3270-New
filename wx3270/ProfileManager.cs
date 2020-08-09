@@ -449,121 +449,15 @@ namespace Wx3270
         }
 
         /// <inheritdoc />
+        public bool Load(string profilePath, out string outProfilePath, bool readOnly = false, bool warnIfReadOnly = true, bool doErrorPopups = true)
+        {
+            return this.LoadInternal(profilePath, out outProfilePath, readOnly, warnIfReadOnly, doErrorPopups);
+        }
+
+        /// <inheritdoc />
         public bool Load(string profilePath, bool readOnly = false, bool warnIfReadOnly = true, bool doErrorPopups = true)
         {
-            if (profilePath != null && this.IsCurrentPathName(profilePath))
-            {
-                // Re-loading the current profile is a successful no-op.
-                return true;
-            }
-
-            // Remember the previous profile, whatever it is.
-            var previous = this.Current?.Clone();
-
-            if (profilePath == null)
-            {
-                profilePath = DefaultProfilePath;
-            }
-
-            var isDefault = profilePath.Equals(DefaultProfilePath, StringComparison.InvariantCultureIgnoreCase);
-
-            var profileName = Path.GetFileNameWithoutExtension(profilePath);
-
-            string error;
-            string warning;
-            FileStream stream = null;
-            var busy = false;
-            var notFound = false;
-            Profile profile;
-            if (readOnly)
-            {
-                profile = Read(profilePath, out error, out warning, out busy, out notFound);
-            }
-            else
-            {
-                profile = Read(profilePath, out error, out warning, out stream, out busy, out notFound);
-            }
-
-            if (profile != null)
-            {
-                profile.ReadOnly = readOnly || stream == null;
-                this.Current = profile;
-                if (!readOnly && stream == null && warnIfReadOnly)
-                {
-                    ErrorBox.Show(string.Format(I18n.Get(Message.ProfileReadOnly), profile.Name), I18n.Get(Title.ProfileOpen));
-                }
-            }
-            else
-            {
-                if (busy)
-                {
-                    // Open read-only.
-                    profile = Read(profilePath, out error, out warning, out busy, out notFound);
-                    if (profile == null)
-                    {
-                        if (doErrorPopups)
-                        {
-                            ErrorBox.Show(error, I18n.Get(Title.ProfileOpen));
-                        }
-
-                        return false;
-                    }
-
-                    if (warnIfReadOnly)
-                    {
-                        ErrorBox.Show(string.Format(I18n.Get(Message.ProfileBusy), profile.Name), I18n.Get(Title.ProfileOpen), MessageBoxIcon.Information);
-                    }
-
-                    profile.ReadOnly = true;
-                    this.Current = profile;
-                }
-                else if (isDefault && notFound)
-                {
-                    // Create the default profile.
-                    if (!this.SaveDefault(out stream))
-                    {
-                        return false;
-                    }
-
-                    this.Current = Profile.DefaultProfile.Clone(DefaultProfileName, ProfilePath(DefaultProfileName));
-                }
-                else
-                {
-                    if (error != null)
-                    {
-                        if (doErrorPopups)
-                        {
-                            ErrorBox.Show(error, I18n.Get(Title.ProfileLoad));
-                        }
-                    }
-
-                    if (stream != null)
-                    {
-                        stream.Close();
-                    }
-
-                    return false;
-                }
-            }
-
-            if (warning != null)
-            {
-                ErrorBox.Show(warning, I18n.Get(Title.ProfileLoad), MessageBoxIcon.Warning);
-            }
-
-            // Close the previous profile.
-            this.Close(previous);
-
-            // Tell folks that we have opened a new profile.
-            this.NewProfileOpened(this.Current);
-
-            // Tell everyone else about it.
-            this.PropagateExternalChange(previous, isNew: true);
-
-            // Switch to the new one.
-            this.currentFileStream = stream;
-
-            return true;
+            return this.LoadInternal(profilePath, out _, readOnly, warnIfReadOnly, doErrorPopups);
         }
 
         /// <inheritdoc />
@@ -1154,6 +1048,155 @@ namespace Wx3270
 
             // Unlock.
             stream.Unlock(0, 1);
+        }
+
+        /// <summary>
+        /// Load a profile, i.e., make some profile current.
+        /// </summary>
+        /// <param name="profilePath">Full profile pathname.</param>
+        /// <param name="outProfilePath">Returned full profile path.</param>
+        /// <param name="readOnly">If true, open read-only.</param>
+        /// <param name="warnIfReadOnly">If true, pop up a warning if in read-only mode.</param>
+        /// <param name="doErrorPopups">If true, do pop-ups for errors.</param>
+        /// <returns>True if load was successful.</returns>
+        private bool LoadInternal(string profilePath, out string outProfilePath, bool readOnly, bool warnIfReadOnly, bool doErrorPopups)
+        {
+            // Allow the profile to be under-specified.
+            if (profilePath != null)
+            {
+                if (!profilePath.EndsWith(Suffix, StringComparison.OrdinalIgnoreCase))
+                {
+                    profilePath += Suffix;
+                }
+
+                if (!Path.IsPathRooted(profilePath))
+                {
+                    if (File.Exists(Path.Combine(SeedProfileDirectory, profilePath)))
+                    {
+                        profilePath = Path.Combine(SeedProfileDirectory, profilePath);
+                    }
+                    else
+                    {
+                        profilePath = Path.GetFullPath(profilePath);
+                    }
+                }
+            }
+
+            outProfilePath = profilePath;
+
+            if (profilePath != null && this.IsCurrentPathName(profilePath))
+            {
+                // Re-loading the current profile is a successful no-op.
+                return true;
+            }
+
+            // Remember the previous profile, whatever it is.
+            var previous = this.Current?.Clone();
+
+            if (profilePath == null)
+            {
+                profilePath = DefaultProfilePath;
+            }
+
+            var isDefault = profilePath.Equals(DefaultProfilePath, StringComparison.InvariantCultureIgnoreCase);
+
+            var profileName = Path.GetFileNameWithoutExtension(profilePath);
+
+            string error;
+            string warning;
+            FileStream stream = null;
+            var busy = false;
+            var notFound = false;
+            Profile profile;
+            if (readOnly)
+            {
+                profile = Read(profilePath, out error, out warning, out busy, out notFound);
+            }
+            else
+            {
+                profile = Read(profilePath, out error, out warning, out stream, out busy, out notFound);
+            }
+
+            if (profile != null)
+            {
+                profile.ReadOnly = readOnly || stream == null;
+                this.Current = profile;
+                if (!readOnly && stream == null && warnIfReadOnly)
+                {
+                    ErrorBox.Show(string.Format(I18n.Get(Message.ProfileReadOnly), profile.Name), I18n.Get(Title.ProfileOpen));
+                }
+            }
+            else
+            {
+                if (busy)
+                {
+                    // Open read-only.
+                    profile = Read(profilePath, out error, out warning, out busy, out notFound);
+                    if (profile == null)
+                    {
+                        if (doErrorPopups)
+                        {
+                            ErrorBox.Show(error, I18n.Get(Title.ProfileOpen));
+                        }
+
+                        return false;
+                    }
+
+                    if (warnIfReadOnly)
+                    {
+                        ErrorBox.Show(string.Format(I18n.Get(Message.ProfileBusy), profile.Name), I18n.Get(Title.ProfileOpen), MessageBoxIcon.Information);
+                    }
+
+                    profile.ReadOnly = true;
+                    this.Current = profile;
+                }
+                else if (isDefault && notFound)
+                {
+                    // Create the default profile.
+                    if (!this.SaveDefault(out stream))
+                    {
+                        return false;
+                    }
+
+                    this.Current = Profile.DefaultProfile.Clone(DefaultProfileName, ProfilePath(DefaultProfileName));
+                }
+                else
+                {
+                    if (error != null)
+                    {
+                        if (doErrorPopups)
+                        {
+                            ErrorBox.Show(error, I18n.Get(Title.ProfileLoad));
+                        }
+                    }
+
+                    if (stream != null)
+                    {
+                        stream.Close();
+                    }
+
+                    return false;
+                }
+            }
+
+            if (warning != null)
+            {
+                ErrorBox.Show(warning, I18n.Get(Title.ProfileLoad), MessageBoxIcon.Warning);
+            }
+
+            // Close the previous profile.
+            this.Close(previous);
+
+            // Tell folks that we have opened a new profile.
+            this.NewProfileOpened(this.Current);
+
+            // Tell everyone else about it.
+            this.PropagateExternalChange(previous, isNew: true);
+
+            // Switch to the new one.
+            this.currentFileStream = stream;
+
+            return true;
         }
 
         /// <summary>

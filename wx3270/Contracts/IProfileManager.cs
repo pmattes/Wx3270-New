@@ -152,6 +152,17 @@ namespace Wx3270.Contracts
         bool Load(string profilePath, bool readOnly = false, bool warnIfReadOnly = true, bool doErrorPopups = true);
 
         /// <summary>
+        /// Load a profile, i.e., make some profile current.
+        /// </summary>
+        /// <param name="profilePath">Full profile pathname.</param>
+        /// <param name="outProfilePath">Returned full profile path.</param>
+        /// <param name="readOnly">If true, open read-only.</param>
+        /// <param name="warnIfReadOnly">If true, pop up a warning if in read-only mode.</param>
+        /// <param name="doErrorPopups">If true, do pop-ups for errors.</param>
+        /// <returns>True if load was successful.</returns>
+        bool Load(string profilePath, out string outProfilePath, bool readOnly = false, bool warnIfReadOnly = true, bool doErrorPopups = true);
+
+        /// <summary>
         /// Merge data from another profile.
         /// </summary>
         /// <param name="destProfile">Destination profile.</param>
