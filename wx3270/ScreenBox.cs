@@ -6,6 +6,7 @@ namespace Wx3270
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Drawing;
     using System.Windows.Forms;
 
@@ -151,10 +152,12 @@ namespace Wx3270
         /// <summary>
         /// Initializes a new instance of the <see cref="ScreenBox"/> class.
         /// </summary>
+        /// <param name="type">Screen type.</param>
         /// <param name="pictureBox">Control implementing the screen.</param>
         /// <param name="crosshairBox">Crosshair control to invalidate when this one is drawn.</param>
-        public ScreenBox(Control pictureBox, Control crosshairBox = null)
+        public ScreenBox(string type, Control pictureBox, Control crosshairBox = null)
         {
+            this.Type = type;
             this.pictureBox = pictureBox;
             this.crosshairBox = crosshairBox;
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
@@ -213,6 +216,11 @@ namespace Wx3270
         private Size MinimumClientSize => new Size(this.minimumClientWidth, this.minimumClientHeight);
 
         /// <summary>
+        /// Gets or sets the screen type.
+        /// </summary>
+        private string Type { get; set; }
+
+        /// <summary>
         /// Compute the size of a character cell for a given font.
         /// </summary>
         /// <param name="g">Graphics context.</param>
@@ -226,8 +234,12 @@ namespace Wx3270
         /// <summary>
         /// Cause the screen to be drawn.
         /// </summary>
-        public void ScreenNeedsDrawing()
+        /// <param name="why">Why it needs to be redrawn.</param>
+        /// <param name="complete">True if the entire screen needs redrawing.</param>
+        public void ScreenNeedsDrawing(string why, bool complete)
         {
+            Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing({why}, complete={complete})");
+
             if (this.pictureBox != null)
             {
                 this.pictureBox.Invalidate();
@@ -264,6 +276,11 @@ namespace Wx3270
             bool cursorEnabled,
             Colors colors)
         {
+            Trace.Line(Trace.Type.Draw, "ScreenDraw({0}): {1}", this.Type, e.ClipRectangle);
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             var font3270 = this.ScreenFont.Name == "3270";
 
             if (font3270 && this.ScreenFont.SizeInPoints >= 10)
@@ -545,6 +562,9 @@ namespace Wx3270
             {
                 this.StopBlinking();
             }
+
+            stopwatch.Stop();
+            Trace.Line(Trace.Type.Draw, $"ScreenDraw {stopwatch.ElapsedMilliseconds}msec");
         }
 
         /// <summary>
@@ -628,7 +648,7 @@ namespace Wx3270
                 {
                     this.blinkOn = true;
                     this.blinkTimer.Enabled = false;
-                    this.ScreenNeedsDrawing();
+                    this.ScreenNeedsDrawing("activated", false);
                 }
             }
         }
@@ -1034,7 +1054,7 @@ namespace Wx3270
             this.blinkOn = !this.blinkOn;
 
             // Repaint the screen.
-            this.ScreenNeedsDrawing();
+            this.ScreenNeedsDrawing("blink timer", false);
 
             // Blink again.
             this.blinkTimer.Enabled = true;

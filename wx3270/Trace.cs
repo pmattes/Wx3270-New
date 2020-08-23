@@ -47,9 +47,14 @@ namespace Wx3270
             Sound = 0x20,
 
             /// <summary>
+            /// Screen draw operations.
+            /// </summary>
+            Draw = 0x40,
+
+            /// <summary>
             /// All events.
             /// </summary>
-            All = Window | Key | Profile | BackEnd | Clipboard | Sound,
+            All = Window | Key | Profile | BackEnd | Clipboard | Sound | Draw,
         }
 
         /// <summary>

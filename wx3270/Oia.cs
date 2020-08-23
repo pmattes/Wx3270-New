@@ -288,8 +288,6 @@ namespace Wx3270
                     this.cursorRow = int.Parse(attrs[B3270.Attribute.Row]);
                     this.cursorColumn = int.Parse(attrs[B3270.Attribute.Column]);
                 }
-
-                this.invoke.ScreenUpdate(ScreenUpdateType.Cursor);
             }
         }
 

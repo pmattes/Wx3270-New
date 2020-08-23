@@ -1031,7 +1031,7 @@ namespace Wx3270
                 PictureBox separator,
                 bool colorMode)
             {
-                this.ScreenBox = new ScreenBox(screenPictureBox);
+                this.ScreenBox = new ScreenBox("Sample", screenPictureBox);
                 this.LayoutPanel = tableLayoutPanel;
                 this.StatusLine = statusLine;
                 this.Separator = separator;
@@ -1064,7 +1064,7 @@ namespace Wx3270
             /// </summary>
             public void Invalidate()
             {
-                this.ScreenBox.ScreenNeedsDrawing();
+                this.ScreenBox.ScreenNeedsDrawing("settings sample", true);
             }
         }
 

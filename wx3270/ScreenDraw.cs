@@ -22,11 +22,13 @@ namespace Wx3270
         /// <summary>
         /// Cause the screen to be drawn.
         /// </summary>
-        public void ScreenNeedsDrawing()
+        /// <param name="why">Reason for redraw.</param>
+        /// <param name="complete">True for complete redraw.</param>
+        public void ScreenNeedsDrawing(string why, bool complete)
         {
             if (this.screenBox != null)
             {
-                this.screenBox.ScreenNeedsDrawing();
+                this.screenBox.ScreenNeedsDrawing($"ScreenDraw({why})", complete);
             }
         }
 

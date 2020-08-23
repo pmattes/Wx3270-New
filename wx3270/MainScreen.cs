@@ -430,7 +430,7 @@ namespace Wx3270
             this.colors = new Colors(newColors);
 
             // Redraw the screen.
-            this.ScreenNeedsDrawing();
+            this.ScreenNeedsDrawing("recolor", true);
 
             // Change the foreground color in the OIA.
             var fg = colorMode ? this.colors.HostColors[HostColor.Blue] : this.colors.MonoColors.Normal;
@@ -694,7 +694,7 @@ namespace Wx3270
                 });
 
             // Set up the screen box and its events.
-            this.screenBox = new ScreenBox(this.screenPictureBox, this.crosshairPictureBox);
+            this.screenBox = new ScreenBox("MainScreen", this.screenPictureBox, this.crosshairPictureBox);
             this.screenBox.SizeChanged += (cellSizeHeight) =>
             {
                 // Reconfigure the components of the screen.
@@ -1238,7 +1238,7 @@ namespace Wx3270
             switch (updateType)
             {
                 case ScreenUpdateType.Screen:
-                    this.ScreenNeedsDrawing();
+                    this.ScreenNeedsDrawing("update", false);
                     break;
                 case ScreenUpdateType.Lock:
                     this.ChangeOiaLock();
@@ -1258,14 +1258,13 @@ namespace Wx3270
                     this.ChangeOiaTiming();
                     break;
                 case ScreenUpdateType.Cursor:
-                    this.ScreenNeedsDrawing();
+                    this.ScreenNeedsDrawing("cursor", false);
                     this.ChangeOiaCursor();
                     break;
                 case ScreenUpdateType.Connection:
                     this.ChangeOiaTls();
                     this.ChangeOiaCursor();
                     this.ChangeOiaNetwork();
-                    this.ScreenNeedsDrawing(); // in case of disconnect
                     this.ConnectionStateEvent();
                     this.ChangeOiaLock();
                     break;
@@ -1274,7 +1273,7 @@ namespace Wx3270
                     break;
                 case ScreenUpdateType.ScreenMode:
                     this.ChangeScreenMode();
-                    this.ScreenNeedsDrawing();
+                    this.ScreenNeedsDrawing("mode", true);
                     this.ScreenModeEvent();
                     break;
                 case ScreenUpdateType.Thumb:
@@ -1296,7 +1295,7 @@ namespace Wx3270
                     this.ChangeScript();
                     break;
                 case ScreenUpdateType.Scroll:
-                    this.ScreenNeedsDrawing();
+                    this.ScreenNeedsDrawing("scroll", false);
                     break;
                 case ScreenUpdateType.ReverseInput:
                     this.ChangeReverseInput();
@@ -1393,7 +1392,7 @@ namespace Wx3270
                     break;
                 case B3270.Setting.VisibleControl:
                     this.controlCharsMenuItem.Checked = settingDictionary.TryGetValue(B3270.Setting.VisibleControl, out bool visibleControl) && visibleControl;
-                    this.ScreenNeedsDrawing();
+                    this.ScreenNeedsDrawing("visibleControl", true);
                     break;
                 case B3270.Setting.AplMode:
                     this.AplChanged(settingDictionary.TryGetValue(B3270.Setting.AplMode, out bool aplMode) && aplMode);
@@ -1450,7 +1449,7 @@ namespace Wx3270
         private void ScreenBox_ClientSizeChanged(object sender, EventArgs e)
         {
             // Force a repaint.
-            this.ScreenNeedsDrawing();
+            this.ScreenNeedsDrawing("sizeChange", true);
         }
 
         /// <summary>
