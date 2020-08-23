@@ -368,7 +368,7 @@ namespace Wx3270
             sampleImage.Settings.Add(B3270.Setting.AltCursor, this.CursorType == CursorType.Underscore);
             sampleImage.Settings.Add(B3270.Setting.Crosshair, this.crosshairCursorCheckBox.Checked);
 
-            screenBox.ScreenDraw(sender, e, sampleImage, true, this.editedColors);
+            screenBox.ScreenDraw(sender, e, sampleImage, this.editedColors);
         }
 
         /// <summary>

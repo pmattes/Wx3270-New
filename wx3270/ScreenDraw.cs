@@ -7,8 +7,6 @@ namespace Wx3270
     using System.Drawing;
     using System.Windows.Forms;
 
-    using Wx3270.Contracts;
-
     /// <summary>
     /// The main screen class.
     /// </summary>
@@ -35,7 +33,7 @@ namespace Wx3270
         /// <summary>
         /// Process a font change.
         /// </summary>
-        /// <param name="font">New font</param>
+        /// <param name="font">New font.</param>
         private void ScreenNewFont(Font font)
         {
             this.screenBox.ScreenNewFont(font, this.App.ScreenImage);
@@ -52,7 +50,6 @@ namespace Wx3270
                 sender,
                 e,
                 this.App.ScreenImage,
-                this.App.ConnectionState != ConnectionState.NotConnected,
                 this.colors);
         }
 
@@ -67,7 +64,6 @@ namespace Wx3270
                 sender,
                 e,
                 this.App.ScreenImage,
-                this.App.ConnectionState != ConnectionState.NotConnected,
                 this.colors);
         }
     }

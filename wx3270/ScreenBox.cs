@@ -221,6 +221,11 @@ namespace Wx3270
         private string Type { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether a complete screen update is needed.
+        /// </summary>
+        private bool? Complete { get; set; }
+
+        /// <summary>
         /// Compute the size of a character cell for a given font.
         /// </summary>
         /// <param name="g">Graphics context.</param>
@@ -242,6 +247,16 @@ namespace Wx3270
 
             if (this.pictureBox != null)
             {
+                // Convey why the screen needs re-drawing.
+                if (this.Complete == null)
+                {
+                    this.Complete = complete;
+                }
+                else
+                {
+                    this.Complete |= complete;
+                }
+
                 this.pictureBox.Invalidate();
             }
 
@@ -267,16 +282,16 @@ namespace Wx3270
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
         /// <param name="image">Current screen image.</param>
-        /// <param name="cursorEnabled">True if cursor is enabled.</param>
         /// <param name="colors">Current colors.</param>
         public void ScreenDraw(
             object sender,
             PaintEventArgs e,
             ScreenImage image,
-            bool cursorEnabled,
             Colors colors)
         {
             Trace.Line(Trace.Type.Draw, "ScreenDraw({0}): {1}", this.Type, e.ClipRectangle);
+            Trace.Line(Trace.Type.Draw, "ScreenDraw: complete = {0}", this.Complete);
+            this.Complete = null;
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -288,9 +303,6 @@ namespace Wx3270
                 // XXX: Will this change anything?
                 e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel;
             }
-
-            // If the cursor is explicitly disabled, act as if we are not connected.
-            cursorEnabled &= image.CursorEnabled;
 
             // Remember the cursor state and logical dimensions.
             this.logicalRows = image.LogicalRows;
@@ -322,7 +334,7 @@ namespace Wx3270
                 underscoreCursorHeight = 1;
             }
 
-            if (cursorEnabled && cursorBlink)
+            if (image.CursorEnabled && cursorBlink)
             {
                 this.anyBlinkers = true;
             }
@@ -330,7 +342,7 @@ namespace Wx3270
             // Figure out the cursor location.
             (var cursorRow0, var cursorColumn0, var flippedCursorColumn0) = ComputeCursor(image);
 
-            if (cursorEnabled && this.ime != null)
+            if (image.CursorEnabled && this.ime != null)
             {
                 // Set the IME composition window location.
                 this.ime.SetIMEWindowLocation(
@@ -353,7 +365,7 @@ namespace Wx3270
                     }
 
                     bool drawingCursorLocation =
-                        cursorEnabled
+                        image.CursorEnabled
                         && (!cursorBlink || this.blinkOn)
                         && row == cursorRow0
                         && column == cursorColumn0;
@@ -443,7 +455,7 @@ namespace Wx3270
                     }
 
                     // Draw the crosshair cursor.
-                    if (cursorEnabled && crosshair && (!drawingCursorLocation || altCursor))
+                    if (image.CursorEnabled && crosshair && (!drawingCursorLocation || altCursor))
                     {
                         if (row == cursorRow0)
                         {
@@ -573,24 +585,19 @@ namespace Wx3270
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
         /// <param name="image">Current screen image.</param>
-        /// <param name="cursorEnabled">True if cursor is enabled.</param>
         /// <param name="colors">Current colors.</param>
         public void CrosshairDraw(
             object sender,
             PaintEventArgs e,
             ScreenImage image,
-            bool cursorEnabled,
             Colors colors)
         {
-            // If the cursor is explicitly disabled, act as if we are not connected.
-            cursorEnabled &= image.CursorEnabled;
-
             // Clear the image.
             var clearBg = ColorBackground(image, colors);
             e.Graphics.Clear(clearBg);
 
             // If the cursor is off, we are not in crosshair mode, or the screen array is not floating, there is nothing to do.
-            if (!cursorEnabled ||
+            if (!image.CursorEnabled ||
                 !image.Settings.TryGetValue(B3270.Setting.Crosshair, out bool crosshair) ||
                 !crosshair ||
                 this.pictureBox.Location == new Point(0, 0))
