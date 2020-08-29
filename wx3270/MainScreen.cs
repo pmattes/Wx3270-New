@@ -48,11 +48,6 @@ namespace Wx3270
         private readonly SyncedListBoxes<MacroEntry> macroEntries = new SyncedListBoxes<MacroEntry>();
 
         /// <summary>
-        /// Synchronization object for <see cref="screenUpdatePending"/>.
-        /// </summary>
-        private readonly object screenUpdateSync = new object();
-
-        /// <summary>
         /// Chord timer.
         /// </summary>
         private readonly Timer chordTimer = new Timer { Interval = 3 * 1000, Enabled = true };
@@ -71,11 +66,6 @@ namespace Wx3270
         /// Flash state machine.
         /// </summary>
         private FlashFsm flashFsm;
-
-        /// <summary>
-        /// True if a screen update is already pending.
-        /// </summary>
-        private bool screenUpdatePending;
 
         /// <summary>
         /// The current color mapping.
@@ -342,22 +332,6 @@ namespace Wx3270
         /// <param name="updateType">Update type.</param>
         public void ScreenUpdate(ScreenUpdateType updateType)
         {
-            // Suppress redundant screen updates.
-            if (updateType == ScreenUpdateType.Screen)
-            {
-                lock (this.screenUpdateSync)
-                {
-                    if (!this.screenUpdatePending)
-                    {
-                        this.screenUpdatePending = true;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-            }
-
             // Run the update in the UI thread.
             this.Invoke(new MethodInvoker(() => this.ProcessUpdate(updateType)));
         }
@@ -704,7 +678,6 @@ namespace Wx3270
                 this.OiaLayoutPanel.Width = this.innerScreenTableLayoutPanel.Width;
                 this.OiaLayoutPanel.Height = cellSizeHeight + 4;
             };
-            this.screenBox.Drawn += () => this.ScreenUpdateResolve();
             this.screenBox.FontChanged += (font, dynamic) =>
             {
                 this.RefontOia(font);
@@ -1216,17 +1189,6 @@ namespace Wx3270
             var clickedMenuItem = sender as ToolStripMenuItem;
             var entry = (MacroEntry)clickedMenuItem.Tag;
             this.BackEnd.RunActions(entry.Macro, ErrorBox.Completion(I18n.Get(Title.MacroError)));
-        }
-
-        /// <summary>
-        /// Resolve a screen update.
-        /// </summary>
-        private void ScreenUpdateResolve()
-        {
-            lock (this.screenUpdateSync)
-            {
-                this.screenUpdatePending = false;
-            }
         }
 
         /// <summary>

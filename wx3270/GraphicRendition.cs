@@ -66,5 +66,15 @@ namespace Wx3270
         /// Selected text (added by <code>wx3270</code>, not by the emulator)
         /// </summary>
         Selected = 0x1000,
+
+        /// <summary>
+        /// Is the cursor location.
+        /// </summary>
+        IsCursor = 0x2000,
+
+        /// <summary>
+        /// Is part of the crosshair cursor.
+        /// </summary>
+        IsCrosshair = 0x4000,
     }
 }

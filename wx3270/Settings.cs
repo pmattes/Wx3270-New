@@ -1064,7 +1064,7 @@ namespace Wx3270
             /// </summary>
             public void Invalidate()
             {
-                this.ScreenBox.ScreenNeedsDrawing("settings sample", true);
+                this.ScreenBox.ScreenNeedsDrawing("settings sample", true, null);
             }
         }
 

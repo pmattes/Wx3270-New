@@ -9,7 +9,7 @@ namespace Wx3270
     /// <summary>
     /// Screen cell.
     /// </summary>
-    public class Cell
+    public class Cell : IEquatable<Cell>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Cell"/> class.
@@ -25,7 +25,7 @@ namespace Wx3270
         /// <summary>
         /// Initializes a new instance of the <see cref="Cell"/> class.
         /// </summary>
-        /// <param name="other">Other cell to clone</param>
+        /// <param name="other">Other cell to clone.</param>
         public Cell(Cell other)
         {
             this.Text = other.Text;
@@ -63,5 +63,37 @@ namespace Wx3270
         /// Gets a value indicating whether the cell is the right side of a DBCS character.
         /// </summary>
         public bool IsDbcsRight => this.GraphicRendition.HasFlag(GraphicRendition.Wide) && this.Text == 0;
+
+        /// <summary>
+        /// Equality test.
+        /// </summary>
+        /// <param name="other">Other <see cref="Cell"/>.</param>
+        /// <returns>True if equal.</returns>
+        public bool Equals(Cell other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return this.Text == other.Text
+                && this.HostForeground == other.HostForeground
+                && this.HostBackground == other.HostBackground
+                && this.GraphicRendition == other.GraphicRendition;
+        }
+
+        /// <summary>
+        /// Converts to a string.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        public override string ToString()
+        {
+            return "{" + (int)this.Text + ", " + this.GraphicRendition + "}";
+        }
     }
 }

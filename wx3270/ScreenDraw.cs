@@ -26,7 +26,7 @@ namespace Wx3270
         {
             if (this.screenBox != null)
             {
-                this.screenBox.ScreenNeedsDrawing($"ScreenDraw({why})", complete);
+                this.screenBox.ScreenNeedsDrawing($"ScreenDraw({why})", complete, this.App.ScreenImage);
             }
         }
 

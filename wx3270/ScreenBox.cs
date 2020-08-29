@@ -6,6 +6,7 @@ namespace Wx3270
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.Design.Serialization;
     using System.Diagnostics;
     using System.Drawing;
     using System.Windows.Forms;
@@ -150,6 +151,16 @@ namespace Wx3270
         private bool flipped;
 
         /// <summary>
+        /// The last diff'd screen image.
+        /// </summary>
+        private ScreenImage lastDiffImage;
+
+        /// <summary>
+        /// The last rendered screen image.
+        /// </summary>
+        private ScreenImage lastImage;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ScreenBox"/> class.
         /// </summary>
         /// <param name="type">Screen type.</param>
@@ -221,11 +232,6 @@ namespace Wx3270
         private string Type { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether a complete screen update is needed.
-        /// </summary>
-        private bool? Complete { get; set; }
-
-        /// <summary>
         /// Compute the size of a character cell for a given font.
         /// </summary>
         /// <param name="g">Graphics context.</param>
@@ -241,23 +247,32 @@ namespace Wx3270
         /// </summary>
         /// <param name="why">Why it needs to be redrawn.</param>
         /// <param name="complete">True if the entire screen needs redrawing.</param>
-        public void ScreenNeedsDrawing(string why, bool complete)
+        /// <param name="image">New screen image.</param>
+        public void ScreenNeedsDrawing(string why, bool complete, ScreenImage image)
         {
-            Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing({why}, complete={complete})");
+            var mode = complete ? "complete" : "partial";
+            Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing {why} {mode}");
 
             if (this.pictureBox != null)
             {
-                // Convey why the screen needs re-drawing.
-                if (this.Complete == null)
+                if (this.lastDiffImage != null && image != null && !complete)
                 {
-                    this.Complete = complete;
+                    // Partial update.
+                    var r = this.DrawArea(this.lastDiffImage, image);
+                    var rStr = (r != null) ? r.ToString() : "(none)";
+                    Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing partial {rStr}");
+                    if (r != null)
+                    {
+                        this.pictureBox.Invalidate(r.Value);
+                    }
                 }
                 else
                 {
-                    this.Complete |= complete;
+                    Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing complete");
+                    this.pictureBox.Invalidate();
                 }
 
-                this.pictureBox.Invalidate();
+                this.lastDiffImage = image;
             }
 
             if (this.crosshairBox != null)
@@ -277,6 +292,95 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Compute the rectangle that needs to be redrawn.
+        /// </summary>
+        /// <param name="oldImage">Previous screen image.</param>
+        /// <param name="newImage">New screen image.</param>
+        /// <returns>Rectangle that needs re-drawing.</returns>
+        public Rectangle? DrawArea(ScreenImage oldImage, ScreenImage newImage)
+        {
+            Rectangle? r = null;
+
+            // Get toggles.
+            newImage.Settings.TryGetValue(B3270.Setting.Crosshair, out bool crosshair);
+            newImage.Settings.TryGetValue(B3270.Setting.CursorBlink, out bool cursorBlink);
+
+            // Annotate the new image with blink, cursor and crosshair state.
+            (var cursorRow0, var cursorColumn0, _) = ComputeCursor(newImage);
+            for (var row = 0; row < newImage.MaxRows; row++)
+            {
+                for (var column = 0; column < newImage.MaxColumns; column++)
+                {
+                    if (!this.blinkOn)
+                    {
+                        // This is probably wrong -- we start blinking when we see the first blinking character, not continuously.
+                        newImage.Image[row, column].GraphicRendition &= ~GraphicRendition.Blink;
+                    }
+
+                    newImage.Image[row, column].GraphicRendition &= ~(GraphicRendition.IsCrosshair | GraphicRendition.IsCursor);
+                    if (newImage.CursorEnabled)
+                    {
+                        if ((!cursorBlink || this.blinkOn) && row == cursorRow0 && column == cursorColumn0)
+                        {
+                            // XXX: Not sure about the right-hand side of a DBCS cursor here.
+                            newImage.Image[row, column].GraphicRendition |= GraphicRendition.IsCursor;
+                            if (cursorBlink && this.blinkOn)
+                            {
+                                newImage.Image[row, column].GraphicRendition |= GraphicRendition.Blink;
+                            }
+                        }
+
+                        if (crosshair && (row == cursorRow0 || column == cursorColumn0))
+                        {
+                            newImage.Image[row, column].GraphicRendition |= GraphicRendition.IsCrosshair;
+                        }
+                    }
+                }
+            }
+
+            // Compute.
+            for (int row = 0; row < newImage.MaxRows; row++)
+            {
+                for (var column = newImage.MaxColumns - 1; column >= 0; column--)
+                {
+                    if (newImage.Image[row, column].Equals(oldImage.Image[row, column]))
+                    {
+                        continue;
+                    }
+
+                    // The current cell is considered wide if it has the wide attribute and is nonzero.
+                    var cell = newImage.Image[row, column];
+                    var gr = cell.GraphicRendition;
+                    var wide = gr.HasFlag(GraphicRendition.Wide) && cell.Text != '\0';
+                    var renderedColumn = newImage.Flipped ? newImage.MaxColumns - 1 - column : column;
+                    if (newImage.Flipped && wide)
+                    {
+                        renderedColumn--;
+                    }
+
+                    // Compute the rectangle.
+                    var rectangle = new Rectangle(
+                        renderedColumn * this.cellSize.Width,
+                        row * this.cellSize.Height,
+                        wide ? (this.cellSize.Width * 2) : this.cellSize.Width,
+                        this.cellSize.Height);
+
+                    // Trace.Line(Trace.Type.Draw, $"DrawArea mismatch at row {row} column {column} old {oldImage.Image[row, column]} new {newImage.Image[row, column]}");
+                    if (r == null)
+                    {
+                        r = rectangle;
+                    }
+                    else
+                    {
+                        r = Rectangle.Union(r.Value, rectangle);
+                    }
+                }
+            }
+
+            return r;
+        }
+
+        /// <summary>
         /// The screen needs to be redrawn.
         /// </summary>
         /// <param name="sender">Event sender.</param>
@@ -290,8 +394,6 @@ namespace Wx3270
             Colors colors)
         {
             Trace.Line(Trace.Type.Draw, "ScreenDraw({0}): {1}", this.Type, e.ClipRectangle);
-            Trace.Line(Trace.Type.Draw, "ScreenDraw: complete = {0}", this.Complete);
-            this.Complete = null;
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -350,6 +452,9 @@ namespace Wx3270
                     (cursorRow0 + 1) * this.cellSize.Height);
             }
 
+            var clipped = 0;
+            var blanks = 0;
+
             // Write the image.
             for (int row = 0; row < image.MaxRows; row++)
             {
@@ -370,6 +475,21 @@ namespace Wx3270
                         && row == cursorRow0
                         && column == cursorColumn0;
                     bool drawingUnderscoreCursor = altCursor && drawingCursorLocation;
+
+                    bool crosshairRow = false;
+                    bool crosshairColumn = false;
+                    if (image.CursorEnabled && crosshair && (!drawingCursorLocation || altCursor))
+                    {
+                        if (row == cursorRow0)
+                        {
+                            crosshairRow = true;
+                        }
+
+                        if (column == cursorColumn0)
+                        {
+                            crosshairColumn = true;
+                        }
+                    }
 
                     // Compute drawing colors.
                     var backgroundColor = image.ColorMode ? colors.HostColors[cell.HostBackground] : colors.MonoColors.Background;
@@ -416,6 +536,20 @@ namespace Wx3270
                         renderedColumn--;
                     }
 
+                    // Compute the rectangle.
+                    var rectangle = new Rectangle(
+                        renderedColumn * this.cellSize.Width,
+                        row * this.cellSize.Height,
+                        wide ? (this.cellSize.Width * 2) : this.cellSize.Width,
+                        this.cellSize.Height);
+
+                    if (!rectangle.IntersectsWith(e.ClipRectangle))
+                    {
+                        // No need to draw it.
+                        clipped++;
+                        continue;
+                    }
+
                     // Invert foreground and background for the block cursor and for inverted text.
                     if ((drawingCursorLocation && !altCursor) || (!image.ColorMode && gr.HasFlag(GraphicRendition.Reverse)))
                     {
@@ -441,13 +575,6 @@ namespace Wx3270
                         backgroundColor = colors.SelectBackground;
                     }
 
-                    // Compute the rectangle.
-                    var rectangle = new Rectangle(
-                        renderedColumn * this.cellSize.Width,
-                        row * this.cellSize.Height,
-                        wide ? (this.cellSize.Width * 2) : this.cellSize.Width,
-                        this.cellSize.Height);
-
                     // Draw the background color.
                     if (backgroundColor != clearBg)
                     {
@@ -455,30 +582,27 @@ namespace Wx3270
                     }
 
                     // Draw the crosshair cursor.
-                    if (image.CursorEnabled && crosshair && (!drawingCursorLocation || altCursor))
+                    if (crosshairRow)
                     {
-                        if (row == cursorRow0)
-                        {
-                            int height = this.CrosshairHeight;
-                            var crosshairHorizontalRectangle = new Rectangle(
-                                renderedColumn * this.cellSize.Width,
-                                (row * this.cellSize.Height) + (this.cellSize.Height - height),
-                                wide ? (this.cellSize.Width * 2) : this.cellSize.Width,
-                                height);
+                        int height = this.CrosshairHeight;
+                        var crosshairHorizontalRectangle = new Rectangle(
+                            renderedColumn * this.cellSize.Width,
+                            (row * this.cellSize.Height) + (this.cellSize.Height - height),
+                            wide ? (this.cellSize.Width * 2) : this.cellSize.Width,
+                            height);
 
-                            e.Graphics.FillRectangle(this.BrushFromColor(colors.CrosshairColor), crosshairHorizontalRectangle);
-                        }
+                        e.Graphics.FillRectangle(this.BrushFromColor(colors.CrosshairColor), crosshairHorizontalRectangle);
+                    }
 
-                        if (column == cursorColumn0)
-                        {
-                            int width = this.CrosshairWidth;
-                            var crosshairVerticalRectangle = new Rectangle(
-                                renderedColumn * this.cellSize.Width,
-                                row * this.cellSize.Height,
-                                width,
-                                this.cellSize.Height);
-                            e.Graphics.FillRectangle(this.BrushFromColor(colors.CrosshairColor), crosshairVerticalRectangle);
-                        }
+                    if (crosshairColumn)
+                    {
+                        int width = this.CrosshairWidth;
+                        var crosshairVerticalRectangle = new Rectangle(
+                            renderedColumn * this.cellSize.Width,
+                            row * this.cellSize.Height,
+                            width,
+                            this.cellSize.Height);
+                        e.Graphics.FillRectangle(this.BrushFromColor(colors.CrosshairColor), crosshairVerticalRectangle);
                     }
 
                     // Draw the underscore cursor, which is in the foreground color.
@@ -501,6 +625,7 @@ namespace Wx3270
                     // If it's a null (right-hand side of DBCS) or a blank that isn't underlined, do nothing.
                     if (ch == '\0' || (ch == ' ' && !gr.HasFlag(GraphicRendition.Underline)))
                     {
+                        blanks++;
                         continue;
                     }
 
@@ -575,8 +700,18 @@ namespace Wx3270
                 this.StopBlinking();
             }
 
+            // Remember the last image, for a future incremental update.
+            this.lastImage = image;
+
             stopwatch.Stop();
-            Trace.Line(Trace.Type.Draw, $"ScreenDraw {stopwatch.ElapsedMilliseconds}msec");
+            var msec = stopwatch.ElapsedMilliseconds;
+            var total = this.lastRows * this.lastColumns;
+            var unclipped = total - clipped;
+            var drawn = total - clipped - blanks;
+            var per = msec / (double)drawn;
+            Trace.Line(
+                Trace.Type.Draw,
+                $"ScreenDraw {msec}ms {total}/{unclipped}/{drawn} total/unclipped/drawn {per} ms/char");
         }
 
         /// <summary>
@@ -655,7 +790,7 @@ namespace Wx3270
                 {
                     this.blinkOn = true;
                     this.blinkTimer.Enabled = false;
-                    this.ScreenNeedsDrawing("activated", false);
+                    this.ScreenNeedsDrawing("activated", false, null);
                 }
             }
         }
@@ -1061,7 +1196,7 @@ namespace Wx3270
             this.blinkOn = !this.blinkOn;
 
             // Repaint the screen.
-            this.ScreenNeedsDrawing("blink timer", false);
+            this.ScreenNeedsDrawing("blink timer", false, this.lastImage);
 
             // Blink again.
             this.blinkTimer.Enabled = true;
