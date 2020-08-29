@@ -192,11 +192,6 @@ namespace Wx3270
         public event Action<Font, bool> FontChanged = (newFont, dynamic) => { };
 
         /// <summary>
-        /// Drawing commenced event.
-        /// </summary>
-        public event Action Drawn = () => { };
-
-        /// <summary>
         /// Gets a value indicating whether the screen is maximized.
         /// </summary>
         public bool Maximized { get; private set; }
@@ -412,9 +407,6 @@ namespace Wx3270
 
             // Remember flipped state.
             this.flipped = image.Flipped;
-
-            // Account for this drawing operation.
-            this.Drawn();
 
             // Clear it.
             var clearBg = ColorBackground(image, colors);
