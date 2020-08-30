@@ -1283,9 +1283,12 @@ namespace Wx3270
                     return drawn;
                 }
 
+                // Note: DBCS characters need to be draw individually, because the substitution font is not guaranteed to be
+                // exactly twice the cell width.
                 if (backgroundColor != this.backgroundColor
                     || foregroundColor != this.foregroundColor
-                    || gr != this.gr)
+                    || gr != this.gr
+                    || gr.HasFlag(GraphicRendition.Wide))
                 {
                     // Incompatible. Flush what's pending first.
                     drawn = this.Flush();
