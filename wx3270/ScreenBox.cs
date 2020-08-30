@@ -447,7 +447,7 @@ namespace Wx3270
             }
 
             var clipped = 0;
-            var blanks = 0;
+            var drawn = 0;
 
             var pending = new Pending(this, e.Graphics, clearBg);
 
@@ -575,7 +575,7 @@ namespace Wx3270
                     var forceInline = drawingCursorLocation || crosshairRow || crosshairColumn;
                     if (forceInline)
                     {
-                        pending.Flush();
+                        drawn += pending.Flush();
                     }
 
                     // Draw the background color.
@@ -631,16 +631,6 @@ namespace Wx3270
                         continue;
                     }
 
-#if false
-                    // If it's a blank that isn't underlined in the default background color, do nothing.
-                    if (ch == ' ' && !gr.HasFlag(GraphicRendition.Underline) && backgroundColor == clearBg)
-                    {
-                        pending.Flush();
-                        blanks++;
-                        continue;
-                    }
-#endif
-
                     var displayString = new string(new[] { ch });
 
                     // Implement monocase.
@@ -691,22 +681,12 @@ namespace Wx3270
                     else
                     {
                         // Accumulate additional text.
-                        pending.Prepend(rectangle, displayString, backgroundColor, foregroundColor, gr);
-#if false
-                        // Draw the text in the foreground color.
-                        TextRenderer.DrawText(
-                            e.Graphics,
-                            displayString,
-                            gr.HasFlag(GraphicRendition.Underline) ? this.UnderlineFont : this.ScreenFont,
-                            new Point(rectangle.X, rectangle.Y),
-                            foregroundColor,
-                            TextFormatFlags.Left | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix);
-#endif
+                        drawn += pending.Prepend(rectangle, displayString, backgroundColor, foregroundColor, gr);
                     }
                 }
 
                 // Flush whatever might be pending from this row.
-                pending.Flush();
+                drawn += pending.Flush();
             }
 
             // Begin blinking.
@@ -726,7 +706,6 @@ namespace Wx3270
             var msec = stopwatch.ElapsedMilliseconds;
             var total = this.lastRows * this.lastColumns;
             var unclipped = total - clipped;
-            var drawn = total - clipped - blanks;
             var per = msec / (double)drawn;
             Trace.Line(
                 Trace.Type.Draw,
@@ -1292,13 +1271,16 @@ namespace Wx3270
             /// <param name="backgroundColor">Background color.</param>
             /// <param name="foregroundColor">Foreground color.</param>
             /// <param name="gr">Graphic rendition.</param>
-            public void Prepend(Rectangle rectangle, string text, Color backgroundColor, Color foregroundColor, GraphicRendition gr)
+            /// <returns>Number of characters drawn.</returns>
+            public int Prepend(Rectangle rectangle, string text, Color backgroundColor, Color foregroundColor, GraphicRendition gr)
             {
+                var drawn = 0;
+
                 if (!this.pending)
                 {
                     // Greenfield.
                     this.Set(rectangle, text, backgroundColor, foregroundColor, gr);
-                    return;
+                    return drawn;
                 }
 
                 if (backgroundColor != this.backgroundColor
@@ -1306,26 +1288,30 @@ namespace Wx3270
                     || gr != this.gr)
                 {
                     // Incompatible. Flush what's pending first.
-                    this.Flush();
+                    drawn = this.Flush();
 
                     // Start accumulating again.
                     this.Set(rectangle, text, backgroundColor, foregroundColor, gr);
-                    return;
+                    return drawn;
                 }
 
                 // Prepend.
                 this.text = text + this.text;
                 this.rectangle = Rectangle.Union(this.rectangle, rectangle);
+                return drawn;
             }
 
             /// <summary>
             /// Flushes the pending data.
             /// </summary>
-            public void Flush()
+            /// <returns>Number of characters drawn.</returns>
+            public int Flush()
             {
+                var drawn = 0;
+
                 if (!this.pending)
                 {
-                    return;
+                    return drawn;
                 }
 
                 // Paint the background.
@@ -1362,9 +1348,11 @@ namespace Wx3270
                                 new Point(this.rectangle.X, this.rectangle.Y),
                                 this.foregroundColor,
                                 TextFormatFlags.Left | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix);
+                    drawn = this.text.Length;
                 }
 
                 this.pending = false;
+                return drawn;
             }
 
             /// <summary>
