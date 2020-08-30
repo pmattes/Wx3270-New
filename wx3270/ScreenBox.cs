@@ -9,7 +9,9 @@ namespace Wx3270
     using System.ComponentModel.Design.Serialization;
     using System.Diagnostics;
     using System.Drawing;
+    using System.Drawing.Drawing2D;
     using System.Windows.Forms;
+    using Wx3270.Contracts;
 
     /// <summary>
     /// Delegate for size change events.
@@ -41,7 +43,7 @@ namespace Wx3270
     /// <summary>
     /// A 3270 display.
     /// </summary>
-    public class ScreenBox
+    public class ScreenBox : IBrush
     {
         /// <summary>
         /// Cache of solid color brushes.
@@ -79,16 +81,6 @@ namespace Wx3270
         /// The blink timer.
         /// </summary>
         private readonly Timer blinkTimer;
-
-        /// <summary>
-        /// The underlined screen drawing font.
-        /// </summary>
-        private Font underlineFont;
-
-        /// <summary>
-        /// The size of a character cell.
-        /// </summary>
-        private Size cellSize;
 
         /// <summary>
         /// The last-used maximum number of rows.
@@ -202,19 +194,29 @@ namespace Wx3270
         public Font ScreenFont { get; private set; }
 
         /// <summary>
+        /// Gets the underlined screen drawing font.
+        /// </summary>
+        public Font UnderlineFont { get; private set; }
+
+        /// <summary>
         /// Gets the crosshair width.
         /// </summary>
-        public int CrosshairWidth => this.cellSize.Width < 3 ? this.cellSize.Width : 3;
+        public int CrosshairWidth => this.CellSize.Width < 3 ? this.CellSize.Width : 3;
 
         /// <summary>
         /// Gets the crosshair height.
         /// </summary>
-        public int CrosshairHeight => this.cellSize.Height < 3 ? this.cellSize.Height : 3;
+        public int CrosshairHeight => this.CellSize.Height < 3 ? this.CellSize.Height : 3;
 
         /// <summary>
         /// Gets a value indicating whether we are ready for a resize.
         /// </summary>
         public bool ResizeReady => this.lastColumns != 0 && this.lastRows != 0;
+
+        /// <summary>
+        /// Gets the size of a character cell.
+        /// </summary>
+        public Size CellSize { get; private set; }
 
         /// <summary>
         /// Gets the minimum client size.
@@ -232,7 +234,7 @@ namespace Wx3270
         /// <param name="g">Graphics context.</param>
         /// <param name="font">Font to measure.</param>
         /// <returns>Cell size.</returns>
-        public static Size CellSize(Graphics g, Font font)
+        public static Size ComputeCellSize(Graphics g, Font font)
         {
             return TextRenderer.MeasureText(g, "X", font, new Size(1000, 1000), TextFormatFlags.Left | TextFormatFlags.NoPadding);
         }
@@ -355,10 +357,10 @@ namespace Wx3270
 
                     // Compute the rectangle.
                     var rectangle = new Rectangle(
-                        renderedColumn * this.cellSize.Width,
-                        row * this.cellSize.Height,
-                        wide ? (this.cellSize.Width * 2) : this.cellSize.Width,
-                        this.cellSize.Height);
+                        renderedColumn * this.CellSize.Width,
+                        row * this.CellSize.Height,
+                        wide ? (this.CellSize.Width * 2) : this.CellSize.Width,
+                        this.CellSize.Height);
 
                     // Trace.Line(Trace.Type.Draw, $"DrawArea mismatch at row {row} column {column} old {oldImage.Image[row, column]} new {newImage.Image[row, column]}");
                     if (r == null)
@@ -422,7 +424,7 @@ namespace Wx3270
             image.Settings.TryGetValue(B3270.Setting.CursorBlink, out bool cursorBlink);
 
             // Compute the height of an underscore cursor.
-            int underscoreCursorHeight = this.cellSize.Height / 5;
+            int underscoreCursorHeight = this.CellSize.Height / 5;
             if (underscoreCursorHeight == 0)
             {
                 underscoreCursorHeight = 1;
@@ -440,12 +442,14 @@ namespace Wx3270
             {
                 // Set the IME composition window location.
                 this.ime.SetIMEWindowLocation(
-                    flippedCursorColumn0 * this.cellSize.Width,
-                    (cursorRow0 + 1) * this.cellSize.Height);
+                    flippedCursorColumn0 * this.CellSize.Width,
+                    (cursorRow0 + 1) * this.CellSize.Height);
             }
 
             var clipped = 0;
             var blanks = 0;
+
+            var pending = new Pending(this, e.Graphics, clearBg);
 
             // Write the image.
             for (int row = 0; row < image.MaxRows; row++)
@@ -530,10 +534,10 @@ namespace Wx3270
 
                     // Compute the rectangle.
                     var rectangle = new Rectangle(
-                        renderedColumn * this.cellSize.Width,
-                        row * this.cellSize.Height,
-                        wide ? (this.cellSize.Width * 2) : this.cellSize.Width,
-                        this.cellSize.Height);
+                        renderedColumn * this.CellSize.Width,
+                        row * this.CellSize.Height,
+                        wide ? (this.CellSize.Width * 2) : this.CellSize.Width,
+                        this.CellSize.Height);
 
                     if (!rectangle.IntersectsWith(e.ClipRectangle))
                     {
@@ -567,8 +571,15 @@ namespace Wx3270
                         backgroundColor = colors.SelectBackground;
                     }
 
+                    // If drawing the cursor, it will happen inline.
+                    var forceInline = drawingCursorLocation || crosshairRow || crosshairColumn;
+                    if (forceInline)
+                    {
+                        pending.Flush();
+                    }
+
                     // Draw the background color.
-                    if (backgroundColor != clearBg)
+                    if (forceInline && backgroundColor != clearBg)
                     {
                         e.Graphics.FillRectangle(this.BrushFromColor(backgroundColor), rectangle);
                     }
@@ -578,9 +589,9 @@ namespace Wx3270
                     {
                         int height = this.CrosshairHeight;
                         var crosshairHorizontalRectangle = new Rectangle(
-                            renderedColumn * this.cellSize.Width,
-                            (row * this.cellSize.Height) + (this.cellSize.Height - height),
-                            wide ? (this.cellSize.Width * 2) : this.cellSize.Width,
+                            renderedColumn * this.CellSize.Width,
+                            (row * this.CellSize.Height) + (this.CellSize.Height - height),
+                            wide ? (this.CellSize.Width * 2) : this.CellSize.Width,
                             height);
 
                         e.Graphics.FillRectangle(this.BrushFromColor(colors.CrosshairColor), crosshairHorizontalRectangle);
@@ -590,10 +601,10 @@ namespace Wx3270
                     {
                         int width = this.CrosshairWidth;
                         var crosshairVerticalRectangle = new Rectangle(
-                            renderedColumn * this.cellSize.Width,
-                            row * this.cellSize.Height,
+                            renderedColumn * this.CellSize.Width,
+                            row * this.CellSize.Height,
                             width,
-                            this.cellSize.Height);
+                            this.CellSize.Height);
                         e.Graphics.FillRectangle(this.BrushFromColor(colors.CrosshairColor), crosshairVerticalRectangle);
                     }
 
@@ -601,9 +612,9 @@ namespace Wx3270
                     if (drawingUnderscoreCursor)
                     {
                         var underscoreRectangle = new Rectangle(
-                            renderedColumn * this.cellSize.Width,
-                            (row * this.cellSize.Height) + (this.cellSize.Height - underscoreCursorHeight),
-                            wide ? (this.cellSize.Width * 2) : this.cellSize.Width,
+                            renderedColumn * this.CellSize.Width,
+                            (row * this.CellSize.Height) + (this.CellSize.Height - underscoreCursorHeight),
+                            wide ? (this.CellSize.Width * 2) : this.CellSize.Width,
                             underscoreCursorHeight);
                         e.Graphics.FillRectangle(this.BrushFromColor(foregroundColor), underscoreRectangle);
                     }
@@ -614,12 +625,21 @@ namespace Wx3270
                         ch = ' ';
                     }
 
-                    // If it's a null (right-hand side of DBCS) or a blank that isn't underlined, do nothing.
-                    if (ch == '\0' || (ch == ' ' && !gr.HasFlag(GraphicRendition.Underline)))
+                    // If it's a null (right-hand side of DBCS), do nothing.
+                    if (ch == '\0')
                     {
+                        continue;
+                    }
+
+#if false
+                    // If it's a blank that isn't underlined in the default background color, do nothing.
+                    if (ch == ' ' && !gr.HasFlag(GraphicRendition.Underline) && backgroundColor == clearBg)
+                    {
+                        pending.Flush();
                         blanks++;
                         continue;
                     }
+#endif
 
                     var displayString = new string(new[] { ch });
 
@@ -632,7 +652,7 @@ namespace Wx3270
                     // If the font wants to display an SBCS character in a wide substitution font, display a default character instead.
                     if (ch > 0xff &&
                         !gr.HasFlag(GraphicRendition.Wide) &&
-                        this.MeasureText(e.Graphics, displayString).Width > this.cellSize.Width)
+                        this.MeasureText(e.Graphics, displayString).Width > this.CellSize.Width)
                     {
                         displayString = "▨";
                     }
@@ -670,16 +690,23 @@ namespace Wx3270
                     }
                     else
                     {
+                        // Accumulate additional text.
+                        pending.Prepend(rectangle, displayString, backgroundColor, foregroundColor, gr);
+#if false
                         // Draw the text in the foreground color.
                         TextRenderer.DrawText(
                             e.Graphics,
                             displayString,
-                            gr.HasFlag(GraphicRendition.Underline) ? this.underlineFont : this.ScreenFont,
+                            gr.HasFlag(GraphicRendition.Underline) ? this.UnderlineFont : this.ScreenFont,
                             new Point(rectangle.X, rectangle.Y),
                             foregroundColor,
                             TextFormatFlags.Left | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix);
+#endif
                     }
                 }
+
+                // Flush whatever might be pending from this row.
+                pending.Flush();
             }
 
             // Begin blinking.
@@ -740,7 +767,7 @@ namespace Wx3270
             {
                 int width = this.CrosshairWidth;
                 var crosshairVerticalRectangle = new Rectangle(
-                    this.pictureBox.Location.X + (cursorColumn0 * this.cellSize.Width),
+                    this.pictureBox.Location.X + (cursorColumn0 * this.CellSize.Width),
                     0,
                     width,
                     this.crosshairBox.Height);
@@ -753,7 +780,7 @@ namespace Wx3270
                 int height = this.CrosshairHeight;
                 var crosshairHorizontalRectangle = new Rectangle(
                     0,
-                    this.pictureBox.Location.Y + (cursorRow0 * this.cellSize.Height) + (this.cellSize.Height - height),
+                    this.pictureBox.Location.Y + (cursorRow0 * this.CellSize.Height) + (this.CellSize.Height - height),
                     this.crosshairBox.Width,
                     height);
 
@@ -840,13 +867,13 @@ namespace Wx3270
             // Figure out where the mouse is in terms of character cells.
             var y = mouseLocation.Y;
             y = Math.Max(y, 0);
-            y = Math.Min(y, (this.cellSize.Height * this.logicalRows) - 1);
-            var row = y / this.cellSize.Height;
+            y = Math.Min(y, (this.CellSize.Height * this.logicalRows) - 1);
+            var row = y / this.CellSize.Height;
 
             var x = mouseLocation.X;
             x = Math.Max(x, 0);
-            x = Math.Min(x, (this.cellSize.Width * this.logicalColumns) - 1);
-            var column = x / this.cellSize.Width;
+            x = Math.Min(x, (this.CellSize.Width * this.logicalColumns) - 1);
+            var column = x / this.CellSize.Width;
 
             // Return those coordinates.
             return new Tuple<int, int>(row + 1, (this.flipped ? (this.logicalColumns - 1) - column : column) + 1);
@@ -866,8 +893,8 @@ namespace Wx3270
 
             // Compute the current size.
             Size currentTextSize = new Size(
-                this.cellSize.Width * this.lastColumns,
-                this.cellSize.Height * (this.lastRows + 1));
+                this.CellSize.Width * this.lastColumns,
+                this.CellSize.Height * (this.lastRows + 1));
 
             // Compute the area they are leaving for text.
             Trace.Line(Trace.Type.Window, " overhead {0}", this.overhead);
@@ -892,7 +919,7 @@ namespace Wx3270
             using (Graphics g = this.pictureBox.CreateGraphics())
             {
                 font = new Font(this.ScreenFont.FontFamily, pixelHeight, this.ScreenFont.Style, GraphicsUnit.Pixel);
-                size = CellSize(g, font);
+                size = ComputeCellSize(g, font);
                 Trace.Line(
                     Trace.Type.Window,
                     " initial  pixelHeight {0} => size {1}, total size {2}",
@@ -903,7 +930,7 @@ namespace Wx3270
                 {
                     pixelHeight--;
                     font = new Font(this.ScreenFont.FontFamily, pixelHeight, this.ScreenFont.Style, GraphicsUnit.Pixel);
-                    size = CellSize(g, font);
+                    size = ComputeCellSize(g, font);
                     Trace.Line(
                         Trace.Type.Window,
                         " iterated pixelHeight {0} => size {1}, total size {2}",
@@ -947,6 +974,23 @@ namespace Wx3270
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Get a brush for a given color.
+        /// </summary>
+        /// <param name="color">color to map.</param>
+        /// <returns>Cached brush.</returns>
+        public Brush BrushFromColor(Color color)
+        {
+            if (this.brushCache.TryGetValue(color, out Brush brush))
+            {
+                return brush;
+            }
+
+            brush = new SolidBrush(color);
+            this.brushCache[color] = brush;
+            return brush;
         }
 
         /// <summary>
@@ -1005,41 +1049,24 @@ namespace Wx3270
                 this.ScreenFont = font;
 
                 // Create the underline font.
-                if (this.underlineFont != null)
+                if (this.UnderlineFont != null)
                 {
-                    this.underlineFont.Dispose();
+                    this.UnderlineFont.Dispose();
                 }
 
-                this.underlineFont = new Font(this.ScreenFont, this.ScreenFont.Style | FontStyle.Underline);
+                this.UnderlineFont = new Font(this.ScreenFont, this.ScreenFont.Style | FontStyle.Underline);
 
                 // Set up the cell measurements.
-                Trace.Line(Trace.Type.Window, " Old cell size: {0}", this.cellSize);
+                Trace.Line(Trace.Type.Window, " Old cell size: {0}", this.CellSize);
                 using (Graphics g = this.pictureBox.CreateGraphics())
                 {
-                    this.cellSize = this.MeasureText(g, "X");
-                    Trace.Line(Trace.Type.Window, " New cell size: {0}", this.cellSize);
+                    this.CellSize = this.MeasureText(g, "X");
+                    Trace.Line(Trace.Type.Window, " New cell size: {0}", this.CellSize);
                 }
             }
 
             // Resize the screen.
             this.SetScreenBoxSize(rows, columns, false, minimumParentSize);
-        }
-
-        /// <summary>
-        /// Get a brush for a given color.
-        /// </summary>
-        /// <param name="color">color to map.</param>
-        /// <returns>Cached brush.</returns>
-        private Brush BrushFromColor(Color color)
-        {
-            if (this.brushCache.TryGetValue(color, out Brush brush))
-            {
-                return brush;
-            }
-
-            brush = new SolidBrush(color);
-            this.brushCache[color] = brush;
-            return brush;
         }
 
         /// <summary>
@@ -1089,7 +1116,7 @@ namespace Wx3270
                 return;
             }
 
-            var newSize = new Size(columns * this.cellSize.Width, rows * this.cellSize.Height);
+            var newSize = new Size(columns * this.CellSize.Width, rows * this.CellSize.Height);
             Trace.Line(Trace.Type.Window, " pictureBox.Size {0} -> {1}", this.pictureBox.Size, newSize);
             this.pictureBox.Size = newSize; // might be a no-op
 
@@ -1097,7 +1124,7 @@ namespace Wx3270
             Size? adjustedMinimumParentSize = null;
             if (minimumParentSize.HasValue)
             {
-                adjustedMinimumParentSize = new Size(minimumParentSize.Value.Width, minimumParentSize.Value.Height - this.cellSize.Height);
+                adjustedMinimumParentSize = new Size(minimumParentSize.Value.Width, minimumParentSize.Value.Height - this.CellSize.Height);
             }
 
             var parentSize = this.MinimumSize(newSize, adjustedMinimumParentSize);
@@ -1123,7 +1150,7 @@ namespace Wx3270
                     " pictureBox Location {0} size {1} cellSize {2} parentSize {3} newSize {4}",
                     this.pictureBox.Location,
                     this.pictureBox.Size,
-                    this.cellSize,
+                    this.CellSize,
                     this.pictureBox.Parent.Size,
                     newSize);
             }
@@ -1131,7 +1158,7 @@ namespace Wx3270
             Trace.Line(Trace.Type.Window, " newSize {0}", newSize);
 
             // Rearrange the main window.
-            this.SizeChanged(this.cellSize.Height);
+            this.SizeChanged(this.CellSize.Height);
 
             this.lastRows = rows;
             this.lastColumns = columns;
@@ -1148,7 +1175,7 @@ namespace Wx3270
             return TextRenderer.MeasureText(
                 graphics,
                 text,
-                this.underlineFont,
+                this.UnderlineFont,
                 new Size(1000, 1000),
                 TextFormatFlags.Left | TextFormatFlags.NoPadding);
         }
@@ -1192,6 +1219,171 @@ namespace Wx3270
 
             // Blink again.
             this.blinkTimer.Enabled = true;
+        }
+
+        /// <summary>
+        /// Class to hold pending updates.
+        /// </summary>
+        private class Pending
+        {
+            /// <summary>
+            /// Brush allocator.
+            /// </summary>
+            private readonly IBrush brush;
+
+            /// <summary>
+            /// Graphics context.
+            /// </summary>
+            private readonly Graphics graphics;
+
+            /// <summary>
+            /// The clear background color.
+            /// </summary>
+            private readonly Color clearBg;
+
+            /// <summary>
+            /// True if there is output pending.
+            /// </summary>
+            private bool pending = false;
+
+            /// <summary>
+            /// Pending rectangle.
+            /// </summary>
+            private Rectangle rectangle;
+
+            /// <summary>
+            /// Pending text.
+            /// </summary>
+            private string text;
+
+            /// <summary>
+            /// Pending background color.
+            /// </summary>
+            private Color backgroundColor;
+
+            /// <summary>
+            /// Pending foreground color.
+            /// </summary>
+            private Color foregroundColor;
+
+            /// <summary>
+            /// Graphic rendition.
+            /// </summary>
+            private GraphicRendition gr;
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="Pending"/> class.
+            /// </summary>
+            /// <param name="brush">Brush allocator.</param>
+            /// <param name="graphics">Graphics context.</param>
+            /// <param name="clearBg">Clear background color.</param>
+            public Pending(IBrush brush, Graphics graphics, Color clearBg)
+            {
+                this.brush = brush;
+                this.graphics = graphics;
+                this.clearBg = clearBg;
+            }
+
+            /// <summary>
+            /// Prepend some text.
+            /// </summary>
+            /// <param name="rectangle">Bounding rectangle.</param>
+            /// <param name="text">Text to prepend.</param>
+            /// <param name="backgroundColor">Background color.</param>
+            /// <param name="foregroundColor">Foreground color.</param>
+            /// <param name="gr">Graphic rendition.</param>
+            public void Prepend(Rectangle rectangle, string text, Color backgroundColor, Color foregroundColor, GraphicRendition gr)
+            {
+                if (!this.pending)
+                {
+                    // Greenfield.
+                    this.Set(rectangle, text, backgroundColor, foregroundColor, gr);
+                    return;
+                }
+
+                if (backgroundColor != this.backgroundColor
+                    || foregroundColor != this.foregroundColor
+                    || gr != this.gr)
+                {
+                    // Incompatible. Flush what's pending first.
+                    this.Flush();
+
+                    // Start accumulating again.
+                    this.Set(rectangle, text, backgroundColor, foregroundColor, gr);
+                    return;
+                }
+
+                // Prepend.
+                this.text = text + this.text;
+                this.rectangle = Rectangle.Union(this.rectangle, rectangle);
+            }
+
+            /// <summary>
+            /// Flushes the pending data.
+            /// </summary>
+            public void Flush()
+            {
+                if (!this.pending)
+                {
+                    return;
+                }
+
+                // Paint the background.
+                if (this.backgroundColor != this.clearBg)
+                {
+                    this.graphics.FillRectangle(this.brush.BrushFromColor(this.backgroundColor), this.rectangle);
+                }
+
+                // Do some trimming.
+                if (!this.gr.HasFlag(GraphicRendition.Underline))
+                {
+                    while (this.text.StartsWith(" "))
+                    {
+                        this.rectangle.X += this.brush.CellSize.Width;
+                        this.rectangle.Width -= this.brush.CellSize.Width;
+                        this.text = this.text.Substring(1);
+                    }
+
+                    while (this.text.EndsWith(" "))
+                    {
+                        this.rectangle.Width -= this.brush.CellSize.Width;
+                        this.text = this.text.Substring(0, this.text.Length - 1);
+                    }
+                }
+
+                // Draw the text.
+                if (this.text.Length != 0)
+                {
+                    Trace.Line(Trace.Type.Draw, $"Flushing {this.text.Length} characters");
+                    TextRenderer.DrawText(
+                                this.graphics,
+                                this.text,
+                                this.gr.HasFlag(GraphicRendition.Underline) ? this.brush.UnderlineFont : this.brush.ScreenFont,
+                                new Point(this.rectangle.X, this.rectangle.Y),
+                                this.foregroundColor,
+                                TextFormatFlags.Left | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix);
+                }
+
+                this.pending = false;
+            }
+
+            /// <summary>
+            /// Set the value.
+            /// </summary>
+            /// <param name="rectangle">Bounding rectangle.</param>
+            /// <param name="text">Text to prepend.</param>
+            /// <param name="backgroundColor">Background color.</param>
+            /// <param name="foregroundColor">Foreground color.</param>
+            /// <param name="gr">Graphic rendition.</param>
+            private void Set(Rectangle rectangle, string text, Color backgroundColor, Color foregroundColor, GraphicRendition gr)
+            {
+                this.rectangle = rectangle;
+                this.text = text;
+                this.backgroundColor = backgroundColor;
+                this.foregroundColor = foregroundColor;
+                this.gr = gr;
+                this.pending = true;
+            }
         }
     }
 }

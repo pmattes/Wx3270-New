@@ -710,7 +710,7 @@ namespace Wx3270
             int hh;
             using (Graphics g = this.screenPictureBox.CreateGraphics())
             {
-                hh = ScreenBox.CellSize(g, this.OiaLock.Font).Height;
+                hh = ScreenBox.ComputeCellSize(g, this.OiaLock.Font).Height;
             }
 
             var fixedWidth = this.mainScreenPanel.Width - this.screenPictureBox.Parent.Width;
