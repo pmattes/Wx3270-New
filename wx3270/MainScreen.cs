@@ -1202,6 +1202,9 @@ namespace Wx3270
                 case ScreenUpdateType.Screen:
                     this.ScreenNeedsDrawing("update", false);
                     break;
+                case ScreenUpdateType.Repaint:
+                    this.ScreenNeedsDrawing("repaint", true);
+                    break;
                 case ScreenUpdateType.Lock:
                     this.ChangeOiaLock();
                     break;

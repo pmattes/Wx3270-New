@@ -343,7 +343,7 @@ namespace Wx3270
 
             if (this.screenSettings.Contains(settingName))
             {
-                this.invoke.ScreenUpdate(ScreenUpdateType.Screen);
+                this.invoke.ScreenUpdate(ScreenUpdateType.Repaint);
             }
         }
 
@@ -396,7 +396,7 @@ namespace Wx3270
                 this.screenImage.Flipped = attributes[B3270.Attribute.Value].Equals(B3270.Value.True);
             }
 
-            this.invoke.ScreenUpdate(ScreenUpdateType.Screen);
+            this.invoke.ScreenUpdate(ScreenUpdateType.Repaint);
         }
 
         /// <summary>

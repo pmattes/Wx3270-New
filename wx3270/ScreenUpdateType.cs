@@ -10,9 +10,14 @@ namespace Wx3270
     public enum ScreenUpdateType
     {
         /// <summary>
-        /// Screen update.
+        /// Incremental screen update.
         /// </summary>
         Screen,
+
+        /// <summary>
+        /// Full screen update.
+        /// </summary>
+        Repaint,
 
         /// <summary>
         /// Lock field.

@@ -247,7 +247,7 @@ namespace Wx3270
         /// <param name="image">New screen image.</param>
         public void ScreenNeedsDrawing(string why, bool complete, ScreenImage image)
         {
-            var mode = complete ? "complete" : "partial";
+            var mode = complete ? "all" : "partial";
             Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing {why} {mode}");
 
             if (this.pictureBox != null)
@@ -265,7 +265,7 @@ namespace Wx3270
                 }
                 else
                 {
-                    Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing complete");
+                    Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing all");
                     this.pictureBox.Invalidate();
                 }
 
@@ -303,6 +303,9 @@ namespace Wx3270
             newImage.Settings.TryGetValue(B3270.Setting.CursorBlink, out bool cursorBlink);
 
             // Annotate the new image with blink, cursor and crosshair state.
+            // This modifies newImage.
+            // Blink is cleared for everything if we are not in blinkOn state.
+            // Otherwise it is set for the cursor position if cursorBlink is set.
             (var cursorRow0, var cursorColumn0, _) = ComputeCursor(newImage);
             for (var row = 0; row < newImage.MaxRows; row++)
             {
@@ -310,7 +313,6 @@ namespace Wx3270
                 {
                     if (!this.blinkOn)
                     {
-                        // This is probably wrong -- we start blinking when we see the first blinking character, not continuously.
                         newImage.Image[row, column].GraphicRendition &= ~GraphicRendition.Blink;
                     }
 
@@ -362,7 +364,6 @@ namespace Wx3270
                         wide ? (this.CellSize.Width * 2) : this.CellSize.Width,
                         this.CellSize.Height);
 
-                    // Trace.Line(Trace.Type.Draw, $"DrawArea mismatch at row {row} column {column} old {oldImage.Image[row, column]} new {newImage.Image[row, column]}");
                     if (r == null)
                     {
                         r = rectangle;
@@ -681,7 +682,7 @@ namespace Wx3270
                     else
                     {
                         // Accumulate additional text.
-                        drawn += pending.Prepend(rectangle, displayString, backgroundColor, foregroundColor, gr);
+                        drawn += pending.AddText(rectangle, displayString, backgroundColor, foregroundColor, gr, image.Flipped);
                     }
                 }
 
@@ -1264,15 +1265,16 @@ namespace Wx3270
             }
 
             /// <summary>
-            /// Prepend some text.
+            /// Add some text.
             /// </summary>
             /// <param name="rectangle">Bounding rectangle.</param>
             /// <param name="text">Text to prepend.</param>
             /// <param name="backgroundColor">Background color.</param>
             /// <param name="foregroundColor">Foreground color.</param>
             /// <param name="gr">Graphic rendition.</param>
+            /// <param name="append">True if appending, false if prepending.</param>
             /// <returns>Number of characters drawn.</returns>
-            public int Prepend(Rectangle rectangle, string text, Color backgroundColor, Color foregroundColor, GraphicRendition gr)
+            public int AddText(Rectangle rectangle, string text, Color backgroundColor, Color foregroundColor, GraphicRendition gr, bool append)
             {
                 var drawn = 0;
 
@@ -1299,7 +1301,15 @@ namespace Wx3270
                 }
 
                 // Prepend.
-                this.text = text + this.text;
+                if (append)
+                {
+                    this.text += text;
+                }
+                else
+                {
+                    this.text = text + this.text;
+                }
+
                 this.rectangle = Rectangle.Union(this.rectangle, rectangle);
                 return drawn;
             }
