@@ -6,10 +6,8 @@ namespace Wx3270
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.Design.Serialization;
     using System.Diagnostics;
     using System.Drawing;
-    using System.Drawing.Drawing2D;
     using System.Windows.Forms;
     using Wx3270.Contracts;
 
@@ -143,11 +141,6 @@ namespace Wx3270
         private bool flipped;
 
         /// <summary>
-        /// The last diff'd screen image.
-        /// </summary>
-        private ScreenImage lastDiffImage;
-
-        /// <summary>
         /// The last rendered screen image.
         /// </summary>
         private ScreenImage lastImage;
@@ -252,10 +245,10 @@ namespace Wx3270
 
             if (this.pictureBox != null)
             {
-                if (this.lastDiffImage != null && image != null && !complete)
+                if (this.lastImage != null && image != null && !complete)
                 {
                     // Partial update.
-                    var r = this.DrawArea(this.lastDiffImage, image);
+                    var r = this.DrawArea(this.lastImage, image);
                     var rStr = (r != null) ? r.ToString() : "(none)";
                     Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing partial {rStr}");
                     if (r != null)
@@ -268,8 +261,6 @@ namespace Wx3270
                     Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing all");
                     this.pictureBox.Invalidate();
                 }
-
-                this.lastDiffImage = image;
             }
 
             if (this.crosshairBox != null)
@@ -296,63 +287,26 @@ namespace Wx3270
         /// <returns>Rectangle that needs re-drawing.</returns>
         public Rectangle? DrawArea(ScreenImage oldImage, ScreenImage newImage)
         {
-            Rectangle? r = null;
-
-            // Get toggles.
-            newImage.Settings.TryGetValue(B3270.Setting.Crosshair, out bool crosshair);
-            newImage.Settings.TryGetValue(B3270.Setting.CursorBlink, out bool cursorBlink);
-
-            // Annotate the new image with blink, cursor and crosshair state.
-            // This modifies newImage.
-            // Blink is cleared for everything if we are not in blinkOn state.
-            // Otherwise it is set for the cursor position if cursorBlink is set.
-            (var cursorRow0, var cursorColumn0, _) = ComputeCursor(newImage);
-            for (var row = 0; row < newImage.MaxRows; row++)
-            {
-                for (var column = 0; column < newImage.MaxColumns; column++)
-                {
-                    if (!this.blinkOn)
-                    {
-                        newImage.Image[row, column].GraphicRendition &= ~GraphicRendition.Blink;
-                    }
-
-                    newImage.Image[row, column].GraphicRendition &= ~(GraphicRendition.IsCrosshair | GraphicRendition.IsCursor);
-                    if (newImage.CursorEnabled)
-                    {
-                        if ((!cursorBlink || this.blinkOn) && row == cursorRow0 && column == cursorColumn0)
-                        {
-                            // XXX: Not sure about the right-hand side of a DBCS cursor here.
-                            newImage.Image[row, column].GraphicRendition |= GraphicRendition.IsCursor;
-                            if (cursorBlink && this.blinkOn)
-                            {
-                                newImage.Image[row, column].GraphicRendition |= GraphicRendition.Blink;
-                            }
-                        }
-
-                        if (crosshair && (row == cursorRow0 || column == cursorColumn0))
-                        {
-                            newImage.Image[row, column].GraphicRendition |= GraphicRendition.IsCrosshair;
-                        }
-                    }
-                }
-            }
+            // Annotate a copy of the new image with blink, cursor and crosshair state.
+            var newImageCopy = this.Annotate(newImage);
 
             // Compute.
-            for (int row = 0; row < newImage.MaxRows; row++)
+            Rectangle? r = null;
+            for (int row = 0; row < newImageCopy.MaxRows; row++)
             {
-                for (var column = newImage.MaxColumns - 1; column >= 0; column--)
+                for (var column = newImageCopy.MaxColumns - 1; column >= 0; column--)
                 {
-                    if (newImage.Image[row, column].Equals(oldImage.Image[row, column]))
+                    if (newImageCopy.Image[row, column].Equals(oldImage.Image[row, column]))
                     {
                         continue;
                     }
 
                     // The current cell is considered wide if it has the wide attribute and is nonzero.
-                    var cell = newImage.Image[row, column];
+                    var cell = newImageCopy.Image[row, column];
                     var gr = cell.GraphicRendition;
                     var wide = gr.HasFlag(GraphicRendition.Wide) && cell.Text != '\0';
-                    var renderedColumn = newImage.Flipped ? newImage.MaxColumns - 1 - column : column;
-                    if (newImage.Flipped && wide)
+                    var renderedColumn = newImageCopy.Flipped ? newImageCopy.MaxColumns - 1 - column : column;
+                    if (newImageCopy.Flipped && wide)
                     {
                         renderedColumn--;
                     }
@@ -700,8 +654,8 @@ namespace Wx3270
                 this.StopBlinking();
             }
 
-            // Remember the last image, for a future incremental update.
-            this.lastImage = image;
+            // Remember the last image, for future incremental updates.
+            this.lastImage = this.Annotate(image);
 
             stopwatch.Stop();
             var msec = stopwatch.ElapsedMilliseconds;
@@ -1003,6 +957,54 @@ namespace Wx3270
         private static Color ColorBackground(ScreenImage image, Colors colors)
         {
             return image.ColorMode ? colors.HostColors[HostColor.NeutralBlack] : colors.MonoColors.Background;
+        }
+
+        /// <summary>
+        /// Annotate how an image should be drawn.
+        /// </summary>
+        /// <param name="image">Screen image.</param>
+        /// <returns>Annotated image.</returns>
+        private ScreenImage Annotate(ScreenImage image)
+        {
+            // Get toggles.
+            image.Settings.TryGetValue(B3270.Setting.Crosshair, out bool crosshair);
+            image.Settings.TryGetValue(B3270.Setting.CursorBlink, out bool cursorBlink);
+
+            // Annotate the new image with blink, cursor and crosshair state.
+            var imageCopy = new ScreenImage(image);
+            (var cursorRow0, var cursorColumn0, _) = ComputeCursor(imageCopy);
+            for (var row = 0; row < imageCopy.MaxRows; row++)
+            {
+                for (var column = 0; column < imageCopy.MaxColumns; column++)
+                {
+                    imageCopy.Image[row, column].GraphicRendition &= ~(GraphicRendition.IsBlinkingOn | GraphicRendition.IsCrosshair | GraphicRendition.IsCursor);
+
+                    if (this.blinkOn && imageCopy.Image[row, column].GraphicRendition.HasFlag(GraphicRendition.Blink))
+                    {
+                        imageCopy.Image[row, column].GraphicRendition |= GraphicRendition.IsBlinkingOn;
+                    }
+
+                    if (imageCopy.CursorEnabled)
+                    {
+                        if ((!cursorBlink || this.blinkOn) && row == cursorRow0 && column == cursorColumn0)
+                        {
+                            // XXX: Not sure about the right-hand side of a DBCS cursor here.
+                            imageCopy.Image[row, column].GraphicRendition |= GraphicRendition.IsCursor;
+                            if (cursorBlink && this.blinkOn)
+                            {
+                                imageCopy.Image[row, column].GraphicRendition |= GraphicRendition.IsBlinkingOn;
+                            }
+                        }
+
+                        if (crosshair && (row == cursorRow0 || column == cursorColumn0))
+                        {
+                            imageCopy.Image[row, column].GraphicRendition |= GraphicRendition.IsCrosshair;
+                        }
+                    }
+                }
+            }
+
+            return imageCopy;
         }
 
         /// <summary>

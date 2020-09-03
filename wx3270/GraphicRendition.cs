@@ -76,5 +76,10 @@ namespace Wx3270
         /// Is part of the crosshair cursor.
         /// </summary>
         IsCrosshair = 0x4000,
+
+        /// <summary>
+        /// Is blinking on.
+        /// </summary>
+        IsBlinkingOn = 0x8000,
     }
 }
