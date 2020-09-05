@@ -185,12 +185,37 @@ namespace Wx3270
             {
                 if (this.Image[row, column].GraphicRendition.HasFlag(GraphicRendition.Selected))
                 {
-                    this.Image[row, column].GraphicRendition &= ~GraphicRendition.Selected;
+                    Trace.Line(Trace.Type.Draw, $"SetSelect({row},{column}) clear");
                     return true;
                 }
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Set a region as selected.
+        /// </summary>
+        /// <param name="row">Row (0-origin).</param>
+        /// <param name="column">Column (0-origin).</param>
+        /// <param name="rows">Number of rows.</param>
+        /// <param name="columns">Number of columns.</param>
+        /// <returns>True if screen changed.</returns>
+        public bool SetSelect(int row, int column, int rows, int columns)
+        {
+            var changed = false;
+            for (var r = 0; r < this.MaxRows; r++)
+            {
+                for (var c = 0; c < this.MaxColumns; c++)
+                {
+                    changed |= this.SetSelect(
+                        r,
+                        c,
+                        r >= row && r < row + rows && c >= column && c < column + columns);
+                }
+            }
+
+            return changed;
         }
 
         /// <summary>

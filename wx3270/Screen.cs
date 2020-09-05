@@ -99,6 +99,21 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Select a region.
+        /// </summary>
+        /// <param name="row">Row (0-origin).</param>
+        /// <param name="column">Column (0-origin).</param>
+        /// <param name="rows">Number of rows.</param>
+        /// <param name="columns">Number of columns.</param>
+        public void SetSelect(int row, int column, int rows, int columns)
+        {
+            if (this.screenImage.SetSelect(row, column, rows, columns))
+            {
+                this.invoke.ScreenUpdate(ScreenUpdateType.Screen);
+            }
+        }
+
+        /// <summary>
         /// Unselect the entire screen.
         /// </summary>
         public void UnselectAll()

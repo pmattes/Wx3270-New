@@ -747,6 +747,18 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Set a region to be selected, and clear everything else.
+        /// </summary>
+        /// <param name="row">Row (0-origin).</param>
+        /// <param name="column">Column (0-origin).</param>
+        /// <param name="rows">Number of rows.</param>
+        /// <param name="columns">Number of columns.</param>
+        public void SetSelect(int row, int column, int rows, int columns)
+        {
+            this.screen.SetSelect(row, column, rows, columns);
+        }
+
+        /// <summary>
         /// Unselect the whole screen.
         /// </summary>
         public void UnselectAll()

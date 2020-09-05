@@ -315,19 +315,11 @@ namespace Wx3270
         /// </summary>
         private void Reselect()
         {
-            // Draw the new selection.
-            this.app.UnselectAll();
-
-            // In most Windows apps, the cursor is between two positions, so the first keyboard select left or right chooses
-            // one character. Here, the cursor is on one position, so the first keyboard select chooses the current character
-            // plus one in the direction chosen. If you really want just one character, you can select in the opposite direction.
-            for (var row = this.SelectStartRow0; row <= this.SelectEndRow0; row++)
-            {
-                for (var column = this.SelectStartColumn0; column <= this.SelectEndColumn0; column++)
-                {
-                    this.app.SetSelect(row, column, true);
-                }
-            }
+            this.app.SetSelect(
+                this.SelectStartRow0,
+                this.SelectStartColumn0,
+                this.SelectEndRow0 - this.SelectStartRow0 + 1,
+                this.SelectEndColumn0 - this.SelectStartColumn0 + 1);
         }
 
         /// <summary>
