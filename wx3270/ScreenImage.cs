@@ -185,7 +185,7 @@ namespace Wx3270
             {
                 if (this.Image[row, column].GraphicRendition.HasFlag(GraphicRendition.Selected))
                 {
-                    Trace.Line(Trace.Type.Draw, $"SetSelect({row},{column}) clear");
+                    this.Image[row, column].GraphicRendition &= ~GraphicRendition.Selected;
                     return true;
                 }
             }

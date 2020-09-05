@@ -1305,7 +1305,7 @@
             this.SettingsBox.Size = new System.Drawing.Size(32, 32);
             this.SettingsBox.TabIndex = 4;
             this.SettingsBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.SettingsBox, "Options");
+            this.toolTip1.SetToolTip(this.SettingsBox, "Settings");
             this.SettingsBox.Click += new System.EventHandler(this.SettingsBox_Click);
             // 
             // settingsMenuStrip
