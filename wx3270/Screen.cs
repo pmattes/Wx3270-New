@@ -5,6 +5,7 @@
 namespace Wx3270
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using Wx3270.Contracts;
 
@@ -390,8 +391,8 @@ namespace Wx3270
         {
             lock (this.screenImage)
             {
-                this.screenImage.Thumb.Top = float.Parse(attributes[B3270.Attribute.Top]);
-                this.screenImage.Thumb.Shown = float.Parse(attributes[B3270.Attribute.Shown]);
+                this.screenImage.Thumb.Top = float.Parse(attributes[B3270.Attribute.Top], CultureInfo.InvariantCulture.NumberFormat);
+                this.screenImage.Thumb.Shown = float.Parse(attributes[B3270.Attribute.Shown], CultureInfo.InvariantCulture.NumberFormat);
                 this.screenImage.Thumb.Saved = int.Parse(attributes[B3270.Attribute.Saved]);
                 this.screenImage.Thumb.Screen = int.Parse(attributes[B3270.Attribute.Screen]);
                 this.screenImage.Thumb.Back = int.Parse(attributes[B3270.Attribute.Back]);
