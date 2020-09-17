@@ -146,6 +146,7 @@
     <Compile Include="AplKeypad.Designer.cs">
       <DependentUpon>AplKeypad.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contracts\IMeasure.cs" />
     <Compile Include="KeypadCommon.cs" />
     <Compile Include="MiscSettings.cs">
       <SubType>Form</SubType>

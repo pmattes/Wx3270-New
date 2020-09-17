@@ -41,7 +41,7 @@ namespace Wx3270
     /// <summary>
     /// A 3270 display.
     /// </summary>
-    public class ScreenBox : IBrush
+    public class ScreenBox : IBrush, IMeasure
     {
         /// <summary>
         /// Cache of solid color brushes.
@@ -146,6 +146,11 @@ namespace Wx3270
         private ScreenImage lastImage;
 
         /// <summary>
+        /// The odd-width character measurer.
+        /// </summary>
+        private OddChars oddChars;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ScreenBox"/> class.
         /// </summary>
         /// <param name="type">Screen type.</param>
@@ -164,6 +169,8 @@ namespace Wx3270
             this.blinkTimer = new Timer();
             this.blinkTimer.Tick += new EventHandler(this.BlinkTimerTick);
             this.blinkTimer.Interval = 500;
+
+            this.oddChars = new OddChars(this);
         }
 
         /// <summary>
@@ -419,7 +426,7 @@ namespace Wx3270
             var clipped = 0;
             var drawn = 0;
 
-            var pending = new Pending(this, e.Graphics, clearBg);
+            var pending = new Pending(this, e.Graphics, clearBg, this.oddChars);
 
             // Write the image.
             for (int row = 0; row < image.MaxRows; row++)
@@ -943,6 +950,22 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Measure a text string.
+        /// </summary>
+        /// <param name="graphics">Graphics context.</param>
+        /// <param name="text">Text to measure.</param>
+        /// <returns>Size of rendered string.</returns>
+        public Size MeasureText(Graphics graphics, string text)
+        {
+            return TextRenderer.MeasureText(
+                graphics,
+                text,
+                this.UnderlineFont,
+                new Size(1000, 1000),
+                TextFormatFlags.Left | TextFormatFlags.NoPadding);
+        }
+
+        /// <summary>
         /// Compute the cursor coordinates.
         /// </summary>
         /// <param name="image">Image to inspect.</param>
@@ -1059,6 +1082,7 @@ namespace Wx3270
                 {
                     this.CellSize = this.MeasureText(g, "X");
                     Trace.Line(Trace.Type.Window, " New cell size: {0}", this.CellSize);
+                    this.oddChars.Reset(this.CellSize);
                 }
             }
 
@@ -1162,22 +1186,6 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Measure a text string.
-        /// </summary>
-        /// <param name="graphics">Graphics context.</param>
-        /// <param name="text">Text to measure.</param>
-        /// <returns>Size of rendered string.</returns>
-        private Size MeasureText(Graphics graphics, string text)
-        {
-            return TextRenderer.MeasureText(
-                graphics,
-                text,
-                this.UnderlineFont,
-                new Size(1000, 1000),
-                TextFormatFlags.Left | TextFormatFlags.NoPadding);
-        }
-
-        /// <summary>
         /// The screen contains blinking text. If the blinking timer is not running, start it.
         /// </summary>
         private void StartBlinking()
@@ -1239,6 +1247,11 @@ namespace Wx3270
             private readonly Color clearBg;
 
             /// <summary>
+            /// The odd character measurer.
+            /// </summary>
+            private readonly OddChars oddChars;
+
+            /// <summary>
             /// True if there is output pending.
             /// </summary>
             private bool pending = false;
@@ -1274,11 +1287,12 @@ namespace Wx3270
             /// <param name="brush">Brush allocator.</param>
             /// <param name="graphics">Graphics context.</param>
             /// <param name="clearBg">Clear background color.</param>
-            public Pending(IBrush brush, Graphics graphics, Color clearBg)
+            public Pending(IBrush brush, Graphics graphics, Color clearBg, OddChars oddChars)
             {
                 this.brush = brush;
                 this.graphics = graphics;
                 this.clearBg = clearBg;
+                this.oddChars = oddChars;
             }
 
             /// <summary>
@@ -1294,26 +1308,35 @@ namespace Wx3270
             public int AddText(Rectangle rectangle, string text, Color backgroundColor, Color foregroundColor, GraphicRendition gr, bool append)
             {
                 var drawn = 0;
+                var isOdd = this.oddChars.IsOdd(text[0], gr.HasFlag(GraphicRendition.Wide), this.graphics);
 
                 if (!this.pending)
                 {
                     // Greenfield.
                     this.Set(rectangle, text, backgroundColor, foregroundColor, gr);
+                    if (isOdd)
+                    {
+                        drawn += this.Flush();
+                    }
+
                     return drawn;
                 }
 
-                // Note: DBCS characters need to be draw individually, because the substitution font is not guaranteed to be
-                // exactly twice the cell width.
                 if (backgroundColor != this.backgroundColor
                     || foregroundColor != this.foregroundColor
                     || gr != this.gr
-                    || gr.HasFlag(GraphicRendition.Wide))
+                    || isOdd)
                 {
                     // Incompatible. Flush what's pending first.
                     drawn = this.Flush();
 
                     // Start accumulating again.
                     this.Set(rectangle, text, backgroundColor, foregroundColor, gr);
+                    if (isOdd)
+                    {
+                        drawn += this.Flush();
+                    }
+
                     return drawn;
                 }
 
@@ -1401,6 +1424,67 @@ namespace Wx3270
                 this.foregroundColor = foregroundColor;
                 this.gr = gr;
                 this.pending = true;
+            }
+        }
+
+        /// <summary>
+        /// Odd-width character tracking class.
+        /// </summary>
+        private class OddChars
+        {
+            /// <summary>
+            /// The text measure interface.
+            /// </summary>
+            private readonly IMeasure measure;
+
+            /// <summary>
+            /// The dictionary.
+            /// </summary>
+            private readonly Dictionary<char, bool> isOdd = new Dictionary<char, bool>();
+
+            /// <summary>
+            /// The cell size.
+            /// </summary>
+            private Size cellSize;
+
+            public OddChars(IMeasure measure)
+            {
+                this.measure = measure;
+            }
+
+            /// <summary>
+            /// Reset, with a new cell size.
+            /// </summary>
+            /// <param name="cellSize">New cell size.</param>
+            public void Reset(Size cellSize)
+            {
+                this.cellSize = cellSize;
+                this.isOdd.Clear();
+            }
+
+            /// <summary>
+            /// Tests a character for being an odd size.
+            /// </summary>
+            /// <param name="c">Character to measure.</param>
+            /// <param name="isDbcs">True if double-width.</param>
+            /// <param name="graphics">Graphics context.</param>
+            /// <returns>True if odd sized.</returns>
+            public bool IsOdd(char c, bool isDbcs, Graphics graphics)
+            {
+                if (this.isOdd.TryGetValue(c, out bool odd))
+                {
+                    return odd;
+                }
+
+                var size = this.measure.MeasureText(graphics, c.ToString());
+                odd = size.Width != this.cellSize.Width * (isDbcs ? 2 : 1);
+                this.isOdd[c] = odd;
+                if (odd)
+                {
+                    Trace.Line(Trace.Type.Draw, $"IsOdd: U+{(int)c:X4} is odd");
+                }
+
+                return odd;
             }
         }
     }
