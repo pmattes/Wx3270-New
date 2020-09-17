@@ -22,10 +22,9 @@ namespace Wx3270
         /// <summary>
         /// Update the network field in the OIA.
         /// </summary>
-        public void ChangeOiaNetwork()
+        /// <param name="oia">OIA state.</param>
+        public void ChangeOiaNetwork(IOiaState oia)
         {
-            var oia = this.App.OiaState;
-
             string disp = this.oia3270Font ? OiaFont.Symbol.Box4 : "4";
             string tip = string.Empty;
 
@@ -79,10 +78,9 @@ namespace Wx3270
         /// <summary>
         /// Update the lock field in the OIA.
         /// </summary>
-        public void ChangeOiaLock()
+        /// <param name="oia">OIA state.</param>
+        public void ChangeOiaLock(IOiaState oia)
         {
-            var oia = this.App.OiaState;
-
             var text = string.Empty;
             var tooltip = string.Empty;
             Color? color3279 = (this.colorMode && this.colors != null) ? this.colors.HostColors[HostColor.NeutralWhite] : (Color?)null;
@@ -276,23 +274,18 @@ namespace Wx3270
         /// <summary>
         /// Update the cursor field in the OIA.
         /// </summary>
-        public void ChangeOiaCursor()
+        /// <param name="oia">OIA state.</param>
+        public void ChangeOiaCursor(IOiaState oia)
         {
-            var oia = this.App.OiaState;
-            if (oia.ConnectionState == ConnectionState.NotConnected)
-            {
-                this.OiaCursor.Text = string.Empty;
-                this.toolTip1.SetToolTip(this.OiaCursor, string.Empty);
-                return;
-            }
-
             if (oia.CursorEnabled && oia.CursorRow > 0 && oia.CursorColumn > 0)
             {
+                Trace.Line(Trace.Type.Draw, $"ChangeOiaCursor enabled {oia.CursorRow}/{oia.CursorColumn}");
                 this.OiaCursor.Text = string.Format("{0:D3}/{1:D3}", oia.CursorRow, oia.CursorColumn);
                 this.toolTip1.SetToolTip(this.OiaCursor, string.Format(I18n.Get(OiaToolTipName.CursorPos), oia.CursorRow, oia.CursorColumn));
             }
             else
             {
+                Trace.Line(Trace.Type.Draw, $"ChangeOiaCursor disabled");
                 this.OiaCursor.Text = string.Empty;
                 this.toolTip1.SetToolTip(this.OiaCursor, string.Empty);
             }
@@ -351,10 +344,9 @@ namespace Wx3270
         /// <summary>
         /// Update the insert field in the OIA.
         /// </summary>
-        public void ChangeOiaInsert()
+        /// <param name="oia">OIA state.</param>
+        public void ChangeOiaInsert(IOiaState oia)
         {
-            var oia = this.App.OiaState;
-
             this.OiaInsert.Text = oia.Insert ? (this.oia3270Font ? OiaFont.Symbol.Insert : "^") : string.Empty;
             this.toolTip1.SetToolTip(this.OiaInsert, oia.Insert ? I18n.Get(OiaToolTipName.Insert) : string.Empty);
         }
@@ -362,10 +354,9 @@ namespace Wx3270
         /// <summary>
         /// Update the TLS field in the OIA.
         /// </summary>
-        public void ChangeOiaTls()
+        /// <param name="oia">OIA state.</param>
+        public void ChangeOiaTls(IOiaState oia)
         {
-            var oia = this.App.OiaState;
-
             if (oia.ConnectionState <= ConnectionState.TcpPending)
             {
                 this.OiaTLS.Text = string.Empty;
@@ -397,20 +388,18 @@ namespace Wx3270
         /// <summary>
         /// Update the LU field in the OIA.
         /// </summary>
-        public void ChangeOiaLu()
+        /// <param name="oia">OIA state.</param>
+        public void ChangeOiaLu(IOiaState oia)
         {
-            var oia = this.App.OiaState;
-
             this.OiaLu.Text = oia.Lu;
         }
 
         /// <summary>
         /// Change the timing field in the OIA.
         /// </summary>
-        public void ChangeOiaTiming()
+        /// <param name="oia">OIA state.</param>
+        public void ChangeOiaTiming(IOiaState oia)
         {
-            var oia = this.App.OiaState;
-
             if (!string.IsNullOrEmpty(oia.Timing))
             {
                 var secs = int.Parse(oia.Timing.Split(new[] { '.' })[0]);
@@ -495,9 +484,9 @@ namespace Wx3270
         /// <summary>
         /// Change the OIA screen trace count.
         /// </summary>
-        private void ChangeOiaScreenTrace()
+        /// <param name="oia">OIA state.</param>
+        private void ChangeOiaScreenTrace(IOiaState oia)
         {
-            var oia = this.App.OiaState;
             var text = string.Empty;
             var tip = string.Empty;
             switch (oia.ScreenTrace)
@@ -524,9 +513,9 @@ namespace Wx3270
         /// <summary>
         /// Change the OIA printer session state.
         /// </summary>
-        private void ChangeOiaPrinterSession()
+        /// <param name="oia">OIA state.</param>
+        private void ChangeOiaPrinterSession(IOiaState oia)
         {
-            var oia = this.App.OiaState;
             this.OiaPrinter.Text = oia.PrinterSession ? (this.oia3270Font ? OiaFont.Symbol.Printer : VersionSpecific.PrinterDisplay) : string.Empty;
             this.toolTip1.SetToolTip(this.OiaPrinter, oia.PrinterSession ? I18n.Get(OiaToolTipName.PrinterSession) : string.Empty);
         }
@@ -534,9 +523,9 @@ namespace Wx3270
         /// <summary>
         /// Change the OIA typeahead state.
         /// </summary>
-        private void ChangeOiaTypeahead()
+        /// <param name="oia">OIA state.</param>
+        private void ChangeOiaTypeahead(IOiaState oia)
         {
-            var oia = this.App.OiaState;
             this.OiaTypeahead.Text = oia.Typeahead ? "T" : string.Empty;
             this.toolTip1.SetToolTip(this.OiaTypeahead, oia.Typeahead ? I18n.Get(OiaToolTipName.Typeahead) : string.Empty);
         }
@@ -544,9 +533,9 @@ namespace Wx3270
         /// <summary>
         /// Change the script state.
         /// </summary>
-        private void ChangeScript()
+        /// <param name="oia">OIA state.</param>
+        private void ChangeScript(IOiaState oia)
         {
-            var oia = this.App.OiaState;
             this.OiaScript.Text = oia.Script ? "s" : string.Empty;
             this.toolTip1.SetToolTip(this.OiaScript, oia.Script ? I18n.Get(OiaToolTipName.Script) : string.Empty);
         }
@@ -554,9 +543,9 @@ namespace Wx3270
         /// <summary>
         /// Change reverse-input state.
         /// </summary>
-        private void ChangeReverseInput()
+        /// <param name="oia">OIA state.</param>
+        private void ChangeReverseInput(IOiaState oia)
         {
-            var oia = this.App.OiaState;
             this.OiaReverse.Text = oia.ReverseInput ? "R" : string.Empty;
             this.toolTip1.SetToolTip(this.OiaReverse, oia.ReverseInput ? I18n.Get(OiaToolTipName.ReverseInput) : string.Empty);
         }

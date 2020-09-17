@@ -20,13 +20,14 @@ namespace Wx3270
         /// <summary>
         /// Cause the screen to be drawn.
         /// </summary>
+        /// <param name="image">Screen image.</param>
         /// <param name="why">Reason for redraw.</param>
         /// <param name="complete">True for complete redraw.</param>
-        public void ScreenNeedsDrawing(string why, bool complete)
+        public void ScreenNeedsDrawing(ScreenImage image, string why, bool complete)
         {
             if (this.screenBox != null)
             {
-                this.screenBox.ScreenNeedsDrawing($"ScreenDraw({why})", complete, this.App.ScreenImage);
+                this.screenBox.ScreenNeedsDrawing($"ScreenDraw({why})", complete, image);
             }
         }
 
@@ -49,7 +50,7 @@ namespace Wx3270
             this.screenBox.ScreenDraw(
                 sender,
                 e,
-                this.App.ScreenImage,
+                this.screenBox.NextImage,
                 this.colors);
         }
 
@@ -63,7 +64,7 @@ namespace Wx3270
             this.screenBox.CrosshairDraw(
                 sender,
                 e,
-                this.App.ScreenImage,
+                this.screenBox.NextImage,
                 this.colors);
         }
     }

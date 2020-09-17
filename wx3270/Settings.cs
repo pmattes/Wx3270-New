@@ -1015,6 +1015,11 @@ namespace Wx3270
         private class ScreenSample
         {
             /// <summary>
+            /// The settings form.
+            /// </summary>
+            private Settings settings;
+
+            /// <summary>
             /// Initializes a new instance of the <see cref="ScreenSample"/> class.
             /// </summary>
             /// <param name="settings">Settings object.</param>
@@ -1031,6 +1036,7 @@ namespace Wx3270
                 PictureBox separator,
                 bool colorMode)
             {
+                this.settings = settings;
                 this.ScreenBox = new ScreenBox("Sample", screenPictureBox);
                 this.LayoutPanel = tableLayoutPanel;
                 this.StatusLine = statusLine;
@@ -1064,7 +1070,7 @@ namespace Wx3270
             /// </summary>
             public void Invalidate()
             {
-                this.ScreenBox.ScreenNeedsDrawing("settings sample", true, null);
+                this.ScreenBox.ScreenNeedsDrawing("settings sample", true, this.settings.CreateSampleImage(this.settings.ColorMode));
             }
         }
 

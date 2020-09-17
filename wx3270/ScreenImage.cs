@@ -4,7 +4,7 @@
 
 namespace Wx3270
 {
-    using System.Collections.Generic;
+    using System.Threading;
 
     /// <summary>
     /// Screen image.
@@ -12,10 +12,16 @@ namespace Wx3270
     public class ScreenImage
     {
         /// <summary>
+        /// The rolling sequence number.
+        /// </summary>
+        private static int sequence;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ScreenImage"/> class.
         /// </summary>
         public ScreenImage()
         {
+            this.Sequence = Interlocked.Increment(ref sequence);
             this.ColorMode = true;
             this.MaxRows = 24;
             this.MaxColumns = 80;
@@ -31,6 +37,7 @@ namespace Wx3270
         /// <param name="other">Existing <see cref="ScreenImage"/> to clone.</param>
         public ScreenImage(ScreenImage other)
         {
+            this.Sequence = Interlocked.Increment(ref sequence);
             this.ColorMode = other.ColorMode;
             this.MaxRows = other.MaxRows;
             this.MaxColumns = other.MaxColumns;
@@ -57,6 +64,11 @@ namespace Wx3270
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the sequence number.
+        /// </summary>
+        public int Sequence { get; private set; }
 
         /// <summary>
         /// Gets or sets the individual cells.

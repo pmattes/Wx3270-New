@@ -646,6 +646,7 @@ namespace Wx3270
             Wx3270.BackEnd.DebugFlag = false;
             startupConfig.MergeProfile(this.Current);
             this.BackEnd = new BackEnd(startupConfig);
+            Trace.BackEnd = this.BackEnd;
 
             // Register basic indication handlers.
             this.BackEnd.Register(this.screen = new Screen(this.update));
@@ -685,9 +686,10 @@ namespace Wx3270
         /// Process a screen update.
         /// </summary>
         /// <param name="updateType">Update type.</param>
-        public void ScreenUpdate(ScreenUpdateType updateType)
+        /// <param name="updateState">Update state.</param>
+        public void ScreenUpdate(ScreenUpdateType updateType, UpdateState updateState)
         {
-            this.update.ScreenUpdate(updateType);
+            this.update.ScreenUpdate(updateType, updateState);
         }
 
         /// <summary>

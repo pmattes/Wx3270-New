@@ -5,6 +5,7 @@
 namespace Wx3270
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Threading;
 
     using Wx3270.Contracts;
@@ -102,6 +103,17 @@ namespace Wx3270
         public event ConnectionStateChange ConnectionStateChange = (state) => { };
 
         /// <summary>
+        /// Gets the default OIA state.
+        /// </summary>
+        public static OiaState DefaultOiaState
+        {
+            get
+            {
+                return new OiaState(new Dictionary<string, string>(), false, 1, 1, false, false, string.Empty, false);
+            }
+        }
+
+        /// <summary>
         /// Gets the connection state.
         /// </summary>
         public ConnectionState ConnectionState { get; private set; }
@@ -185,7 +197,7 @@ namespace Wx3270
             this.field["not-undera"] = B3270.Value.False;
 
             // Tell the background worker.
-            this.invoke.ScreenUpdate(ScreenUpdateType.Network);
+            this.invoke.ScreenUpdate(ScreenUpdateType.Network, new UpdateState(this.OiaState));
         }
 
         /// <summary>
@@ -208,19 +220,19 @@ namespace Wx3270
                 switch (field)
                 {
                     case B3270.OiaField.Lock:
-                        this.invoke.ScreenUpdate(ScreenUpdateType.Lock);
+                        this.invoke.ScreenUpdate(ScreenUpdateType.Lock, new UpdateState(this.OiaState));
                         break;
                     case B3270.OiaField.Insert:
-                        this.invoke.ScreenUpdate(ScreenUpdateType.Insert);
+                        this.invoke.ScreenUpdate(ScreenUpdateType.Insert, new UpdateState(this.OiaState));
                         break;
                     case B3270.OiaField.Lu:
-                        this.invoke.ScreenUpdate(ScreenUpdateType.LuName);
+                        this.invoke.ScreenUpdate(ScreenUpdateType.LuName, new UpdateState(this.OiaState));
                         break;
                     case B3270.OiaField.Screentrace:
-                        this.invoke.ScreenUpdate(ScreenUpdateType.ScreenTrace);
+                        this.invoke.ScreenUpdate(ScreenUpdateType.ScreenTrace, new UpdateState(this.OiaState));
                         break;
                     case B3270.OiaField.Timing:
-                        this.invoke.ScreenUpdate(ScreenUpdateType.Timing);
+                        this.invoke.ScreenUpdate(ScreenUpdateType.Timing, new UpdateState(this.OiaState));
                         break;
                     case B3270.OiaField.NotUnderA:
                         // Without special handling, this field can change state too quickly to see
@@ -240,7 +252,7 @@ namespace Wx3270
                                 this.underaTimer = null;
                             }
 
-                            this.invoke.ScreenUpdate(ScreenUpdateType.Network);
+                            this.invoke.ScreenUpdate(ScreenUpdateType.Network, new UpdateState(this.OiaState));
                         }
                         else
                         {
@@ -258,16 +270,16 @@ namespace Wx3270
 
                         break;
                     case B3270.OiaField.PrinterSession:
-                        this.invoke.ScreenUpdate(ScreenUpdateType.PrinterSession);
+                        this.invoke.ScreenUpdate(ScreenUpdateType.PrinterSession, new UpdateState(this.OiaState));
                         break;
                     case B3270.OiaField.Typeahead:
-                        this.invoke.ScreenUpdate(ScreenUpdateType.Typeahead);
+                        this.invoke.ScreenUpdate(ScreenUpdateType.Typeahead, new UpdateState(this.OiaState));
                         break;
                     case B3270.OiaField.Script:
-                        this.invoke.ScreenUpdate(ScreenUpdateType.Script);
+                        this.invoke.ScreenUpdate(ScreenUpdateType.Script, new UpdateState(this.OiaState));
                         break;
                     case B3270.OiaField.ReverseInput:
-                        this.invoke.ScreenUpdate(ScreenUpdateType.ReverseInput);
+                        this.invoke.ScreenUpdate(ScreenUpdateType.ReverseInput, new UpdateState(this.OiaState));
                         break;
                 }
             }
@@ -287,8 +299,17 @@ namespace Wx3270
                 {
                     this.cursorRow = int.Parse(attrs[B3270.Attribute.Row]);
                     this.cursorColumn = int.Parse(attrs[B3270.Attribute.Column]);
+                    Trace.Line(Trace.Type.BackEnd, $"Cursor enabled {this.cursorRow}/{this.cursorColumn}");
+                }
+                else
+                {
+                    this.cursorRow = 0;
+                    this.cursorColumn = 0;
+                    Trace.Line(Trace.Type.BackEnd, "Cursor disabled");
                 }
             }
+
+            this.invoke.ScreenUpdate(ScreenUpdateType.OiaCursor, new UpdateState(this.OiaState));
         }
 
         /// <summary>
@@ -311,7 +332,7 @@ namespace Wx3270
             }
 
             // Propagate the connection state change.
-            this.invoke.ScreenUpdate(ScreenUpdateType.Connection);
+            this.invoke.ScreenUpdate(ScreenUpdateType.Connection, new UpdateState(this.OiaState));
             this.ConnectionStateChange(this.ConnectionState);
         }
 
@@ -325,7 +346,7 @@ namespace Wx3270
             this.secure = attrs[B3270.Attribute.Secure] == B3270.Value.True;
             string ver;
             this.verified = attrs.TryGetValue(B3270.Attribute.Verified, out ver) && ver == B3270.Value.True;
-            this.invoke.ScreenUpdate(ScreenUpdateType.Ssl);
+            this.invoke.ScreenUpdate(ScreenUpdateType.Ssl, new UpdateState(this.OiaState));
         }
     }
 }

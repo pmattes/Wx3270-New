@@ -5,6 +5,7 @@
 namespace Wx3270
 {
     using System;
+    using Wx3270.Contracts;
 
     /// <summary>
     /// Tracing utility.
@@ -16,6 +17,11 @@ namespace Wx3270
         /// </summary>
         public enum Type
         {
+            /// <summary>
+            /// No events.
+            /// </summary>
+            None = 0x00,
+
             /// <summary>
             /// Window events.
             /// </summary>
@@ -63,6 +69,11 @@ namespace Wx3270
         public static Type Flags { get; set; } = Type.All;
 
         /// <summary>
+        /// Gets or sets the back end.
+        /// </summary>
+        public static IBackEnd BackEnd { get; set; }
+
+        /// <summary>
         /// Generate a line of  trace output.
         /// </summary>
         /// <param name="type">Trace type.</param>
@@ -72,19 +83,21 @@ namespace Wx3270
         {
             if ((Flags & type) != 0)
             {
+                var expanded = Prefix(type) + " " + string.Format(format, arg);
                 try
                 {
-                    Console.WriteLine(Prefix(type) + " " + format, arg);
+                    Console.WriteLine(expanded);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    Console.WriteLine(Prefix(type) + $" cannot display, exception {e.Message}");
                 }
+
+                BackEnd?.Trace(expanded);
             }
         }
 
         /// <summary>
-        /// Generate a line of  trace output.
+        /// Generate a line of trace output.
         /// </summary>
         /// <param name="type">Trace type.</param>
         /// <param name="text">String to display.</param>
@@ -92,14 +105,16 @@ namespace Wx3270
         {
             if ((Flags & type) != 0)
             {
+                var expanded = Prefix(type) + " " + text;
                 try
                 {
-                    Console.WriteLine(Prefix(type) + " " + text);
+                    Console.WriteLine(expanded);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    Console.WriteLine(Prefix(type) + $" cannot display, exception {e.Message}");
                 }
+
+                BackEnd?.Trace(expanded);
             }
         }
 
@@ -111,14 +126,16 @@ namespace Wx3270
         {
             if ((Flags & type) != 0)
             {
+                var expanded = Prefix(type);
                 try
                 {
-                    Console.WriteLine(Prefix(type));
+                    Console.WriteLine(expanded);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    Console.WriteLine(Prefix(type) + $" cannot display, exception {e.Message}");
                 }
+
+                BackEnd?.Trace(expanded);
             }
         }
 

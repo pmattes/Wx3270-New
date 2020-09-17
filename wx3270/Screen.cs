@@ -95,7 +95,7 @@ namespace Wx3270
         {
             if (this.screenImage.SetSelect(row, column, selected))
             {
-                this.invoke.ScreenUpdate(ScreenUpdateType.Screen);
+                this.invoke.ScreenUpdate(ScreenUpdateType.Screen, new UpdateState(new ScreenImage(this.screenImage)));
             }
         }
 
@@ -110,7 +110,7 @@ namespace Wx3270
         {
             if (this.screenImage.SetSelect(row, column, rows, columns))
             {
-                this.invoke.ScreenUpdate(ScreenUpdateType.Screen);
+                this.invoke.ScreenUpdate(ScreenUpdateType.Screen, new UpdateState(new ScreenImage(this.screenImage)));
             }
         }
 
@@ -121,7 +121,7 @@ namespace Wx3270
         {
             if (this.screenImage.UnselectAll())
             {
-                this.invoke.ScreenUpdate(ScreenUpdateType.Screen);
+                this.invoke.ScreenUpdate(ScreenUpdateType.Screen, new UpdateState(new ScreenImage(this.screenImage)));
             }
         }
 
@@ -186,7 +186,7 @@ namespace Wx3270
                     hostBg);
             }
 
-            this.invoke.ScreenUpdate(ScreenUpdateType.Screen);
+            this.invoke.ScreenUpdate(ScreenUpdateType.Repaint, new UpdateState(new ScreenImage(this.screenImage)));
         }
 
         /// <summary>
@@ -257,7 +257,7 @@ namespace Wx3270
                 }
             }
 
-            this.invoke.ScreenUpdate(ScreenUpdateType.Cursor);
+            this.invoke.ScreenUpdate(ScreenUpdateType.Cursor, new UpdateState(new ScreenImage(this.screenImage)));
         }
 
         /// <summary>
@@ -280,7 +280,7 @@ namespace Wx3270
             }
 
             // Tell interested parties that the screen mode changed.
-            this.invoke.ScreenUpdate(ScreenUpdateType.ScreenMode);
+            this.invoke.ScreenUpdate(ScreenUpdateType.ScreenMode, new UpdateState(new ScreenImage(this.screenImage)));
         }
 
         /// <summary>
@@ -336,7 +336,7 @@ namespace Wx3270
             }
 
             // Tell interested parties that the screen needs scrolling.
-            this.invoke.ScreenUpdate(ScreenUpdateType.Scroll);
+            this.invoke.ScreenUpdate(ScreenUpdateType.Scroll, new UpdateState(new ScreenImage(this.screenImage)));
         }
 
         /// <summary>
@@ -359,7 +359,7 @@ namespace Wx3270
 
             if (this.screenSettings.Contains(settingName))
             {
-                this.invoke.ScreenUpdate(ScreenUpdateType.Repaint);
+                this.invoke.ScreenUpdate(ScreenUpdateType.Repaint, new UpdateState(new ScreenImage(this.screenImage)));
             }
         }
 
@@ -378,7 +378,7 @@ namespace Wx3270
                 }
 
                 this.screenImage.TraceFile = traceFileName;
-                this.invoke.ScreenUpdate(ScreenUpdateType.TraceFile);
+                this.invoke.ScreenUpdate(ScreenUpdateType.TraceFile, new UpdateState(new ScreenImage(this.screenImage)));
             }
         }
 
@@ -396,7 +396,7 @@ namespace Wx3270
                 this.screenImage.Thumb.Saved = int.Parse(attributes[B3270.Attribute.Saved]);
                 this.screenImage.Thumb.Screen = int.Parse(attributes[B3270.Attribute.Screen]);
                 this.screenImage.Thumb.Back = int.Parse(attributes[B3270.Attribute.Back]);
-                this.invoke.ScreenUpdate(ScreenUpdateType.Thumb);
+                this.invoke.ScreenUpdate(ScreenUpdateType.Thumb, new UpdateState(new ScreenImage(this.screenImage)));
             }
         }
 
@@ -412,7 +412,7 @@ namespace Wx3270
                 this.screenImage.Flipped = attributes[B3270.Attribute.Value].Equals(B3270.Value.True);
             }
 
-            this.invoke.ScreenUpdate(ScreenUpdateType.Repaint);
+            this.invoke.ScreenUpdate(ScreenUpdateType.Repaint, new UpdateState(new ScreenImage(this.screenImage)));
         }
 
         /// <summary>
@@ -423,7 +423,7 @@ namespace Wx3270
         {
             this.inScreen = false;
             this.curRow = -1;
-            this.invoke.ScreenUpdate(ScreenUpdateType.Screen);
+            this.invoke.ScreenUpdate(ScreenUpdateType.Screen, new UpdateState(new ScreenImage(this.screenImage)));
         }
 
         /// <summary>

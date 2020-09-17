@@ -8,7 +8,6 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
-    using System.Runtime.CompilerServices;
     using System.Windows.Forms;
     using I18nBase;
     using Wx3270.Contracts;
@@ -330,10 +329,11 @@ namespace Wx3270
         /// Process a screen update.
         /// </summary>
         /// <param name="updateType">Update type.</param>
-        public void ScreenUpdate(ScreenUpdateType updateType)
+        /// <param name="updateState">Update state.</param>
+        public void ScreenUpdate(ScreenUpdateType updateType, UpdateState updateState)
         {
             // Run the update in the UI thread.
-            this.Invoke(new MethodInvoker(() => this.ProcessUpdate(updateType)));
+            this.Invoke(new MethodInvoker(() => this.ProcessUpdate(updateType, updateState)));
         }
 
         /// <summary>
@@ -404,7 +404,7 @@ namespace Wx3270
             this.colors = new Colors(newColors);
 
             // Redraw the screen.
-            this.ScreenNeedsDrawing("recolor", true);
+            this.ScreenNeedsDrawing(this.App.ScreenImage, "recolor", true);
 
             // Change the foreground color in the OIA.
             var fg = colorMode ? this.colors.HostColors[HostColor.Blue] : this.colors.MonoColors.Normal;
@@ -421,7 +421,7 @@ namespace Wx3270
             }
 
             // Correct the lock icon.
-            this.ChangeOiaTls();
+            this.ChangeOiaTls(this.App.OiaState);
 
             // Change the dividing bar color.
             this.TopBar.BackColor = fg;
@@ -1195,75 +1195,76 @@ namespace Wx3270
         /// Process a screen update.
         /// </summary>
         /// <param name="updateType">Update type.</param>
-        private void ProcessUpdate(ScreenUpdateType updateType)
+        /// <param name="updateState">Update state.</param>
+        private void ProcessUpdate(ScreenUpdateType updateType, UpdateState updateState)
         {
             switch (updateType)
             {
                 case ScreenUpdateType.Screen:
-                    this.ScreenNeedsDrawing("update", false);
+                    this.ScreenNeedsDrawing(updateState.ScreenImage, "update", false);
                     break;
                 case ScreenUpdateType.Repaint:
-                    this.ScreenNeedsDrawing("repaint", true);
+                    this.ScreenNeedsDrawing(updateState.ScreenImage, "repaint", true);
                     break;
                 case ScreenUpdateType.Lock:
-                    this.ChangeOiaLock();
+                    this.ChangeOiaLock(updateState.OiaState);
                     break;
                 case ScreenUpdateType.Insert:
-                    this.ChangeOiaInsert();
+                    this.ChangeOiaInsert(updateState.OiaState);
                     break;
                 case ScreenUpdateType.Ssl:
-                    this.ChangeOiaTls();
+                    this.ChangeOiaTls(updateState.OiaState);
                     this.SslEvent();
                     break;
                 case ScreenUpdateType.LuName:
-                    this.ChangeOiaLu();
+                    this.ChangeOiaLu(updateState.OiaState);
                     this.LuEvent();
                     break;
                 case ScreenUpdateType.Timing:
-                    this.ChangeOiaTiming();
+                    this.ChangeOiaTiming(updateState.OiaState);
                     break;
                 case ScreenUpdateType.Cursor:
-                    this.ScreenNeedsDrawing("cursor", false);
-                    this.ChangeOiaCursor();
+                    this.ScreenNeedsDrawing(updateState.ScreenImage, "cursor", false);
+                    break;
+                case ScreenUpdateType.OiaCursor:
+                    this.ChangeOiaCursor(updateState.OiaState);
                     break;
                 case ScreenUpdateType.Connection:
-                    this.ChangeOiaTls();
-                    this.ChangeOiaCursor();
-                    this.ChangeOiaNetwork();
+                    this.ChangeOiaTls(updateState.OiaState);
+                    this.ChangeOiaNetwork(updateState.OiaState);
                     this.ConnectionStateEvent();
-                    this.ChangeOiaLock();
                     break;
                 case ScreenUpdateType.Network:
-                    this.ChangeOiaNetwork();
+                    this.ChangeOiaNetwork(updateState.OiaState);
                     break;
                 case ScreenUpdateType.ScreenMode:
-                    this.ChangeScreenMode();
-                    this.ScreenNeedsDrawing("mode", true);
+                    this.ChangeScreenMode(updateState.ScreenImage);
+                    this.ScreenNeedsDrawing(updateState.ScreenImage, "mode", true);
                     this.ScreenModeEvent();
                     break;
                 case ScreenUpdateType.Thumb:
                     this.ChangeThumb();
                     break;
                 case ScreenUpdateType.ScreenTrace:
-                    this.ChangeOiaScreenTrace();
+                    this.ChangeOiaScreenTrace(updateState.OiaState);
                     break;
                 case ScreenUpdateType.PrinterSession:
-                    this.ChangeOiaPrinterSession();
+                    this.ChangeOiaPrinterSession(updateState.OiaState);
                     break;
                 case ScreenUpdateType.Typeahead:
-                    this.ChangeOiaTypeahead();
+                    this.ChangeOiaTypeahead(updateState.OiaState);
                     break;
                 case ScreenUpdateType.TraceFile:
                     this.ChangeTraceFile();
                     break;
                 case ScreenUpdateType.Script:
-                    this.ChangeScript();
+                    this.ChangeScript(updateState.OiaState);
                     break;
                 case ScreenUpdateType.Scroll:
-                    this.ScreenNeedsDrawing("scroll", false);
+                    this.ScreenNeedsDrawing(updateState.ScreenImage, "scroll", false);
                     break;
                 case ScreenUpdateType.ReverseInput:
-                    this.ChangeReverseInput();
+                    this.ChangeReverseInput(updateState.OiaState);
                     break;
             }
         }
@@ -1357,7 +1358,7 @@ namespace Wx3270
                     break;
                 case B3270.Setting.VisibleControl:
                     this.controlCharsMenuItem.Checked = settingDictionary.TryGetValue(B3270.Setting.VisibleControl, out bool visibleControl) && visibleControl;
-                    this.ScreenNeedsDrawing("visibleControl", true);
+                    this.ScreenNeedsDrawing(this.App.ScreenImage, "visibleControl", true);
                     break;
                 case B3270.Setting.AplMode:
                     this.AplChanged(settingDictionary.TryGetValue(B3270.Setting.AplMode, out bool aplMode) && aplMode);
@@ -1414,7 +1415,7 @@ namespace Wx3270
         private void ScreenBox_ClientSizeChanged(object sender, EventArgs e)
         {
             // Force a repaint.
-            this.ScreenNeedsDrawing("sizeChange", true);
+            this.ScreenNeedsDrawing(this.App.ScreenImage, "sizeChange", true);
         }
 
         /// <summary>
@@ -1435,8 +1436,9 @@ namespace Wx3270
         private void X3270_Load(object sender, EventArgs e)
         {
             // Initialize the OIA fields.
-            this.ChangeOiaNetwork();
-            this.ChangeOiaLock();
+            var defState = Oia.DefaultOiaState;
+            this.ChangeOiaNetwork(defState);
+            this.ChangeOiaLock(defState);
             this.OiaPrinter.Text = string.Empty;
             this.OiaScreentrace.Text = string.Empty;
             this.OiaScript.Text = string.Empty;
@@ -1444,11 +1446,11 @@ namespace Wx3270
             this.OiaAltShift.Text = string.Empty;
             this.OiaCx.Text = string.Empty;
             this.OiaReverse.Text = string.Empty;
-            this.ChangeOiaInsert();
-            this.ChangeOiaTls();
-            this.ChangeOiaLu();
-            this.ChangeOiaTiming();
-            this.ChangeOiaCursor();
+            this.ChangeOiaInsert(defState);
+            this.ChangeOiaTls(defState);
+            this.ChangeOiaLu(defState);
+            this.ChangeOiaTiming(defState);
+            this.ChangeOiaCursor(defState);
 
             Trace.Line(Trace.Type.Window, "MainWindow Load");
 
@@ -1701,10 +1703,11 @@ namespace Wx3270
         /// <summary>
         /// The screen mode changed.
         /// </summary>
+        /// <param name="image">Screen image.</param>
         /// <returns>True if mode actually changed.</returns>
-        private bool ChangeScreenMode()
+        private bool ChangeScreenMode(ScreenImage image)
         {
-            var modeChanged = this.screenBox.ChangeScreenMode(this.App.ScreenImage);
+            var modeChanged = this.screenBox.ChangeScreenMode(image);
             if (modeChanged && !this.Maximized)
             {
                 // Do an implicit snap.

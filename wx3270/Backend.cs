@@ -5,6 +5,7 @@
 namespace Wx3270
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
@@ -12,6 +13,7 @@ namespace Wx3270
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Timers;
     using System.Windows.Forms;
     using System.Xml;
 
@@ -79,6 +81,21 @@ namespace Wx3270
         private readonly Dictionary<string, Passthru> passthruDict = new Dictionary<string, Passthru>();
 
         /// <summary>
+        /// Timer for gathering trace output.
+        /// </summary>
+        private readonly System.Timers.Timer traceTimer = new System.Timers.Timer
+        {
+            Interval = 50,
+            AutoReset = false,
+            Enabled = false,
+        };
+
+        /// <summary>
+        /// The trace output queue.
+        /// </summary>
+        private readonly ConcurrentQueue<string> traceQueue = new ConcurrentQueue<string>();
+
+        /// <summary>
         /// True if the back end is running.
         /// </summary>
         private bool running;
@@ -119,12 +136,18 @@ namespace Wx3270
         private Thread stderrThread;
 
         /// <summary>
+        /// True if tracing is still possible.
+        /// </summary>
+        private bool traceEnabled = true;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BackEnd"/> class.
         /// </summary>
         /// <param name="startupConfig">Start-up configuration.</param>
         public BackEnd(StartupConfig startupConfig)
         {
             this.startupConfig = startupConfig;
+            this.traceTimer.Elapsed += this.FlushDebug;
         }
 
         /// <inheritdoc />
@@ -271,7 +294,7 @@ namespace Wx3270
             this.RegisterStart(B3270.Indication.Initialize, (name, attrs) => { });
             this.RegisterEnd(B3270.Indication.Initialize, (name) =>
             {
-                Trace.Line(Trace.Type.BackEnd, "Back-end initialization complete");
+                Wx3270.Trace.Line(Wx3270.Trace.Type.BackEnd, "Back-end initialization complete");
                 File.Delete(this.startupProfilePath);
                 this.startupProfilePath = null;
                 this.OnReady();
@@ -320,6 +343,9 @@ namespace Wx3270
         /// <inheritdoc />
         public void Stop()
         {
+            // No more tracing. There is probably more to do here.
+            this.traceEnabled = false;
+
             // Push a Quit through the emulator.
             this.RunAction(new BackEndAction(B3270.Action.Quit), ErrorBox.Ignore());
         }
@@ -456,6 +482,13 @@ namespace Wx3270
                     this.writer.Flush();
                 }
             }
+        }
+
+        /// <inheritdoc />
+        public void Trace(string text)
+        {
+            this.traceQueue.Enqueue(text);
+            this.traceTimer.Start();
         }
 
         /// <summary>
@@ -643,7 +676,7 @@ namespace Wx3270
             {
                 // Fail now, because this is run asynchronously without ever being waited for,
                 // and otherwise the app would just mysteriously stall.
-                Trace.Line(Trace.Type.BackEnd, "Caught exception: " + e.ToString());
+                Console.WriteLine("BackEnd Caught exception: " + e.ToString());
                 ErrorBox.Show(
                     I18n.Get(Message.XmlException) + ":" + Environment.NewLine + e.Message,
                     I18n.Get(Title.Fatal));
@@ -763,6 +796,35 @@ namespace Wx3270
             {
                 end = (EndDelegate)d;
                 end(name);
+            }
+        }
+
+        /// <summary>
+        /// Flush the debug queue. Timeout for the trace timer.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="args">Event arguments.</param>
+        private void FlushDebug(object sender, ElapsedEventArgs args)
+        {
+            if (this.traceEnabled)
+            {
+                if (this.writer != null)
+                {
+                    lock (this.writerSync)
+                    {
+                        while (this.traceQueue.TryDequeue(out string text))
+                        {
+                            this.writer.WriteComment(text);
+                        }
+
+                        this.writer.Flush();
+                    }
+                }
+                else
+                {
+                    // Write not created yet. Check again later.
+                    this.traceTimer.Start();
+                }
             }
         }
 

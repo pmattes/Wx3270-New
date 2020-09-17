@@ -50,6 +50,11 @@ namespace Wx3270
         Cursor,
 
         /// <summary>
+        /// Cursor position on the OIA.
+        /// </summary>
+        OiaCursor,
+
+        /// <summary>
         /// Connection state.
         /// </summary>
         Connection,

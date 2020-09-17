@@ -29,7 +29,7 @@ namespace Wx3270
         /// <summary>
         /// Initializes a new instance of the <see cref="AplMode"/> class.
         /// </summary>
-        /// <param name="backEnd">Back end</param>
+        /// <param name="backEnd">Back end.</param>
         public AplMode(BackEnd backEnd)
         {
             this.backEnd = backEnd;
@@ -57,7 +57,7 @@ namespace Wx3270
         /// <summary>
         /// Toggle APL mode.
         /// </summary>
-        /// <param name="isSet">True if APL mode is now on</param>
+        /// <param name="isSet">True if APL mode is now on.</param>
         public void Toggle(bool isSet)
         {
             var newState = isSet ? State.Set : State.Clear;

@@ -12,7 +12,8 @@ namespace Wx3270.Contracts
         /// <summary>
         /// Signal a screen update.
         /// </summary>
-        /// <param name="updateType">Update type</param>
-        void ScreenUpdate(ScreenUpdateType updateType);
+        /// <param name="updateType">Update type.</param>
+        /// <param name="updateState">Update state.</param>
+        void ScreenUpdate(ScreenUpdateType updateType, UpdateState updateState);
     }
 }

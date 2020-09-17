@@ -177,6 +177,11 @@ namespace Wx3270
         public event Action<Font, bool> FontChanged = (newFont, dynamic) => { };
 
         /// <summary>
+        /// Gets the next screen image to draw.
+        /// </summary>
+        public ScreenImage NextImage { get; private set; }
+
+        /// <summary>
         /// Gets a value indicating whether the screen is maximized.
         /// </summary>
         public bool Maximized { get; private set; }
@@ -241,8 +246,9 @@ namespace Wx3270
         public void ScreenNeedsDrawing(string why, bool complete, ScreenImage image)
         {
             var mode = complete ? "all" : "partial";
-            Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing {why} {mode}");
+            Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing {why} {mode} #{image.Sequence}");
 
+            this.NextImage = image;
             if (this.pictureBox != null)
             {
                 if (this.lastImage != null && image != null && !complete)
@@ -287,6 +293,13 @@ namespace Wx3270
         /// <returns>Rectangle that needs re-drawing.</returns>
         public Rectangle? DrawArea(ScreenImage oldImage, ScreenImage newImage)
         {
+            // If the image size changed, redraw completely.
+            if (oldImage.MaxColumns != newImage.MaxColumns || oldImage.MaxRows != newImage.MaxRows)
+            {
+                Trace.Line(Trace.Type.Draw, "DrawArea: size changed");
+                return new Rectangle(0, 0, newImage.MaxColumns * this.CellSize.Width, newImage.MaxRows * this.CellSize.Height);
+            }
+
             // Annotate a copy of the new image with blink, cursor and crosshair state.
             var newImageCopy = this.Annotate(newImage);
 
@@ -345,7 +358,9 @@ namespace Wx3270
             ScreenImage image,
             Colors colors)
         {
-            Trace.Line(Trace.Type.Draw, "ScreenDraw({0}): {1}", this.Type, e.ClipRectangle);
+            var all = (e.ClipRectangle.Width == image.MaxColumns * this.CellSize.Width && e.ClipRectangle.Height == image.MaxRows * this.CellSize.Height) ?
+                "all" : "partial";
+            Trace.Line(Trace.Type.Draw, $"ScreenDraw({this.Type}): {e.ClipRectangle} {all} #{image.Sequence}");
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -664,7 +679,7 @@ namespace Wx3270
             var per = msec / (double)drawn;
             Trace.Line(
                 Trace.Type.Draw,
-                $"ScreenDraw {msec}ms {total}/{unclipped}/{drawn} total/unclipped/drawn {per} ms/char");
+                $"ScreenDraw {msec}ms {total}/{unclipped}/{drawn} total/unclipped/drawn {per:N3} ms/char");
         }
 
         /// <summary>
@@ -1355,7 +1370,7 @@ namespace Wx3270
                 // Draw the text.
                 if (this.text.Length != 0)
                 {
-                    Trace.Line(Trace.Type.Draw, $"Flushing {this.text.Length} characters");
+                    // Trace.Line(Trace.Type.Draw, $"Flushing {this.text.Length} characters");
                     TextRenderer.DrawText(
                                 this.graphics,
                                 this.text,

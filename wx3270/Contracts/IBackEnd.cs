@@ -151,5 +151,11 @@ namespace Wx3270.Contracts
         /// <param name="result">Result string.</param>
         /// <param name="tag">Tag from emulator.</param>
         void PassthruComplete(bool success, string result, string tag);
+
+        /// <summary>
+        /// Trace some text.
+        /// </summary>
+        /// <param name="text">Text to trace.</param>
+        void Trace(string text);
     }
 }
