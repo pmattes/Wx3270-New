@@ -5,6 +5,7 @@
 namespace Wx3270
 {
     using System;
+    using System.CodeDom;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
@@ -484,6 +485,15 @@ namespace Wx3270
                             this.Topmost = true;
                             break;
                         case Constants.Option.Trace:
+                            startupConfig.Trace = true;
+                            break;
+                        case Constants.Option.UiTrace:
+                            if (!Enum.TryParse(args[++i], true, out Trace.Type traceFlags))
+                            {
+                                Usage($"Unknown trace type '{args[i]}'");
+                            }
+
+                            Trace.Flags = traceFlags;
                             startupConfig.Trace = true;
                             break;
                         case Constants.Option.Utf8:

@@ -191,6 +191,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             public const string Trace = "-trace";
 
             /// <summary>
+            /// The UI trace option.
+            /// </summary>
+            public const string UiTrace = "-uitrace";
+
+            /// <summary>
             /// The (no-op) UTF-8 option.
             /// </summary>
             public const string Utf8 = "-utf8";

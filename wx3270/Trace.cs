@@ -66,7 +66,7 @@ namespace Wx3270
         /// <summary>
         /// Gets or sets the current trace flags.
         /// </summary>
-        public static Type Flags { get; set; } = Type.All;
+        public static Type Flags { get; set; } = Type.None;
 
         /// <summary>
         /// Gets or sets the back end.
