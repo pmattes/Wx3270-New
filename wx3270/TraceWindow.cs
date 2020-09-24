@@ -44,8 +44,8 @@ namespace Wx3270
         /// <summary>
         /// Initializes a new instance of the <see cref="TraceWindow"/> class.
         /// </summary>
-        /// <param name="fileName">File to monitor</param>
-        /// <param name="backEnd">Back end</param>
+        /// <param name="fileName">File to monitor.</param>
+        /// <param name="backEnd">Back end.</param>
         public TraceWindow(string fileName, IBackEnd backEnd)
         {
             this.backEnd = backEnd;
@@ -75,7 +75,7 @@ namespace Wx3270
         /// <summary>
         /// Internal Dispose method.
         /// </summary>
-        /// <param name="disposing">True if called from the public <see cref="TraceWindow.Dispose"/> method</param>
+        /// <param name="disposing">True if called from the public <see cref="TraceWindow.Dispose"/> method.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (this.disposed)

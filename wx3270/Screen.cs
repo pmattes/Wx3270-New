@@ -256,8 +256,6 @@ namespace Wx3270
                     this.screenImage.CursorColumn1 = int.Parse(attributes[B3270.Attribute.Column]);
                 }
             }
-
-            this.invoke.ScreenUpdate(ScreenUpdateType.Cursor, new UpdateState(new ScreenImage(this.screenImage)));
         }
 
         /// <summary>

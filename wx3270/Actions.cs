@@ -5,6 +5,8 @@
 namespace Wx3270
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
     using Wx3270.Contracts;
@@ -56,6 +58,11 @@ namespace Wx3270
         private bool everActivated;
 
         /// <summary>
+        /// True if the UI trace check callback is running.
+        /// </summary>
+        private bool uiTraceCheckRunning;
+
+        /// <summary>
         /// The window handle.
         /// </summary>
         private IntPtr handle;
@@ -85,12 +92,6 @@ namespace Wx3270
                 this.cmdButton.Enabled = this.app.Allowed(Restrictions.Prompt) && this.app.ConnectionState == ConnectionState.NotConnected;
             };
 
-            // Disable the debug console button if it is already allocated.
-            if (this.app.ConsoleAttached)
-            {
-                this.consoleCheckBox.Enabled = false;
-            }
-
             // Subscribe to toggle changes.
             this.app.SettingChange.Register(
                 (settingName, settingDictionary) => this.Invoke(new MethodInvoker(() => this.SettingChanged(settingName, settingDictionary))),
@@ -106,7 +107,6 @@ namespace Wx3270
             {
                 this.promptButton.RemoveFromParent();
                 this.promptLabel.RemoveFromParent();
-                this.consoleCheckBox.RemoveFromParent();
                 this.cmdButton.RemoveFromParent();
                 this.cmdExeLabel.RemoveFromParent();
             }
@@ -117,11 +117,22 @@ namespace Wx3270
             {
                 this.traceCheckBox.RemoveFromParent();
                 this.tracePr3287CheckBox.RemoveFromParent(); // How do we prevent pr3287 command line tracing?
+                this.uiTraceCheckBox.RemoveFromParent();
+                this.uiTraceCheckedListBox.RemoveFromParent();
             }
 
-            if (this.developerGroupBox.Controls.Count == 0)
+            if (!this.app.Restricted(Restrictions.ExternalFiles))
             {
-                this.developerGroupBox.RemoveFromParent();
+                this.uiTraceCheckBox.Checked = Trace.Flags != Trace.Type.None;
+                this.uiTraceCheckedListBox.Items.Add(Trace.Type.All, Trace.Flags == Trace.Type.All);
+                this.uiTraceCheckedListBox.Items.Add(Trace.Type.None, Trace.Flags == Trace.Type.None);
+                foreach (var t in Enum.GetValues(typeof(Trace.Type)).OfType<Trace.Type>().Where(t => t != Trace.Type.All && t != Trace.Type.None))
+                {
+                    this.uiTraceCheckedListBox.Items.Add(t, Trace.Flags.HasFlag(t));
+                }
+
+                // Enable the check event handler now.
+                this.uiTraceCheckedListBox.ItemCheck += new ItemCheckEventHandler(this.UiTraceCheckedListBox_ItemCheck);
             }
 
             // Localize.
@@ -346,9 +357,17 @@ namespace Wx3270
         private void TraceChanged(bool value)
         {
             this.BackEnd.RunAction(new BackEndAction(B3270.Action.Set, B3270.Setting.Trace, B3270.ToggleArgument.Action(value)), ErrorBox.Ignore());
-            if (value)
+            if (value && Trace.Flags == Trace.Type.None)
             {
-                this.SafeHide();
+                this.uiTraceCheckBox.Checked = true;
+                this.ToggleUiTracing(true);
+            }
+
+            if (!value)
+            {
+                // Turn off UI tracing, too.
+                this.uiTraceCheckBox.Checked = false;
+                this.ToggleUiTracing(false);
             }
         }
 
@@ -497,19 +516,6 @@ namespace Wx3270
         private void CancelActionsButton_Click(object sender, EventArgs e)
         {
             this.CancelScripts();
-            this.SafeHide();
-        }
-
-        /// <summary>
-        /// The console check box changed state.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void ConsoleCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            // A console can only be turned on, never off.
-            this.app.AttachConsole();
-            this.consoleCheckBox.Enabled = false;
             this.SafeHide();
         }
 
@@ -690,6 +696,111 @@ namespace Wx3270
             };
 
             k.Show(this.mainScreen);
+        }
+
+        /// <summary>
+        /// Toggle UI tracing on or off.
+        /// </summary>
+        /// <param name="tracing">True if enabling UI tracing.</param>
+        private void ToggleUiTracing(bool tracing)
+        {
+            this.uiTraceCheckedListBox.Enabled = tracing;
+
+            // Set the trace flags.
+            if (tracing && Trace.Flags == Trace.Type.None)
+            {
+                Trace.Flags = Trace.Type.All;
+            }
+            else if (!tracing && Trace.Flags != Trace.Type.None)
+            {
+                Trace.Flags = Trace.Type.None;
+            }
+
+            // Check or un-check all of the items.
+            var items = this.uiTraceCheckedListBox.Items.OfType<object>().ToArray();
+            foreach (var item in items)
+            {
+                if ((Trace.Type)item == Trace.Type.None)
+                {
+                    this.uiTraceCheckedListBox.SetItemChecked(this.uiTraceCheckedListBox.Items.IndexOf(item), !tracing);
+                }
+                else
+                {
+                    this.uiTraceCheckedListBox.SetItemChecked(this.uiTraceCheckedListBox.Items.IndexOf(item), tracing);
+                }
+            }
+
+            this.uiTraceCheckedListBox.SelectedItem = tracing ? Trace.Type.All : Trace.Type.None;
+        }
+
+        /// <summary>
+        /// The UI trace checkbox was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void UiTraceCheckBox_Click(object sender, EventArgs e)
+        {
+            this.ToggleUiTracing(this.uiTraceCheckBox.Checked);
+        }
+
+        /// <summary>
+        /// An item in the UI trace list box is about to be checked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event parameters.</param>
+        private void UiTraceCheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (this.uiTraceCheckRunning)
+            {
+                return;
+            }
+
+            this.uiTraceCheckRunning = true;
+            try
+            {
+                var flag = (Trace.Type)this.uiTraceCheckedListBox.Items[e.Index];
+                var value = e.NewValue;
+
+                // Handle the All and None checkboxes.
+                if ((flag == Trace.Type.All || flag == Trace.Type.None) && value == CheckState.Checked)
+                {
+                    // Turn everything on or off.
+                    foreach (var t in Enum.GetValues(typeof(Trace.Type)).OfType<Trace.Type>().Where(t => t != Trace.Type.All && t != Trace.Type.None))
+                    {
+                        this.uiTraceCheckedListBox.SetItemChecked(this.uiTraceCheckedListBox.Items.IndexOf(t), flag == Trace.Type.All);
+                    }
+
+                    // Set the trace flags value.
+                    Trace.Flags = (flag == Trace.Type.All) ? Trace.Type.All : Trace.Type.None;
+                }
+
+                // Set the new trace flags value.
+                if (flag != Trace.Type.All && flag != Trace.Type.None)
+                {
+                    if (value == CheckState.Checked)
+                    {
+                        Trace.Flags |= flag;
+                    }
+                    else
+                    {
+                        Trace.Flags &= ~flag;
+                    }
+                }
+
+                // Set All or None to match the new state.
+                this.uiTraceCheckedListBox.SetItemChecked(this.uiTraceCheckedListBox.Items.IndexOf(Trace.Type.All), Trace.Flags == Trace.Type.All);
+                this.uiTraceCheckedListBox.SetItemChecked(this.uiTraceCheckedListBox.Items.IndexOf(Trace.Type.None), Trace.Flags == Trace.Type.None);
+
+                if (Trace.Flags != Trace.Type.None && !this.Tracing)
+                {
+                    // Start back end tracing so we can see the output.
+                    this.TraceChanged(true);
+                }
+            }
+            finally
+            {
+                this.uiTraceCheckRunning = false;
+            }
         }
 
         /// <summary>
