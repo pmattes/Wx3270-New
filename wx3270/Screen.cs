@@ -117,12 +117,16 @@ namespace Wx3270
         /// <summary>
         /// Unselect the entire screen.
         /// </summary>
-        public void UnselectAll()
+        /// <returns>True if anything was selected.</returns>
+        public bool UnselectAll()
         {
-            if (this.screenImage.UnselectAll())
+            var changed = this.screenImage.UnselectAll();
+            if (changed)
             {
                 this.invoke.ScreenUpdate(ScreenUpdateType.Screen, new UpdateState(new ScreenImage(this.screenImage)));
             }
+
+            return changed;
         }
 
         /// <summary>

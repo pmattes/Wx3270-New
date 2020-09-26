@@ -778,9 +778,10 @@ namespace Wx3270
         /// <summary>
         /// Unselect the whole screen.
         /// </summary>
-        public void UnselectAll()
+        /// <returns>True if anything was selected.</returns>
+        public bool UnselectAll()
         {
-            this.screen.UnselectAll();
+            return this.screen.UnselectAll();
         }
 
         /// <summary>

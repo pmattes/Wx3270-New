@@ -59,6 +59,11 @@ namespace Wx3270
         private bool mouseIsDown = false;
 
         /// <summary>
+        /// The mouse-up timer.
+        /// </summary>
+        private Timer mouseUpTimer = new Timer();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SelectionManager"/> class.
         /// </summary>
         /// <param name="app">Application context.</param>
@@ -79,6 +84,10 @@ namespace Wx3270
                     new BackEndAction(B3270.Action.Set, B3270.Setting.OverlayPaste, B3270.ToggleAction.Set),
                     ErrorBox.Completion(I18n.Get(Title.Initialization)));
             };
+
+            // Get the mouse-up timer ready.
+            this.mouseUpTimer.Interval = SystemInformation.DoubleClickTime;
+            this.mouseUpTimer.Tick += this.MouseUpTick;
         }
 
         /// <summary>
@@ -168,6 +177,8 @@ namespace Wx3270
                 // First, no triple clicks.
                 this.clickTime = DateTime.MinValue;
 
+                this.mouseUpTimer.Stop();
+
                 if (shift)
                 {
                     // Extend the selection first.
@@ -181,7 +192,6 @@ namespace Wx3270
                     if (image.Image[row0, column0].Text == ' ')
                     {
                         // No visible text in this spot.
-                        this.MoveTo(row1, column1);
                         this.Reselect();
                         return;
                     }
@@ -228,13 +238,11 @@ namespace Wx3270
                 {
                     // Extending to the right.
                     this.selectEnd = new Corner(row0, rightColumn0);
-                    this.MoveTo(row1, rightColumn0 + 1);
                 }
                 else
                 {
                     // Extending to the left.
                     this.selectEnd = new Corner(row0, leftColumn0);
-                    this.MoveTo(row1, leftColumn0 + 1);
                 }
 
                 this.Reselect();
@@ -255,9 +263,9 @@ namespace Wx3270
             else
             {
                 this.selectAnchor = new Corner(row0, column0);
+                this.mouseUpTimer.Start();
             }
 
-            this.MoveTo(row1, column1);
             this.clickTime = DateTime.UtcNow;
         }
 
@@ -268,7 +276,7 @@ namespace Wx3270
             {
                 this.selectEnd = new Corner(row - 1, column - 1);
                 this.Reselect();
-                this.MoveTo(row, column);
+                this.mouseUpTimer.Stop();
             }
         }
 
@@ -286,26 +294,41 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Mouse-up timer tick.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void MouseUpTick(object sender, EventArgs e)
+        {
+            // The mouse-up timer expired without the mouse moving or clicking again.
+            // This is a cursor move.
+            this.mouseUpTimer.Stop();
+            this.MoveTo(this.selectAnchor.Row0 + 1, this.selectAnchor.Column0 + 1);
+        }
+
+        /// <summary>
         /// Unselect everything.
         /// </summary>
-        private void Unselect()
+        /// <returns>True if anything was selected.</returns>
+        private bool Unselect()
         {
-            this.app.UnselectAll();
+            var changed = this.app.UnselectAll();
             this.selectAnchor = null;
             this.selectEnd = null;
+            return changed;
         }
 
         /// <summary>
         /// Move the cursor.
         /// </summary>
-        /// <param name="row">New row (1-origin).</param>
-        /// <param name="column">New column (1-origin).</param>
-        private void MoveTo(int row, int column)
+        /// <param name="row1">New row (1-origin).</param>
+        /// <param name="column1">New column (1-origin).</param>
+        private void MoveTo(int row1, int column1)
         {
             if (Oia.StateIs3270orSscp(this.app.ConnectionState))
             {
                 this.app.BackEnd.RunAction(
-                    new BackEndAction(B3270.Action.MoveCursor1, row, column),
+                    new BackEndAction(B3270.Action.MoveCursor1, row1, column1),
                     ErrorBox.Completion(I18n.Get(Title.CursorMove)));
             }
         }
@@ -407,7 +430,6 @@ namespace Wx3270
             this.Reselect();
 
             // Move the cursor, too.
-            this.MoveTo(newEnd.Row0 + 1, newEnd.Column0 + 1);
 
             // Success.
             return PassthruResult.Success;
@@ -558,7 +580,6 @@ namespace Wx3270
 
             // Clear the selection. This would likely happen automatically because a keymap macro which called this action
             // did not call uKeyboardSelect(), but it is also possible to call uCut()from some other context.
-            this.app.UnselectAll();
             this.app.UnselectAll();
             return PassthruResult.Success;
         }
