@@ -486,6 +486,7 @@ namespace Wx3270
                             break;
                         case Constants.Option.Trace:
                             startupConfig.Trace = true;
+                            Trace.Flags = Trace.Type.All;
                             break;
                         case Constants.Option.UiTrace:
                             if (!Enum.TryParse(args[++i], true, out Trace.Type traceFlags))
@@ -494,7 +495,11 @@ namespace Wx3270
                             }
 
                             Trace.Flags = traceFlags;
-                            startupConfig.Trace = true;
+                            if (Trace.Flags != Trace.Type.None)
+                            {
+                                startupConfig.Trace = true;
+                            }
+
                             break;
                         case Constants.Option.Utf8:
                             break;
