@@ -5,6 +5,28 @@
 namespace Wx3270
 {
     using System.Threading;
+    using System.Windows.Ink;
+
+    /// <summary>
+    /// Selection state.
+    /// </summary>
+    public enum SelectState
+    {
+        /// <summary>
+        /// Unknown state.
+        /// </summary>
+        Unknown,
+
+        /// <summary>
+        /// Last state was (or current state is) NVT.
+        /// </summary>
+        LastNvt,
+
+        /// <summary>
+        /// Last state was (or current state is) 3270.
+        /// </summary>
+        Last3270,
+    }
 
     /// <summary>
     /// Screen image.
@@ -55,6 +77,7 @@ namespace Wx3270
             this.TraceFile = other.TraceFile;
             this.Thumb = other.Thumb.Clone();
             this.Flipped = other.Flipped;
+            this.SelectState = other.SelectState;
             this.Image = new Cell[this.MaxRows, this.MaxColumns];
             for (int row = 0; row < this.MaxRows; row++)
             {
@@ -177,6 +200,11 @@ namespace Wx3270
         public bool Flipped { get; set; }
 
         /// <summary>
+        /// Gets or sets the selection state.
+        /// </summary>
+        public SelectState SelectState { get; set; }
+
+        /// <summary>
         /// Mark a single cell as selected or unselected.
         /// </summary>
         /// <param name="row">Row (0-origin).</param>
@@ -220,10 +248,17 @@ namespace Wx3270
             {
                 for (var c = 0; c < this.MaxColumns; c++)
                 {
+                    var isSet = this.SelectState switch
+                    {
+                        SelectState.LastNvt =>
+                            IsLinearSelected(r, c, row, column, rows, columns),
+                        _ =>
+                            r >= row && r < row + rows && c >= column && c < column + columns,
+                    };
                     changed |= this.SetSelect(
                         r,
                         c,
-                        r >= row && r < row + rows && c >= column && c < column + columns);
+                        isSet);
                 }
             }
 
@@ -325,6 +360,52 @@ namespace Wx3270
 
             this.CursorRow1 = 1;
             this.CursorColumn1 = 1;
+        }
+
+        /// <summary>
+        /// Tests a screen location for a linear selection.
+        /// </summary>
+        /// <param name="row">Row to evaluate.</param>
+        /// <param name="column">Column to evaluate.</param>
+        /// <param name="startRow">Start row of selection (0-origin).</param>
+        /// <param name="startColumn">Start column of selection (0-origin).</param>
+        /// <param name="rows">Number of rows selected.</param>
+        /// <param name="columns">Number of columns selected.</param>
+        /// <returns>True if selected.</returns>
+        private static bool IsLinearSelected(int row, int column, int startRow, int startColumn, int rows, int columns)
+        {
+            if (row < startRow || row >= startRow + rows)
+            {
+                // No match vertically.
+                return false;
+            }
+
+            if (row == startRow)
+            {
+                // First row.
+                if (column >= startColumn)
+                {
+                    if (rows == 1)
+                    {
+                        // First and last row.
+                        return column < startColumn + columns;
+                    }
+
+                    // First row.
+                    return true;
+                }
+
+                return false;
+            }
+
+            if (rows > 1 && row < startRow + rows - 1)
+            {
+                // Middle row.
+                return true;
+            }
+
+            // Last row.
+            return column < startColumn + columns;
         }
     }
 }

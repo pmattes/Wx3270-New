@@ -319,6 +319,11 @@ namespace Wx3270
         public bool Topmost { get; private set; }
 
         /// <summary>
+        /// Gets the screen select state.
+        /// </summary>
+        public SelectState SelectState => this.screen.ScreenImage.SelectState;
+
+        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]

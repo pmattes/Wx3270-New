@@ -497,6 +497,12 @@ namespace Wx3270
 
                 if (!string.IsNullOrEmpty(selectLine))
                 {
+                    if (this.app.SelectState == SelectState.LastNvt)
+                    {
+                        // In NVT select mode, strip trailing blanks from the end of each line.
+                        selectLine = selectLine.TrimEnd(new[] { ' ', '\u4040' });
+                    }
+
                     selection.Add(selectLine);
                     selectLine = string.Empty;
                 }

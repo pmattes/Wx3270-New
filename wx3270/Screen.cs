@@ -65,6 +65,7 @@ namespace Wx3270
                 new BackEndEventDef(B3270.Indication.Setting, this.StartSetting),
                 new BackEndEventDef(B3270.Indication.Thumb, this.StartThumb),
                 new BackEndEventDef(B3270.Indication.TraceFile, this.StartTraceFile),
+                new BackEndEventDef(B3270.Indication.Connection, this.StartConnection),
             };
 
             this.screenImage = new ScreenImage();
@@ -415,6 +416,32 @@ namespace Wx3270
             }
 
             this.invoke.ScreenUpdate(ScreenUpdateType.Repaint, new UpdateState(new ScreenImage(this.screenImage)));
+        }
+
+        /// <summary>
+        /// Process a connection state indication from the emulator.
+        /// </summary>
+        /// <param name="name">Element name.</param>
+        /// <param name="attrs">Element attributes.</param>
+        private void StartConnection(string name, AttributeDict attrs)
+        {
+            // Set the screen selection state based on the new connection state.
+            var state = OiaState.ParseConnectionState(attrs[B3270.Attribute.State]);
+            switch (state)
+            {
+                case ConnectionState.Connected3270:
+                case ConnectionState.ConnectedTn3270e:
+                case ConnectionState.ConnectedEsscp:
+                    this.screenImage.SelectState = SelectState.Last3270;
+                    break;
+                case ConnectionState.ConnectedNvt:
+                case ConnectionState.ConnectedNvtCharmode:
+                case ConnectionState.ConnectedEnvt:
+                    this.screenImage.SelectState = SelectState.LastNvt;
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <summary>
