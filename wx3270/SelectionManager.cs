@@ -312,6 +312,7 @@ namespace Wx3270
         /// <returns>True if anything was selected.</returns>
         private bool Unselect()
         {
+            this.mouseUpTimer.Stop();
             var changed = this.app.UnselectAll();
             this.selectAnchor = null;
             this.selectEnd = null;
