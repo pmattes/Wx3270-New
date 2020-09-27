@@ -7,6 +7,7 @@ namespace Wx3270
     using System;
     using System.Globalization;
     using System.Linq;
+    using System.Threading.Tasks;
     using Wx3270.Contracts;
 
     /// <summary>
@@ -14,6 +15,16 @@ namespace Wx3270
     /// </summary>
     public class Screen : BackEndEvent
     {
+        /// <summary>
+        /// The minimum number of pending scrolls to allow.
+        /// </summary>
+        private const int MinScroll = 1;
+
+        /// <summary>
+        /// The maximum number of pending scrolls to allow.
+        /// </summary>
+        private const int MaxScroll = 500;
+
         /// <summary>
         /// Settings that trigger a screen update.
         /// </summary>
@@ -44,6 +55,16 @@ namespace Wx3270
         /// Current row number being processed within a screen element, if >= 0.
         /// </summary>
         private int curRow = -1;
+
+        /// <summary>
+        /// The number of scroll operations pending.
+        /// </summary>
+        private int scrollsPending;
+
+        /// <summary>
+        /// The lock for <see cref="scrollsPending"/>.
+        /// </summary>
+        private object scrollLock = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Screen"/> class.
@@ -128,6 +149,32 @@ namespace Wx3270
             }
 
             return changed;
+        }
+
+        /// <summary>
+        /// A draw operation is complete. If there are pending scrolls, let them go now.
+        /// </summary>
+        public void DrawComplete()
+        {
+            var needInvoke = false;
+            var backedUp = 0;
+            lock (this.scrollLock)
+            {
+                if (this.scrollsPending != 0)
+                {
+                    backedUp = this.scrollsPending;
+                    this.scrollsPending = 0;
+                    needInvoke = true;
+                }
+            }
+
+            if (needInvoke)
+            {
+                Trace.Line(Trace.Type.Draw, $"Invoking {backedUp} screen draw operations");
+
+                // Run the screen update asynchronously.
+                Task.Run(() => this.invoke.ScreenUpdate(ScreenUpdateType.Screen, new UpdateState(new ScreenImage(this.screenImage))));
+            }
         }
 
         /// <summary>
@@ -338,6 +385,22 @@ namespace Wx3270
                 }
             }
 
+            // If there is already a scroll pending, just remember it.
+            lock (this.scrollLock)
+            {
+                if (++this.scrollsPending > MinScroll)
+                {
+                    if (this.scrollsPending >= MaxScroll)
+                    {
+                        this.scrollsPending = 1;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+            }
+
             // Tell interested parties that the screen needs scrolling.
             this.invoke.ScreenUpdate(ScreenUpdateType.Scroll, new UpdateState(new ScreenImage(this.screenImage)));
         }
@@ -452,6 +515,16 @@ namespace Wx3270
         {
             this.inScreen = false;
             this.curRow = -1;
+
+            lock (this.scrollLock)
+            {
+                // If there is a scroll pending, do nothing until it completes.
+                if (this.scrollsPending != 0)
+                {
+                    return;
+                }
+            }
+
             this.invoke.ScreenUpdate(ScreenUpdateType.Screen, new UpdateState(new ScreenImage(this.screenImage)));
         }
 

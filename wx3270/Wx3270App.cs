@@ -790,6 +790,14 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// A screen draw operation completed.
+        /// </summary>
+        public void DrawComplete()
+        {
+            this.screen.DrawComplete();
+        }
+
+        /// <summary>
         /// Reset a pending chord.
         /// </summary>
         public void ChordReset()

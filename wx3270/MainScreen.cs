@@ -1405,6 +1405,9 @@ namespace Wx3270
 
             // Draw the screen text.
             this.ScreenDraw(sender, e);
+
+            // Let other screen operations go.
+            this.App.DrawComplete();
         }
 
         /// <summary>
