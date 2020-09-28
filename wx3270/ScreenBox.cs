@@ -253,9 +253,14 @@ namespace Wx3270
         public void ScreenNeedsDrawing(string why, bool complete, ScreenImage image)
         {
             var mode = complete ? "all" : "partial";
-            Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing {why} {mode} #{image.Sequence}");
+            var sequence = (image != null) ? " #" + image.Sequence : string.Empty;
+            Trace.Line(Trace.Type.Draw, $"{this.Type} ScreenNeedsDrawing {why} {mode}{sequence}");
 
-            this.NextImage = image;
+            if (image != null)
+            {
+                this.NextImage = image;
+            }
+
             if (this.pictureBox != null)
             {
                 if (this.lastImage != null && image != null && !complete)
