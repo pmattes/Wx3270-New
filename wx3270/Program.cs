@@ -21,28 +21,35 @@ namespace Wx3270
         [STAThread]
         public static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
-            var main = new MainScreen();
-            var app = new Wx3270App(main, main);
-            app.Init(args);
-            main.Init(app);
-
-            // Set up forms localization. This needs to happen after main screen initialization.
-            I18n.SetupForms();
-            if (!string.IsNullOrEmpty(app.DumpLocalization))
+            try
             {
-                I18nBase.DumpTree(app.DumpLocalization);
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+
+                var main = new MainScreen();
+                var app = new Wx3270App(main, main);
+                app.Init(args);
+                main.Init(app);
+
+                // Set up forms localization. This needs to happen after main screen initialization.
+                I18n.SetupForms();
+                if (!string.IsNullOrEmpty(app.DumpLocalization))
+                {
+                    I18nBase.DumpTree(app.DumpLocalization);
+                }
+
+                I18nBase.AllowDynamic = false;
+
+                // Start the back end running.
+                app.BackEnd.Run();
+
+                // Start the event loop.
+                Application.Run();
             }
-
-            I18nBase.AllowDynamic = false;
-
-            // Start the back end running.
-            app.BackEnd.Run();
-
-            // Start the event loop.
-            Application.Run();
+            catch (Exception e)
+            {
+                ErrorBox.Show(e.ToString(), "Fatal User Interface Error");
+            }
         }
     }
 }
