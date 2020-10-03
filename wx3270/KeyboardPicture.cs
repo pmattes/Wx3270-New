@@ -44,21 +44,6 @@ namespace Wx3270
         private const float LargeFont = 11.25F;
 
         /// <summary>
-        /// Message code for key press.
-        /// </summary>
-        private const int WmKeyDown = 0x0100;
-
-        /// <summary>
-        /// Message code for key release.
-        /// </summary>
-        private const int WmKeyUp = 0x0101;
-
-        /// <summary>
-        /// Extended flag for <see cref="WmKeyDown"/> and <see cref="WmKeyUp"/> messages.
-        /// </summary>
-        private const int Extended = 0x1000000;
-
-        /// <summary>
         /// Dictionary of key labels. Maps a virtual key name (button tag) to the label text in the en-US culture.
         /// </summary>
         private readonly Dictionary<string, string> labelDictionary = new Dictionary<string, string>
@@ -172,7 +157,7 @@ namespace Wx3270
         /// <summary>
         /// Key capture state machine.
         /// </summary>
-        private KeyCapture keyCapture = new KeyCapture();
+        private readonly KeyCapture keyCapture = new KeyCapture();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyboardPicture"/> class.
@@ -332,6 +317,18 @@ namespace Wx3270
         /// Gets or sets the picture mode.
         /// </summary>
         public PictureMode PictureMode { get; set; } = PictureMode.Keymap;
+
+        /// <summary>
+        /// Gets the handle for the en-US culture, or -1 if that culture is not present.
+        /// </summary>
+        private static IntPtr EnUsHandle
+        {
+            get
+            {
+                var culture = InputLanguage.FromCulture(new CultureInfo("en-US"));
+                return (culture != null) ? culture.Handle : (IntPtr)(-1);
+            }
+        }
 
         /// <summary>
         /// Gets the current keyboard modifier state as a <see cref="Keys"/> enumeration.
@@ -608,7 +605,7 @@ namespace Wx3270
                 }
             }
 
-            this.rightAltKey.Text = InputLanguage.CurrentInputLanguage.Handle != InputLanguage.FromCulture(new CultureInfo("en-US")).Handle ? "AltGr" : "Alt";
+            this.rightAltKey.Text = InputLanguage.CurrentInputLanguage.Handle != EnUsHandle ? "AltGr" : "Alt";
         }
 
         /// <summary>
@@ -989,7 +986,7 @@ namespace Wx3270
         /// </summary>
         private void AdjustKey56()
         {
-            var nonUs = InputLanguage.CurrentInputLanguage.Handle != InputLanguage.FromCulture(new CultureInfo("en-US")).Handle;
+            var nonUs = InputLanguage.CurrentInputLanguage.Handle != EnUsHandle;
             this.key56.Visible = nonUs;
             this.leftShiftKey.Width = nonUs ? 86 : 139;
             this.nativeNameLabel.Text = InputLanguage.CurrentInputLanguage.Culture.KeyboardLayoutId + " " + InputLanguage.CurrentInputLanguage.Culture.NativeName;
