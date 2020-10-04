@@ -82,11 +82,16 @@ Name: "{group}\Run wx3270"; Filename: "{app}\wx3270.exe"; WorkingDir: "{app}"
 Name: "{commondesktop}\wx3270"; Filename: "{app}\wx3270.exe"; WorkingDir: "{app}"; Tasks: desktopicon
 
 [Registry]
+; Define the file extension.
 Root: HKCR; Subkey: ".wx3270"; ValueType: string; ValueName: ""; ValueData: "wx3270"; Flags: uninsdeletevalue
 Root: HKCR; Subkey: "wx3270"; ValueType: string; ValueName: ""; ValueData: "wx3270 Emulator Session"; Flags: uninsdeletekey
+; Define the icon.
 Root: HKCR; Subkey: "wx3270\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\wx3270.exe,0"
+; Define the open and edit commands for .wx3270 files.
 Root: HKCR; Subkey: "wx3270\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\wx3270.exe"" -profile ""%1"""
 Root: HKCR; Subkey: "wx3270\shell\edit\command"; ValueType: string; ValueName: ""; ValueData: """{app}\wx3270.exe"" -edit -profile ""%1"""
+; Mark wx3270 as "DPIUNAWARE", so the system scales it transparently.
+Root: HKLM; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\wx3270.exe"; ValueData: "~ DPIUNAWARE"
 
 [Run]
 ; Interactive version of x3270is sub-install.
