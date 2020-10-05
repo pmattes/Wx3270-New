@@ -63,6 +63,11 @@ namespace Wx3270
         NoCopy = 0x100,
 
         /// <summary>
+        /// NVT-mode text wrapped.
+        /// </summary>
+        Wrap = 0x200,
+
+        /// <summary>
         /// Selected text (added by <code>wx3270</code>, not by the emulator)
         /// </summary>
         Selected = 0x1000,

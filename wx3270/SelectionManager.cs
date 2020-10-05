@@ -495,6 +495,14 @@ namespace Wx3270
                     }
                 }
 
+                if (this.app.SelectState == SelectState.LastNvt &&
+                    row != image.LogicalRows - 1 &&
+                    image.Image[row, image.LogicalColumns - 1].GraphicRendition.HasFlag(GraphicRendition.Wrap))
+                {
+                    // Continuous selections with a line wrap. Just continue.
+                    continue;
+                }
+
                 if (!string.IsNullOrEmpty(selectLine))
                 {
                     if (this.app.SelectState == SelectState.LastNvt)
