@@ -32,73 +32,101 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HostEditor));
             this.NicknameTextBox = new System.Windows.Forms.TextBox();
             this.sessionNameLabel = new System.Windows.Forms.Label();
-            this.connectButton = new System.Windows.Forms.Button();
             this.LuNamesTextBox = new System.Windows.Forms.TextBox();
             this.PortTextBox = new System.Windows.Forms.TextBox();
             this.HostNameTextBox = new System.Windows.Forms.TextBox();
-            this.tlsTunnelCheckBox = new System.Windows.Forms.CheckBox();
             this.luNamesLabel = new System.Windows.Forms.Label();
             this.portLabel = new System.Windows.Forms.Label();
             this.hostNameLabel = new System.Windows.Forms.Label();
             this.noLoadConnectButton = new System.Windows.Forms.RadioButton();
             this.loadConnectButton = new System.Windows.Forms.RadioButton();
             this.loadGroupBox = new System.Windows.Forms.GroupBox();
+            this.loadTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.loadReconnectButton = new System.Windows.Forms.RadioButton();
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.okButton = new System.Windows.Forms.Button();
-            this.luExplainLabel = new System.Windows.Forms.Label();
-            this.hostNameRequiredLabel = new System.Windows.Forms.Label();
             this.hostTypeGroupBox = new System.Windows.Forms.GroupBox();
+            this.hostTypeTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.cicsRadioButton = new System.Windows.Forms.RadioButton();
+            this.unspecifiedRadioButton = new System.Windows.Forms.RadioButton();
             this.vmRadioButton = new System.Windows.Forms.RadioButton();
             this.tsoRadioButton = new System.Windows.Forms.RadioButton();
-            this.unspecifiedRadioButton = new System.Windows.Forms.RadioButton();
             this.acceptLabel = new System.Windows.Forms.Label();
             this.acceptTextBox = new System.Windows.Forms.TextBox();
+            this.rightTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.connectButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
+            this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.optionsGroupBox = new System.Windows.Forms.GroupBox();
+            this.optionsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.tlsTunnelCheckBox = new System.Windows.Forms.CheckBox();
+            this.starttlsCheckBox = new System.Windows.Forms.CheckBox();
             this.nvtCheckBox = new System.Windows.Forms.CheckBox();
             this.VerifyCertCheckBox = new System.Windows.Forms.CheckBox();
-            this.optionsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.starttlsCheckBox = new System.Windows.Forms.CheckBox();
             this.tn3270eCheckBox = new System.Windows.Forms.CheckBox();
             this.telnetCheckBox = new System.Windows.Forms.CheckBox();
             this.loginScreenCheckBox = new System.Windows.Forms.CheckBox();
-            this.rightTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.optionsGroupBox = new System.Windows.Forms.GroupBox();
             this.printerSessionGroupBox = new System.Windows.Forms.GroupBox();
+            this.printerSessionTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.specificLuTextBox = new System.Windows.Forms.TextBox();
             this.associatePrinterRadioButton = new System.Windows.Forms.RadioButton();
             this.noPrinterRadioButton = new System.Windows.Forms.RadioButton();
             this.specificLuRadioButton = new System.Windows.Forms.RadioButton();
-            this.leftLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.loclaProcessInputGroupBox = new System.Windows.Forms.GroupBox();
+            this.localProcessInputTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.lineModeRadioButton = new System.Windows.Forms.RadioButton();
+            this.characterModeRadioButton = new System.Windows.Forms.RadioButton();
+            this.characterModeCrLfRadioButton = new System.Windows.Forms.RadioButton();
             this.profileNameLabel = new System.Windows.Forms.Label();
             this.profileLabel = new System.Windows.Forms.Label();
-            this.optionalLabel = new System.Windows.Forms.Label();
             this.loginMacroLabel = new System.Windows.Forms.Label();
             this.LoginMacroTextBox = new System.Windows.Forms.TextBox();
             this.clientCertificateLabel = new System.Windows.Forms.Label();
             this.clientCertTextBox = new System.Windows.Forms.TextBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.descriptionLabel = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.windowTitleLabel = new System.Windows.Forms.Label();
             this.titleTextBox = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.commandTextBox = new System.Windows.Forms.TextBox();
+            this.commandLineOptionsTextBox = new System.Windows.Forms.TextBox();
+            this.connectionTypeGroupBox = new System.Windows.Forms.GroupBox();
+            this.connectionTypeTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.hostRadioButton = new System.Windows.Forms.RadioButton();
+            this.localProcessRadioButton = new System.Windows.Forms.RadioButton();
+            this.overallTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.leftTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.basicParametersGroupBox = new System.Windows.Forms.GroupBox();
+            this.basicParametersTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.commandLineOptionsLabel = new System.Windows.Forms.Label();
+            this.commandLabel = new System.Windows.Forms.Label();
             this.loadGroupBox.SuspendLayout();
+            this.loadTableLayoutPanel.SuspendLayout();
             this.hostTypeGroupBox.SuspendLayout();
-            this.optionsLayoutPanel.SuspendLayout();
+            this.hostTypeTableLayoutPanel.SuspendLayout();
             this.rightTableLayoutPanel.SuspendLayout();
-            this.optionsGroupBox.SuspendLayout();
-            this.printerSessionGroupBox.SuspendLayout();
-            this.leftLayoutPanel.SuspendLayout();
+            this.buttonsTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
+            this.optionsGroupBox.SuspendLayout();
+            this.optionsLayoutPanel.SuspendLayout();
+            this.printerSessionGroupBox.SuspendLayout();
+            this.printerSessionTableLayoutPanel.SuspendLayout();
+            this.loclaProcessInputGroupBox.SuspendLayout();
+            this.localProcessInputTableLayoutPanel.SuspendLayout();
+            this.connectionTypeGroupBox.SuspendLayout();
+            this.connectionTypeTableLayoutPanel.SuspendLayout();
+            this.overallTableLayoutPanel.SuspendLayout();
+            this.leftTableLayoutPanel.SuspendLayout();
+            this.basicParametersGroupBox.SuspendLayout();
+            this.basicParametersTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // NicknameTextBox
             // 
-            this.NicknameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NicknameTextBox.Location = new System.Drawing.Point(120, 23);
+            this.NicknameTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.NicknameTextBox.Location = new System.Drawing.Point(130, 22);
             this.NicknameTextBox.Name = "NicknameTextBox";
-            this.NicknameTextBox.Size = new System.Drawing.Size(215, 20);
+            this.NicknameTextBox.Size = new System.Drawing.Size(241, 20);
             this.NicknameTextBox.TabIndex = 0;
             this.NicknameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NicknameTextBox_Validating);
             // 
@@ -106,16 +134,292 @@
             // 
             this.sessionNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.sessionNameLabel.AutoSize = true;
-            this.sessionNameLabel.Location = new System.Drawing.Point(3, 26);
+            this.sessionNameLabel.Location = new System.Drawing.Point(3, 25);
             this.sessionNameLabel.Name = "sessionNameLabel";
             this.sessionNameLabel.Size = new System.Drawing.Size(73, 13);
             this.sessionNameLabel.TabIndex = 111;
             this.sessionNameLabel.Text = "Session name";
             // 
+            // LuNamesTextBox
+            // 
+            this.LuNamesTextBox.AcceptsReturn = true;
+            this.LuNamesTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LuNamesTextBox.Location = new System.Drawing.Point(130, 100);
+            this.LuNamesTextBox.Multiline = true;
+            this.LuNamesTextBox.Name = "LuNamesTextBox";
+            this.LuNamesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.LuNamesTextBox.Size = new System.Drawing.Size(241, 45);
+            this.LuNamesTextBox.TabIndex = 3;
+            this.LuNamesTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.LuNamesTextBox_Validating);
+            // 
+            // PortTextBox
+            // 
+            this.PortTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PortTextBox.Location = new System.Drawing.Point(130, 74);
+            this.PortTextBox.Name = "PortTextBox";
+            this.PortTextBox.Size = new System.Drawing.Size(241, 20);
+            this.PortTextBox.TabIndex = 2;
+            this.PortTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PortTextBox_Validating);
+            // 
+            // HostNameTextBox
+            // 
+            this.HostNameTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.HostNameTextBox.Location = new System.Drawing.Point(130, 48);
+            this.HostNameTextBox.Name = "HostNameTextBox";
+            this.HostNameTextBox.Size = new System.Drawing.Size(241, 20);
+            this.HostNameTextBox.TabIndex = 1;
+            this.HostNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.HostNameTextBox_Validating);
+            // 
+            // luNamesLabel
+            // 
+            this.luNamesLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.luNamesLabel.AutoSize = true;
+            this.luNamesLabel.Location = new System.Drawing.Point(3, 116);
+            this.luNamesLabel.Name = "luNamesLabel";
+            this.luNamesLabel.Size = new System.Drawing.Size(55, 13);
+            this.luNamesLabel.TabIndex = 112;
+            this.luNamesLabel.Text = "LU names";
+            // 
+            // portLabel
+            // 
+            this.portLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.portLabel.AutoSize = true;
+            this.portLabel.Location = new System.Drawing.Point(3, 77);
+            this.portLabel.Name = "portLabel";
+            this.portLabel.Size = new System.Drawing.Size(26, 13);
+            this.portLabel.TabIndex = 113;
+            this.portLabel.Text = "Port";
+            // 
+            // hostNameLabel
+            // 
+            this.hostNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.hostNameLabel.AutoSize = true;
+            this.hostNameLabel.Location = new System.Drawing.Point(3, 51);
+            this.hostNameLabel.Name = "hostNameLabel";
+            this.hostNameLabel.Size = new System.Drawing.Size(62, 13);
+            this.hostNameLabel.TabIndex = 114;
+            this.hostNameLabel.Text = "Host name*";
+            // 
+            // noLoadConnectButton
+            // 
+            this.noLoadConnectButton.AutoSize = true;
+            this.noLoadConnectButton.Checked = true;
+            this.noLoadConnectButton.Location = new System.Drawing.Point(3, 3);
+            this.noLoadConnectButton.Name = "noLoadConnectButton";
+            this.noLoadConnectButton.Size = new System.Drawing.Size(161, 17);
+            this.noLoadConnectButton.TabIndex = 0;
+            this.noLoadConnectButton.TabStop = true;
+            this.noLoadConnectButton.Tag = "None";
+            this.noLoadConnectButton.Text = "Do not make this connection";
+            this.noLoadConnectButton.UseVisualStyleBackColor = true;
+            // 
+            // loadConnectButton
+            // 
+            this.loadConnectButton.AutoSize = true;
+            this.loadConnectButton.Location = new System.Drawing.Point(3, 26);
+            this.loadConnectButton.Name = "loadConnectButton";
+            this.loadConnectButton.Size = new System.Drawing.Size(141, 17);
+            this.loadConnectButton.TabIndex = 0;
+            this.loadConnectButton.Tag = "Connect";
+            this.loadConnectButton.Text = "🗲 Make this connection";
+            this.loadConnectButton.UseVisualStyleBackColor = true;
+            // 
+            // loadGroupBox
+            // 
+            this.loadGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.loadGroupBox.AutoSize = true;
+            this.loadGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.loadGroupBox.Controls.Add(this.loadTableLayoutPanel);
+            this.loadGroupBox.Location = new System.Drawing.Point(3, 166);
+            this.loadGroupBox.Name = "loadGroupBox";
+            this.loadGroupBox.Size = new System.Drawing.Size(380, 88);
+            this.loadGroupBox.TabIndex = 1;
+            this.loadGroupBox.TabStop = false;
+            this.loadGroupBox.Text = "When profile is loaded";
+            // 
+            // loadTableLayoutPanel
+            // 
+            this.loadTableLayoutPanel.AutoSize = true;
+            this.loadTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.loadTableLayoutPanel.ColumnCount = 1;
+            this.loadTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.loadTableLayoutPanel.Controls.Add(this.loadReconnectButton, 0, 2);
+            this.loadTableLayoutPanel.Controls.Add(this.loadConnectButton, 0, 1);
+            this.loadTableLayoutPanel.Controls.Add(this.noLoadConnectButton, 0, 0);
+            this.loadTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.loadTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
+            this.loadTableLayoutPanel.Name = "loadTableLayoutPanel";
+            this.loadTableLayoutPanel.RowCount = 3;
+            this.loadTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.loadTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.loadTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.loadTableLayoutPanel.Size = new System.Drawing.Size(374, 69);
+            this.loadTableLayoutPanel.TabIndex = 0;
+            // 
+            // loadReconnectButton
+            // 
+            this.loadReconnectButton.AutoSize = true;
+            this.loadReconnectButton.Location = new System.Drawing.Point(3, 49);
+            this.loadReconnectButton.Name = "loadReconnectButton";
+            this.loadReconnectButton.Size = new System.Drawing.Size(182, 17);
+            this.loadReconnectButton.TabIndex = 1;
+            this.loadReconnectButton.Tag = "Reconnect";
+            this.loadReconnectButton.Text = "🗲+ Keep making this connection";
+            this.loadReconnectButton.UseVisualStyleBackColor = true;
+            // 
+            // hostTypeGroupBox
+            // 
+            this.hostTypeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.hostTypeGroupBox.AutoSize = true;
+            this.hostTypeGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.hostTypeGroupBox.Controls.Add(this.hostTypeTableLayoutPanel);
+            this.hostTypeGroupBox.Location = new System.Drawing.Point(3, 260);
+            this.hostTypeGroupBox.Name = "hostTypeGroupBox";
+            this.hostTypeGroupBox.Size = new System.Drawing.Size(380, 65);
+            this.hostTypeGroupBox.TabIndex = 2;
+            this.hostTypeGroupBox.TabStop = false;
+            this.hostTypeGroupBox.Text = "Host type for file transfers";
+            // 
+            // hostTypeTableLayoutPanel
+            // 
+            this.hostTypeTableLayoutPanel.AutoSize = true;
+            this.hostTypeTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.hostTypeTableLayoutPanel.ColumnCount = 2;
+            this.hostTypeTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.hostTypeTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.hostTypeTableLayoutPanel.Controls.Add(this.cicsRadioButton, 1, 1);
+            this.hostTypeTableLayoutPanel.Controls.Add(this.unspecifiedRadioButton, 0, 0);
+            this.hostTypeTableLayoutPanel.Controls.Add(this.vmRadioButton, 1, 0);
+            this.hostTypeTableLayoutPanel.Controls.Add(this.tsoRadioButton, 0, 1);
+            this.hostTypeTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.hostTypeTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
+            this.hostTypeTableLayoutPanel.Name = "hostTypeTableLayoutPanel";
+            this.hostTypeTableLayoutPanel.RowCount = 2;
+            this.hostTypeTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.hostTypeTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.hostTypeTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.hostTypeTableLayoutPanel.Size = new System.Drawing.Size(374, 46);
+            this.hostTypeTableLayoutPanel.TabIndex = 0;
+            // 
+            // cicsRadioButton
+            // 
+            this.cicsRadioButton.AutoSize = true;
+            this.cicsRadioButton.Location = new System.Drawing.Point(190, 26);
+            this.cicsRadioButton.Name = "cicsRadioButton";
+            this.cicsRadioButton.Size = new System.Drawing.Size(49, 17);
+            this.cicsRadioButton.TabIndex = 3;
+            this.cicsRadioButton.Tag = "Cics";
+            this.cicsRadioButton.Text = "CICS";
+            this.cicsRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // unspecifiedRadioButton
+            // 
+            this.unspecifiedRadioButton.AutoSize = true;
+            this.unspecifiedRadioButton.Checked = true;
+            this.unspecifiedRadioButton.Location = new System.Drawing.Point(3, 3);
+            this.unspecifiedRadioButton.Name = "unspecifiedRadioButton";
+            this.unspecifiedRadioButton.Size = new System.Drawing.Size(81, 17);
+            this.unspecifiedRadioButton.TabIndex = 0;
+            this.unspecifiedRadioButton.TabStop = true;
+            this.unspecifiedRadioButton.Tag = "Unspecified";
+            this.unspecifiedRadioButton.Text = "Unspecified";
+            this.unspecifiedRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // vmRadioButton
+            // 
+            this.vmRadioButton.AutoSize = true;
+            this.vmRadioButton.Location = new System.Drawing.Point(190, 3);
+            this.vmRadioButton.Name = "vmRadioButton";
+            this.vmRadioButton.Size = new System.Drawing.Size(69, 17);
+            this.vmRadioButton.TabIndex = 2;
+            this.vmRadioButton.Tag = "Vm";
+            this.vmRadioButton.Text = "VM/CMS";
+            this.vmRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // tsoRadioButton
+            // 
+            this.tsoRadioButton.AutoSize = true;
+            this.tsoRadioButton.Location = new System.Drawing.Point(3, 26);
+            this.tsoRadioButton.Name = "tsoRadioButton";
+            this.tsoRadioButton.Size = new System.Drawing.Size(47, 17);
+            this.tsoRadioButton.TabIndex = 1;
+            this.tsoRadioButton.Tag = "Tso";
+            this.tsoRadioButton.Text = "TSO";
+            this.tsoRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // acceptLabel
+            // 
+            this.acceptLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.acceptLabel.AutoSize = true;
+            this.acceptLabel.Location = new System.Drawing.Point(3, 154);
+            this.acceptLabel.Name = "acceptLabel";
+            this.acceptLabel.Size = new System.Drawing.Size(90, 13);
+            this.acceptLabel.TabIndex = 123;
+            this.acceptLabel.Text = "Accept hostname";
+            // 
+            // acceptTextBox
+            // 
+            this.acceptTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.acceptTextBox.Location = new System.Drawing.Point(130, 151);
+            this.acceptTextBox.Name = "acceptTextBox";
+            this.acceptTextBox.Size = new System.Drawing.Size(241, 20);
+            this.acceptTextBox.TabIndex = 4;
+            this.acceptTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.AcceptTextBox_Validating);
+            // 
+            // rightTableLayoutPanel
+            // 
+            this.rightTableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rightTableLayoutPanel.AutoSize = true;
+            this.rightTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.rightTableLayoutPanel.ColumnCount = 1;
+            this.rightTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rightTableLayoutPanel.Controls.Add(this.buttonsTableLayoutPanel, 0, 5);
+            this.rightTableLayoutPanel.Controls.Add(this.optionsGroupBox, 0, 0);
+            this.rightTableLayoutPanel.Controls.Add(this.loadGroupBox, 0, 1);
+            this.rightTableLayoutPanel.Controls.Add(this.hostTypeGroupBox, 0, 2);
+            this.rightTableLayoutPanel.Controls.Add(this.printerSessionGroupBox, 0, 3);
+            this.rightTableLayoutPanel.Controls.Add(this.loclaProcessInputGroupBox, 0, 4);
+            this.rightTableLayoutPanel.Location = new System.Drawing.Point(386, 0);
+            this.rightTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.rightTableLayoutPanel.Name = "rightTableLayoutPanel";
+            this.rightTableLayoutPanel.RowCount = 6;
+            this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rightTableLayoutPanel.Size = new System.Drawing.Size(386, 577);
+            this.rightTableLayoutPanel.TabIndex = 1;
+            // 
+            // buttonsTableLayoutPanel
+            // 
+            this.buttonsTableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonsTableLayoutPanel.AutoSize = true;
+            this.buttonsTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonsTableLayoutPanel.ColumnCount = 4;
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.buttonsTableLayoutPanel.Controls.Add(this.connectButton, 0, 0);
+            this.buttonsTableLayoutPanel.Controls.Add(this.cancelButton, 1, 0);
+            this.buttonsTableLayoutPanel.Controls.Add(this.okButton, 2, 0);
+            this.buttonsTableLayoutPanel.Controls.Add(this.helpPictureBox, 3, 0);
+            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(111, 545);
+            this.buttonsTableLayoutPanel.Name = "buttonsTableLayoutPanel";
+            this.buttonsTableLayoutPanel.RowCount = 1;
+            this.buttonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.buttonsTableLayoutPanel.Size = new System.Drawing.Size(272, 29);
+            this.buttonsTableLayoutPanel.TabIndex = 6;
+            // 
             // connectButton
             // 
             this.connectButton.ForeColor = System.Drawing.Color.ForestGreen;
-            this.connectButton.Location = new System.Drawing.Point(459, 447);
+            this.connectButton.Location = new System.Drawing.Point(3, 3);
             this.connectButton.Name = "connectButton";
             this.connectButton.Size = new System.Drawing.Size(75, 23);
             this.connectButton.TabIndex = 2;
@@ -123,34 +427,78 @@
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Click += new System.EventHandler(this.ConnectButton_Click);
             // 
-            // LuNamesTextBox
+            // cancelButton
             // 
-            this.LuNamesTextBox.AcceptsReturn = true;
-            this.LuNamesTextBox.Location = new System.Drawing.Point(120, 131);
-            this.LuNamesTextBox.Multiline = true;
-            this.LuNamesTextBox.Name = "LuNamesTextBox";
-            this.LuNamesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.LuNamesTextBox.Size = new System.Drawing.Size(215, 45);
-            this.LuNamesTextBox.TabIndex = 3;
-            this.LuNamesTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.LuNamesTextBox_Validating);
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.Location = new System.Drawing.Point(84, 3);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 4;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // PortTextBox
+            // okButton
             // 
-            this.PortTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PortTextBox.Location = new System.Drawing.Point(120, 105);
-            this.PortTextBox.Name = "PortTextBox";
-            this.PortTextBox.Size = new System.Drawing.Size(215, 20);
-            this.PortTextBox.TabIndex = 2;
-            this.PortTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PortTextBox_Validating);
+            this.okButton.Location = new System.Drawing.Point(165, 3);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 5;
+            this.okButton.Text = "Save";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
-            // HostNameTextBox
+            // helpPictureBox
             // 
-            this.HostNameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HostNameTextBox.Location = new System.Drawing.Point(120, 64);
-            this.HostNameTextBox.Name = "HostNameTextBox";
-            this.HostNameTextBox.Size = new System.Drawing.Size(215, 20);
-            this.HostNameTextBox.TabIndex = 1;
-            this.HostNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.HostNameTextBox_Validating);
+            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox.Location = new System.Drawing.Point(246, 3);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.helpPictureBox.TabIndex = 132;
+            this.helpPictureBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
+            this.helpPictureBox.Click += new System.EventHandler(this.Help_Click);
+            // 
+            // optionsGroupBox
+            // 
+            this.optionsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.optionsGroupBox.AutoSize = true;
+            this.optionsGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.optionsGroupBox.Controls.Add(this.optionsLayoutPanel);
+            this.optionsGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.optionsGroupBox.Name = "optionsGroupBox";
+            this.optionsGroupBox.Size = new System.Drawing.Size(380, 157);
+            this.optionsGroupBox.TabIndex = 0;
+            this.optionsGroupBox.TabStop = false;
+            this.optionsGroupBox.Text = "Options";
+            // 
+            // optionsLayoutPanel
+            // 
+            this.optionsLayoutPanel.ColumnCount = 2;
+            this.optionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.optionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.optionsLayoutPanel.Controls.Add(this.tlsTunnelCheckBox, 0, 0);
+            this.optionsLayoutPanel.Controls.Add(this.starttlsCheckBox, 0, 1);
+            this.optionsLayoutPanel.Controls.Add(this.nvtCheckBox, 0, 3);
+            this.optionsLayoutPanel.Controls.Add(this.VerifyCertCheckBox, 0, 2);
+            this.optionsLayoutPanel.Controls.Add(this.tn3270eCheckBox, 0, 4);
+            this.optionsLayoutPanel.Controls.Add(this.telnetCheckBox, 1, 0);
+            this.optionsLayoutPanel.Controls.Add(this.loginScreenCheckBox, 0, 6);
+            this.optionsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.optionsLayoutPanel.Location = new System.Drawing.Point(3, 16);
+            this.optionsLayoutPanel.Name = "optionsLayoutPanel";
+            this.optionsLayoutPanel.RowCount = 7;
+            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.optionsLayoutPanel.Size = new System.Drawing.Size(374, 138);
+            this.optionsLayoutPanel.TabIndex = 0;
             // 
             // tlsTunnelCheckBox
             // 
@@ -164,205 +512,17 @@
             this.tlsTunnelCheckBox.UseVisualStyleBackColor = true;
             this.tlsTunnelCheckBox.CheckedChanged += new System.EventHandler(this.TlsCheckBox_CheckedChanged);
             // 
-            // luNamesLabel
+            // starttlsCheckBox
             // 
-            this.luNamesLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.luNamesLabel.AutoSize = true;
-            this.luNamesLabel.Location = new System.Drawing.Point(3, 147);
-            this.luNamesLabel.Name = "luNamesLabel";
-            this.luNamesLabel.Size = new System.Drawing.Size(55, 13);
-            this.luNamesLabel.TabIndex = 112;
-            this.luNamesLabel.Text = "LU names";
-            // 
-            // portLabel
-            // 
-            this.portLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.portLabel.AutoSize = true;
-            this.portLabel.Location = new System.Drawing.Point(3, 108);
-            this.portLabel.Name = "portLabel";
-            this.portLabel.Size = new System.Drawing.Size(26, 13);
-            this.portLabel.TabIndex = 113;
-            this.portLabel.Text = "Port";
-            // 
-            // hostNameLabel
-            // 
-            this.hostNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.hostNameLabel.AutoSize = true;
-            this.hostNameLabel.Location = new System.Drawing.Point(3, 67);
-            this.hostNameLabel.Name = "hostNameLabel";
-            this.hostNameLabel.Size = new System.Drawing.Size(58, 13);
-            this.hostNameLabel.TabIndex = 114;
-            this.hostNameLabel.Text = "Host name";
-            // 
-            // noLoadConnectButton
-            // 
-            this.noLoadConnectButton.AutoSize = true;
-            this.noLoadConnectButton.Checked = true;
-            this.noLoadConnectButton.Location = new System.Drawing.Point(6, 19);
-            this.noLoadConnectButton.Name = "noLoadConnectButton";
-            this.noLoadConnectButton.Size = new System.Drawing.Size(153, 17);
-            this.noLoadConnectButton.TabIndex = 0;
-            this.noLoadConnectButton.TabStop = true;
-            this.noLoadConnectButton.Tag = "None";
-            this.noLoadConnectButton.Text = "Do not connect to this host";
-            this.noLoadConnectButton.UseVisualStyleBackColor = true;
-            // 
-            // loadConnectButton
-            // 
-            this.loadConnectButton.AutoSize = true;
-            this.loadConnectButton.Location = new System.Drawing.Point(6, 40);
-            this.loadConnectButton.Name = "loadConnectButton";
-            this.loadConnectButton.Size = new System.Drawing.Size(133, 17);
-            this.loadConnectButton.TabIndex = 0;
-            this.loadConnectButton.Tag = "Connect";
-            this.loadConnectButton.Text = "🗲 Connect to this host";
-            this.loadConnectButton.UseVisualStyleBackColor = true;
-            // 
-            // loadGroupBox
-            // 
-            this.loadGroupBox.Controls.Add(this.loadReconnectButton);
-            this.loadGroupBox.Controls.Add(this.loadConnectButton);
-            this.loadGroupBox.Controls.Add(this.noLoadConnectButton);
-            this.loadGroupBox.Location = new System.Drawing.Point(3, 166);
-            this.loadGroupBox.Name = "loadGroupBox";
-            this.loadGroupBox.Size = new System.Drawing.Size(353, 88);
-            this.loadGroupBox.TabIndex = 1;
-            this.loadGroupBox.TabStop = false;
-            this.loadGroupBox.Text = "When profile is loaded";
-            // 
-            // loadReconnectButton
-            // 
-            this.loadReconnectButton.AutoSize = true;
-            this.loadReconnectButton.Location = new System.Drawing.Point(6, 63);
-            this.loadReconnectButton.Name = "loadReconnectButton";
-            this.loadReconnectButton.Size = new System.Drawing.Size(180, 17);
-            this.loadReconnectButton.TabIndex = 1;
-            this.loadReconnectButton.Tag = "Reconnect";
-            this.loadReconnectButton.Text = "🗲+ Keep connecting to this host";
-            this.loadReconnectButton.UseVisualStyleBackColor = true;
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(540, 447);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 4;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
-            // okButton
-            // 
-            this.okButton.Location = new System.Drawing.Point(621, 447);
-            this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 5;
-            this.okButton.Text = "Save";
-            this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
-            // 
-            // luExplainLabel
-            // 
-            this.luExplainLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.luExplainLabel.AutoSize = true;
-            this.luExplainLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.luExplainLabel.Location = new System.Drawing.Point(174, 179);
-            this.luExplainLabel.Name = "luExplainLabel";
-            this.luExplainLabel.Size = new System.Drawing.Size(161, 12);
-            this.luExplainLabel.TabIndex = 120;
-            this.luExplainLabel.Text = "separate with commas or white space";
-            this.luExplainLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // hostNameRequiredLabel
-            // 
-            this.hostNameRequiredLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.hostNameRequiredLabel.AutoSize = true;
-            this.hostNameRequiredLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hostNameRequiredLabel.Location = new System.Drawing.Point(297, 87);
-            this.hostNameRequiredLabel.Name = "hostNameRequiredLabel";
-            this.hostNameRequiredLabel.Size = new System.Drawing.Size(38, 12);
-            this.hostNameRequiredLabel.TabIndex = 121;
-            this.hostNameRequiredLabel.Text = "required";
-            this.hostNameRequiredLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // hostTypeGroupBox
-            // 
-            this.hostTypeGroupBox.Controls.Add(this.cicsRadioButton);
-            this.hostTypeGroupBox.Controls.Add(this.vmRadioButton);
-            this.hostTypeGroupBox.Controls.Add(this.tsoRadioButton);
-            this.hostTypeGroupBox.Controls.Add(this.unspecifiedRadioButton);
-            this.hostTypeGroupBox.Location = new System.Drawing.Point(3, 260);
-            this.hostTypeGroupBox.Name = "hostTypeGroupBox";
-            this.hostTypeGroupBox.Size = new System.Drawing.Size(353, 66);
-            this.hostTypeGroupBox.TabIndex = 2;
-            this.hostTypeGroupBox.TabStop = false;
-            this.hostTypeGroupBox.Text = "Host type (for file transfers)";
-            // 
-            // cicsRadioButton
-            // 
-            this.cicsRadioButton.AutoSize = true;
-            this.cicsRadioButton.Location = new System.Drawing.Point(179, 42);
-            this.cicsRadioButton.Name = "cicsRadioButton";
-            this.cicsRadioButton.Size = new System.Drawing.Size(49, 17);
-            this.cicsRadioButton.TabIndex = 3;
-            this.cicsRadioButton.Tag = "Cics";
-            this.cicsRadioButton.Text = "CICS";
-            this.cicsRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // vmRadioButton
-            // 
-            this.vmRadioButton.AutoSize = true;
-            this.vmRadioButton.Location = new System.Drawing.Point(179, 19);
-            this.vmRadioButton.Name = "vmRadioButton";
-            this.vmRadioButton.Size = new System.Drawing.Size(69, 17);
-            this.vmRadioButton.TabIndex = 2;
-            this.vmRadioButton.Tag = "Vm";
-            this.vmRadioButton.Text = "VM/CMS";
-            this.vmRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // tsoRadioButton
-            // 
-            this.tsoRadioButton.AutoSize = true;
-            this.tsoRadioButton.Location = new System.Drawing.Point(6, 42);
-            this.tsoRadioButton.Name = "tsoRadioButton";
-            this.tsoRadioButton.Size = new System.Drawing.Size(47, 17);
-            this.tsoRadioButton.TabIndex = 1;
-            this.tsoRadioButton.Tag = "Tso";
-            this.tsoRadioButton.Text = "TSO";
-            this.tsoRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // unspecifiedRadioButton
-            // 
-            this.unspecifiedRadioButton.AutoSize = true;
-            this.unspecifiedRadioButton.Checked = true;
-            this.unspecifiedRadioButton.Location = new System.Drawing.Point(6, 19);
-            this.unspecifiedRadioButton.Name = "unspecifiedRadioButton";
-            this.unspecifiedRadioButton.Size = new System.Drawing.Size(81, 17);
-            this.unspecifiedRadioButton.TabIndex = 0;
-            this.unspecifiedRadioButton.TabStop = true;
-            this.unspecifiedRadioButton.Tag = "Unspecified";
-            this.unspecifiedRadioButton.Text = "Unspecified";
-            this.unspecifiedRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // acceptLabel
-            // 
-            this.acceptLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.acceptLabel.AutoSize = true;
-            this.acceptLabel.Location = new System.Drawing.Point(3, 200);
-            this.acceptLabel.Name = "acceptLabel";
-            this.acceptLabel.Size = new System.Drawing.Size(90, 13);
-            this.acceptLabel.TabIndex = 123;
-            this.acceptLabel.Text = "Accept hostname";
-            // 
-            // acceptTextBox
-            // 
-            this.acceptTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.acceptTextBox.Location = new System.Drawing.Point(120, 197);
-            this.acceptTextBox.Name = "acceptTextBox";
-            this.acceptTextBox.Size = new System.Drawing.Size(215, 20);
-            this.acceptTextBox.TabIndex = 4;
-            this.acceptTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.AcceptTextBox_Validating);
+            this.starttlsCheckBox.AutoSize = true;
+            this.starttlsCheckBox.Checked = true;
+            this.starttlsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.starttlsCheckBox.Location = new System.Drawing.Point(3, 26);
+            this.starttlsCheckBox.Name = "starttlsCheckBox";
+            this.starttlsCheckBox.Size = new System.Drawing.Size(119, 17);
+            this.starttlsCheckBox.TabIndex = 1;
+            this.starttlsCheckBox.Text = "Accept STARTTLS";
+            this.starttlsCheckBox.UseVisualStyleBackColor = true;
             // 
             // nvtCheckBox
             // 
@@ -389,45 +549,6 @@
             this.VerifyCertCheckBox.UseVisualStyleBackColor = true;
             this.VerifyCertCheckBox.CheckedChanged += new System.EventHandler(this.VerifyCertCheckBox_CheckedChanged);
             // 
-            // optionsLayoutPanel
-            // 
-            this.optionsLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.optionsLayoutPanel.ColumnCount = 2;
-            this.optionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.optionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.optionsLayoutPanel.Controls.Add(this.tlsTunnelCheckBox, 0, 0);
-            this.optionsLayoutPanel.Controls.Add(this.starttlsCheckBox, 0, 1);
-            this.optionsLayoutPanel.Controls.Add(this.nvtCheckBox, 0, 3);
-            this.optionsLayoutPanel.Controls.Add(this.VerifyCertCheckBox, 0, 2);
-            this.optionsLayoutPanel.Controls.Add(this.tn3270eCheckBox, 0, 4);
-            this.optionsLayoutPanel.Controls.Add(this.telnetCheckBox, 1, 0);
-            this.optionsLayoutPanel.Controls.Add(this.loginScreenCheckBox, 0, 6);
-            this.optionsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.optionsLayoutPanel.Location = new System.Drawing.Point(3, 16);
-            this.optionsLayoutPanel.Name = "optionsLayoutPanel";
-            this.optionsLayoutPanel.RowCount = 7;
-            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.optionsLayoutPanel.Size = new System.Drawing.Size(347, 138);
-            this.optionsLayoutPanel.TabIndex = 0;
-            // 
-            // starttlsCheckBox
-            // 
-            this.starttlsCheckBox.AutoSize = true;
-            this.starttlsCheckBox.Checked = true;
-            this.starttlsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.starttlsCheckBox.Location = new System.Drawing.Point(3, 26);
-            this.starttlsCheckBox.Name = "starttlsCheckBox";
-            this.starttlsCheckBox.Size = new System.Drawing.Size(119, 17);
-            this.starttlsCheckBox.TabIndex = 1;
-            this.starttlsCheckBox.Text = "Accept STARTTLS";
-            this.starttlsCheckBox.UseVisualStyleBackColor = true;
-            // 
             // tn3270eCheckBox
             // 
             this.tn3270eCheckBox.AutoSize = true;
@@ -446,7 +567,7 @@
             this.telnetCheckBox.AutoSize = true;
             this.telnetCheckBox.Checked = true;
             this.telnetCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.telnetCheckBox.Location = new System.Drawing.Point(176, 3);
+            this.telnetCheckBox.Location = new System.Drawing.Point(190, 3);
             this.telnetCheckBox.Name = "telnetCheckBox";
             this.telnetCheckBox.Size = new System.Drawing.Size(90, 17);
             this.telnetCheckBox.TabIndex = 6;
@@ -468,63 +589,55 @@
             this.loginScreenCheckBox.Text = "Wait for login screen";
             this.loginScreenCheckBox.UseVisualStyleBackColor = true;
             // 
-            // rightTableLayoutPanel
-            // 
-            this.rightTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.rightTableLayoutPanel.ColumnCount = 1;
-            this.rightTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.rightTableLayoutPanel.Controls.Add(this.hostTypeGroupBox, 0, 3);
-            this.rightTableLayoutPanel.Controls.Add(this.loadGroupBox, 0, 2);
-            this.rightTableLayoutPanel.Controls.Add(this.optionsGroupBox, 0, 0);
-            this.rightTableLayoutPanel.Controls.Add(this.printerSessionGroupBox, 0, 4);
-            this.rightTableLayoutPanel.Location = new System.Drawing.Point(367, 9);
-            this.rightTableLayoutPanel.Name = "rightTableLayoutPanel";
-            this.rightTableLayoutPanel.RowCount = 5;
-            this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.rightTableLayoutPanel.Size = new System.Drawing.Size(359, 432);
-            this.rightTableLayoutPanel.TabIndex = 1;
-            // 
-            // optionsGroupBox
-            // 
-            this.optionsGroupBox.Controls.Add(this.optionsLayoutPanel);
-            this.optionsGroupBox.Location = new System.Drawing.Point(3, 3);
-            this.optionsGroupBox.Name = "optionsGroupBox";
-            this.optionsGroupBox.Size = new System.Drawing.Size(353, 157);
-            this.optionsGroupBox.TabIndex = 0;
-            this.optionsGroupBox.TabStop = false;
-            this.optionsGroupBox.Text = "Options";
-            // 
             // printerSessionGroupBox
             // 
-            this.printerSessionGroupBox.Controls.Add(this.specificLuTextBox);
-            this.printerSessionGroupBox.Controls.Add(this.associatePrinterRadioButton);
-            this.printerSessionGroupBox.Controls.Add(this.noPrinterRadioButton);
-            this.printerSessionGroupBox.Controls.Add(this.specificLuRadioButton);
-            this.printerSessionGroupBox.Location = new System.Drawing.Point(3, 332);
+            this.printerSessionGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.printerSessionGroupBox.AutoSize = true;
+            this.printerSessionGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.printerSessionGroupBox.Controls.Add(this.printerSessionTableLayoutPanel);
+            this.printerSessionGroupBox.Location = new System.Drawing.Point(3, 331);
             this.printerSessionGroupBox.Name = "printerSessionGroupBox";
-            this.printerSessionGroupBox.Size = new System.Drawing.Size(353, 95);
+            this.printerSessionGroupBox.Size = new System.Drawing.Size(380, 114);
             this.printerSessionGroupBox.TabIndex = 3;
             this.printerSessionGroupBox.TabStop = false;
             this.printerSessionGroupBox.Text = "3287 printer session";
             this.printerSessionGroupBox.Validating += new System.ComponentModel.CancelEventHandler(this.PrinterSessionGroupBox_Validating);
             // 
+            // printerSessionTableLayoutPanel
+            // 
+            this.printerSessionTableLayoutPanel.AutoSize = true;
+            this.printerSessionTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.printerSessionTableLayoutPanel.ColumnCount = 1;
+            this.printerSessionTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.printerSessionTableLayoutPanel.Controls.Add(this.specificLuTextBox, 0, 3);
+            this.printerSessionTableLayoutPanel.Controls.Add(this.associatePrinterRadioButton, 0, 1);
+            this.printerSessionTableLayoutPanel.Controls.Add(this.noPrinterRadioButton, 0, 0);
+            this.printerSessionTableLayoutPanel.Controls.Add(this.specificLuRadioButton, 0, 2);
+            this.printerSessionTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.printerSessionTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
+            this.printerSessionTableLayoutPanel.Name = "printerSessionTableLayoutPanel";
+            this.printerSessionTableLayoutPanel.RowCount = 4;
+            this.printerSessionTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.printerSessionTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.printerSessionTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.printerSessionTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.printerSessionTableLayoutPanel.Size = new System.Drawing.Size(374, 95);
+            this.printerSessionTableLayoutPanel.TabIndex = 135;
+            // 
             // specificLuTextBox
             // 
             this.specificLuTextBox.Enabled = false;
-            this.specificLuTextBox.Location = new System.Drawing.Point(89, 64);
+            this.specificLuTextBox.Location = new System.Drawing.Point(3, 72);
             this.specificLuTextBox.Name = "specificLuTextBox";
-            this.specificLuTextBox.Size = new System.Drawing.Size(176, 20);
+            this.specificLuTextBox.Size = new System.Drawing.Size(233, 20);
             this.specificLuTextBox.TabIndex = 3;
             this.specificLuTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.SpecificLuTextBox_Validating);
             // 
             // associatePrinterRadioButton
             // 
             this.associatePrinterRadioButton.AutoSize = true;
-            this.associatePrinterRadioButton.Location = new System.Drawing.Point(6, 42);
+            this.associatePrinterRadioButton.Location = new System.Drawing.Point(3, 26);
             this.associatePrinterRadioButton.Name = "associatePrinterRadioButton";
             this.associatePrinterRadioButton.Size = new System.Drawing.Size(183, 17);
             this.associatePrinterRadioButton.TabIndex = 1;
@@ -536,7 +649,7 @@
             // 
             this.noPrinterRadioButton.AutoSize = true;
             this.noPrinterRadioButton.Checked = true;
-            this.noPrinterRadioButton.Location = new System.Drawing.Point(6, 19);
+            this.noPrinterRadioButton.Location = new System.Drawing.Point(3, 3);
             this.noPrinterRadioButton.Name = "noPrinterRadioButton";
             this.noPrinterRadioButton.Size = new System.Drawing.Size(51, 17);
             this.noPrinterRadioButton.TabIndex = 0;
@@ -548,7 +661,7 @@
             // specificLuRadioButton
             // 
             this.specificLuRadioButton.AutoSize = true;
-            this.specificLuRadioButton.Location = new System.Drawing.Point(6, 65);
+            this.specificLuRadioButton.Location = new System.Drawing.Point(3, 49);
             this.specificLuRadioButton.Name = "specificLuRadioButton";
             this.specificLuRadioButton.Size = new System.Drawing.Size(80, 17);
             this.specificLuRadioButton.TabIndex = 2;
@@ -556,60 +669,77 @@
             this.specificLuRadioButton.Text = "Specific LU";
             this.specificLuRadioButton.UseVisualStyleBackColor = true;
             // 
-            // leftLayoutPanel
+            // loclaProcessInputGroupBox
             // 
-            this.leftLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.leftLayoutPanel.ColumnCount = 2;
-            this.leftLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.leftLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.leftLayoutPanel.Controls.Add(this.luExplainLabel, 1, 7);
-            this.leftLayoutPanel.Controls.Add(this.profileNameLabel, 1, 0);
-            this.leftLayoutPanel.Controls.Add(this.LuNamesTextBox, 1, 6);
-            this.leftLayoutPanel.Controls.Add(this.profileLabel, 0, 0);
-            this.leftLayoutPanel.Controls.Add(this.hostNameRequiredLabel, 1, 4);
-            this.leftLayoutPanel.Controls.Add(this.NicknameTextBox, 1, 1);
-            this.leftLayoutPanel.Controls.Add(this.HostNameTextBox, 1, 3);
-            this.leftLayoutPanel.Controls.Add(this.optionalLabel, 1, 2);
-            this.leftLayoutPanel.Controls.Add(this.acceptTextBox, 1, 8);
-            this.leftLayoutPanel.Controls.Add(this.sessionNameLabel, 0, 1);
-            this.leftLayoutPanel.Controls.Add(this.hostNameLabel, 0, 3);
-            this.leftLayoutPanel.Controls.Add(this.portLabel, 0, 5);
-            this.leftLayoutPanel.Controls.Add(this.acceptLabel, 0, 8);
-            this.leftLayoutPanel.Controls.Add(this.luNamesLabel, 0, 6);
-            this.leftLayoutPanel.Controls.Add(this.PortTextBox, 1, 5);
-            this.leftLayoutPanel.Controls.Add(this.loginMacroLabel, 0, 10);
-            this.leftLayoutPanel.Controls.Add(this.LoginMacroTextBox, 1, 10);
-            this.leftLayoutPanel.Controls.Add(this.clientCertificateLabel, 0, 9);
-            this.leftLayoutPanel.Controls.Add(this.clientCertTextBox, 1, 9);
-            this.leftLayoutPanel.Controls.Add(this.label1, 0, 11);
-            this.leftLayoutPanel.Controls.Add(this.descriptionTextBox, 1, 11);
-            this.leftLayoutPanel.Controls.Add(this.label2, 0, 12);
-            this.leftLayoutPanel.Controls.Add(this.titleTextBox, 1, 12);
-            this.leftLayoutPanel.Location = new System.Drawing.Point(12, 9);
-            this.leftLayoutPanel.Name = "leftLayoutPanel";
-            this.leftLayoutPanel.RowCount = 13;
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.leftLayoutPanel.Size = new System.Drawing.Size(338, 432);
-            this.leftLayoutPanel.TabIndex = 0;
+            this.loclaProcessInputGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.loclaProcessInputGroupBox.AutoSize = true;
+            this.loclaProcessInputGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.loclaProcessInputGroupBox.Controls.Add(this.localProcessInputTableLayoutPanel);
+            this.loclaProcessInputGroupBox.Enabled = false;
+            this.loclaProcessInputGroupBox.Location = new System.Drawing.Point(3, 451);
+            this.loclaProcessInputGroupBox.Name = "loclaProcessInputGroupBox";
+            this.loclaProcessInputGroupBox.Size = new System.Drawing.Size(380, 88);
+            this.loclaProcessInputGroupBox.TabIndex = 5;
+            this.loclaProcessInputGroupBox.TabStop = false;
+            this.loclaProcessInputGroupBox.Text = "Local process input mode";
+            // 
+            // localProcessInputTableLayoutPanel
+            // 
+            this.localProcessInputTableLayoutPanel.AutoSize = true;
+            this.localProcessInputTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.localProcessInputTableLayoutPanel.ColumnCount = 1;
+            this.localProcessInputTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.localProcessInputTableLayoutPanel.Controls.Add(this.lineModeRadioButton, 0, 0);
+            this.localProcessInputTableLayoutPanel.Controls.Add(this.characterModeRadioButton, 0, 1);
+            this.localProcessInputTableLayoutPanel.Controls.Add(this.characterModeCrLfRadioButton, 0, 2);
+            this.localProcessInputTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.localProcessInputTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
+            this.localProcessInputTableLayoutPanel.Name = "localProcessInputTableLayoutPanel";
+            this.localProcessInputTableLayoutPanel.RowCount = 3;
+            this.localProcessInputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.localProcessInputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.localProcessInputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.localProcessInputTableLayoutPanel.Size = new System.Drawing.Size(374, 69);
+            this.localProcessInputTableLayoutPanel.TabIndex = 0;
+            // 
+            // lineModeRadioButton
+            // 
+            this.lineModeRadioButton.AutoSize = true;
+            this.lineModeRadioButton.Checked = true;
+            this.lineModeRadioButton.Location = new System.Drawing.Point(3, 3);
+            this.lineModeRadioButton.Name = "lineModeRadioButton";
+            this.lineModeRadioButton.Size = new System.Drawing.Size(45, 17);
+            this.lineModeRadioButton.TabIndex = 133;
+            this.lineModeRadioButton.TabStop = true;
+            this.lineModeRadioButton.Text = "Line";
+            this.lineModeRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // characterModeRadioButton
+            // 
+            this.characterModeRadioButton.AutoSize = true;
+            this.characterModeRadioButton.Location = new System.Drawing.Point(3, 26);
+            this.characterModeRadioButton.Name = "characterModeRadioButton";
+            this.characterModeRadioButton.Size = new System.Drawing.Size(71, 17);
+            this.characterModeRadioButton.TabIndex = 134;
+            this.characterModeRadioButton.Text = "Character";
+            this.characterModeRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // characterModeCrLfRadioButton
+            // 
+            this.characterModeCrLfRadioButton.AutoSize = true;
+            this.characterModeCrLfRadioButton.Location = new System.Drawing.Point(3, 49);
+            this.characterModeCrLfRadioButton.Name = "characterModeCrLfRadioButton";
+            this.characterModeCrLfRadioButton.Size = new System.Drawing.Size(179, 17);
+            this.characterModeCrLfRadioButton.TabIndex = 135;
+            this.characterModeCrLfRadioButton.Text = "Character with CR/LF translation";
+            this.characterModeCrLfRadioButton.UseVisualStyleBackColor = true;
             // 
             // profileNameLabel
             // 
             this.profileNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.profileNameLabel.AutoSize = true;
-            this.profileNameLabel.Location = new System.Drawing.Point(120, 3);
+            this.profileNameLabel.Location = new System.Drawing.Point(130, 3);
             this.profileNameLabel.Name = "profileNameLabel";
             this.profileNameLabel.Size = new System.Drawing.Size(70, 13);
             this.profileNameLabel.TabIndex = 131;
@@ -620,28 +750,17 @@
             this.profileLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.profileLabel.AutoSize = true;
             this.profileLabel.Location = new System.Drawing.Point(3, 3);
+            this.profileLabel.Margin = new System.Windows.Forms.Padding(3);
             this.profileLabel.Name = "profileLabel";
             this.profileLabel.Size = new System.Drawing.Size(36, 13);
             this.profileLabel.TabIndex = 130;
             this.profileLabel.Text = "Profile";
             // 
-            // optionalLabel
-            // 
-            this.optionalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.optionalLabel.AutoSize = true;
-            this.optionalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optionalLabel.Location = new System.Drawing.Point(298, 46);
-            this.optionalLabel.Name = "optionalLabel";
-            this.optionalLabel.Size = new System.Drawing.Size(37, 12);
-            this.optionalLabel.TabIndex = 122;
-            this.optionalLabel.Text = "optional";
-            this.optionalLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // loginMacroLabel
             // 
             this.loginMacroLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.loginMacroLabel.AutoSize = true;
-            this.loginMacroLabel.Location = new System.Drawing.Point(3, 305);
+            this.loginMacroLabel.Location = new System.Drawing.Point(3, 311);
             this.loginMacroLabel.Name = "loginMacroLabel";
             this.loginMacroLabel.Size = new System.Drawing.Size(65, 13);
             this.loginMacroLabel.TabIndex = 109;
@@ -650,12 +769,12 @@
             // LoginMacroTextBox
             // 
             this.LoginMacroTextBox.AcceptsReturn = true;
-            this.LoginMacroTextBox.Location = new System.Drawing.Point(120, 249);
+            this.LoginMacroTextBox.Location = new System.Drawing.Point(130, 255);
             this.LoginMacroTextBox.Multiline = true;
             this.LoginMacroTextBox.Name = "LoginMacroTextBox";
             this.LoginMacroTextBox.ReadOnly = true;
             this.LoginMacroTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.LoginMacroTextBox.Size = new System.Drawing.Size(215, 125);
+            this.LoginMacroTextBox.Size = new System.Drawing.Size(241, 125);
             this.LoginMacroTextBox.TabIndex = 6;
             this.LoginMacroTextBox.TabStop = false;
             this.LoginMacroTextBox.Click += new System.EventHandler(this.LoginMacroEditButton_Click);
@@ -664,7 +783,7 @@
             // 
             this.clientCertificateLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.clientCertificateLabel.AutoSize = true;
-            this.clientCertificateLabel.Location = new System.Drawing.Point(3, 226);
+            this.clientCertificateLabel.Location = new System.Drawing.Point(3, 180);
             this.clientCertificateLabel.Name = "clientCertificateLabel";
             this.clientCertificateLabel.Size = new System.Drawing.Size(111, 13);
             this.clientCertificateLabel.TabIndex = 125;
@@ -672,73 +791,255 @@
             // 
             // clientCertTextBox
             // 
-            this.clientCertTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clientCertTextBox.Location = new System.Drawing.Point(120, 223);
+            this.clientCertTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.clientCertTextBox.Location = new System.Drawing.Point(130, 177);
             this.clientCertTextBox.Name = "clientCertTextBox";
-            this.clientCertTextBox.Size = new System.Drawing.Size(215, 20);
+            this.clientCertTextBox.Size = new System.Drawing.Size(241, 20);
             this.clientCertTextBox.TabIndex = 5;
             // 
-            // helpPictureBox
+            // descriptionLabel
             // 
-            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(702, 447);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.helpPictureBox.TabIndex = 132;
-            this.helpPictureBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
-            this.helpPictureBox.Click += new System.EventHandler(this.Help_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 383);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 132;
-            this.label1.Text = "Description";
+            this.descriptionLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.descriptionLabel.AutoSize = true;
+            this.descriptionLabel.Location = new System.Drawing.Point(3, 389);
+            this.descriptionLabel.Name = "descriptionLabel";
+            this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
+            this.descriptionLabel.TabIndex = 132;
+            this.descriptionLabel.Text = "Description";
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(120, 380);
+            this.descriptionTextBox.Location = new System.Drawing.Point(130, 386);
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(215, 20);
+            this.descriptionTextBox.Size = new System.Drawing.Size(241, 20);
             this.descriptionTextBox.TabIndex = 110;
             this.toolTip1.SetToolTip(this.descriptionTextBox, "Description of this host\r\nShown in the Profiles and Connections window");
             // 
-            // label2
+            // windowTitleLabel
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 411);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
-            this.label2.TabIndex = 134;
-            this.label2.Text = "Window title";
+            this.windowTitleLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.windowTitleLabel.AutoSize = true;
+            this.windowTitleLabel.Location = new System.Drawing.Point(3, 415);
+            this.windowTitleLabel.Name = "windowTitleLabel";
+            this.windowTitleLabel.Size = new System.Drawing.Size(65, 13);
+            this.windowTitleLabel.TabIndex = 134;
+            this.windowTitleLabel.Text = "Window title";
             // 
             // titleTextBox
             // 
-            this.titleTextBox.Location = new System.Drawing.Point(120, 406);
+            this.titleTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titleTextBox.Location = new System.Drawing.Point(130, 412);
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new System.Drawing.Size(215, 20);
+            this.titleTextBox.Size = new System.Drawing.Size(241, 20);
             this.titleTextBox.TabIndex = 111;
             this.toolTip1.SetToolTip(this.titleTextBox, "Window title override");
+            // 
+            // commandTextBox
+            // 
+            this.commandTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.commandTextBox.Enabled = false;
+            this.commandTextBox.Location = new System.Drawing.Point(130, 203);
+            this.commandTextBox.Name = "commandTextBox";
+            this.commandTextBox.Size = new System.Drawing.Size(241, 20);
+            this.commandTextBox.TabIndex = 137;
+            this.toolTip1.SetToolTip(this.commandTextBox, "Window title override");
+            // 
+            // commandLineOptionsTextBox
+            // 
+            this.commandLineOptionsTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.commandLineOptionsTextBox.Enabled = false;
+            this.commandLineOptionsTextBox.Location = new System.Drawing.Point(130, 229);
+            this.commandLineOptionsTextBox.Name = "commandLineOptionsTextBox";
+            this.commandLineOptionsTextBox.Size = new System.Drawing.Size(241, 20);
+            this.commandLineOptionsTextBox.TabIndex = 138;
+            this.toolTip1.SetToolTip(this.commandLineOptionsTextBox, "Window title override");
+            // 
+            // connectionTypeGroupBox
+            // 
+            this.connectionTypeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.connectionTypeGroupBox.AutoSize = true;
+            this.connectionTypeGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.connectionTypeGroupBox.Controls.Add(this.connectionTypeTableLayoutPanel);
+            this.connectionTypeGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.connectionTypeGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
+            this.connectionTypeGroupBox.Name = "connectionTypeGroupBox";
+            this.connectionTypeGroupBox.Size = new System.Drawing.Size(380, 65);
+            this.connectionTypeGroupBox.TabIndex = 0;
+            this.connectionTypeGroupBox.TabStop = false;
+            this.connectionTypeGroupBox.Text = "Connection type";
+            // 
+            // connectionTypeTableLayoutPanel
+            // 
+            this.connectionTypeTableLayoutPanel.AutoSize = true;
+            this.connectionTypeTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.connectionTypeTableLayoutPanel.ColumnCount = 1;
+            this.connectionTypeTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.connectionTypeTableLayoutPanel.Controls.Add(this.hostRadioButton, 0, 0);
+            this.connectionTypeTableLayoutPanel.Controls.Add(this.localProcessRadioButton, 0, 1);
+            this.connectionTypeTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.connectionTypeTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
+            this.connectionTypeTableLayoutPanel.Name = "connectionTypeTableLayoutPanel";
+            this.connectionTypeTableLayoutPanel.RowCount = 2;
+            this.connectionTypeTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.connectionTypeTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.connectionTypeTableLayoutPanel.Size = new System.Drawing.Size(374, 46);
+            this.connectionTypeTableLayoutPanel.TabIndex = 0;
+            // 
+            // hostRadioButton
+            // 
+            this.hostRadioButton.AutoSize = true;
+            this.hostRadioButton.Checked = true;
+            this.hostRadioButton.Location = new System.Drawing.Point(3, 3);
+            this.hostRadioButton.Name = "hostRadioButton";
+            this.hostRadioButton.Size = new System.Drawing.Size(47, 17);
+            this.hostRadioButton.TabIndex = 0;
+            this.hostRadioButton.TabStop = true;
+            this.hostRadioButton.Tag = "Host";
+            this.hostRadioButton.Text = "Host";
+            this.hostRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // localProcessRadioButton
+            // 
+            this.localProcessRadioButton.AutoSize = true;
+            this.localProcessRadioButton.Location = new System.Drawing.Point(3, 26);
+            this.localProcessRadioButton.Name = "localProcessRadioButton";
+            this.localProcessRadioButton.Size = new System.Drawing.Size(91, 17);
+            this.localProcessRadioButton.TabIndex = 1;
+            this.localProcessRadioButton.Tag = "LocalProcess";
+            this.localProcessRadioButton.Text = "Local process";
+            this.localProcessRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // overallTableLayoutPanel
+            // 
+            this.overallTableLayoutPanel.AutoSize = true;
+            this.overallTableLayoutPanel.ColumnCount = 2;
+            this.overallTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.overallTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.overallTableLayoutPanel.Controls.Add(this.rightTableLayoutPanel, 1, 0);
+            this.overallTableLayoutPanel.Controls.Add(this.leftTableLayoutPanel, 0, 0);
+            this.overallTableLayoutPanel.Location = new System.Drawing.Point(12, 12);
+            this.overallTableLayoutPanel.Name = "overallTableLayoutPanel";
+            this.overallTableLayoutPanel.RowCount = 1;
+            this.overallTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.overallTableLayoutPanel.Size = new System.Drawing.Size(772, 577);
+            this.overallTableLayoutPanel.TabIndex = 133;
+            // 
+            // leftTableLayoutPanel
+            // 
+            this.leftTableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.leftTableLayoutPanel.AutoSize = true;
+            this.leftTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.leftTableLayoutPanel.ColumnCount = 1;
+            this.leftTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.leftTableLayoutPanel.Controls.Add(this.basicParametersGroupBox, 0, 1);
+            this.leftTableLayoutPanel.Controls.Add(this.connectionTypeGroupBox, 0, 0);
+            this.leftTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.leftTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.leftTableLayoutPanel.Name = "leftTableLayoutPanel";
+            this.leftTableLayoutPanel.RowCount = 2;
+            this.leftTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.leftTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.leftTableLayoutPanel.Size = new System.Drawing.Size(386, 543);
+            this.leftTableLayoutPanel.TabIndex = 2;
+            // 
+            // basicParametersGroupBox
+            // 
+            this.basicParametersGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.basicParametersGroupBox.AutoSize = true;
+            this.basicParametersGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.basicParametersGroupBox.Controls.Add(this.basicParametersTableLayoutPanel);
+            this.basicParametersGroupBox.Location = new System.Drawing.Point(3, 86);
+            this.basicParametersGroupBox.Name = "basicParametersGroupBox";
+            this.basicParametersGroupBox.Size = new System.Drawing.Size(380, 454);
+            this.basicParametersGroupBox.TabIndex = 1;
+            this.basicParametersGroupBox.TabStop = false;
+            this.basicParametersGroupBox.Text = "Basic parameters";
+            // 
+            // basicParametersTableLayoutPanel
+            // 
+            this.basicParametersTableLayoutPanel.AutoSize = true;
+            this.basicParametersTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.basicParametersTableLayoutPanel.ColumnCount = 2;
+            this.basicParametersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34F));
+            this.basicParametersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66F));
+            this.basicParametersTableLayoutPanel.Controls.Add(this.commandLineOptionsTextBox, 1, 8);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.commandTextBox, 1, 7);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.profileLabel, 0, 0);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.LuNamesTextBox, 1, 4);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.commandLineOptionsLabel, 0, 8);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.profileNameLabel, 1, 0);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.acceptTextBox, 1, 5);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.sessionNameLabel, 0, 1);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.commandLabel, 0, 7);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.clientCertTextBox, 1, 6);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.clientCertificateLabel, 0, 6);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.acceptLabel, 0, 5);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.HostNameTextBox, 1, 2);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.NicknameTextBox, 1, 1);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.portLabel, 0, 3);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.luNamesLabel, 0, 4);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.hostNameLabel, 0, 2);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.PortTextBox, 1, 3);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.windowTitleLabel, 0, 11);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.titleTextBox, 1, 11);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.descriptionLabel, 0, 10);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.descriptionTextBox, 1, 10);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.loginMacroLabel, 0, 9);
+            this.basicParametersTableLayoutPanel.Controls.Add(this.LoginMacroTextBox, 1, 9);
+            this.basicParametersTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.basicParametersTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
+            this.basicParametersTableLayoutPanel.Name = "basicParametersTableLayoutPanel";
+            this.basicParametersTableLayoutPanel.RowCount = 12;
+            this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.basicParametersTableLayoutPanel.Size = new System.Drawing.Size(374, 435);
+            this.basicParametersTableLayoutPanel.TabIndex = 135;
+            // 
+            // commandLineOptionsLabel
+            // 
+            this.commandLineOptionsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.commandLineOptionsLabel.AutoSize = true;
+            this.commandLineOptionsLabel.Enabled = false;
+            this.commandLineOptionsLabel.Location = new System.Drawing.Point(3, 232);
+            this.commandLineOptionsLabel.Name = "commandLineOptionsLabel";
+            this.commandLineOptionsLabel.Size = new System.Drawing.Size(110, 13);
+            this.commandLineOptionsLabel.TabIndex = 136;
+            this.commandLineOptionsLabel.Text = "Command-line options";
+            // 
+            // commandLabel
+            // 
+            this.commandLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.commandLabel.AutoSize = true;
+            this.commandLabel.Enabled = false;
+            this.commandLabel.Location = new System.Drawing.Point(3, 206);
+            this.commandLabel.Name = "commandLabel";
+            this.commandLabel.Size = new System.Drawing.Size(58, 13);
+            this.commandLabel.TabIndex = 135;
+            this.commandLabel.Text = "Command*";
             // 
             // HostEditor
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(738, 477);
-            this.Controls.Add(this.helpPictureBox);
-            this.Controls.Add(this.leftLayoutPanel);
-            this.Controls.Add(this.rightTableLayoutPanel);
-            this.Controls.Add(this.okButton);
-            this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.connectButton);
+            this.ClientSize = new System.Drawing.Size(1347, 744);
+            this.Controls.Add(this.overallTableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "HostEditor";
@@ -747,29 +1048,50 @@
             this.Text = "Connection Editor";
             this.loadGroupBox.ResumeLayout(false);
             this.loadGroupBox.PerformLayout();
+            this.loadTableLayoutPanel.ResumeLayout(false);
+            this.loadTableLayoutPanel.PerformLayout();
             this.hostTypeGroupBox.ResumeLayout(false);
             this.hostTypeGroupBox.PerformLayout();
+            this.hostTypeTableLayoutPanel.ResumeLayout(false);
+            this.hostTypeTableLayoutPanel.PerformLayout();
+            this.rightTableLayoutPanel.ResumeLayout(false);
+            this.rightTableLayoutPanel.PerformLayout();
+            this.buttonsTableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.optionsGroupBox.ResumeLayout(false);
             this.optionsLayoutPanel.ResumeLayout(false);
             this.optionsLayoutPanel.PerformLayout();
-            this.rightTableLayoutPanel.ResumeLayout(false);
-            this.optionsGroupBox.ResumeLayout(false);
             this.printerSessionGroupBox.ResumeLayout(false);
             this.printerSessionGroupBox.PerformLayout();
-            this.leftLayoutPanel.ResumeLayout(false);
-            this.leftLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.printerSessionTableLayoutPanel.ResumeLayout(false);
+            this.printerSessionTableLayoutPanel.PerformLayout();
+            this.loclaProcessInputGroupBox.ResumeLayout(false);
+            this.loclaProcessInputGroupBox.PerformLayout();
+            this.localProcessInputTableLayoutPanel.ResumeLayout(false);
+            this.localProcessInputTableLayoutPanel.PerformLayout();
+            this.connectionTypeGroupBox.ResumeLayout(false);
+            this.connectionTypeGroupBox.PerformLayout();
+            this.connectionTypeTableLayoutPanel.ResumeLayout(false);
+            this.connectionTypeTableLayoutPanel.PerformLayout();
+            this.overallTableLayoutPanel.ResumeLayout(false);
+            this.overallTableLayoutPanel.PerformLayout();
+            this.leftTableLayoutPanel.ResumeLayout(false);
+            this.leftTableLayoutPanel.PerformLayout();
+            this.basicParametersGroupBox.ResumeLayout(false);
+            this.basicParametersGroupBox.PerformLayout();
+            this.basicParametersTableLayoutPanel.ResumeLayout(false);
+            this.basicParametersTableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.TextBox NicknameTextBox;
         private System.Windows.Forms.Label sessionNameLabel;
-        private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.TextBox LuNamesTextBox;
         private System.Windows.Forms.TextBox PortTextBox;
         private System.Windows.Forms.TextBox HostNameTextBox;
-        private System.Windows.Forms.CheckBox tlsTunnelCheckBox;
         private System.Windows.Forms.Label luNamesLabel;
         private System.Windows.Forms.Label portLabel;
         private System.Windows.Forms.Label hostNameLabel;
@@ -777,10 +1099,6 @@
         private System.Windows.Forms.RadioButton loadConnectButton;
         private System.Windows.Forms.GroupBox loadGroupBox;
         private System.Windows.Forms.RadioButton loadReconnectButton;
-        private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Button okButton;
-        private System.Windows.Forms.Label luExplainLabel;
-        private System.Windows.Forms.Label hostNameRequiredLabel;
         private System.Windows.Forms.GroupBox hostTypeGroupBox;
         private System.Windows.Forms.RadioButton cicsRadioButton;
         private System.Windows.Forms.RadioButton vmRadioButton;
@@ -788,33 +1106,56 @@
         private System.Windows.Forms.RadioButton unspecifiedRadioButton;
         private System.Windows.Forms.Label acceptLabel;
         private System.Windows.Forms.TextBox acceptTextBox;
-        private System.Windows.Forms.CheckBox nvtCheckBox;
-        private System.Windows.Forms.CheckBox VerifyCertCheckBox;
-        private System.Windows.Forms.TableLayoutPanel optionsLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel rightTableLayoutPanel;
-        private System.Windows.Forms.TableLayoutPanel leftLayoutPanel;
-        private System.Windows.Forms.Label optionalLabel;
-        private System.Windows.Forms.GroupBox optionsGroupBox;
         private System.Windows.Forms.Label profileLabel;
         private System.Windows.Forms.Label profileNameLabel;
-        private System.Windows.Forms.CheckBox starttlsCheckBox;
         private System.Windows.Forms.Label loginMacroLabel;
         private System.Windows.Forms.TextBox LoginMacroTextBox;
         private System.Windows.Forms.Label clientCertificateLabel;
         private System.Windows.Forms.TextBox clientCertTextBox;
-        private System.Windows.Forms.PictureBox helpPictureBox;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.GroupBox printerSessionGroupBox;
         private System.Windows.Forms.TextBox specificLuTextBox;
         private System.Windows.Forms.RadioButton specificLuRadioButton;
         private System.Windows.Forms.RadioButton associatePrinterRadioButton;
         private System.Windows.Forms.RadioButton noPrinterRadioButton;
-        private System.Windows.Forms.CheckBox tn3270eCheckBox;
-        private System.Windows.Forms.CheckBox loginScreenCheckBox;
-        private System.Windows.Forms.CheckBox telnetCheckBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.TextBox descriptionTextBox;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label windowTitleLabel;
         private System.Windows.Forms.TextBox titleTextBox;
+        private System.Windows.Forms.GroupBox connectionTypeGroupBox;
+        private System.Windows.Forms.TableLayoutPanel connectionTypeTableLayoutPanel;
+        private System.Windows.Forms.RadioButton hostRadioButton;
+        private System.Windows.Forms.RadioButton localProcessRadioButton;
+        private System.Windows.Forms.GroupBox loclaProcessInputGroupBox;
+        private System.Windows.Forms.TableLayoutPanel localProcessInputTableLayoutPanel;
+        private System.Windows.Forms.RadioButton lineModeRadioButton;
+        private System.Windows.Forms.RadioButton characterModeRadioButton;
+        private System.Windows.Forms.RadioButton characterModeCrLfRadioButton;
+        private System.Windows.Forms.TableLayoutPanel overallTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel loadTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel hostTypeTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel printerSessionTableLayoutPanel;
+        private System.Windows.Forms.PictureBox helpPictureBox;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button connectButton;
+        private System.Windows.Forms.GroupBox basicParametersGroupBox;
+        private System.Windows.Forms.TableLayoutPanel basicParametersTableLayoutPanel;
+        private System.Windows.Forms.TextBox commandLineOptionsTextBox;
+        private System.Windows.Forms.TextBox commandTextBox;
+        private System.Windows.Forms.Label commandLabel;
+        private System.Windows.Forms.Label commandLineOptionsLabel;
+        private System.Windows.Forms.TableLayoutPanel leftTableLayoutPanel;
+        private System.Windows.Forms.GroupBox optionsGroupBox;
+        private System.Windows.Forms.TableLayoutPanel optionsLayoutPanel;
+        private System.Windows.Forms.CheckBox tlsTunnelCheckBox;
+        private System.Windows.Forms.CheckBox starttlsCheckBox;
+        private System.Windows.Forms.CheckBox nvtCheckBox;
+        private System.Windows.Forms.CheckBox VerifyCertCheckBox;
+        private System.Windows.Forms.CheckBox tn3270eCheckBox;
+        private System.Windows.Forms.CheckBox telnetCheckBox;
+        private System.Windows.Forms.CheckBox loginScreenCheckBox;
+        private System.Windows.Forms.TableLayoutPanel buttonsTableLayoutPanel;
     }
 }

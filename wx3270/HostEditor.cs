@@ -91,9 +91,9 @@ namespace Wx3270
 
             this.editingMode = editingMode;
             this.profile = profile;
-            this.autoConnect = new RadioEnum<AutoConnect>(this.loadGroupBox);
-            this.hostType = new RadioEnum<HostType>(this.hostTypeGroupBox);
-            this.printerSessionType = new RadioEnum<PrinterSessionType>(this.printerSessionGroupBox);
+            this.autoConnect = new RadioEnum<AutoConnect>(this.loadTableLayoutPanel);
+            this.hostType = new RadioEnum<HostType>(this.hostTypeTableLayoutPanel);
+            this.printerSessionType = new RadioEnum<PrinterSessionType>(this.printerSessionTableLayoutPanel);
             this.app = app;
 
             // Map prefixes onto options.
@@ -234,6 +234,7 @@ namespace Wx3270
             // Set the profile name label, which we do not want localized.
             this.profileNameLabel.Text = hostEntry != null ? hostEntry.Profile.Name : profile.Name;
 
+#if false
             // Patch up the specific LU text box by hand, because the radio button it has
             // to adjust to must be in the same container as the other printer radio buttons.
             this.specificLuTextBox.Location = new System.Drawing.Point(
@@ -242,6 +243,7 @@ namespace Wx3270
             this.specificLuTextBox.Width = this.printerSessionGroupBox.Width
                 - this.specificLuRadioButton.Width
                 - 15;
+#endif
         }
 
         /// <summary>
