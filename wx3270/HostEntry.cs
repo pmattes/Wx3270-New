@@ -80,6 +80,22 @@ namespace Wx3270
     }
 
     /// <summary>
+    /// Connection type.
+    /// </summary>
+    public enum ConnectionType
+    {
+        /// <summary>
+        /// Connect to a host.
+        /// </summary>
+        Host,
+
+        /// <summary>
+        /// Connect to a local process.
+        /// </summary>
+        LocalProcess,
+    }
+
+    /// <summary>
     /// One host.
     /// </summary>
     public class HostEntry : IEquatable<HostEntry>, ISyncedEntry<HostEntry>
@@ -90,6 +106,7 @@ namespace Wx3270
         public HostEntry()
         {
             this.Name = string.Empty;
+            this.ConnectionType = ConnectionType.Host;
             this.Host = string.Empty;
             this.Port = string.Empty;
             this.LuNames = string.Empty;
@@ -104,6 +121,9 @@ namespace Wx3270
             this.PrinterSessionType = PrinterSessionType.None;
             this.PrinterSessionLu = string.Empty;
             this.Prefixes = string.Empty;
+            this.Command = string.Empty;
+            this.CommandLineOptions = string.Empty;
+            this.NoTelnetInputType = B3270.NoTelnetInputType.Line;
         }
 
         /// <summary>
@@ -114,6 +134,7 @@ namespace Wx3270
         {
             this.Profile = other.Profile;
             this.Name = other.Name;
+            this.ConnectionType = other.ConnectionType;
             this.Host = other.Host;
             this.Port = other.Port;
             this.LuNames = other.LuNames;
@@ -128,6 +149,9 @@ namespace Wx3270
             this.PrinterSessionType = other.PrinterSessionType;
             this.PrinterSessionLu = other.PrinterSessionLu;
             this.Prefixes = other.Prefixes;
+            this.Command = other.Command;
+            this.CommandLineOptions = other.CommandLineOptions;
+            this.NoTelnetInputType = other.NoTelnetInputType;
         }
 
         /// <summary>
@@ -152,6 +176,12 @@ namespace Wx3270
         /// </summary>
         [JsonIgnore]
         public bool CanMoveBefore => true;
+
+        /// <summary>
+        /// Gets or sets the connection type.
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ConnectionType ConnectionType { get; set; }
 
         /// <summary>
         /// Gets or sets the host name.
@@ -227,6 +257,22 @@ namespace Wx3270
         public string PrinterSessionLu { get; set; } = string.Empty;
 
         /// <summary>
+        /// Gets or sets the command.
+        /// </summary>
+        public string Command { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the command-line options.
+        /// </summary>
+        public string CommandLineOptions { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the no-TELNET input type.
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public B3270.NoTelnetInputType NoTelnetInputType { get; set; }
+
+        /// <summary>
         /// Compare one host entry to another.
         /// </summary>
         /// <param name="other">Other host.</param>
@@ -255,7 +301,8 @@ namespace Wx3270
                 return false;
             }
 
-            return this.Host.Equals(other.Host, StringComparison.InvariantCultureIgnoreCase)
+            return this.ConnectionType == other.ConnectionType
+                && this.Host.Equals(other.Host, StringComparison.InvariantCultureIgnoreCase)
                 && this.Port.Equals(other.Port, StringComparison.InvariantCultureIgnoreCase)
                 && this.LuNames.Equals(other.LuNames, StringComparison.InvariantCultureIgnoreCase)
                 && this.AcceptHostName.Equals(other.AcceptHostName, StringComparison.InvariantCultureIgnoreCase)
@@ -268,7 +315,10 @@ namespace Wx3270
                 && this.HostType.Equals(other.HostType)
                 && this.PrinterSessionType.Equals(other.PrinterSessionType)
                 && this.PrinterSessionLu.Equals(other.PrinterSessionLu, StringComparison.CurrentCultureIgnoreCase)
-                && this.Prefixes.Equals(other.Prefixes);
+                && this.Prefixes.Equals(other.Prefixes)
+                && this.Command.Equals(other.Command, StringComparison.InvariantCultureIgnoreCase)
+                && this.CommandLineOptions == other.CommandLineOptions
+                && this.NoTelnetInputType == other.NoTelnetInputType;
         }
 
         /// <summary>
@@ -283,6 +333,7 @@ namespace Wx3270
             }
 
             this.Profile = other.Profile;
+            this.ConnectionType = other.ConnectionType;
             this.Name = other.Name;
             this.Host = other.Host;
             this.Port = other.Port;
@@ -298,6 +349,9 @@ namespace Wx3270
             this.PrinterSessionType = other.PrinterSessionType;
             this.PrinterSessionLu = other.PrinterSessionLu;
             this.Prefixes = other.Prefixes;
+            this.Command = other.Command;
+            this.CommandLineOptions = other.CommandLineOptions;
+            this.NoTelnetInputType = other.NoTelnetInputType;
         }
 
         /// <summary>
@@ -391,6 +445,21 @@ namespace Wx3270
                 sb.Append(" " + "prefixes=" + this.Prefixes);
             }
 
+            if (!string.IsNullOrEmpty(this.Command))
+            {
+                sb.Append(" " + "command=" + this.Command);
+            }
+
+            if (!string.IsNullOrEmpty(this.CommandLineOptions))
+            {
+                sb.Append(" " + "commandLineOptions=" + this.CommandLineOptions);
+            }
+
+            if (this.ConnectionType == ConnectionType.LocalProcess)
+            {
+                sb.Append(" " + "noTelnetInputType=" + this.NoTelnetInputType);
+            }
+
             return sb.ToString();
         }
 
@@ -403,6 +472,7 @@ namespace Wx3270
             return new HostEntry
             {
                 Name = this.Name,
+                ConnectionType = this.ConnectionType,
                 Host = this.Host,
                 Port = this.Port,
                 LuNames = this.LuNames,
@@ -417,6 +487,9 @@ namespace Wx3270
                 PrinterSessionType = this.PrinterSessionType,
                 PrinterSessionLu = this.PrinterSessionLu,
                 Prefixes = this.Prefixes,
+                Command = this.Command,
+                CommandLineOptions = this.CommandLineOptions,
+                NoTelnetInputType = this.NoTelnetInputType,
             };
         }
 

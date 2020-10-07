@@ -9,6 +9,7 @@ namespace Wx3270
     using System.ComponentModel;
     using System.IO;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Windows.Forms;
 
     using I18nBase;
@@ -27,22 +28,6 @@ namespace Wx3270
         /// Quick host, with Connect as the accept button.
         /// </summary>
         QuickConnect,
-    }
-
-    /// <summary>
-    /// Connection type.
-    /// </summary>
-    public enum ConnectionType
-    {
-        /// <summary>
-        /// Connect to a host.
-        /// </summary>
-        Host,
-
-        /// <summary>
-        /// Connect to a local process.
-        /// </summary>
-        LocalProcess,
     }
 
     /// <summary>
@@ -183,6 +168,7 @@ namespace Wx3270
 
             if (hostEntry != null)
             {
+                this.connectionType.Value = hostEntry.ConnectionType;
                 this.NicknameTextBox.Text = hostEntry.Name;
                 this.HostNameTextBox.Text = hostEntry.Host;
                 this.PortTextBox.Text = hostEntry.Port;
@@ -192,6 +178,8 @@ namespace Wx3270
                 this.LoginMacroTextBox.Text = hostEntry.LoginMacro;
                 this.descriptionTextBox.Text = hostEntry.Description;
                 this.titleTextBox.Text = hostEntry.WindowTitle;
+                this.commandTextBox.Text = hostEntry.Command;
+                this.commandLineOptionsTextBox.Text = hostEntry.CommandLineOptions;
 
                 if (!string.IsNullOrEmpty(hostEntry.Prefixes))
                 {
@@ -214,6 +202,10 @@ namespace Wx3270
 
                 this.starttlsCheckBox.Enabled = this.telnetCheckBox.Checked;
                 this.tn3270eCheckBox.Enabled = this.telnetCheckBox.Checked;
+
+                this.inputType.Value = hostEntry.NoTelnetInputType;
+
+                this.ConnectionTypeChanged(hostEntry.ConnectionType == ConnectionType.Host);
             }
 
             if (editingMode == HostEditingMode.QuickConnect)
@@ -250,41 +242,7 @@ namespace Wx3270
             this.connectionType.Changed += (sender, args) =>
             {
                 var e = (RadioEnum<ConnectionType>)sender;
-                var isHost = e.Value == ConnectionType.Host;
-
-                this.hostNameLabel.Enabled = isHost;
-                this.HostNameTextBox.Enabled = isHost;
-                this.portLabel.Enabled = isHost;
-                this.PortTextBox.Enabled = isHost;
-                this.luNamesLabel.Enabled = isHost;
-                this.LuNamesTextBox.Enabled = isHost;
-                this.acceptLabel.Enabled = isHost;
-                this.acceptTextBox.Enabled = isHost;
-                this.clientCertificateLabel.Enabled = isHost;
-                this.clientCertTextBox.Enabled = isHost;
-                this.optionsGroupBox.Enabled = isHost;
-                this.hostTypeGroupBox.Enabled = isHost;
-                this.printerSessionGroupBox.Enabled = isHost;
-
-                this.commandLabel.Enabled = !isHost;
-                this.commandTextBox.Enabled = !isHost;
-                this.commandLineOptionsLabel.Enabled = !isHost;
-                this.commandLineOptionsTextBox.Enabled = !isHost;
-                this.localProcessInputGroupBox.Enabled = !isHost;
-
-                if (isHost)
-                {
-                    this.commandTextBox.Text = string.Empty;
-                    this.commandLineOptionsTextBox.Text = string.Empty;
-                }
-                else
-                {
-                    this.HostNameTextBox.Text = string.Empty;
-                    this.PortTextBox.Text = string.Empty;
-                    this.LuNamesTextBox.Text = string.Empty;
-                    this.acceptTextBox.Text = string.Empty;
-                    this.clientCertTextBox.Text = string.Empty;
-                }
+                this.ConnectionTypeChanged(e.Value == ConnectionType.Host);
             };
 
             // Substitute.
@@ -302,17 +260,6 @@ namespace Wx3270
 
             // Set the profile name label, which we do not want localized.
             this.profileNameLabel.Text = hostEntry != null ? hostEntry.Profile.Name : profile.Name;
-
-#if false
-            // Patch up the specific LU text box by hand, because the radio button it has
-            // to adjust to must be in the same container as the other printer radio buttons.
-            this.specificLuTextBox.Location = new System.Drawing.Point(
-                this.specificLuRadioButton.Location.X + this.specificLuRadioButton.Width + 3,
-                this.specificLuRadioButton.Location.Y - 2);
-            this.specificLuTextBox.Width = this.printerSessionGroupBox.Width
-                - this.specificLuRadioButton.Width
-                - 15;
-#endif
         }
 
         /// <summary>
@@ -326,6 +273,7 @@ namespace Wx3270
                 {
                     Profile = this.profile,
                     Name = this.NicknameTextBox.Text,
+                    ConnectionType = this.connectionType.Value,
                     Host = this.HostNameTextBox.Text,
                     Port = this.PortTextBox.Text,
                     LuNames = this.LuNamesTextBox.Text,
@@ -344,6 +292,9 @@ namespace Wx3270
                         this.sets
                             .Where(kv => kv.Value.CheckBox.Checked == kv.Value.IsChecked)
                             .Select(kv => kv.Key)),
+                    Command = this.commandTextBox.Text,
+                    CommandLineOptions = this.commandLineOptionsTextBox.Text,
+                    NoTelnetInputType = this.inputType.Value,
                 };
             }
         }
@@ -367,6 +318,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(Message.PortCharacter, "Port can only contain alphanumeric, dash or underscore characters");
             I18n.LocalizeGlobal(Message.LuNameCharacter, "LU names can only contain alphanumeric, dash or underscore characters");
             I18n.LocalizeGlobal(Message.MustSpecifyHost, "Must specify a host name");
+            I18n.LocalizeGlobal(Message.MustSpecifyCommand, "Must specify a command");
             I18n.LocalizeGlobal(Message.AcceptHostCharacter, "Accept host name cannot contain a space or any of these characters");
             I18n.LocalizeGlobal(Message.MustSpecifyLu, "Must specify an LU name");
             I18n.LocalizeGlobal(Message.TranslatedPrefix, "Translating host prefix to option");
@@ -380,6 +332,47 @@ namespace Wx3270
         public static void FormLocalize()
         {
             new HostEditor(HostEditingMode.SaveHost, null, Profile.DefaultProfile, null).Dispose();
+        }
+
+        /// <summary>
+        /// Adjust the form to a changed connection type.
+        /// </summary>
+        /// <param name="isHost">True if this is a host connection.</param>
+        private void ConnectionTypeChanged(bool isHost)
+        {
+            this.hostNameLabel.Enabled = isHost;
+            this.HostNameTextBox.Enabled = isHost;
+            this.portLabel.Enabled = isHost;
+            this.PortTextBox.Enabled = isHost;
+            this.luNamesLabel.Enabled = isHost;
+            this.LuNamesTextBox.Enabled = isHost;
+            this.acceptLabel.Enabled = isHost;
+            this.acceptTextBox.Enabled = isHost;
+            this.clientCertificateLabel.Enabled = isHost;
+            this.clientCertTextBox.Enabled = isHost;
+            this.optionsGroupBox.Enabled = isHost;
+            this.hostTypeGroupBox.Enabled = isHost;
+            this.printerSessionGroupBox.Enabled = isHost;
+
+            this.commandLabel.Enabled = !isHost;
+            this.commandTextBox.Enabled = !isHost;
+            this.commandLineOptionsLabel.Enabled = !isHost;
+            this.commandLineOptionsTextBox.Enabled = !isHost;
+            this.localProcessInputGroupBox.Enabled = !isHost;
+
+            if (isHost)
+            {
+                this.commandTextBox.Text = string.Empty;
+                this.commandLineOptionsTextBox.Text = string.Empty;
+            }
+            else
+            {
+                this.HostNameTextBox.Text = string.Empty;
+                this.PortTextBox.Text = string.Empty;
+                this.LuNamesTextBox.Text = string.Empty;
+                this.acceptTextBox.Text = string.Empty;
+                this.clientCertTextBox.Text = string.Empty;
+            }
         }
 
         /// <summary>
@@ -587,25 +580,51 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Validate that the entry can be completed.
+        /// </summary>
+        /// <param name="result">Dialog result to set, if successful.</param>
+        private void ValidateDone(DialogResult result)
+        {
+            if (this.connectionType.Value == ConnectionType.Host)
+            {
+                if (string.IsNullOrEmpty(this.HostNameTextBox.Text))
+                {
+                    ErrorBox.Show(I18n.Get(Message.MustSpecifyHost), I18n.Get(Title.ConnectionEditor));
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(this.NicknameTextBox.Text))
+                {
+                    this.NicknameTextBox.Text = this.HostNameTextBox.Text;
+                }
+            }
+
+            if (this.connectionType.Value == ConnectionType.LocalProcess)
+            {
+                if (string.IsNullOrEmpty(this.commandTextBox.Text))
+                {
+                    ErrorBox.Show(I18n.Get(Message.MustSpecifyCommand), I18n.Get(Title.ConnectionEditor));
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(this.NicknameTextBox.Text))
+                {
+                    this.NicknameTextBox.Text = Path.GetFileNameWithoutExtension(this.commandTextBox.Text);
+                }
+            }
+
+            this.DialogResult = result;
+            this.Close();
+        }
+
+        /// <summary>
         /// The OK button was clicked.
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(this.HostNameTextBox.Text))
-            {
-                ErrorBox.Show(I18n.Get(Message.MustSpecifyHost), I18n.Get(Title.ConnectionEditor));
-                return;
-            }
-
-            if (string.IsNullOrEmpty(this.NicknameTextBox.Text))
-            {
-                this.NicknameTextBox.Text = this.HostNameTextBox.Text;
-            }
-
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            this.ValidateDone(DialogResult.OK);
         }
 
         /// <summary>
@@ -615,19 +634,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ConnectButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(this.HostNameTextBox.Text))
-            {
-                ErrorBox.Show(I18n.Get(Message.MustSpecifyHost), I18n.Get(Title.ConnectionEditor));
-                return;
-            }
-
-            if (string.IsNullOrEmpty(this.NicknameTextBox.Text))
-            {
-                this.NicknameTextBox.Text = this.HostNameTextBox.Text;
-            }
-
-            this.DialogResult = DialogResult.Yes;
-            this.Close();
+            this.ValidateDone(DialogResult.Yes);
         }
 
         /// <summary>
@@ -893,6 +900,11 @@ namespace Wx3270
             /// Must specify a host name.
             /// </summary>
             public static readonly string MustSpecifyHost = I18n.Combine(MessageName, "mustSpecifyHost");
+
+            /// <summary>
+            /// Must specify a command.
+            /// </summary>
+            public static readonly string MustSpecifyCommand = I18n.Combine(MessageName, "mustSpecifyCommand");
 
             /// <summary>
             /// Bad accept host character.

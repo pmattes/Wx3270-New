@@ -847,7 +847,7 @@
             this.commandTextBox.ReadOnly = true;
             this.commandTextBox.Size = new System.Drawing.Size(241, 20);
             this.commandTextBox.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.commandTextBox, "Window title override");
+            this.toolTip1.SetToolTip(this.commandTextBox, "Command to run");
             this.commandTextBox.Click += new System.EventHandler(this.CommandTextBox_Click);
             this.commandTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CommandTextBox_Click);
             // 
@@ -859,7 +859,7 @@
             this.commandLineOptionsTextBox.Name = "commandLineOptionsTextBox";
             this.commandLineOptionsTextBox.Size = new System.Drawing.Size(241, 20);
             this.commandLineOptionsTextBox.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.commandLineOptionsTextBox, "Window title override");
+            this.toolTip1.SetToolTip(this.commandLineOptionsTextBox, "Command-line options");
             // 
             // connectionTypeGroupBox
             // 
