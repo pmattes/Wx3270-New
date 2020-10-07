@@ -56,7 +56,7 @@ namespace Wx3270
         /// <summary>
         /// Gets the set of color objects.
         /// </summary>
-        /// <returns>Set of color objects</returns>
+        /// <returns>Set of color objects.</returns>
         public static IEnumerable<ColorBackground> Objects()
         {
             return colors.Select(c => new ColorBackground { DisplayName = c.Item1, InternalName = c.Item2 });
@@ -65,8 +65,8 @@ namespace Wx3270
         /// <summary>
         /// Get the color value.
         /// </summary>
-        /// <param name="colors">Edited colors to select from</param>
-        /// <returns>Color value</returns>
+        /// <param name="colors">Edited colors to select from.</param>
+        /// <returns>Color value.</returns>
         public Color ColorValue(Colors colors)
         {
             if (this.InternalName == SelectBackground)
@@ -80,7 +80,7 @@ namespace Wx3270
         /// <summary>
         /// Convert to a string representation.
         /// </summary>
-        /// <returns>String representation</returns>
+        /// <returns>String representation.</returns>
         public override string ToString()
         {
             return this.DisplayName;

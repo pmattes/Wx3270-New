@@ -77,8 +77,8 @@ namespace Wx3270
         /// <summary>
         /// Process a connect-attempt indication.
         /// </summary>
-        /// <param name="name">Element name</param>
-        /// <param name="attributes">Element attributes</param>
+        /// <param name="name">Element name.</param>
+        /// <param name="attributes">Element attributes.</param>
         private void StartConnectAttempt(string name, AttributeDict attributes)
         {
             this.HostAddress = attributes[B3270.Attribute.HostIp];

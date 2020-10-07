@@ -17,7 +17,7 @@ namespace Wx3270
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        /// <param name="args">Command line arguments</param>
+        /// <param name="args">Command line arguments.</param>
         [STAThread]
         public static void Main(string[] args)
         {

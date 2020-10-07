@@ -72,7 +72,7 @@
             this.associatePrinterRadioButton = new System.Windows.Forms.RadioButton();
             this.noPrinterRadioButton = new System.Windows.Forms.RadioButton();
             this.specificLuRadioButton = new System.Windows.Forms.RadioButton();
-            this.loclaProcessInputGroupBox = new System.Windows.Forms.GroupBox();
+            this.localProcessInputGroupBox = new System.Windows.Forms.GroupBox();
             this.localProcessInputTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.lineModeRadioButton = new System.Windows.Forms.RadioButton();
             this.characterModeRadioButton = new System.Windows.Forms.RadioButton();
@@ -111,7 +111,7 @@
             this.optionsLayoutPanel.SuspendLayout();
             this.printerSessionGroupBox.SuspendLayout();
             this.printerSessionTableLayoutPanel.SuspendLayout();
-            this.loclaProcessInputGroupBox.SuspendLayout();
+            this.localProcessInputGroupBox.SuspendLayout();
             this.localProcessInputTableLayoutPanel.SuspendLayout();
             this.connectionTypeGroupBox.SuspendLayout();
             this.connectionTypeTableLayoutPanel.SuspendLayout();
@@ -381,7 +381,7 @@
             this.rightTableLayoutPanel.Controls.Add(this.loadGroupBox, 0, 1);
             this.rightTableLayoutPanel.Controls.Add(this.hostTypeGroupBox, 0, 2);
             this.rightTableLayoutPanel.Controls.Add(this.printerSessionGroupBox, 0, 3);
-            this.rightTableLayoutPanel.Controls.Add(this.loclaProcessInputGroupBox, 0, 4);
+            this.rightTableLayoutPanel.Controls.Add(this.localProcessInputGroupBox, 0, 4);
             this.rightTableLayoutPanel.Location = new System.Drawing.Point(386, 0);
             this.rightTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.rightTableLayoutPanel.Name = "rightTableLayoutPanel";
@@ -669,20 +669,20 @@
             this.specificLuRadioButton.Text = "Specific LU";
             this.specificLuRadioButton.UseVisualStyleBackColor = true;
             // 
-            // loclaProcessInputGroupBox
+            // localProcessInputGroupBox
             // 
-            this.loclaProcessInputGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.localProcessInputGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.loclaProcessInputGroupBox.AutoSize = true;
-            this.loclaProcessInputGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.loclaProcessInputGroupBox.Controls.Add(this.localProcessInputTableLayoutPanel);
-            this.loclaProcessInputGroupBox.Enabled = false;
-            this.loclaProcessInputGroupBox.Location = new System.Drawing.Point(3, 451);
-            this.loclaProcessInputGroupBox.Name = "loclaProcessInputGroupBox";
-            this.loclaProcessInputGroupBox.Size = new System.Drawing.Size(380, 88);
-            this.loclaProcessInputGroupBox.TabIndex = 5;
-            this.loclaProcessInputGroupBox.TabStop = false;
-            this.loclaProcessInputGroupBox.Text = "Local process input mode";
+            this.localProcessInputGroupBox.AutoSize = true;
+            this.localProcessInputGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.localProcessInputGroupBox.Controls.Add(this.localProcessInputTableLayoutPanel);
+            this.localProcessInputGroupBox.Enabled = false;
+            this.localProcessInputGroupBox.Location = new System.Drawing.Point(3, 451);
+            this.localProcessInputGroupBox.Name = "localProcessInputGroupBox";
+            this.localProcessInputGroupBox.Size = new System.Drawing.Size(380, 88);
+            this.localProcessInputGroupBox.TabIndex = 5;
+            this.localProcessInputGroupBox.TabStop = false;
+            this.localProcessInputGroupBox.Text = "Local process input mode";
             // 
             // localProcessInputTableLayoutPanel
             // 
@@ -712,6 +712,7 @@
             this.lineModeRadioButton.Size = new System.Drawing.Size(45, 17);
             this.lineModeRadioButton.TabIndex = 133;
             this.lineModeRadioButton.TabStop = true;
+            this.lineModeRadioButton.Tag = "Line";
             this.lineModeRadioButton.Text = "Line";
             this.lineModeRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -722,6 +723,7 @@
             this.characterModeRadioButton.Name = "characterModeRadioButton";
             this.characterModeRadioButton.Size = new System.Drawing.Size(71, 17);
             this.characterModeRadioButton.TabIndex = 134;
+            this.characterModeRadioButton.Tag = "Character";
             this.characterModeRadioButton.Text = "Character";
             this.characterModeRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -732,6 +734,7 @@
             this.characterModeCrLfRadioButton.Name = "characterModeCrLfRadioButton";
             this.characterModeCrLfRadioButton.Size = new System.Drawing.Size(179, 17);
             this.characterModeCrLfRadioButton.TabIndex = 135;
+            this.characterModeCrLfRadioButton.Tag = "CharacterCrLf";
             this.characterModeCrLfRadioButton.Text = "Character with CR/LF translation";
             this.characterModeCrLfRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -775,7 +778,7 @@
             this.LoginMacroTextBox.ReadOnly = true;
             this.LoginMacroTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.LoginMacroTextBox.Size = new System.Drawing.Size(241, 125);
-            this.LoginMacroTextBox.TabIndex = 6;
+            this.LoginMacroTextBox.TabIndex = 8;
             this.LoginMacroTextBox.TabStop = false;
             this.LoginMacroTextBox.Click += new System.EventHandler(this.LoginMacroEditButton_Click);
             // 
@@ -812,7 +815,7 @@
             this.descriptionTextBox.Location = new System.Drawing.Point(130, 386);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(241, 20);
-            this.descriptionTextBox.TabIndex = 110;
+            this.descriptionTextBox.TabIndex = 9;
             this.toolTip1.SetToolTip(this.descriptionTextBox, "Description of this host\r\nShown in the Profiles and Connections window");
             // 
             // windowTitleLabel
@@ -831,7 +834,7 @@
             this.titleTextBox.Location = new System.Drawing.Point(130, 412);
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.Size = new System.Drawing.Size(241, 20);
-            this.titleTextBox.TabIndex = 111;
+            this.titleTextBox.TabIndex = 10;
             this.toolTip1.SetToolTip(this.titleTextBox, "Window title override");
             // 
             // commandTextBox
@@ -841,7 +844,7 @@
             this.commandTextBox.Location = new System.Drawing.Point(130, 203);
             this.commandTextBox.Name = "commandTextBox";
             this.commandTextBox.Size = new System.Drawing.Size(241, 20);
-            this.commandTextBox.TabIndex = 137;
+            this.commandTextBox.TabIndex = 6;
             this.toolTip1.SetToolTip(this.commandTextBox, "Window title override");
             // 
             // commandLineOptionsTextBox
@@ -851,7 +854,7 @@
             this.commandLineOptionsTextBox.Location = new System.Drawing.Point(130, 229);
             this.commandLineOptionsTextBox.Name = "commandLineOptionsTextBox";
             this.commandLineOptionsTextBox.Size = new System.Drawing.Size(241, 20);
-            this.commandLineOptionsTextBox.TabIndex = 138;
+            this.commandLineOptionsTextBox.TabIndex = 7;
             this.toolTip1.SetToolTip(this.commandLineOptionsTextBox, "Window title override");
             // 
             // connectionTypeGroupBox
@@ -1065,8 +1068,8 @@
             this.printerSessionGroupBox.PerformLayout();
             this.printerSessionTableLayoutPanel.ResumeLayout(false);
             this.printerSessionTableLayoutPanel.PerformLayout();
-            this.loclaProcessInputGroupBox.ResumeLayout(false);
-            this.loclaProcessInputGroupBox.PerformLayout();
+            this.localProcessInputGroupBox.ResumeLayout(false);
+            this.localProcessInputGroupBox.PerformLayout();
             this.localProcessInputTableLayoutPanel.ResumeLayout(false);
             this.localProcessInputTableLayoutPanel.PerformLayout();
             this.connectionTypeGroupBox.ResumeLayout(false);
@@ -1127,7 +1130,7 @@
         private System.Windows.Forms.TableLayoutPanel connectionTypeTableLayoutPanel;
         private System.Windows.Forms.RadioButton hostRadioButton;
         private System.Windows.Forms.RadioButton localProcessRadioButton;
-        private System.Windows.Forms.GroupBox loclaProcessInputGroupBox;
+        private System.Windows.Forms.GroupBox localProcessInputGroupBox;
         private System.Windows.Forms.TableLayoutPanel localProcessInputTableLayoutPanel;
         private System.Windows.Forms.RadioButton lineModeRadioButton;
         private System.Windows.Forms.RadioButton characterModeRadioButton;

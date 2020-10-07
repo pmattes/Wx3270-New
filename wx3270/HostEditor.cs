@@ -29,6 +29,22 @@ namespace Wx3270
     }
 
     /// <summary>
+    /// Connection type.
+    /// </summary>
+    public enum ConnectionType
+    {
+        /// <summary>
+        /// Connect to a host.
+        /// </summary>
+        Host,
+
+        /// <summary>
+        /// Connect to a local process.
+        /// </summary>
+        LocalProcess,
+    }
+
+    /// <summary>
     /// The host editor.
     /// </summary>
     public partial class HostEditor : Form
@@ -69,6 +85,16 @@ namespace Wx3270
         private readonly RadioEnum<PrinterSessionType> printerSessionType;
 
         /// <summary>
+        /// Connection type radio buttons.
+        /// </summary>
+        private readonly RadioEnum<ConnectionType> connectionType;
+
+        /// <summary>
+        /// Input type radio buttons.
+        /// </summary>
+        private readonly RadioEnum<B3270.NoTelnetInputType> inputType;
+
+        /// <summary>
         /// Current profile.
         /// </summary>
         private readonly Profile profile;
@@ -94,6 +120,8 @@ namespace Wx3270
             this.autoConnect = new RadioEnum<AutoConnect>(this.loadTableLayoutPanel);
             this.hostType = new RadioEnum<HostType>(this.hostTypeTableLayoutPanel);
             this.printerSessionType = new RadioEnum<PrinterSessionType>(this.printerSessionTableLayoutPanel);
+            this.connectionType = new RadioEnum<ConnectionType>(this.connectionTypeTableLayoutPanel);
+            this.inputType = new RadioEnum<B3270.NoTelnetInputType>(this.localProcessInputTableLayoutPanel);
             this.app = app;
 
             // Map prefixes onto options.
@@ -215,6 +243,46 @@ namespace Wx3270
                 {
                     this.specificLuTextBox.Enabled = false;
                     this.specificLuTextBox.Text = string.Empty;
+                }
+            };
+
+            this.connectionType.Changed += (sender, args) =>
+            {
+                var e = (RadioEnum<ConnectionType>)sender;
+                var isHost = e.Value == ConnectionType.Host;
+
+                this.hostNameLabel.Enabled = isHost;
+                this.HostNameTextBox.Enabled = isHost;
+                this.portLabel.Enabled = isHost;
+                this.PortTextBox.Enabled = isHost;
+                this.luNamesLabel.Enabled = isHost;
+                this.LuNamesTextBox.Enabled = isHost;
+                this.acceptLabel.Enabled = isHost;
+                this.acceptTextBox.Enabled = isHost;
+                this.clientCertificateLabel.Enabled = isHost;
+                this.clientCertTextBox.Enabled = isHost;
+                this.optionsGroupBox.Enabled = isHost;
+                this.hostTypeGroupBox.Enabled = isHost;
+                this.printerSessionGroupBox.Enabled = isHost;
+
+                this.commandLabel.Enabled = !isHost;
+                this.commandTextBox.Enabled = !isHost;
+                this.commandLineOptionsLabel.Enabled = !isHost;
+                this.commandLineOptionsTextBox.Enabled = !isHost;
+                this.localProcessInputGroupBox.Enabled = !isHost;
+
+                if (isHost)
+                {
+                    this.commandTextBox.Text = string.Empty;
+                    this.commandLineOptionsTextBox.Text = string.Empty;
+                }
+                else
+                {
+                    this.HostNameTextBox.Text = string.Empty;
+                    this.PortTextBox.Text = string.Empty;
+                    this.LuNamesTextBox.Text = string.Empty;
+                    this.acceptTextBox.Text = string.Empty;
+                    this.clientCertTextBox.Text = string.Empty;
                 }
             };
 

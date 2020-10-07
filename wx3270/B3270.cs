@@ -15,6 +15,27 @@ namespace Wx3270
         public const int PuaBase = 0xe000;
 
         /// <summary>
+        /// Input types for no-TELNET connections.
+        /// </summary>
+        public enum NoTelnetInputType
+        {
+            /// <summary>
+            /// Line mode.
+            /// </summary>
+            Line,
+
+            /// <summary>
+            /// Character mode.
+            /// </summary>
+            Character,
+
+            /// <summary>
+            /// Character mode with CR/LF translation.
+            /// </summary>
+            CharacterCrLf,
+        }
+
+        /// <summary>
         /// Class for constructing resource values and command-line arguments.
         /// </summary>
         public static class ResourceFormat
