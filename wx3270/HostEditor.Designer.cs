@@ -683,7 +683,7 @@
             this.localProcessInputGroupBox.Size = new System.Drawing.Size(380, 88);
             this.localProcessInputGroupBox.TabIndex = 5;
             this.localProcessInputGroupBox.TabStop = false;
-            this.localProcessInputGroupBox.Text = "Local process input mode";
+            this.localProcessInputGroupBox.Text = "No-TELNET input mode";
             // 
             // localProcessInputTableLayoutPanel
             // 

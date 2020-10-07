@@ -43,11 +43,6 @@ namespace Wx3270
         private MainScreen mainScreen;
 
         /// <summary>
-        /// Connection to cmd.exe.
-        /// </summary>
-        private Cmd cmd;
-
-        /// <summary>
         /// The visible control codes document.
         /// </summary>
         private VisibleControls visibleControls;
@@ -79,18 +74,11 @@ namespace Wx3270
             // Do basic set-up.
             this.app = app;
             this.mainScreen = mainScreen;
-            this.cmd = new Cmd(this.BackEnd);
             this.handle = this.Handle;
 
             // Initialize the tabs.
             this.FileTransferTabInit();
             this.StatusTabInit();
-
-            // Subscribe to connection changes.
-            this.mainScreen.ConnectionStateEvent += () =>
-            {
-                this.cmdButton.Enabled = this.app.Allowed(Restrictions.Prompt) && this.app.ConnectionState == ConnectionState.NotConnected;
-            };
 
             // Subscribe to toggle changes.
             this.app.SettingChange.Register(
@@ -107,8 +95,6 @@ namespace Wx3270
             {
                 this.promptButton.RemoveFromParent();
                 this.promptLabel.RemoveFromParent();
-                this.cmdButton.RemoveFromParent();
-                this.cmdExeLabel.RemoveFromParent();
             }
 
             this.fileRadioButton.Enabled = app.Allowed(Restrictions.ExternalFiles);
@@ -312,17 +298,6 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// The console button was clicked.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void ConsoleButton_Click(object sender, EventArgs e)
-        {
-            this.app.Prompt.Start();
-            this.SafeHide();
-        }
-
-        /// <summary>
         /// The form is closing.
         /// </summary>
         /// <param name="sender">Event sender.</param>
@@ -330,23 +305,6 @@ namespace Wx3270
         private void ActionsDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            this.SafeHide();
-        }
-
-        /// <summary>
-        /// The command window button was clicked.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void CmdButton_Click(object sender, EventArgs e)
-        {
-            if (!this.cmd.Live)
-            {
-                // We need a new one.
-                this.cmd = new Cmd(this.BackEnd);
-            }
-
-            this.cmd.Connect();
             this.SafeHide();
         }
 

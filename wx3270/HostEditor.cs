@@ -358,7 +358,7 @@ namespace Wx3270
             this.commandTextBox.Enabled = !isHost;
             this.commandLineOptionsLabel.Enabled = !isHost;
             this.commandLineOptionsTextBox.Enabled = !isHost;
-            this.localProcessInputGroupBox.Enabled = !isHost;
+            this.localProcessInputGroupBox.Enabled = !isHost || this.telnetCheckBox.Checked;
 
             if (isHost)
             {
@@ -768,6 +768,7 @@ namespace Wx3270
             this.starttlsCheckBox.Enabled = isChecked;
             this.tn3270eCheckBox.Checked = isChecked;
             this.tn3270eCheckBox.Enabled = isChecked;
+            this.localProcessInputGroupBox.Enabled = !isChecked || this.connectionType.Value == ConnectionType.LocalProcess;
         }
 
         /// <summary>

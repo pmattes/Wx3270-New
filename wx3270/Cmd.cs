@@ -14,7 +14,7 @@ namespace Wx3270
     using Wx3270.Contracts;
 
     /// <summary>
-    /// Class to connect to a copy of cmd.exe.
+    /// Class to connect to a local process.
     /// </summary>
     public class Cmd
     {
@@ -121,13 +121,14 @@ namespace Wx3270
         public static void Localize()
         {
             I18n.LocalizeGlobal(Title.SystemError, "System Error");
-            I18n.LocalizeGlobal(Title.ConnectError, "cmd.exe Connect Error");
+            I18n.LocalizeGlobal(Title.ConnectError, "Local Process Connect Error");
         }
 
         /// <summary>
-        /// Connect to a copy of cmd.exe.
+        /// Connect to a local process.
         /// </summary>
-        public void Connect()
+        /// <param name="hostEntry">Host entry.</param>
+        public void Connect(HostEntry hostEntry)
         {
             if (!this.Live)
             {
@@ -145,8 +146,8 @@ namespace Wx3270
 
                 // Create a cmd.exe process.
                 this.cmdProcess = new Process();
-                this.cmdProcess.StartInfo.FileName = "cmd.exe";
-                this.cmdProcess.StartInfo.Arguments = "/q /k chcp 65001";
+                this.cmdProcess.StartInfo.FileName = hostEntry.Command;
+                this.cmdProcess.StartInfo.Arguments = hostEntry.CommandLineOptions;
                 this.cmdProcess.StartInfo.UseShellExecute = false;
                 this.cmdProcess.StartInfo.RedirectStandardInput = true;
                 this.cmdProcess.StartInfo.RedirectStandardOutput = true;

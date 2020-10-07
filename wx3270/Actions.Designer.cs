@@ -38,20 +38,25 @@
             this.debuggingUpperLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.visibleControlCheckBox = new System.Windows.Forms.CheckBox();
+            this.controlCharDocButton = new Wx3270.NoSelectButton();
             this.traceCheckBox = new System.Windows.Forms.CheckBox();
             this.tracePr3287CheckBox = new System.Windows.Forms.CheckBox();
             this.uiTracePanel = new System.Windows.Forms.Panel();
             this.uiTraceCheckBox = new System.Windows.Forms.CheckBox();
             this.uiTraceCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.debuggingLowerLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.promptButton = new Wx3270.NoSelectButton();
             this.promptLabel = new System.Windows.Forms.Label();
-            this.cmdExeLabel = new System.Windows.Forms.Label();
             this.cancelKeyboardDisableLabel = new System.Windows.Forms.Label();
             this.KeymapLabel = new System.Windows.Forms.Label();
+            this.ReenableButton = new Wx3270.NoSelectButton();
+            this.KeymapButton = new Wx3270.NoSelectButton();
+            this.cancelActionsButton = new Wx3270.NoSelectButton();
             this.cancelActionsLabel = new System.Windows.Forms.Label();
             this.screenImagesGroupBox = new System.Windows.Forms.GroupBox();
             this.fileRadioButton = new System.Windows.Forms.RadioButton();
             this.printerRadioButton = new System.Windows.Forms.RadioButton();
+            this.printScreenButton = new Wx3270.NoSelectButton();
             this.traceScreenCheckBox = new System.Windows.Forms.CheckBox();
             this.printScreenLabel = new System.Windows.Forms.Label();
             this.aboutTab = new System.Windows.Forms.TabPage();
@@ -93,6 +98,7 @@
             this.recordsReceivedValueLabel = new System.Windows.Forms.Label();
             this.bytesReceivedValueLabel = new System.Windows.Forms.Label();
             this.fileTransferTab = new System.Windows.Forms.TabPage();
+            this.copyActionButton = new Wx3270.NoSelectButton();
             this.helpPictureBox4 = new System.Windows.Forms.PictureBox();
             this.modeBox = new System.Windows.Forms.GroupBox();
             this.modeBinaryButton = new System.Windows.Forms.RadioButton();
@@ -142,9 +148,12 @@
             this.filesBox = new System.Windows.Forms.GroupBox();
             this.fileLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.hostFileTextBox = new System.Windows.Forms.TextBox();
+            this.fileTransferBrowseButton = new Wx3270.NoSelectButton();
             this.localFileLabel = new System.Windows.Forms.Label();
             this.localFileTextBox = new System.Windows.Forms.TextBox();
             this.hostFileLabel = new System.Windows.Forms.Label();
+            this.fileTransferClearFormButton = new Wx3270.NoSelectButton();
+            this.transferButton = new Wx3270.NoSelectButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.transferLocalFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.connectionTimer = new System.Windows.Forms.Timer(this.components);
@@ -152,17 +161,6 @@
             this.screenTraceFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.localizationFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.ftPopdownTimer = new System.Windows.Forms.Timer(this.components);
-            this.controlCharDocButton = new Wx3270.NoSelectButton();
-            this.promptButton = new Wx3270.NoSelectButton();
-            this.cmdButton = new Wx3270.NoSelectButton();
-            this.ReenableButton = new Wx3270.NoSelectButton();
-            this.KeymapButton = new Wx3270.NoSelectButton();
-            this.cancelActionsButton = new Wx3270.NoSelectButton();
-            this.printScreenButton = new Wx3270.NoSelectButton();
-            this.copyActionButton = new Wx3270.NoSelectButton();
-            this.fileTransferBrowseButton = new Wx3270.NoSelectButton();
-            this.fileTransferClearFormButton = new Wx3270.NoSelectButton();
-            this.transferButton = new Wx3270.NoSelectButton();
             this.actionsTabs.SuspendLayout();
             this.actionsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
@@ -264,7 +262,7 @@
             this.debuggingOverallLayoutPanel.RowCount = 2;
             this.debuggingOverallLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingOverallLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.debuggingOverallLayoutPanel.Size = new System.Drawing.Size(473, 304);
+            this.debuggingOverallLayoutPanel.Size = new System.Drawing.Size(473, 275);
             this.debuggingOverallLayoutPanel.TabIndex = 131;
             // 
             // debuggingUpperLayoutPanel
@@ -308,6 +306,18 @@
             this.visibleControlCheckBox.Text = "Make 3270 fields and control characters visible";
             this.visibleControlCheckBox.UseVisualStyleBackColor = true;
             this.visibleControlCheckBox.Click += new System.EventHandler(this.VisibleControlCheckBox_Clicked);
+            // 
+            // controlCharDocButton
+            // 
+            this.controlCharDocButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.controlCharDocButton.Location = new System.Drawing.Point(257, 3);
+            this.controlCharDocButton.Name = "controlCharDocButton";
+            this.controlCharDocButton.Size = new System.Drawing.Size(75, 23);
+            this.controlCharDocButton.TabIndex = 10;
+            this.controlCharDocButton.TabStop = false;
+            this.controlCharDocButton.Text = "View Codes";
+            this.controlCharDocButton.UseVisualStyleBackColor = true;
+            this.controlCharDocButton.Click += new System.EventHandler(this.ControlCharDocButton_Click);
             // 
             // traceCheckBox
             // 
@@ -371,9 +381,7 @@
             this.debuggingLowerLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.debuggingLowerLayoutPanel.Controls.Add(this.promptButton, 0, 0);
             this.debuggingLowerLayoutPanel.Controls.Add(this.promptLabel, 1, 0);
-            this.debuggingLowerLayoutPanel.Controls.Add(this.cmdExeLabel, 1, 4);
             this.debuggingLowerLayoutPanel.Controls.Add(this.cancelKeyboardDisableLabel, 1, 3);
-            this.debuggingLowerLayoutPanel.Controls.Add(this.cmdButton, 0, 4);
             this.debuggingLowerLayoutPanel.Controls.Add(this.KeymapLabel, 1, 1);
             this.debuggingLowerLayoutPanel.Controls.Add(this.ReenableButton, 0, 3);
             this.debuggingLowerLayoutPanel.Controls.Add(this.KeymapButton, 0, 1);
@@ -381,14 +389,25 @@
             this.debuggingLowerLayoutPanel.Controls.Add(this.cancelActionsLabel, 1, 2);
             this.debuggingLowerLayoutPanel.Location = new System.Drawing.Point(3, 156);
             this.debuggingLowerLayoutPanel.Name = "debuggingLowerLayoutPanel";
-            this.debuggingLowerLayoutPanel.RowCount = 5;
+            this.debuggingLowerLayoutPanel.RowCount = 4;
             this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.debuggingLowerLayoutPanel.Size = new System.Drawing.Size(415, 145);
+            this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.debuggingLowerLayoutPanel.Size = new System.Drawing.Size(415, 116);
             this.debuggingLowerLayoutPanel.TabIndex = 130;
+            // 
+            // promptButton
+            // 
+            this.promptButton.Location = new System.Drawing.Point(3, 3);
+            this.promptButton.Name = "promptButton";
+            this.promptButton.Size = new System.Drawing.Size(119, 23);
+            this.promptButton.TabIndex = 125;
+            this.promptButton.TabStop = false;
+            this.promptButton.Text = "wx3270>";
+            this.promptButton.UseVisualStyleBackColor = true;
+            this.promptButton.Click += new System.EventHandler(this.PromptCheckBox_Click);
             // 
             // promptLabel
             // 
@@ -399,16 +418,6 @@
             this.promptLabel.Size = new System.Drawing.Size(284, 13);
             this.promptLabel.TabIndex = 126;
             this.promptLabel.Text = "Open a window to enter wx3270 actions (wx3270> prompt)";
-            // 
-            // cmdExeLabel
-            // 
-            this.cmdExeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cmdExeLabel.AutoSize = true;
-            this.cmdExeLabel.Location = new System.Drawing.Point(128, 124);
-            this.cmdExeLabel.Name = "cmdExeLabel";
-            this.cmdExeLabel.Size = new System.Drawing.Size(199, 13);
-            this.cmdExeLabel.TabIndex = 6;
-            this.cmdExeLabel.Text = "Connect to a Windows command prompt";
             // 
             // cancelKeyboardDisableLabel
             // 
@@ -429,6 +438,39 @@
             this.KeymapLabel.Size = new System.Drawing.Size(135, 13);
             this.KeymapLabel.TabIndex = 128;
             this.KeymapLabel.Text = "Display the current keymap";
+            // 
+            // ReenableButton
+            // 
+            this.ReenableButton.Location = new System.Drawing.Point(3, 90);
+            this.ReenableButton.Name = "ReenableButton";
+            this.ReenableButton.Size = new System.Drawing.Size(119, 23);
+            this.ReenableButton.TabIndex = 121;
+            this.ReenableButton.TabStop = false;
+            this.ReenableButton.Text = "Re-enable Keyboard";
+            this.ReenableButton.UseVisualStyleBackColor = true;
+            this.ReenableButton.Click += new System.EventHandler(this.ReenableButton_Click);
+            // 
+            // KeymapButton
+            // 
+            this.KeymapButton.Location = new System.Drawing.Point(3, 32);
+            this.KeymapButton.Name = "KeymapButton";
+            this.KeymapButton.Size = new System.Drawing.Size(119, 23);
+            this.KeymapButton.TabIndex = 127;
+            this.KeymapButton.TabStop = false;
+            this.KeymapButton.Text = "Display Keymap";
+            this.KeymapButton.UseVisualStyleBackColor = true;
+            this.KeymapButton.Click += new System.EventHandler(this.KeymapClick);
+            // 
+            // cancelActionsButton
+            // 
+            this.cancelActionsButton.Location = new System.Drawing.Point(3, 61);
+            this.cancelActionsButton.Name = "cancelActionsButton";
+            this.cancelActionsButton.Size = new System.Drawing.Size(119, 23);
+            this.cancelActionsButton.TabIndex = 118;
+            this.cancelActionsButton.TabStop = false;
+            this.cancelActionsButton.Text = "Cancel Actions";
+            this.cancelActionsButton.UseVisualStyleBackColor = true;
+            this.cancelActionsButton.Click += new System.EventHandler(this.CancelActionsButton_Click);
             // 
             // cancelActionsLabel
             // 
@@ -477,6 +519,17 @@
             this.printerRadioButton.Tag = "Printer";
             this.printerRadioButton.Text = "Send to printer";
             this.printerRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // printScreenButton
+            // 
+            this.printScreenButton.Location = new System.Drawing.Point(6, 19);
+            this.printScreenButton.Name = "printScreenButton";
+            this.printScreenButton.Size = new System.Drawing.Size(119, 23);
+            this.printScreenButton.TabIndex = 120;
+            this.printScreenButton.TabStop = false;
+            this.printScreenButton.Text = "Print Screen";
+            this.printScreenButton.UseVisualStyleBackColor = true;
+            this.printScreenButton.Click += new System.EventHandler(this.PrintTextButton_Click);
             // 
             // traceScreenCheckBox
             // 
@@ -963,6 +1016,19 @@
             this.fileTransferTab.TabIndex = 3;
             this.fileTransferTab.Text = "File Transfer";
             this.fileTransferTab.UseVisualStyleBackColor = true;
+            // 
+            // copyActionButton
+            // 
+            this.copyActionButton.Enabled = false;
+            this.copyActionButton.Location = new System.Drawing.Point(467, 499);
+            this.copyActionButton.Name = "copyActionButton";
+            this.copyActionButton.Size = new System.Drawing.Size(75, 23);
+            this.copyActionButton.TabIndex = 128;
+            this.copyActionButton.TabStop = false;
+            this.copyActionButton.Text = "Copy Action";
+            this.toolTip1.SetToolTip(this.copyActionButton, "Copy Transfer() action to clipboard");
+            this.copyActionButton.UseVisualStyleBackColor = true;
+            this.copyActionButton.Click += new System.EventHandler(this.CopyActionButton_Click);
             // 
             // helpPictureBox4
             // 
@@ -1549,6 +1615,18 @@
             this.hostFileTextBox.TextChanged += new System.EventHandler(this.FileTransferOptionChanged);
             this.hostFileTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.HostFileTextBox_Validating);
             // 
+            // fileTransferBrowseButton
+            // 
+            this.fileTransferBrowseButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.fileTransferBrowseButton.Location = new System.Drawing.Point(350, 3);
+            this.fileTransferBrowseButton.Name = "fileTransferBrowseButton";
+            this.fileTransferBrowseButton.Size = new System.Drawing.Size(75, 22);
+            this.fileTransferBrowseButton.TabIndex = 1;
+            this.fileTransferBrowseButton.TabStop = false;
+            this.fileTransferBrowseButton.Text = "Browse";
+            this.fileTransferBrowseButton.UseVisualStyleBackColor = true;
+            this.fileTransferBrowseButton.Click += new System.EventHandler(this.LocalFileTextBox_Click);
+            // 
             // localFileLabel
             // 
             this.localFileLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -1578,6 +1656,30 @@
             this.hostFileLabel.Size = new System.Drawing.Size(48, 13);
             this.hostFileLabel.TabIndex = 0;
             this.hostFileLabel.Text = "Host File";
+            // 
+            // fileTransferClearFormButton
+            // 
+            this.fileTransferClearFormButton.CausesValidation = false;
+            this.fileTransferClearFormButton.Location = new System.Drawing.Point(386, 499);
+            this.fileTransferClearFormButton.Name = "fileTransferClearFormButton";
+            this.fileTransferClearFormButton.Size = new System.Drawing.Size(75, 23);
+            this.fileTransferClearFormButton.TabIndex = 10;
+            this.fileTransferClearFormButton.TabStop = false;
+            this.fileTransferClearFormButton.Text = "Reset Form";
+            this.fileTransferClearFormButton.UseVisualStyleBackColor = true;
+            this.fileTransferClearFormButton.Click += new System.EventHandler(this.FileTransferClearFormButton_Click);
+            // 
+            // transferButton
+            // 
+            this.transferButton.Enabled = false;
+            this.transferButton.Location = new System.Drawing.Point(548, 499);
+            this.transferButton.Name = "transferButton";
+            this.transferButton.Size = new System.Drawing.Size(75, 23);
+            this.transferButton.TabIndex = 9;
+            this.transferButton.TabStop = false;
+            this.transferButton.Text = "Transfer";
+            this.transferButton.UseVisualStyleBackColor = true;
+            this.transferButton.Click += new System.EventHandler(this.TransferButton_Click);
             // 
             // transferLocalFileDialog
             // 
@@ -1617,133 +1719,6 @@
             // ftPopdownTimer
             // 
             this.ftPopdownTimer.Interval = 5000;
-            // 
-            // controlCharDocButton
-            // 
-            this.controlCharDocButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.controlCharDocButton.Location = new System.Drawing.Point(257, 3);
-            this.controlCharDocButton.Name = "controlCharDocButton";
-            this.controlCharDocButton.Size = new System.Drawing.Size(75, 23);
-            this.controlCharDocButton.TabIndex = 10;
-            this.controlCharDocButton.TabStop = false;
-            this.controlCharDocButton.Text = "View Codes";
-            this.controlCharDocButton.UseVisualStyleBackColor = true;
-            this.controlCharDocButton.Click += new System.EventHandler(this.ControlCharDocButton_Click);
-            // 
-            // promptButton
-            // 
-            this.promptButton.Location = new System.Drawing.Point(3, 3);
-            this.promptButton.Name = "promptButton";
-            this.promptButton.Size = new System.Drawing.Size(119, 23);
-            this.promptButton.TabIndex = 125;
-            this.promptButton.TabStop = false;
-            this.promptButton.Text = "wx3270>";
-            this.promptButton.UseVisualStyleBackColor = true;
-            this.promptButton.Click += new System.EventHandler(this.PromptCheckBox_Click);
-            // 
-            // cmdButton
-            // 
-            this.cmdButton.Location = new System.Drawing.Point(3, 119);
-            this.cmdButton.Name = "cmdButton";
-            this.cmdButton.Size = new System.Drawing.Size(119, 23);
-            this.cmdButton.TabIndex = 3;
-            this.cmdButton.TabStop = false;
-            this.cmdButton.Text = "Connect to cmd.exe";
-            this.cmdButton.UseVisualStyleBackColor = true;
-            this.cmdButton.Click += new System.EventHandler(this.CmdButton_Click);
-            // 
-            // ReenableButton
-            // 
-            this.ReenableButton.Location = new System.Drawing.Point(3, 90);
-            this.ReenableButton.Name = "ReenableButton";
-            this.ReenableButton.Size = new System.Drawing.Size(119, 23);
-            this.ReenableButton.TabIndex = 121;
-            this.ReenableButton.TabStop = false;
-            this.ReenableButton.Text = "Re-enable Keyboard";
-            this.ReenableButton.UseVisualStyleBackColor = true;
-            this.ReenableButton.Click += new System.EventHandler(this.ReenableButton_Click);
-            // 
-            // KeymapButton
-            // 
-            this.KeymapButton.Location = new System.Drawing.Point(3, 32);
-            this.KeymapButton.Name = "KeymapButton";
-            this.KeymapButton.Size = new System.Drawing.Size(119, 23);
-            this.KeymapButton.TabIndex = 127;
-            this.KeymapButton.TabStop = false;
-            this.KeymapButton.Text = "Display Keymap";
-            this.KeymapButton.UseVisualStyleBackColor = true;
-            this.KeymapButton.Click += new System.EventHandler(this.KeymapClick);
-            // 
-            // cancelActionsButton
-            // 
-            this.cancelActionsButton.Location = new System.Drawing.Point(3, 61);
-            this.cancelActionsButton.Name = "cancelActionsButton";
-            this.cancelActionsButton.Size = new System.Drawing.Size(119, 23);
-            this.cancelActionsButton.TabIndex = 118;
-            this.cancelActionsButton.TabStop = false;
-            this.cancelActionsButton.Text = "Cancel Actions";
-            this.cancelActionsButton.UseVisualStyleBackColor = true;
-            this.cancelActionsButton.Click += new System.EventHandler(this.CancelActionsButton_Click);
-            // 
-            // printScreenButton
-            // 
-            this.printScreenButton.Location = new System.Drawing.Point(6, 19);
-            this.printScreenButton.Name = "printScreenButton";
-            this.printScreenButton.Size = new System.Drawing.Size(119, 23);
-            this.printScreenButton.TabIndex = 120;
-            this.printScreenButton.TabStop = false;
-            this.printScreenButton.Text = "Print Screen";
-            this.printScreenButton.UseVisualStyleBackColor = true;
-            this.printScreenButton.Click += new System.EventHandler(this.PrintTextButton_Click);
-            // 
-            // copyActionButton
-            // 
-            this.copyActionButton.Enabled = false;
-            this.copyActionButton.Location = new System.Drawing.Point(467, 499);
-            this.copyActionButton.Name = "copyActionButton";
-            this.copyActionButton.Size = new System.Drawing.Size(75, 23);
-            this.copyActionButton.TabIndex = 128;
-            this.copyActionButton.TabStop = false;
-            this.copyActionButton.Text = "Copy Action";
-            this.toolTip1.SetToolTip(this.copyActionButton, "Copy Transfer() action to clipboard");
-            this.copyActionButton.UseVisualStyleBackColor = true;
-            this.copyActionButton.Click += new System.EventHandler(this.CopyActionButton_Click);
-            // 
-            // fileTransferBrowseButton
-            // 
-            this.fileTransferBrowseButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.fileTransferBrowseButton.Location = new System.Drawing.Point(350, 3);
-            this.fileTransferBrowseButton.Name = "fileTransferBrowseButton";
-            this.fileTransferBrowseButton.Size = new System.Drawing.Size(75, 22);
-            this.fileTransferBrowseButton.TabIndex = 1;
-            this.fileTransferBrowseButton.TabStop = false;
-            this.fileTransferBrowseButton.Text = "Browse";
-            this.fileTransferBrowseButton.UseVisualStyleBackColor = true;
-            this.fileTransferBrowseButton.Click += new System.EventHandler(this.LocalFileTextBox_Click);
-            // 
-            // fileTransferClearFormButton
-            // 
-            this.fileTransferClearFormButton.CausesValidation = false;
-            this.fileTransferClearFormButton.Location = new System.Drawing.Point(386, 499);
-            this.fileTransferClearFormButton.Name = "fileTransferClearFormButton";
-            this.fileTransferClearFormButton.Size = new System.Drawing.Size(75, 23);
-            this.fileTransferClearFormButton.TabIndex = 10;
-            this.fileTransferClearFormButton.TabStop = false;
-            this.fileTransferClearFormButton.Text = "Reset Form";
-            this.fileTransferClearFormButton.UseVisualStyleBackColor = true;
-            this.fileTransferClearFormButton.Click += new System.EventHandler(this.FileTransferClearFormButton_Click);
-            // 
-            // transferButton
-            // 
-            this.transferButton.Enabled = false;
-            this.transferButton.Location = new System.Drawing.Point(548, 499);
-            this.transferButton.Name = "transferButton";
-            this.transferButton.Size = new System.Drawing.Size(75, 23);
-            this.transferButton.TabIndex = 9;
-            this.transferButton.TabStop = false;
-            this.transferButton.Text = "Transfer";
-            this.transferButton.UseVisualStyleBackColor = true;
-            this.transferButton.Click += new System.EventHandler(this.TransferButton_Click);
             // 
             // Actions
             // 
@@ -1832,9 +1807,7 @@
         private System.Windows.Forms.TabPage aboutTab;
         private System.Windows.Forms.TabPage statusTab;
         private System.Windows.Forms.TabPage fileTransferTab;
-        private Wx3270.NoSelectButton cmdButton;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Label cmdExeLabel;
         private System.Windows.Forms.CheckBox traceCheckBox;
         private System.Windows.Forms.GroupBox backendAboutGroupBox;
         private System.Windows.Forms.TextBox backendCopyrightTextBox;

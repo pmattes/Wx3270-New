@@ -7,6 +7,7 @@ namespace Wx3270
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Permissions;
     using System.Text;
     using System.Windows.Forms;
 
@@ -159,37 +160,42 @@ namespace Wx3270
             }
 
             settings.AddRange(new[] { B3270.Setting.LoginMacro, CleanLoginMacro(entry.LoginMacro) });
+            settings.AddRange(new[] { B3270.Setting.NoTelnetInputMode, entry.NoTelnetInputType.ToString() });
 
-            // Build up the host name. Add prefixes.
-            StringBuilder sb = new StringBuilder();
-            if (!string.IsNullOrEmpty(entry.Prefixes))
+            var actions = new List<BackEndAction>() { new BackEndAction(B3270.Action.Set, settings) };
+            if (entry.ConnectionType == ConnectionType.Host)
             {
-                sb.Append(string.Join(":", entry.Prefixes.ToCharArray().Select(c => c.ToString())) + ":");
-            }
+                // Build up the host name. Add prefixes.
+                StringBuilder sb = new StringBuilder();
+                if (!string.IsNullOrEmpty(entry.Prefixes))
+                {
+                    sb.Append(string.Join(":", entry.Prefixes.ToCharArray().Select(c => c.ToString())) + ":");
+                }
 
-            // Add LU names.
-            if (!string.IsNullOrEmpty(entry.LuNames))
-            {
-                sb.Append(string.Join(",", entry.LuNames.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)) + "@");
-            }
+                // Add LU names.
+                if (!string.IsNullOrEmpty(entry.LuNames))
+                {
+                    sb.Append(string.Join(",", entry.LuNames.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)) + "@");
+                }
 
-            // Add (possibly-bracketed) hostname.
-            if (entry.Host.Contains(":"))
-            {
-                sb.Append($"[{entry.Host}]");
-            }
-            else
-            {
-                sb.Append(entry.Host);
-            }
+                // Add (possibly-bracketed) hostname.
+                if (entry.Host.Contains(":"))
+                {
+                    sb.Append($"[{entry.Host}]");
+                }
+                else
+                {
+                    sb.Append(entry.Host);
+                }
 
-            // Add port.
-            if (!string.IsNullOrEmpty(entry.Port))
-            {
-                sb.Append(":" + entry.Port);
-            }
+                // Add port.
+                if (!string.IsNullOrEmpty(entry.Port))
+                {
+                    sb.Append(":" + entry.Port);
+                }
 
-            var actions = new List<BackEndAction>() { new BackEndAction(B3270.Action.Set, settings), new BackEndAction(B3270.Action.Connect, sb.ToString()) };
+                actions.Add(new BackEndAction(B3270.Action.Connect, sb.ToString()));
+            }
 
             // Connect.
             this.mainScreen.ConnectHostType = entry.HostType; // for file transfers
@@ -212,6 +218,14 @@ namespace Wx3270
                         else
                         {
                             ErrorBox.Show(result, I18n.Get(Title.Connect));
+                        }
+                    }
+                    else
+                    {
+                        if (entry.ConnectionType == ConnectionType.LocalProcess)
+                        {
+                            // Connect to a local process.
+                            this.app.Cmd.Connect(entry);
                         }
                     }
                 });

@@ -991,6 +991,11 @@ namespace Wx3270
             public const string NopSeconds = "nopSeconds";
 
             /// <summary>
+            /// The no-TELNET input mode setting.
+            /// </summary>
+            public const string NoTelnetInputMode = "noTelnetInputMode";
+
+            /// <summary>
             /// The oversize setting.
             /// </summary>
             public const string Oversize = "oversize";

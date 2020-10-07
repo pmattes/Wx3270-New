@@ -5,7 +5,6 @@
 namespace Wx3270
 {
     using System;
-    using System.CodeDom;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
@@ -322,6 +321,11 @@ namespace Wx3270
         /// Gets the screen select state.
         /// </summary>
         public SelectState SelectState => this.screen.ScreenImage.SelectState;
+
+        /// <summary>
+        /// Gets the local process interface.
+        /// </summary>
+        public Cmd Cmd { get; private set; }
 
         /// <summary>
         /// Static localization.
@@ -698,6 +702,7 @@ namespace Wx3270
             this.SelectionManager = new SelectionManager(this);
 
             this.Prompt = new Prompt(this.BackEnd);
+            this.Cmd = new Cmd(this.BackEnd);
 
             this.bell = new Bell(this);
         }
