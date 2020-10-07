@@ -100,6 +100,7 @@
             this.basicParametersTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.commandLineOptionsLabel = new System.Windows.Forms.Label();
             this.commandLabel = new System.Windows.Forms.Label();
+            this.commandOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.loadGroupBox.SuspendLayout();
             this.loadTableLayoutPanel.SuspendLayout();
             this.hostTypeGroupBox.SuspendLayout();
@@ -779,8 +780,8 @@
             this.LoginMacroTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.LoginMacroTextBox.Size = new System.Drawing.Size(241, 125);
             this.LoginMacroTextBox.TabIndex = 8;
-            this.LoginMacroTextBox.TabStop = false;
             this.LoginMacroTextBox.Click += new System.EventHandler(this.LoginMacroEditButton_Click);
+            this.LoginMacroTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginMacroEditButton_Click);
             // 
             // clientCertificateLabel
             // 
@@ -843,9 +844,12 @@
             this.commandTextBox.Enabled = false;
             this.commandTextBox.Location = new System.Drawing.Point(130, 203);
             this.commandTextBox.Name = "commandTextBox";
+            this.commandTextBox.ReadOnly = true;
             this.commandTextBox.Size = new System.Drawing.Size(241, 20);
             this.commandTextBox.TabIndex = 6;
             this.toolTip1.SetToolTip(this.commandTextBox, "Window title override");
+            this.commandTextBox.Click += new System.EventHandler(this.CommandTextBox_Click);
+            this.commandTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CommandTextBox_Click);
             // 
             // commandLineOptionsTextBox
             // 
@@ -1033,6 +1037,12 @@
             this.commandLabel.TabIndex = 135;
             this.commandLabel.Text = "Command*";
             // 
+            // commandOpenFileDialog
+            // 
+            this.commandOpenFileDialog.DefaultExt = "exe";
+            this.commandOpenFileDialog.Filter = "Programs|*.exe|All files|*.*";
+            this.commandOpenFileDialog.Title = "Select command";
+            // 
             // HostEditor
             // 
             this.AcceptButton = this.okButton;
@@ -1160,5 +1170,6 @@
         private System.Windows.Forms.CheckBox telnetCheckBox;
         private System.Windows.Forms.CheckBox loginScreenCheckBox;
         private System.Windows.Forms.TableLayoutPanel buttonsTableLayoutPanel;
+        private System.Windows.Forms.OpenFileDialog commandOpenFileDialog;
     }
 }

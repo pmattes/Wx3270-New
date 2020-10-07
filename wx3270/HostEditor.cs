@@ -7,6 +7,7 @@ namespace Wx3270
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.IO;
     using System.Linq;
     using System.Windows.Forms;
 
@@ -565,6 +566,16 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// A key was pressed in the login macro text box.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void LoginMacroEditButton_Click(object sender, KeyPressEventArgs e)
+        {
+            this.LoginMacroEditButton_Click(sender, (EventArgs)e);
+        }
+
+        /// <summary>
         /// The cancel button was pressed.
         /// </summary>
         /// <param name="sender">Event sender.</param>
@@ -750,6 +761,45 @@ namespace Wx3270
             this.starttlsCheckBox.Enabled = isChecked;
             this.tn3270eCheckBox.Checked = isChecked;
             this.tn3270eCheckBox.Enabled = isChecked;
+        }
+
+        /// <summary>
+        /// The command text box was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void CommandTextBox_Click(object sender, EventArgs e)
+        {
+            var initialDir = string.Empty;
+            if (!string.IsNullOrEmpty(this.commandTextBox.Text))
+            {
+                initialDir = Path.GetDirectoryName(this.commandTextBox.Text);
+            }
+
+            if (string.IsNullOrEmpty(initialDir))
+            {
+               initialDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            }
+
+            this.commandOpenFileDialog.InitialDirectory = initialDir;
+            this.commandOpenFileDialog.FileName = this.commandTextBox.Text;
+            var ret = this.commandOpenFileDialog.ShowDialog(this);
+            if (ret == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            this.commandTextBox.Text = this.commandOpenFileDialog.FileName;
+        }
+
+        /// <summary>
+        /// A key was pressed in the command text box.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void CommandTextBox_Click(object sender, KeyPressEventArgs e)
+        {
+            this.CommandTextBox_Click(sender, (EventArgs)e);
         }
 
         /// <summary>
