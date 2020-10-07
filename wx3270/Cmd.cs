@@ -110,11 +110,6 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Gets a value indicating whether this instance is alive.
-        /// </summary>
-        public bool Live { get; private set; } = true;
-
-        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]
@@ -130,12 +125,6 @@ namespace Wx3270
         /// <param name="hostEntry">Host entry.</param>
         public void Connect(HostEntry hostEntry)
         {
-            if (!this.Live)
-            {
-                // Dead, need a new one.
-                return;
-            }
-
             lock (this.sync)
             {
                 if (this.cmdProcess != null)
@@ -337,13 +326,6 @@ namespace Wx3270
         /// </summary>
         private void Cleanup()
         {
-            if (!this.Live)
-            {
-                return;
-            }
-
-            this.Live = false;
-
             if (this.cmdProcess != null)
             {
                 if (!this.cmdProcess.HasExited)
