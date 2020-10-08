@@ -9,7 +9,6 @@ namespace Wx3270
     using System.ComponentModel;
     using System.IO;
     using System.Linq;
-    using System.Runtime.CompilerServices;
     using System.Windows.Forms;
 
     using I18nBase;
@@ -593,6 +592,7 @@ namespace Wx3270
                     return;
                 }
 
+                // XXX: There should be a way to make this unique, instead of failing the edit/add later.
                 if (string.IsNullOrEmpty(this.NicknameTextBox.Text))
                 {
                     this.NicknameTextBox.Text = this.HostNameTextBox.Text;

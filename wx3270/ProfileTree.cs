@@ -11,6 +11,7 @@ namespace Wx3270
     using System.Drawing;
     using System.IO;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Windows.Forms;
     using I18nBase;
     using IWshRuntimeLibrary;
@@ -561,17 +562,18 @@ namespace Wx3270
             // Pop up the dialog.
             using (var editor = new HostEditor(HostEditingMode.QuickConnect, null, profile, this.app))
             {
+                HostEntry hostEntry = null;
                 var result = editor.ShowDialog(this);
                 if (result == DialogResult.OK || result == DialogResult.Yes)
                 {
                     // Save the host.
-                    if (profile.Hosts.Any(h => h.Name.Equals(editor.HostEntry.Name, StringComparison.InvariantCultureIgnoreCase)))
+                    hostEntry = editor.HostEntry;
+                    if (profile.Hosts.Any(h => h.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase)))
                     {
-                        ErrorBox.Show(I18n.Get(Message.NameAlreadyExists), I18n.Get(Title.AddConnection));
-                        return;
+                        hostEntry.Name = CreateUniqueName(hostEntry.Name, profile.Hosts.Select(p => p.Name));
                     }
 
-                    var newEntryPath = this.PathCombine(profile.DisplayFolder, profile.Name, editor.HostEntry.Name);
+                    var newEntryPath = this.PathCombine(profile.DisplayFolder, profile.Name, hostEntry.Name);
                     var refocus = new ProfileRefocus(
                         this.ProfileManager,
                         Separator,
@@ -583,9 +585,9 @@ namespace Wx3270
                         this.ProfileManager.PushAndSave(
                             (current) =>
                             {
-                                current.Hosts = current.Hosts.Concat(new[] { editor.HostEntry }).ToArray();
+                                current.Hosts = current.Hosts.Concat(new[] { hostEntry }).ToArray();
                             },
-                            string.Format(I18n.Get(Message.AddConnection), editor.HostEntry.Name),
+                            string.Format(I18n.Get(Message.AddConnection), hostEntry.Name),
                             profile,
                             refocus);
                     }
@@ -600,7 +602,7 @@ namespace Wx3270
                 if (result == DialogResult.Yes)
                 {
                     // Connect to the host.
-                    this.connect.ConnectToHost(editor.HostEntry);
+                    this.connect.ConnectToHost(hostEntry);
                     this.SafeHide();
                 }
             }
@@ -639,6 +641,39 @@ namespace Wx3270
             ////this.ProfileManager.FlushUndoRedo();
 
             return true;
+        }
+
+        /// <summary>
+        /// Creates a unique version of <paramref name="name"/>.
+        /// </summary>
+        /// <param name="name">Name to modify.</param>
+        /// <param name="names">Existing names.</param>
+        /// <returns>Unique name.</returns>
+        private static string CreateUniqueName(string name, IEnumerable<string> names)
+        {
+            // If the name is already of the form 'xxx (n)', start incrementing n. Otherwise start with 1.
+            string prefix;
+            int n;
+            var regex = new Regex(@"^(?<prefix>.*) \((?<n>\d+)\)$");
+            var matches = regex.Match(name);
+            if (matches.Success)
+            {
+                prefix = matches.Groups["prefix"].Value;
+                n = int.Parse(matches.Groups["n"].Value);
+            }
+            else
+            {
+                prefix = name;
+                n = 0;
+            }
+
+            // Spin until a unique name is found.
+            string newName;
+            while (names.Contains(newName = $"{prefix} ({++n})", StringComparer.InvariantCultureIgnoreCase))
+            {
+            }
+
+            return newName;
         }
 
         /// <summary>
@@ -2623,14 +2658,14 @@ namespace Wx3270
                 var result = editor.ShowDialog(this);
                 if (result == DialogResult.OK)
                 {
-                    if (!editor.HostEntry.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase)
-                        && hostNode.Profile.Hosts.Any(h => h.Name.Equals(editor.HostEntry.Name, StringComparison.InvariantCultureIgnoreCase)))
+                    var newHostEntry = editor.HostEntry;
+                    if (!newHostEntry.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase)
+                        && hostNode.Profile.Hosts.Any(h => h.Name.Equals(newHostEntry.Name, StringComparison.InvariantCultureIgnoreCase)))
                     {
-                        ErrorBox.Show(I18n.Get(Message.NameAlreadyExists), I18n.Get(Title.EditConnection));
-                        return;
+                        newHostEntry.Name = CreateUniqueName(newHostEntry.Name, hostNode.Profile.Hosts.Select(p => p.Name));
                     }
 
-                    var newName = this.PathCombine(hostNode.Profile.DisplayFolder, hostNode.Profile.Name, editor.HostEntry.Name);
+                    var newName = this.PathCombine(hostNode.Profile.DisplayFolder, hostNode.Profile.Name, newHostEntry.Name);
                     this.autoSelectPath = newName;
                     var refocus = new ProfileRefocus(
                         this.ProfileManager,
@@ -2642,7 +2677,7 @@ namespace Wx3270
                         this.ProfileManager.PushAndSave(
                             (current) =>
                             {
-                                current.Hosts = current.Hosts.Select(h => h.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase) ? editor.HostEntry : h).ToArray();
+                                current.Hosts = current.Hosts.Select(h => h.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase) ? newHostEntry : h).ToArray();
                             },
                             string.Format(I18n.Get(Message.EditConnection), hostEntry.Name),
                             hostNode.Profile,

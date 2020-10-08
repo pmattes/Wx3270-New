@@ -142,6 +142,7 @@ namespace Wx3270
                 this.cmdProcess.StartInfo.RedirectStandardOutput = true;
                 this.cmdProcess.StartInfo.RedirectStandardError = true;
                 this.cmdProcess.StartInfo.CreateNoWindow = true;
+                this.cmdProcess.Exited += this.CmdExited;
                 try
                 {
                     this.cmdProcess.Start();
@@ -149,6 +150,7 @@ namespace Wx3270
                 catch (Exception e)
                 {
                     ErrorBox.Show(e.Message, I18n.Get(Title.SystemError));
+                    this.Cleanup();
                     return;
                 }
 
@@ -159,8 +161,6 @@ namespace Wx3270
 
                 // Tell the back end to connect to the port.
                 this.backend.RunAction(new BackEndAction(B3270.Action.Connect, B3270.Prefix.NoTelnetHost + ":" + string.Format("{0}:{1}", IPAddress.Loopback.ToString(), port)), this.ConnectDone);
-
-                this.cmdProcess.Exited += this.CmdExited;
 
                 // Wait for the emulator connect.
                 this.listener.BeginAcceptSocket(new AsyncCallback(this.AcceptDone), null);
@@ -328,11 +328,7 @@ namespace Wx3270
         {
             if (this.cmdProcess != null)
             {
-                if (!this.cmdProcess.HasExited)
-                {
-                    this.cmdProcess.Kill();
-                }
-
+                this.cmdProcess.Dispose();
                 this.cmdProcess = null;
             }
 
