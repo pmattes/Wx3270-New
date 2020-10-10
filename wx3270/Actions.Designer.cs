@@ -281,26 +281,28 @@
             this.debuggingOverallLayoutPanel.RowCount = 2;
             this.debuggingOverallLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingOverallLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.debuggingOverallLayoutPanel.Size = new System.Drawing.Size(473, 286);
+            this.debuggingOverallLayoutPanel.Size = new System.Drawing.Size(473, 287);
             this.debuggingOverallLayoutPanel.TabIndex = 131;
             // 
             // debuggingUpperLayoutPanel
             // 
+            this.debuggingUpperLayoutPanel.AutoSize = true;
             this.debuggingUpperLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.debuggingUpperLayoutPanel.ColumnCount = 1;
             this.debuggingUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.debuggingUpperLayoutPanel.Controls.Add(this.flowLayoutPanel4, 0, 3);
-            this.debuggingUpperLayoutPanel.Controls.Add(this.flowLayoutPanel2, 0, 1);
+            this.debuggingUpperLayoutPanel.Controls.Add(this.flowLayoutPanel2, 0, 2);
             this.debuggingUpperLayoutPanel.Controls.Add(this.flowLayoutPanel1, 0, 0);
-            this.debuggingUpperLayoutPanel.Controls.Add(this.uiTracePanel, 0, 2);
+            this.debuggingUpperLayoutPanel.Controls.Add(this.uiTracePanel, 0, 3);
+            this.debuggingUpperLayoutPanel.Controls.Add(this.flowLayoutPanel4, 0, 1);
             this.debuggingUpperLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.debuggingUpperLayoutPanel.Name = "debuggingUpperLayoutPanel";
             this.debuggingUpperLayoutPanel.RowCount = 4;
             this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.debuggingUpperLayoutPanel.Size = new System.Drawing.Size(467, 158);
+            this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.debuggingUpperLayoutPanel.Size = new System.Drawing.Size(467, 159);
             this.debuggingUpperLayoutPanel.TabIndex = 129;
             // 
             // flowLayoutPanel1
@@ -354,7 +356,7 @@
             // uiTracePanel
             // 
             this.uiTracePanel.Controls.Add(this.flowLayoutPanel3);
-            this.uiTracePanel.Location = new System.Drawing.Point(0, 59);
+            this.uiTracePanel.Location = new System.Drawing.Point(0, 89);
             this.uiTracePanel.Margin = new System.Windows.Forms.Padding(0);
             this.uiTracePanel.Name = "uiTracePanel";
             this.uiTracePanel.Size = new System.Drawing.Size(464, 66);
@@ -404,7 +406,7 @@
             this.debuggingLowerLayoutPanel.Controls.Add(this.pictureBox6, 0, 1);
             this.debuggingLowerLayoutPanel.Controls.Add(this.pictureBox9, 0, 2);
             this.debuggingLowerLayoutPanel.Controls.Add(this.pictureBox10, 0, 3);
-            this.debuggingLowerLayoutPanel.Location = new System.Drawing.Point(3, 167);
+            this.debuggingLowerLayoutPanel.Location = new System.Drawing.Point(3, 168);
             this.debuggingLowerLayoutPanel.Name = "debuggingLowerLayoutPanel";
             this.debuggingLowerLayoutPanel.RowCount = 4;
             this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1603,7 +1605,7 @@
             this.flowLayoutPanel2.Controls.Add(this.pictureBox2);
             this.flowLayoutPanel2.Controls.Add(this.traceCheckBox);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 29);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 59);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(467, 30);
@@ -1625,11 +1627,10 @@
             this.flowLayoutPanel4.AutoSize = true;
             this.flowLayoutPanel4.Controls.Add(this.pictureBox4);
             this.flowLayoutPanel4.Controls.Add(this.tracePr3287CheckBox);
-            this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 129);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 29);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(467, 30);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(126, 30);
             this.flowLayoutPanel4.TabIndex = 132;
             // 
             // flowLayoutPanel5
