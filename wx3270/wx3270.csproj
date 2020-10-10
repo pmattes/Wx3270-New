@@ -734,6 +734,9 @@
     <Content Include="Python\x3270if\__init__.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\printout-small.png" />
+    <None Include="Resources\screentrace.png" />
+    <None Include="Resources\screentrace2.png" />
     <Content Include="wx3270.bmp" />
     <None Include="Resources\StartClearerLightGreen.png" />
     <None Include="Resources\StartClearerRed.png" />

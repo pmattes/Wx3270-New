@@ -32,35 +32,27 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Actions));
             this.actionsTabs = new System.Windows.Forms.TabControl();
             this.actionsTab = new System.Windows.Forms.TabPage();
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.debuggingGroupBox = new System.Windows.Forms.GroupBox();
             this.debuggingOverallLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.debuggingUpperLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.visibleControlCheckBox = new System.Windows.Forms.CheckBox();
-            this.controlCharDocButton = new Wx3270.NoSelectButton();
             this.traceCheckBox = new System.Windows.Forms.CheckBox();
             this.tracePr3287CheckBox = new System.Windows.Forms.CheckBox();
             this.uiTracePanel = new System.Windows.Forms.Panel();
             this.uiTraceCheckBox = new System.Windows.Forms.CheckBox();
             this.uiTraceCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.debuggingLowerLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.promptButton = new Wx3270.NoSelectButton();
             this.promptLabel = new System.Windows.Forms.Label();
             this.cancelKeyboardDisableLabel = new System.Windows.Forms.Label();
             this.KeymapLabel = new System.Windows.Forms.Label();
-            this.ReenableButton = new Wx3270.NoSelectButton();
-            this.KeymapButton = new Wx3270.NoSelectButton();
-            this.cancelActionsButton = new Wx3270.NoSelectButton();
             this.cancelActionsLabel = new System.Windows.Forms.Label();
             this.screenImagesGroupBox = new System.Windows.Forms.GroupBox();
             this.fileRadioButton = new System.Windows.Forms.RadioButton();
             this.printerRadioButton = new System.Windows.Forms.RadioButton();
-            this.printScreenButton = new Wx3270.NoSelectButton();
             this.traceScreenCheckBox = new System.Windows.Forms.CheckBox();
             this.printScreenLabel = new System.Windows.Forms.Label();
             this.aboutTab = new System.Windows.Forms.TabPage();
-            this.helpPictureBox2 = new System.Windows.Forms.PictureBox();
             this.backendAboutGroupBox = new System.Windows.Forms.GroupBox();
             this.tlsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tlsProviderLabel = new System.Windows.Forms.Label();
@@ -72,7 +64,6 @@
             this.guiCopyrightTextBox = new System.Windows.Forms.TextBox();
             this.guiVersionLabel = new System.Windows.Forms.Label();
             this.statusTab = new System.Windows.Forms.TabPage();
-            this.helpPictureBox3 = new System.Windows.Forms.PictureBox();
             this.statusGroupBox = new System.Windows.Forms.GroupBox();
             this.statusLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.luNameValueLabel = new System.Windows.Forms.Label();
@@ -98,8 +89,6 @@
             this.recordsReceivedValueLabel = new System.Windows.Forms.Label();
             this.bytesReceivedValueLabel = new System.Windows.Forms.Label();
             this.fileTransferTab = new System.Windows.Forms.TabPage();
-            this.copyActionButton = new Wx3270.NoSelectButton();
-            this.helpPictureBox4 = new System.Windows.Forms.PictureBox();
             this.modeBox = new System.Windows.Forms.GroupBox();
             this.modeBinaryButton = new System.Windows.Forms.RadioButton();
             this.modeAsciiButton = new System.Windows.Forms.RadioButton();
@@ -148,12 +137,9 @@
             this.filesBox = new System.Windows.Forms.GroupBox();
             this.fileLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.hostFileTextBox = new System.Windows.Forms.TextBox();
-            this.fileTransferBrowseButton = new Wx3270.NoSelectButton();
             this.localFileLabel = new System.Windows.Forms.Label();
             this.localFileTextBox = new System.Windows.Forms.TextBox();
             this.hostFileLabel = new System.Windows.Forms.Label();
-            this.fileTransferClearFormButton = new Wx3270.NoSelectButton();
-            this.transferButton = new Wx3270.NoSelectButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.transferLocalFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.connectionTimer = new System.Windows.Forms.Timer(this.components);
@@ -161,9 +147,34 @@
             this.screenTraceFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.localizationFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.ftPopdownTimer = new System.Windows.Forms.Timer(this.components);
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.controlCharDocButton = new Wx3270.NoSelectButton();
+            this.promptButton = new Wx3270.NoSelectButton();
+            this.ReenableButton = new Wx3270.NoSelectButton();
+            this.KeymapButton = new Wx3270.NoSelectButton();
+            this.cancelActionsButton = new Wx3270.NoSelectButton();
+            this.printScreenButton = new Wx3270.NoSelectButton();
+            this.copyActionButton = new Wx3270.NoSelectButton();
+            this.fileTransferBrowseButton = new Wx3270.NoSelectButton();
+            this.fileTransferClearFormButton = new Wx3270.NoSelectButton();
+            this.transferButton = new Wx3270.NoSelectButton();
+            this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.helpPictureBox2 = new System.Windows.Forms.PictureBox();
+            this.helpPictureBox3 = new System.Windows.Forms.PictureBox();
+            this.helpPictureBox4 = new System.Windows.Forms.PictureBox();
             this.actionsTabs.SuspendLayout();
             this.actionsTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.debuggingGroupBox.SuspendLayout();
             this.debuggingOverallLayoutPanel.SuspendLayout();
             this.debuggingUpperLayoutPanel.SuspendLayout();
@@ -172,16 +183,13 @@
             this.debuggingLowerLayoutPanel.SuspendLayout();
             this.screenImagesGroupBox.SuspendLayout();
             this.aboutTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox2)).BeginInit();
             this.backendAboutGroupBox.SuspendLayout();
             this.tlsLayoutPanel.SuspendLayout();
             this.guiAboutGroupBox.SuspendLayout();
             this.statusTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).BeginInit();
             this.statusGroupBox.SuspendLayout();
             this.statusLayoutPanel.SuspendLayout();
             this.fileTransferTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).BeginInit();
             this.modeBox.SuspendLayout();
             this.tsoAllocationBox.SuspendLayout();
             this.allocationLayoutPanel.SuspendLayout();
@@ -196,6 +204,22 @@
             this.filesBox.SuspendLayout();
             this.fileLayoutPanel.SuspendLayout();
             this.borderPanel.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
+            this.flowLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // actionsTabs
@@ -226,19 +250,6 @@
             this.actionsTab.UseVisualStyleBackColor = true;
             this.actionsTab.Click += new System.EventHandler(this.Help_Clicked);
             // 
-            // helpPictureBox
-            // 
-            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(629, 499);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.helpPictureBox.TabIndex = 125;
-            this.helpPictureBox.TabStop = false;
-            this.helpPictureBox.Tag = "Actions";
-            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
-            this.helpPictureBox.Click += new System.EventHandler(this.Help_Clicked);
-            // 
             // debuggingGroupBox
             // 
             this.debuggingGroupBox.Controls.Add(this.debuggingOverallLayoutPanel);
@@ -262,7 +273,7 @@
             this.debuggingOverallLayoutPanel.RowCount = 2;
             this.debuggingOverallLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingOverallLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.debuggingOverallLayoutPanel.Size = new System.Drawing.Size(473, 275);
+            this.debuggingOverallLayoutPanel.Size = new System.Drawing.Size(473, 286);
             this.debuggingOverallLayoutPanel.TabIndex = 131;
             // 
             // debuggingUpperLayoutPanel
@@ -270,9 +281,9 @@
             this.debuggingUpperLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.debuggingUpperLayoutPanel.ColumnCount = 1;
             this.debuggingUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.debuggingUpperLayoutPanel.Controls.Add(this.flowLayoutPanel4, 0, 3);
+            this.debuggingUpperLayoutPanel.Controls.Add(this.flowLayoutPanel2, 0, 1);
             this.debuggingUpperLayoutPanel.Controls.Add(this.flowLayoutPanel1, 0, 0);
-            this.debuggingUpperLayoutPanel.Controls.Add(this.traceCheckBox, 0, 1);
-            this.debuggingUpperLayoutPanel.Controls.Add(this.tracePr3287CheckBox, 0, 3);
             this.debuggingUpperLayoutPanel.Controls.Add(this.uiTracePanel, 0, 2);
             this.debuggingUpperLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.debuggingUpperLayoutPanel.Name = "debuggingUpperLayoutPanel";
@@ -281,11 +292,12 @@
             this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.debuggingUpperLayoutPanel.Size = new System.Drawing.Size(467, 147);
+            this.debuggingUpperLayoutPanel.Size = new System.Drawing.Size(467, 158);
             this.debuggingUpperLayoutPanel.TabIndex = 129;
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Controls.Add(this.pictureBox1);
             this.flowLayoutPanel1.Controls.Add(this.visibleControlCheckBox);
             this.flowLayoutPanel1.Controls.Add(this.controlCharDocButton);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -298,7 +310,7 @@
             // 
             this.visibleControlCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.visibleControlCheckBox.AutoSize = true;
-            this.visibleControlCheckBox.Location = new System.Drawing.Point(3, 7);
+            this.visibleControlCheckBox.Location = new System.Drawing.Point(33, 8);
             this.visibleControlCheckBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.visibleControlCheckBox.Name = "visibleControlCheckBox";
             this.visibleControlCheckBox.Size = new System.Drawing.Size(248, 17);
@@ -307,24 +319,13 @@
             this.visibleControlCheckBox.UseVisualStyleBackColor = true;
             this.visibleControlCheckBox.Click += new System.EventHandler(this.VisibleControlCheckBox_Clicked);
             // 
-            // controlCharDocButton
-            // 
-            this.controlCharDocButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.controlCharDocButton.Location = new System.Drawing.Point(257, 3);
-            this.controlCharDocButton.Name = "controlCharDocButton";
-            this.controlCharDocButton.Size = new System.Drawing.Size(75, 23);
-            this.controlCharDocButton.TabIndex = 10;
-            this.controlCharDocButton.TabStop = false;
-            this.controlCharDocButton.Text = "View Codes";
-            this.controlCharDocButton.UseVisualStyleBackColor = true;
-            this.controlCharDocButton.Click += new System.EventHandler(this.ControlCharDocButton_Click);
-            // 
             // traceCheckBox
             // 
             this.traceCheckBox.AutoSize = true;
-            this.traceCheckBox.Location = new System.Drawing.Point(3, 32);
+            this.traceCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.traceCheckBox.Location = new System.Drawing.Point(33, 3);
             this.traceCheckBox.Name = "traceCheckBox";
-            this.traceCheckBox.Size = new System.Drawing.Size(137, 17);
+            this.traceCheckBox.Size = new System.Drawing.Size(137, 24);
             this.traceCheckBox.TabIndex = 3;
             this.traceCheckBox.Text = "Trace back-end events";
             this.traceCheckBox.UseVisualStyleBackColor = true;
@@ -333,9 +334,10 @@
             // tracePr3287CheckBox
             // 
             this.tracePr3287CheckBox.AutoSize = true;
-            this.tracePr3287CheckBox.Location = new System.Drawing.Point(3, 125);
+            this.tracePr3287CheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tracePr3287CheckBox.Location = new System.Drawing.Point(33, 3);
             this.tracePr3287CheckBox.Name = "tracePr3287CheckBox";
-            this.tracePr3287CheckBox.Size = new System.Drawing.Size(90, 17);
+            this.tracePr3287CheckBox.Size = new System.Drawing.Size(90, 24);
             this.tracePr3287CheckBox.TabIndex = 4;
             this.tracePr3287CheckBox.Text = "Trace pr3287";
             this.tracePr3287CheckBox.UseVisualStyleBackColor = true;
@@ -343,9 +345,8 @@
             // 
             // uiTracePanel
             // 
-            this.uiTracePanel.Controls.Add(this.uiTraceCheckBox);
-            this.uiTracePanel.Controls.Add(this.uiTraceCheckedListBox);
-            this.uiTracePanel.Location = new System.Drawing.Point(0, 52);
+            this.uiTracePanel.Controls.Add(this.flowLayoutPanel3);
+            this.uiTracePanel.Location = new System.Drawing.Point(0, 59);
             this.uiTracePanel.Margin = new System.Windows.Forms.Padding(0);
             this.uiTracePanel.Name = "uiTracePanel";
             this.uiTracePanel.Size = new System.Drawing.Size(464, 66);
@@ -354,9 +355,10 @@
             // uiTraceCheckBox
             // 
             this.uiTraceCheckBox.AutoSize = true;
-            this.uiTraceCheckBox.Location = new System.Drawing.Point(3, 10);
+            this.uiTraceCheckBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.uiTraceCheckBox.Location = new System.Drawing.Point(33, 3);
             this.uiTraceCheckBox.Name = "uiTraceCheckBox";
-            this.uiTraceCheckBox.Size = new System.Drawing.Size(156, 17);
+            this.uiTraceCheckBox.Size = new System.Drawing.Size(156, 24);
             this.uiTraceCheckBox.TabIndex = 5;
             this.uiTraceCheckBox.Text = "Trace user interface events";
             this.uiTraceCheckBox.UseVisualStyleBackColor = true;
@@ -366,7 +368,8 @@
             // 
             this.uiTraceCheckedListBox.Enabled = false;
             this.uiTraceCheckedListBox.FormattingEnabled = true;
-            this.uiTraceCheckedListBox.Location = new System.Drawing.Point(257, 1);
+            this.uiTraceCheckedListBox.Location = new System.Drawing.Point(192, 0);
+            this.uiTraceCheckedListBox.Margin = new System.Windows.Forms.Padding(0);
             this.uiTraceCheckedListBox.Name = "uiTraceCheckedListBox";
             this.uiTraceCheckedListBox.ScrollAlwaysVisible = true;
             this.uiTraceCheckedListBox.Size = new System.Drawing.Size(204, 64);
@@ -376,44 +379,35 @@
             // 
             this.debuggingLowerLayoutPanel.AutoSize = true;
             this.debuggingLowerLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.debuggingLowerLayoutPanel.ColumnCount = 2;
+            this.debuggingLowerLayoutPanel.ColumnCount = 3;
+            this.debuggingLowerLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.debuggingLowerLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.debuggingLowerLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.debuggingLowerLayoutPanel.Controls.Add(this.promptButton, 0, 0);
-            this.debuggingLowerLayoutPanel.Controls.Add(this.promptLabel, 1, 0);
-            this.debuggingLowerLayoutPanel.Controls.Add(this.cancelKeyboardDisableLabel, 1, 3);
-            this.debuggingLowerLayoutPanel.Controls.Add(this.KeymapLabel, 1, 1);
-            this.debuggingLowerLayoutPanel.Controls.Add(this.ReenableButton, 0, 3);
-            this.debuggingLowerLayoutPanel.Controls.Add(this.KeymapButton, 0, 1);
-            this.debuggingLowerLayoutPanel.Controls.Add(this.cancelActionsButton, 0, 2);
-            this.debuggingLowerLayoutPanel.Controls.Add(this.cancelActionsLabel, 1, 2);
-            this.debuggingLowerLayoutPanel.Location = new System.Drawing.Point(3, 156);
+            this.debuggingLowerLayoutPanel.Controls.Add(this.promptButton, 1, 0);
+            this.debuggingLowerLayoutPanel.Controls.Add(this.promptLabel, 2, 0);
+            this.debuggingLowerLayoutPanel.Controls.Add(this.cancelKeyboardDisableLabel, 2, 3);
+            this.debuggingLowerLayoutPanel.Controls.Add(this.KeymapLabel, 2, 1);
+            this.debuggingLowerLayoutPanel.Controls.Add(this.ReenableButton, 1, 3);
+            this.debuggingLowerLayoutPanel.Controls.Add(this.KeymapButton, 1, 1);
+            this.debuggingLowerLayoutPanel.Controls.Add(this.cancelActionsButton, 1, 2);
+            this.debuggingLowerLayoutPanel.Controls.Add(this.cancelActionsLabel, 2, 2);
+            this.debuggingLowerLayoutPanel.Controls.Add(this.pictureBox5, 0, 0);
+            this.debuggingLowerLayoutPanel.Controls.Add(this.pictureBox6, 0, 1);
+            this.debuggingLowerLayoutPanel.Location = new System.Drawing.Point(3, 167);
             this.debuggingLowerLayoutPanel.Name = "debuggingLowerLayoutPanel";
             this.debuggingLowerLayoutPanel.RowCount = 4;
             this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.debuggingLowerLayoutPanel.Size = new System.Drawing.Size(415, 116);
+            this.debuggingLowerLayoutPanel.Size = new System.Drawing.Size(442, 116);
             this.debuggingLowerLayoutPanel.TabIndex = 130;
-            // 
-            // promptButton
-            // 
-            this.promptButton.Location = new System.Drawing.Point(3, 3);
-            this.promptButton.Name = "promptButton";
-            this.promptButton.Size = new System.Drawing.Size(119, 23);
-            this.promptButton.TabIndex = 125;
-            this.promptButton.TabStop = false;
-            this.promptButton.Text = "wx3270>";
-            this.promptButton.UseVisualStyleBackColor = true;
-            this.promptButton.Click += new System.EventHandler(this.PromptCheckBox_Click);
             // 
             // promptLabel
             // 
             this.promptLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.promptLabel.AutoSize = true;
-            this.promptLabel.Location = new System.Drawing.Point(128, 8);
+            this.promptLabel.Location = new System.Drawing.Point(155, 8);
             this.promptLabel.Name = "promptLabel";
             this.promptLabel.Size = new System.Drawing.Size(284, 13);
             this.promptLabel.TabIndex = 126;
@@ -423,7 +417,7 @@
             // 
             this.cancelKeyboardDisableLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cancelKeyboardDisableLabel.AutoSize = true;
-            this.cancelKeyboardDisableLabel.Location = new System.Drawing.Point(128, 95);
+            this.cancelKeyboardDisableLabel.Location = new System.Drawing.Point(155, 95);
             this.cancelKeyboardDisableLabel.Name = "cancelKeyboardDisableLabel";
             this.cancelKeyboardDisableLabel.Size = new System.Drawing.Size(239, 13);
             this.cancelKeyboardDisableLabel.TabIndex = 122;
@@ -433,50 +427,17 @@
             // 
             this.KeymapLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.KeymapLabel.AutoSize = true;
-            this.KeymapLabel.Location = new System.Drawing.Point(128, 37);
+            this.KeymapLabel.Location = new System.Drawing.Point(155, 37);
             this.KeymapLabel.Name = "KeymapLabel";
             this.KeymapLabel.Size = new System.Drawing.Size(135, 13);
             this.KeymapLabel.TabIndex = 128;
             this.KeymapLabel.Text = "Display the current keymap";
             // 
-            // ReenableButton
-            // 
-            this.ReenableButton.Location = new System.Drawing.Point(3, 90);
-            this.ReenableButton.Name = "ReenableButton";
-            this.ReenableButton.Size = new System.Drawing.Size(119, 23);
-            this.ReenableButton.TabIndex = 121;
-            this.ReenableButton.TabStop = false;
-            this.ReenableButton.Text = "Re-enable Keyboard";
-            this.ReenableButton.UseVisualStyleBackColor = true;
-            this.ReenableButton.Click += new System.EventHandler(this.ReenableButton_Click);
-            // 
-            // KeymapButton
-            // 
-            this.KeymapButton.Location = new System.Drawing.Point(3, 32);
-            this.KeymapButton.Name = "KeymapButton";
-            this.KeymapButton.Size = new System.Drawing.Size(119, 23);
-            this.KeymapButton.TabIndex = 127;
-            this.KeymapButton.TabStop = false;
-            this.KeymapButton.Text = "Display Keymap";
-            this.KeymapButton.UseVisualStyleBackColor = true;
-            this.KeymapButton.Click += new System.EventHandler(this.KeymapClick);
-            // 
-            // cancelActionsButton
-            // 
-            this.cancelActionsButton.Location = new System.Drawing.Point(3, 61);
-            this.cancelActionsButton.Name = "cancelActionsButton";
-            this.cancelActionsButton.Size = new System.Drawing.Size(119, 23);
-            this.cancelActionsButton.TabIndex = 118;
-            this.cancelActionsButton.TabStop = false;
-            this.cancelActionsButton.Text = "Cancel Actions";
-            this.cancelActionsButton.UseVisualStyleBackColor = true;
-            this.cancelActionsButton.Click += new System.EventHandler(this.CancelActionsButton_Click);
-            // 
             // cancelActionsLabel
             // 
             this.cancelActionsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cancelActionsLabel.AutoSize = true;
-            this.cancelActionsLabel.Location = new System.Drawing.Point(128, 66);
+            this.cancelActionsLabel.Location = new System.Drawing.Point(155, 66);
             this.cancelActionsLabel.Name = "cancelActionsLabel";
             this.cancelActionsLabel.Size = new System.Drawing.Size(185, 13);
             this.cancelActionsLabel.TabIndex = 119;
@@ -484,6 +445,8 @@
             // 
             // screenImagesGroupBox
             // 
+            this.screenImagesGroupBox.Controls.Add(this.pictureBox8);
+            this.screenImagesGroupBox.Controls.Add(this.pictureBox7);
             this.screenImagesGroupBox.Controls.Add(this.fileRadioButton);
             this.screenImagesGroupBox.Controls.Add(this.printerRadioButton);
             this.screenImagesGroupBox.Controls.Add(this.printScreenButton);
@@ -499,7 +462,7 @@
             // fileRadioButton
             // 
             this.fileRadioButton.AutoSize = true;
-            this.fileRadioButton.Location = new System.Drawing.Point(31, 97);
+            this.fileRadioButton.Location = new System.Drawing.Point(65, 97);
             this.fileRadioButton.Name = "fileRadioButton";
             this.fileRadioButton.Size = new System.Drawing.Size(78, 17);
             this.fileRadioButton.TabIndex = 124;
@@ -511,7 +474,7 @@
             // 
             this.printerRadioButton.AutoSize = true;
             this.printerRadioButton.Checked = true;
-            this.printerRadioButton.Location = new System.Drawing.Point(31, 73);
+            this.printerRadioButton.Location = new System.Drawing.Point(65, 73);
             this.printerRadioButton.Name = "printerRadioButton";
             this.printerRadioButton.Size = new System.Drawing.Size(94, 17);
             this.printerRadioButton.TabIndex = 123;
@@ -520,21 +483,10 @@
             this.printerRadioButton.Text = "Send to printer";
             this.printerRadioButton.UseVisualStyleBackColor = true;
             // 
-            // printScreenButton
-            // 
-            this.printScreenButton.Location = new System.Drawing.Point(6, 19);
-            this.printScreenButton.Name = "printScreenButton";
-            this.printScreenButton.Size = new System.Drawing.Size(119, 23);
-            this.printScreenButton.TabIndex = 120;
-            this.printScreenButton.TabStop = false;
-            this.printScreenButton.Text = "Print Screen";
-            this.printScreenButton.UseVisualStyleBackColor = true;
-            this.printScreenButton.Click += new System.EventHandler(this.PrintTextButton_Click);
-            // 
             // traceScreenCheckBox
             // 
             this.traceScreenCheckBox.AutoSize = true;
-            this.traceScreenCheckBox.Location = new System.Drawing.Point(11, 52);
+            this.traceScreenCheckBox.Location = new System.Drawing.Point(45, 52);
             this.traceScreenCheckBox.Name = "traceScreenCheckBox";
             this.traceScreenCheckBox.Size = new System.Drawing.Size(263, 17);
             this.traceScreenCheckBox.TabIndex = 122;
@@ -545,7 +497,7 @@
             // printScreenLabel
             // 
             this.printScreenLabel.AutoSize = true;
-            this.printScreenLabel.Location = new System.Drawing.Point(131, 24);
+            this.printScreenLabel.Location = new System.Drawing.Point(169, 25);
             this.printScreenLabel.Name = "printScreenLabel";
             this.printScreenLabel.Size = new System.Drawing.Size(184, 13);
             this.printScreenLabel.TabIndex = 121;
@@ -563,19 +515,6 @@
             this.aboutTab.TabIndex = 1;
             this.aboutTab.Text = "About";
             this.aboutTab.UseVisualStyleBackColor = true;
-            // 
-            // helpPictureBox2
-            // 
-            this.helpPictureBox2.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox2.Location = new System.Drawing.Point(629, 499);
-            this.helpPictureBox2.Name = "helpPictureBox2";
-            this.helpPictureBox2.Size = new System.Drawing.Size(23, 23);
-            this.helpPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.helpPictureBox2.TabIndex = 126;
-            this.helpPictureBox2.TabStop = false;
-            this.helpPictureBox2.Tag = "About";
-            this.toolTip1.SetToolTip(this.helpPictureBox2, "Get help");
-            this.helpPictureBox2.Click += new System.EventHandler(this.Help_Clicked);
             // 
             // backendAboutGroupBox
             // 
@@ -693,19 +632,6 @@
             this.statusTab.TabIndex = 2;
             this.statusTab.Text = "Status";
             this.statusTab.UseVisualStyleBackColor = true;
-            // 
-            // helpPictureBox3
-            // 
-            this.helpPictureBox3.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox3.Location = new System.Drawing.Point(629, 499);
-            this.helpPictureBox3.Name = "helpPictureBox3";
-            this.helpPictureBox3.Size = new System.Drawing.Size(23, 23);
-            this.helpPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.helpPictureBox3.TabIndex = 126;
-            this.helpPictureBox3.TabStop = false;
-            this.helpPictureBox3.Tag = "Status";
-            this.toolTip1.SetToolTip(this.helpPictureBox3, "Get help");
-            this.helpPictureBox3.Click += new System.EventHandler(this.Help_Clicked);
             // 
             // statusGroupBox
             // 
@@ -998,7 +924,6 @@
             // 
             this.fileTransferTab.CausesValidation = false;
             this.fileTransferTab.Controls.Add(this.copyActionButton);
-            this.fileTransferTab.Controls.Add(this.helpPictureBox4);
             this.fileTransferTab.Controls.Add(this.modeBox);
             this.fileTransferTab.Controls.Add(this.tsoAllocationBox);
             this.fileTransferTab.Controls.Add(this.asciiBox);
@@ -1010,38 +935,13 @@
             this.fileTransferTab.Controls.Add(this.filesBox);
             this.fileTransferTab.Controls.Add(this.fileTransferClearFormButton);
             this.fileTransferTab.Controls.Add(this.transferButton);
+            this.fileTransferTab.Controls.Add(this.helpPictureBox4);
             this.fileTransferTab.Location = new System.Drawing.Point(4, 22);
             this.fileTransferTab.Name = "fileTransferTab";
             this.fileTransferTab.Size = new System.Drawing.Size(655, 525);
             this.fileTransferTab.TabIndex = 3;
             this.fileTransferTab.Text = "File Transfer";
             this.fileTransferTab.UseVisualStyleBackColor = true;
-            // 
-            // copyActionButton
-            // 
-            this.copyActionButton.Enabled = false;
-            this.copyActionButton.Location = new System.Drawing.Point(467, 499);
-            this.copyActionButton.Name = "copyActionButton";
-            this.copyActionButton.Size = new System.Drawing.Size(75, 23);
-            this.copyActionButton.TabIndex = 128;
-            this.copyActionButton.TabStop = false;
-            this.copyActionButton.Text = "Copy Action";
-            this.toolTip1.SetToolTip(this.copyActionButton, "Copy Transfer() action to clipboard");
-            this.copyActionButton.UseVisualStyleBackColor = true;
-            this.copyActionButton.Click += new System.EventHandler(this.CopyActionButton_Click);
-            // 
-            // helpPictureBox4
-            // 
-            this.helpPictureBox4.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox4.Location = new System.Drawing.Point(629, 499);
-            this.helpPictureBox4.Name = "helpPictureBox4";
-            this.helpPictureBox4.Size = new System.Drawing.Size(23, 23);
-            this.helpPictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.helpPictureBox4.TabIndex = 127;
-            this.helpPictureBox4.TabStop = false;
-            this.helpPictureBox4.Tag = "FileTransfer";
-            this.toolTip1.SetToolTip(this.helpPictureBox4, "Get help");
-            this.helpPictureBox4.Click += new System.EventHandler(this.Help_Clicked);
             // 
             // modeBox
             // 
@@ -1615,18 +1515,6 @@
             this.hostFileTextBox.TextChanged += new System.EventHandler(this.FileTransferOptionChanged);
             this.hostFileTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.HostFileTextBox_Validating);
             // 
-            // fileTransferBrowseButton
-            // 
-            this.fileTransferBrowseButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.fileTransferBrowseButton.Location = new System.Drawing.Point(350, 3);
-            this.fileTransferBrowseButton.Name = "fileTransferBrowseButton";
-            this.fileTransferBrowseButton.Size = new System.Drawing.Size(75, 22);
-            this.fileTransferBrowseButton.TabIndex = 1;
-            this.fileTransferBrowseButton.TabStop = false;
-            this.fileTransferBrowseButton.Text = "Browse";
-            this.fileTransferBrowseButton.UseVisualStyleBackColor = true;
-            this.fileTransferBrowseButton.Click += new System.EventHandler(this.LocalFileTextBox_Click);
-            // 
             // localFileLabel
             // 
             this.localFileLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -1656,30 +1544,6 @@
             this.hostFileLabel.Size = new System.Drawing.Size(48, 13);
             this.hostFileLabel.TabIndex = 0;
             this.hostFileLabel.Text = "Host File";
-            // 
-            // fileTransferClearFormButton
-            // 
-            this.fileTransferClearFormButton.CausesValidation = false;
-            this.fileTransferClearFormButton.Location = new System.Drawing.Point(386, 499);
-            this.fileTransferClearFormButton.Name = "fileTransferClearFormButton";
-            this.fileTransferClearFormButton.Size = new System.Drawing.Size(75, 23);
-            this.fileTransferClearFormButton.TabIndex = 10;
-            this.fileTransferClearFormButton.TabStop = false;
-            this.fileTransferClearFormButton.Text = "Reset Form";
-            this.fileTransferClearFormButton.UseVisualStyleBackColor = true;
-            this.fileTransferClearFormButton.Click += new System.EventHandler(this.FileTransferClearFormButton_Click);
-            // 
-            // transferButton
-            // 
-            this.transferButton.Enabled = false;
-            this.transferButton.Location = new System.Drawing.Point(548, 499);
-            this.transferButton.Name = "transferButton";
-            this.transferButton.Size = new System.Drawing.Size(75, 23);
-            this.transferButton.TabIndex = 9;
-            this.transferButton.TabStop = false;
-            this.transferButton.Text = "Transfer";
-            this.transferButton.UseVisualStyleBackColor = true;
-            this.transferButton.Click += new System.EventHandler(this.TransferButton_Click);
             // 
             // transferLocalFileDialog
             // 
@@ -1720,6 +1584,305 @@
             // 
             this.ftPopdownTimer.Interval = 5000;
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoSize = true;
+            this.flowLayoutPanel2.Controls.Add(this.pictureBox2);
+            this.flowLayoutPanel2.Controls.Add(this.traceCheckBox);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 29);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(467, 30);
+            this.flowLayoutPanel2.TabIndex = 133;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.AutoSize = true;
+            this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel5);
+            this.flowLayoutPanel3.Controls.Add(this.uiTraceCheckedListBox);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(464, 64);
+            this.flowLayoutPanel3.TabIndex = 132;
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.AutoSize = true;
+            this.flowLayoutPanel4.Controls.Add(this.pictureBox4);
+            this.flowLayoutPanel4.Controls.Add(this.tracePr3287CheckBox);
+            this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 129);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(467, 30);
+            this.flowLayoutPanel4.TabIndex = 132;
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.flowLayoutPanel5.AutoSize = true;
+            this.flowLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel5.Controls.Add(this.pictureBox3);
+            this.flowLayoutPanel5.Controls.Add(this.uiTraceCheckBox);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(192, 64);
+            this.flowLayoutPanel5.TabIndex = 132;
+            // 
+            // controlCharDocButton
+            // 
+            this.controlCharDocButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.controlCharDocButton.Location = new System.Drawing.Point(287, 3);
+            this.controlCharDocButton.Name = "controlCharDocButton";
+            this.controlCharDocButton.Size = new System.Drawing.Size(75, 23);
+            this.controlCharDocButton.TabIndex = 10;
+            this.controlCharDocButton.TabStop = false;
+            this.controlCharDocButton.Text = "View Codes";
+            this.controlCharDocButton.UseVisualStyleBackColor = true;
+            this.controlCharDocButton.Click += new System.EventHandler(this.ControlCharDocButton_Click);
+            // 
+            // promptButton
+            // 
+            this.promptButton.Location = new System.Drawing.Point(30, 3);
+            this.promptButton.Name = "promptButton";
+            this.promptButton.Size = new System.Drawing.Size(119, 23);
+            this.promptButton.TabIndex = 125;
+            this.promptButton.TabStop = false;
+            this.promptButton.Text = "wx3270>";
+            this.promptButton.UseVisualStyleBackColor = true;
+            this.promptButton.Click += new System.EventHandler(this.PromptCheckBox_Click);
+            // 
+            // ReenableButton
+            // 
+            this.ReenableButton.Location = new System.Drawing.Point(30, 90);
+            this.ReenableButton.Name = "ReenableButton";
+            this.ReenableButton.Size = new System.Drawing.Size(119, 23);
+            this.ReenableButton.TabIndex = 121;
+            this.ReenableButton.TabStop = false;
+            this.ReenableButton.Text = "Re-enable Keyboard";
+            this.ReenableButton.UseVisualStyleBackColor = true;
+            this.ReenableButton.Click += new System.EventHandler(this.ReenableButton_Click);
+            // 
+            // KeymapButton
+            // 
+            this.KeymapButton.Location = new System.Drawing.Point(30, 32);
+            this.KeymapButton.Name = "KeymapButton";
+            this.KeymapButton.Size = new System.Drawing.Size(119, 23);
+            this.KeymapButton.TabIndex = 127;
+            this.KeymapButton.TabStop = false;
+            this.KeymapButton.Text = "Display Keymap";
+            this.KeymapButton.UseVisualStyleBackColor = true;
+            this.KeymapButton.Click += new System.EventHandler(this.KeymapClick);
+            // 
+            // cancelActionsButton
+            // 
+            this.cancelActionsButton.Location = new System.Drawing.Point(30, 61);
+            this.cancelActionsButton.Name = "cancelActionsButton";
+            this.cancelActionsButton.Size = new System.Drawing.Size(119, 23);
+            this.cancelActionsButton.TabIndex = 118;
+            this.cancelActionsButton.TabStop = false;
+            this.cancelActionsButton.Text = "Cancel Actions";
+            this.cancelActionsButton.UseVisualStyleBackColor = true;
+            this.cancelActionsButton.Click += new System.EventHandler(this.CancelActionsButton_Click);
+            // 
+            // printScreenButton
+            // 
+            this.printScreenButton.Location = new System.Drawing.Point(44, 20);
+            this.printScreenButton.Name = "printScreenButton";
+            this.printScreenButton.Size = new System.Drawing.Size(119, 23);
+            this.printScreenButton.TabIndex = 120;
+            this.printScreenButton.TabStop = false;
+            this.printScreenButton.Text = "Print Screen";
+            this.printScreenButton.UseVisualStyleBackColor = true;
+            this.printScreenButton.Click += new System.EventHandler(this.PrintTextButton_Click);
+            // 
+            // copyActionButton
+            // 
+            this.copyActionButton.Enabled = false;
+            this.copyActionButton.Location = new System.Drawing.Point(467, 499);
+            this.copyActionButton.Name = "copyActionButton";
+            this.copyActionButton.Size = new System.Drawing.Size(75, 23);
+            this.copyActionButton.TabIndex = 128;
+            this.copyActionButton.TabStop = false;
+            this.copyActionButton.Text = "Copy Action";
+            this.toolTip1.SetToolTip(this.copyActionButton, "Copy Transfer() action to clipboard");
+            this.copyActionButton.UseVisualStyleBackColor = true;
+            this.copyActionButton.Click += new System.EventHandler(this.CopyActionButton_Click);
+            // 
+            // fileTransferBrowseButton
+            // 
+            this.fileTransferBrowseButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.fileTransferBrowseButton.Location = new System.Drawing.Point(350, 3);
+            this.fileTransferBrowseButton.Name = "fileTransferBrowseButton";
+            this.fileTransferBrowseButton.Size = new System.Drawing.Size(75, 22);
+            this.fileTransferBrowseButton.TabIndex = 1;
+            this.fileTransferBrowseButton.TabStop = false;
+            this.fileTransferBrowseButton.Text = "Browse";
+            this.fileTransferBrowseButton.UseVisualStyleBackColor = true;
+            this.fileTransferBrowseButton.Click += new System.EventHandler(this.LocalFileTextBox_Click);
+            // 
+            // fileTransferClearFormButton
+            // 
+            this.fileTransferClearFormButton.CausesValidation = false;
+            this.fileTransferClearFormButton.Location = new System.Drawing.Point(386, 499);
+            this.fileTransferClearFormButton.Name = "fileTransferClearFormButton";
+            this.fileTransferClearFormButton.Size = new System.Drawing.Size(75, 23);
+            this.fileTransferClearFormButton.TabIndex = 10;
+            this.fileTransferClearFormButton.TabStop = false;
+            this.fileTransferClearFormButton.Text = "Reset Form";
+            this.fileTransferClearFormButton.UseVisualStyleBackColor = true;
+            this.fileTransferClearFormButton.Click += new System.EventHandler(this.FileTransferClearFormButton_Click);
+            // 
+            // transferButton
+            // 
+            this.transferButton.Enabled = false;
+            this.transferButton.Location = new System.Drawing.Point(548, 499);
+            this.transferButton.Name = "transferButton";
+            this.transferButton.Size = new System.Drawing.Size(75, 23);
+            this.transferButton.TabIndex = 9;
+            this.transferButton.TabStop = false;
+            this.transferButton.Text = "Transfer";
+            this.transferButton.UseVisualStyleBackColor = true;
+            this.transferButton.Click += new System.EventHandler(this.TransferButton_Click);
+            // 
+            // helpPictureBox
+            // 
+            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox.Location = new System.Drawing.Point(629, 499);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.helpPictureBox.TabIndex = 125;
+            this.helpPictureBox.TabStop = false;
+            this.helpPictureBox.Tag = "Actions";
+            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
+            this.helpPictureBox.Click += new System.EventHandler(this.Help_Clicked);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Wx3270.Properties.Resources.catf;
+            this.pictureBox4.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 0;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Wx3270.Properties.Resources.catf;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 132;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Wx3270.Properties.Resources.VisibleControl;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Wx3270.Properties.Resources.catf;
+            this.pictureBox3.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Wx3270.Properties.Resources.x3270if;
+            this.pictureBox5.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 129;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::Wx3270.Properties.Resources.PF1cropped;
+            this.pictureBox6.Location = new System.Drawing.Point(3, 32);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 130;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::Wx3270.Properties.Resources.screentrace2;
+            this.pictureBox8.Location = new System.Drawing.Point(12, 49);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 126;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::Wx3270.Properties.Resources.printout_small;
+            this.pictureBox7.Location = new System.Drawing.Point(12, 19);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 125;
+            this.pictureBox7.TabStop = false;
+            // 
+            // helpPictureBox2
+            // 
+            this.helpPictureBox2.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox2.Location = new System.Drawing.Point(629, 499);
+            this.helpPictureBox2.Name = "helpPictureBox2";
+            this.helpPictureBox2.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.helpPictureBox2.TabIndex = 126;
+            this.helpPictureBox2.TabStop = false;
+            this.helpPictureBox2.Tag = "About";
+            this.toolTip1.SetToolTip(this.helpPictureBox2, "Get help");
+            this.helpPictureBox2.Click += new System.EventHandler(this.Help_Clicked);
+            // 
+            // helpPictureBox3
+            // 
+            this.helpPictureBox3.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox3.Location = new System.Drawing.Point(629, 499);
+            this.helpPictureBox3.Name = "helpPictureBox3";
+            this.helpPictureBox3.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.helpPictureBox3.TabIndex = 126;
+            this.helpPictureBox3.TabStop = false;
+            this.helpPictureBox3.Tag = "Status";
+            this.toolTip1.SetToolTip(this.helpPictureBox3, "Get help");
+            this.helpPictureBox3.Click += new System.EventHandler(this.Help_Clicked);
+            // 
+            // helpPictureBox4
+            // 
+            this.helpPictureBox4.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox4.Location = new System.Drawing.Point(629, 499);
+            this.helpPictureBox4.Name = "helpPictureBox4";
+            this.helpPictureBox4.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.helpPictureBox4.TabIndex = 127;
+            this.helpPictureBox4.TabStop = false;
+            this.helpPictureBox4.Tag = "FileTransfer";
+            this.toolTip1.SetToolTip(this.helpPictureBox4, "Get help");
+            this.helpPictureBox4.Click += new System.EventHandler(this.Help_Clicked);
+            // 
             // Actions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1741,7 +1904,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ActionsDialog_FormClosing);
             this.actionsTabs.ResumeLayout(false);
             this.actionsTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.debuggingGroupBox.ResumeLayout(false);
             this.debuggingGroupBox.PerformLayout();
             this.debuggingOverallLayoutPanel.ResumeLayout(false);
@@ -1757,7 +1919,6 @@
             this.screenImagesGroupBox.ResumeLayout(false);
             this.screenImagesGroupBox.PerformLayout();
             this.aboutTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox2)).EndInit();
             this.backendAboutGroupBox.ResumeLayout(false);
             this.backendAboutGroupBox.PerformLayout();
             this.tlsLayoutPanel.ResumeLayout(false);
@@ -1765,12 +1926,10 @@
             this.guiAboutGroupBox.ResumeLayout(false);
             this.guiAboutGroupBox.PerformLayout();
             this.statusTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).EndInit();
             this.statusGroupBox.ResumeLayout(false);
             this.statusLayoutPanel.ResumeLayout(false);
             this.statusLayoutPanel.PerformLayout();
             this.fileTransferTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).EndInit();
             this.modeBox.ResumeLayout(false);
             this.modeBox.PerformLayout();
             this.tsoAllocationBox.ResumeLayout(false);
@@ -1796,6 +1955,26 @@
             this.fileLayoutPanel.ResumeLayout(false);
             this.fileLayoutPanel.PerformLayout();
             this.borderPanel.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel4.PerformLayout();
+            this.flowLayoutPanel5.ResumeLayout(false);
+            this.flowLayoutPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1933,5 +2112,17 @@
         private System.Windows.Forms.Panel uiTracePanel;
         private System.Windows.Forms.CheckBox uiTraceCheckBox;
         private System.Windows.Forms.CheckedListBox uiTraceCheckedListBox;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox7;
     }
 }

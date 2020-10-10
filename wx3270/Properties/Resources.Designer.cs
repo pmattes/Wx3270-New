@@ -243,6 +243,16 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap printout_small {
+            get {
+                object obj = ResourceManager.GetObject("printout-small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Question23 {
             get {
                 object obj = ResourceManager.GetObject("Question23", resourceCulture);
@@ -266,6 +276,26 @@ namespace Wx3270.Properties {
         internal static System.Drawing.Bitmap Question23c {
             get {
                 object obj = ResourceManager.GetObject("Question23c", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap screentrace {
+            get {
+                object obj = ResourceManager.GetObject("screentrace", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap screentrace2 {
+            get {
+                object obj = ResourceManager.GetObject("screentrace2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
