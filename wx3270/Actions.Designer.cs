@@ -167,6 +167,9 @@
             this.helpPictureBox2 = new System.Windows.Forms.PictureBox();
             this.helpPictureBox3 = new System.Windows.Forms.PictureBox();
             this.helpPictureBox4 = new System.Windows.Forms.PictureBox();
+            this.screenTraceTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.printScreenFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.screenImagesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.controlCharDocButton = new Wx3270.NoSelectButton();
             this.promptButton = new Wx3270.NoSelectButton();
             this.ReenableButton = new Wx3270.NoSelectButton();
@@ -228,6 +231,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).BeginInit();
+            this.screenTraceTableLayoutPanel.SuspendLayout();
+            this.printScreenFlowLayoutPanel.SuspendLayout();
+            this.screenImagesTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // actionsTabs
@@ -261,9 +267,9 @@
             // debuggingGroupBox
             // 
             this.debuggingGroupBox.Controls.Add(this.debuggingOverallLayoutPanel);
-            this.debuggingGroupBox.Location = new System.Drawing.Point(6, 142);
+            this.debuggingGroupBox.Location = new System.Drawing.Point(6, 176);
             this.debuggingGroupBox.Name = "debuggingGroupBox";
-            this.debuggingGroupBox.Size = new System.Drawing.Size(643, 351);
+            this.debuggingGroupBox.Size = new System.Drawing.Size(643, 317);
             this.debuggingGroupBox.TabIndex = 1;
             this.debuggingGroupBox.TabStop = false;
             this.debuggingGroupBox.Text = "Debugging";
@@ -458,18 +464,11 @@
             // 
             // screenImagesGroupBox
             // 
-            this.screenImagesGroupBox.Controls.Add(this.pictureBox12);
-            this.screenImagesGroupBox.Controls.Add(this.pictureBox11);
-            this.screenImagesGroupBox.Controls.Add(this.pictureBox8);
-            this.screenImagesGroupBox.Controls.Add(this.pictureBox7);
-            this.screenImagesGroupBox.Controls.Add(this.fileRadioButton);
-            this.screenImagesGroupBox.Controls.Add(this.printerRadioButton);
-            this.screenImagesGroupBox.Controls.Add(this.printScreenButton);
-            this.screenImagesGroupBox.Controls.Add(this.traceScreenCheckBox);
-            this.screenImagesGroupBox.Controls.Add(this.printScreenLabel);
+            this.screenImagesGroupBox.AutoSize = true;
+            this.screenImagesGroupBox.Controls.Add(this.screenImagesTableLayoutPanel);
             this.screenImagesGroupBox.Location = new System.Drawing.Point(6, 6);
             this.screenImagesGroupBox.Name = "screenImagesGroupBox";
-            this.screenImagesGroupBox.Size = new System.Drawing.Size(643, 131);
+            this.screenImagesGroupBox.Size = new System.Drawing.Size(643, 165);
             this.screenImagesGroupBox.TabIndex = 0;
             this.screenImagesGroupBox.TabStop = false;
             this.screenImagesGroupBox.Text = "Screen images";
@@ -477,9 +476,10 @@
             // fileRadioButton
             // 
             this.fileRadioButton.AutoSize = true;
-            this.fileRadioButton.Location = new System.Drawing.Point(93, 100);
+            this.fileRadioButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.fileRadioButton.Location = new System.Drawing.Point(33, 33);
             this.fileRadioButton.Name = "fileRadioButton";
-            this.fileRadioButton.Size = new System.Drawing.Size(78, 17);
+            this.fileRadioButton.Size = new System.Drawing.Size(78, 24);
             this.fileRadioButton.TabIndex = 124;
             this.fileRadioButton.Tag = "File";
             this.fileRadioButton.Text = "Save to file";
@@ -489,9 +489,10 @@
             // 
             this.printerRadioButton.AutoSize = true;
             this.printerRadioButton.Checked = true;
-            this.printerRadioButton.Location = new System.Drawing.Point(93, 73);
+            this.printerRadioButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.printerRadioButton.Location = new System.Drawing.Point(33, 3);
             this.printerRadioButton.Name = "printerRadioButton";
-            this.printerRadioButton.Size = new System.Drawing.Size(94, 17);
+            this.printerRadioButton.Size = new System.Drawing.Size(94, 24);
             this.printerRadioButton.TabIndex = 123;
             this.printerRadioButton.TabStop = true;
             this.printerRadioButton.Tag = "Printer";
@@ -500,8 +501,9 @@
             // 
             // traceScreenCheckBox
             // 
+            this.traceScreenCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.traceScreenCheckBox.AutoSize = true;
-            this.traceScreenCheckBox.Location = new System.Drawing.Point(45, 52);
+            this.traceScreenCheckBox.Location = new System.Drawing.Point(33, 37);
             this.traceScreenCheckBox.Name = "traceScreenCheckBox";
             this.traceScreenCheckBox.Size = new System.Drawing.Size(263, 17);
             this.traceScreenCheckBox.TabIndex = 122;
@@ -511,8 +513,9 @@
             // 
             // printScreenLabel
             // 
+            this.printScreenLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.printScreenLabel.AutoSize = true;
-            this.printScreenLabel.Location = new System.Drawing.Point(169, 25);
+            this.printScreenLabel.Location = new System.Drawing.Point(128, 8);
             this.printScreenLabel.Name = "printScreenLabel";
             this.printScreenLabel.Size = new System.Drawing.Size(184, 13);
             this.printScreenLabel.TabIndex = 121;
@@ -1747,7 +1750,7 @@
             // pictureBox12
             // 
             this.pictureBox12.Image = global::Wx3270.Properties.Resources.Floppy;
-            this.pictureBox12.Location = new System.Drawing.Point(62, 97);
+            this.pictureBox12.Location = new System.Drawing.Point(3, 33);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(24, 24);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1757,7 +1760,7 @@
             // pictureBox11
             // 
             this.pictureBox11.Image = global::Wx3270.Properties.Resources.printout_small;
-            this.pictureBox11.Location = new System.Drawing.Point(62, 70);
+            this.pictureBox11.Location = new System.Drawing.Point(3, 3);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(24, 24);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1767,7 +1770,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = global::Wx3270.Properties.Resources.screentrace3;
-            this.pictureBox8.Location = new System.Drawing.Point(12, 49);
+            this.pictureBox8.Location = new System.Drawing.Point(3, 34);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(24, 24);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1777,7 +1780,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::Wx3270.Properties.Resources.printout_small;
-            this.pictureBox7.Location = new System.Drawing.Point(12, 19);
+            this.pictureBox7.Location = new System.Drawing.Point(3, 3);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(24, 24);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1822,6 +1825,56 @@
             this.helpPictureBox4.Tag = "FileTransfer";
             this.toolTip1.SetToolTip(this.helpPictureBox4, "Get help");
             this.helpPictureBox4.Click += new System.EventHandler(this.Help_Clicked);
+            // 
+            // screenTraceTableLayoutPanel
+            // 
+            this.screenTraceTableLayoutPanel.AutoSize = true;
+            this.screenTraceTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.screenTraceTableLayoutPanel.ColumnCount = 2;
+            this.screenTraceTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.screenTraceTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.screenTraceTableLayoutPanel.Controls.Add(this.pictureBox11, 0, 0);
+            this.screenTraceTableLayoutPanel.Controls.Add(this.pictureBox12, 0, 1);
+            this.screenTraceTableLayoutPanel.Controls.Add(this.printerRadioButton, 1, 0);
+            this.screenTraceTableLayoutPanel.Controls.Add(this.fileRadioButton, 1, 1);
+            this.screenTraceTableLayoutPanel.Location = new System.Drawing.Point(30, 61);
+            this.screenTraceTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.screenTraceTableLayoutPanel.Name = "screenTraceTableLayoutPanel";
+            this.screenTraceTableLayoutPanel.RowCount = 2;
+            this.screenTraceTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.screenTraceTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.screenTraceTableLayoutPanel.Size = new System.Drawing.Size(130, 60);
+            this.screenTraceTableLayoutPanel.TabIndex = 129;
+            // 
+            // printScreenFlowLayoutPanel
+            // 
+            this.printScreenFlowLayoutPanel.Controls.Add(this.printScreenButton);
+            this.printScreenFlowLayoutPanel.Controls.Add(this.printScreenLabel);
+            this.printScreenFlowLayoutPanel.Location = new System.Drawing.Point(30, 0);
+            this.printScreenFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.printScreenFlowLayoutPanel.Name = "printScreenFlowLayoutPanel";
+            this.printScreenFlowLayoutPanel.Size = new System.Drawing.Size(344, 31);
+            this.printScreenFlowLayoutPanel.TabIndex = 130;
+            // 
+            // screenImagesTableLayoutPanel
+            // 
+            this.screenImagesTableLayoutPanel.AutoSize = true;
+            this.screenImagesTableLayoutPanel.ColumnCount = 2;
+            this.screenImagesTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.screenImagesTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.screenImagesTableLayoutPanel.Controls.Add(this.pictureBox7, 0, 0);
+            this.screenImagesTableLayoutPanel.Controls.Add(this.screenTraceTableLayoutPanel, 1, 2);
+            this.screenImagesTableLayoutPanel.Controls.Add(this.printScreenFlowLayoutPanel, 1, 0);
+            this.screenImagesTableLayoutPanel.Controls.Add(this.traceScreenCheckBox, 1, 1);
+            this.screenImagesTableLayoutPanel.Controls.Add(this.pictureBox8, 0, 1);
+            this.screenImagesTableLayoutPanel.Location = new System.Drawing.Point(6, 19);
+            this.screenImagesTableLayoutPanel.Name = "screenImagesTableLayoutPanel";
+            this.screenImagesTableLayoutPanel.RowCount = 3;
+            this.screenImagesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.screenImagesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.screenImagesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.screenImagesTableLayoutPanel.Size = new System.Drawing.Size(473, 127);
+            this.screenImagesTableLayoutPanel.TabIndex = 131;
             // 
             // controlCharDocButton
             // 
@@ -1881,7 +1934,7 @@
             // 
             // printScreenButton
             // 
-            this.printScreenButton.Location = new System.Drawing.Point(44, 20);
+            this.printScreenButton.Location = new System.Drawing.Point(3, 3);
             this.printScreenButton.Name = "printScreenButton";
             this.printScreenButton.Size = new System.Drawing.Size(119, 23);
             this.printScreenButton.TabIndex = 120;
@@ -1960,6 +2013,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ActionsDialog_FormClosing);
             this.actionsTabs.ResumeLayout(false);
             this.actionsTab.ResumeLayout(false);
+            this.actionsTab.PerformLayout();
             this.debuggingGroupBox.ResumeLayout(false);
             this.debuggingGroupBox.PerformLayout();
             this.debuggingOverallLayoutPanel.ResumeLayout(false);
@@ -2035,6 +2089,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).EndInit();
+            this.screenTraceTableLayoutPanel.ResumeLayout(false);
+            this.screenTraceTableLayoutPanel.PerformLayout();
+            this.printScreenFlowLayoutPanel.ResumeLayout(false);
+            this.printScreenFlowLayoutPanel.PerformLayout();
+            this.screenImagesTableLayoutPanel.ResumeLayout(false);
+            this.screenImagesTableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2188,5 +2248,8 @@
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.TableLayoutPanel screenImagesTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel screenTraceTableLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel printScreenFlowLayoutPanel;
     }
 }
