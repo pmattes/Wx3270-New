@@ -63,6 +63,16 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrowslr {
+            get {
+                object obj = ResourceManager.GetObject("arrowslr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Blank48 {
             get {
                 object obj = ResourceManager.GetObject("Blank48", resourceCulture);
@@ -113,6 +123,16 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap combolock {
+            get {
+                object obj = ResourceManager.GetObject("combolock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Delete48 {
             get {
                 object obj = ResourceManager.GetObject("Delete48", resourceCulture);
@@ -126,6 +146,16 @@ namespace Wx3270.Properties {
         internal static System.Drawing.Bitmap DeletePreview {
             get {
                 object obj = ResourceManager.GetObject("DeletePreview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Floppy {
+            get {
+                object obj = ResourceManager.GetObject("Floppy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -303,6 +333,16 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap screentrace3 {
+            get {
+                object obj = ResourceManager.GetObject("screentrace3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap StartClearer {
             get {
                 object obj = ResourceManager.GetObject("StartClearer", resourceCulture);
@@ -316,6 +356,26 @@ namespace Wx3270.Properties {
         internal static System.Drawing.Bitmap StartClearerLightGreen {
             get {
                 object obj = ResourceManager.GetObject("StartClearerLightGreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stop {
+            get {
+                object obj = ResourceManager.GetObject("stop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stop2 {
+            get {
+                object obj = ResourceManager.GetObject("stop2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -386,6 +446,16 @@ namespace Wx3270.Properties {
         internal static System.Drawing.Bitmap ToggleUp4 {
             get {
                 object obj = ResourceManager.GetObject("ToggleUp4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap unlock {
+            get {
+                object obj = ResourceManager.GetObject("unlock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

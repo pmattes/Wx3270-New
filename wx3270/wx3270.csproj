@@ -737,6 +737,13 @@
     <None Include="Resources\printout-small.png" />
     <None Include="Resources\screentrace.png" />
     <None Include="Resources\screentrace2.png" />
+    <None Include="Resources\stop.png" />
+    <None Include="Resources\unlock.png" />
+    <None Include="Resources\combolock.png" />
+    <None Include="Resources\stop2.png" />
+    <None Include="Resources\screentrace3.png" />
+    <None Include="Resources\Floppy.png" />
+    <None Include="Resources\arrowslr.png" />
     <Content Include="wx3270.bmp" />
     <None Include="Resources\StartClearerLightGreen.png" />
     <None Include="Resources\StartClearerRed.png" />

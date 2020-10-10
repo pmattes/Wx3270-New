@@ -124,14 +124,20 @@
   <data name="StartClearerLightGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StartClearerLightGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Question23" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Question23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="printout-small" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\printout-small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Blank48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Blank48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StartClearer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StartClearer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stop2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stop2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PowerPlug32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PowerPlug32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,14 +148,20 @@
   <data name="Folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Delete48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Delete48.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="screentrace2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\screentrace2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BlankPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BlankPreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ToggleDown4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ToggleDown4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="screentrace3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\screentrace3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TapePair1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TapePair1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Floppy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Floppy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TapePair21" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TapePair21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,14 +172,17 @@
   <data name="catf" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\catf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="unlock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\unlock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="KeypadSmallHollow3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\KeypadSmallHollow3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Question23c" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Question23c.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="printout-small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\printout-small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BlankPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlankPreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TapePair31" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TapePair31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,17 +217,23 @@
   <data name="BlankWide48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BlankWide48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TapePair4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TapePair4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="InsertPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InsertPreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Delete48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete48.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="wx3270" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wx3270.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="TapePair4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TapePair4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="VisibleControl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\VisibleControl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ToggleDown4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ToggleDown4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="combolock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\combolock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="x3270if" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\x3270if.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -220,10 +241,10 @@
   <data name="Question23b" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Question23b.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="InsertPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\InsertPreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Question23" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Question23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="screentrace2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\screentrace2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrowslr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrowslr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

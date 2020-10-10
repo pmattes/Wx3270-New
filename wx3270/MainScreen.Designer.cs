@@ -49,11 +49,6 @@
             this.OiaReverse = new System.Windows.Forms.Label();
             this.TopLeftLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.actionsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.fileTransferMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.screenTracingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cancelScriptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.keypadContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pF1PF12ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pF1ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -196,8 +191,13 @@
             this.crosshairPictureBox = new System.Windows.Forms.PictureBox();
             this.x3270PromptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tracingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileTransferMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.screenTracingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendToPrinterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.controlCharsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cancelScriptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.printScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayKeymapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OiaLayoutPanel.SuspendLayout();
@@ -547,47 +547,6 @@
             this.actionsMenuStrip.Name = "actionsMenuStrip";
             this.actionsMenuStrip.ShowCheckMargin = true;
             this.actionsMenuStrip.Size = new System.Drawing.Size(229, 202);
-            // 
-            // fileTransferMenuItem
-            // 
-            this.fileTransferMenuItem.Name = "fileTransferMenuItem";
-            this.fileTransferMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.fileTransferMenuItem.Text = "File Transfer";
-            this.fileTransferMenuItem.Click += new System.EventHandler(this.FileTransfer_Click);
-            // 
-            // screenTracingMenuItem
-            // 
-            this.screenTracingMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sendToPrinterToolStripMenuItem,
-            this.saveToFileToolStripMenuItem});
-            this.screenTracingMenuItem.Image = global::Wx3270.Properties.Resources.screentrace2;
-            this.screenTracingMenuItem.Name = "screenTracingMenuItem";
-            this.screenTracingMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.screenTracingMenuItem.Tag = "Toggle";
-            this.screenTracingMenuItem.Text = "Screen tracing";
-            this.screenTracingMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
-            // 
-            // saveToFileToolStripMenuItem
-            // 
-            this.saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
-            this.saveToFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveToFileToolStripMenuItem.Tag = "File";
-            this.saveToFileToolStripMenuItem.Text = "Save to File";
-            this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
-            // 
-            // cancelScriptsToolStripMenuItem
-            // 
-            this.cancelScriptsToolStripMenuItem.Name = "cancelScriptsToolStripMenuItem";
-            this.cancelScriptsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.cancelScriptsToolStripMenuItem.Text = "Cancel scripts";
-            this.cancelScriptsToolStripMenuItem.Click += new System.EventHandler(this.ActionsCancelScripts);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(228, 22);
-            this.toolStripMenuItem1.Text = "Re-enable keyboard";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.ReenableKeyboard_Click);
             // 
             // keypadContextMenuStrip
             // 
@@ -1795,6 +1754,26 @@
             this.tracingToolStripMenuItem.Text = "Tracing";
             this.tracingToolStripMenuItem.Click += new System.EventHandler(this.ActionsTracingClick);
             // 
+            // fileTransferMenuItem
+            // 
+            this.fileTransferMenuItem.Image = global::Wx3270.Properties.Resources.arrowslr;
+            this.fileTransferMenuItem.Name = "fileTransferMenuItem";
+            this.fileTransferMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.fileTransferMenuItem.Text = "File Transfer";
+            this.fileTransferMenuItem.Click += new System.EventHandler(this.FileTransfer_Click);
+            // 
+            // screenTracingMenuItem
+            // 
+            this.screenTracingMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sendToPrinterToolStripMenuItem,
+            this.saveToFileToolStripMenuItem});
+            this.screenTracingMenuItem.Image = global::Wx3270.Properties.Resources.screentrace3;
+            this.screenTracingMenuItem.Name = "screenTracingMenuItem";
+            this.screenTracingMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.screenTracingMenuItem.Tag = "Toggle";
+            this.screenTracingMenuItem.Text = "Screen tracing";
+            this.screenTracingMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
+            // 
             // sendToPrinterToolStripMenuItem
             // 
             this.sendToPrinterToolStripMenuItem.Image = global::Wx3270.Properties.Resources.printout_small;
@@ -1804,6 +1783,15 @@
             this.sendToPrinterToolStripMenuItem.Text = "Send to Printer";
             this.sendToPrinterToolStripMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
             // 
+            // saveToFileToolStripMenuItem
+            // 
+            this.saveToFileToolStripMenuItem.Image = global::Wx3270.Properties.Resources.Floppy;
+            this.saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
+            this.saveToFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToFileToolStripMenuItem.Tag = "File";
+            this.saveToFileToolStripMenuItem.Text = "Save to File";
+            this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
+            // 
             // controlCharsMenuItem
             // 
             this.controlCharsMenuItem.Image = global::Wx3270.Properties.Resources.VisibleControl;
@@ -1811,6 +1799,22 @@
             this.controlCharsMenuItem.Size = new System.Drawing.Size(228, 22);
             this.controlCharsMenuItem.Text = "Visible control characters";
             this.controlCharsMenuItem.Click += new System.EventHandler(this.ActionsVisibleControlClick);
+            // 
+            // cancelScriptsToolStripMenuItem
+            // 
+            this.cancelScriptsToolStripMenuItem.Image = global::Wx3270.Properties.Resources.stop2;
+            this.cancelScriptsToolStripMenuItem.Name = "cancelScriptsToolStripMenuItem";
+            this.cancelScriptsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.cancelScriptsToolStripMenuItem.Text = "Cancel scripts";
+            this.cancelScriptsToolStripMenuItem.Click += new System.EventHandler(this.ActionsCancelScripts);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = global::Wx3270.Properties.Resources.combolock;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(228, 22);
+            this.toolStripMenuItem1.Text = "Re-enable keyboard";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.ReenableKeyboard_Click);
             // 
             // printScreenToolStripMenuItem
             // 

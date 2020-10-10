@@ -168,11 +168,15 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.helpPictureBox2 = new System.Windows.Forms.PictureBox();
             this.helpPictureBox3 = new System.Windows.Forms.PictureBox();
             this.helpPictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.actionsTabs.SuspendLayout();
             this.actionsTab.SuspendLayout();
             this.debuggingGroupBox.SuspendLayout();
@@ -215,11 +219,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             this.SuspendLayout();
             // 
             // actionsTabs
@@ -393,6 +401,8 @@
             this.debuggingLowerLayoutPanel.Controls.Add(this.cancelActionsLabel, 2, 2);
             this.debuggingLowerLayoutPanel.Controls.Add(this.pictureBox5, 0, 0);
             this.debuggingLowerLayoutPanel.Controls.Add(this.pictureBox6, 0, 1);
+            this.debuggingLowerLayoutPanel.Controls.Add(this.pictureBox9, 0, 2);
+            this.debuggingLowerLayoutPanel.Controls.Add(this.pictureBox10, 0, 3);
             this.debuggingLowerLayoutPanel.Location = new System.Drawing.Point(3, 167);
             this.debuggingLowerLayoutPanel.Name = "debuggingLowerLayoutPanel";
             this.debuggingLowerLayoutPanel.RowCount = 4;
@@ -445,6 +455,8 @@
             // 
             // screenImagesGroupBox
             // 
+            this.screenImagesGroupBox.Controls.Add(this.pictureBox12);
+            this.screenImagesGroupBox.Controls.Add(this.pictureBox11);
             this.screenImagesGroupBox.Controls.Add(this.pictureBox8);
             this.screenImagesGroupBox.Controls.Add(this.pictureBox7);
             this.screenImagesGroupBox.Controls.Add(this.fileRadioButton);
@@ -462,7 +474,7 @@
             // fileRadioButton
             // 
             this.fileRadioButton.AutoSize = true;
-            this.fileRadioButton.Location = new System.Drawing.Point(65, 97);
+            this.fileRadioButton.Location = new System.Drawing.Point(93, 100);
             this.fileRadioButton.Name = "fileRadioButton";
             this.fileRadioButton.Size = new System.Drawing.Size(78, 17);
             this.fileRadioButton.TabIndex = 124;
@@ -474,7 +486,7 @@
             // 
             this.printerRadioButton.AutoSize = true;
             this.printerRadioButton.Checked = true;
-            this.printerRadioButton.Location = new System.Drawing.Point(65, 73);
+            this.printerRadioButton.Location = new System.Drawing.Point(93, 73);
             this.printerRadioButton.Name = "printerRadioButton";
             this.printerRadioButton.Size = new System.Drawing.Size(94, 17);
             this.printerRadioButton.TabIndex = 123;
@@ -1824,9 +1836,31 @@
             this.pictureBox6.TabIndex = 130;
             this.pictureBox6.TabStop = false;
             // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::Wx3270.Properties.Resources.stop2;
+            this.pictureBox9.Location = new System.Drawing.Point(3, 61);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 131;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = global::Wx3270.Properties.Resources.combolock;
+            this.pictureBox10.Location = new System.Drawing.Point(3, 90);
+            this.pictureBox10.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox10.TabIndex = 132;
+            this.pictureBox10.TabStop = false;
+            // 
             // pictureBox8
             // 
-            this.pictureBox8.Image = global::Wx3270.Properties.Resources.screentrace2;
+            this.pictureBox8.Image = global::Wx3270.Properties.Resources.screentrace3;
             this.pictureBox8.Location = new System.Drawing.Point(12, 49);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(24, 24);
@@ -1882,6 +1916,26 @@
             this.helpPictureBox4.Tag = "FileTransfer";
             this.toolTip1.SetToolTip(this.helpPictureBox4, "Get help");
             this.helpPictureBox4.Click += new System.EventHandler(this.Help_Clicked);
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = global::Wx3270.Properties.Resources.printout_small;
+            this.pictureBox11.Location = new System.Drawing.Point(62, 70);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox11.TabIndex = 127;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = global::Wx3270.Properties.Resources.Floppy;
+            this.pictureBox12.Location = new System.Drawing.Point(62, 97);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox12.TabIndex = 128;
+            this.pictureBox12.TabStop = false;
             // 
             // Actions
             // 
@@ -1970,11 +2024,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2124,5 +2182,9 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.PictureBox pictureBox11;
     }
 }
