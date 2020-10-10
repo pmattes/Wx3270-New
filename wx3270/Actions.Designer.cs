@@ -151,6 +151,22 @@
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.helpPictureBox2 = new System.Windows.Forms.PictureBox();
+            this.helpPictureBox3 = new System.Windows.Forms.PictureBox();
+            this.helpPictureBox4 = new System.Windows.Forms.PictureBox();
             this.controlCharDocButton = new Wx3270.NoSelectButton();
             this.promptButton = new Wx3270.NoSelectButton();
             this.ReenableButton = new Wx3270.NoSelectButton();
@@ -161,22 +177,6 @@
             this.fileTransferBrowseButton = new Wx3270.NoSelectButton();
             this.fileTransferClearFormButton = new Wx3270.NoSelectButton();
             this.transferButton = new Wx3270.NoSelectButton();
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.helpPictureBox2 = new System.Windows.Forms.PictureBox();
-            this.helpPictureBox3 = new System.Windows.Forms.PictureBox();
-            this.helpPictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.actionsTabs.SuspendLayout();
             this.actionsTab.SuspendLayout();
             this.debuggingGroupBox.SuspendLayout();
@@ -221,13 +221,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             this.SuspendLayout();
             // 
             // actionsTabs
@@ -374,6 +374,7 @@
             // 
             // uiTraceCheckedListBox
             // 
+            this.uiTraceCheckedListBox.CheckOnClick = true;
             this.uiTraceCheckedListBox.Enabled = false;
             this.uiTraceCheckedListBox.FormattingEnabled = true;
             this.uiTraceCheckedListBox.Location = new System.Drawing.Point(192, 0);
@@ -945,9 +946,9 @@
             this.fileTransferTab.Controls.Add(this.hostTypeBox);
             this.fileTransferTab.Controls.Add(this.directionBox);
             this.fileTransferTab.Controls.Add(this.filesBox);
+            this.fileTransferTab.Controls.Add(this.helpPictureBox4);
             this.fileTransferTab.Controls.Add(this.fileTransferClearFormButton);
             this.fileTransferTab.Controls.Add(this.transferButton);
-            this.fileTransferTab.Controls.Add(this.helpPictureBox4);
             this.fileTransferTab.Location = new System.Drawing.Point(4, 22);
             this.fileTransferTab.Name = "fileTransferTab";
             this.fileTransferTab.Size = new System.Drawing.Size(655, 525);
@@ -1645,6 +1646,182 @@
             this.flowLayoutPanel5.Size = new System.Drawing.Size(192, 64);
             this.flowLayoutPanel5.TabIndex = 132;
             // 
+            // helpPictureBox
+            // 
+            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox.Location = new System.Drawing.Point(629, 499);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.helpPictureBox.TabIndex = 125;
+            this.helpPictureBox.TabStop = false;
+            this.helpPictureBox.Tag = "Actions";
+            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
+            this.helpPictureBox.Click += new System.EventHandler(this.Help_Clicked);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Wx3270.Properties.Resources.catf;
+            this.pictureBox4.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 0;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Wx3270.Properties.Resources.catf;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 132;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Wx3270.Properties.Resources.VisibleControl;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Wx3270.Properties.Resources.catf;
+            this.pictureBox3.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Wx3270.Properties.Resources.x3270if;
+            this.pictureBox5.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 129;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::Wx3270.Properties.Resources.PF1cropped;
+            this.pictureBox6.Location = new System.Drawing.Point(3, 32);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 130;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::Wx3270.Properties.Resources.stop2;
+            this.pictureBox9.Location = new System.Drawing.Point(3, 61);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 131;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = global::Wx3270.Properties.Resources.combolock;
+            this.pictureBox10.Location = new System.Drawing.Point(3, 90);
+            this.pictureBox10.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox10.TabIndex = 132;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = global::Wx3270.Properties.Resources.Floppy;
+            this.pictureBox12.Location = new System.Drawing.Point(62, 97);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox12.TabIndex = 128;
+            this.pictureBox12.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = global::Wx3270.Properties.Resources.printout_small;
+            this.pictureBox11.Location = new System.Drawing.Point(62, 70);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox11.TabIndex = 127;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::Wx3270.Properties.Resources.screentrace3;
+            this.pictureBox8.Location = new System.Drawing.Point(12, 49);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 126;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::Wx3270.Properties.Resources.printout_small;
+            this.pictureBox7.Location = new System.Drawing.Point(12, 19);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 125;
+            this.pictureBox7.TabStop = false;
+            // 
+            // helpPictureBox2
+            // 
+            this.helpPictureBox2.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox2.Location = new System.Drawing.Point(629, 499);
+            this.helpPictureBox2.Name = "helpPictureBox2";
+            this.helpPictureBox2.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.helpPictureBox2.TabIndex = 126;
+            this.helpPictureBox2.TabStop = false;
+            this.helpPictureBox2.Tag = "About";
+            this.toolTip1.SetToolTip(this.helpPictureBox2, "Get help");
+            this.helpPictureBox2.Click += new System.EventHandler(this.Help_Clicked);
+            // 
+            // helpPictureBox3
+            // 
+            this.helpPictureBox3.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox3.Location = new System.Drawing.Point(629, 499);
+            this.helpPictureBox3.Name = "helpPictureBox3";
+            this.helpPictureBox3.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.helpPictureBox3.TabIndex = 126;
+            this.helpPictureBox3.TabStop = false;
+            this.helpPictureBox3.Tag = "Status";
+            this.toolTip1.SetToolTip(this.helpPictureBox3, "Get help");
+            this.helpPictureBox3.Click += new System.EventHandler(this.Help_Clicked);
+            // 
+            // helpPictureBox4
+            // 
+            this.helpPictureBox4.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox4.Location = new System.Drawing.Point(629, 499);
+            this.helpPictureBox4.Name = "helpPictureBox4";
+            this.helpPictureBox4.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.helpPictureBox4.TabIndex = 127;
+            this.helpPictureBox4.TabStop = false;
+            this.helpPictureBox4.Tag = "FileTransfer";
+            this.toolTip1.SetToolTip(this.helpPictureBox4, "Get help");
+            this.helpPictureBox4.Click += new System.EventHandler(this.Help_Clicked);
+            // 
             // controlCharDocButton
             // 
             this.controlCharDocButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -1761,182 +1938,6 @@
             this.transferButton.UseVisualStyleBackColor = true;
             this.transferButton.Click += new System.EventHandler(this.TransferButton_Click);
             // 
-            // helpPictureBox
-            // 
-            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(629, 499);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.helpPictureBox.TabIndex = 125;
-            this.helpPictureBox.TabStop = false;
-            this.helpPictureBox.Tag = "Actions";
-            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
-            this.helpPictureBox.Click += new System.EventHandler(this.Help_Clicked);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::Wx3270.Properties.Resources.catf;
-            this.pictureBox4.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 0;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Wx3270.Properties.Resources.catf;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 132;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Wx3270.Properties.Resources.VisibleControl;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Wx3270.Properties.Resources.catf;
-            this.pictureBox3.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::Wx3270.Properties.Resources.x3270if;
-            this.pictureBox5.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 129;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::Wx3270.Properties.Resources.PF1cropped;
-            this.pictureBox6.Location = new System.Drawing.Point(3, 32);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 130;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = global::Wx3270.Properties.Resources.stop2;
-            this.pictureBox9.Location = new System.Drawing.Point(3, 61);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 131;
-            this.pictureBox9.TabStop = false;
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.Image = global::Wx3270.Properties.Resources.combolock;
-            this.pictureBox10.Location = new System.Drawing.Point(3, 90);
-            this.pictureBox10.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox10.TabIndex = 132;
-            this.pictureBox10.TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = global::Wx3270.Properties.Resources.screentrace3;
-            this.pictureBox8.Location = new System.Drawing.Point(12, 49);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox8.TabIndex = 126;
-            this.pictureBox8.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::Wx3270.Properties.Resources.printout_small;
-            this.pictureBox7.Location = new System.Drawing.Point(12, 19);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 125;
-            this.pictureBox7.TabStop = false;
-            // 
-            // helpPictureBox2
-            // 
-            this.helpPictureBox2.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox2.Location = new System.Drawing.Point(629, 499);
-            this.helpPictureBox2.Name = "helpPictureBox2";
-            this.helpPictureBox2.Size = new System.Drawing.Size(23, 23);
-            this.helpPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.helpPictureBox2.TabIndex = 126;
-            this.helpPictureBox2.TabStop = false;
-            this.helpPictureBox2.Tag = "About";
-            this.toolTip1.SetToolTip(this.helpPictureBox2, "Get help");
-            this.helpPictureBox2.Click += new System.EventHandler(this.Help_Clicked);
-            // 
-            // helpPictureBox3
-            // 
-            this.helpPictureBox3.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox3.Location = new System.Drawing.Point(629, 499);
-            this.helpPictureBox3.Name = "helpPictureBox3";
-            this.helpPictureBox3.Size = new System.Drawing.Size(23, 23);
-            this.helpPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.helpPictureBox3.TabIndex = 126;
-            this.helpPictureBox3.TabStop = false;
-            this.helpPictureBox3.Tag = "Status";
-            this.toolTip1.SetToolTip(this.helpPictureBox3, "Get help");
-            this.helpPictureBox3.Click += new System.EventHandler(this.Help_Clicked);
-            // 
-            // helpPictureBox4
-            // 
-            this.helpPictureBox4.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox4.Location = new System.Drawing.Point(629, 499);
-            this.helpPictureBox4.Name = "helpPictureBox4";
-            this.helpPictureBox4.Size = new System.Drawing.Size(23, 23);
-            this.helpPictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.helpPictureBox4.TabIndex = 127;
-            this.helpPictureBox4.TabStop = false;
-            this.helpPictureBox4.Tag = "FileTransfer";
-            this.toolTip1.SetToolTip(this.helpPictureBox4, "Get help");
-            this.helpPictureBox4.Click += new System.EventHandler(this.Help_Clicked);
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.Image = global::Wx3270.Properties.Resources.printout_small;
-            this.pictureBox11.Location = new System.Drawing.Point(62, 70);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox11.TabIndex = 127;
-            this.pictureBox11.TabStop = false;
-            // 
-            // pictureBox12
-            // 
-            this.pictureBox12.Image = global::Wx3270.Properties.Resources.Floppy;
-            this.pictureBox12.Location = new System.Drawing.Point(62, 97);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox12.TabIndex = 128;
-            this.pictureBox12.TabStop = false;
-            // 
             // Actions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2026,13 +2027,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
