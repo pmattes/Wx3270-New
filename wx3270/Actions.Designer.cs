@@ -170,12 +170,13 @@
             this.screenTraceTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.printScreenFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.screenImagesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.actionsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.printScreenButton = new Wx3270.NoSelectButton();
             this.controlCharDocButton = new Wx3270.NoSelectButton();
             this.promptButton = new Wx3270.NoSelectButton();
             this.reenableButton = new Wx3270.NoSelectButton();
             this.keymapButton = new Wx3270.NoSelectButton();
             this.cancelActionsButton = new Wx3270.NoSelectButton();
-            this.printScreenButton = new Wx3270.NoSelectButton();
             this.copyActionButton = new Wx3270.NoSelectButton();
             this.fileTransferBrowseButton = new Wx3270.NoSelectButton();
             this.fileTransferClearFormButton = new Wx3270.NoSelectButton();
@@ -234,6 +235,7 @@
             this.screenTraceTableLayoutPanel.SuspendLayout();
             this.printScreenFlowLayoutPanel.SuspendLayout();
             this.screenImagesTableLayoutPanel.SuspendLayout();
+            this.actionsTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // actionsTabs
@@ -252,9 +254,8 @@
             // 
             // actionsTab
             // 
+            this.actionsTab.Controls.Add(this.actionsTableLayoutPanel);
             this.actionsTab.Controls.Add(this.helpPictureBox);
-            this.actionsTab.Controls.Add(this.debuggingGroupBox);
-            this.actionsTab.Controls.Add(this.screenImagesGroupBox);
             this.actionsTab.Location = new System.Drawing.Point(4, 22);
             this.actionsTab.Name = "actionsTab";
             this.actionsTab.Padding = new System.Windows.Forms.Padding(3);
@@ -267,9 +268,9 @@
             // debuggingGroupBox
             // 
             this.debuggingGroupBox.Controls.Add(this.debuggingOverallLayoutPanel);
-            this.debuggingGroupBox.Location = new System.Drawing.Point(6, 176);
+            this.debuggingGroupBox.Location = new System.Drawing.Point(3, 174);
             this.debuggingGroupBox.Name = "debuggingGroupBox";
-            this.debuggingGroupBox.Size = new System.Drawing.Size(643, 317);
+            this.debuggingGroupBox.Size = new System.Drawing.Size(640, 317);
             this.debuggingGroupBox.TabIndex = 1;
             this.debuggingGroupBox.TabStop = false;
             this.debuggingGroupBox.Text = "Debugging";
@@ -476,11 +477,13 @@
             // 
             // screenImagesGroupBox
             // 
+            this.screenImagesGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.screenImagesGroupBox.AutoSize = true;
             this.screenImagesGroupBox.Controls.Add(this.screenImagesTableLayoutPanel);
-            this.screenImagesGroupBox.Location = new System.Drawing.Point(6, 6);
+            this.screenImagesGroupBox.Location = new System.Drawing.Point(3, 3);
             this.screenImagesGroupBox.Name = "screenImagesGroupBox";
-            this.screenImagesGroupBox.Size = new System.Drawing.Size(643, 165);
+            this.screenImagesGroupBox.Size = new System.Drawing.Size(640, 165);
             this.screenImagesGroupBox.TabIndex = 0;
             this.screenImagesGroupBox.TabStop = false;
             this.screenImagesGroupBox.Text = "Screen images";
@@ -1915,6 +1918,33 @@
             this.screenImagesTableLayoutPanel.Size = new System.Drawing.Size(473, 127);
             this.screenImagesTableLayoutPanel.TabIndex = 131;
             // 
+            // actionsTableLayoutPanel
+            // 
+            this.actionsTableLayoutPanel.AutoSize = true;
+            this.actionsTableLayoutPanel.ColumnCount = 1;
+            this.actionsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.actionsTableLayoutPanel.Controls.Add(this.screenImagesGroupBox, 0, 0);
+            this.actionsTableLayoutPanel.Controls.Add(this.debuggingGroupBox, 0, 1);
+            this.actionsTableLayoutPanel.Location = new System.Drawing.Point(6, 6);
+            this.actionsTableLayoutPanel.Name = "actionsTableLayoutPanel";
+            this.actionsTableLayoutPanel.RowCount = 2;
+            this.actionsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.actionsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.actionsTableLayoutPanel.Size = new System.Drawing.Size(646, 494);
+            this.actionsTableLayoutPanel.TabIndex = 2;
+            // 
+            // printScreenButton
+            // 
+            this.printScreenButton.Location = new System.Drawing.Point(3, 3);
+            this.printScreenButton.Name = "printScreenButton";
+            this.printScreenButton.Size = new System.Drawing.Size(119, 23);
+            this.printScreenButton.TabIndex = 120;
+            this.printScreenButton.TabStop = false;
+            this.printScreenButton.Tag = "printScreen";
+            this.printScreenButton.Text = "Print Screen";
+            this.printScreenButton.UseVisualStyleBackColor = true;
+            this.printScreenButton.Click += new System.EventHandler(this.PrintTextButton_Click);
+            // 
             // controlCharDocButton
             // 
             this.controlCharDocButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -1974,18 +2004,6 @@
             this.cancelActionsButton.Text = "Cancel Actions";
             this.cancelActionsButton.UseVisualStyleBackColor = true;
             this.cancelActionsButton.Click += new System.EventHandler(this.CancelActionsButton_Click);
-            // 
-            // printScreenButton
-            // 
-            this.printScreenButton.Location = new System.Drawing.Point(3, 3);
-            this.printScreenButton.Name = "printScreenButton";
-            this.printScreenButton.Size = new System.Drawing.Size(119, 23);
-            this.printScreenButton.TabIndex = 120;
-            this.printScreenButton.TabStop = false;
-            this.printScreenButton.Tag = "printScreen";
-            this.printScreenButton.Text = "Print Screen";
-            this.printScreenButton.UseVisualStyleBackColor = true;
-            this.printScreenButton.Click += new System.EventHandler(this.PrintTextButton_Click);
             // 
             // copyActionButton
             // 
@@ -2139,6 +2157,8 @@
             this.printScreenFlowLayoutPanel.PerformLayout();
             this.screenImagesTableLayoutPanel.ResumeLayout(false);
             this.screenImagesTableLayoutPanel.PerformLayout();
+            this.actionsTableLayoutPanel.ResumeLayout(false);
+            this.actionsTableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2295,5 +2315,6 @@
         private System.Windows.Forms.TableLayoutPanel screenImagesTableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel screenTraceTableLayoutPanel;
         private System.Windows.Forms.FlowLayoutPanel printScreenFlowLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel actionsTableLayoutPanel;
     }
 }
