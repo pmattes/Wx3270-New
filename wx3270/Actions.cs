@@ -7,6 +7,7 @@ namespace Wx3270
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
     using Wx3270.Contracts;
@@ -209,10 +210,11 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// The Print Text button was clicked.
+        /// The Print Screen button was clicked.
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
+        [Associated("printScreen")]
         public void PrintTextButton_Click(object sender, EventArgs e)
         {
             this.BackEnd.RunAction(
@@ -262,6 +264,29 @@ namespace Wx3270
 
                     break;
             }
+        }
+
+        /// <summary>
+        /// Recursively walks the children of a control.
+        /// </summary>
+        /// <param name="control">Control to walk.</param>
+        /// <returns>All offspring.</returns>
+        private static IEnumerable<Control> ChildControls(Control control)
+        {
+            var ret = new List<Control>();
+            foreach (var child in control.Controls.OfType<Control>())
+            {
+                if (child.Controls.Count != 0)
+                {
+                    ret.AddRange(ChildControls(child));
+                }
+                else
+                {
+                    ret.Add(child);
+                }
+            }
+
+            return ret;
         }
 
         /// <summary>
@@ -334,6 +359,7 @@ namespace Wx3270
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
+        [Associated("trace")]
         private void TraceCheckBox_Click(object sender, EventArgs e)
         {
             this.TraceChanged(this.traceCheckBox.Checked);
@@ -435,6 +461,7 @@ namespace Wx3270
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
+        [Associated("visibleControl")]
         private void VisibleControlCheckBox_Clicked(object sender, EventArgs e)
         {
             this.ChangeVisibleControl(this.visibleControlCheckBox.Checked);
@@ -471,6 +498,7 @@ namespace Wx3270
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
+        [Associated("cancelActions")]
         private void CancelActionsButton_Click(object sender, EventArgs e)
         {
             this.CancelScripts();
@@ -550,6 +578,7 @@ namespace Wx3270
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
+        [Associated("screenTracing")]
         private void TraceScreen_Click(object sender, EventArgs e)
         {
             if (sender is CheckBox checkBox)
@@ -579,6 +608,7 @@ namespace Wx3270
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
+        [Associated("prompt")]
         private void PromptCheckBox_Click(object sender, EventArgs e)
         {
             // Start the wx3270 prompt.
@@ -601,6 +631,7 @@ namespace Wx3270
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
+        [Associated("reenable")]
         private void ReenableButton_Click(object sender, EventArgs e)
         {
             this.ReenableKeyboard();
@@ -611,6 +642,7 @@ namespace Wx3270
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
+        [Associated("tracePr3287")]
         private void TracePr3287_Click(object sender, EventArgs e)
         {
             // Send the new pr3287 options.
@@ -631,6 +663,7 @@ namespace Wx3270
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
+        [Associated("keymap")]
         private void KeymapClick(object sender, EventArgs e)
         {
             if (sender != null)
@@ -696,6 +729,7 @@ namespace Wx3270
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
+        [Associated("uiTrace")]
         private void UiTraceCheckBox_Click(object sender, EventArgs e)
         {
             this.ToggleUiTracing(this.uiTraceCheckBox.Checked);
@@ -759,6 +793,86 @@ namespace Wx3270
             {
                 this.uiTraceCheckRunning = false;
             }
+        }
+
+        /// <summary>
+        /// An element associated with another element has been clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void AssociatedClick(object sender, EventArgs e)
+        {
+            // Find the tag associated with this element. Then find other elements in the same container with the same tag.
+            var element = (Control)sender;
+            var tag = (string)element.Tag;
+            if (tag == null)
+            {
+                return;
+            }
+
+            // Find the associated method.
+            MethodInfo click = null;
+            foreach (var methodInfo in typeof(Actions).GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                var attribute = methodInfo.GetCustomAttribute<Associated>();
+                if (attribute != null && attribute.Tag == tag)
+                {
+                    click = methodInfo;
+                    break;
+                }
+            }
+
+            foreach (var control in ChildControls(element.Parent).Where(c => c != element))
+            {
+                if ((string)control.Tag == tag)
+                {
+                    var active = true;
+                    if (control is Button || control is NoSelectButton)
+                    {
+                    }
+                    else if (control is CheckBox checkBox)
+                    {
+                        checkBox.Checked = !checkBox.Checked;
+                    }
+                    else if (control is RadioButton radioButton)
+                    {
+                        if (!radioButton.Checked)
+                        {
+                            radioButton.Checked = true;
+                        }
+                    }
+                    else
+                    {
+                        active = false;
+                    }
+
+                    if (active)
+                    {
+                        click?.Invoke(this, new object[] { control, e });
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Associated event handler attrbutes.
+        /// </summary>
+        private class Associated : Attribute
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="Associated"/> class.
+            /// </summary>
+            /// <param name="tag">Associated tag.</param>
+            public Associated(string tag)
+            {
+                this.Tag = tag;
+            }
+
+            /// <summary>
+            /// Gets or sets the tag.
+            /// </summary>
+            public string Tag { get; set; }
         }
 
         /// <summary>
