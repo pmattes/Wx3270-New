@@ -127,6 +127,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(Title.ReEnableKeyboard, "Re-Enable Keyboard");
             I18n.LocalizeGlobal(Title.ModeChange, "Mode Change");
             I18n.LocalizeGlobal(Title.SaveLocalization, "Save Localization");
+            I18n.LocalizeGlobal(Title.ScreenTrace, "Screen Tracing");
 
             // Localize the file transfer tab.
             FileTransferLocalize();
@@ -306,6 +307,8 @@ namespace Wx3270
                     break;
                 case B3270.Setting.ScreenTrace:
                     this.traceScreenCheckBox.Checked = settingDictionary.TryGetValue(B3270.Setting.ScreenTrace, out bool screenTrace) && screenTrace;
+                    this.fileRadioButton.Enabled = !screenTrace;
+                    this.printerRadioButton.Enabled = !screenTrace;
                     break;
             }
         }
@@ -545,13 +548,26 @@ namespace Wx3270
 
                     this.BackEnd.RunAction(
                         new BackEndAction(B3270.Action.ScreenTrace, "on", "file", this.screenTraceFileDialog.FileName),
-                        (cookie, success, result) => { });
+                        ErrorBox.Completion(Title.ScreenTrace));
                 }
                 else
                 {
                     this.BackEnd.RunAction(
                         new BackEndAction(B3270.Action.ScreenTrace, "on", "printer", "gdi", "dialog"),
-                        (cookie, success, result) => { });
+                        (cookie, success, result) =>
+                        {
+                            if (!success)
+                            {
+                                if (!string.IsNullOrEmpty(result))
+                                {
+                                    ErrorBox.Show(result, I18n.Get(Title.ScreenTrace));
+                                }
+
+                                this.traceScreenCheckBox.Checked = false;
+                                this.printerRadioButton.Enabled = true;
+                                this.fileRadioButton.Enabled = true;
+                            }
+                        });
                 }
 
                 this.SafeHide();
@@ -566,9 +582,7 @@ namespace Wx3270
                 this.SafeHide();
             }
 
-            this.printerRadioButton.Checked = !isOn;
             this.printerRadioButton.Enabled = !isOn;
-            this.fileRadioButton.Checked = false;
             this.fileRadioButton.Enabled = !isOn;
             return isOn;
         }
@@ -894,6 +908,11 @@ namespace Wx3270
             /// Save localization.
             /// </summary>
             public static readonly string SaveLocalization = I18n.Combine(TitleName, "saveLocalization");
+
+            /// <summary>
+            /// Screen trace error.
+            /// </summary>
+            public static readonly string ScreenTrace = I18n.Combine(TitleName, "screenTrace");
         }
     }
 }
