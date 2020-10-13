@@ -19,6 +19,27 @@ namespace Wx3270
     public delegate void ModeHandler(bool isSet);
 
     /// <summary>
+    /// Screen trace type enumeration.
+    /// </summary>
+    public enum ScreenTraceType
+    {
+        /// <summary>
+        /// Trace to a file.
+        /// </summary>
+        File,
+
+        /// <summary>
+        /// Trace to the printer.
+        /// </summary>
+        Printer,
+
+        /// <summary>
+        /// Do not change the value.
+        /// </summary>
+        Nop,
+    }
+
+    /// <summary>
     /// The actions dialog.
     /// </summary>
     public partial class Actions : Form
@@ -36,12 +57,17 @@ namespace Wx3270
         /// <summary>
         /// The application instance.
         /// </summary>
-        private Wx3270App app;
+        private readonly Wx3270App app;
 
         /// <summary>
         /// The main screen, for callbacks.
         /// </summary>
-        private MainScreen mainScreen;
+        private readonly MainScreen mainScreen;
+
+        /// <summary>
+        /// The screen trace type.
+        /// </summary>
+        private readonly RadioEnum<ScreenTraceType> screenTraceType;
 
         /// <summary>
         /// The visible control codes document.
@@ -76,6 +102,7 @@ namespace Wx3270
             this.app = app;
             this.mainScreen = mainScreen;
             this.handle = this.Handle;
+            this.screenTraceType = new RadioEnum<ScreenTraceType>(this.screenTraceTableLayoutPanel);
 
             // Initialize the tabs.
             this.FileTransferTabInit();
@@ -237,32 +264,22 @@ namespace Wx3270
         /// <param name="tag">Menu item tag.</param>
         public void ToggleScreenTracing(string tag)
         {
+            if (!this.traceScreenCheckBox.Enabled)
+            {
+                // Still waiting for the back end to respond.
+                return;
+            }
+
             switch (tag)
             {
                 case "Printer":
-                    if (!this.traceScreenCheckBox.Checked)
-                    {
-                        this.printerRadioButton.Checked = true;
-                        this.fileRadioButton.Checked = false;
-                        this.traceScreenCheckBox.Checked = this.ChangeScreenTrace(true);
-                    }
-
+                    this.ChangeScreenTrace(true, ScreenTraceType.Printer);
                     break;
                 case "File":
-                    if (!this.traceScreenCheckBox.Checked)
-                    {
-                        this.printerRadioButton.Checked = false;
-                        this.fileRadioButton.Checked = true;
-                        this.traceScreenCheckBox.Checked = this.ChangeScreenTrace(true);
-                    }
-
+                    this.ChangeScreenTrace(true, ScreenTraceType.File);
                     break;
                 case "Toggle":
-                    if (this.traceScreenCheckBox.Checked)
-                    {
-                        this.traceScreenCheckBox.Checked = this.ChangeScreenTrace(false);
-                    }
-
+                    this.ChangeScreenTrace(false, ScreenTraceType.Nop);
                     break;
             }
         }
@@ -307,6 +324,7 @@ namespace Wx3270
                     break;
                 case B3270.Setting.ScreenTrace:
                     this.traceScreenCheckBox.Checked = settingDictionary.TryGetValue(B3270.Setting.ScreenTrace, out bool screenTrace) && screenTrace;
+                    this.traceScreenCheckBox.Enabled = true;
                     this.fileRadioButton.Enabled = !screenTrace;
                     this.printerRadioButton.Enabled = !screenTrace;
                     break;
@@ -526,65 +544,71 @@ namespace Wx3270
         /// Change screen trace mode.
         /// </summary>
         /// <param name="isOn">True if screen trace is enabled.</param>
-        /// <returns>New value of screen trace mode.</returns>
-        private bool ChangeScreenTrace(bool isOn)
+        /// <param name="type">Screen trace type.</param>
+        private void ChangeScreenTrace(bool isOn, ScreenTraceType type)
         {
-            var toggled = this.app.SettingChange.SettingDictionary.TryGetValue(B3270.Setting.ScreenTrace, out bool screenTrace) && screenTrace;
-
-            if (isOn && !toggled)
+            if (this.traceScreenCheckBox.Checked == isOn)
             {
+                return;
+            }
+
+            if (isOn)
+            {
+                BackEndAction action;
+
                 // Turn screen tracing on.
-                if (this.fileRadioButton.Checked)
+                if (type == ScreenTraceType.File)
                 {
                     this.screenTraceFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                     switch (this.screenTraceFileDialog.ShowDialog())
                     {
                         default:
                         case DialogResult.Cancel:
-                            return false;
+                            this.traceScreenCheckBox.Checked = false;
+                            return;
                         case DialogResult.OK:
                             break;
                     }
 
-                    this.BackEnd.RunAction(
-                        new BackEndAction(B3270.Action.ScreenTrace, "on", "file", this.screenTraceFileDialog.FileName),
-                        ErrorBox.Completion(Title.ScreenTrace));
+                    action = new BackEndAction(B3270.Action.ScreenTrace, "on", "file", this.screenTraceFileDialog.FileName);
                 }
                 else
                 {
-                    this.BackEnd.RunAction(
-                        new BackEndAction(B3270.Action.ScreenTrace, "on", "printer", "gdi", "dialog"),
-                        (cookie, success, result) =>
-                        {
-                            if (!success)
-                            {
-                                if (!string.IsNullOrEmpty(result))
-                                {
-                                    ErrorBox.Show(result, I18n.Get(Title.ScreenTrace));
-                                }
-
-                                this.traceScreenCheckBox.Checked = false;
-                                this.printerRadioButton.Enabled = true;
-                                this.fileRadioButton.Enabled = true;
-                            }
-                        });
+                    action = new BackEndAction(B3270.Action.ScreenTrace, "on", "printer", "gdi", "dialog");
                 }
 
-                this.SafeHide();
+                this.traceScreenCheckBox.Checked = true;
+                this.traceScreenCheckBox.Enabled = false;
+                this.screenTraceType.Value = type;
+                this.printerRadioButton.Enabled = false;
+                this.fileRadioButton.Enabled = false;
+                this.BackEnd.RunAction(
+                    action,
+                    (cookie, success, result) =>
+                    {
+                        if (!success)
+                        {
+                            if (!string.IsNullOrEmpty(result))
+                            {
+                                ErrorBox.Show(result, I18n.Get(Title.ScreenTrace));
+                            }
+
+                            this.traceScreenCheckBox.Checked = false;
+                            this.traceScreenCheckBox.Enabled = true;
+                            this.printerRadioButton.Enabled = true;
+                            this.fileRadioButton.Enabled = true;
+                        }
+                    });
             }
-            else if (!isOn && toggled)
+            else
             {
                 // Turn screen tracing off.
+                this.traceScreenCheckBox.Checked = false;
+                this.traceScreenCheckBox.Enabled = false;
                 this.BackEnd.RunAction(
                     new BackEndAction(B3270.Action.ScreenTrace, "off"),
                     (cookie, success, result) => { });
-
-                this.SafeHide();
             }
-
-            this.printerRadioButton.Enabled = !isOn;
-            this.fileRadioButton.Enabled = !isOn;
-            return isOn;
         }
 
         /// <summary>
@@ -597,7 +621,9 @@ namespace Wx3270
         {
             if (sender is CheckBox checkBox)
             {
-                checkBox.Checked = this.ChangeScreenTrace(checkBox.Checked);
+                // Invert the checkbox, then let ChangeScreenTrace set it back.
+                checkBox.Checked = !checkBox.Checked;
+                this.ChangeScreenTrace(!checkBox.Checked, this.screenTraceType.Value);
             }
         }
 
@@ -840,6 +866,11 @@ namespace Wx3270
             {
                 if ((string)control.Tag == tag)
                 {
+                    if (!control.Enabled)
+                    {
+                        return;
+                    }
+
                     var active = true;
                     if (control is Button || control is NoSelectButton)
                     {

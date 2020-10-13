@@ -1922,8 +1922,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ScreenTracing_Click(object sender, EventArgs e)
         {
-            var item = sender as ToolStripMenuItem;
-            if (item == null)
+            if (!(sender is ToolStripMenuItem item))
             {
                 return;
             }
