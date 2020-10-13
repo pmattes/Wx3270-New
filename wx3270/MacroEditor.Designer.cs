@@ -108,6 +108,7 @@
             this.switchProfileContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.otherToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.nameLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.pauseButton = new System.Windows.Forms.Button();
             this.scriptContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.snippetLayoutPanel.SuspendLayout();
@@ -123,7 +124,7 @@
             this.saveButton.Location = new System.Drawing.Point(227, 495);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 20;
+            this.saveButton.TabIndex = 26;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.OkayButton_Click);
@@ -134,7 +135,7 @@
             this.EditorCancelButton.Location = new System.Drawing.Point(308, 495);
             this.EditorCancelButton.Name = "EditorCancelButton";
             this.EditorCancelButton.Size = new System.Drawing.Size(75, 23);
-            this.EditorCancelButton.TabIndex = 21;
+            this.EditorCancelButton.TabIndex = 27;
             this.EditorCancelButton.Text = "Cancel";
             this.EditorCancelButton.UseVisualStyleBackColor = true;
             this.EditorCancelButton.Click += new System.EventHandler(this.NotOkayButton_Click);
@@ -153,10 +154,10 @@
             // 
             // StringButton
             // 
-            this.StringButton.Location = new System.Drawing.Point(3, 90);
+            this.StringButton.Location = new System.Drawing.Point(84, 90);
             this.StringButton.Name = "StringButton";
             this.StringButton.Size = new System.Drawing.Size(75, 23);
-            this.StringButton.TabIndex = 14;
+            this.StringButton.TabIndex = 18;
             this.StringButton.Tag = "String(\"xxx\")";
             this.StringButton.Text = "String";
             this.StringButton.UseVisualStyleBackColor = true;
@@ -164,10 +165,10 @@
             // 
             // TabButton
             // 
-            this.TabButton.Location = new System.Drawing.Point(165, 90);
+            this.TabButton.Location = new System.Drawing.Point(246, 90);
             this.TabButton.Name = "TabButton";
             this.TabButton.Size = new System.Drawing.Size(75, 23);
-            this.TabButton.TabIndex = 15;
+            this.TabButton.TabIndex = 20;
             this.TabButton.Tag = "Tab()";
             this.TabButton.Text = "Tab";
             this.TabButton.UseVisualStyleBackColor = true;
@@ -175,10 +176,10 @@
             // 
             // PFButton
             // 
-            this.PFButton.Location = new System.Drawing.Point(84, 61);
+            this.PFButton.Location = new System.Drawing.Point(165, 61);
             this.PFButton.Name = "PFButton";
             this.PFButton.Size = new System.Drawing.Size(75, 23);
-            this.PFButton.TabIndex = 12;
+            this.PFButton.TabIndex = 14;
             this.PFButton.Tag = "PF(1)";
             this.PFButton.Text = "PF";
             this.PFButton.UseVisualStyleBackColor = true;
@@ -197,10 +198,10 @@
             // 
             // UpButton
             // 
-            this.UpButton.Location = new System.Drawing.Point(3, 119);
+            this.UpButton.Location = new System.Drawing.Point(84, 119);
             this.UpButton.Name = "UpButton";
             this.UpButton.Size = new System.Drawing.Size(75, 23);
-            this.UpButton.TabIndex = 18;
+            this.UpButton.TabIndex = 23;
             this.UpButton.Tag = "Up()";
             this.UpButton.Text = "Up";
             this.UpButton.UseVisualStyleBackColor = true;
@@ -222,7 +223,7 @@
             this.PAButton.Location = new System.Drawing.Point(3, 61);
             this.PAButton.Name = "PAButton";
             this.PAButton.Size = new System.Drawing.Size(75, 23);
-            this.PAButton.TabIndex = 11;
+            this.PAButton.TabIndex = 12;
             this.PAButton.Tag = "PA(1)";
             this.PAButton.Text = "PA";
             this.PAButton.UseVisualStyleBackColor = true;
@@ -230,10 +231,10 @@
             // 
             // RightButton
             // 
-            this.RightButton.Location = new System.Drawing.Point(165, 61);
+            this.RightButton.Location = new System.Drawing.Point(246, 61);
             this.RightButton.Name = "RightButton";
             this.RightButton.Size = new System.Drawing.Size(75, 23);
-            this.RightButton.TabIndex = 13;
+            this.RightButton.TabIndex = 15;
             this.RightButton.Tag = "Right()";
             this.RightButton.Text = "Right";
             this.RightButton.UseVisualStyleBackColor = true;
@@ -285,10 +286,10 @@
             // 
             // WaitButton
             // 
-            this.WaitButton.Location = new System.Drawing.Point(84, 119);
+            this.WaitButton.Location = new System.Drawing.Point(165, 119);
             this.WaitButton.Name = "WaitButton";
             this.WaitButton.Size = new System.Drawing.Size(75, 23);
-            this.WaitButton.TabIndex = 19;
+            this.WaitButton.TabIndex = 24;
             this.WaitButton.Tag = "Wait(0.5,seconds)";
             this.WaitButton.Text = "Wait 🕓";
             this.WaitButton.UseVisualStyleBackColor = true;
@@ -310,7 +311,7 @@
             this.cursorToButton.Location = new System.Drawing.Point(327, 32);
             this.cursorToButton.Name = "cursorToButton";
             this.cursorToButton.Size = new System.Drawing.Size(75, 23);
-            this.cursorToButton.TabIndex = 10;
+            this.cursorToButton.TabIndex = 11;
             this.cursorToButton.Tag = "MoveCursor1(24,80)";
             this.cursorToButton.Text = "MoveCursor1";
             this.cursorToButton.UseVisualStyleBackColor = true;
@@ -318,10 +319,10 @@
             // 
             // TransferFromButton
             // 
-            this.TransferFromButton.Location = new System.Drawing.Point(327, 90);
+            this.TransferFromButton.Location = new System.Drawing.Point(3, 119);
             this.TransferFromButton.Name = "TransferFromButton";
             this.TransferFromButton.Size = new System.Drawing.Size(75, 23);
-            this.TransferFromButton.TabIndex = 17;
+            this.TransferFromButton.TabIndex = 22;
             this.TransferFromButton.Tag = "Transfer(direction=receive,host=vm,hostfile,\"FOO TEXT A\",localfile,\"C:\\My Dir\\foo" +
     ".txt\",mode=ascii)";
             this.TransferFromButton.Text = "Transfer ↓";
@@ -330,10 +331,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(246, 90);
+            this.button1.Location = new System.Drawing.Point(327, 90);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
+            this.button1.TabIndex = 21;
             this.button1.Tag = "Transfer(direction=send,host=vm,localfile,\"C:\\My Dir\\foo.txt\",hostfile,\"FOO TEXT " +
     "A\",mode=ascii)";
             this.button1.Text = "Transfer ↑";
@@ -364,13 +365,13 @@
             this.nameLabel.AutoSize = true;
             this.nameLabel.Location = new System.Drawing.Point(3, 6);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(35, 13);
+            this.nameLabel.Size = new System.Drawing.Size(39, 13);
             this.nameLabel.TabIndex = 23;
-            this.nameLabel.Text = "Name";
+            this.nameLabel.Text = "Name*";
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(44, 3);
+            this.nameTextBox.Location = new System.Drawing.Point(48, 3);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(229, 20);
             this.nameTextBox.TabIndex = 0;
@@ -381,7 +382,7 @@
             this.requiredLabel.AutoSize = true;
             this.requiredLabel.Dock = System.Windows.Forms.DockStyle.Right;
             this.requiredLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.requiredLabel.Location = new System.Drawing.Point(235, 26);
+            this.requiredLabel.Location = new System.Drawing.Point(239, 26);
             this.requiredLabel.Name = "requiredLabel";
             this.requiredLabel.Size = new System.Drawing.Size(38, 12);
             this.requiredLabel.TabIndex = 25;
@@ -395,10 +396,10 @@
             // 
             // sourceButton
             // 
-            this.sourceButton.Location = new System.Drawing.Point(327, 61);
+            this.sourceButton.Location = new System.Drawing.Point(3, 90);
             this.sourceButton.Name = "sourceButton";
             this.sourceButton.Size = new System.Drawing.Size(75, 23);
-            this.sourceButton.TabIndex = 26;
+            this.sourceButton.TabIndex = 17;
             this.sourceButton.Tag = "";
             this.sourceButton.Text = "Source";
             this.sourceButton.UseVisualStyleBackColor = true;
@@ -459,10 +460,10 @@
             // scriptButton
             // 
             this.scriptButton.ContextMenuStrip = this.scriptContextMenuStrip;
-            this.scriptButton.Location = new System.Drawing.Point(246, 61);
+            this.scriptButton.Location = new System.Drawing.Point(327, 61);
             this.scriptButton.Name = "scriptButton";
             this.scriptButton.Size = new System.Drawing.Size(75, 23);
-            this.scriptButton.TabIndex = 28;
+            this.scriptButton.TabIndex = 16;
             this.scriptButton.Tag = "";
             this.scriptButton.Text = "Script";
             this.scriptButton.UseVisualStyleBackColor = true;
@@ -490,7 +491,7 @@
             this.editScriptButton.Location = new System.Drawing.Point(14, 494);
             this.editScriptButton.Name = "editScriptButton";
             this.editScriptButton.Size = new System.Drawing.Size(75, 23);
-            this.editScriptButton.TabIndex = 34;
+            this.editScriptButton.TabIndex = 25;
             this.editScriptButton.Text = "🖉 Edit @";
             this.toolTip1.SetToolTip(this.editScriptButton, "Edit the target of a Script() or Source() action");
             this.editScriptButton.UseVisualStyleBackColor = true;
@@ -501,7 +502,7 @@
             this.button2.Location = new System.Drawing.Point(246, 32);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 30;
+            this.button2.TabIndex = 10;
             this.button2.Tag = "uMacro(xxx)";
             this.button2.Text = "uMacro";
             this.button2.UseVisualStyleBackColor = true;
@@ -512,7 +513,7 @@
             this.button3.Location = new System.Drawing.Point(165, 3);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 31;
+            this.button3.TabIndex = 4;
             this.button3.Tag = "uConnect(xxx)";
             this.button3.Text = "uConnect";
             this.button3.UseVisualStyleBackColor = true;
@@ -520,10 +521,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(84, 90);
+            this.button4.Location = new System.Drawing.Point(165, 90);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 32;
+            this.button4.TabIndex = 19;
             this.button4.Tag = "uSwitchProfile(xxx)";
             this.button4.Text = "uSwitchProfile";
             this.button4.UseVisualStyleBackColor = true;
@@ -542,6 +543,7 @@
             this.snippetLayoutPanel.Controls.Add(this.button2);
             this.snippetLayoutPanel.Controls.Add(this.cursorToButton);
             this.snippetLayoutPanel.Controls.Add(this.PAButton);
+            this.snippetLayoutPanel.Controls.Add(this.pauseButton);
             this.snippetLayoutPanel.Controls.Add(this.PFButton);
             this.snippetLayoutPanel.Controls.Add(this.RightButton);
             this.snippetLayoutPanel.Controls.Add(this.scriptButton);
@@ -556,7 +558,7 @@
             this.snippetLayoutPanel.Location = new System.Drawing.Point(12, 343);
             this.snippetLayoutPanel.Name = "snippetLayoutPanel";
             this.snippetLayoutPanel.Size = new System.Drawing.Size(406, 146);
-            this.snippetLayoutPanel.TabIndex = 33;
+            this.snippetLayoutPanel.TabIndex = 2;
             this.snippetLayoutPanel.Tag = "<nowalk>";
             // 
             // paContextMenuStrip
@@ -877,8 +879,19 @@
             this.nameLayoutPanel.RowCount = 2;
             this.nameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.nameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.nameLayoutPanel.Size = new System.Drawing.Size(276, 38);
+            this.nameLayoutPanel.Size = new System.Drawing.Size(280, 38);
             this.nameLayoutPanel.TabIndex = 35;
+            // 
+            // pauseButton
+            // 
+            this.pauseButton.Location = new System.Drawing.Point(84, 61);
+            this.pauseButton.Name = "pauseButton";
+            this.pauseButton.Size = new System.Drawing.Size(75, 23);
+            this.pauseButton.TabIndex = 13;
+            this.pauseButton.Tag = "Pause()";
+            this.pauseButton.Text = "Pause";
+            this.pauseButton.UseVisualStyleBackColor = true;
+            this.pauseButton.Click += new System.EventHandler(this.Macro_Click);
             // 
             // MacroEditor
             // 
@@ -998,5 +1011,6 @@
         private System.Windows.Forms.ToolStripMenuItem otherToolStripMenuItem2;
         private System.Windows.Forms.Button editScriptButton;
         private System.Windows.Forms.TableLayoutPanel nameLayoutPanel;
+        private System.Windows.Forms.Button pauseButton;
     }
 }
