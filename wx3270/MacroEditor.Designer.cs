@@ -65,12 +65,10 @@
             this.scriptButton = new System.Windows.Forms.Button();
             this.newScriptDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.editScriptButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.snippetLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.pauseButton = new System.Windows.Forms.Button();
             this.paContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,19 +107,28 @@
             this.otherToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.nameLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.requiredLabel = new System.Windows.Forms.Label();
+            this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.macroTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.rightButtonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.scriptContextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
-            this.snippetLayoutPanel.SuspendLayout();
             this.paContextMenuStrip.SuspendLayout();
             this.pfContextMenuStrip.SuspendLayout();
             this.connectContextMenuStrip.SuspendLayout();
             this.switchProfileContextMenuStrip.SuspendLayout();
             this.nameLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
+            this.macroTableLayoutPanel.SuspendLayout();
+            this.buttonsTableLayoutPanel.SuspendLayout();
+            this.rightButtonsTableLayoutPanel.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(227, 495);
+            this.saveButton.AutoSize = true;
+            this.saveButton.Location = new System.Drawing.Point(3, 3);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 26;
@@ -131,8 +138,9 @@
             // 
             // EditorCancelButton
             // 
+            this.EditorCancelButton.AutoSize = true;
             this.EditorCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.EditorCancelButton.Location = new System.Drawing.Point(308, 495);
+            this.EditorCancelButton.Location = new System.Drawing.Point(84, 3);
             this.EditorCancelButton.Name = "EditorCancelButton";
             this.EditorCancelButton.Size = new System.Drawing.Size(75, 23);
             this.EditorCancelButton.TabIndex = 27;
@@ -143,20 +151,22 @@
             // MacroBox
             // 
             this.MacroBox.AcceptsReturn = true;
-            this.MacroBox.Location = new System.Drawing.Point(13, 72);
+            this.MacroBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MacroBox.Location = new System.Drawing.Point(3, 58);
             this.MacroBox.Multiline = true;
             this.MacroBox.Name = "MacroBox";
             this.MacroBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.MacroBox.Size = new System.Drawing.Size(401, 248);
+            this.MacroBox.Size = new System.Drawing.Size(450, 248);
             this.MacroBox.TabIndex = 1;
             this.MacroBox.WordWrap = false;
             this.MacroBox.Validating += new System.ComponentModel.CancelEventHandler(this.MacroBox_Validating);
             // 
             // StringButton
             // 
-            this.StringButton.Location = new System.Drawing.Point(84, 90);
+            this.StringButton.AutoSize = true;
+            this.StringButton.Location = new System.Drawing.Point(93, 90);
             this.StringButton.Name = "StringButton";
-            this.StringButton.Size = new System.Drawing.Size(75, 23);
+            this.StringButton.Size = new System.Drawing.Size(84, 23);
             this.StringButton.TabIndex = 18;
             this.StringButton.Tag = "String(\"xxx\")";
             this.StringButton.Text = "String";
@@ -165,9 +175,10 @@
             // 
             // TabButton
             // 
-            this.TabButton.Location = new System.Drawing.Point(246, 90);
+            this.TabButton.AutoSize = true;
+            this.TabButton.Location = new System.Drawing.Point(273, 90);
             this.TabButton.Name = "TabButton";
-            this.TabButton.Size = new System.Drawing.Size(75, 23);
+            this.TabButton.Size = new System.Drawing.Size(84, 23);
             this.TabButton.TabIndex = 20;
             this.TabButton.Tag = "Tab()";
             this.TabButton.Text = "Tab";
@@ -176,9 +187,10 @@
             // 
             // PFButton
             // 
-            this.PFButton.Location = new System.Drawing.Point(165, 61);
+            this.PFButton.AutoSize = true;
+            this.PFButton.Location = new System.Drawing.Point(183, 61);
             this.PFButton.Name = "PFButton";
-            this.PFButton.Size = new System.Drawing.Size(75, 23);
+            this.PFButton.Size = new System.Drawing.Size(84, 23);
             this.PFButton.TabIndex = 14;
             this.PFButton.Tag = "PF(1)";
             this.PFButton.Text = "PF";
@@ -187,9 +199,10 @@
             // 
             // EnterButton
             // 
+            this.EnterButton.AutoSize = true;
             this.EnterButton.Location = new System.Drawing.Point(3, 32);
             this.EnterButton.Name = "EnterButton";
-            this.EnterButton.Size = new System.Drawing.Size(75, 23);
+            this.EnterButton.Size = new System.Drawing.Size(84, 23);
             this.EnterButton.TabIndex = 7;
             this.EnterButton.Tag = "Enter()";
             this.EnterButton.Text = "Enter";
@@ -198,9 +211,10 @@
             // 
             // UpButton
             // 
-            this.UpButton.Location = new System.Drawing.Point(84, 119);
+            this.UpButton.AutoSize = true;
+            this.UpButton.Location = new System.Drawing.Point(93, 119);
             this.UpButton.Name = "UpButton";
-            this.UpButton.Size = new System.Drawing.Size(75, 23);
+            this.UpButton.Size = new System.Drawing.Size(84, 23);
             this.UpButton.TabIndex = 23;
             this.UpButton.Tag = "Up()";
             this.UpButton.Text = "Up";
@@ -209,9 +223,10 @@
             // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(84, 3);
+            this.ClearButton.AutoSize = true;
+            this.ClearButton.Location = new System.Drawing.Point(93, 3);
             this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(75, 23);
+            this.ClearButton.Size = new System.Drawing.Size(84, 23);
             this.ClearButton.TabIndex = 3;
             this.ClearButton.Tag = "Clear()";
             this.ClearButton.Text = "Clear";
@@ -220,9 +235,10 @@
             // 
             // PAButton
             // 
+            this.PAButton.AutoSize = true;
             this.PAButton.Location = new System.Drawing.Point(3, 61);
             this.PAButton.Name = "PAButton";
-            this.PAButton.Size = new System.Drawing.Size(75, 23);
+            this.PAButton.Size = new System.Drawing.Size(84, 23);
             this.PAButton.TabIndex = 12;
             this.PAButton.Tag = "PA(1)";
             this.PAButton.Text = "PA";
@@ -231,9 +247,10 @@
             // 
             // RightButton
             // 
-            this.RightButton.Location = new System.Drawing.Point(246, 61);
+            this.RightButton.AutoSize = true;
+            this.RightButton.Location = new System.Drawing.Point(273, 61);
             this.RightButton.Name = "RightButton";
-            this.RightButton.Size = new System.Drawing.Size(75, 23);
+            this.RightButton.Size = new System.Drawing.Size(84, 23);
             this.RightButton.TabIndex = 15;
             this.RightButton.Tag = "Right()";
             this.RightButton.Text = "Right";
@@ -242,9 +259,10 @@
             // 
             // LeftButton
             // 
-            this.LeftButton.Location = new System.Drawing.Point(165, 32);
+            this.LeftButton.AutoSize = true;
+            this.LeftButton.Location = new System.Drawing.Point(183, 32);
             this.LeftButton.Name = "LeftButton";
-            this.LeftButton.Size = new System.Drawing.Size(75, 23);
+            this.LeftButton.Size = new System.Drawing.Size(84, 23);
             this.LeftButton.TabIndex = 9;
             this.LeftButton.Tag = "Left()";
             this.LeftButton.Text = "Left";
@@ -253,9 +271,10 @@
             // 
             // DownButton
             // 
-            this.DownButton.Location = new System.Drawing.Point(327, 3);
+            this.DownButton.AutoSize = true;
+            this.DownButton.Location = new System.Drawing.Point(363, 3);
             this.DownButton.Name = "DownButton";
-            this.DownButton.Size = new System.Drawing.Size(75, 23);
+            this.DownButton.Size = new System.Drawing.Size(84, 23);
             this.DownButton.TabIndex = 6;
             this.DownButton.Tag = "Down()";
             this.DownButton.Text = "Down";
@@ -264,9 +283,10 @@
             // 
             // KeyButton
             // 
-            this.KeyButton.Location = new System.Drawing.Point(84, 32);
+            this.KeyButton.AutoSize = true;
+            this.KeyButton.Location = new System.Drawing.Point(93, 32);
             this.KeyButton.Name = "KeyButton";
-            this.KeyButton.Size = new System.Drawing.Size(75, 23);
+            this.KeyButton.Size = new System.Drawing.Size(84, 23);
             this.KeyButton.TabIndex = 8;
             this.KeyButton.Tag = "Key(U+0065)";
             this.KeyButton.Text = "Key";
@@ -275,9 +295,10 @@
             // 
             // BackTabButton
             // 
+            this.BackTabButton.AutoSize = true;
             this.BackTabButton.Location = new System.Drawing.Point(3, 3);
             this.BackTabButton.Name = "BackTabButton";
-            this.BackTabButton.Size = new System.Drawing.Size(75, 23);
+            this.BackTabButton.Size = new System.Drawing.Size(84, 23);
             this.BackTabButton.TabIndex = 2;
             this.BackTabButton.Tag = "BackTab()";
             this.BackTabButton.Text = "BackTab";
@@ -286,9 +307,10 @@
             // 
             // WaitButton
             // 
-            this.WaitButton.Location = new System.Drawing.Point(165, 119);
+            this.WaitButton.AutoSize = true;
+            this.WaitButton.Location = new System.Drawing.Point(183, 119);
             this.WaitButton.Name = "WaitButton";
-            this.WaitButton.Size = new System.Drawing.Size(75, 23);
+            this.WaitButton.Size = new System.Drawing.Size(84, 23);
             this.WaitButton.TabIndex = 24;
             this.WaitButton.Tag = "Wait(0.5,seconds)";
             this.WaitButton.Text = "Wait 🕓";
@@ -297,9 +319,10 @@
             // 
             // DisconnectButton
             // 
-            this.DisconnectButton.Location = new System.Drawing.Point(246, 3);
+            this.DisconnectButton.AutoSize = true;
+            this.DisconnectButton.Location = new System.Drawing.Point(273, 3);
             this.DisconnectButton.Name = "DisconnectButton";
-            this.DisconnectButton.Size = new System.Drawing.Size(75, 23);
+            this.DisconnectButton.Size = new System.Drawing.Size(84, 23);
             this.DisconnectButton.TabIndex = 5;
             this.DisconnectButton.Tag = "Disconnect()";
             this.DisconnectButton.Text = "Disconnect";
@@ -308,9 +331,10 @@
             // 
             // cursorToButton
             // 
-            this.cursorToButton.Location = new System.Drawing.Point(327, 32);
+            this.cursorToButton.AutoSize = true;
+            this.cursorToButton.Location = new System.Drawing.Point(363, 32);
             this.cursorToButton.Name = "cursorToButton";
-            this.cursorToButton.Size = new System.Drawing.Size(75, 23);
+            this.cursorToButton.Size = new System.Drawing.Size(84, 23);
             this.cursorToButton.TabIndex = 11;
             this.cursorToButton.Tag = "MoveCursor1(24,80)";
             this.cursorToButton.Text = "MoveCursor1";
@@ -319,9 +343,10 @@
             // 
             // TransferFromButton
             // 
+            this.TransferFromButton.AutoSize = true;
             this.TransferFromButton.Location = new System.Drawing.Point(3, 119);
             this.TransferFromButton.Name = "TransferFromButton";
-            this.TransferFromButton.Size = new System.Drawing.Size(75, 23);
+            this.TransferFromButton.Size = new System.Drawing.Size(84, 23);
             this.TransferFromButton.TabIndex = 22;
             this.TransferFromButton.Tag = "Transfer(direction=receive,host=vm,hostfile,\"FOO TEXT A\",localfile,\"C:\\My Dir\\foo" +
     ".txt\",mode=ascii)";
@@ -331,9 +356,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(327, 90);
+            this.button1.AutoSize = true;
+            this.button1.Location = new System.Drawing.Point(363, 90);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(84, 23);
             this.button1.TabIndex = 21;
             this.button1.Tag = "Transfer(direction=send,host=vm,localfile,\"C:\\My Dir\\foo.txt\",hostfile,\"FOO TEXT " +
     "A\",mode=ascii)";
@@ -344,7 +370,8 @@
             // TextBoxLabel
             // 
             this.TextBoxLabel.AutoSize = true;
-            this.TextBoxLabel.Location = new System.Drawing.Point(12, 53);
+            this.TextBoxLabel.Location = new System.Drawing.Point(3, 42);
+            this.TextBoxLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
             this.TextBoxLabel.Name = "TextBoxLabel";
             this.TextBoxLabel.Size = new System.Drawing.Size(57, 13);
             this.TextBoxLabel.TabIndex = 21;
@@ -353,7 +380,8 @@
             // snippetsLabel
             // 
             this.snippetsLabel.AutoSize = true;
-            this.snippetsLabel.Location = new System.Drawing.Point(15, 327);
+            this.snippetsLabel.Location = new System.Drawing.Point(3, 319);
+            this.snippetsLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
             this.snippetsLabel.Name = "snippetsLabel";
             this.snippetsLabel.Size = new System.Drawing.Size(74, 13);
             this.snippetsLabel.TabIndex = 22;
@@ -385,9 +413,10 @@
             // 
             // sourceButton
             // 
+            this.sourceButton.AutoSize = true;
             this.sourceButton.Location = new System.Drawing.Point(3, 90);
             this.sourceButton.Name = "sourceButton";
-            this.sourceButton.Size = new System.Drawing.Size(75, 23);
+            this.sourceButton.Size = new System.Drawing.Size(84, 23);
             this.sourceButton.TabIndex = 17;
             this.sourceButton.Tag = "";
             this.sourceButton.Text = "Source";
@@ -448,10 +477,11 @@
             // 
             // scriptButton
             // 
+            this.scriptButton.AutoSize = true;
             this.scriptButton.ContextMenuStrip = this.scriptContextMenuStrip;
-            this.scriptButton.Location = new System.Drawing.Point(327, 61);
+            this.scriptButton.Location = new System.Drawing.Point(363, 61);
             this.scriptButton.Name = "scriptButton";
-            this.scriptButton.Size = new System.Drawing.Size(75, 23);
+            this.scriptButton.Size = new System.Drawing.Size(84, 23);
             this.scriptButton.TabIndex = 16;
             this.scriptButton.Tag = "";
             this.scriptButton.Text = "Script";
@@ -463,23 +493,11 @@
             this.newScriptDialog.OverwritePrompt = false;
             this.newScriptDialog.Title = "Select new script name";
             // 
-            // helpPictureBox
-            // 
-            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(389, 495);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.helpPictureBox.TabIndex = 29;
-            this.helpPictureBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
-            this.helpPictureBox.Click += new System.EventHandler(this.Help_Click);
-            // 
             // editScriptButton
             // 
-            this.editScriptButton.Location = new System.Drawing.Point(14, 494);
+            this.editScriptButton.Location = new System.Drawing.Point(3, 3);
             this.editScriptButton.Name = "editScriptButton";
-            this.editScriptButton.Size = new System.Drawing.Size(75, 23);
+            this.editScriptButton.Size = new System.Drawing.Size(84, 23);
             this.editScriptButton.TabIndex = 25;
             this.editScriptButton.Text = "🖉 Edit @";
             this.toolTip1.SetToolTip(this.editScriptButton, "Edit the target of a Script() or Source() action");
@@ -488,9 +506,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(246, 32);
+            this.button2.AutoSize = true;
+            this.button2.Location = new System.Drawing.Point(273, 32);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(84, 23);
             this.button2.TabIndex = 10;
             this.button2.Tag = "uMacro(xxx)";
             this.button2.Text = "uMacro";
@@ -499,9 +518,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(165, 3);
+            this.button3.AutoSize = true;
+            this.button3.Location = new System.Drawing.Point(183, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(84, 23);
             this.button3.TabIndex = 4;
             this.button3.Tag = "uConnect(xxx)";
             this.button3.Text = "uConnect";
@@ -510,51 +530,22 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(165, 90);
+            this.button4.AutoSize = true;
+            this.button4.Location = new System.Drawing.Point(183, 90);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(84, 23);
             this.button4.TabIndex = 19;
             this.button4.Tag = "uSwitchProfile(xxx)";
             this.button4.Text = "uSwitchProfile";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.SwitchProfile_Click);
             // 
-            // snippetLayoutPanel
-            // 
-            this.snippetLayoutPanel.Controls.Add(this.BackTabButton);
-            this.snippetLayoutPanel.Controls.Add(this.ClearButton);
-            this.snippetLayoutPanel.Controls.Add(this.button3);
-            this.snippetLayoutPanel.Controls.Add(this.DisconnectButton);
-            this.snippetLayoutPanel.Controls.Add(this.DownButton);
-            this.snippetLayoutPanel.Controls.Add(this.EnterButton);
-            this.snippetLayoutPanel.Controls.Add(this.KeyButton);
-            this.snippetLayoutPanel.Controls.Add(this.LeftButton);
-            this.snippetLayoutPanel.Controls.Add(this.button2);
-            this.snippetLayoutPanel.Controls.Add(this.cursorToButton);
-            this.snippetLayoutPanel.Controls.Add(this.PAButton);
-            this.snippetLayoutPanel.Controls.Add(this.pauseButton);
-            this.snippetLayoutPanel.Controls.Add(this.PFButton);
-            this.snippetLayoutPanel.Controls.Add(this.RightButton);
-            this.snippetLayoutPanel.Controls.Add(this.scriptButton);
-            this.snippetLayoutPanel.Controls.Add(this.sourceButton);
-            this.snippetLayoutPanel.Controls.Add(this.StringButton);
-            this.snippetLayoutPanel.Controls.Add(this.button4);
-            this.snippetLayoutPanel.Controls.Add(this.TabButton);
-            this.snippetLayoutPanel.Controls.Add(this.button1);
-            this.snippetLayoutPanel.Controls.Add(this.TransferFromButton);
-            this.snippetLayoutPanel.Controls.Add(this.UpButton);
-            this.snippetLayoutPanel.Controls.Add(this.WaitButton);
-            this.snippetLayoutPanel.Location = new System.Drawing.Point(12, 343);
-            this.snippetLayoutPanel.Name = "snippetLayoutPanel";
-            this.snippetLayoutPanel.Size = new System.Drawing.Size(406, 146);
-            this.snippetLayoutPanel.TabIndex = 2;
-            this.snippetLayoutPanel.Tag = "<nowalk>";
-            // 
             // pauseButton
             // 
-            this.pauseButton.Location = new System.Drawing.Point(84, 61);
+            this.pauseButton.AutoSize = true;
+            this.pauseButton.Location = new System.Drawing.Point(93, 61);
             this.pauseButton.Name = "pauseButton";
-            this.pauseButton.Size = new System.Drawing.Size(75, 23);
+            this.pauseButton.Size = new System.Drawing.Size(84, 23);
             this.pauseButton.TabIndex = 13;
             this.pauseButton.Tag = "Pause()";
             this.pauseButton.Text = "Pause";
@@ -866,17 +857,16 @@
             // 
             // nameLayoutPanel
             // 
-            this.nameLayoutPanel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.nameLayoutPanel.AutoSize = true;
             this.nameLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.nameLayoutPanel.ColumnCount = 3;
             this.nameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.nameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.nameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.nameLayoutPanel.Controls.Add(this.nameLabel, 0, 0);
             this.nameLayoutPanel.Controls.Add(this.nameTextBox, 2, 0);
             this.nameLayoutPanel.Controls.Add(this.requiredLabel, 1, 0);
-            this.nameLayoutPanel.Location = new System.Drawing.Point(12, 5);
+            this.nameLayoutPanel.Controls.Add(this.nameLabel, 0, 0);
+            this.nameLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.nameLayoutPanel.Name = "nameLayoutPanel";
             this.nameLayoutPanel.RowCount = 1;
             this.nameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -896,22 +886,131 @@
             this.requiredLabel.TabIndex = 24;
             this.requiredLabel.Text = "`*";
             // 
+            // helpPictureBox
+            // 
+            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox.Location = new System.Drawing.Point(165, 3);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.helpPictureBox.TabIndex = 29;
+            this.helpPictureBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
+            this.helpPictureBox.Click += new System.EventHandler(this.Help_Click);
+            // 
+            // macroTableLayoutPanel
+            // 
+            this.macroTableLayoutPanel.AutoSize = true;
+            this.macroTableLayoutPanel.ColumnCount = 1;
+            this.macroTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.macroTableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 0, 4);
+            this.macroTableLayoutPanel.Controls.Add(this.buttonsTableLayoutPanel, 0, 5);
+            this.macroTableLayoutPanel.Controls.Add(this.nameLayoutPanel, 0, 0);
+            this.macroTableLayoutPanel.Controls.Add(this.TextBoxLabel, 0, 1);
+            this.macroTableLayoutPanel.Controls.Add(this.MacroBox, 0, 2);
+            this.macroTableLayoutPanel.Controls.Add(this.snippetsLabel, 0, 3);
+            this.macroTableLayoutPanel.Location = new System.Drawing.Point(12, 12);
+            this.macroTableLayoutPanel.Name = "macroTableLayoutPanel";
+            this.macroTableLayoutPanel.RowCount = 6;
+            this.macroTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.macroTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.macroTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.macroTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.macroTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.macroTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.macroTableLayoutPanel.Size = new System.Drawing.Size(456, 525);
+            this.macroTableLayoutPanel.TabIndex = 36;
+            // 
+            // buttonsTableLayoutPanel
+            // 
+            this.buttonsTableLayoutPanel.AutoSize = true;
+            this.buttonsTableLayoutPanel.ColumnCount = 2;
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.buttonsTableLayoutPanel.Controls.Add(this.rightButtonsTableLayoutPanel, 1, 0);
+            this.buttonsTableLayoutPanel.Controls.Add(this.editScriptButton, 0, 0);
+            this.buttonsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(3, 493);
+            this.buttonsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.buttonsTableLayoutPanel.Name = "buttonsTableLayoutPanel";
+            this.buttonsTableLayoutPanel.RowCount = 1;
+            this.buttonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.buttonsTableLayoutPanel.Size = new System.Drawing.Size(450, 29);
+            this.buttonsTableLayoutPanel.TabIndex = 3;
+            // 
+            // rightButtonsTableLayoutPanel
+            // 
+            this.rightButtonsTableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rightButtonsTableLayoutPanel.AutoSize = true;
+            this.rightButtonsTableLayoutPanel.ColumnCount = 3;
+            this.rightButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.rightButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.rightButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.rightButtonsTableLayoutPanel.Controls.Add(this.helpPictureBox, 2, 0);
+            this.rightButtonsTableLayoutPanel.Controls.Add(this.EditorCancelButton, 1, 0);
+            this.rightButtonsTableLayoutPanel.Controls.Add(this.saveButton, 0, 0);
+            this.rightButtonsTableLayoutPanel.Location = new System.Drawing.Point(256, 0);
+            this.rightButtonsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.rightButtonsTableLayoutPanel.Name = "rightButtonsTableLayoutPanel";
+            this.rightButtonsTableLayoutPanel.RowCount = 1;
+            this.rightButtonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rightButtonsTableLayoutPanel.Size = new System.Drawing.Size(191, 29);
+            this.rightButtonsTableLayoutPanel.TabIndex = 38;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.AutoSize = true;
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.WaitButton, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.UpButton, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.TransferFromButton, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 4, 3);
+            this.tableLayoutPanel1.Controls.Add(this.TabButton, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.button4, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.StringButton, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.sourceButton, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.scriptButton, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.RightButton, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.PFButton, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.pauseButton, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.PAButton, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.cursorToButton, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button2, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.LeftButton, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.KeyButton, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.EnterButton, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.DownButton, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.DisconnectButton, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ClearButton, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.BackTabButton, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 335);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(450, 145);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
             // MacroEditor
             // 
             this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.EditorCancelButton;
-            this.ClientSize = new System.Drawing.Size(427, 529);
-            this.Controls.Add(this.nameLayoutPanel);
-            this.Controls.Add(this.editScriptButton);
-            this.Controls.Add(this.snippetLayoutPanel);
-            this.Controls.Add(this.helpPictureBox);
-            this.Controls.Add(this.snippetsLabel);
-            this.Controls.Add(this.TextBoxLabel);
-            this.Controls.Add(this.MacroBox);
-            this.Controls.Add(this.EditorCancelButton);
-            this.Controls.Add(this.saveButton);
+            this.ClientSize = new System.Drawing.Size(1021, 716);
+            this.Controls.Add(this.macroTableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -921,14 +1020,21 @@
             this.Text = "Macro Editor";
             this.Activated += new System.EventHandler(this.MacroEditorActivate);
             this.scriptContextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
-            this.snippetLayoutPanel.ResumeLayout(false);
             this.paContextMenuStrip.ResumeLayout(false);
             this.pfContextMenuStrip.ResumeLayout(false);
             this.connectContextMenuStrip.ResumeLayout(false);
             this.switchProfileContextMenuStrip.ResumeLayout(false);
             this.nameLayoutPanel.ResumeLayout(false);
             this.nameLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.macroTableLayoutPanel.ResumeLayout(false);
+            this.macroTableLayoutPanel.PerformLayout();
+            this.buttonsTableLayoutPanel.ResumeLayout(false);
+            this.buttonsTableLayoutPanel.PerformLayout();
+            this.rightButtonsTableLayoutPanel.ResumeLayout(false);
+            this.rightButtonsTableLayoutPanel.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -975,7 +1081,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.FlowLayoutPanel snippetLayoutPanel;
         private System.Windows.Forms.ContextMenuStrip paContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
@@ -1015,5 +1120,9 @@
         private System.Windows.Forms.TableLayoutPanel nameLayoutPanel;
         private System.Windows.Forms.Button pauseButton;
         private System.Windows.Forms.Label requiredLabel;
+        private System.Windows.Forms.TableLayoutPanel macroTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel buttonsTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel rightButtonsTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
