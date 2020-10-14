@@ -735,10 +735,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\printout-small.png" />
-    <None Include="Resources\screentrace.png" />
-    <None Include="Resources\screentrace2.png" />
-    <None Include="Resources\stop.png" />
-    <None Include="Resources\unlock.png" />
     <None Include="Resources\combolock.png" />
     <None Include="Resources\stop2.png" />
     <None Include="Resources\screentrace3.png" />
@@ -746,11 +742,8 @@
     <None Include="Resources\arrowslr.png" />
     <Content Include="wx3270.bmp" />
     <None Include="Resources\StartClearerLightGreen.png" />
-    <None Include="Resources\StartClearerRed.png" />
     <None Include="Resources\ToggleUp4.png" />
     <None Include="Resources\ToggleDown4.png" />
-    <None Include="Resources\SnapDown2.png" />
-    <None Include="Resources\SnapDown.png" />
     <None Include="Resources\PF1cropped.png" />
     <None Include="Resources\VisibleControl.png" />
     <None Include="Resources\x3270if.png" />
