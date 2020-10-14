@@ -54,7 +54,6 @@
             this.snippetsLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.requiredLabel = new System.Windows.Forms.Label();
             this.sourceDialog = new System.Windows.Forms.OpenFileDialog();
             this.sourceButton = new System.Windows.Forms.Button();
             this.scriptContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -72,6 +71,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.snippetLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.pauseButton = new System.Windows.Forms.Button();
             this.paContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,7 +108,7 @@
             this.switchProfileContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.otherToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.nameLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.pauseButton = new System.Windows.Forms.Button();
+            this.requiredLabel = new System.Windows.Forms.Label();
             this.scriptContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.snippetLayoutPanel.SuspendLayout();
@@ -364,30 +364,19 @@
             this.nameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.nameLabel.AutoSize = true;
             this.nameLabel.Location = new System.Drawing.Point(3, 6);
+            this.nameLabel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(39, 13);
+            this.nameLabel.Size = new System.Drawing.Size(35, 13);
             this.nameLabel.TabIndex = 23;
-            this.nameLabel.Text = "Name*";
+            this.nameLabel.Text = "Name";
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(48, 3);
+            this.nameTextBox.Location = new System.Drawing.Point(64, 3);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(229, 20);
             this.nameTextBox.TabIndex = 0;
             this.nameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NameTextBox_Validating);
-            // 
-            // requiredLabel
-            // 
-            this.requiredLabel.AutoSize = true;
-            this.requiredLabel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.requiredLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.requiredLabel.Location = new System.Drawing.Point(239, 26);
-            this.requiredLabel.Name = "requiredLabel";
-            this.requiredLabel.Size = new System.Drawing.Size(38, 12);
-            this.requiredLabel.TabIndex = 25;
-            this.requiredLabel.Text = "required";
-            this.requiredLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // sourceDialog
             // 
@@ -560,6 +549,17 @@
             this.snippetLayoutPanel.Size = new System.Drawing.Size(406, 146);
             this.snippetLayoutPanel.TabIndex = 2;
             this.snippetLayoutPanel.Tag = "<nowalk>";
+            // 
+            // pauseButton
+            // 
+            this.pauseButton.Location = new System.Drawing.Point(84, 61);
+            this.pauseButton.Name = "pauseButton";
+            this.pauseButton.Size = new System.Drawing.Size(75, 23);
+            this.pauseButton.TabIndex = 13;
+            this.pauseButton.Tag = "Pause()";
+            this.pauseButton.Text = "Pause";
+            this.pauseButton.UseVisualStyleBackColor = true;
+            this.pauseButton.Click += new System.EventHandler(this.Macro_Click);
             // 
             // paContextMenuStrip
             // 
@@ -866,32 +866,35 @@
             // 
             // nameLayoutPanel
             // 
+            this.nameLayoutPanel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.nameLayoutPanel.AutoSize = true;
             this.nameLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.nameLayoutPanel.ColumnCount = 2;
+            this.nameLayoutPanel.ColumnCount = 3;
+            this.nameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.nameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.nameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.nameLayoutPanel.Controls.Add(this.nameLabel, 0, 0);
-            this.nameLayoutPanel.Controls.Add(this.nameTextBox, 1, 0);
-            this.nameLayoutPanel.Controls.Add(this.requiredLabel, 1, 1);
+            this.nameLayoutPanel.Controls.Add(this.nameTextBox, 2, 0);
+            this.nameLayoutPanel.Controls.Add(this.requiredLabel, 1, 0);
             this.nameLayoutPanel.Location = new System.Drawing.Point(12, 5);
             this.nameLayoutPanel.Name = "nameLayoutPanel";
-            this.nameLayoutPanel.RowCount = 2;
+            this.nameLayoutPanel.RowCount = 1;
             this.nameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.nameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.nameLayoutPanel.Size = new System.Drawing.Size(280, 38);
+            this.nameLayoutPanel.Size = new System.Drawing.Size(296, 26);
             this.nameLayoutPanel.TabIndex = 35;
             // 
-            // pauseButton
+            // requiredLabel
             // 
-            this.pauseButton.Location = new System.Drawing.Point(84, 61);
-            this.pauseButton.Name = "pauseButton";
-            this.pauseButton.Size = new System.Drawing.Size(75, 23);
-            this.pauseButton.TabIndex = 13;
-            this.pauseButton.Tag = "Pause()";
-            this.pauseButton.Text = "Pause";
-            this.pauseButton.UseVisualStyleBackColor = true;
-            this.pauseButton.Click += new System.EventHandler(this.Macro_Click);
+            this.requiredLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.requiredLabel.AutoSize = true;
+            this.requiredLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.requiredLabel.ForeColor = System.Drawing.Color.Red;
+            this.requiredLabel.Location = new System.Drawing.Point(38, 3);
+            this.requiredLabel.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.requiredLabel.Name = "requiredLabel";
+            this.requiredLabel.Size = new System.Drawing.Size(20, 20);
+            this.requiredLabel.TabIndex = 24;
+            this.requiredLabel.Text = "`*";
             // 
             // MacroEditor
             // 
@@ -957,7 +960,6 @@
         private System.Windows.Forms.Label snippetsLabel;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.Label requiredLabel;
         private System.Windows.Forms.OpenFileDialog sourceDialog;
         private System.Windows.Forms.Button sourceButton;
         private System.Windows.Forms.ContextMenuStrip scriptContextMenuStrip;
@@ -1012,5 +1014,6 @@
         private System.Windows.Forms.Button editScriptButton;
         private System.Windows.Forms.TableLayoutPanel nameLayoutPanel;
         private System.Windows.Forms.Button pauseButton;
+        private System.Windows.Forms.Label requiredLabel;
     }
 }

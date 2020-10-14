@@ -60,7 +60,6 @@ namespace Wx3270
             this.MacroBox.Select(this.MacroBox.Text.Length, 0);
 
             this.nameTextBox.Enabled = canChangeName;
-            this.requiredLabel.Visible = canChangeName;
 
             this.app = app;
 
@@ -78,6 +77,8 @@ namespace Wx3270
             this.newScriptDialog.Title = I18n.Localize(this, I18n.Combine("scriptDialog", "title"), this.newScriptDialog.Title);
 
             this.Text = (string.IsNullOrEmpty(name) ? string.Empty : name + " - ") + I18n.Get(Title.MacroEditor);
+
+            this.requiredLabel.Text = canChangeName ? "*" : string.Empty;
 
             // Substitute.
             VersionSpecific.Substitute(this);
