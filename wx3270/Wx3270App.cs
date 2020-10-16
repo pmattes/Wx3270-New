@@ -386,7 +386,6 @@ namespace Wx3270
             var version = typeof(Wx3270App).Assembly.GetName().Version;
             var fullPath = new[]
             {
-                // "https://x3270.miraheze.org/wiki/wx3270%20Help",
                 "http://x3270.bgp.nu/wx3270-help",
                 version.Major + "." + version.Minor,
                 I18nBase.EffectiveCulture,

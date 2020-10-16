@@ -8,8 +8,9 @@
 namespace wx3270Restrict
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
-
+    using System.Windows.Forms;
     using Microsoft.Win32;
     using Wx3270;
 
@@ -19,13 +20,21 @@ namespace wx3270Restrict
     /// <remarks>
     /// Needs to be run as administrator to set restrictions.
     /// </remarks>
-    class Wx3270Restrict
+    public class Wx3270Restrict
     {
-        static void Main(string[] args)
+        [STAThread]
+        public static void Main(string[] args)
         {
             if (args.Length == 0)
             {
-                Usage();
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+
+                new Main();
+
+                // Start the event loop.
+                Application.Run();
+                Application.Exit();
             }
 
             switch (args[0].ToLowerInvariant())
@@ -63,7 +72,7 @@ namespace wx3270Restrict
         /// <summary>
         /// Show the current restrictions.
         /// </summary>
-        static void ShowRestrictions()
+        private static void ShowRestrictions()
         {
             var key = Registry.LocalMachine.OpenSubKey(Constants.Misc.RegistryKey);
             try
@@ -73,11 +82,11 @@ namespace wx3270Restrict
                 {
                     if (Enum.TryParse(value, true, out Restrictions r))
                     {
-                        Console.WriteLine("{0}", r);
+                        Popup(r.ToString(), MessageBoxIcon.Information);
                     }
                     else
                     {
-                        Console.Error.WriteLine("Invalid restrictions in the registry: '{0}'", value);
+                        Popup($"Invalid restrictions in the registry: '{value}'");
                     }
 
                     return;
@@ -91,18 +100,18 @@ namespace wx3270Restrict
                 }
             }
 
-            Console.WriteLine("{0}", Restrictions.None);
+            Popup(Restrictions.None.ToString(), MessageBoxIcon.Information);
         }
 
         /// <summary>
         /// Set the restrictions.
         /// </summary>
         /// <param name="value">Value to set</param>
-        static void SetRestrictions(string value)
+        private static void SetRestrictions(string value)
         {
             if (!Enum.TryParse(value, true, out Restrictions r))
             {
-                Console.Error.WriteLine("Invalid restrictions '{0}'", value);
+                Popup($"Invalid restrictions '{value}'");
                 return;
             }
 
@@ -115,7 +124,7 @@ namespace wx3270Restrict
                 }
                 catch (Exception e)
                 {
-                    Console.Error.WriteLine("Registry key: {0}", e.Message);
+                    Popup($"Registry key: {e.Message}");
                     return;
                 }
 
@@ -125,7 +134,7 @@ namespace wx3270Restrict
                 }
                 catch (Exception e)
                 {
-                    Console.Error.WriteLine("Registry key: {0}", e.Message);
+                    Popup($"Registry key: {e.Message}");
                     return;
                 }
             }
@@ -142,20 +151,34 @@ namespace wx3270Restrict
         /// Display a usage message and exit.
         /// </summary>
         /// <param name="reason">Reason for exit</param>
-        static void Usage(string reason = null)
+        private static void Usage(string reason = null)
         {
+            var output = new List<string>();
             if (reason != null)
             {
-                Console.WriteLine("{0}", reason);
+                output.Add(reason);
             }
 
-            Console.WriteLine("Usage: Wx3270Restrict -show");
-            Console.WriteLine("       Wx3270Restrict -set restriction{,restriction}");
-            Console.WriteLine("       Wx3270Restrict -clear");
-            Console.WriteLine(
-                "Restrictions are: {0}",
+            output.Add("Usage:");
+            output.Add("  Wx3270Restrict");
+            output.Add("  Wx3270Restrict -show");
+            output.Add("  Wx3270Restrict -set restriction{,restriction}");
+            output.Add("  Wx3270Restrict -clear");
+            output.Add(
+                "Restrictions are: " +
                 string.Join(", ", Enum.GetValues(typeof(Restrictions)).OfType<Restrictions>().Select(m => m.ToString())));
+            Popup(string.Join(Environment.NewLine, output));
             Environment.Exit(1);
+        }
+
+        /// <summary>
+        /// Pop up an error message.
+        /// </summary>
+        /// <param name="message">Message text.</param>
+        /// <param name="icon">Optional icon.</param>
+        private static void Popup(string message, MessageBoxIcon icon = MessageBoxIcon.Error)
+        {
+            MessageBox.Show(message, "wx3270Restrict", MessageBoxButtons.OK, icon);
         }
     }
 }
