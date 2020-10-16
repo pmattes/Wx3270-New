@@ -527,7 +527,9 @@
     <None Include="Enter.wx3270">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Local Processes.wx3270" />
+    <None Include="Local Processes.wx3270">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

@@ -21,7 +21,8 @@ Write-Host -ForegroundColor Green 'Building x64'
 $exclude = "Newtonsoft.Json.dll", "System.ValueTuple.dll"
 $files = `
    (Get-ChildItem -Path Wx3270\bin\x86\Release, Wx3270\bin\x64\Release -Recurse -Filter "*.exe").FullName `
- + (Get-ChildItem -Path Wx3270\bin\x86\Release, Wx3270\bin\x64\Release -Recurse -Filter "*.dll" -Exclude $exclude).FullName
+ + (Get-ChildItem -Path Wx3270\bin\x86\Release, Wx3270\bin\x64\Release -Recurse -Filter "*.dll" -Exclude $exclude).FullName `
+ + (Get-ChildItem -Path Wx3270Restrict\bin\Release -Recurse -Filter "*.exe").FullName
 Write-Host -ForegroundColor Green 'Signing', $files.Count, 'binaries'
 & $signtool sign /f $cert /p $pass /td SHA256 /tr $timestamp $files
 

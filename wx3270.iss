@@ -61,7 +61,6 @@ Source: "wx3270\bin\x86\Release\i18n-ru-XX.dll"; DestDir: "{app}"; Flags: ignore
 Source: "wx3270\bin\x86\Release\i18nBase.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
 Source: "wx3270\bin\x86\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
 Source: "wx3270\bin\x86\Release\System.ValueTuple.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
-
 Source: "wx3270\bin\x86\Release\System.ValueTuple.xml"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
 
 ; Common files
@@ -75,6 +74,7 @@ Source: "wx3270\bin\x64\Release\Enter.wx3270"; DestDir: "{app}\Library"; Flags: 
 Source: "wx3270\bin\x64\Release\Local Processes.wx3270"; DestDir: "{app}\Library"; Flags: ignoreversion
 Source: "wx3270\bin\x64\Release\Right to Left.wx3270"; DestDir: "{app}\Library"; Flags: ignoreversion
 Source: "wx3270\a270.ttf"; DestDir: "{fonts}"; FontInstall: "3270 Regular"; Flags: onlyifdoesntexist uninsneveruninstall
+Source: "wx3270Restrict\bin\Release\wx3270Restrict.exe"; DestDir: "{app}"; Flags: ignoreversion
 
 [Tasks]
 Name: "desktopicon"; Description: "Create desktop icon"; GroupDescription: "{cm:AdditionalIcons}"
