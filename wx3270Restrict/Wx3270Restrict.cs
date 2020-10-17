@@ -5,7 +5,7 @@
 /// <summary>
 /// Wx3270 restrictions utility.
 /// </summary>
-namespace wx3270Restrict
+namespace Wx3270Restrict
 {
     using System;
     using System.Collections.Generic;
@@ -22,6 +22,10 @@ namespace wx3270Restrict
     /// </remarks>
     public class Wx3270Restrict
     {
+        /// <summary>
+        /// Main entry point.
+        /// </summary>
+        /// <param name="args">Command-line arguments.</param>
         [STAThread]
         public static void Main(string[] args)
         {
@@ -82,7 +86,7 @@ namespace wx3270Restrict
                 {
                     if (Enum.TryParse(value, true, out Restrictions r))
                     {
-                        Popup(r.ToString(), MessageBoxIcon.Information);
+                        Popup("Restrictions:" + Environment.NewLine + r, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -100,13 +104,13 @@ namespace wx3270Restrict
                 }
             }
 
-            Popup(Restrictions.None.ToString(), MessageBoxIcon.Information);
+            Popup("Restrictions:" + Environment.NewLine + Restrictions.None.ToString(), MessageBoxIcon.Information);
         }
 
         /// <summary>
         /// Set the restrictions.
         /// </summary>
-        /// <param name="value">Value to set</param>
+        /// <param name="value">Value to set.</param>
         private static void SetRestrictions(string value)
         {
             if (!Enum.TryParse(value, true, out Restrictions r))
@@ -150,7 +154,7 @@ namespace wx3270Restrict
         /// <summary>
         /// Display a usage message and exit.
         /// </summary>
-        /// <param name="reason">Reason for exit</param>
+        /// <param name="reason">Reason for exit.</param>
         private static void Usage(string reason = null)
         {
             var output = new List<string>();

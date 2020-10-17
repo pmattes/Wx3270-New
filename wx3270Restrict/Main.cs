@@ -2,18 +2,19 @@
 //     Copyright (c) Paul Mattes. All rights reserved.
 // </copyright>
 
-namespace wx3270Restrict
+namespace Wx3270Restrict
 {
-    using Microsoft.Win32;
     using System;
     using System.Diagnostics;
     using System.Linq;
-    using System.Runtime.CompilerServices;
     using System.Windows.Forms;
+
+    using Microsoft.Win32;
+
     using Wx3270;
 
     /// <summary>
-    /// The wx3270Restrict main window.
+    /// The Wx3270Restrict main window.
     /// </summary>
     public partial class Main : Form
     {
@@ -42,25 +43,25 @@ namespace wx3270Restrict
         /// </summary>
         public Main()
         {
-            InitializeComponent();
-            errorLabel.Text = string.Empty;
+            this.InitializeComponent();
+            this.errorLabel.Text = string.Empty;
 
             // Set up the current display.
             var key = Registry.LocalMachine.OpenSubKey(Constants.Misc.RegistryKey);
             var value = (key != null) ? (string)key.GetValue(Constants.Misc.RestrictionsValue) : null;
             if (value != null)
             {
-                if (!Enum.TryParse(value, true, out currentRestrictions))
+                if (!Enum.TryParse(value, true, out this.currentRestrictions))
                 {
                     this.SetErrorLabel("Registry key parse error");
                 }
             }
 
-            changing = true;
+            this.changing = true;
             var i = 0;
             foreach (var restriction in Enum.GetValues(typeof(Restrictions)).OfType<Restrictions>())
             {
-                this.restrictionsCheckedListBox.Items.Add(restriction, currentRestrictions.HasFlag(restriction));
+                this.restrictionsCheckedListBox.Items.Add(restriction, false);
                 if (restriction == Restrictions.None)
                 {
                     this.noneIndex = i;
@@ -74,7 +75,9 @@ namespace wx3270Restrict
                 i++;
             }
 
-            changing = false;
+            this.DisplayRestrictions();
+
+            this.changing = false;
 
             key.Close();
 
@@ -83,9 +86,32 @@ namespace wx3270Restrict
         }
 
         /// <summary>
+        /// Display the current restrictions.
+        /// </summary>
+        private void DisplayRestrictions()
+        {
+            var i = 0;
+            foreach (var restriction in Enum.GetValues(typeof(Restrictions)).OfType<Restrictions>())
+            {
+                if (restriction == Restrictions.All || restriction == Restrictions.None)
+                {
+                    this.restrictionsCheckedListBox.SetItemChecked(i, this.currentRestrictions == restriction);
+                }
+                else
+                {
+                    this.restrictionsCheckedListBox.SetItemChecked(i, this.currentRestrictions.HasFlag(restriction));
+                }
+
+                i++;
+            }
+        }
+
+        /// <summary>
         /// Write the current restrictions to the registry.
         /// </summary>
-        private void WriteRestrictions()
+        /// <param name="restrictions">New restrictions.</param>
+        /// <returns>True if write succeeded.</returns>
+        private bool WriteRestrictions(Restrictions restrictions)
         {
             RegistryKey key = null;
             try
@@ -97,20 +123,21 @@ namespace wx3270Restrict
                 catch (Exception e)
                 {
                     this.SetErrorLabel(e.Message);
-                    return;
+                    return false;
                 }
 
                 try
                 {
-                    key.SetValue(Constants.Misc.RestrictionsValue, this.currentRestrictions.ToString());
+                    key.SetValue(Constants.Misc.RestrictionsValue, restrictions.ToString());
+                    this.currentRestrictions = restrictions;
+                    this.SetErrorLabel(string.Empty);
+                    return true;
                 }
                 catch (Exception e)
                 {
                     this.SetErrorLabel(e.Message);
-                    return;
+                    return false;
                 }
-
-                this.SetErrorLabel(string.Empty);
             }
             finally
             {
@@ -134,20 +161,20 @@ namespace wx3270Restrict
         /// <summary>
         /// An item in the checked list box was changed.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
         private void ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (changing)
+            if (this.changing)
             {
                 return;
             }
 
             try
             {
-                changing = true;
+                this.changing = true;
 
-                var newRestrictions = currentRestrictions;
+                var newRestrictions = this.currentRestrictions;
 
                 var item = (Restrictions)this.restrictionsCheckedListBox.Items[e.Index];
                 if (item == Restrictions.All)
@@ -162,7 +189,8 @@ namespace wx3270Restrict
                     }
                     else
                     {
-                        this.BeginInvoke(new Action(() => this.restrictionsCheckedListBox.SetItemChecked(this.allIndex, true)));
+                        // Set it back.
+                        this.BeginInvoke(new Action(() => this.DisplayRestrictions()));
                     }
                 }
                 else if (item == Restrictions.None)
@@ -181,7 +209,8 @@ namespace wx3270Restrict
                     }
                     else
                     {
-                        this.BeginInvoke(new Action(() => this.restrictionsCheckedListBox.SetItemChecked(this.noneIndex, true)));
+                        // Set it back.
+                        this.BeginInvoke(new Action(() => this.DisplayRestrictions()));
                     }
                 }
                 else
@@ -203,13 +232,16 @@ namespace wx3270Restrict
                 // Write out the new restrictions.
                 if (newRestrictions != this.currentRestrictions)
                 {
-                    this.currentRestrictions = newRestrictions;
-                    this.WriteRestrictions();
+                    if (!this.WriteRestrictions(newRestrictions))
+                    {
+                        // Redisplay.
+                        this.BeginInvoke(new Action(() => this.DisplayRestrictions()));
+                    }
                 }
             }
             finally
             {
-                changing = false;
+                this.changing = false;
             }
         }
 

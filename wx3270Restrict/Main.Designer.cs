@@ -1,4 +1,4 @@
-﻿namespace wx3270Restrict
+﻿namespace Wx3270Restrict
 {
     partial class Main
     {
@@ -114,7 +114,7 @@
             // helpPictureBox
             // 
             this.helpPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.helpPictureBox.Image = global::wx3270Restrict.Properties.Resources.Question23c;
+            this.helpPictureBox.Image = global::Wx3270Restrict.Properties.Resources.Question23c;
             this.helpPictureBox.Location = new System.Drawing.Point(548, 3);
             this.helpPictureBox.Name = "helpPictureBox";
             this.helpPictureBox.Size = new System.Drawing.Size(24, 24);
