@@ -123,7 +123,7 @@ namespace Wx3270
                 {
                     if (i == index)
                     {
-                        return;
+                        break;
                     }
 
                     if (entry.CheckConflict(value) == EntryConflict.Replace)
@@ -137,7 +137,7 @@ namespace Wx3270
                             box.SelectedItem = value;
                         }
 
-                        return;
+                        break;
                     }
 
                     i++;
