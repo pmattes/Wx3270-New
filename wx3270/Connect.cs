@@ -227,6 +227,13 @@ namespace Wx3270
                             // Connect to a local process.
                             this.app.Cmd.Connect(entry);
                         }
+
+                        if (this.connectCompletePending)
+                        {
+                            this.connectCompletePending = false;
+                            this.connectComplete(true, result);
+                            this.connectComplete = null;
+                        }
                     }
                 });
 
