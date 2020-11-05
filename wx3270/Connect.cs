@@ -62,6 +62,11 @@ namespace Wx3270
         private ConnectComplete connectComplete;
 
         /// <summary>
+        /// True if an error from Connect() should be suppressed, because we initiated a disconnect.
+        /// </summary>
+        private bool suppressConnectError;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Connect"/> class.
         /// </summary>
         /// <param name="app">Application instance.</param>
@@ -202,6 +207,7 @@ namespace Wx3270
             this.ConnectHostEntry = entry;
             this.connectComplete = complete;
             this.connectCompletePending = complete != null;
+            this.suppressConnectError = false;
             this.app.BackEnd.RunActions(
                 actions,
                 (cookie, success, result) =>
@@ -215,7 +221,7 @@ namespace Wx3270
                             this.connectComplete(false, result);
                             this.connectComplete = null;
                         }
-                        else
+                        else if (!this.suppressConnectError)
                         {
                             ErrorBox.Show(result, I18n.Get(Title.Connect));
                         }
@@ -235,6 +241,8 @@ namespace Wx3270
                             this.connectComplete = null;
                         }
                     }
+
+                    this.suppressConnectError = false;
                 });
 
             return true;
@@ -248,6 +256,7 @@ namespace Wx3270
             this.ConnectHostEntry = null;
             if (this.app.ConnectionState != ConnectionState.NotConnected)
             {
+                this.suppressConnectError = true;
                 this.BackEnd.RunAction(new BackEndAction(B3270.Action.Set, B3270.Setting.Reconnect, B3270.Value.False), ErrorBox.Completion(I18n.Get(Title.Disconnect)));
                 this.BackEnd.RunAction(new BackEndAction(B3270.Action.Disconnect), ErrorBox.Completion(I18n.Get(Title.Disconnect)));
             }
@@ -305,6 +314,7 @@ namespace Wx3270
                 this.ConnectHostEntry = null;
                 this.connectCompletePending = false;
                 this.connectComplete = null;
+                this.suppressConnectError = false;
                 return;
             }
         }
