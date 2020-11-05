@@ -244,6 +244,8 @@ namespace Wx3270
                 this.ConnectionTypeChanged(e.Value == ConnectionType.Host);
             };
 
+            this.localProcessInputGroupBox.Enabled = this.connectionType.Value == ConnectionType.LocalProcess || !this.telnetCheckBox.Checked;
+
             // Substitute.
             VersionSpecific.Substitute(this);
 
@@ -357,7 +359,7 @@ namespace Wx3270
             this.commandTextBox.Enabled = !isHost;
             this.commandLineOptionsLabel.Enabled = !isHost;
             this.commandLineOptionsTextBox.Enabled = !isHost;
-            this.localProcessInputGroupBox.Enabled = !isHost || this.telnetCheckBox.Checked;
+            this.localProcessInputGroupBox.Enabled = !isHost || !this.telnetCheckBox.Checked;
 
             if (isHost)
             {
