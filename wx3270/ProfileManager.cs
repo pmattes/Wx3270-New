@@ -16,7 +16,6 @@ namespace Wx3270
     using Microsoft.Win32;
     using Newtonsoft.Json;
     using Wx3270.Contracts;
-    using Wx3270.Properties;
 
     /// <summary>
     /// Profile manager.
@@ -282,7 +281,6 @@ namespace Wx3270
             I18n.LocalizeGlobal(Title.ProfileError, "Profile Error");
             I18n.LocalizeGlobal(Title.UndoRedoError, "Undo/Redo Error");
 
-            I18n.LocalizeGlobal(Message.ProfileReadOnly, "Profile '{0}' is read-only.");
             I18n.LocalizeGlobal(Message.ProfileBusy, "Profile '{0}' is busy, opening read-only.");
             I18n.LocalizeGlobal(Message.CannotChangeProfile, "Profile cannot be changed");
             I18n.LocalizeGlobal(Message.CannotDeserializeProfile, "Cannot deserialize profile");
@@ -449,15 +447,15 @@ namespace Wx3270
         }
 
         /// <inheritdoc />
-        public bool Load(string profilePath, out string outProfilePath, bool readOnly = false, bool warnIfReadOnly = true, bool doErrorPopups = true)
+        public bool Load(string profilePath, out string outProfilePath, bool readOnly = false, bool doErrorPopups = true)
         {
-            return this.LoadInternal(profilePath, out outProfilePath, readOnly, warnIfReadOnly, doErrorPopups);
+            return this.LoadInternal(profilePath, out outProfilePath, readOnly, doErrorPopups);
         }
 
         /// <inheritdoc />
-        public bool Load(string profilePath, bool readOnly = false, bool warnIfReadOnly = true, bool doErrorPopups = true)
+        public bool Load(string profilePath, bool readOnly = false, bool doErrorPopups = true)
         {
-            return this.LoadInternal(profilePath, out _, readOnly, warnIfReadOnly, doErrorPopups);
+            return this.LoadInternal(profilePath, out _, readOnly, doErrorPopups);
         }
 
         /// <inheritdoc />
@@ -1056,10 +1054,9 @@ namespace Wx3270
         /// <param name="profilePath">Full profile pathname.</param>
         /// <param name="outProfilePath">Returned full profile path.</param>
         /// <param name="readOnly">If true, open read-only.</param>
-        /// <param name="warnIfReadOnly">If true, pop up a warning if in read-only mode.</param>
         /// <param name="doErrorPopups">If true, do pop-ups for errors.</param>
         /// <returns>True if load was successful.</returns>
-        private bool LoadInternal(string profilePath, out string outProfilePath, bool readOnly, bool warnIfReadOnly, bool doErrorPopups)
+        private bool LoadInternal(string profilePath, out string outProfilePath, bool readOnly, bool doErrorPopups)
         {
             // Allow the profile to be under-specified.
             if (profilePath != null)
@@ -1121,10 +1118,6 @@ namespace Wx3270
             {
                 profile.ReadOnly = readOnly || stream == null;
                 this.Current = profile;
-                if (!readOnly && stream == null && warnIfReadOnly)
-                {
-                    ErrorBox.Show(string.Format(I18n.Get(Message.ProfileReadOnly), profile.Name), I18n.Get(Title.ProfileOpen));
-                }
             }
             else
             {
@@ -1140,11 +1133,6 @@ namespace Wx3270
                         }
 
                         return false;
-                    }
-
-                    if (warnIfReadOnly)
-                    {
-                        ErrorBox.Show(string.Format(I18n.Get(Message.ProfileBusy), profile.Name), I18n.Get(Title.ProfileOpen), MessageBoxIcon.Information);
                     }
 
                     profile.ReadOnly = true;
@@ -1665,11 +1653,6 @@ namespace Wx3270
         /// </summary>
         private class Message
         {
-            /// <summary>
-            /// Profile is read-only.
-            /// </summary>
-            public static readonly string ProfileReadOnly = I18n.Combine(MessageName, "profileReadOnly");
-
             /// <summary>
             /// Profile is busy.
             /// </summary>

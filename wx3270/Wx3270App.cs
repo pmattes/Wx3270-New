@@ -633,7 +633,7 @@ namespace Wx3270
             this.ProfileManager = new ProfileManager(this);
             if (!this.NoProfileMode)
             {
-                if (!this.ProfileManager.Load(profile, out string fullProfile, this.ReadOnlyMode, this.ReadWriteMode, doErrorPopups: true))
+                if (!this.ProfileManager.Load(profile, out string fullProfile, this.ReadOnlyMode, doErrorPopups: true))
                 {
                     // No profile.
                     if (profile != null)
