@@ -9,6 +9,7 @@ namespace Wx3270
     using System.ComponentModel;
     using System.IO;
     using System.Linq;
+    using System.Net;
     using System.Windows.Forms;
 
     using I18nBase;
@@ -315,7 +316,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(Title.LoginMacro, "login macro");
 
             I18n.LocalizeGlobal(Message.HostNameCharacter, "Host name cannot contain a space or any of these characters");
-            I18n.LocalizeGlobal(Message.HostNamePrefix, "Invalid host prefix '{0}:'");
+            I18n.LocalizeGlobal(Message.InvalidIpv6, "Invalid IPv6 address");
             I18n.LocalizeGlobal(Message.PortCharacter, "Port can only contain alphanumeric, dash or underscore characters");
             I18n.LocalizeGlobal(Message.LuNameCharacter, "LU names can only contain alphanumeric, dash or underscore characters");
             I18n.LocalizeGlobal(Message.MustSpecifyHost, "Must specify a host name");
@@ -388,6 +389,7 @@ namespace Wx3270
                 return;
             }
 
+            // Check for invalid characters.
             string error = null;
             var badChars = " @,=[]";
             var text = textBox.Text.Trim(new[] { ' ' });
@@ -397,53 +399,10 @@ namespace Wx3270
                 error = I18n.Get(Message.HostNameCharacter) + ":" + badChars;
             }
 
-            // Pick off any prefixes.
-            var translated = false;
-            var checks = new List<CheckPrefix>();
-            if (error == null)
+            // Check for (most) mistaken prefixes and (some) mistaken ports.
+            if (error == null && text.Contains(":") && !IPAddress.TryParse(text, out _))
             {
-                var offset = 0;
-                while (text.Length > offset + 1)
-                {
-                    if (text[offset + 1] != ':')
-                    {
-                        break;
-                    }
-
-                    var prefix = text.Substring(offset, 1).ToUpperInvariant();
-                    if (this.sets.TryGetValue(prefix, out CheckPrefix set))
-                    {
-                        checks.Add(set);
-                        text = text.Remove(offset, 2);
-                        translated = true;
-                    }
-                    else if (this.app.HostPrefix.Prefixes.Contains(prefix))
-                    {
-                        offset += 2;
-                    }
-                    else
-                    {
-                        error = string.Format(I18n.Get(Message.HostNamePrefix), prefix);
-                        break;
-                    }
-                }
-            }
-
-            if (error == null && translated)
-            {
-                ErrorBox.Show(I18n.Get(Message.TranslatedPrefix), I18n.Get(Title.HostName), MessageBoxIcon.Information);
-                foreach (var set in checks)
-                {
-                    set.CheckBox.Checked = set.IsChecked;
-
-                    // A bit of a hack. This should be generalized. The CheckedChanged event is a
-                    // possibility, but then I'd need a way to keep it from firing when I read in
-                    // the profile, which is just as kludgey as this.
-                    if (set.CheckBox == this.telnetCheckBox)
-                    {
-                        this.TelnetCheckBox_Click(set.CheckBox, new EventArgs());
-                    }
-                }
+                error = I18n.Get(Message.InvalidIpv6);
             }
 
             if (error != null)
@@ -451,23 +410,7 @@ namespace Wx3270
                 if (this.ActiveControl.Equals(this.CancelButton))
                 {
                     // Allow the form to be closed, but get rid of the bad text so it does not haunt us later.
-                    // Note that we delete the illegal characters before removing prefixes, in case removing them
-                    // causes a prefix to be formed.
-                    text = new string(text.Where(c => !badChars.Contains(c)).ToArray());
-                    var offset = 0;
-                    while (text.Length > offset + 1 && text[offset + 1] == ':')
-                    {
-                        if (this.app.HostPrefix.Prefixes.Contains(text.ToUpperInvariant()[offset]))
-                        {
-                            offset += 2;
-                        }
-                        else
-                        {
-                            text = text.Remove(offset, 2);
-                        }
-                    }
-
-                    textBox.Text = text;
+                    textBox.Text = string.Empty;
                 }
                 else
                 {
@@ -478,8 +421,6 @@ namespace Wx3270
 
                 return;
             }
-
-            textBox.Text = text;
         }
 
         /// <summary>
@@ -887,7 +828,7 @@ namespace Wx3270
             /// <summary>
             /// Bad host name prefix.
             /// </summary>
-            public static readonly string HostNamePrefix = I18n.Combine(MessageName, "hostNamePrefix");
+            public static readonly string InvalidIpv6 = I18n.Combine(MessageName, "invalidIpv6");
 
             /// <summary>
             /// Bad port character.

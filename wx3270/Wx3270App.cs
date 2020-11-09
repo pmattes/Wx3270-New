@@ -150,9 +150,9 @@ namespace Wx3270
         public bool NoProfileMode { get; private set; }
 
         /// <summary>
-        /// Gets the command-line connect host.
+        /// Gets the command-line host connection.
         /// </summary>
-        public string ConnectHost { get; private set; }
+        public string HostConnection { get; private set; }
 
         /// <summary>
         /// Gets the security restrictions.
@@ -258,6 +258,11 @@ namespace Wx3270
         /// Gets the command-line host name.
         /// </summary>
         public string CommandLineHost { get; private set; }
+
+        /// <summary>
+        ///  Gets the command-line port.
+        /// </summary>
+        public string CommandLinePort { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the listener configuration is locked.
@@ -441,7 +446,7 @@ namespace Wx3270
                             this.ReadWriteMode = true;
                             break;
                         case Constants.Option.Host:
-                            this.ConnectHost = args[++i];
+                            this.HostConnection = args[++i];
                             break;
                         case Constants.Option.Httpd:
                             startupConfig.Httpd = args[++i];
@@ -548,17 +553,27 @@ namespace Wx3270
                     Usage("Extra arguments");
                 }
 
-                this.CommandLineHost = string.Join(":", positionalArgs);
+                if (this.HostConnection != null)
+                {
+                    Usage("Cannot specify " + Constants.Option.Host + " and a positional host name");
+                }
+
+                this.CommandLineHost = positionalArgs[0];
+                this.CommandLinePort = (positionalArgs.Count > 1) ? positionalArgs[1] : null;
+                if (!HostName.TryParse(this.CommandLineHost, out _, out _, out _, out string port, out _))
+                {
+                    Usage("Invalid host name");
+                }
+
+                if (port != null && this.CommandLinePort != null)
+                {
+                    Usage("Port specified twice");
+                }
             }
 
             if (this.EditMode && profile == null)
             {
                 Usage("Must specify -profile with -edit");
-            }
-
-            if (this.CommandLineHost != null && !this.NoProfileMode)
-            {
-                Usage("Must specify " + Constants.Option.NoProfile + " with host name");
             }
 
             switch (restrictAllow)

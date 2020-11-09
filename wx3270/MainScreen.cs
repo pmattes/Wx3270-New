@@ -8,6 +8,7 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Windows.Forms;
     using I18nBase;
     using Wx3270.Contracts;
@@ -756,6 +757,8 @@ namespace Wx3270
             // When the emulator is ready, push out the initial profile and show the window.
             this.App.BackEnd.OnReady += () =>
             {
+                var autoConnect = false;
+
                 // Push out the initial profile.
                 this.ProfileManager.PushFirst();
 
@@ -766,12 +769,12 @@ namespace Wx3270
                 if (!this.App.EditMode)
                 {
                     HostEntry autoConnectHost = null;
-                    if (this.App.ConnectHost != null)
+                    if (this.App.HostConnection != null)
                     {
-                        autoConnectHost = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.Name.Equals(this.App.ConnectHost, StringComparison.InvariantCultureIgnoreCase));
+                        autoConnectHost = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.Name.Equals(this.App.HostConnection, StringComparison.InvariantCultureIgnoreCase));
                         if (autoConnectHost == null)
                         {
-                            ErrorBox.Show(string.Format("{0}: {1}", I18n.Get(ErrorMessage.NoSuchHost), this.App.ConnectHost), I18n.Get(Title.HostConnect), MessageBoxIcon.Warning);
+                            ErrorBox.Show(string.Format("{0}: {1}", I18n.Get(ErrorMessage.NoSuchHost), this.App.HostConnection), I18n.Get(Title.HostConnect), MessageBoxIcon.Warning);
                         }
                     }
                     else
@@ -781,16 +784,41 @@ namespace Wx3270
 
                     if (autoConnectHost != null)
                     {
+                        autoConnect = true;
                         this.Connect.ConnectToHost(autoConnectHost);
                     }
                 }
 
                 // Set up command-line host connection.
-                if (this.App.CommandLineHost != null)
+                if (!autoConnect && this.App.CommandLineHost != null)
                 {
-                    this.BackEnd.RunAction(
-                        new BackEndAction(B3270.Action.Connect, this.App.CommandLineHost),
-                        ErrorBox.Completion(I18n.Get(Title.HostConnect)));
+                    var autoName = HostEntry.AutoName(this.App.CommandLineHost, this.App.CommandLinePort);
+                    var hostEntry = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.Name.Equals(autoName, StringComparison.InvariantCultureIgnoreCase));
+                    if (hostEntry == null)
+                    {
+                        hostEntry = new HostEntry(this.App.CommandLineHost, this.App.CommandLinePort, this.App.HostPrefix.Prefixes)
+                        {
+                            Profile = this.ProfileManager.Current,
+                        };
+
+                        if (hostEntry.InvalidPrefixes != null)
+                        {
+                            var invalidPrefixes = string.Join(", ", hostEntry.InvalidPrefixes.Select(c => new string(new[] { c, ':' })));
+                            ErrorBox.Show(
+                                string.Format("{0}: {1}", I18n.Get(ErrorMessage.InvalidPrefixes), invalidPrefixes),
+                                I18n.Get(Title.HostConnect),
+                                MessageBoxIcon.Warning);
+                        }
+
+                        this.ProfileManager.PushAndSave(
+                            current =>
+                            {
+                                current.Hosts = current.Hosts.Concat(new[] { hostEntry });
+                            },
+                            I18n.Get(SaveType.CommandLineHost));
+                    }
+
+                    this.Connect.ConnectToHost(hostEntry);
                 }
             };
 
@@ -825,7 +853,9 @@ namespace Wx3270
             I18n.LocalizeGlobal(Title.HostConnect, "Host Connect");
             I18n.LocalizeGlobal(Title.MacroError, "Macro Error");
             I18n.LocalizeGlobal(Title.KeypadMenuError, "Keypad Menu Error");
-            I18n.LocalizeGlobal(ErrorMessage.NoSuchHost, "No such host");
+            I18n.LocalizeGlobal(ErrorMessage.NoSuchHost, "No such host connection");
+            I18n.LocalizeGlobal(ErrorMessage.InvalidPrefixes, "Invalid prefix(es) in command-line host");
+            I18n.LocalizeGlobal(SaveType.CommandLineHost, "Command-line host connection");
 
             // Set up the connect menu.
             this.ProfileTreeChanged(this.App.ProfileTracker.Tree);
@@ -2192,6 +2222,22 @@ namespace Wx3270
             /// No such host.
             /// </summary>
             public static readonly string NoSuchHost = I18n.Combine(MessageName, "noSuchHost");
+
+            /// <summary>
+            /// Invalid prefixes in command-line host.
+            /// </summary>
+            public static readonly string InvalidPrefixes = I18n.Combine(MessageName, "invalidPrefixes");
+        }
+
+        /// <summary>
+        /// Save types.
+        /// </summary>
+        private static class SaveType
+        {
+            /// <summary>
+            /// Saving the command-line host connection.
+            /// </summary>
+            public static readonly string CommandLineHost = I18n.Combine(MessageName, "commandLineHost");
         }
     }
 }

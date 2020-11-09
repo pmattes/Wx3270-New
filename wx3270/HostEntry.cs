@@ -5,6 +5,8 @@
 namespace Wx3270
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
 
     using Newtonsoft.Json;
@@ -155,6 +157,52 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="HostEntry"/> class.
+        /// </summary>
+        /// <param name="hostName">Host name.</param>
+        /// <param name="port">TCP port.</param>
+        /// <param name="legalPrefixes">Legal prefixes.</param>
+        public HostEntry(string hostName, string port, string legalPrefixes)
+            : base()
+        {
+            if (!HostName.TryParse(hostName, out List<char> prefixes, out List<string> lus, out string host, out string pport, out string accept))
+            {
+                throw new ArgumentException($"Invalid hostName {hostName}");
+            }
+
+            // Remove any invalid prefixes.
+            var matchingPrefixes = new List<char>();
+            var nonMatchingPrefixes = new List<char>();
+            if (prefixes != null)
+            {
+                foreach (var prefix in prefixes)
+                {
+                    var canonicalPrefix = char.ToUpperInvariant(prefix);
+                    if (legalPrefixes.Contains(canonicalPrefix))
+                    {
+                        matchingPrefixes.Add(canonicalPrefix);
+                    }
+                    else
+                    {
+                        nonMatchingPrefixes.Add(canonicalPrefix);
+                    }
+                }
+            }
+
+            if (nonMatchingPrefixes.Count > 0)
+            {
+                this.InvalidPrefixes = new string(nonMatchingPrefixes.ToArray());
+            }
+
+            this.Name = AutoName(hostName, port);
+            this.Host = host;
+            this.Port = pport ?? port ?? string.Empty;
+            this.LuNames = (lus != null) ? string.Join(Environment.NewLine, lus) : string.Empty;
+            this.AcceptHostName = accept ?? string.Empty;
+            this.Prefixes = (matchingPrefixes.Count > 0) ? new string(matchingPrefixes.ToArray()) : string.Empty;
+        }
+
+        /// <summary>
         /// Gets or sets the profile this entry is a part of.
         /// </summary>
         [JsonIgnore]
@@ -271,6 +319,23 @@ namespace Wx3270
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public B3270.NoTelnetInputType NoTelnetInputType { get; set; }
+
+        /// <summary>
+        /// Gets the set of invalid prefixes.
+        /// </summary>
+        [JsonIgnore]
+        public string InvalidPrefixes { get; private set; }
+
+        /// <summary>
+        /// Map a host name and port onto an automatically-generated host entry name.
+        /// </summary>
+        /// <param name="hostName">Host name.</param>
+        /// <param name="port">TCP port.</param>
+        /// <returns>Mapped name.</returns>
+        public static string AutoName(string hostName, string port)
+        {
+            return hostName + ((port != null) ? (" " + port) : string.Empty);
+        }
 
         /// <summary>
         /// Compare one host entry to another.

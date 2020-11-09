@@ -908,7 +908,7 @@ namespace Wx3270
             /// <summary>
             /// The accept host name setting.
             /// </summary>
-            public const string AcceptHostName = "acceptHostName";
+            public const string AcceptHostname = "acceptHostname";
 
             /// <summary>
             /// The alternate (underscore) cursor setting.
@@ -1056,14 +1056,14 @@ namespace Wx3270
             public const string ShowTiming = "showTiming";
 
             /// <summary>
+            /// The STARTTLS setting.
+            /// </summary>
+            public const string StartTls = "startTls";
+
+            /// <summary>
             /// The terminal name setting.
             /// </summary>
             public const string TermName = "termName";
-
-            /// <summary>
-            /// The STARTTLS setting.
-            /// </summary>
-            public const string Tls = "tls";
 
             /// <summary>
             /// The trace setting.

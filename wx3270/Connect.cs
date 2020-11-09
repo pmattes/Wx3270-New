@@ -151,8 +151,8 @@ namespace Wx3270
             }
 
             var tlsOptionsSupported = this.app.TlsHello.Options;
-            var allAdded = AddToggleIfSupported(tlsOptionsSupported, settings, B3270.Setting.Tls, entry.AllowStartTls ? B3270.Value.True : B3270.Value.False)
-                && AddToggleIfSupported(tlsOptionsSupported, settings, B3270.Setting.AcceptHostName, entry.AcceptHostName, required: true)
+            var allAdded = AddToggleIfSupported(tlsOptionsSupported, settings, B3270.Setting.StartTls, entry.AllowStartTls ? B3270.Value.True : B3270.Value.False)
+                && AddToggleIfSupported(tlsOptionsSupported, settings, B3270.Setting.AcceptHostname, entry.AcceptHostName, required: true)
                 && AddToggleIfSupported(tlsOptionsSupported, settings, B3270.Setting.ClientCert, entry.ClientCertificateName, required: true);
             if (!allAdded)
             {

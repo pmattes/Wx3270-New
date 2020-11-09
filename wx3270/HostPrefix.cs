@@ -8,7 +8,7 @@ namespace Wx3270
     using Wx3270.Contracts;
 
     /// <summary>
-    /// Window title processor.
+    /// Host prefix processor.
     /// </summary>
     public class HostPrefix : BackEndEvent, IHostPrefix
     {
