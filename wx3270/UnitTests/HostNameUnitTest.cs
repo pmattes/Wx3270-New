@@ -40,6 +40,7 @@ namespace Wx3270
                 new Expected("xx@[foo]:22", true, null, new List<string> { "xx" }, "[foo]", "22", null),
                 new Expected("[xx@foo:22]", false),
                 new Expected("[1:2:3:4]", false),
+                new Expected("[xx],yy@foo", false),
 
                 // Fun with white space.
                 new Expected(" foo", true, null, null, "foo", null, null),
@@ -100,6 +101,14 @@ namespace Wx3270
                     Assert.AreEqual(e.Item5, host, $"Expected host for {e.Item1}");
                     Assert.AreEqual(e.Item6, port, $"Expected port for {e.Item1}");
                     Assert.AreEqual(e.Item7, accept, $"Expected accept for {e.Item1}");
+                }
+                else
+                {
+                    Assert.IsNull(prefixes);
+                    Assert.IsNull(lus);
+                    Assert.IsNull(host);
+                    Assert.IsNull(port);
+                    Assert.IsNull(accept);
                 }
             }
         }

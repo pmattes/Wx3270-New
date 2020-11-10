@@ -25,10 +25,9 @@ namespace Wx3270
         /// <param name="accept">Returned accept hostname.</param>
         /// <returns>True if parsed successfully.</returns>
         /// <remarks>
-        /// A host name looks like: [prefix:...][lu[,lu]@]host[:port][=accept].
+        /// A hostname looks like: [prefix:...][lu[,lu]@]host[:port][=accept].
         /// Any character can be quoted with a backslash.
-        /// The hostname part can be surrounded by square brackets to quote ':' characters inside it.
-        /// The logic to enforce that only the hostname can be quoted with square brackets is sheer torture.
+        /// The host part can be surrounded by square brackets to quote ':' characters inside it, so it can contain an IPv6 address.
         /// </remarks>
         public static bool TryParse(string hostName, out List<char> prefixes, out List<string> lus, out string host, out string port, out string accept)
         {
@@ -49,6 +48,8 @@ namespace Wx3270
             }
 
             // Anything inside '[' and ']' is a quoted hostname.
+            // This is fairly casual about order and repeats because these are checked
+            // separately below.
             var chars = new List<QuotedChar>();
             var bracketed = false;
             foreach (var c in hostName)
@@ -90,22 +91,16 @@ namespace Wx3270
                 }
             }
 
-            // The permissible order is: @, [, ], :, =.
-            var orderMap = new Dictionary<char, int>
-            {
-                { '@', 0 },
-                { '[', 1 },
-                { ']', 2 },
-                { ':', 3 },
-                { '=', 4 },
-            };
+            // The permissible order is at most one of: @, [, ], :, =.
+            const string delimiters = "@[]:=";
             var position = new Dictionary<char, int>();
             var order = new Dictionary<int, int>();
             var index = -1;
             foreach (var c in chars)
             {
                 index++;
-                if (!c.Quoted && orderMap.Keys.Contains(c.C))
+                var delimiterOrder = delimiters.IndexOf(c.C);
+                if (!c.Quoted && delimiterOrder >= 0)
                 {
                     if (position.ContainsKey(c.C))
                     {
@@ -114,7 +109,7 @@ namespace Wx3270
                     }
 
                     position[c.C] = index;
-                    order[orderMap[c.C]] = index;
+                    order[delimiterOrder] = index;
                 }
             }
 
