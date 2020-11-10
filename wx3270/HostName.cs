@@ -7,7 +7,7 @@ namespace Wx3270
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Windows.Media;
+    using System.Net;
 
     /// <summary>
     /// Host name parser.
@@ -65,6 +65,7 @@ namespace Wx3270
             }
 
             // Pick off prefixes.
+            List<char> retPrefixes = null;
             while (chars.Count >= 2)
             {
                 var c = chars[0].C;
@@ -72,13 +73,13 @@ namespace Wx3270
                     ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) &&
                     chars[1].Equals(new QuotedChar(':')))
                 {
-                    if (prefixes == null)
+                    if (retPrefixes == null)
                     {
-                        prefixes = new List<char> { c };
+                        retPrefixes = new List<char> { c };
                     }
                     else
                     {
-                        prefixes.Add(c);
+                        retPrefixes.Add(c);
                     }
 
                     chars = chars.Skip(2).ToList();
@@ -130,25 +131,28 @@ namespace Wx3270
             }
 
             // Pick the accept name off the end.
+            string retAccept = null;
             if (position.TryGetValue('=', out int acceptIndex))
             {
                 var acceptChars = chars.Skip(acceptIndex + 1);
-                accept = new string(acceptChars.Select(c => c.C).ToArray());
+                retAccept = new string(acceptChars.Select(c => c.C).ToArray());
                 chars = chars.Take(acceptIndex).ToList();
             }
 
             // Pick the port off the end.
+            string retPort = null;
             if (position.TryGetValue(':', out int portIndex))
             {
                 var portChars = chars.Skip(portIndex + 1);
-                port = new string(portChars.Select(c => c.C).ToArray());
+                retPort = new string(portChars.Select(c => c.C).ToArray());
                 chars = chars.Take(portIndex).ToList();
             }
 
             // Pick off LU names at the front.
+            List<string> retLus = null;
             if (position.TryGetValue('@', out int luIndex))
             {
-                lus = new List<string>();
+                retLus = new List<string>();
                 var luChars = chars.Take(luIndex).ToList();
                 chars = chars.Skip(luIndex + 1).ToList();
                 while (true)
@@ -162,7 +166,7 @@ namespace Wx3270
 
                     if (commaIndex > 0)
                     {
-                        lus.Add(new string(luChars.Take(commaIndex).Select(c => c.C).ToArray()));
+                        retLus.Add(new string(luChars.Take(commaIndex).Select(c => c.C).ToArray()));
                         luChars = luChars.Skip(commaIndex + 1).ToList();
                     }
                     else
@@ -177,24 +181,31 @@ namespace Wx3270
                     return false;
                 }
 
-                lus.Add(new string(luChars.Select(c => c.C).ToArray()));
+                retLus.Add(new string(luChars.Select(c => c.C).ToArray()));
             }
 
             // What's left is the host.
-            host = new string(chars.Select(c => c.C).ToArray());
+            var retHost = new string(chars.Select(c => c.C).ToArray());
 
             // Make sure there are no empty pieces, pieces (besides the host) containing '[' or ']', or a host containing a
             // misplaced '[' or ']'.
             // Duplicate '[' and ']' were detected elsewhere.
-            if ((lus != null && (lus.Count == 0 || lus.Any(lu => lu.Contains('[') || lu.Contains(']')))) ||
-                host == string.Empty || ((host.Contains('[') || host.Contains(']')) && (host.Length < 3 || !host.StartsWith("[") || !host.EndsWith("]"))) ||
-                (port != null && (port == string.Empty || port.Contains('[') || port.Contains(']'))) ||
-                (accept != null && (accept == string.Empty || accept.Contains('[') || accept.Contains(']'))))
+            if ((retLus != null && (retLus.Count == 0 || retLus.Any(lu => lu.Contains('[') || lu.Contains(']')))) ||
+                retHost == string.Empty ||
+                ((retHost.Contains('[') || retHost.Contains(']')) && (retHost.Length < 3 || !retHost.StartsWith("[") || !retHost.EndsWith("]"))) ||
+                (retHost.Contains(':') && !IPAddress.TryParse(retHost, out _)) ||
+                (retPort != null && (retPort == string.Empty || retPort.Contains('[') || retPort.Contains(']'))) ||
+                (retAccept != null && (retAccept == string.Empty || retAccept.Contains('[') || retAccept.Contains(']'))))
             {
                 return false;
             }
 
             // Success.
+            prefixes = retPrefixes;
+            lus = retLus;
+            host = retHost;
+            port = retPort;
+            accept = retAccept;
             return true;
         }
 

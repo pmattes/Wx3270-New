@@ -36,9 +36,10 @@ namespace Wx3270
                 // Fun with quoted host names.
                 new Expected("[foo]", true, null, null, "[foo]", null, null),
                 new Expected("xx@[foo]", true, null, new List<string> { "xx" }, "[foo]", null, null),
-                new Expected("[1:2:3:4]", true, null, null, "[1:2:3:4]", null, null),
+                new Expected("[1:2:3:4::]", true, null, null, "[1:2:3:4::]", null, null),
                 new Expected("xx@[foo]:22", true, null, new List<string> { "xx" }, "[foo]", "22", null),
                 new Expected("[xx@foo:22]", false),
+                new Expected("[1:2:3:4]", false),
 
                 // Fun with white space.
                 new Expected(" foo", true, null, null, "foo", null, null),
