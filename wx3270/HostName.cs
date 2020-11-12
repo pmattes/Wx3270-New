@@ -182,13 +182,26 @@ namespace Wx3270
             // What's left is the host.
             var retHost = new string(chars.Select(c => c.C).ToArray());
 
-            // Make sure there are no empty pieces, pieces (besides the host) containing '[' or ']', or a host containing a
-            // misplaced '[' or ']'.
-            // Duplicate '[' and ']' were detected elsewhere.
+            // Validate and transform the host first.
+            if (retHost.Contains('[') || retHost.Contains(']'))
+            {
+                if (!retHost.StartsWith("[") || !retHost.EndsWith("]"))
+                {
+                    return false;
+                }
+
+                retHost = retHost.Trim('[', ']');
+            }
+
+            if (retHost.Contains(':') && !IPAddress.TryParse(retHost, out _))
+            {
+                return false;
+            }
+
+            // Make sure there are no empty pieces or pieces containing '[' or ']'.
+            // Duplicate '[' and ']' were detected above.
             if ((retLus != null && (retLus.Count == 0 || retLus.Any(lu => lu.Contains('[') || lu.Contains(']')))) ||
                 retHost == string.Empty ||
-                ((retHost.Contains('[') || retHost.Contains(']')) && (retHost.Length < 3 || !retHost.StartsWith("[") || !retHost.EndsWith("]"))) ||
-                (retHost.Contains(':') && !IPAddress.TryParse(retHost, out _)) ||
                 (retPort != null && (retPort == string.Empty || retPort.Contains('[') || retPort.Contains(']'))) ||
                 (retAccept != null && (retAccept == string.Empty || retAccept.Contains('[') || retAccept.Contains(']'))))
             {

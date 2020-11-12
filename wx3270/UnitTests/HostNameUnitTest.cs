@@ -34,13 +34,12 @@ namespace Wx3270
                 new Expected("a:b:foo", true, new List<char> { 'a', 'b' }, null, "foo", null, null),
 
                 // Fun with quoted host names.
-                new Expected("[foo]", true, null, null, "[foo]", null, null),
-                new Expected("xx@[foo]", true, null, new List<string> { "xx" }, "[foo]", null, null),
-                new Expected("[1:2:3:4::]", true, null, null, "[1:2:3:4::]", null, null),
-                new Expected("xx@[foo]:22", true, null, new List<string> { "xx" }, "[foo]", "22", null),
+                new Expected("[foo]", true, null, null, "foo", null, null),
+                new Expected("xx@[foo]", true, null, new List<string> { "xx" }, "foo", null, null),
+                new Expected("[1:2:3:4::]", true, null, null, "1:2:3:4::", null, null),
+                new Expected("xx@[foo]:22", true, null, new List<string> { "xx" }, "foo", "22", null),
                 new Expected("[xx@foo:22]", false),
                 new Expected("[1:2:3:4]", false),
-                new Expected("[xx],yy@foo", false),
 
                 // Fun with white space.
                 new Expected(" foo", true, null, null, "foo", null, null),
@@ -88,6 +87,13 @@ namespace Wx3270
                 new Expected("[]", false),
                 new Expected("[", false),
                 new Expected("ab]d", false),
+
+                // Doubles.
+                new Expected("x@y@foo", false),
+                new Expected("foo:22:23", false),
+                new Expected("[[foo]", false),
+                new Expected("[foo]]", false),
+                new Expected("foo=bar=grill", false),
             };
 
             foreach (var e in expected)
