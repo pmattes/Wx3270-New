@@ -73,6 +73,7 @@ Source: "wx3270\bin\x64\Release\Python\x3270if\__init__.py"; DestDir: "{app}\Pyt
 Source: "wx3270\bin\x64\Release\Enter.wx3270"; DestDir: "{app}\Library"; Flags: ignoreversion
 Source: "wx3270\bin\x64\Release\Local Processes.wx3270"; DestDir: "{app}\Library"; Flags: ignoreversion
 Source: "wx3270\bin\x64\Release\Right to Left.wx3270"; DestDir: "{app}\Library"; Flags: ignoreversion
+Source: "wx3270\bin\x64\Release\ASCII sites.wx3270"; DestDir: "{app}\Library"; Flags: ignoreversion
 Source: "wx3270\a270.ttf"; DestDir: "{fonts}"; FontInstall: "3270 Regular"; Flags: onlyifdoesntexist uninsneveruninstall
 Source: "wx3270Restrict\bin\Release\wx3270Restrict.exe"; DestDir: "{app}"; Flags: ignoreversion
 

@@ -524,6 +524,9 @@
     </EmbeddedResource>
     <None Include="a270.ttf" />
     <None Include="app.manifest" />
+    <None Include="ASCII sites.wx3270">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="ClassDiagram1.cd" />
     <None Include="Enter.wx3270">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
