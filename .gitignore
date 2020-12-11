@@ -198,3 +198,5 @@ __pycache__
 
 # Misc files
 *-setup.exe
+/.vs/VSWorkspaceState.json
+/.vs/slnx.sqlite
