@@ -7,6 +7,7 @@ namespace Wx3270
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
 
@@ -38,6 +39,11 @@ namespace Wx3270
         private const string OversizeRegex = @"(?<cols>\d+)x(?<rows>\d+)";
 
         /// <summary>
+        /// Regular expression for a macro definition.
+        /// </summary>
+        private const string MacrosRegex = @"^\s*(?<name>[^:\s]+)\s*:\s*(?<commands>.*)";
+
+        /// <summary>
         /// The line regular expression parser.
         /// </summary>
         private readonly Regex lineRegex = new Regex(LineRegex);
@@ -51,6 +57,11 @@ namespace Wx3270
         /// The oversize regular expression parser.
         /// </summary>
         private readonly Regex oversizeRegex = new Regex(OversizeRegex);
+
+        /// <summary>
+        /// The macros regular expression parser.
+        /// </summary>
+        private readonly Regex macrosRegex = new Regex(MacrosRegex);
 
         /// <summary>
         /// The code page database.
@@ -295,6 +306,40 @@ namespace Wx3270
                         if (!bool.TryParse(value, out alwaysInsert))
                         {
                             throw this.FatalException($"invalid {resourceName} '{value}'", lineNumber);
+                        }
+
+                        break;
+                    case Wc3270.Resource.Macros:
+                        {
+                            var newMacros = new List<MacroEntry>();
+                            var macros = value.Split(new[] { "\\n" }, StringSplitOptions.None);
+                            var entry = 1;
+                            foreach (var macro in macros)
+                            {
+                                var macroMatch = this.macrosRegex.Match(macro);
+                                if (!macroMatch.Success)
+                                {
+                                    throw this.FatalException($"invalid {resourceName} syntax, entry {entry}", lineNumber);
+                                }
+
+                                var name = macroMatch.Groups["name"].Value;
+                                var commands = macroMatch.Groups["commands"].Value;
+                                if (newMacros.Any(m => m.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)))
+                                {
+                                    throw this.FatalException($"invalid {resourceName}: duplicate name '{name}'", lineNumber);
+                                }
+
+                                var index = 0;
+                                if (!ActionSyntax.CheckLine(commands, out _, ref index, out string errorText))
+                                {
+                                    throw this.FatalException($"invalid {resourceName} '{name}': {errorText}", lineNumber);
+                                }
+
+                                newMacros.Add(new MacroEntry() { Name = name, Macro = commands });
+                                entry++;
+                            }
+
+                            profile.Macros = newMacros;
                         }
 
                         break;

@@ -50,6 +50,11 @@ namespace Wx3270
             public const string Hostname = "hostname";
 
             /// <summary>
+            /// Macro definitions.
+            /// </summary>
+            public const string Macros = "macros";
+
+            /// <summary>
             /// The model number.
             /// </summary>
             public const string Model = "model";
