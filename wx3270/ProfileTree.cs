@@ -1487,6 +1487,7 @@ namespace Wx3270
 
                 var newEntry = sourceHostEntry.Clone();
                 newEntry.Name = newProfileName;
+                newEntry.Profile = destProfile.Profile;
                 var refocus = new ProfileRefocus(
                     this.ProfileManager,
                     Separator,
@@ -1584,6 +1585,7 @@ namespace Wx3270
 
                         var newEntry = sourceHostEntry.Clone();
                         newEntry.Name = newProfileName;
+                        newEntry.Profile = destHost.Profile;
                         var refocus = new ProfileRefocus(
                             this.ProfileManager,
                             Separator,
