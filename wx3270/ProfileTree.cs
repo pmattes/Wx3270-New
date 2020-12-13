@@ -995,14 +995,14 @@ namespace Wx3270
             }
 
             // Do auto-rename after duplicating a host.
+            var autoRenameNode = (TreeNode)null;
             if (this.autoRenamePath != null)
             {
-                var autoRenameNode = this.treeView.Nodes.Find(this.autoRenamePath, searchAllChildren: true).FirstOrDefault();
+                autoRenameNode = this.treeView.Nodes.Find(this.autoRenamePath, searchAllChildren: true).FirstOrDefault();
                 if (autoRenameNode != null)
                 {
                     this.treeView.SelectedNode = autoRenameNode;
                     this.selectedNode = autoRenameNode;
-                    autoRenameNode.BeginEdit();
                 }
 
                 this.autoRenamePath = null;
@@ -1036,11 +1036,17 @@ namespace Wx3270
                 }
             });
 
-            this.treeView.EndUpdate();
-
             if (this.treeView.SelectedNode != null)
             {
                 this.treeView.SelectedNode.EnsureVisible();
+            }
+
+            this.treeView.EndUpdate();
+
+            // You can't start the editing operation for a node inside the BeginUpdate/EndUpdate pair.
+            if (autoRenameNode != null)
+            {
+                autoRenameNode.BeginEdit();
             }
         }
 
