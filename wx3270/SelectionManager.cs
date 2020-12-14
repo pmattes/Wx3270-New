@@ -6,6 +6,7 @@ namespace Wx3270
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Text;
     using System.Windows.Forms;
@@ -22,6 +23,16 @@ namespace Wx3270
         /// The threshold for interpreting mouse down as just activate.
         /// </summary>
         private const int ActivateClickMsec = 250;
+
+        /// <summary>
+        /// Prefix for HTTP.
+        /// </summary>
+        private const string Http = "http://";
+
+        /// <summary>
+        /// Prefix for HTTPS.
+        /// </summary>
+        private const string Https = "https://";
 
         /// <summary>
         /// Title group for localization.
@@ -263,6 +274,40 @@ namespace Wx3270
                     }
                 }
 
+                // Check for a URL.
+                var selection = string.Empty;
+                for (var baddr = (leftRow0 * this.app.ScreenImage.LogicalColumns) + leftColumn0;
+                    baddr <= (rightRow0 * this.app.ScreenImage.LogicalColumns) + rightColumn0;
+                    baddr++)
+                {
+                    selection += image.Image[baddr / this.app.ScreenImage.LogicalColumns, baddr % this.app.ScreenImage.LogicalColumns].Text;
+                }
+
+                int index;
+                if ((index = selection.IndexOf(Http)) >= 0 || ((index = selection.IndexOf(Https)) >= 0))
+                {
+                    selection = selection.Substring(index);
+                    while (selection.Length > 0 && !Uri.IsWellFormedUriString(selection, UriKind.Absolute))
+                    {
+                        selection = selection.Substring(0, selection.Length - 1);
+                    }
+
+                    if (selection.Length > 0)
+                    {
+                        try
+                        {
+                            Process.Start(selection);
+                        }
+                        catch (Exception e)
+                        {
+                            ErrorBox.Show(e.Message, "URL Start Error");
+                        }
+
+                        return;
+                    }
+                }
+
+                // Select the word.
                 this.selectAnchor = new Corner(leftRow0, leftColumn0);
                 this.selectEnd = new Corner(rightRow0, rightColumn0);
                 this.Reselect();
