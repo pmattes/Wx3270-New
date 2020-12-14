@@ -158,6 +158,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(Title.Paste, "Clipboard Paste");
             I18n.LocalizeGlobal(Title.CursorMove, "Cursor Move");
             I18n.LocalizeGlobal(Title.Initialization, "Selection Manager Initialization");
+            I18n.LocalizeGlobal(Title.UrlError, "URL Start Error");
         }
 
         /// <inheritdoc />
@@ -229,7 +230,7 @@ namespace Wx3270
                 {
                     if (image.Image[leftRow0, leftColumn0].Text != ' ')
                     {
-                        // SBCS. Go left until we find the left margin or a space.
+                        // SBCS. Scan left.
                         while (leftColumn0 >= 0 && image.Image[leftRow0, leftColumn0].Text != ' ')
                         {
                             leftColumn0--;
@@ -251,7 +252,7 @@ namespace Wx3270
 
                         leftColumn0++;
 
-                        // Go right.
+                        // Scan right.
                         while (rightColumn0 < image.LogicalColumns && image.Image[rightRow0, rightColumn0].Text != ' ')
                         {
                             rightColumn0++;
@@ -275,35 +276,39 @@ namespace Wx3270
                 }
 
                 // Check for a URL.
-                var selection = string.Empty;
-                for (var baddr = (leftRow0 * this.app.ScreenImage.LogicalColumns) + leftColumn0;
-                    baddr <= (rightRow0 * this.app.ScreenImage.LogicalColumns) + rightColumn0;
-                    baddr++)
+                if (!shift)
                 {
-                    selection += image.Image[baddr / this.app.ScreenImage.LogicalColumns, baddr % this.app.ScreenImage.LogicalColumns].Text;
-                }
-
-                int index;
-                if ((index = selection.IndexOf(Http)) >= 0 || ((index = selection.IndexOf(Https)) >= 0))
-                {
-                    selection = selection.Substring(index);
-                    while (selection.Length > 0 && !Uri.IsWellFormedUriString(selection, UriKind.Absolute))
+                    var selection = string.Empty;
+                    for (var baddr = (leftRow0 * this.app.ScreenImage.LogicalColumns) + leftColumn0;
+                        baddr <= (rightRow0 * this.app.ScreenImage.LogicalColumns) + rightColumn0;
+                        baddr++)
                     {
-                        selection = selection.Substring(0, selection.Length - 1);
+                        selection += image.Image[baddr / this.app.ScreenImage.LogicalColumns, baddr % this.app.ScreenImage.LogicalColumns].Text;
                     }
 
-                    if (selection.Length > 0)
+                    int index;
+                    if ((index = selection.IndexOf(Http)) >= 0 || ((index = selection.IndexOf(Https)) >= 0))
                     {
-                        try
+                        selection = selection.Substring(index);
+                        while (selection.Length > 0 && !Uri.IsWellFormedUriString(selection, UriKind.Absolute))
                         {
-                            Process.Start(selection);
-                        }
-                        catch (Exception e)
-                        {
-                            ErrorBox.Show(e.Message, "URL Start Error");
+                            selection = selection.Substring(0, selection.Length - 1);
                         }
 
-                        return;
+                        if (selection.Length > 0)
+                        {
+                            try
+                            {
+                                Trace.Line(Trace.Type.Clipboard, "Starting URL {0}", selection);
+                                Process.Start(selection);
+                            }
+                            catch (Exception e)
+                            {
+                                ErrorBox.Show(e.Message, I18n.Get(Title.UrlError));
+                            }
+
+                            return;
+                        }
                     }
                 }
 
@@ -340,6 +345,11 @@ namespace Wx3270
             if (this.mouseIsDown)
             {
                 this.selectEnd = new Corner(row - 1, column - 1);
+                if (this.selectAnchor == null)
+                {
+                    this.selectAnchor = new Corner(row - 1, column - 1);
+                }
+
                 this.Reselect();
                 this.mouseUpTimer.Stop();
             }
@@ -620,8 +630,7 @@ namespace Wx3270
         {
             try
             {
-                bool anySelected;
-                return this.UiCopyCut(arguments, Constants.Action.Copy, out anySelected, out result);
+                return this.UiCopyCut(arguments, Constants.Action.Copy, out _, out result);
             }
             finally
             {
@@ -643,8 +652,7 @@ namespace Wx3270
         {
             // Do the 'copy' part, which might fail or produce nothing.
             PassthruResult copyResult;
-            bool anySelected;
-            if ((copyResult = this.UiCopyCut(arguments, Constants.Action.Cut, out anySelected, out result)) == PassthruResult.Failure || !anySelected)
+            if ((copyResult = this.UiCopyCut(arguments, Constants.Action.Cut, out bool anySelected, out result)) == PassthruResult.Failure || !anySelected)
             {
                 return copyResult;
             }
@@ -800,6 +808,11 @@ namespace Wx3270
             /// Initialization.
             /// </summary>
             public static readonly string Initialization = I18n.Combine(TitleName, "initialization");
+
+            /// <summary>
+            /// URL error.
+            /// </summary>
+            public static readonly string UrlError = I18n.Combine(TitleName, "urlError");
         }
     }
 }
