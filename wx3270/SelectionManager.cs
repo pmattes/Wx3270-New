@@ -34,6 +34,11 @@ namespace Wx3270
         private readonly Wx3270App app;
 
         /// <summary>
+        /// The mouse-up timer.
+        /// </summary>
+        private readonly Timer mouseUpTimer = new Timer();
+
+        /// <summary>
         /// The starting corner of the selection.
         /// </summary>
         private Corner selectAnchor;
@@ -57,11 +62,6 @@ namespace Wx3270
         /// True if the mouse is down.
         /// </summary>
         private bool mouseIsDown = false;
-
-        /// <summary>
-        /// The mouse-up timer.
-        /// </summary>
-        private Timer mouseUpTimer = new Timer();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SelectionManager"/> class.
@@ -91,48 +91,50 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Gets the starting row of the selection, 0-origin.
+        /// Gets the buffer address of the start of the selection.
         /// </summary>
-        private int SelectStartRow0
+        private int SelectStartBaddr0
         {
             get
             {
-                return Math.Min(this.selectAnchor.Row0, this.selectEnd.Row0);
+                var baddrAnchor = (this.selectAnchor.Row0 * this.app.ScreenImage.LogicalColumns) + this.selectAnchor.Column0;
+                var baddrEnd = (this.selectEnd.Row0 * this.app.ScreenImage.LogicalColumns) + this.selectEnd.Column0;
+                return (baddrAnchor < baddrEnd) ? baddrAnchor : baddrEnd;
             }
         }
+
+        /// <summary>
+        /// Gets the buffer address of the end of the selection.
+        /// </summary>
+        private int SelectEndBaddr0
+        {
+            get
+            {
+                var baddrAnchor = (this.selectAnchor.Row0 * this.app.ScreenImage.LogicalColumns) + this.selectAnchor.Column0;
+                var baddrEnd = (this.selectEnd.Row0 * this.app.ScreenImage.LogicalColumns) + this.selectEnd.Column0;
+                return (baddrAnchor > baddrEnd) ? baddrAnchor : baddrEnd;
+            }
+        }
+
+        /// <summary>
+        /// Gets the starting row of the selection, 0-origin.
+        /// </summary>
+        private int SelectStartRow0 => this.SelectStartBaddr0 / this.app.ScreenImage.LogicalColumns;
 
         /// <summary>
         /// Gets the ending row of the selection, 0-origin.
         /// </summary>
-        private int SelectEndRow0
-        {
-            get
-            {
-                return Math.Max(this.selectAnchor.Row0, this.selectEnd.Row0);
-            }
-        }
+        private int SelectEndRow0 => this.SelectEndBaddr0 / this.app.ScreenImage.LogicalColumns;
 
         /// <summary>
         /// Gets the starting column of the selection, 0-origin.
         /// </summary>
-        private int SelectStartColumn0
-        {
-            get
-            {
-                return Math.Min(this.selectAnchor.Column0, this.selectEnd.Column0);
-            }
-        }
+        private int SelectStartColumn0 => this.SelectStartBaddr0 % this.app.ScreenImage.LogicalColumns;
 
         /// <summary>
         /// Gets the ending column of the selection, 0-origin.
         /// </summary>
-        private int SelectEndColumn0
-        {
-            get
-            {
-                return Math.Max(this.selectAnchor.Column0, this.selectEnd.Column0);
-            }
-        }
+        private int SelectEndColumn0 => this.SelectEndBaddr0 % this.app.ScreenImage.LogicalColumns;
 
         /// <summary>
         /// Static localization.
@@ -199,6 +201,8 @@ namespace Wx3270
 
                 var leftColumn0 = column0;
                 var rightColumn0 = column0;
+                var leftRow0 = row0;
+                var rightRow0 = row0;
 
                 if (image.Image[row0, column0].IsDbcsLeft)
                 {
@@ -212,39 +216,55 @@ namespace Wx3270
                 }
                 else
                 {
-                    // SBCS. Go left until we find the left margin or a space.
-                    while (leftColumn0 >= 0 && image.Image[row0, leftColumn0].Text != ' ')
+                    if (image.Image[leftRow0, leftColumn0].Text != ' ')
                     {
-                        leftColumn0--;
+                        // SBCS. Go left until we find the left margin or a space.
+                        while (leftColumn0 >= 0 && image.Image[leftRow0, leftColumn0].Text != ' ')
+                        {
+                            leftColumn0--;
+                        }
+
+                        while (leftRow0 > 0 &&
+                            leftColumn0 == -1 &&
+                            image.Image[leftRow0, 0].Text != ' ' &&
+                            image.Image[leftRow0 - 1, image.LogicalColumns - 1].GraphicRendition.HasFlag(GraphicRendition.Wrap))
+                        {
+                            leftRow0--;
+                            leftColumn0 = image.LogicalColumns - 1;
+
+                            while (leftColumn0 >= 0 && image.Image[leftRow0, leftColumn0].Text != ' ')
+                            {
+                                leftColumn0--;
+                            }
+                        }
+
+                        leftColumn0++;
+
+                        // Go right.
+                        while (rightColumn0 < image.LogicalColumns && image.Image[rightRow0, rightColumn0].Text != ' ')
+                        {
+                            rightColumn0++;
+                        }
+
+                        while (rightRow0 < image.LogicalRows &&
+                            rightColumn0 == image.LogicalColumns &&
+                            image.Image[rightRow0, rightColumn0 - 1].Text != ' ' &&
+                            image.Image[rightRow0, rightColumn0 - 1].GraphicRendition.HasFlag(GraphicRendition.Wrap))
+                        {
+                            rightRow0++;
+                            rightColumn0 = 0;
+                            while (rightColumn0 < image.LogicalColumns && image.Image[rightRow0, rightColumn0].Text != ' ')
+                            {
+                                rightColumn0++;
+                            }
+                        }
+
+                        rightColumn0--;
                     }
-
-                    leftColumn0++;
-
-                    // Go right.
-                    while (rightColumn0 < image.LogicalColumns && image.Image[row0, rightColumn0].Text != ' ')
-                    {
-                        rightColumn0++;
-                    }
-
-                    rightColumn0--;
                 }
 
-                if (this.selectAnchor == null)
-                {
-                    this.selectAnchor = new Corner(row0, leftColumn0);
-                }
-
-                if (column1 >= this.selectAnchor.Column0)
-                {
-                    // Extending to the right.
-                    this.selectEnd = new Corner(row0, rightColumn0);
-                }
-                else
-                {
-                    // Extending to the left.
-                    this.selectEnd = new Corner(row0, leftColumn0);
-                }
-
+                this.selectAnchor = new Corner(leftRow0, leftColumn0);
+                this.selectEnd = new Corner(rightRow0, rightColumn0);
                 this.Reselect();
                 return;
             }
