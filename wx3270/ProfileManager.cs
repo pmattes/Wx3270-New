@@ -323,39 +323,9 @@ namespace Wx3270
                 return true;
             }
 
-            var iconPath = Path.Combine(ProfileDirectory, Icon);
-            if (!File.Exists(iconPath))
-            {
-                try
-                {
-                    // Find the resource for the icon.
-                    var a = System.Reflection.Assembly.GetExecutingAssembly();
-                    Stream s = a.GetManifestResourceStream("Wx3270.Resources." + Icon);
-                    if (s != null)
-                    {
-                        // Write it into the directory.
-                        using (var outStream = File.Create(iconPath))
-                        {
-                            var buffer = new byte[4096];
-                            int nread;
-                            while ((nread = s.Read(buffer, 0, buffer.Length)) != 0)
-                            {
-                                outStream.Write(buffer, 0, nread);
-                            }
-                        }
-
-                        s.Close();
-
-                        // Make the icon hidden.
-                        File.SetAttributes(iconPath, File.GetAttributes(iconPath) | FileAttributes.Hidden);
-                    }
-                }
-                catch (Exception e)
-                {
-                    ErrorBox.Show(e.Message, I18n.Get(Title.ProfileIconError));
-                    return true;
-                }
-            }
+            // Set the read-only attribute on the profile directory, so file explorer looks for Desktop.ini.
+            // Note that this doesn't actually make the directory read-only.
+            File.SetAttributes(ProfileDirectory, File.GetAttributes(ProfileDirectory) | FileAttributes.ReadOnly);
 
             var iniPath = Path.Combine(ProfileDirectory, "Desktop.ini");
             if (!File.Exists(iniPath))
@@ -365,20 +335,15 @@ namespace Wx3270
                     // Create Desktop.ini.
                     using (var outStream = File.Create(iniPath))
                     {
-                        using (var writer = new StreamWriter(outStream, new UnicodeEncoding()))
-                        {
-                            writer.WriteLine("[.ShellClassInfo]");
-                            writer.WriteLine("ConfirmFileOp=0");
-                            writer.WriteLine("IconFile=" + Icon);
-                            writer.WriteLine("IconIndex=0");
-                            writer.WriteLine("InfoTip=wx3270 Profiles");
-                        }
+                        using var writer = new StreamWriter(outStream, new UnicodeEncoding());
+                        writer.WriteLine("[.ShellClassInfo]");
+                        writer.WriteLine("ConfirmFileOp=0");
+                        writer.WriteLine("IconFile=" + Application.ExecutablePath);
+                        writer.WriteLine("IconIndex=0");
+                        writer.WriteLine("InfoTip=wx3270 Profiles");
                     }
 
-                    File.SetAttributes(iniPath, File.GetAttributes(iconPath) | FileAttributes.System | FileAttributes.Hidden);
-
-                    // Make the profile directory a system folder, so file explorer looks for Desktop.ini.
-                    File.SetAttributes(ProfileDirectory, File.GetAttributes(ProfileDirectory) | FileAttributes.System);
+                    File.SetAttributes(iniPath, File.GetAttributes(iniPath) | FileAttributes.System | FileAttributes.Hidden);
                 }
                 catch (Exception e)
                 {
@@ -386,6 +351,9 @@ namespace Wx3270
                     return true;
                 }
             }
+
+            // Get rid of the System attribute on the profile directory, in case we set it in an earlier version.
+            File.SetAttributes(ProfileDirectory, File.GetAttributes(ProfileDirectory) & ~FileAttributes.System);
 
             // Set up a watch on the library, if there is one.
             var library = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), Constants.Misc.Library);
