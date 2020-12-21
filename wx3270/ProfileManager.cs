@@ -325,7 +325,8 @@ namespace Wx3270
 
             // Set the read-only attribute on the profile directory, so file explorer looks for Desktop.ini.
             // Note that this doesn't actually make the directory read-only.
-            File.SetAttributes(ProfileDirectory, File.GetAttributes(ProfileDirectory) | FileAttributes.ReadOnly);
+            // Also get rid of the System attribute, which might have been set by an earler version of this code.
+            File.SetAttributes(ProfileDirectory, (File.GetAttributes(ProfileDirectory) & ~FileAttributes.System) | FileAttributes.ReadOnly);
 
             var iniPath = Path.Combine(ProfileDirectory, "Desktop.ini");
             if (!File.Exists(iniPath))
@@ -351,9 +352,6 @@ namespace Wx3270
                     return true;
                 }
             }
-
-            // Get rid of the System attribute on the profile directory, in case we set it in an earlier version.
-            File.SetAttributes(ProfileDirectory, File.GetAttributes(ProfileDirectory) & ~FileAttributes.System);
 
             // Set up a watch on the library, if there is one.
             var library = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), Constants.Misc.Library);
