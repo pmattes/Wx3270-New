@@ -273,6 +273,12 @@ namespace Wx3270
                     {
                         this.pictureBox.Invalidate(r.Value);
                     }
+                    else
+                    {
+                        // The (blinking) cursor may have moved, or blinking text may have changed, while blinked off.
+                        // The text to be drawn when blink comes back on may be different. Save it.
+                        this.lastImage = image;
+                    }
                 }
                 else
                 {
