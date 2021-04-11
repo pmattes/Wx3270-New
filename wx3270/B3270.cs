@@ -1309,9 +1309,19 @@ namespace Wx3270
             public const string Reset = "Reset";
 
             /// <summary>
+            /// Restore input action.
+            /// </summary>
+            public const string RestoreInput = "RestoreInput";
+
+            /// <summary>
             /// Right action.
             /// </summary>
             public const string Right = "Right";
+
+            /// <summary>
+            /// Save input action.
+            /// </summary>
+            public const string SaveInput = "SaveInput";
 
             /// <summary>
             /// Screen trace action.

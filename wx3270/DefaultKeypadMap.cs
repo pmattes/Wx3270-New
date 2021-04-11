@@ -64,6 +64,14 @@ namespace Wx3270
             { KeyMap<KeypadMap>.Key("Left", KeyboardModifier.None), new KeypadMap { Text = "←", TextSize = 14.25F, Actions = B3270.Action.Left + "()" } },
             { KeyMap<KeypadMap>.Key("Down", KeyboardModifier.None), new KeypadMap { Text = "↓", TextSize = 14.25F, Actions = B3270.Action.Down + "()" } },
             { KeyMap<KeypadMap>.Key("Right", KeyboardModifier.None), new KeypadMap { Text = "→", TextSize = 14.25F, Actions = B3270.Action.Right + "()" } },
+            { KeyMap<KeypadMap>.Key("BlankButton8", KeyboardModifier.Mode3270), new KeypadMap { Text = "SAVE" + Environment.NewLine + "A", TextSize = 6.0F, Actions = B3270.Action.SaveInput + "(A)" } },
+            { KeyMap<KeypadMap>.Key("BlankButton8", KeyboardModifier.Shift | KeyboardModifier.Mode3270), new KeypadMap { Text = "SAVE" + Environment.NewLine + "B", TextSize = 6.0F, Actions = B3270.Action.SaveInput + "(B)" } },
+            { KeyMap<KeypadMap>.Key("BlankButton8", KeyboardModifier.Ctrl | KeyboardModifier.Mode3270), new KeypadMap { Text = "SAVE" + Environment.NewLine + "C", TextSize = 6.0F, Actions = B3270.Action.SaveInput + "(C)" } },
+            { KeyMap<KeypadMap>.Key("BlankButton8", KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeypadMap { Text = "SAVE" + Environment.NewLine + "D", TextSize = 6.0F, Actions = B3270.Action.SaveInput + "(D)" } },
+            { KeyMap<KeypadMap>.Key("BlankButton9", KeyboardModifier.Mode3270), new KeypadMap { Text = "RE-" + Environment.NewLine + "STORE" + Environment.NewLine + "A", TextSize = 6.0F, Actions = B3270.Action.RestoreInput + "(A)" } },
+            { KeyMap<KeypadMap>.Key("BlankButton9", KeyboardModifier.Shift | KeyboardModifier.Mode3270), new KeypadMap { Text = "RE-" + Environment.NewLine + "STORE" + Environment.NewLine + "B", TextSize = 6.0F, Actions = B3270.Action.RestoreInput + "(B)" } },
+            { KeyMap<KeypadMap>.Key("BlankButton9", KeyboardModifier.Ctrl | KeyboardModifier.Mode3270), new KeypadMap { Text = "RE-" + Environment.NewLine + "STORE" + Environment.NewLine + "C", TextSize = 6.0F, Actions = B3270.Action.RestoreInput + "(C)" } },
+            { KeyMap<KeypadMap>.Key("BlankButton9", KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeypadMap { Text = "RE-" + Environment.NewLine + "STORE" + Environment.NewLine + "D", TextSize = 6.0F, Actions = B3270.Action.RestoreInput + "(D)" } },
 
             // APL keypad.
             { KeyMap<KeypadMap>.Key("grave", KeyboardModifier.None), new KeypadMap { Text = "⋄", TextSize = 16F, Actions = B3270.Action.Key + "(apl_diamond)" } },
