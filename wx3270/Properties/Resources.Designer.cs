@@ -313,6 +313,26 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap record {
+            get {
+                object obj = ResourceManager.GetObject("record", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap record1 {
+            get {
+                object obj = ResourceManager.GetObject("record1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap screentrace3 {
             get {
                 object obj = ResourceManager.GetObject("screentrace3", resourceCulture);
@@ -343,6 +363,16 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap stop_recording {
+            get {
+                object obj = ResourceManager.GetObject("stop_recording", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap stop2 {
             get {
                 object obj = ResourceManager.GetObject("stop2", resourceCulture);
@@ -356,6 +386,16 @@ namespace Wx3270.Properties {
         internal static System.Drawing.Bitmap Tape4 {
             get {
                 object obj = ResourceManager.GetObject("Tape4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tape4_flash {
+            get {
+                object obj = ResourceManager.GetObject("Tape4_flash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

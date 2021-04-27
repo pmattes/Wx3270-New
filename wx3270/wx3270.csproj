@@ -149,6 +149,7 @@
     <Compile Include="Contracts\IMeasure.cs" />
     <Compile Include="HostName.cs" />
     <Compile Include="KeypadCommon.cs" />
+    <Compile Include="MacroRecorder.cs" />
     <Compile Include="MiscSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -746,6 +747,10 @@
     <None Include="Resources\screentrace3.png" />
     <None Include="Resources\Floppy.png" />
     <None Include="Resources\arrowslr.png" />
+    <None Include="Resources\record.png" />
+    <None Include="Resources\record1.png" />
+    <None Include="Resources\Tape4_flash.png" />
+    <None Include="Resources\stop_recording.png" />
     <Content Include="wx3270.bmp" />
     <None Include="Resources\StartClearerLightGreen.png" />
     <None Include="Resources\ToggleUp4.png" />

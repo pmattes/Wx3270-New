@@ -8,7 +8,6 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
-    using System.Runtime.CompilerServices;
     using System.Windows.Forms;
     using I18nBase;
     using Wx3270.Contracts;
@@ -30,7 +29,27 @@ namespace Wx3270
         /// <summary>
         /// The name of the snap localization.
         /// </summary>
-        private const string SnapName = "Snap";
+        private const string SnapName = "MainScreen.Snap";
+
+        /// <summary>
+        /// The name of the localized tool tip for the macros button.
+        /// </summary>
+        private const string MacrosToolTipName = "MainScreen.ToolTip.Macros";
+
+        /// <summary>
+        /// The name of the localized tool tip for the macros button, while recording.
+        /// </summary>
+        private const string MacroRecordingToolTipName = "MainScreen.ToolTip.MacroRecording";
+
+        /// <summary>
+        /// The name of the menu item to start macro recording.
+        /// </summary>
+        private const string MacroRecordingItemName = "MainScreen.Item.Record";
+
+        /// <summary>
+        /// The name of the menu item to stop recording.
+        /// </summary>
+        private const string MacroStopRecordingItemName = "MainScreen.Item.StopRecording";
 
         /// <summary>
         /// Name of localized message box titles.
@@ -61,6 +80,11 @@ namespace Wx3270
         /// Set if the pop-up keypad is minimized.
         /// </summary>
         private readonly HashSet<Form> keypadMinimized = new HashSet<Form>();
+
+        /// <summary>
+        /// The macro recorder.
+        /// </summary>
+        private readonly MacroRecorder macroRecorder = new MacroRecorder();
 
         /// <summary>
         /// Flash state machine.
@@ -116,6 +140,11 @@ namespace Wx3270
         /// True if we are in color (3279) mode.
         /// </summary>
         private bool colorMode = true;
+
+        /// <summary>
+        /// The macro record menu item.
+        /// </summary>
+        private ToolStripMenuItem macroRecordItem;
 
         /// <summary>
         /// The window handle.
@@ -313,6 +342,10 @@ namespace Wx3270
         {
             I18n.LocalizeGlobal(ResizeName, "resize");
             I18n.LocalizeGlobal(SnapName, "snap");
+            I18n.LocalizeGlobal(MacrosToolTipName, "Macros");
+            I18n.LocalizeGlobal(MacroRecordingToolTipName, "Recording macro - click to stop");
+            I18n.LocalizeGlobal(MacroRecordingItemName, "Record");
+            I18n.LocalizeGlobal(MacroStopRecordingItemName, "Stop recording");
         }
 
         /// <summary>
@@ -1207,6 +1240,11 @@ namespace Wx3270
             this.macrosContextMenuStrip.Items.Clear();
             this.macrosContextMenuStrip.Items.AddRange(
                 this.macroEntries.Entries.Select(e => new ToolStripMenuItem(e.Name, null, this.RunMacro) { Tag = e }).ToArray());
+            this.macroRecordItem = new ToolStripMenuItem(
+                I18n.Get(this.macroRecorder.Running ? MacroStopRecordingItemName : MacroRecordingItemName),
+                this.macroRecorder.Running ? Properties.Resources.stop_recording : Properties.Resources.record1,
+                this.ToggleRecording);
+            this.macrosContextMenuStrip.Items.Add(this.macroRecordItem);
         }
 
         /// <summary>
@@ -1219,6 +1257,32 @@ namespace Wx3270
             var clickedMenuItem = sender as ToolStripMenuItem;
             var entry = (MacroEntry)clickedMenuItem.Tag;
             this.BackEnd.RunActions(entry.Macro, ErrorBox.Completion(I18n.Get(Title.MacroError)));
+        }
+
+        /// <summary>
+        /// Start or stop recording a macro.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void ToggleRecording(object sender, EventArgs e)
+        {
+            if (this.macroRecorder.Running)
+            {
+                this.macroRecordItem.Text = I18n.Get(MacroRecordingItemName);
+                this.macroRecordItem.Image = Properties.Resources.record1;
+                this.toolTip1.SetToolTip(this.macrosPictureBox, I18n.Get(MacrosToolTipName));
+                this.macroRecorder.Stop();
+            }
+            else
+            {
+                this.macroRecordItem.Text = I18n.Get(MacroStopRecordingItemName);
+                this.macroRecordItem.Image = Properties.Resources.stop_recording;
+                this.toolTip1.SetToolTip(this.macrosPictureBox, I18n.Get(MacroRecordingToolTipName));
+                this.macroRecorder.FlashPicture = this.macrosPictureBox;
+                this.macroRecorder.OffImage = Properties.Resources.Tape4;
+                this.macroRecorder.OnImage = Properties.Resources.Tape4_flash;
+                this.macroRecorder.Start();
+            }
         }
 
         /// <summary>
@@ -1797,6 +1861,12 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void MacrosPictureBox_Click(object sender, EventArgs e)
         {
+            if (this.macroRecorder.Running)
+            {
+                this.ToggleRecording(sender, e);
+                return;
+            }
+
             if (!this.macros.Visible)
             {
                 this.macros.Show(this);

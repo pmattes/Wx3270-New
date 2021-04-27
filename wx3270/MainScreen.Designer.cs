@@ -200,6 +200,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.printScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayKeymapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OiaLayoutPanel.SuspendLayout();
             this.resetContextMenuStrip.SuspendLayout();
             this.TopLeftLayoutPanel.SuspendLayout();
@@ -207,6 +208,7 @@
             this.keypadContextMenuStrip.SuspendLayout();
             this.connectMenuStrip.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
+            this.macrosContextMenuStrip.SuspendLayout();
             this.TopLayoutPanel.SuspendLayout();
             this.TopRightLayoutPanel.SuspendLayout();
             this.settingsMenuStrip.SuspendLayout();
@@ -1091,9 +1093,10 @@
             // 
             // macrosContextMenuStrip
             // 
+            this.macrosContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recordToolStripMenuItem});
             this.macrosContextMenuStrip.Name = "macrosContextMenuStrip";
-            this.macrosContextMenuStrip.ShowImageMargin = false;
-            this.macrosContextMenuStrip.Size = new System.Drawing.Size(36, 4);
+            this.macrosContextMenuStrip.Size = new System.Drawing.Size(112, 26);
             // 
             // TopLayoutPanel
             // 
@@ -1778,7 +1781,7 @@
             // 
             this.sendToPrinterToolStripMenuItem.Image = global::Wx3270.Properties.Resources.printout_small;
             this.sendToPrinterToolStripMenuItem.Name = "sendToPrinterToolStripMenuItem";
-            this.sendToPrinterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sendToPrinterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sendToPrinterToolStripMenuItem.Tag = "Printer";
             this.sendToPrinterToolStripMenuItem.Text = "Send to Printer";
             this.sendToPrinterToolStripMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
@@ -1787,7 +1790,7 @@
             // 
             this.saveToFileToolStripMenuItem.Image = global::Wx3270.Properties.Resources.Floppy;
             this.saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
-            this.saveToFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToFileToolStripMenuItem.Tag = "File";
             this.saveToFileToolStripMenuItem.Text = "Save to File";
             this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
@@ -1832,6 +1835,13 @@
             this.displayKeymapToolStripMenuItem.Text = "Display keymap";
             this.displayKeymapToolStripMenuItem.Click += new System.EventHandler(this.DisplayKeymap_Click);
             // 
+            // recordToolStripMenuItem
+            // 
+            this.recordToolStripMenuItem.Image = global::Wx3270.Properties.Resources.record1;
+            this.recordToolStripMenuItem.Name = "recordToolStripMenuItem";
+            this.recordToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.recordToolStripMenuItem.Text = "Record";
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1863,6 +1873,7 @@
             this.keypadContextMenuStrip.ResumeLayout(false);
             this.connectMenuStrip.ResumeLayout(false);
             this.profileContextMenuStrip.ResumeLayout(false);
+            this.macrosContextMenuStrip.ResumeLayout(false);
             this.TopLayoutPanel.ResumeLayout(false);
             this.TopRightLayoutPanel.ResumeLayout(false);
             this.settingsMenuStrip.ResumeLayout(false);
@@ -2063,6 +2074,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem pA1ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem pA2ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem recordToolStripMenuItem;
     }
 }
 
