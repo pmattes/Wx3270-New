@@ -103,9 +103,9 @@ namespace Wx3270
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTransferProgress"/> class.
         /// </summary>
-        /// <param name="connectionState">Connection state object</param>
-        /// <param name="backEnd">Back end</param>
-        /// <param name="mainScreen">Main screen</param>
+        /// <param name="connectionState">Connection state object.</param>
+        /// <param name="backEnd">Back end.</param>
+        /// <param name="mainScreen">Main screen.</param>
         public FileTransferProgress(IConnectionState connectionState, IBackEnd backEnd, MainScreen mainScreen)
         {
             this.InitializeComponent();

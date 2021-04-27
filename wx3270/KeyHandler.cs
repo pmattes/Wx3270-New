@@ -234,6 +234,7 @@ namespace Wx3270
                     this.app.ChordName,
                     out KeyboardMap map))
                 {
+                    this.app.MacroRecorder.Record(map.Actions);
                     var actions = ActionSyntax.FormatForRun(map.Actions);
                     Trace.Line(Trace.Type.Key, " ==> {0}", actions);
                     var keyAction = new KeyAction();
@@ -361,6 +362,7 @@ namespace Wx3270
                     this.app.ChordName,
                     out KeyboardMap map))
                 {
+                    this.app.MacroRecorder.Record(map.Actions);
                     var actions = ActionSyntax.FormatForRun(map.Actions);
                     Trace.Line(Trace.Type.Key, " ==> {0}", actions);
                     var keyAction = new KeyAction();
@@ -419,7 +421,9 @@ namespace Wx3270
             }
 
             // Input the data.
-            this.BackEnd.RunAction(new BackEndAction(B3270.Action.Key, string.Format("U+{0:X4}", (int)e.KeyChar)), B3270.RunType.Keymap, this.KeyDone);
+            var code = string.Format("U+{0:X4}", (int)e.KeyChar);
+            this.app.MacroRecorder.Record($"{B3270.Action.Key}({code})");
+            this.BackEnd.RunAction(new BackEndAction(B3270.Action.Key, code), B3270.RunType.Keymap, this.KeyDone);
             if (this.app.ChordName != null)
             {
                 this.app.ChordReset();

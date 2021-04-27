@@ -333,6 +333,11 @@ namespace Wx3270
         public Cmd Cmd { get; private set; }
 
         /// <summary>
+        /// Gets the macro recorder.
+        /// </summary>
+        public MacroRecorder MacroRecorder { get; } = new MacroRecorder();
+
+        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]

@@ -82,11 +82,6 @@ namespace Wx3270
         private readonly HashSet<Form> keypadMinimized = new HashSet<Form>();
 
         /// <summary>
-        /// The macro recorder.
-        /// </summary>
-        private readonly MacroRecorder macroRecorder = new MacroRecorder();
-
-        /// <summary>
         /// Flash state machine.
         /// </summary>
         private FlashFsm flashFsm;
@@ -280,6 +275,11 @@ namespace Wx3270
         /// Gets the set of flashable keypads.
         /// </summary>
         private IFlash[] FlashableKeypads => new IFlash[] { this.keypad, this.aplKeypad };
+
+        /// <summary>
+        /// Gets the macro recorder.
+        /// </summary>
+        private MacroRecorder MacroRecorder => this.App.MacroRecorder;
 
         /// <summary>
         /// Compute the location for a centered dialog window.
@@ -1241,8 +1241,8 @@ namespace Wx3270
             this.macrosContextMenuStrip.Items.AddRange(
                 this.macroEntries.Entries.Select(e => new ToolStripMenuItem(e.Name, null, this.RunMacro) { Tag = e }).ToArray());
             this.macroRecordItem = new ToolStripMenuItem(
-                I18n.Get(this.macroRecorder.Running ? MacroStopRecordingItemName : MacroRecordingItemName),
-                this.macroRecorder.Running ? Properties.Resources.stop_recording : Properties.Resources.record1,
+                I18n.Get(this.MacroRecorder.Running ? MacroStopRecordingItemName : MacroRecordingItemName),
+                this.MacroRecorder.Running ? Properties.Resources.stop_recording : Properties.Resources.record1,
                 this.ToggleRecording);
             this.macrosContextMenuStrip.Items.Add(this.macroRecordItem);
         }
@@ -1266,22 +1266,22 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ToggleRecording(object sender, EventArgs e)
         {
-            if (this.macroRecorder.Running)
+            if (this.MacroRecorder.Running)
             {
                 this.macroRecordItem.Text = I18n.Get(MacroRecordingItemName);
                 this.macroRecordItem.Image = Properties.Resources.record1;
                 this.toolTip1.SetToolTip(this.macrosPictureBox, I18n.Get(MacrosToolTipName));
-                this.macroRecorder.Stop();
+                this.MacroRecorder.Stop();
             }
             else
             {
                 this.macroRecordItem.Text = I18n.Get(MacroStopRecordingItemName);
                 this.macroRecordItem.Image = Properties.Resources.stop_recording;
                 this.toolTip1.SetToolTip(this.macrosPictureBox, I18n.Get(MacroRecordingToolTipName));
-                this.macroRecorder.FlashPicture = this.macrosPictureBox;
-                this.macroRecorder.OffImage = Properties.Resources.Tape4;
-                this.macroRecorder.OnImage = Properties.Resources.Tape4_flash;
-                this.macroRecorder.Start();
+                this.MacroRecorder.FlashPicture = this.macrosPictureBox;
+                this.MacroRecorder.OffImage = Properties.Resources.Tape4;
+                this.MacroRecorder.OnImage = Properties.Resources.Tape4_flash;
+                this.MacroRecorder.Start();
             }
         }
 
@@ -1861,7 +1861,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void MacrosPictureBox_Click(object sender, EventArgs e)
         {
-            if (this.macroRecorder.Running)
+            if (this.MacroRecorder.Running)
             {
                 this.ToggleRecording(sender, e);
                 return;

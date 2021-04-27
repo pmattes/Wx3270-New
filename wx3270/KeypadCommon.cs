@@ -335,6 +335,7 @@ namespace Wx3270
                 out _,
                 out _))
             {
+                this.app.MacroRecorder.Record(map.Actions);
                 this.BackEnd.RunActions(ActionSyntax.FormatForRun(map.Actions), B3270.RunType.Keypad, this.KeypadCompletion);
             }
 

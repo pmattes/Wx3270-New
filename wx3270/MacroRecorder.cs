@@ -6,6 +6,7 @@ namespace Wx3270
 {
     using System;
     using System.Drawing;
+    using System.Text;
     using System.Windows.Forms;
 
     /// <summary>
@@ -22,6 +23,11 @@ namespace Wx3270
         /// The flash timer.
         /// </summary>
         private readonly Timer flashTimer = new Timer();
+
+        /// <summary>
+        /// The accumulated actions.
+        /// </summary>
+        private readonly StringBuilder actions = new StringBuilder();
 
         /// <summary>
         /// True if the recorder is active.
@@ -68,6 +74,7 @@ namespace Wx3270
             if (!this.running)
             {
                 this.running = true;
+                this.actions.Clear();
                 this.FlashPicture.Image = this.OnImage;
                 this.flashing = true;
                 this.flashTimer.Interval = FlashMs;
@@ -88,6 +95,20 @@ namespace Wx3270
                 this.running = false;
                 this.FlashPicture.Image = this.OffImage;
                 this.flashing = false;
+
+                MessageBox.Show("Actions:" + Environment.NewLine + this.actions.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Record a set of actions.
+        /// </summary>
+        /// <param name="actions">Actions to record.</param>
+        public void Record(string actions)
+        {
+            if (this.running)
+            {
+                this.actions.Append(actions + Environment.NewLine);
             }
         }
 
