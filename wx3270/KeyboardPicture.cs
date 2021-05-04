@@ -9,7 +9,10 @@ namespace Wx3270
     using System.Drawing;
     using System.Globalization;
     using System.Linq;
+    using System.Text;
     using System.Windows.Forms;
+
+    using Microsoft.Win32;
 
     /// <summary>
     /// Keyboard picture mode.
@@ -42,6 +45,11 @@ namespace Wx3270
         /// Large font size.
         /// </summary>
         private const float LargeFont = 11.25F;
+
+        /// <summary>
+        /// Message name.
+        /// </summary>
+        private static readonly string MessageName = I18n.MessageName(nameof(KeyboardPicture));
 
         /// <summary>
         /// Dictionary of key labels. Maps a virtual key name (button tag) to the label text in the en-US culture.
@@ -354,6 +362,8 @@ namespace Wx3270
         [I18nFormInit]
         public static void LocalizeForm()
         {
+            I18n.LocalizeGlobal(MessageNames.Input, "Input");
+            I18n.LocalizeGlobal(MessageNames.Layout, "Layout");
             new KeyboardPicture(Profile.DefaultProfile.KeyboardMap).Dispose();
         }
 
@@ -986,10 +996,27 @@ namespace Wx3270
         /// </summary>
         private void AdjustKey56()
         {
+            // Set up key 56.
             var nonUs = InputLanguage.CurrentInputLanguage.Handle != EnUsHandle;
             this.key56.Visible = nonUs;
             this.leftShiftKey.Width = nonUs ? 86 : 139;
-            this.nativeNameLabel.Text = InputLanguage.CurrentInputLanguage.Culture.KeyboardLayoutId + " " + InputLanguage.CurrentInputLanguage.Culture.NativeName;
+
+            // Set up the input language display.
+            this.nativeNameLabel.Text = I18n.Get(MessageNames.Input) + ": " +
+                InputLanguage.CurrentInputLanguage.Culture.KeyboardLayoutId + " " +
+                InputLanguage.CurrentInputLanguage.Culture.NativeName;
+
+            // Set up the layout.
+            StringBuilder b = new StringBuilder(256);
+            NativeMethods.GetKeyboardLayoutName(b);
+            using var key = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Keyboard Layouts\" + b.ToString());
+            var layout = string.Empty;
+            if (key != null)
+            {
+                layout = (string)key.GetValue("Layout Text");
+            }
+
+            this.layoutLabel.Text = I18n.Get(MessageNames.Layout) + ": " + layout ?? string.Empty;
         }
 
         /// <summary>
@@ -1064,6 +1091,22 @@ namespace Wx3270
             e.Cancel = true;
             this.Hide();
             this.Owner.BringToFront();
+        }
+
+        /// <summary>
+        /// Message types.
+        /// </summary>
+        private static class MessageNames
+        {
+            /// <summary>
+            /// Input label.
+            /// </summary>
+            public static readonly string Input = I18n.Combine(MessageName, "label");
+
+            /// <summary>
+            /// Layout label.
+            /// </summary>
+            public static readonly string Layout = I18n.Combine(MessageName, "layout");
         }
     }
 }

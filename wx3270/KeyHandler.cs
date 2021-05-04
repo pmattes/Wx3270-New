@@ -155,7 +155,8 @@ namespace Wx3270
             if (e.Alt)
             {
                 // Prevents annoying beep when Alt pressed with a data key.
-                e.SuppressKeyPress = true;
+                // This does not appear to be needed any more.
+                // e.SuppressKeyPress = true;
             }
 
             // Handle a modifier key separately, because there might have a mapping for it, but it is

@@ -122,38 +122,18 @@ namespace Wx3270
         public static extern uint MapVirtualKeyEx(uint uCode, uint uMapType, IntPtr dwhkl);
 
         /// <summary>
-        /// Gets the keyboard state.
-        /// </summary>
-        /// <param name="lpKeyState">Returned keyboard state.</param>
-        /// <returns>True for success.</returns>
-        [DllImport("user32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetKeyboardState(byte[] lpKeyState);
-
-        /// <summary>
-        /// Gets the keyboard state for one key.
-        /// </summary>
-        /// <param name="nVirtKey">Key code.</param>
-        /// <returns>Key state.</returns>
-        [DllImport("user32.dll")]
-        public static extern short GetKeyState(uint nVirtKey);
-
-        /// <summary>
-        /// Send a window message.
-        /// </summary>
-        /// <param name="hWnd">Window handle.</param>
-        /// <param name="Msg">Message type.</param>
-        /// <param name="wParam">Parameter 1.</param>
-        /// <param name="lParam">Parameter 2.</param>
-        /// <returns>Result of message send.</returns>
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
-
-        /// <summary>
         /// Gets the system ANSI code page.
         /// </summary>
         /// <returns>ANSI code page.</returns>
         [DllImport("kernel32.dll")]
         public static extern int GetACP();
+
+        /// <summary>
+        /// Gets the keyboard layout name.
+        /// </summary>
+        /// <param name="pwszLKID">Returned name.</param>
+        /// <returns>False for success.</returns>
+        [DllImport("user32.dll")]
+        public static extern bool GetKeyboardLayoutName([Out] StringBuilder pwszLKID);
     }
 }

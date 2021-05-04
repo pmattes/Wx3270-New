@@ -165,6 +165,7 @@
             this.aplCtrlLabel = new System.Windows.Forms.Label();
             this.aplLegendLabel = new System.Windows.Forms.Label();
             this.keysPanel = new System.Windows.Forms.Panel();
+            this.layoutLabel = new System.Windows.Forms.Label();
             this.modeFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.ChordBox = new System.Windows.Forms.GroupBox();
             this.ChordComboBox = new System.Windows.Forms.ComboBox();
@@ -2006,7 +2007,8 @@
             // noteLabel
             // 
             this.noteLabel.AutoSize = true;
-            this.noteLabel.Location = new System.Drawing.Point(1024, 10);
+            this.noteLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noteLabel.Location = new System.Drawing.Point(1015, 44);
             this.noteLabel.Name = "noteLabel";
             this.noteLabel.Size = new System.Drawing.Size(163, 26);
             this.noteLabel.TabIndex = 114;
@@ -2096,7 +2098,7 @@
             // nativeNameLabel
             // 
             this.nativeNameLabel.AutoSize = true;
-            this.nativeNameLabel.Location = new System.Drawing.Point(1024, 45);
+            this.nativeNameLabel.Location = new System.Drawing.Point(1015, 11);
             this.nativeNameLabel.Name = "nativeNameLabel";
             this.nativeNameLabel.Size = new System.Drawing.Size(69, 13);
             this.nativeNameLabel.TabIndex = 117;
@@ -2169,6 +2171,7 @@
             // 
             // keysPanel
             // 
+            this.keysPanel.Controls.Add(this.layoutLabel);
             this.keysPanel.Controls.Add(this.escapeKey);
             this.keysPanel.Controls.Add(this.f1Key);
             this.keysPanel.Controls.Add(this.f2Key);
@@ -2281,6 +2284,15 @@
             this.keysPanel.Size = new System.Drawing.Size(1247, 373);
             this.keysPanel.TabIndex = 120;
             this.keysPanel.Tag = "<nowalk>";
+            // 
+            // layoutLabel
+            // 
+            this.layoutLabel.AutoSize = true;
+            this.layoutLabel.Location = new System.Drawing.Point(1015, 27);
+            this.layoutLabel.Name = "layoutLabel";
+            this.layoutLabel.Size = new System.Drawing.Size(39, 13);
+            this.layoutLabel.TabIndex = 118;
+            this.layoutLabel.Text = "Layout";
             // 
             // modeFlowLayoutPanel
             // 
@@ -2519,5 +2531,6 @@
         private System.Windows.Forms.TableLayoutPanel modeTable;
         private System.Windows.Forms.GroupBox ChordBox;
         private System.Windows.Forms.ComboBox ChordComboBox;
+        private System.Windows.Forms.Label layoutLabel;
     }
 }
