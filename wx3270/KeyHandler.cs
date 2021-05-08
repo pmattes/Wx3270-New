@@ -226,12 +226,22 @@ namespace Wx3270
             // Look up a keyboard mapping for this key.
             var scanCode = KeyboardUtil.VkeyToScanCode(keyCode, InputLanguage.CurrentInputLanguage);
             Trace.Line(Trace.Type.Key, "ProcessKeyDown: scanCode {0:X}", scanCode);
+            var modifiers = e.Modifiers;
+            if (InputLanguage.CurrentInputLanguage.Handle != KeyboardPicture.EnUsHandle &&
+                modifiers.HasFlag(Keys.Alt) &&
+                !this.modsPressed.Contains(Keys.LMenu))
+            {
+                // Don't try for an Alt mapping if they keyboard has AltGr and the haven't pressed Left-Alt.
+                Trace.Line(Trace.Type.Key, "ProcessKeyDown: Keyboard has AltGr, ignoring Alt modifier", scanCode);
+                modifiers &= ~Keys.Alt;
+            }
+
             foreach (var keyName in new[] { keyCode.ToStringExtended() }.Concat(EnumNames(keyCode)))
             {
                 if (this.app.ProfileManager.Current.KeyboardMap.TryGetClosestMatch(
                     keyName,
                     KeyHelper.ScanName(scanCode),
-                    this.ModifiersToKeyboardModifier(e.Modifiers),
+                    this.ModifiersToKeyboardModifier(modifiers),
                     this.app.ChordName,
                     out KeyboardMap map))
                 {

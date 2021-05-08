@@ -217,6 +217,18 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Gets the handle for the en-US culture, or -1 if that culture is not present.
+        /// </summary>
+        public static IntPtr EnUsHandle
+        {
+            get
+            {
+                var culture = InputLanguage.FromCulture(new CultureInfo("en-US"));
+                return (culture != null) ? culture.Handle : (IntPtr)(-1);
+            }
+        }
+
+        /// <summary>
         /// Gets the selected modifiers.
         /// </summary>
         public Keys SelectedModifiers { get; private set; }
@@ -325,18 +337,6 @@ namespace Wx3270
         /// Gets or sets the picture mode.
         /// </summary>
         public PictureMode PictureMode { get; set; } = PictureMode.Keymap;
-
-        /// <summary>
-        /// Gets the handle for the en-US culture, or -1 if that culture is not present.
-        /// </summary>
-        private static IntPtr EnUsHandle
-        {
-            get
-            {
-                var culture = InputLanguage.FromCulture(new CultureInfo("en-US"));
-                return (culture != null) ? culture.Handle : (IntPtr)(-1);
-            }
-        }
 
         /// <summary>
         /// Gets the current keyboard modifier state as a <see cref="Keys"/> enumeration.
