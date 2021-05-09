@@ -1010,6 +1010,16 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// The exact match check box was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void ExactMatchCheckBox_Click(object sender, EventArgs e)
+        {
+            this.ExactMatchCheckBoxClick(sender, e);
+        }
+
+        /// <summary>
         /// Context for a sample screen image.
         /// </summary>
         private class ScreenSample

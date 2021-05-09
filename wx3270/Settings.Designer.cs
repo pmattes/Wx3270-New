@@ -111,7 +111,6 @@
             this.KeyLabel = new System.Windows.Forms.Label();
             this.ChordLabel = new System.Windows.Forms.Label();
             this.matchTypeflowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.keyboardModifiersLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.keyboardShiftCheckBox = new System.Windows.Forms.CheckBox();
             this.keyboardCtrlCheckBox = new System.Windows.Forms.CheckBox();
             this.keyboardAltCheckBox = new System.Windows.Forms.CheckBox();
@@ -280,6 +279,8 @@
             this.HostColorDialog = new System.Windows.Forms.ColorDialog();
             this.ScreenFontDialog = new System.Windows.Forms.FontDialog();
             this.opacityTimer = new System.Windows.Forms.Timer(this.components);
+            this.exactMatchCheckBox = new System.Windows.Forms.CheckBox();
+            this.modifiersTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.keyboardActionsRemoveButton = new Wx3270.NoSelectButton();
             this.keyboardActionsEditButton = new Wx3270.NoSelectButton();
             this.keyboardActionsAddKeyButton = new Wx3270.NoSelectButton();
@@ -344,7 +345,6 @@
             this.keyboardActionsFlowLayoutPanel.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.matchFlowLayoutPanel.SuspendLayout();
-            this.keyboardModifiersLayoutPanel.SuspendLayout();
             this.keypadTab.SuspendLayout();
             this.KeypadTypeFlowLayoutPanel.SuspendLayout();
             this.keypadModifiersLayoutPanel.SuspendLayout();
@@ -415,6 +415,7 @@
             this.ButtonsLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
+            this.modifiersTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // settingsTabs
@@ -1132,6 +1133,7 @@
             // 
             // keyboardTab
             // 
+            this.keyboardTab.Controls.Add(this.modifiersTableLayoutPanel);
             this.keyboardTab.Controls.Add(this.ChordComboBox);
             this.keyboardTab.Controls.Add(this.MatchTypeLabel);
             this.keyboardTab.Controls.Add(this.groupBox1);
@@ -1144,7 +1146,6 @@
             this.keyboardTab.Controls.Add(this.KeyLabel);
             this.keyboardTab.Controls.Add(this.ChordLabel);
             this.keyboardTab.Controls.Add(this.matchTypeflowLayoutPanel);
-            this.keyboardTab.Controls.Add(this.keyboardModifiersLayoutPanel);
             this.keyboardTab.Controls.Add(this.keyboardModifiersLabel);
             this.keyboardTab.Controls.Add(this.keyboardPictureButton);
             this.keyboardTab.Location = new System.Drawing.Point(4, 22);
@@ -1170,7 +1171,7 @@
             // 
             this.MatchTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.MatchTypeLabel.AutoSize = true;
-            this.MatchTypeLabel.Location = new System.Drawing.Point(29, 266);
+            this.MatchTypeLabel.Location = new System.Drawing.Point(29, 291);
             this.MatchTypeLabel.Name = "MatchTypeLabel";
             this.MatchTypeLabel.Size = new System.Drawing.Size(104, 13);
             this.MatchTypeLabel.TabIndex = 147;
@@ -1259,7 +1260,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 386);
+            this.label1.Location = new System.Drawing.Point(30, 411);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 145;
@@ -1271,7 +1272,7 @@
             this.modeAllLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.modeAllLayoutPanel.Controls.Add(this.keyboardActionsInheritedLabel, 0, 1);
             this.modeAllLayoutPanel.Controls.Add(this.keyboardActionsTextBox, 0, 0);
-            this.modeAllLayoutPanel.Location = new System.Drawing.Point(30, 406);
+            this.modeAllLayoutPanel.Location = new System.Drawing.Point(30, 431);
             this.modeAllLayoutPanel.Name = "modeAllLayoutPanel";
             this.modeAllLayoutPanel.RowCount = 2;
             this.modeAllLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1317,7 +1318,7 @@
             this.keyboardActionsFlowLayoutPanel.Controls.Add(this.keyboardActionsEditButton);
             this.keyboardActionsFlowLayoutPanel.Controls.Add(this.keyboardActionsAddKeyButton);
             this.keyboardActionsFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.keyboardActionsFlowLayoutPanel.Location = new System.Drawing.Point(30, 510);
+            this.keyboardActionsFlowLayoutPanel.Location = new System.Drawing.Point(30, 535);
             this.keyboardActionsFlowLayoutPanel.Name = "keyboardActionsFlowLayoutPanel";
             this.keyboardActionsFlowLayoutPanel.Size = new System.Drawing.Size(250, 29);
             this.keyboardActionsFlowLayoutPanel.TabIndex = 141;
@@ -1326,7 +1327,7 @@
             // 
             this.BehaviorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.BehaviorLabel.AutoSize = true;
-            this.BehaviorLabel.Location = new System.Drawing.Point(29, 321);
+            this.BehaviorLabel.Location = new System.Drawing.Point(29, 346);
             this.BehaviorLabel.Name = "BehaviorLabel";
             this.BehaviorLabel.Size = new System.Drawing.Size(93, 13);
             this.BehaviorLabel.TabIndex = 144;
@@ -1338,7 +1339,7 @@
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.Controls.Add(this.ActionsRadioButton);
             this.flowLayoutPanel1.Controls.Add(this.ChordRadioButton);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(29, 340);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(29, 365);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(187, 23);
             this.flowLayoutPanel1.TabIndex = 3;
@@ -1375,7 +1376,7 @@
             this.matchFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.matchFlowLayoutPanel.Controls.Add(this.matchKeyRadioButton);
             this.matchFlowLayoutPanel.Controls.Add(this.matchScanCodeRadioButton);
-            this.matchFlowLayoutPanel.Location = new System.Drawing.Point(29, 282);
+            this.matchFlowLayoutPanel.Location = new System.Drawing.Point(29, 307);
             this.matchFlowLayoutPanel.Name = "matchFlowLayoutPanel";
             this.matchFlowLayoutPanel.Size = new System.Drawing.Size(159, 23);
             this.matchFlowLayoutPanel.TabIndex = 2;
@@ -1434,23 +1435,6 @@
             this.matchTypeflowLayoutPanel.Size = new System.Drawing.Size(0, 0);
             this.matchTypeflowLayoutPanel.TabIndex = 138;
             // 
-            // keyboardModifiersLayoutPanel
-            // 
-            this.keyboardModifiersLayoutPanel.AutoSize = true;
-            this.keyboardModifiersLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.keyboardModifiersLayoutPanel.Controls.Add(this.keyboardShiftCheckBox);
-            this.keyboardModifiersLayoutPanel.Controls.Add(this.keyboardCtrlCheckBox);
-            this.keyboardModifiersLayoutPanel.Controls.Add(this.keyboardAltCheckBox);
-            this.keyboardModifiersLayoutPanel.Controls.Add(this.keyboardAplModeCheckBox);
-            this.keyboardModifiersLayoutPanel.Controls.Add(this.modeNvtCheckBox);
-            this.keyboardModifiersLayoutPanel.Controls.Add(this.mode3270checkBox);
-            this.keyboardModifiersLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.keyboardModifiersLayoutPanel.Location = new System.Drawing.Point(30, 207);
-            this.keyboardModifiersLayoutPanel.Name = "keyboardModifiersLayoutPanel";
-            this.keyboardModifiersLayoutPanel.Size = new System.Drawing.Size(183, 46);
-            this.keyboardModifiersLayoutPanel.TabIndex = 1;
-            this.keyboardModifiersLayoutPanel.Tag = "";
-            // 
             // keyboardShiftCheckBox
             // 
             this.keyboardShiftCheckBox.AutoSize = true;
@@ -1466,8 +1450,7 @@
             // keyboardCtrlCheckBox
             // 
             this.keyboardCtrlCheckBox.AutoSize = true;
-            this.keyboardModifiersLayoutPanel.SetFlowBreak(this.keyboardCtrlCheckBox, true);
-            this.keyboardCtrlCheckBox.Location = new System.Drawing.Point(3, 26);
+            this.keyboardCtrlCheckBox.Location = new System.Drawing.Point(80, 3);
             this.keyboardCtrlCheckBox.Name = "keyboardCtrlCheckBox";
             this.keyboardCtrlCheckBox.Size = new System.Drawing.Size(41, 17);
             this.keyboardCtrlCheckBox.TabIndex = 3;
@@ -1479,7 +1462,7 @@
             // keyboardAltCheckBox
             // 
             this.keyboardAltCheckBox.AutoSize = true;
-            this.keyboardAltCheckBox.Location = new System.Drawing.Point(56, 3);
+            this.keyboardAltCheckBox.Location = new System.Drawing.Point(158, 3);
             this.keyboardAltCheckBox.Name = "keyboardAltCheckBox";
             this.keyboardAltCheckBox.Size = new System.Drawing.Size(38, 17);
             this.keyboardAltCheckBox.TabIndex = 1;
@@ -1491,8 +1474,7 @@
             // keyboardAplModeCheckBox
             // 
             this.keyboardAplModeCheckBox.AutoSize = true;
-            this.keyboardModifiersLayoutPanel.SetFlowBreak(this.keyboardAplModeCheckBox, true);
-            this.keyboardAplModeCheckBox.Location = new System.Drawing.Point(56, 26);
+            this.keyboardAplModeCheckBox.Location = new System.Drawing.Point(158, 26);
             this.keyboardAplModeCheckBox.Name = "keyboardAplModeCheckBox";
             this.keyboardAplModeCheckBox.Size = new System.Drawing.Size(46, 17);
             this.keyboardAplModeCheckBox.TabIndex = 4;
@@ -1504,7 +1486,7 @@
             // modeNvtCheckBox
             // 
             this.modeNvtCheckBox.AutoSize = true;
-            this.modeNvtCheckBox.Location = new System.Drawing.Point(108, 3);
+            this.modeNvtCheckBox.Location = new System.Drawing.Point(3, 26);
             this.modeNvtCheckBox.Name = "modeNvtCheckBox";
             this.modeNvtCheckBox.Size = new System.Drawing.Size(70, 17);
             this.modeNvtCheckBox.TabIndex = 2;
@@ -1516,7 +1498,7 @@
             // mode3270checkBox
             // 
             this.mode3270checkBox.AutoSize = true;
-            this.mode3270checkBox.Location = new System.Drawing.Point(108, 26);
+            this.mode3270checkBox.Location = new System.Drawing.Point(80, 26);
             this.mode3270checkBox.Name = "mode3270checkBox";
             this.mode3270checkBox.Size = new System.Drawing.Size(72, 17);
             this.mode3270checkBox.TabIndex = 5;
@@ -3615,6 +3597,43 @@
             this.opacityTimer.Interval = 2000;
             this.opacityTimer.Tick += new System.EventHandler(this.OpacityTimer_Tick);
             // 
+            // exactMatchCheckBox
+            // 
+            this.exactMatchCheckBox.AutoSize = true;
+            this.modifiersTableLayoutPanel.SetColumnSpan(this.exactMatchCheckBox, 3);
+            this.exactMatchCheckBox.Enabled = false;
+            this.exactMatchCheckBox.Location = new System.Drawing.Point(3, 49);
+            this.exactMatchCheckBox.Name = "exactMatchCheckBox";
+            this.exactMatchCheckBox.Size = new System.Drawing.Size(185, 17);
+            this.exactMatchCheckBox.TabIndex = 148;
+            this.exactMatchCheckBox.Text = "Require exact Shift/Ctrl/Alt match";
+            this.exactMatchCheckBox.UseVisualStyleBackColor = true;
+            this.exactMatchCheckBox.Click += new System.EventHandler(this.ExactMatchCheckBox_Click);
+            // 
+            // modifiersTableLayoutPanel
+            // 
+            this.modifiersTableLayoutPanel.AutoSize = true;
+            this.modifiersTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.modifiersTableLayoutPanel.ColumnCount = 3;
+            this.modifiersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.modifiersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.modifiersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.modifiersTableLayoutPanel.Controls.Add(this.exactMatchCheckBox, 0, 2);
+            this.modifiersTableLayoutPanel.Controls.Add(this.keyboardAplModeCheckBox, 2, 1);
+            this.modifiersTableLayoutPanel.Controls.Add(this.keyboardShiftCheckBox, 0, 0);
+            this.modifiersTableLayoutPanel.Controls.Add(this.mode3270checkBox, 1, 1);
+            this.modifiersTableLayoutPanel.Controls.Add(this.modeNvtCheckBox, 0, 1);
+            this.modifiersTableLayoutPanel.Controls.Add(this.keyboardAltCheckBox, 2, 0);
+            this.modifiersTableLayoutPanel.Controls.Add(this.keyboardCtrlCheckBox, 1, 0);
+            this.modifiersTableLayoutPanel.Location = new System.Drawing.Point(29, 206);
+            this.modifiersTableLayoutPanel.Name = "modifiersTableLayoutPanel";
+            this.modifiersTableLayoutPanel.RowCount = 3;
+            this.modifiersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.modifiersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.modifiersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.modifiersTableLayoutPanel.Size = new System.Drawing.Size(234, 69);
+            this.modifiersTableLayoutPanel.TabIndex = 148;
+            // 
             // keyboardActionsRemoveButton
             // 
             this.keyboardActionsRemoveButton.Enabled = false;
@@ -4170,8 +4189,6 @@
             this.flowLayoutPanel1.PerformLayout();
             this.matchFlowLayoutPanel.ResumeLayout(false);
             this.matchFlowLayoutPanel.PerformLayout();
-            this.keyboardModifiersLayoutPanel.ResumeLayout(false);
-            this.keyboardModifiersLayoutPanel.PerformLayout();
             this.keypadTab.ResumeLayout(false);
             this.keypadTab.PerformLayout();
             this.KeypadTypeFlowLayoutPanel.ResumeLayout(false);
@@ -4273,6 +4290,8 @@
             this.ButtonsLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.tableLayoutPanel.ResumeLayout(false);
+            this.modifiersTableLayoutPanel.ResumeLayout(false);
+            this.modifiersTableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4497,7 +4516,6 @@
         private System.Windows.Forms.CheckBox crosshairCursorCheckBox;
         private System.Windows.Forms.CheckBox nopCheckBox;
         private System.Windows.Forms.TableLayoutPanel modeAllLayoutPanel;
-        private System.Windows.Forms.FlowLayoutPanel keyboardModifiersLayoutPanel;
         private System.Windows.Forms.FlowLayoutPanel keypadModifiersLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel soundLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel backgroundLayoutPanel;
@@ -4563,5 +4581,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label windowTitleLabel;
         private System.Windows.Forms.TextBox titleTextBox;
+        private System.Windows.Forms.CheckBox exactMatchCheckBox;
+        private System.Windows.Forms.TableLayoutPanel modifiersTableLayoutPanel;
     }
 }

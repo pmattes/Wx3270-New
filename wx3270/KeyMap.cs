@@ -46,6 +46,11 @@ namespace Wx3270
         private const string ChordSeparator = "|";
 
         /// <summary>
+        /// The exact-mode modifier keys.
+        /// </summary>
+        private const int ExactModKeys = (int)(KeyboardModifier.Shift | KeyboardModifier.Ctrl | KeyboardModifier.Alt);
+
+        /// <summary>
         /// Regular expression for matching uChord() actions.
         /// </summary>
         private static readonly Regex ChordRegex = new Regex(Constants.Action.Chord + @"\(" + "\"" + @"(?<actions>.*)" + "\"" + @"\)");
@@ -244,7 +249,7 @@ namespace Wx3270
             T scanCodeMap = null;
             var scanCodeExact = false;
             var scanCodeModifier = KeyboardModifier.None;
-            var matchesScanCode = scanCodeName != null ? this.ClosestMatch(scanCodeName, modifier, chord, out scanCodeMap, out scanCodeExact, out scanCodeModifier) : false;
+            var matchesScanCode = scanCodeName != null && this.ClosestMatch(scanCodeName, modifier, chord, out scanCodeMap, out scanCodeExact, out scanCodeModifier);
             var matchesKey = this.ClosestMatch(keyName, modifier, chord, out T keyMap, out bool keyExact, out KeyboardModifier keyModifier);
 
             if (!matchesScanCode && !matchesKey)
@@ -390,6 +395,12 @@ namespace Wx3270
             {
                 if (((int)modifier & i) == i && this.TryGetValue(Key(keyName, (KeyboardModifier)i, chord), out T tryMap))
                 {
+                    if (tryMap.Exact && (i & ExactModKeys) != ((int)modifier & ExactModKeys))
+                    {
+                        // Exact mappings need to match the exact modifiers, exactly.
+                        continue;
+                    }
+
                     map = tryMap;
                     exact = i == (int)modifier;
                     matchedModifier = (KeyboardModifier)i;

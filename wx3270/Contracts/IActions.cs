@@ -13,5 +13,10 @@ namespace Wx3270.Contracts
         /// Gets or sets the actions.
         /// </summary>
         string Actions { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the mapping is exact.
+        /// </summary>
+        bool Exact { get; set; }
     }
 }

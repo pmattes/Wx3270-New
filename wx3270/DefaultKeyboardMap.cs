@@ -62,123 +62,122 @@ namespace Wx3270
             { KeyMap<KeyboardMap>.Key(Keys.F10, KeyboardModifier.Shift), new KeyboardMap { Actions = B3270.Action.PF + "(22)" } },
             { KeyMap<KeyboardMap>.Key(Keys.F11, KeyboardModifier.Shift), new KeyboardMap { Actions = B3270.Action.PF + "(23)" } },
             { KeyMap<KeyboardMap>.Key(Keys.F12, KeyboardModifier.Shift), new KeyboardMap { Actions = B3270.Action.PF + "(24)" } },
-            { KeyMap<KeyboardMap>.Key(Keys.D1, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PA + "(1)" } },
-            { KeyMap<KeyboardMap>.Key(Keys.D2, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PA + "(2)" } },
-            { KeyMap<KeyboardMap>.Key(Keys.D3, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PA + "(3)" } },
-            { KeyMap<KeyboardMap>.Key(Keys.D4, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PA + "(4)" } },
-            { KeyMap<KeyboardMap>.Key(Keys.A, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Attn + "()" } },
-            { KeyMap<KeyboardMap>.Key(Keys.C, KeyboardModifier.Ctrl), new KeyboardMap { Actions = Constants.Action.Copy + "()" } },
-            { KeyMap<KeyboardMap>.Key(Keys.C, KeyboardModifier.Ctrl | KeyboardModifier.Shift | KeyboardModifier.ModeNvt), new KeyboardMap { Actions = B3270.Action.Key + "(U+0003)" } },
-            { KeyMap<KeyboardMap>.Key(Keys.C, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.Clear + "()" } },
-            { KeyMap<KeyboardMap>.Key(Keys.D, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Dup + "()" } },
-            { KeyMap<KeyboardMap>.Key(Keys.E, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.EraseEOF + "()" } },
-            { KeyMap<KeyboardMap>.Key(Keys.F, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.Toggle + "(" + B3270.Setting.RightToLeftMode + ")" } },
-            { KeyMap<KeyboardMap>.Key(Keys.M, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.FieldMark + "()" } },
-            { KeyMap<KeyboardMap>.Key(Keys.P, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PrintText + "(gdi,dialog)" } },
-            { KeyMap<KeyboardMap>.Key(Keys.Q, KeyboardModifier.Alt), new KeyboardMap { Actions = Constants.Action.QuitIfNotConnected + "()" } },
-            { KeyMap<KeyboardMap>.Key(Keys.R, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Reset + "()" } },
-            { KeyMap<KeyboardMap>.Key(Keys.U, KeyboardModifier.Ctrl | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.DeleteField + "()" } },
-            { KeyMap<KeyboardMap>.Key(Keys.V, KeyboardModifier.Ctrl), new KeyboardMap { Actions = Constants.Action.Paste + "()" } },
-            { KeyMap<KeyboardMap>.Key(Keys.V, KeyboardModifier.Ctrl | KeyboardModifier.Shift | KeyboardModifier.ModeNvt), new KeyboardMap { Actions = B3270.Action.Key + "(U+0016)" } },
-            { KeyMap<KeyboardMap>.Key(Keys.V, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Toggle + "(" + B3270.Setting.ReverseInputMode + ")" } },
-            { KeyMap<KeyboardMap>.Key(Keys.X, KeyboardModifier.Ctrl), new KeyboardMap { Actions = Constants.Action.Cut + "()" } },
-            { KeyMap<KeyboardMap>.Key(Keys.X, KeyboardModifier.Ctrl | KeyboardModifier.Shift | KeyboardModifier.ModeNvt), new KeyboardMap { Actions = B3270.Action.Key + "(U+0018)" } },
+            { KeyMap<KeyboardMap>.Key(Keys.D1, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PA + "(1)", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.D2, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PA + "(2)", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.D3, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PA + "(3)", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.A, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Attn + "()", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.C, KeyboardModifier.Ctrl), new KeyboardMap { Actions = Constants.Action.Copy + "()", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.C, KeyboardModifier.Ctrl | KeyboardModifier.Shift | KeyboardModifier.ModeNvt), new KeyboardMap { Actions = B3270.Action.Key + "(U+0003)", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.C, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.Clear + "()", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.D, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Dup + "()", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.E, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.EraseEOF + "()", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.F, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.Toggle + "(" + B3270.Setting.RightToLeftMode + ")", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.M, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.FieldMark + "()", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.P, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PrintText + "(gdi,dialog)", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.Q, KeyboardModifier.Alt), new KeyboardMap { Actions = Constants.Action.QuitIfNotConnected + "()", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.R, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Reset + "()", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.U, KeyboardModifier.Ctrl | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.DeleteField + "()", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.V, KeyboardModifier.Ctrl), new KeyboardMap { Actions = Constants.Action.Paste + "()", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.V, KeyboardModifier.Ctrl | KeyboardModifier.Shift | KeyboardModifier.ModeNvt), new KeyboardMap { Actions = B3270.Action.Key + "(U+0016)", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.V, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Toggle + "(" + B3270.Setting.ReverseInputMode + ")", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.X, KeyboardModifier.Ctrl), new KeyboardMap { Actions = Constants.Action.Cut + "()", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.X, KeyboardModifier.Ctrl | KeyboardModifier.Shift | KeyboardModifier.ModeNvt), new KeyboardMap { Actions = B3270.Action.Key + "(U+0018)", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.RControlKey, KeyboardModifier.None | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Enter + "()" } },
             { KeyMap<KeyboardMap>.Key(Keys.Escape, KeyboardModifier.Shift), new KeyboardMap { Actions = B3270.Action.Toggle + "(" + B3270.Setting.AplMode + ")" } },
-            { KeyMap<KeyboardMap>.Key("Scan29", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_diamond)" } }, // `~
-            { KeyMap<KeyboardMap>.Key("Scan29", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Comment } }, // `~
-            { KeyMap<KeyboardMap>.Key("Scan02", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_diaeresis)" } }, // 1!
-            { KeyMap<KeyboardMap>.Key("Scan02", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downtackup)" } }, // 1!
-            { KeyMap<KeyboardMap>.Key("Scan03", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_overbar)" } }, // 2@
-            { KeyMap<KeyboardMap>.Key("Scan03", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_deltilde)" } }, // 2@
-            { KeyMap<KeyboardMap>.Key("Scan04", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(<)" } }, // 3#
-            { KeyMap<KeyboardMap>.Key("Scan04", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_delstile)" } }, // 3#
-            { KeyMap<KeyboardMap>.Key("Scan05", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_notgreater)" } }, // 4$
-            { KeyMap<KeyboardMap>.Key("Scan05", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_deltastile)" } }, // 4$
-            { KeyMap<KeyboardMap>.Key("Scan06", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(=)" } }, // 5%
-            { KeyMap<KeyboardMap>.Key("Scan06", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_circlestile)" } }, // 5%
-            { KeyMap<KeyboardMap>.Key("Scan07", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_notless)" } }, // 6^
-            { KeyMap<KeyboardMap>.Key("Scan07", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_circleslope)" } }, // 6^
-            { KeyMap<KeyboardMap>.Key("Scan08", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(>)" } }, // 7&
-            { KeyMap<KeyboardMap>.Key("Scan08", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_circlebar)" } }, // 7&
-            { KeyMap<KeyboardMap>.Key("Scan09", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_notequal)" } }, // 8*
-            { KeyMap<KeyboardMap>.Key("Scan09", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_circlestar)" } }, // 8*
-            { KeyMap<KeyboardMap>.Key("Scan0A", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downcaret)" } }, // 9(
-            { KeyMap<KeyboardMap>.Key("Scan0A", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downcarettilde)" } }, // 9(
-            { KeyMap<KeyboardMap>.Key("Scan0B", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_upcaret)" } }, // 0)
-            { KeyMap<KeyboardMap>.Key("Scan0B", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_upcarettilde)" } }, // 0)
-            { KeyMap<KeyboardMap>.Key("Scan0C", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_multiply)" } }, // -_
-            { KeyMap<KeyboardMap>.Key("Scan0C", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_quotedot)" } }, // -_
-            { KeyMap<KeyboardMap>.Key("Scan0D", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_divide)" } }, // =+
-            { KeyMap<KeyboardMap>.Key("Scan0D", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_quaddivide)" } }, // =+
-            { KeyMap<KeyboardMap>.Key("Scan10", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(?)" } }, // Q
-            { KeyMap<KeyboardMap>.Key("Scan10", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Qunderbar)" } }, // Q
-            { KeyMap<KeyboardMap>.Key("Scan11", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_omega)" } }, // W
-            { KeyMap<KeyboardMap>.Key("Scan11", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Wunderbar)" } }, // W
-            { KeyMap<KeyboardMap>.Key("Scan12", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_epsilon)" } }, // E
-            { KeyMap<KeyboardMap>.Key("Scan12", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Eunderbar)" } }, // E
-            { KeyMap<KeyboardMap>.Key("Scan13", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_rho)" } }, // R
-            { KeyMap<KeyboardMap>.Key("Scan13", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Runderbar)" } }, // R
-            { KeyMap<KeyboardMap>.Key("Scan14", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(~)" } }, // T
-            { KeyMap<KeyboardMap>.Key("Scan14", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Tunderbar)" } }, // T
-            { KeyMap<KeyboardMap>.Key("Scan15", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_uparrow)" } }, // Y
-            { KeyMap<KeyboardMap>.Key("Scan15", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Yunderbar)" } }, // Y
-            { KeyMap<KeyboardMap>.Key("Scan16", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downarrow)" } }, // U
-            { KeyMap<KeyboardMap>.Key("Scan16", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Uunderbar)" } }, // U
-            { KeyMap<KeyboardMap>.Key("Scan17", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_iota)" } }, // I
-            { KeyMap<KeyboardMap>.Key("Scan17", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Iunderbar)" } }, // I
-            { KeyMap<KeyboardMap>.Key("Scan18", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_circle)" } }, // O
-            { KeyMap<KeyboardMap>.Key("Scan18", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Ounderbar)" } }, // O
-            { KeyMap<KeyboardMap>.Key("Scan19", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(*)" } }, // P
-            { KeyMap<KeyboardMap>.Key("Scan19", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Punderbar)" } }, // P
-            { KeyMap<KeyboardMap>.Key("Scan1A", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_leftarrow)" } }, // [{
-            { KeyMap<KeyboardMap>.Key("Scan1A", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_quadquote)" } }, // [{
-            { KeyMap<KeyboardMap>.Key("Scan1B", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_rightarrow)" } }, // ]}
-            { KeyMap<KeyboardMap>.Key("Scan1B", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Comment } }, // ]}
-            { KeyMap<KeyboardMap>.Key("Scan2B", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_lefttack)" } }, // \|
-            { KeyMap<KeyboardMap>.Key("Scan2B", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_righttack)" } }, // \|
-            { KeyMap<KeyboardMap>.Key("Scan1E", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_alpha)" } }, // A
-            { KeyMap<KeyboardMap>.Key("Scan1E", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Aunderbar)" } }, // A
-            { KeyMap<KeyboardMap>.Key("Scan1F", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_upstile)" } }, // S
-            { KeyMap<KeyboardMap>.Key("Scan1F", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Sunderbar)" } }, // S
-            { KeyMap<KeyboardMap>.Key("Scan20", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downstile)" } }, // D
-            { KeyMap<KeyboardMap>.Key("Scan20", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Dunderbar)" } }, // D
-            { KeyMap<KeyboardMap>.Key("Scan21", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(_)" } }, // F
-            { KeyMap<KeyboardMap>.Key("Scan21", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Funderbar)" } }, // F
-            { KeyMap<KeyboardMap>.Key("Scan22", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_del)" } }, // G
-            { KeyMap<KeyboardMap>.Key("Scan22", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Gunderbar)" } }, // G
-            { KeyMap<KeyboardMap>.Key("Scan23", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_delta)" } }, // H
-            { KeyMap<KeyboardMap>.Key("Scan23", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Hunderbar)" } }, // H
-            { KeyMap<KeyboardMap>.Key("Scan24", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_jot)" } }, // J
-            { KeyMap<KeyboardMap>.Key("Scan24", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Junderbar)" } }, // J
-            { KeyMap<KeyboardMap>.Key("Scan25", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(')" } }, // K
+            { KeyMap<KeyboardMap>.Key("Scan29", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_diamond)", Exact = true } }, // `~
+            { KeyMap<KeyboardMap>.Key("Scan29", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Comment, Exact = true } }, // `~
+            { KeyMap<KeyboardMap>.Key("Scan02", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_diaeresis)", Exact = true } }, // 1!
+            { KeyMap<KeyboardMap>.Key("Scan02", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downtackup)", Exact = true } }, // 1!
+            { KeyMap<KeyboardMap>.Key("Scan03", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_overbar)", Exact = true } }, // 2@
+            { KeyMap<KeyboardMap>.Key("Scan03", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_deltilde)", Exact = true } }, // 2@
+            { KeyMap<KeyboardMap>.Key("Scan04", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(<)", Exact = true } }, // 3#
+            { KeyMap<KeyboardMap>.Key("Scan04", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_delstile)", Exact = true } }, // 3#
+            { KeyMap<KeyboardMap>.Key("Scan05", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_notgreater)", Exact = true } }, // 4$
+            { KeyMap<KeyboardMap>.Key("Scan05", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_deltastile)", Exact = true } }, // 4$
+            { KeyMap<KeyboardMap>.Key("Scan06", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(=)", Exact = true } }, // 5%
+            { KeyMap<KeyboardMap>.Key("Scan06", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_circlestile)", Exact = true } }, // 5%
+            { KeyMap<KeyboardMap>.Key("Scan07", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_notless)", Exact = true } }, // 6^
+            { KeyMap<KeyboardMap>.Key("Scan07", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_circleslope)", Exact = true } }, // 6^
+            { KeyMap<KeyboardMap>.Key("Scan08", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(>)", Exact = true } }, // 7&
+            { KeyMap<KeyboardMap>.Key("Scan08", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_circlebar)", Exact = true } }, // 7&
+            { KeyMap<KeyboardMap>.Key("Scan09", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_notequal)", Exact = true } }, // 8*
+            { KeyMap<KeyboardMap>.Key("Scan09", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_circlestar)", Exact = true } }, // 8*
+            { KeyMap<KeyboardMap>.Key("Scan0A", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downcaret)", Exact = true } }, // 9(
+            { KeyMap<KeyboardMap>.Key("Scan0A", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downcarettilde)", Exact = true } }, // 9(
+            { KeyMap<KeyboardMap>.Key("Scan0B", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_upcaret)", Exact = true } }, // 0)
+            { KeyMap<KeyboardMap>.Key("Scan0B", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_upcarettilde)", Exact = true } }, // 0)
+            { KeyMap<KeyboardMap>.Key("Scan0C", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_multiply)", Exact = true } }, // -_
+            { KeyMap<KeyboardMap>.Key("Scan0C", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_quotedot)", Exact = true } }, // -_
+            { KeyMap<KeyboardMap>.Key("Scan0D", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_divide)", Exact = true } }, // =+
+            { KeyMap<KeyboardMap>.Key("Scan0D", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_quaddivide)", Exact = true } }, // =+
+            { KeyMap<KeyboardMap>.Key("Scan10", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(?)", Exact = true } }, // Q
+            { KeyMap<KeyboardMap>.Key("Scan10", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Qunderbar)", Exact = true } }, // Q
+            { KeyMap<KeyboardMap>.Key("Scan11", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_omega)", Exact = true } }, // W
+            { KeyMap<KeyboardMap>.Key("Scan11", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Wunderbar)", Exact = true } }, // W
+            { KeyMap<KeyboardMap>.Key("Scan12", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_epsilon)", Exact = true } }, // E
+            { KeyMap<KeyboardMap>.Key("Scan12", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Eunderbar)", Exact = true } }, // E
+            { KeyMap<KeyboardMap>.Key("Scan13", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_rho)", Exact = true } }, // R
+            { KeyMap<KeyboardMap>.Key("Scan13", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Runderbar)", Exact = true } }, // R
+            { KeyMap<KeyboardMap>.Key("Scan14", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(~)", Exact = true } }, // T
+            { KeyMap<KeyboardMap>.Key("Scan14", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Tunderbar)", Exact = true } }, // T
+            { KeyMap<KeyboardMap>.Key("Scan15", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_uparrow)", Exact = true } }, // Y
+            { KeyMap<KeyboardMap>.Key("Scan15", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Yunderbar)", Exact = true } }, // Y
+            { KeyMap<KeyboardMap>.Key("Scan16", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downarrow)", Exact = true } }, // U
+            { KeyMap<KeyboardMap>.Key("Scan16", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Uunderbar)", Exact = true } }, // U
+            { KeyMap<KeyboardMap>.Key("Scan17", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_iota)", Exact = true } }, // I
+            { KeyMap<KeyboardMap>.Key("Scan17", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Iunderbar)", Exact = true } }, // I
+            { KeyMap<KeyboardMap>.Key("Scan18", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_circle)", Exact = true } }, // O
+            { KeyMap<KeyboardMap>.Key("Scan18", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Ounderbar)", Exact = true } }, // O
+            { KeyMap<KeyboardMap>.Key("Scan19", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(*)", Exact = true } }, // P
+            { KeyMap<KeyboardMap>.Key("Scan19", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Punderbar)", Exact = true } }, // P
+            { KeyMap<KeyboardMap>.Key("Scan1A", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_leftarrow)", Exact = true } }, // [{
+            { KeyMap<KeyboardMap>.Key("Scan1A", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_quadquote)", Exact = true } }, // [{
+            { KeyMap<KeyboardMap>.Key("Scan1B", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_rightarrow)", Exact = true } }, // ]}
+            { KeyMap<KeyboardMap>.Key("Scan1B", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Comment, Exact = true } }, // ]}
+            { KeyMap<KeyboardMap>.Key("Scan2B", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_lefttack)", Exact = true } }, // \|
+            { KeyMap<KeyboardMap>.Key("Scan2B", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_righttack)", Exact = true } }, // \|
+            { KeyMap<KeyboardMap>.Key("Scan1E", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_alpha)", Exact = true } }, // A
+            { KeyMap<KeyboardMap>.Key("Scan1E", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Aunderbar)", Exact = true } }, // A
+            { KeyMap<KeyboardMap>.Key("Scan1F", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_upstile)", Exact = true } }, // S
+            { KeyMap<KeyboardMap>.Key("Scan1F", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Sunderbar)", Exact = true } }, // S
+            { KeyMap<KeyboardMap>.Key("Scan20", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downstile)", Exact = true } }, // D
+            { KeyMap<KeyboardMap>.Key("Scan20", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Dunderbar)", Exact = true } }, // D
+            { KeyMap<KeyboardMap>.Key("Scan21", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(_)", Exact = true } }, // F
+            { KeyMap<KeyboardMap>.Key("Scan21", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Funderbar)", Exact = true } }, // F
+            { KeyMap<KeyboardMap>.Key("Scan22", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_del)", Exact = true } }, // G
+            { KeyMap<KeyboardMap>.Key("Scan22", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Gunderbar)", Exact = true } }, // G
+            { KeyMap<KeyboardMap>.Key("Scan23", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_delta)", Exact = true } }, // H
+            { KeyMap<KeyboardMap>.Key("Scan23", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Hunderbar)", Exact = true } }, // H
+            { KeyMap<KeyboardMap>.Key("Scan24", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_jot)", Exact = true } }, // J
+            { KeyMap<KeyboardMap>.Key("Scan24", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Junderbar)", Exact = true } }, // J
+            { KeyMap<KeyboardMap>.Key("Scan25", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(')", Exact = true } }, // K
             { KeyMap<KeyboardMap>.Key("Scan25", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Kunderbar)" } }, // K
-            { KeyMap<KeyboardMap>.Key("Scan26", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_quad)" } }, // L
-            { KeyMap<KeyboardMap>.Key("Scan26", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Lunderbar)" } }, // L
-            { KeyMap<KeyboardMap>.Key("Scan27", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downtackjot)" } }, // ;:
-            { KeyMap<KeyboardMap>.Key("Scan27", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_equiv)" } }, // ;:
-            { KeyMap<KeyboardMap>.Key("Scan28", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_uptackjot)" } }, // '"
-            { KeyMap<KeyboardMap>.Key("Scan28", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Comment } }, // '"
-            { KeyMap<KeyboardMap>.Key("Scan2C", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_leftshoe)" } }, // Z
-            { KeyMap<KeyboardMap>.Key("Scan2C", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Zunderbar)" } }, // Z
-            { KeyMap<KeyboardMap>.Key("Scan2D", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_rightshoe)" } }, // X
-            { KeyMap<KeyboardMap>.Key("Scan2D", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Xunderbar)" } }, // X
-            { KeyMap<KeyboardMap>.Key("Scan2E", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_upshoe)" } }, // C
-            { KeyMap<KeyboardMap>.Key("Scan2E", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Cunderbar)" } }, // C
-            { KeyMap<KeyboardMap>.Key("Scan2F", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downshoe)" } }, // V
-            { KeyMap<KeyboardMap>.Key("Scan2F", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Vunderbar)" } }, // V
-            { KeyMap<KeyboardMap>.Key("Scan30", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downtack)" } }, // B
-            { KeyMap<KeyboardMap>.Key("Scan30", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Bunderbar)" } }, // B
-            { KeyMap<KeyboardMap>.Key("Scan31", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_uptack)" } }, // N
-            { KeyMap<KeyboardMap>.Key("Scan31", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Nunderbar)" } }, // N
-            { KeyMap<KeyboardMap>.Key("Scan32", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_stile)" } }, // M
-            { KeyMap<KeyboardMap>.Key("Scan32", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Dunderbar)" } }, // M
-            { KeyMap<KeyboardMap>.Key("Scan33", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_uptackjot)" } }, // ,<
-            { KeyMap<KeyboardMap>.Key("Scan33", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_commabar)" } }, // ,<
-            { KeyMap<KeyboardMap>.Key("Scan34", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_slopebar)" } }, // .>
-            { KeyMap<KeyboardMap>.Key("Scan34", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_deltaunderbar)" } }, // .>
-            { KeyMap<KeyboardMap>.Key("Scan35", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_slashbar)" } }, // /?
-            { KeyMap<KeyboardMap>.Key("Scan35", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Comment } }, // /?
+            { KeyMap<KeyboardMap>.Key("Scan26", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_quad)", Exact = true } }, // L
+            { KeyMap<KeyboardMap>.Key("Scan26", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Lunderbar)", Exact = true } }, // L
+            { KeyMap<KeyboardMap>.Key("Scan27", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downtackjot)", Exact = true } }, // ;:
+            { KeyMap<KeyboardMap>.Key("Scan27", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_equiv)", Exact = true } }, // ;:
+            { KeyMap<KeyboardMap>.Key("Scan28", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_uptackjot)", Exact = true } }, // '"
+            { KeyMap<KeyboardMap>.Key("Scan28", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Comment, Exact = true } }, // '"
+            { KeyMap<KeyboardMap>.Key("Scan2C", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_leftshoe)", Exact = true } }, // Z
+            { KeyMap<KeyboardMap>.Key("Scan2C", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Zunderbar)", Exact = true } }, // Z
+            { KeyMap<KeyboardMap>.Key("Scan2D", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_rightshoe)", Exact = true } }, // X
+            { KeyMap<KeyboardMap>.Key("Scan2D", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Xunderbar)", Exact = true } }, // X
+            { KeyMap<KeyboardMap>.Key("Scan2E", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_upshoe)", Exact = true } }, // C
+            { KeyMap<KeyboardMap>.Key("Scan2E", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Cunderbar)", Exact = true } }, // C
+            { KeyMap<KeyboardMap>.Key("Scan2F", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downshoe)", Exact = true } }, // V
+            { KeyMap<KeyboardMap>.Key("Scan2F", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Vunderbar)", Exact = true } }, // V
+            { KeyMap<KeyboardMap>.Key("Scan30", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_downtack)", Exact = true } }, // B
+            { KeyMap<KeyboardMap>.Key("Scan30", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Bunderbar)", Exact = true } }, // B
+            { KeyMap<KeyboardMap>.Key("Scan31", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_uptack)", Exact = true } }, // N
+            { KeyMap<KeyboardMap>.Key("Scan31", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Nunderbar)", Exact = true } }, // N
+            { KeyMap<KeyboardMap>.Key("Scan32", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_stile)", Exact = true } }, // M
+            { KeyMap<KeyboardMap>.Key("Scan32", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_Dunderbar)", Exact = true } }, // M
+            { KeyMap<KeyboardMap>.Key("Scan33", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_uptackjot)", Exact = true } }, // ,<
+            { KeyMap<KeyboardMap>.Key("Scan33", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_commabar)", Exact = true } }, // ,<
+            { KeyMap<KeyboardMap>.Key("Scan34", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_slopebar)", Exact = true } }, // .>
+            { KeyMap<KeyboardMap>.Key("Scan34", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_deltaunderbar)", Exact = true } }, // .>
+            { KeyMap<KeyboardMap>.Key("Scan35", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_slashbar)", Exact = true } }, // /?
+            { KeyMap<KeyboardMap>.Key("Scan35", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Comment, Exact = true } }, // /?
         };
     }
 }

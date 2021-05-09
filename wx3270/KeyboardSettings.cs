@@ -329,6 +329,8 @@ namespace Wx3270
 
                     // For an exact match of a scan code, you can't define a key code match to replace it.
                     this.matchKeyRadioButton.Enabled = this.editedKeyMatchType == MatchType.KeyCode;
+
+                    this.exactMatchCheckBox.Enabled = true;
                 }
                 else
                 {
@@ -354,10 +356,14 @@ namespace Wx3270
 
                     // For an inexact scan code match, you can define a more-specific key code match to override it.
                     this.matchKeyRadioButton.Enabled = true;
+
+                    this.exactMatchCheckBox.Enabled = false;
                 }
 
                 this.matchKeyRadioButton.Checked = this.editedKeyMatchType == MatchType.KeyCode;
                 this.matchScanCodeRadioButton.Checked = this.editedKeyMatchType == MatchType.ScanCode;
+
+                this.exactMatchCheckBox.Checked = map.Exact;
             }
             else
             {
@@ -387,6 +393,9 @@ namespace Wx3270
                     this.matchKeyRadioButton.Checked = true;
                     this.matchScanCodeRadioButton.Checked = false;
                 }
+
+                this.exactMatchCheckBox.Checked = false;
+                this.exactMatchCheckBox.Enabled = false;
             }
 
             // Set up the actions/chord radio buttons.
@@ -501,23 +510,22 @@ namespace Wx3270
                     return;
             }
 
-            using (var editor = new MacroEditor(
+            using var editor = new MacroEditor(
                 text,
                 this.FullKeyName + " " + I18n.Get(KeyboardString.Actions),
                 false,
-                this.app))
+                this.app);
+            if (editor.ShowDialog() == DialogResult.OK)
             {
-                if (editor.ShowDialog() == DialogResult.OK)
-                {
-                    this.keyboardActionsTextBox.Text = editor.MacroText;
-                    this.editedKeyboardMap[KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers, KeyMap<KeyboardMap>.ProfileChord(this.ChordName))] = new KeyboardMap { Actions = editor.MacroText };
-                    this.SelectKeyboard();
-                }
-                else
-                {
-                    // Kludge.
-                    this.editedKeyMatchType = matchType;
-                }
+                this.keyboardActionsTextBox.Text = editor.MacroText;
+                this.editedKeyboardMap[KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers, KeyMap<KeyboardMap>.ProfileChord(this.ChordName))] =
+                    new KeyboardMap { Actions = editor.MacroText, Exact = this.exactMatchCheckBox.Checked };
+                this.SelectKeyboard();
+            }
+            else
+            {
+                // Kludge.
+                this.editedKeyMatchType = matchType;
             }
         }
 
@@ -535,18 +543,17 @@ namespace Wx3270
                 text = string.Empty;
             }
 
-            using (var editor = new MacroEditor(
+            using var editor = new MacroEditor(
                 text,
                 this.FullKeyName + " " + I18n.Get(KeyboardString.Actions),
                 false,
-                this.app))
+                this.app);
+            if (editor.ShowDialog() == DialogResult.OK)
             {
-                if (editor.ShowDialog() == DialogResult.OK)
-                {
-                    textBox.Text = editor.MacroText;
-                    this.editedKeyboardMap[KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers, KeyMap<KeyboardMap>.ProfileChord(this.ChordName))] = new KeyboardMap { Actions = editor.MacroText };
-                    this.SelectKeyboard();
-                }
+                textBox.Text = editor.MacroText;
+                this.editedKeyboardMap[KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers, KeyMap<KeyboardMap>.ProfileChord(this.ChordName))] =
+                    new KeyboardMap { Actions = editor.MacroText, Exact = this.exactMatchCheckBox.Checked };
+                this.SelectKeyboard();
             }
         }
 
@@ -617,6 +624,25 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// The exact match check box was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void ExactMatchCheckBoxClick(object sender, EventArgs e)
+        {
+            if (this.editedKey != Keys.None)
+            {
+                // Change the edited keymap entry to be exclusive.
+                var key = KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers, KeyMap<KeyboardMap>.ProfileChord(this.ChordName));
+                if (this.editedKeyboardMap.TryGetValue(key, out KeyboardMap map))
+                {
+                    this.editedKeyboardMap[key] = new KeyboardMap { Actions = map.Actions, Exact = this.exactMatchCheckBox.Checked };
+                    this.SelectKeyboard();
+                }
+            }
+        }
+
+        /// <summary>
         /// The display keyboard map layout button was checked.
         /// </summary>
         /// <param name="sender">Event sender.</param>
@@ -634,7 +660,10 @@ namespace Wx3270
             }
 
             this.keyboardPicture.ChordIndex = this.ChordComboBox.SelectedIndex;
-            this.keyboardPicture.KeyboardModifier = this.currentKeyboardMod | this.CurrentMapModifier;
+
+            // Deliberately exlude Ctrl, Shift, Alt, but preserve the other modifiers.
+            this.keyboardPicture.KeyboardModifier = (this.currentKeyboardMod & KeyboardModifier.Apl) | this.CurrentMapModifier;
+
             if (this.keyboardPicture.ShowDialog(this) == DialogResult.OK)
             {
                 this.editedKey = this.keyboardPicture.KeyCode;

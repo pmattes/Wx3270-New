@@ -13,25 +13,19 @@ namespace Wx3270
     /// </summary>
     public class KeyboardMap : IEquatable<KeyboardMap>, ICloneable, IActions
     {
-        /// <summary>
-        /// Gets or sets the actions to perform.
-        /// </summary>
+        /// <inheritdoc />
         public string Actions { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Clone a keyboard map entry.
-        /// </summary>
-        /// <returns>Cloned keyboard map entry.</returns>
+        /// <inheritdoc />
+        public bool Exact { get; set; }
+
+        /// <inheritdoc />
         public object Clone()
         {
             return this.MemberwiseClone();
         }
 
-        /// <summary>
-        /// Equality comparer for a keyboard map.
-        /// </summary>
-        /// <param name="other">Other map.</param>
-        /// <returns>True if they are equal.</returns>
+        /// <inheritdoc />
         public bool Equals(KeyboardMap other)
         {
             if (other == null)
@@ -44,7 +38,7 @@ namespace Wx3270
                 return true;
             }
 
-            return this.Actions == other.Actions;
+            return this.Actions == other.Actions && this.Exact == other.Exact;
         }
 
         /// <summary>
@@ -54,7 +48,7 @@ namespace Wx3270
         /// <returns>True if they are equal.</returns>
         public override bool Equals(object obj)
         {
-            return obj != null && obj is KeyboardMap && this.Equals((KeyboardMap)obj);
+            return obj != null && obj is KeyboardMap map && this.Equals(map);
         }
 
         /// <summary>

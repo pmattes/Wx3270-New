@@ -75,6 +75,7 @@ namespace Wx3270
                 this.Text = other.Text;
                 this.TextSize = other.TextSize;
                 this.Actions = other.Actions;
+                this.Exact = other.Exact;
             }
         }
 
@@ -107,20 +108,17 @@ namespace Wx3270
             set { this.textSize = value; }
         }
 
-        /// <summary>
-        /// Gets or sets the actions to perform.
-        /// </summary>
+        /// <inheritdoc />
         public string Actions
         {
             get { return this.actions; }
             set { this.actions = value; }
         }
 
-        /// <summary>
-        /// Equality comparer for a keypad map.
-        /// </summary>
-        /// <param name="other">Other map.</param>
-        /// <returns>True if they are equal.</returns>
+        /// <inheritdoc />
+        public bool Exact { get; set; }
+
+        /// <inheritdoc />
         public bool Equals(KeypadMap other)
         {
             if (other == null)
@@ -136,6 +134,7 @@ namespace Wx3270
             return this.Text == other.Text
                 && this.TextSize == other.TextSize
                 && this.Actions == other.Actions
+                && this.Exact == other.Exact
                 && this.BackgroundImage == other.BackgroundImage;
         }
 
@@ -146,7 +145,7 @@ namespace Wx3270
         /// <returns>True if they are equal.</returns>
         public override bool Equals(object obj)
         {
-            return obj != null && obj is KeypadMap && this.Equals((KeypadMap)obj);
+            return obj != null && obj is KeypadMap map && this.Equals(map);
         }
 
         /// <summary>
