@@ -5,7 +5,9 @@
 namespace Wx3270
 {
     using System;
+    using System.Collections.Generic;
     using System.Drawing;
+    using System.Linq;
     using System.Text;
     using System.Windows.Forms;
 
@@ -113,7 +115,7 @@ namespace Wx3270
                 this.FlashPicture.Image = this.OffImage;
                 this.flashing = false;
 
-                this.StopEvent(this.actions.ToString(), this.Name);
+                this.StopEvent(this.CookedActions(), this.Name);
                 this.Name = string.Empty;
 
                 this.RunningEvent(false);
@@ -130,6 +132,70 @@ namespace Wx3270
             {
                 this.actions.Append(actions + Environment.NewLine);
             }
+        }
+
+        /// <summary>
+        /// Extracts the Unicode value from a Key() action.
+        /// </summary>
+        /// <param name="action">Action to parse.</param>
+        /// <returns>Unicode value.</returns>
+        private static int KeyCode(string action)
+        {
+            return int.Parse(action.Substring(B3270.Action.Key.Length + 3, 4), System.Globalization.NumberStyles.HexNumber);
+        }
+
+        /// <summary>
+        /// Returns a cooked version of the actions.
+        /// </summary>
+        /// <returns>Cooked actions.</returns>
+        private string CookedActions()
+        {
+            var rawActions = this.actions.ToString();
+            if (string.IsNullOrEmpty(rawActions))
+            {
+                return rawActions;
+            }
+
+            var splitActions = rawActions.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            var keys = new List<string>();
+            var cooked = new List<string>();
+
+            // Dump any pending Key() actions.
+            void DumpKeys()
+            {
+                if (keys.Count > 0)
+                {
+                    if (keys.Count == 1)
+                    {
+                        cooked.Add(keys[0]);
+                    }
+                    else
+                    {
+                        var s = new string(keys.Select(k => (char)KeyCode(k)).ToArray());
+                        cooked.Add(B3270.Action.String + "(\"" + s + "\")");
+                    }
+
+                    keys.Clear();
+                }
+            }
+
+            foreach (var action in splitActions)
+            {
+                if (action.StartsWith(B3270.Action.Key + "(") &&
+                    KeyCode(action) >= 0x20 && KeyCode(action) != '"')
+                {
+                    // Accumulate a Key() action.
+                    keys.Add(action);
+                }
+                else
+                {
+                    DumpKeys();
+                    cooked.Add(action);
+                }
+            }
+
+            DumpKeys();
+            return string.Join(Environment.NewLine, cooked);
         }
 
         /// <summary>

@@ -1344,6 +1344,11 @@ namespace Wx3270
             public const string Set = "Set";
 
             /// <summary>
+            /// String action.
+            /// </summary>
+            public const string String = "String";
+
+            /// <summary>
             /// Source action.
             /// </summary>
             public const string Source = "Source";
