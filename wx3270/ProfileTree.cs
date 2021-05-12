@@ -114,21 +114,6 @@ namespace Wx3270
         private bool everActivated;
 
         /// <summary>
-        /// The pending host entry for macro recording.
-        /// </summary>
-        private HostEntry pendingHostEntry;
-
-        /// <summary>
-        /// The pending profile for macro recording.
-        /// </summary>
-        private Profile pendingProfile;
-
-        /// <summary>
-        /// The pending host tree node for macro recording.
-        /// </summary>
-        private HostTreeNode pendingHostTreeNode;
-
-        /// <summary>
         /// The window handle.
         /// </summary>
         private IntPtr handle;
@@ -623,9 +608,7 @@ namespace Wx3270
             else if (result == DialogResult.Retry)
             {
                 // Macro recorder started.
-                this.pendingHostEntry = editor.HostEntry;
-                this.pendingProfile = profile;
-                this.app.MacroRecorder.Start(this.CreateHostMacroRecorderDone);
+                this.app.MacroRecorder.Start(this.CreateHostMacroRecorderDone, (editor.HostEntry, profile));
                 this.Hide();
                 this.mainScreen.Focus();
             }
@@ -780,16 +763,10 @@ namespace Wx3270
         /// The macro recorder is complete for an added host.
         /// </summary>
         /// <param name="text">Macro text.</param>
-        /// <param name="name">Macro name.</param>
-        private void CreateHostMacroRecorderDone(string text, string name)
+        /// <param name="context">Context object.</param>
+        private void CreateHostMacroRecorderDone(string text, object context)
         {
-            // Copy and erase the kludgey pending host entry and profile.
-            var entry = this.pendingHostEntry;
-            this.pendingHostEntry = null;
-            var profile = this.pendingProfile;
-            this.pendingProfile = null;
-
-            // Substitute the login macro and pop up the dialog again.
+            var (entry, profile) = (((HostEntry, Profile)?)context).Value;
             this.Show();
             entry.LoginMacro = text;
             this.CreateHostDialog(profile, entry);
@@ -2745,9 +2722,7 @@ namespace Wx3270
             }
             else if (result == DialogResult.Retry)
             {
-                this.pendingHostTreeNode = hostNode;
-                this.pendingHostEntry = editor.HostEntry;
-                this.app.MacroRecorder.Start(this.EditHostMacroRecorderComplete);
+                this.app.MacroRecorder.Start(this.EditHostMacroRecorderComplete, (hostNode, editor.HostEntry));
                 this.Hide();
                 this.mainScreen.Focus();
             }
@@ -2757,14 +2732,10 @@ namespace Wx3270
         /// Recording a login macro for an edited host is complete.
         /// </summary>
         /// <param name="text">Macro text.</param>
-        /// <param name="name">Macro name.</param>
-        private void EditHostMacroRecorderComplete(string text, string name)
+        /// <param name="context">Context object.</param>
+        private void EditHostMacroRecorderComplete(string text, object context)
         {
-            // Clean up existing (kludgey) state.
-            var node = this.pendingHostTreeNode;
-            this.pendingHostTreeNode = null;
-            var entry = this.pendingHostEntry;
-            this.pendingHostEntry = null;
+            var (node, entry) = (((HostTreeNode, HostEntry)?)context).Value;
             entry.LoginMacro = text;
 
             // Restore this window and the dialog.
@@ -2779,13 +2750,12 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ProfileContextMenuClick(object sender, EventArgs e)
         {
-            var menuItem = sender as ToolStripMenuItem;
-            if (menuItem == null)
+            if (!(sender is ToolStripMenuItem menuItem))
             {
                 return;
             }
 
-            var tag = menuItem.Tag as string;
+            string tag = menuItem.Tag as string;
             if (tag == null)
             {
                 return;

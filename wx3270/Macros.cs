@@ -282,7 +282,7 @@ namespace Wx3270
         /// </summary>
         /// <param name="text">Macro text.</param>
         /// <param name="name">Macro name.</param>
-        private void RecordingComplete(string text, string name)
+        private void RecordingComplete(string text, object name)
         {
             this.Show();
             if (string.IsNullOrEmpty(text))
@@ -290,7 +290,7 @@ namespace Wx3270
                 return;
             }
 
-            using var editor = new MacroEditor(text, name, true, this.app);
+            using var editor = new MacroEditor(text, (string)name, true, this.app);
             var result = editor.ShowDialog(this);
             if (result == DialogResult.OK)
             {

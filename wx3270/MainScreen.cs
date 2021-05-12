@@ -1313,8 +1313,8 @@ namespace Wx3270
         /// Macro recording is complete.
         /// </summary>
         /// <param name="text">Macro text.</param>
-        /// <param name="name">Macro name.</param>
-        private void RecordingComplete(string text, string name)
+        /// <param name="context">Context object.</param>
+        private void RecordingComplete(string text, object context)
         {
             if (!string.IsNullOrEmpty(text))
             {

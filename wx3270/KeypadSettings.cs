@@ -731,8 +731,8 @@ namespace Wx3270
         /// Macro recording is complete.
         /// </summary>
         /// <param name="text">Macro text.</param>
-        /// <param name="name">Macro name.</param>
-        private void KeypadRecordingComplete(string text, string name)
+        /// <param name="context">Completion context.</param>
+        private void KeypadRecordingComplete(string text, object context)
         {
             this.Show();
             if (string.IsNullOrEmpty(text))

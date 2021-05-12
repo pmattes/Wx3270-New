@@ -44,12 +44,12 @@ namespace Wx3270
         /// <summary>
         /// Completion delegate.
         /// </summary>
-        private Action<string, string> completion;
+        private Action<string, object> completion;
 
         /// <summary>
-        /// The name supplied to the completion delegate.
+        /// The context supplied to the completion delegate.
         /// </summary>
-        private string name;
+        private object context;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MacroRecorder"/> class.
@@ -79,13 +79,13 @@ namespace Wx3270
         /// Starts recording.
         /// </summary>
         /// <param name="completion">Completion delegate.</param>
-        /// <param name="name">Macro name.</param>
-        public void Start(Action<string, string> completion, string name = null)
+        /// <param name="context">Context to pass to delegate.</param>
+        public void Start(Action<string, object> completion, object context = null)
         {
             if (!this.running)
             {
                 this.completion = completion;
-                this.name = name;
+                this.context = context;
                 this.running = true;
                 this.actions.Clear();
                 this.FlashEvent(true);
@@ -149,11 +149,11 @@ namespace Wx3270
 
                 if (!isAbort)
                 {
-                    this.completion?.Invoke(this.CookedActions(), this.name);
+                    this.completion?.Invoke(this.CookedActions(), this.context);
                 }
 
                 this.completion = null;
-                this.name = string.Empty;
+                this.context = null;
 
                 this.RunningEvent(false);
             }
