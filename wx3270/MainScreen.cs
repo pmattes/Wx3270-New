@@ -755,6 +755,7 @@ namespace Wx3270
             this.MacroRecorder.FlashPicture = this.macrosPictureBox;
             this.MacroRecorder.OffImage = Properties.Resources.Tape4;
             this.MacroRecorder.OnImage = Properties.Resources.Tape4_flash;
+            this.MacroRecorder.RunningEvent += this.OnMacroRecorderState;
 
             // Set up the initial screen position.
             if (this.App.Location.HasValue)
@@ -1265,6 +1266,26 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Process a macro recorder state change.
+        /// </summary>
+        /// <param name="running">True if recorder is running.</param>
+        private void OnMacroRecorderState(bool running)
+        {
+            if (running)
+            {
+                this.macroRecordItem.Text = I18n.Get(MacroStopRecordingItemName);
+                this.macroRecordItem.Image = Properties.Resources.stop_recording;
+                this.toolTip1.SetToolTip(this.macrosPictureBox, I18n.Get(MacroRecordingToolTipName));
+            }
+            else
+            {
+                this.macroRecordItem.Text = I18n.Get(MacroRecordingItemName);
+                this.macroRecordItem.Image = Properties.Resources.record1;
+                this.toolTip1.SetToolTip(this.macrosPictureBox, I18n.Get(MacrosToolTipName));
+            }
+        }
+
+        /// <summary>
         /// Start or stop recording a macro.
         /// </summary>
         /// <param name="sender">Event sender.</param>
@@ -1273,16 +1294,10 @@ namespace Wx3270
         {
             if (this.MacroRecorder.Running)
             {
-                this.macroRecordItem.Text = I18n.Get(MacroRecordingItemName);
-                this.macroRecordItem.Image = Properties.Resources.record1;
-                this.toolTip1.SetToolTip(this.macrosPictureBox, I18n.Get(MacrosToolTipName));
                 this.MacroRecorder.Stop();
             }
             else
             {
-                this.macroRecordItem.Text = I18n.Get(MacroStopRecordingItemName);
-                this.macroRecordItem.Image = Properties.Resources.stop_recording;
-                this.toolTip1.SetToolTip(this.macrosPictureBox, I18n.Get(MacroRecordingToolTipName));
                 this.MacroRecorder.StopEvent += this.RecordingComplete;
                 this.MacroRecorder.Start();
             }

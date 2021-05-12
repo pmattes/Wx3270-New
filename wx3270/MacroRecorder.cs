@@ -52,6 +52,11 @@ namespace Wx3270
         public event Action<string, string> StopEvent = (text, name) => { };
 
         /// <summary>
+        /// Running / stop running event.
+        /// </summary>
+        public event Action<bool> RunningEvent = (running) => { };
+
+        /// <summary>
         /// Gets or sets the picture box to flash.
         /// </summary>
         public PictureBox FlashPicture { get; set; }
@@ -90,6 +95,8 @@ namespace Wx3270
                 this.flashTimer.Interval = FlashMs;
                 this.flashTimer.Tick += this.DoFlash;
                 this.flashTimer.Start();
+
+                this.RunningEvent(true);
             }
         }
 
@@ -108,6 +115,8 @@ namespace Wx3270
 
                 this.StopEvent(this.actions.ToString(), this.Name);
                 this.Name = string.Empty;
+
+                this.RunningEvent(false);
             }
         }
 

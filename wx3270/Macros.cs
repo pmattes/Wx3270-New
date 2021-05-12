@@ -362,7 +362,10 @@ namespace Wx3270
         {
             e.Cancel = true;
             this.Hide();
-            this.Owner.BringToFront();
+            if (this.Owner != null)
+            {
+                this.Owner.BringToFront();
+            }
         }
 
         /// <summary>
