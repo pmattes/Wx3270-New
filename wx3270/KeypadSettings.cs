@@ -4,13 +4,14 @@
 
 namespace Wx3270
 {
-    using I18nBase;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
+
+    using I18nBase;
 
     /// <summary>
     /// Keypad tab in the settings dialog.
