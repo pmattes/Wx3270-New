@@ -68,6 +68,11 @@ namespace Wx3270
                 this.nameTextBox.Text = name;
             }
 
+            if (this.app != null && this.app.MacroRecorder.Running)
+            {
+                this.recordButton.Enabled = false;
+            }
+
             // Localize.
             this.Text = I18n.NoLocal;
 
@@ -812,6 +817,17 @@ namespace Wx3270
             {
                 this.nameTextBox.Focus();
             }
+        }
+
+        /// <summary>
+        /// The Record button was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void RecordButton_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Retry;
+            this.Close();
         }
 
         /// <summary>

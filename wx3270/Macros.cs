@@ -126,6 +126,16 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// An external (menu-based) macro has been added.
+        /// </summary>
+        /// <param name="text">Macro text.</param>
+        public void Record(string text)
+        {
+            this.Show();
+            this.RecordingComplete(text, string.Empty);
+        }
+
+        /// <summary>
         /// Merge in macros from another profile.
         /// </summary>
         /// <param name="toProfile">Current profile.</param>
@@ -200,13 +210,17 @@ namespace Wx3270
             if (index >= 0)
             {
                 var macro = this.macroEntries[index];
-                using (var editor = new MacroEditor(macro.Macro, macro.Name, true, this.app))
+                using var editor = new MacroEditor(macro.Macro, macro.Name, true, this.app);
+                var result = editor.ShowDialog(this);
+                if (result == DialogResult.OK)
                 {
-                    if (editor.ShowDialog(this) == DialogResult.OK)
-                    {
-                        this.macroEntries[index] = new MacroEntry { Name = editor.MacroName, Macro = editor.MacroText };
-                        this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, "edit macro");
-                    }
+                    this.macroEntries[index] = new MacroEntry { Name = editor.MacroName, Macro = editor.MacroText };
+                    this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, "add/edit macro");
+                }
+                else if (result == DialogResult.Retry)
+                {
+                    // Start macro recorder.
+                    this.StartRecording(editor.MacroName);
                 }
             }
         }
@@ -249,14 +263,58 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void MacroAddButton_Click(object sender, EventArgs e)
         {
-            using (var editor = new MacroEditor(string.Empty, string.Empty, true, this.app))
+            using var editor = new MacroEditor(string.Empty, string.Empty, true, this.app);
+            var result = editor.ShowDialog(this);
+            if (result == DialogResult.OK)
             {
-                if (editor.ShowDialog(this) == DialogResult.OK)
-                {
-                    this.macroEntries.Add(new MacroEntry { Name = editor.MacroName, Macro = editor.MacroText });
-                    this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, "add macro");
-                }
+                this.macroEntries.Add(new MacroEntry { Name = editor.MacroName, Macro = editor.MacroText });
+                this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, "add/edit macro");
             }
+            else if (result == DialogResult.Retry)
+            {
+                // Start macro recorder.
+                this.StartRecording(editor.MacroName);
+            }
+        }
+
+        /// <summary>
+        /// Macro recording is complete.
+        /// </summary>
+        /// <param name="text">Macro text.</param>
+        /// <param name="name">Macro name.</param>
+        private void RecordingComplete(string text, string name)
+        {
+            this.app.MacroRecorder.StopEvent -= this.RecordingComplete;
+            this.Show();
+            if (string.IsNullOrEmpty(text))
+            {
+                return;
+            }
+
+            using var editor = new MacroEditor(text, name, true, this.app);
+            var result = editor.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                this.macroEntries.Add(new MacroEntry { Name = editor.MacroName, Macro = editor.MacroText });
+                this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, "add/edit macro");
+            }
+            else if (result == DialogResult.Retry)
+            {
+                // Retart macro recorder.
+                this.StartRecording(editor.MacroName);
+            }
+        }
+
+        /// <summary>
+        /// Start recording a macro.
+        /// </summary>
+        private void StartRecording(string macroName)
+        {
+            this.app.MacroRecorder.Name = macroName;
+            this.app.MacroRecorder.StopEvent += this.RecordingComplete;
+            this.app.MacroRecorder.Start();
+            this.Hide();
+            this.mainScreen.Focus();
         }
 
         /// <summary>

@@ -510,22 +510,68 @@ namespace Wx3270
                     return;
             }
 
-            using var editor = new MacroEditor(
-                text,
-                this.FullKeyName + " " + I18n.Get(KeyboardString.Actions),
-                false,
-                this.app);
-            if (editor.ShowDialog() == DialogResult.OK)
+            var name = this.FullKeyName + " " + I18n.Get(KeyboardString.Actions);
+            using var editor = new MacroEditor(text, name, false, this.app);
+            var result = editor.ShowDialog();
+            if (result == DialogResult.OK)
             {
                 this.keyboardActionsTextBox.Text = editor.MacroText;
                 this.editedKeyboardMap[KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers, KeyMap<KeyboardMap>.ProfileChord(this.ChordName))] =
                     new KeyboardMap { Actions = editor.MacroText, Exact = this.exactMatchCheckBox.Checked };
                 this.SelectKeyboard();
             }
+            else if (result == DialogResult.Retry)
+            {
+                // Record it.
+                this.StartRecordingKeymap(name);
+            }
             else
             {
                 // Kludge.
                 this.editedKeyMatchType = matchType;
+            }
+        }
+
+        /// <summary>
+        /// Start recording a keymap entry.
+        /// </summary>
+        /// <param name="macroName">Macro name.</param>
+        private void StartRecordingKeymap(string macroName)
+        {
+            this.app.MacroRecorder.Name = macroName;
+            this.app.MacroRecorder.StopEvent += this.KeymapRecordingComplete;
+            this.app.MacroRecorder.Start();
+            this.Hide();
+            this.mainScreen.Focus();
+        }
+
+        /// <summary>
+        /// Macro recording is complete.
+        /// </summary>
+        /// <param name="text">Macro text.</param>
+        /// <param name="name">Macro name.</param>
+        private void KeymapRecordingComplete(string text, string name)
+        {
+            this.app.MacroRecorder.StopEvent -= this.KeymapRecordingComplete;
+            this.Show();
+            if (string.IsNullOrEmpty(text))
+            {
+                return;
+            }
+
+            using var editor = new MacroEditor(text, name, false, this.app);
+            var result = editor.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                this.keyboardActionsTextBox.Text = editor.MacroText;
+                this.editedKeyboardMap[KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers, KeyMap<KeyboardMap>.ProfileChord(this.ChordName))] =
+                    new KeyboardMap { Actions = editor.MacroText, Exact = this.exactMatchCheckBox.Checked };
+                this.SelectKeyboard();
+            }
+            else if (result == DialogResult.Retry)
+            {
+                // Restart macro recorder.
+                this.StartRecordingKeymap(editor.MacroName);
             }
         }
 
@@ -543,17 +589,19 @@ namespace Wx3270
                 text = string.Empty;
             }
 
-            using var editor = new MacroEditor(
-                text,
-                this.FullKeyName + " " + I18n.Get(KeyboardString.Actions),
-                false,
-                this.app);
-            if (editor.ShowDialog() == DialogResult.OK)
+            var name = this.FullKeyName + " " + I18n.Get(KeyboardString.Actions);
+            using var editor = new MacroEditor(text, name, false, this.app);
+            var result = editor.ShowDialog();
+            if (result == DialogResult.OK)
             {
                 textBox.Text = editor.MacroText;
                 this.editedKeyboardMap[KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers, KeyMap<KeyboardMap>.ProfileChord(this.ChordName))] =
                     new KeyboardMap { Actions = editor.MacroText, Exact = this.exactMatchCheckBox.Checked };
                 this.SelectKeyboard();
+            }
+            else if (result == DialogResult.Retry)
+            {
+                this.StartRecordingKeymap(name);
             }
         }
 

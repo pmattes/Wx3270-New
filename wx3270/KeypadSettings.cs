@@ -4,13 +4,13 @@
 
 namespace Wx3270
 {
+    using I18nBase;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
-    using System.Windows.Input;
 
     /// <summary>
     /// Keypad tab in the settings dialog.
@@ -31,6 +31,11 @@ namespace Wx3270
         /// Default text size.
         /// </summary>
         private const float DefaultTextSize = 6.75F;
+
+        /// <summary>
+        /// The base name for localized strings in this tab.
+        /// </summary>
+        private static readonly string KeypadStringBase = I18n.StringName(I18n.Combine(nameof(Settings), nameof(keypadTab)));
 
         /// <summary>
         /// The collection of keypad buttons.
@@ -92,6 +97,24 @@ namespace Wx3270
             /// </summary>
             TypeApl,
         }
+
+        /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
+        public static void LocalizeKeypadSettings()
+        {
+            I18n.LocalizeGlobal(KeypadString.ClickToEdit, "Click to edit actions");
+            I18n.LocalizeGlobal(KeypadString.ActionsInherited, "Actions inherited from less-specific definition");
+            I18n.LocalizeGlobal(KeypadString.ClickToAddMoreSpecific, "Click to add a more-specific definition");
+            I18n.LocalizeGlobal(KeypadString.ClickToAdd, "Click to add actions");
+            I18n.LocalizeGlobal(KeypadString.KeypadActions, "Keypad Actions");
+            I18n.LocalizeGlobal(KeypadString.ChangeKeypadActions, "change keypad actions");
+            I18n.LocalizeGlobal(KeypadString.ChangeKeyTextSize, "change key text size");
+            I18n.LocalizeGlobal(KeypadString.RemoveKeyDefinition, "remove key definition");
+            I18n.LocalizeGlobal(KeypadString.ChangeKeyBackground, "change key background");
+            I18n.LocalizeGlobal(KeypadString.ChangeKeyText, "change key text");
+    }
 
         /// <summary>
         /// Return the base name for a button name.
@@ -501,7 +524,7 @@ namespace Wx3270
                                 // We have an edited keymap.
                                 this.editedKeymap = map;
 
-                                this.toolTip1.SetToolTip(this.editedButtonActionsTextBox, "Click to edit actions"); // XXX: I18n
+                                this.toolTip1.SetToolTip(this.editedButtonActionsTextBox, I18n.Get(KeypadString.ClickToEdit));
                                 this.keypadRemoveButton.Enabled = true;
                             }
                             else
@@ -511,7 +534,7 @@ namespace Wx3270
 
                                 this.toolTip1.SetToolTip(
                                     this.editedButtonActionsTextBox,
-                                    "Actions inherited from less-specific definition" + Environment.NewLine + "Click to add a more-specific definition"); // XXX: I18n
+                                    I18n.Get(KeypadString.ActionsInherited) + Environment.NewLine + I18n.Get(KeypadString.ClickToAddMoreSpecific));
                                 this.keypadRemoveButton.Enabled = false;
                             }
                         }
@@ -535,7 +558,7 @@ namespace Wx3270
                     this.blankRadioButton.Checked = true;
                     this.insertRadioButton.Checked = false;
                     this.deleteRadioButton.Checked = false;
-                    this.toolTip1.SetToolTip(this.editedButtonActionsTextBox, "Click to add actions"); // XXX: I18n
+                    this.toolTip1.SetToolTip(this.editedButtonActionsTextBox, I18n.Get(KeypadString.ClickToAdd));
 
                     if (this.currentKeypadButton != null)
                     {
@@ -658,26 +681,67 @@ namespace Wx3270
                 text = this.inheritedKeymap.Actions;
             }
 
-            using (var editor = new MacroEditor(text, "Keymap Actions", false, this.app))
+            this.EditKeypadActions(text);
+        }
+
+        /// <summary>
+        /// Start recording a keypad entry.
+        /// </summary>
+        private void StartRecordingKeypad()
+        {
+            this.app.MacroRecorder.StopEvent += this.KeypadRecordingComplete;
+            this.app.MacroRecorder.Start();
+            this.Hide();
+            this.mainScreen.Focus();
+        }
+
+        /// <summary>
+        /// Edit the actions for an existing keypad map.
+        /// </summary>
+        /// <param name="text">Macro text.</param>
+        private void EditKeypadActions(string text)
+        {
+            using var editor = new MacroEditor(text, I18n.Get(KeypadString.KeypadActions), false, this.app);
+            var result = editor.ShowDialog(this);
+            if (result == DialogResult.OK)
             {
-                if (editor.ShowDialog() == DialogResult.OK)
+                var textBox = this.editedButtonActionsTextBox;
+                textBox.Text = editor.MacroText + Environment.NewLine;
+                if (this.editedKeymap != null && this.editedKeymap.Actions != editor.MacroText)
                 {
-                    var textBox = (TextBox)sender;
-                    textBox.Text = editor.MacroText + Environment.NewLine;
-                    if (this.editedKeymap != null && this.editedKeymap.Actions != editor.MacroText)
-                    {
-                        this.editedKeymap.Actions = editor.MacroText;
-                        this.StoreKeymap();
-                    }
-                    else if (this.editedKeymap == null)
-                    {
-                        this.editedKeymap = new KeypadMap(this.inheritedKeymap) { Actions = editor.MacroText };
-                        this.StoreKeymap();
-                    }
+                    this.editedKeymap.Actions = editor.MacroText;
+                    this.StoreKeymap();
                 }
+                else if (this.editedKeymap == null)
+                {
+                    this.editedKeymap = new KeypadMap(this.inheritedKeymap) { Actions = editor.MacroText };
+                    this.StoreKeymap();
+                }
+
+                this.PushAndSaveKeypad(I18n.Get(KeypadString.ChangeKeypadActions));
+            }
+            else if (result == DialogResult.Retry)
+            {
+                // Restart macro recorder.
+                this.StartRecordingKeypad();
+            }
+        }
+
+        /// <summary>
+        /// Macro recording is complete.
+        /// </summary>
+        /// <param name="text">Macro text.</param>
+        /// <param name="name">Macro name.</param>
+        private void KeypadRecordingComplete(string text, string name)
+        {
+            this.app.MacroRecorder.StopEvent -= this.KeypadRecordingComplete;
+            this.Show();
+            if (string.IsNullOrEmpty(text))
+            {
+                return;
             }
 
-            this.PushAndSaveKeypad("change keypad actions");
+            this.EditKeypadActions(text);
         }
 
         /// <summary>
@@ -701,7 +765,7 @@ namespace Wx3270
                 this.StoreKeymap();
             }
 
-            this.PushAndSaveKeypad("change key text size");
+            this.PushAndSaveKeypad(I18n.Get(KeypadString.ChangeKeyTextSize));
         }
 
         /// <summary>
@@ -714,7 +778,7 @@ namespace Wx3270
             this.editedKeypadMaps.Remove(KeyMap<KeypadMap>.Key(ButtonBaseName(this.currentKeypadButton.Name), this.currentKeypadMod));
             this.SelectKeymap();
 
-            this.PushAndSaveKeypad("remove key definition");
+            this.PushAndSaveKeypad(I18n.Get(KeypadString.RemoveKeyDefinition));
         }
 
         /// <summary>
@@ -799,7 +863,7 @@ namespace Wx3270
                 this.StoreKeymap();
             }
 
-            this.PushAndSaveKeypad("change key background");
+            this.PushAndSaveKeypad(I18n.Get(KeypadString.ChangeKeyBackground));
         }
 
         /// <summary>
@@ -809,7 +873,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void EditedButtonTextTextBoxValidated(object sender, EventArgs e)
         {
-            this.PushAndSaveKeypad("change key text");
+            this.PushAndSaveKeypad(I18n.Get(KeypadString.ChangeKeyText));
         }
 
         /// <summary>
@@ -822,6 +886,62 @@ namespace Wx3270
             {
                 this.keypad.ApplyMaps(this.editedKeypadMaps);
             }
+        }
+
+        /// <summary>
+        /// Localized strings.
+        /// </summary>
+        private static class KeypadString
+        {
+            /// <summary>
+            /// Tool tip: Click to edit actions.
+            /// </summary>
+            public static readonly string ClickToEdit = I18n.Combine(KeypadStringBase, "ClickToEdit");
+
+            /// <summary>
+            /// Tool tip: Actions are inherited.
+            /// </summary>
+            public static readonly string ActionsInherited = I18n.Combine(KeypadStringBase, "ActionsInherited");
+
+            /// <summary>
+            /// Tool tip: Click to add more specific actions.
+            /// </summary>
+            public static readonly string ClickToAddMoreSpecific = I18n.Combine(KeypadStringBase, "ClickToAddMoreSpecific");
+
+            /// <summary>
+            /// Tool tip: Click to add actions.
+            /// </summary>
+            public static readonly string ClickToAdd = I18n.Combine(KeypadStringBase, "ClickToAdd");
+
+            /// <summary>
+            /// Window title: Keymap Actions.
+            /// </summary>
+            public static readonly string KeypadActions = I18n.Combine(KeypadStringBase, "KeypadActions");
+
+            /// <summary>
+            /// Change description: Keypad actions.
+            /// </summary>
+            public static readonly string ChangeKeypadActions = I18n.Combine(KeypadStringBase, "ChangeKeypadActions");
+
+            /// <summary>
+            /// Change description: Key text size.
+            /// </summary>
+            public static readonly string ChangeKeyTextSize = I18n.Combine(KeypadStringBase, "ChangeKeyTextSize");
+
+            /// <summary>
+            /// Change description: Remove key definition.
+            /// </summary>
+            public static readonly string RemoveKeyDefinition = I18n.Combine(KeypadStringBase, "RemoveKeyDefinition");
+
+            /// <summary>
+            /// Change description: Key background.
+            /// </summary>
+            public static readonly string ChangeKeyBackground = I18n.Combine(KeypadStringBase, "ChangeKeyBackground");
+
+            /// <summary>
+            /// Change description: Key text.
+            /// </summary>
+            public static readonly string ChangeKeyText = I18n.Combine(KeypadStringBase, "ChangeKeyText");
         }
 
         /// <summary>

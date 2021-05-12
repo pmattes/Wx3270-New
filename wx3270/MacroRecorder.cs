@@ -10,14 +10,14 @@ namespace Wx3270
     using System.Windows.Forms;
 
     /// <summary>
-    /// One macro.
+    /// Macro recorder.
     /// </summary>
     public class MacroRecorder
     {
         /// <summary>
         /// The flash interval.
         /// </summary>
-        private const int FlashMs = 750;
+        private const int FlashMs = 350;
 
         /// <summary>
         /// The flash timer.
@@ -47,6 +47,11 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Recording stop event.
+        /// </summary>
+        public event Action<string, string> StopEvent = (text, name) => { };
+
+        /// <summary>
         /// Gets or sets the picture box to flash.
         /// </summary>
         public PictureBox FlashPicture { get; set; }
@@ -65,6 +70,11 @@ namespace Wx3270
         /// Gets a value indicating whether the recorder is running.
         /// </summary>
         public bool Running => this.running;
+
+        /// <summary>
+        /// Gets or sets the macro name.
+        /// </summary>
+        public string Name { get; set; }
 
         /// <summary>
         /// Starts recording.
@@ -96,7 +106,8 @@ namespace Wx3270
                 this.FlashPicture.Image = this.OffImage;
                 this.flashing = false;
 
-                MessageBox.Show("Actions:" + Environment.NewLine + this.actions.ToString());
+                this.StopEvent(this.actions.ToString(), this.Name);
+                this.Name = string.Empty;
             }
         }
 

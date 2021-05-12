@@ -344,7 +344,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(SnapName, "snap");
             I18n.LocalizeGlobal(MacrosToolTipName, "Macros");
             I18n.LocalizeGlobal(MacroRecordingToolTipName, "Recording macro - click to stop");
-            I18n.LocalizeGlobal(MacroRecordingItemName, "Record");
+            I18n.LocalizeGlobal(MacroRecordingItemName, "Record new");
             I18n.LocalizeGlobal(MacroStopRecordingItemName, "Stop recording");
         }
 
@@ -750,6 +750,11 @@ namespace Wx3270
             var fixedWidth = this.mainScreenPanel.Width - this.screenPictureBox.Parent.Width;
             var fixedHeight = this.mainScreenPanel.Height - this.screenPictureBox.Parent.Height - hh;
             this.screenBox.SetFixed(fixedWidth, fixedHeight);
+
+            // Set up the macro recorder.
+            this.MacroRecorder.FlashPicture = this.macrosPictureBox;
+            this.MacroRecorder.OffImage = Properties.Resources.Tape4;
+            this.MacroRecorder.OnImage = Properties.Resources.Tape4_flash;
 
             // Set up the initial screen position.
             if (this.App.Location.HasValue)
@@ -1278,10 +1283,22 @@ namespace Wx3270
                 this.macroRecordItem.Text = I18n.Get(MacroStopRecordingItemName);
                 this.macroRecordItem.Image = Properties.Resources.stop_recording;
                 this.toolTip1.SetToolTip(this.macrosPictureBox, I18n.Get(MacroRecordingToolTipName));
-                this.MacroRecorder.FlashPicture = this.macrosPictureBox;
-                this.MacroRecorder.OffImage = Properties.Resources.Tape4;
-                this.MacroRecorder.OnImage = Properties.Resources.Tape4_flash;
+                this.MacroRecorder.StopEvent += this.RecordingComplete;
                 this.MacroRecorder.Start();
+            }
+        }
+
+        /// <summary>
+        /// Macro recording is complete.
+        /// </summary>
+        /// <param name="text">Macro text.</param>
+        /// <param name="name">Macro name.</param>
+        private void RecordingComplete(string text, string name)
+        {
+            this.MacroRecorder.StopEvent -= this.RecordingComplete;
+            if (!string.IsNullOrEmpty(text))
+            {
+                this.macros.Record(text);
             }
         }
 
