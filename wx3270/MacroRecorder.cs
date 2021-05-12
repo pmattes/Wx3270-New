@@ -59,19 +59,9 @@ namespace Wx3270
         public event Action<bool> RunningEvent = (running) => { };
 
         /// <summary>
-        /// Gets or sets the picture box to flash.
+        /// Flash event.
         /// </summary>
-        public PictureBox FlashPicture { get; set; }
-
-        /// <summary>
-        /// Gets or sets the image to display when on (flashing).
-        /// </summary>
-        public Image OnImage { get; set; }
-
-        /// <summary>
-        /// Gets or sets the image to display when off (not flashing).
-        /// </summary>
-        public Image OffImage { get; set; }
+        public event Action<bool> FlashEvent = (on) => { };
 
         /// <summary>
         /// Gets a value indicating whether the recorder is running.
@@ -92,7 +82,7 @@ namespace Wx3270
             {
                 this.running = true;
                 this.actions.Clear();
-                this.FlashPicture.Image = this.OnImage;
+                this.FlashEvent(true);
                 this.flashing = true;
                 this.flashTimer.Interval = FlashMs;
                 this.flashTimer.Tick += this.DoFlash;
@@ -112,7 +102,7 @@ namespace Wx3270
                 this.flashTimer.Stop();
                 this.flashTimer.Tick -= this.DoFlash;
                 this.running = false;
-                this.FlashPicture.Image = this.OffImage;
+                this.FlashEvent(false);
                 this.flashing = false;
 
                 this.StopEvent(this.CookedActions(), this.Name);
@@ -205,7 +195,7 @@ namespace Wx3270
         /// <param name="args">Event arguments.</param>
         private void DoFlash(object sender, EventArgs args)
         {
-            this.FlashPicture.Image = this.flashing ? this.OffImage : this.OnImage;
+            this.FlashEvent(!this.flashing);
             this.flashing = !this.flashing;
         }
     }

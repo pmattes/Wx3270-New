@@ -752,9 +752,7 @@ namespace Wx3270
             this.screenBox.SetFixed(fixedWidth, fixedHeight);
 
             // Set up the macro recorder.
-            this.MacroRecorder.FlashPicture = this.macrosPictureBox;
-            this.MacroRecorder.OffImage = Properties.Resources.Tape4;
-            this.MacroRecorder.OnImage = Properties.Resources.Tape4_flash;
+            this.MacroRecorder.FlashEvent += this.OnFlashEvent;
             this.MacroRecorder.RunningEvent += this.OnMacroRecorderState;
 
             // Set up the initial screen position.
@@ -1283,6 +1281,15 @@ namespace Wx3270
                 this.macroRecordItem.Image = Properties.Resources.record1;
                 this.toolTip1.SetToolTip(this.macrosPictureBox, I18n.Get(MacrosToolTipName));
             }
+        }
+
+        /// <summary>
+        /// Process a macro recorder flash event.
+        /// </summary>
+        /// <param name="flashing">True if flashing on.</param>
+        private void OnFlashEvent(bool flashing)
+        {
+            this.macrosPictureBox.Image = flashing ? Properties.Resources.Tape4_flash : Properties.Resources.Tape4;
         }
 
         /// <summary>
