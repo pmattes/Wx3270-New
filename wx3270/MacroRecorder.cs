@@ -47,10 +47,17 @@ namespace Wx3270
         private Action<string, string> completion;
 
         /// <summary>
+        /// The name supplied to the completion delegate.
+        /// </summary>
+        private string name;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MacroRecorder"/> class.
         /// </summary>
         public MacroRecorder()
         {
+            this.flashTimer.Interval = FlashMs;
+            this.flashTimer.Tick += this.DoFlash;
         }
 
         /// <summary>
@@ -69,25 +76,20 @@ namespace Wx3270
         public bool Running => this.running;
 
         /// <summary>
-        /// Gets or sets the macro name.
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
         /// Starts recording.
         /// </summary>
         /// <param name="completion">Completion delegate.</param>
-        public void Start(Action<string, string> completion = null)
+        /// <param name="name">Macro name.</param>
+        public void Start(Action<string, string> completion, string name = null)
         {
             if (!this.running)
             {
                 this.completion = completion;
+                this.name = name;
                 this.running = true;
                 this.actions.Clear();
                 this.FlashEvent(true);
                 this.flashing = true;
-                this.flashTimer.Interval = FlashMs;
-                this.flashTimer.Tick += this.DoFlash;
                 this.flashTimer.Start();
 
                 this.RunningEvent(true);
@@ -103,7 +105,7 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Record a set of actions.
+        /// Records a set of actions.
         /// </summary>
         /// <param name="actions">Actions to record.</param>
         public void Record(string actions)
@@ -115,7 +117,7 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Abort any recording in progress.
+        /// Aborts any recording in progress.
         /// </summary>
         public void Abort()
         {
@@ -141,19 +143,17 @@ namespace Wx3270
             if (this.running)
             {
                 this.flashTimer.Stop();
-                this.flashTimer.Tick -= this.DoFlash;
                 this.running = false;
                 this.FlashEvent(false);
                 this.flashing = false;
 
                 if (!isAbort)
                 {
-                    var cooked = this.CookedActions();
-                    this?.completion(cooked, this.Name);
+                    this.completion?.Invoke(this.CookedActions(), this.name);
                 }
 
                 this.completion = null;
-                this.Name = string.Empty;
+                this.name = string.Empty;
 
                 this.RunningEvent(false);
             }

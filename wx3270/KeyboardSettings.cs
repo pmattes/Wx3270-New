@@ -538,8 +538,7 @@ namespace Wx3270
         /// <param name="macroName">Macro name.</param>
         private void StartRecordingKeymap(string macroName)
         {
-            this.app.MacroRecorder.Name = macroName;
-            this.app.MacroRecorder.Start(this.KeymapRecordingComplete);
+            this.app.MacroRecorder.Start(this.KeymapRecordingComplete, macroName);
             this.Hide();
             this.mainScreen.Focus();
         }

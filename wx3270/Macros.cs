@@ -309,8 +309,7 @@ namespace Wx3270
         /// </summary>
         private void StartRecording(string macroName)
         {
-            this.app.MacroRecorder.Name = macroName;
-            this.app.MacroRecorder.Start(this.RecordingComplete);
+            this.app.MacroRecorder.Start(this.RecordingComplete, macroName);
             this.Hide();
             this.mainScreen.Focus();
         }
