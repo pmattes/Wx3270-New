@@ -114,6 +114,21 @@ namespace Wx3270
         private bool everActivated;
 
         /// <summary>
+        /// The pending host entry for macro recording.
+        /// </summary>
+        private HostEntry pendingHostEntry;
+
+        /// <summary>
+        /// The pending profile for macro recording.
+        /// </summary>
+        private Profile pendingProfile;
+
+        /// <summary>
+        /// The pending host tree node for macro recording.
+        /// </summary>
+        private HostTreeNode pendingHostTreeNode;
+
+        /// <summary>
         /// The window handle.
         /// </summary>
         private IntPtr handle;
@@ -557,46 +572,45 @@ namespace Wx3270
         /// Create a new host.
         /// </summary>
         /// <param name="profile">Profile to add host to.</param>
-        public void CreateHostDialog(Profile profile)
+        /// <param name="existingHostEntry">Optional existing host entry (used for macro editor completion).</param>
+        public void CreateHostDialog(Profile profile, HostEntry existingHostEntry = null)
         {
             // Pop up the dialog.
-            using (var editor = new HostEditor(HostEditingMode.QuickConnect, null, profile, this.app))
+            using var editor = new HostEditor(HostEditingMode.QuickConnect, existingHostEntry, profile, this.app);
+            HostEntry hostEntry = null;
+            var result = editor.ShowDialog(this);
+            if (result == DialogResult.OK || result == DialogResult.Yes)
             {
-                HostEntry hostEntry = null;
-                var result = editor.ShowDialog(this);
-                if (result == DialogResult.OK || result == DialogResult.Yes)
+                // Save the host.
+                hostEntry = editor.HostEntry;
+                if (profile.Hosts.Any(h => h.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase)))
                 {
-                    // Save the host.
-                    hostEntry = editor.HostEntry;
-                    if (profile.Hosts.Any(h => h.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase)))
-                    {
-                        hostEntry.Name = CreateUniqueName(hostEntry.Name, profile.Hosts.Select(p => p.Name));
-                    }
+                    hostEntry.Name = CreateUniqueName(hostEntry.Name, profile.Hosts.Select(p => p.Name));
+                }
 
-                    var newEntryPath = this.PathCombine(profile.DisplayFolder, profile.Name, hostEntry.Name);
-                    var refocus = new ProfileRefocus(
-                        this.ProfileManager,
-                        Separator,
-                        this.PathCombine(profile.DisplayFolder, profile.Name),
-                        newEntryPath);
-                    try
-                    {
-                        this.autoSelectPath = newEntryPath;
-                        this.ProfileManager.PushAndSave(
-                            (current) =>
-                            {
-                                current.Hosts = current.Hosts.Concat(new[] { hostEntry }).ToArray();
-                            },
-                            string.Format(I18n.Get(Message.AddConnection), hostEntry.Name),
-                            profile,
-                            refocus);
-                    }
-                    catch (InvalidOperationException e)
-                    {
-                        ErrorBox.Show(e.Message, I18n.Get(Title.AddConnection));
-                        this.autoSelectPath = null;
-                        return;
-                    }
+                var newEntryPath = this.PathCombine(profile.DisplayFolder, profile.Name, hostEntry.Name);
+                var refocus = new ProfileRefocus(
+                    this.ProfileManager,
+                    Separator,
+                    this.PathCombine(profile.DisplayFolder, profile.Name),
+                    newEntryPath);
+                try
+                {
+                    this.autoSelectPath = newEntryPath;
+                    this.ProfileManager.PushAndSave(
+                        (current) =>
+                        {
+                            current.Hosts = current.Hosts.Concat(new[] { hostEntry }).ToArray();
+                        },
+                        string.Format(I18n.Get(Message.AddConnection), hostEntry.Name),
+                        profile,
+                        refocus);
+                }
+                catch (InvalidOperationException e)
+                {
+                    ErrorBox.Show(e.Message, I18n.Get(Title.AddConnection));
+                    this.autoSelectPath = null;
+                    return;
                 }
 
                 if (result == DialogResult.Yes)
@@ -605,6 +619,15 @@ namespace Wx3270
                     this.connect.ConnectToHost(hostEntry);
                     this.SafeHide();
                 }
+            }
+            else if (result == DialogResult.Retry)
+            {
+                // Macro recorder started.
+                this.pendingHostEntry = editor.HostEntry;
+                this.pendingProfile = profile;
+                this.app.MacroRecorder.Start(this.CreateHostMacroRecorderDone);
+                this.Hide();
+                this.mainScreen.Focus();
             }
         }
 
@@ -751,6 +774,25 @@ namespace Wx3270
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// The macro recorder is complete for an added host.
+        /// </summary>
+        /// <param name="text">Macro text.</param>
+        /// <param name="name">Macro name.</param>
+        private void CreateHostMacroRecorderDone(string text, string name)
+        {
+            // Copy and erase the kludgey pending host entry and profile.
+            var entry = this.pendingHostEntry;
+            this.pendingHostEntry = null;
+            var profile = this.pendingProfile;
+            this.pendingProfile = null;
+
+            // Substitute the login macro and pop up the dialog again.
+            this.Show();
+            entry.LoginMacro = text;
+            this.CreateHostDialog(profile, entry);
         }
 
         /// <summary>
@@ -2651,53 +2693,83 @@ namespace Wx3270
         /// Edit a host.
         /// </summary>
         /// <param name="hostNode">Host to edit.</param>
-        private void EditHost(HostTreeNode hostNode)
+        /// <param name="editedEntry">Edited entry, for recording completion.</param>
+        private void EditHost(HostTreeNode hostNode, HostEntry editedEntry = null)
         {
-            // Find the existing host entry.
-            var hostEntry = hostNode.Profile.Hosts.FirstOrDefault(h => h.Name.Equals(hostNode.Text));
+            var hostEntry = editedEntry;
             if (hostEntry == null)
             {
-                return;
+                // Find the existing host entry.
+                hostEntry = hostNode.Profile.Hosts.FirstOrDefault(h => h.Name.Equals(hostNode.Text));
+                if (hostEntry == null)
+                {
+                    return;
+                }
             }
 
             // Pop up the dialog.
-            using (var editor = new HostEditor(HostEditingMode.SaveHost, hostEntry, hostNode.Profile, this.app))
+            using var editor = new HostEditor(HostEditingMode.SaveHost, hostEntry, hostNode.Profile, this.app);
+            var result = editor.ShowDialog(this);
+            if (result == DialogResult.OK)
             {
-                var result = editor.ShowDialog(this);
-                if (result == DialogResult.OK)
+                var newHostEntry = editor.HostEntry;
+                if (!newHostEntry.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase)
+                    && hostNode.Profile.Hosts.Any(h => h.Name.Equals(newHostEntry.Name, StringComparison.InvariantCultureIgnoreCase)))
                 {
-                    var newHostEntry = editor.HostEntry;
-                    if (!newHostEntry.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase)
-                        && hostNode.Profile.Hosts.Any(h => h.Name.Equals(newHostEntry.Name, StringComparison.InvariantCultureIgnoreCase)))
-                    {
-                        newHostEntry.Name = CreateUniqueName(newHostEntry.Name, hostNode.Profile.Hosts.Select(p => p.Name));
-                    }
+                    newHostEntry.Name = CreateUniqueName(newHostEntry.Name, hostNode.Profile.Hosts.Select(p => p.Name));
+                }
 
-                    var newName = this.PathCombine(hostNode.Profile.DisplayFolder, hostNode.Profile.Name, newHostEntry.Name);
-                    this.autoSelectPath = newName;
-                    var refocus = new ProfileRefocus(
-                        this.ProfileManager,
-                        Separator,
-                        this.PathCombine(hostNode.Profile.DisplayFolder, hostNode.Profile.Name, hostNode.Text),
-                        newName);
-                    try
-                    {
-                        this.ProfileManager.PushAndSave(
-                            (current) =>
-                            {
-                                current.Hosts = current.Hosts.Select(h => h.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase) ? newHostEntry : h).ToArray();
-                            },
-                            string.Format(I18n.Get(Message.EditConnection), hostEntry.Name),
-                            hostNode.Profile,
-                            refocus);
-                    }
-                    catch (InvalidOperationException ex)
-                    {
-                        ErrorBox.Show(ex.Message, I18n.Get(Title.EditConnection));
-                        return;
-                    }
+                var newName = this.PathCombine(hostNode.Profile.DisplayFolder, hostNode.Profile.Name, newHostEntry.Name);
+                this.autoSelectPath = newName;
+                var refocus = new ProfileRefocus(
+                    this.ProfileManager,
+                    Separator,
+                    this.PathCombine(hostNode.Profile.DisplayFolder, hostNode.Profile.Name, hostNode.Text),
+                    newName);
+                try
+                {
+                    this.ProfileManager.PushAndSave(
+                        (current) =>
+                        {
+                            current.Hosts = current.Hosts.Select(h => h.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase) ? newHostEntry : h).ToArray();
+                        },
+                        string.Format(I18n.Get(Message.EditConnection), hostEntry.Name),
+                        hostNode.Profile,
+                        refocus);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    ErrorBox.Show(ex.Message, I18n.Get(Title.EditConnection));
+                    return;
                 }
             }
+            else if (result == DialogResult.Retry)
+            {
+                this.pendingHostTreeNode = hostNode;
+                this.pendingHostEntry = editor.HostEntry;
+                this.app.MacroRecorder.Start(this.EditHostMacroRecorderComplete);
+                this.Hide();
+                this.mainScreen.Focus();
+            }
+        }
+
+        /// <summary>
+        /// Recording a login macro for an edited host is complete.
+        /// </summary>
+        /// <param name="text">Macro text.</param>
+        /// <param name="name">Macro name.</param>
+        private void EditHostMacroRecorderComplete(string text, string name)
+        {
+            // Clean up existing (kludgey) state.
+            var node = this.pendingHostTreeNode;
+            this.pendingHostTreeNode = null;
+            var entry = this.pendingHostEntry;
+            this.pendingHostEntry = null;
+            entry.LoginMacro = text;
+
+            // Restore this window and the dialog.
+            this.Show();
+            this.EditHost(node, entry);
         }
 
         /// <summary>

@@ -284,7 +284,6 @@ namespace Wx3270
         /// <param name="name">Macro name.</param>
         private void RecordingComplete(string text, string name)
         {
-            this.app.MacroRecorder.StopEvent -= this.RecordingComplete;
             this.Show();
             if (string.IsNullOrEmpty(text))
             {
@@ -311,8 +310,7 @@ namespace Wx3270
         private void StartRecording(string macroName)
         {
             this.app.MacroRecorder.Name = macroName;
-            this.app.MacroRecorder.StopEvent += this.RecordingComplete;
-            this.app.MacroRecorder.Start();
+            this.app.MacroRecorder.Start(this.RecordingComplete);
             this.Hide();
             this.mainScreen.Focus();
         }

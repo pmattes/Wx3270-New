@@ -42,16 +42,16 @@ namespace Wx3270
         private bool flashing;
 
         /// <summary>
+        /// Completion delegate.
+        /// </summary>
+        private Action<string, string> completion;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MacroRecorder"/> class.
         /// </summary>
         public MacroRecorder()
         {
         }
-
-        /// <summary>
-        /// Recording stop event.
-        /// </summary>
-        public event Action<string, string> StopEvent = (text, name) => { };
 
         /// <summary>
         /// Running / stop running event.
@@ -76,10 +76,12 @@ namespace Wx3270
         /// <summary>
         /// Starts recording.
         /// </summary>
-        public void Start()
+        /// <param name="completion">Completion delegate.</param>
+        public void Start(Action<string, string> completion = null)
         {
             if (!this.running)
             {
+                this.completion = completion;
                 this.running = true;
                 this.actions.Clear();
                 this.FlashEvent(true);
@@ -97,19 +99,7 @@ namespace Wx3270
         /// </summary>
         public void Stop()
         {
-            if (this.running)
-            {
-                this.flashTimer.Stop();
-                this.flashTimer.Tick -= this.DoFlash;
-                this.running = false;
-                this.FlashEvent(false);
-                this.flashing = false;
-
-                this.StopEvent(this.CookedActions(), this.Name);
-                this.Name = string.Empty;
-
-                this.RunningEvent(false);
-            }
+            this.ProcessStop();
         }
 
         /// <summary>
@@ -125,6 +115,14 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Abort any recording in progress.
+        /// </summary>
+        public void Abort()
+        {
+            this.ProcessStop(isAbort: true);
+        }
+
+        /// <summary>
         /// Extracts the Unicode value from a Key() action.
         /// </summary>
         /// <param name="action">Action to parse.</param>
@@ -132,6 +130,33 @@ namespace Wx3270
         private static int KeyCode(string action)
         {
             return int.Parse(action.Substring(B3270.Action.Key.Length + 3, 4), System.Globalization.NumberStyles.HexNumber);
+        }
+
+        /// <summary>
+        /// Stop recording.
+        /// </summary>
+        /// <param name="isAbort">True if this is an abort rather than a graceful completion.</param>
+        private void ProcessStop(bool isAbort = false)
+        {
+            if (this.running)
+            {
+                this.flashTimer.Stop();
+                this.flashTimer.Tick -= this.DoFlash;
+                this.running = false;
+                this.FlashEvent(false);
+                this.flashing = false;
+
+                if (!isAbort)
+                {
+                    var cooked = this.CookedActions();
+                    this?.completion(cooked, this.Name);
+                }
+
+                this.completion = null;
+                this.Name = string.Empty;
+
+                this.RunningEvent(false);
+            }
         }
 
         /// <summary>

@@ -1305,8 +1305,7 @@ namespace Wx3270
             }
             else
             {
-                this.MacroRecorder.StopEvent += this.RecordingComplete;
-                this.MacroRecorder.Start();
+                this.MacroRecorder.Start(this.RecordingComplete);
             }
         }
 
@@ -1317,7 +1316,6 @@ namespace Wx3270
         /// <param name="name">Macro name.</param>
         private void RecordingComplete(string text, string name)
         {
-            this.MacroRecorder.StopEvent -= this.RecordingComplete;
             if (!string.IsNullOrEmpty(text))
             {
                 this.macros.Record(text);
@@ -1885,6 +1883,9 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ProfilePictureBox_Click(object sender, EventArgs e)
         {
+            // You can't restore the profile tree while a macro is being recorded.
+            this.MacroRecorder.Abort();
+
             if (!this.profileTree.Visible)
             {
                 this.profileTree.Show(this);

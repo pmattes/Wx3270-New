@@ -491,13 +491,27 @@ namespace Wx3270
                 title = this.HostNameTextBox.Text + " " + title;
             }
 
-            using (var editor = new MacroEditor(this.HostEntry.LoginMacro, title, false, this.app))
+            using var editor = new MacroEditor(this.HostEntry.LoginMacro, title, false, this.app);
+            var result = editor.ShowDialog(this);
+            if (result == DialogResult.OK)
             {
-                if (editor.ShowDialog(this) == DialogResult.OK)
-                {
-                    this.LoginMacroTextBox.Text = editor.MacroText;
-                }
+                this.LoginMacroTextBox.Text = editor.MacroText;
             }
+            else if (result == DialogResult.Retry)
+            {
+                this.StartRecordingLoginMacro(title);
+            }
+        }
+
+        /// <summary>
+        /// Start recording a login macro.
+        /// </summary>
+        /// <param name="title">Macro title.</param>
+        private void StartRecordingLoginMacro(string title)
+        {
+            // Pop down the host editor, but there are unsaved changes that need to be preserved.
+            this.DialogResult = DialogResult.Retry;
+            this.Close();
         }
 
         /// <summary>

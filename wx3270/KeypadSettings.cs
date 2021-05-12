@@ -690,8 +690,7 @@ namespace Wx3270
         /// </summary>
         private void StartRecordingKeypad()
         {
-            this.app.MacroRecorder.StopEvent += this.KeypadRecordingComplete;
-            this.app.MacroRecorder.Start();
+            this.app.MacroRecorder.Start(this.KeypadRecordingComplete);
             this.Hide();
             this.mainScreen.Focus();
         }
@@ -735,7 +734,6 @@ namespace Wx3270
         /// <param name="name">Macro name.</param>
         private void KeypadRecordingComplete(string text, string name)
         {
-            this.app.MacroRecorder.StopEvent -= this.KeypadRecordingComplete;
             this.Show();
             if (string.IsNullOrEmpty(text))
             {
