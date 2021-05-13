@@ -101,6 +101,7 @@
             this.commandLineOptionsLabel = new System.Windows.Forms.Label();
             this.commandLabel = new System.Windows.Forms.Label();
             this.commandOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.connectRecordButton = new System.Windows.Forms.Button();
             this.loadGroupBox.SuspendLayout();
             this.loadTableLayoutPanel.SuspendLayout();
             this.hostTypeGroupBox.SuspendLayout();
@@ -401,20 +402,22 @@
             this.buttonsTableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonsTableLayoutPanel.AutoSize = true;
             this.buttonsTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonsTableLayoutPanel.ColumnCount = 4;
+            this.buttonsTableLayoutPanel.ColumnCount = 5;
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.buttonsTableLayoutPanel.Controls.Add(this.connectButton, 0, 0);
-            this.buttonsTableLayoutPanel.Controls.Add(this.cancelButton, 1, 0);
-            this.buttonsTableLayoutPanel.Controls.Add(this.okButton, 2, 0);
-            this.buttonsTableLayoutPanel.Controls.Add(this.helpPictureBox, 3, 0);
-            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(111, 545);
+            this.buttonsTableLayoutPanel.Controls.Add(this.cancelButton, 2, 0);
+            this.buttonsTableLayoutPanel.Controls.Add(this.okButton, 3, 0);
+            this.buttonsTableLayoutPanel.Controls.Add(this.helpPictureBox, 4, 0);
+            this.buttonsTableLayoutPanel.Controls.Add(this.connectRecordButton, 1, 0);
+            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(30, 545);
             this.buttonsTableLayoutPanel.Name = "buttonsTableLayoutPanel";
             this.buttonsTableLayoutPanel.RowCount = 1;
             this.buttonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.buttonsTableLayoutPanel.Size = new System.Drawing.Size(272, 29);
+            this.buttonsTableLayoutPanel.Size = new System.Drawing.Size(353, 29);
             this.buttonsTableLayoutPanel.TabIndex = 6;
             // 
             // connectButton
@@ -431,7 +434,7 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(84, 3);
+            this.cancelButton.Location = new System.Drawing.Point(165, 3);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 4;
@@ -441,7 +444,7 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(165, 3);
+            this.okButton.Location = new System.Drawing.Point(246, 3);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 5;
@@ -452,7 +455,7 @@
             // helpPictureBox
             // 
             this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(246, 3);
+            this.helpPictureBox.Location = new System.Drawing.Point(327, 3);
             this.helpPictureBox.Name = "helpPictureBox";
             this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
             this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1043,6 +1046,18 @@
             this.commandOpenFileDialog.Filter = "Programs|*.exe|All files|*.*";
             this.commandOpenFileDialog.Title = "Select command";
             // 
+            // connectRecordButton
+            // 
+            this.connectRecordButton.ForeColor = System.Drawing.Color.ForestGreen;
+            this.connectRecordButton.Location = new System.Drawing.Point(84, 3);
+            this.connectRecordButton.Name = "connectRecordButton";
+            this.connectRecordButton.Size = new System.Drawing.Size(75, 23);
+            this.connectRecordButton.TabIndex = 133;
+            this.connectRecordButton.Text = "Connect+⏺";
+            this.toolTip1.SetToolTip(this.connectRecordButton, "Connect and start recording login macro");
+            this.connectRecordButton.UseVisualStyleBackColor = true;
+            this.connectRecordButton.Click += new System.EventHandler(this.ConnectRecordButton_Click);
+            // 
             // HostEditor
             // 
             this.AcceptButton = this.okButton;
@@ -1171,5 +1186,6 @@
         private System.Windows.Forms.CheckBox loginScreenCheckBox;
         private System.Windows.Forms.TableLayoutPanel buttonsTableLayoutPanel;
         private System.Windows.Forms.OpenFileDialog commandOpenFileDialog;
+        private System.Windows.Forms.Button connectRecordButton;
     }
 }

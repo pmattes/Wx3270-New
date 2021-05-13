@@ -31,6 +31,38 @@ namespace Wx3270
     }
 
     /// <summary>
+    /// Host editing result.
+    /// </summary>
+    [Flags]
+    public enum HostEditingResult
+    {
+        /// <summary>
+        /// Cancel editing.
+        /// </summary>
+        Cancel,
+
+        /// <summary>
+        /// Successful edit.
+        /// </summary>
+        Ok = 0x1,
+
+        /// <summary>
+        /// Save the result.
+        /// </summary>
+        Save = 0x2,
+
+        /// <summary>
+        /// Start login macro recording.
+        /// </summary>
+        Record = 0x4,
+
+        /// <summary>
+        /// Connect to host.
+        /// </summary>
+        Connect = 0x8,
+    }
+
+    /// <summary>
     /// The host editor.
     /// </summary>
     public partial class HostEditor : Form
@@ -217,6 +249,7 @@ namespace Wx3270
             {
                 // Save hosts do not have a connect button.
                 this.connectButton.Visible = false;
+                this.connectRecordButton.Visible = false;
             }
 
             if (editingMode == HostEditingMode.QuickConnect)
@@ -300,6 +333,11 @@ namespace Wx3270
                 };
             }
         }
+
+        /// <summary>
+        /// Gets the editing result.
+        /// </summary>
+        public HostEditingResult Result { get; private set; } = HostEditingResult.Cancel;
 
         /// <summary>
         /// Static localization.
@@ -509,8 +547,9 @@ namespace Wx3270
         /// <param name="title">Macro title.</param>
         private void StartRecordingLoginMacro(string title)
         {
-            // Pop down the host editor, but there are unsaved changes that need to be preserved.
-            this.DialogResult = DialogResult.Retry;
+            // Don't save it yet -- we're just recording.
+            this.Result = HostEditingResult.Ok | HostEditingResult.Record;
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
@@ -531,6 +570,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            this.Result = HostEditingResult.Cancel;
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
@@ -539,14 +579,14 @@ namespace Wx3270
         /// Validate that the entry can be completed.
         /// </summary>
         /// <param name="result">Dialog result to set, if successful.</param>
-        private void ValidateDone(DialogResult result)
+        /// <param name="editingResult">Editing result to return, if successful.</param>
+        private void ValidateDone(DialogResult result, HostEditingResult editingResult)
         {
             if (this.connectionType.Value == ConnectionType.Host)
             {
                 if (string.IsNullOrEmpty(this.HostNameTextBox.Text))
                 {
                     ErrorBox.Show(I18n.Get(Message.MustSpecifyHost), I18n.Get(Title.ConnectionEditor));
-                    return;
                 }
 
                 // XXX: There should be a way to make this unique, instead of failing the edit/add later.
@@ -561,7 +601,6 @@ namespace Wx3270
                 if (string.IsNullOrEmpty(this.commandTextBox.Text))
                 {
                     ErrorBox.Show(I18n.Get(Message.MustSpecifyCommand), I18n.Get(Title.ConnectionEditor));
-                    return;
                 }
 
                 if (string.IsNullOrEmpty(this.NicknameTextBox.Text))
@@ -570,6 +609,7 @@ namespace Wx3270
                 }
             }
 
+            this.Result = editingResult;
             this.DialogResult = result;
             this.Close();
         }
@@ -581,7 +621,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void OkButton_Click(object sender, EventArgs e)
         {
-            this.ValidateDone(DialogResult.OK);
+            this.ValidateDone(DialogResult.OK, HostEditingResult.Ok | HostEditingResult.Save);
         }
 
         /// <summary>
@@ -591,7 +631,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ConnectButton_Click(object sender, EventArgs e)
         {
-            this.ValidateDone(DialogResult.Yes);
+            this.ValidateDone(DialogResult.OK, HostEditingResult.Ok | HostEditingResult.Save | HostEditingResult.Connect);
         }
 
         /// <summary>
@@ -765,6 +805,16 @@ namespace Wx3270
         private void CommandTextBox_Click(object sender, KeyPressEventArgs e)
         {
             this.CommandTextBox_Click(sender, (EventArgs)e);
+        }
+
+        /// <summary>
+        /// The Connect+Record button was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void ConnectRecordButton_Click(object sender, EventArgs e)
+        {
+            this.ValidateDone(DialogResult.OK, HostEditingResult.Ok | HostEditingResult.Save | HostEditingResult.Connect | HostEditingResult.Record);
         }
 
         /// <summary>

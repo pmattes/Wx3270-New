@@ -558,59 +558,66 @@ namespace Wx3270
         /// </summary>
         /// <param name="profile">Profile to add host to.</param>
         /// <param name="existingHostEntry">Optional existing host entry (used for macro editor completion).</param>
-        public void CreateHostDialog(Profile profile, HostEntry existingHostEntry = null)
+        /// <param name="mode">Optional editing mode.</param>
+        public void CreateHostDialog(Profile profile, HostEntry existingHostEntry = null, HostEditingMode mode = HostEditingMode.QuickConnect)
         {
             // Pop up the dialog.
-            using var editor = new HostEditor(HostEditingMode.QuickConnect, existingHostEntry, profile, this.app);
+            using var editor = new HostEditor(mode, existingHostEntry, profile, this.app);
             HostEntry hostEntry = null;
             var result = editor.ShowDialog(this);
-            if (result == DialogResult.OK || result == DialogResult.Yes)
+            if (result == DialogResult.OK)
             {
-                // Save the host.
-                hostEntry = editor.HostEntry;
-                if (profile.Hosts.Any(h => h.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase)))
+                if (editor.Result.HasFlag(HostEditingResult.Save))
                 {
-                    hostEntry.Name = CreateUniqueName(hostEntry.Name, profile.Hosts.Select(p => p.Name));
+                    // Save the host.
+                    hostEntry = editor.HostEntry;
+                    if (profile.Hosts.Any(h => h.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase)))
+                    {
+                        hostEntry.Name = CreateUniqueName(hostEntry.Name, profile.Hosts.Select(p => p.Name));
+                    }
+
+                    var newEntryPath = this.PathCombine(profile.DisplayFolder, profile.Name, hostEntry.Name);
+                    var refocus = new ProfileRefocus(
+                        this.ProfileManager,
+                        Separator,
+                        this.PathCombine(profile.DisplayFolder, profile.Name),
+                        newEntryPath);
+                    try
+                    {
+                        this.autoSelectPath = newEntryPath;
+                        this.ProfileManager.PushAndSave(
+                            (current) =>
+                            {
+                                current.Hosts = current.Hosts.Concat(new[] { hostEntry }).ToArray();
+                            },
+                            string.Format(I18n.Get(Message.AddConnection), hostEntry.Name),
+                            profile,
+                            refocus);
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        ErrorBox.Show(e.Message, I18n.Get(Title.AddConnection));
+                        this.autoSelectPath = null;
+                        return;
+                    }
                 }
 
-                var newEntryPath = this.PathCombine(profile.DisplayFolder, profile.Name, hostEntry.Name);
-                var refocus = new ProfileRefocus(
-                    this.ProfileManager,
-                    Separator,
-                    this.PathCombine(profile.DisplayFolder, profile.Name),
-                    newEntryPath);
-                try
-                {
-                    this.autoSelectPath = newEntryPath;
-                    this.ProfileManager.PushAndSave(
-                        (current) =>
-                        {
-                            current.Hosts = current.Hosts.Concat(new[] { hostEntry }).ToArray();
-                        },
-                        string.Format(I18n.Get(Message.AddConnection), hostEntry.Name),
-                        profile,
-                        refocus);
-                }
-                catch (InvalidOperationException e)
-                {
-                    ErrorBox.Show(e.Message, I18n.Get(Title.AddConnection));
-                    this.autoSelectPath = null;
-                    return;
-                }
-
-                if (result == DialogResult.Yes)
+                if (editor.Result.HasFlag(HostEditingResult.Connect))
                 {
                     // Connect to the host.
                     this.connect.ConnectToHost(hostEntry);
                     this.SafeHide();
                 }
-            }
-            else if (result == DialogResult.Retry)
-            {
-                // Macro recorder started.
-                this.app.MacroRecorder.Start(this.CreateHostMacroRecorderDone, (editor.HostEntry, profile));
-                this.Hide();
-                this.mainScreen.Focus();
+
+                if (editor.Result.HasFlag(HostEditingResult.Record))
+                {
+                    // Macro recorder started.
+                    this.app.MacroRecorder.Start(
+                        this.CreateHostMacroRecorderDone,
+                        (editor.HostEntry, profile, editor.Result.HasFlag(HostEditingResult.Save) ? HostEditingMode.SaveHost : HostEditingMode.QuickConnect));
+                    this.Hide();
+                    this.mainScreen.Focus();
+                }
             }
         }
 
@@ -766,10 +773,10 @@ namespace Wx3270
         /// <param name="context">Context object.</param>
         private void CreateHostMacroRecorderDone(string text, object context)
         {
-            var (entry, profile) = (((HostEntry, Profile)?)context).Value;
+            var (entry, profile, mode) = (((HostEntry, Profile, HostEditingMode)?)context).Value;
             this.Show();
             entry.LoginMacro = text;
-            this.CreateHostDialog(profile, entry);
+            this.CreateHostDialog(profile, entry, mode);
         }
 
         /// <summary>
