@@ -760,10 +760,12 @@
   },
   "KeyboardMap": {
     "F Alt": {
-      "Actions": "Toggle(RightToLeftMode)"
+      "Actions": "Toggle(RightToLeftMode)",
+      "Exact":  true
     },
     "V Alt, Mode3270": {
-      "Actions": "Toggle(ReverseInputMode)"
+      "Actions": "Toggle(ReverseInputMode)",
+      "Exact":  true
     }
   },
   "ListenPort": {},
