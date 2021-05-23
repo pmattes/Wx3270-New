@@ -45,6 +45,7 @@
             this.undoButton = new Wx3270.NoSelectButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.recordButton = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
@@ -62,11 +63,11 @@
             this.macroEditButton.UseVisualStyleBackColor = true;
             this.macroEditButton.Click += new System.EventHandler(this.MacroEditButton_Click);
             // 
-            // MacroAddButton
+            // macroAddButton
             // 
             this.macroAddButton.ForeColor = System.Drawing.Color.Green;
             this.macroAddButton.Location = new System.Drawing.Point(12, 493);
-            this.macroAddButton.Name = "MacroAddButton";
+            this.macroAddButton.Name = "macroAddButton";
             this.macroAddButton.Size = new System.Drawing.Size(75, 23);
             this.macroAddButton.TabIndex = 104;
             this.macroAddButton.TabStop = false;
@@ -74,11 +75,11 @@
             this.macroAddButton.UseVisualStyleBackColor = true;
             this.macroAddButton.Click += new System.EventHandler(this.MacroAddButton_Click);
             // 
-            // MacroTestButton
+            // macroTestButton
             // 
             this.macroTestButton.Enabled = false;
             this.macroTestButton.Location = new System.Drawing.Point(490, 493);
-            this.macroTestButton.Name = "MacroTestButton";
+            this.macroTestButton.Name = "macroTestButton";
             this.macroTestButton.Size = new System.Drawing.Size(75, 23);
             this.macroTestButton.TabIndex = 103;
             this.macroTestButton.TabStop = false;
@@ -86,13 +87,13 @@
             this.macroTestButton.UseVisualStyleBackColor = true;
             this.macroTestButton.Click += new System.EventHandler(this.MacroTestButton_Click);
             // 
-            // MacroRemoveButton
+            // macroRemoveButton
             // 
             this.macroRemoveButton.Enabled = false;
             this.macroRemoveButton.ForeColor = System.Drawing.Color.Red;
-            this.macroRemoveButton.Location = new System.Drawing.Point(91, 493);
+            this.macroRemoveButton.Location = new System.Drawing.Point(177, 493);
             this.macroRemoveButton.Margin = new System.Windows.Forms.Padding(1);
-            this.macroRemoveButton.Name = "MacroRemoveButton";
+            this.macroRemoveButton.Name = "macroRemoveButton";
             this.macroRemoveButton.Size = new System.Drawing.Size(75, 23);
             this.macroRemoveButton.TabIndex = 105;
             this.macroRemoveButton.TabStop = false;
@@ -100,11 +101,11 @@
             this.macroRemoveButton.UseVisualStyleBackColor = true;
             this.macroRemoveButton.Click += new System.EventHandler(this.MacroRemoveButton_Click);
             // 
-            // MacrosLabel
+            // macrosLabel
             // 
             this.macrosLabel.AutoSize = true;
             this.macrosLabel.Location = new System.Drawing.Point(12, 9);
-            this.macrosLabel.Name = "MacrosLabel";
+            this.macrosLabel.Name = "macrosLabel";
             this.macrosLabel.Size = new System.Drawing.Size(42, 13);
             this.macrosLabel.TabIndex = 102;
             this.macrosLabel.Text = "Macros";
@@ -134,17 +135,17 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(123, 70);
             // 
-            // editToolStripMenuItem
+            // runToolStripMenuItem
             // 
-            this.runToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.runToolStripMenuItem.Name = "runToolStripMenuItem";
             this.runToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.runToolStripMenuItem.Tag = "Run";
             this.runToolStripMenuItem.Text = "Run";
             this.runToolStripMenuItem.Click += new System.EventHandler(this.ContextMenu_Click);
             // 
-            // editToolStripMenuItem1
+            // editToolStripMenuItem
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem1";
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.editToolStripMenuItem.Tag = "Edit";
             this.editToolStripMenuItem.Text = "🖉 Edit";
@@ -162,6 +163,7 @@
             // mainPanel
             // 
             this.mainPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.mainPanel.Controls.Add(this.recordButton);
             this.mainPanel.Controls.Add(this.macrosListBox);
             this.mainPanel.Controls.Add(this.macroEditButton);
             this.mainPanel.Controls.Add(this.macrosLabel);
@@ -210,6 +212,17 @@
             this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
             this.helpPictureBox.Click += new System.EventHandler(this.Help_Click);
             // 
+            // recordButton
+            // 
+            this.recordButton.ForeColor = System.Drawing.Color.Green;
+            this.recordButton.Location = new System.Drawing.Point(94, 493);
+            this.recordButton.Name = "recordButton";
+            this.recordButton.Size = new System.Drawing.Size(75, 23);
+            this.recordButton.TabIndex = 106;
+            this.recordButton.Text = "⏺ Record";
+            this.recordButton.UseVisualStyleBackColor = true;
+            this.recordButton.Click += new System.EventHandler(this.RecordButton_Click);
+            // 
             // Macros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,5 +267,6 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.PictureBox helpPictureBox;
+        private System.Windows.Forms.Button recordButton;
     }
 }

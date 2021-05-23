@@ -494,6 +494,16 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// The record button was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void RecordButton_Click(object sender, EventArgs e)
+        {
+            this.StartRecording(string.Empty);
+        }
+
+        /// <summary>
         /// The Help picture box was clicked.
         /// </summary>
         /// <param name="sender">Event sender.</param>

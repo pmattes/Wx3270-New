@@ -146,16 +146,21 @@ namespace Wx3270
                 this.running = false;
                 this.FlashEvent(false);
                 this.flashing = false;
+                this.RunningEvent(false);
 
                 if (!isAbort)
                 {
-                    this.completion?.Invoke(this.CookedActions(), this.context);
+                    var completion = this.completion;
+                    var context = this.context;
+                    this.completion = null;
+                    this.context = null;
+                    completion?.Invoke(this.CookedActions(), context);
                 }
-
-                this.completion = null;
-                this.context = null;
-
-                this.RunningEvent(false);
+                else
+                {
+                    this.completion = null;
+                    this.context = null;
+                }
             }
         }
 
