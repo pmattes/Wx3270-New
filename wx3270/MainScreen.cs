@@ -82,6 +82,16 @@ namespace Wx3270
         private readonly HashSet<Form> keypadMinimized = new HashSet<Form>();
 
         /// <summary>
+        /// Set if the pop-up keypad is active.
+        /// </summary>
+        private readonly HashSet<Form> keypadActive = new HashSet<Form>();
+
+        /// <summary>
+        /// True if the window is activated.
+        /// </summary>
+        private bool isActivated;
+
+        /// <summary>
         /// Flash state machine.
         /// </summary>
         private FlashFsm flashFsm;
@@ -510,14 +520,38 @@ namespace Wx3270
             }
         }
 
-        /// <summary>
-        /// Flash the window, for identification.
-        /// </summary>
+        /// <inheritdoc />
         public void Flash()
         {
             if (!this.noFlashTimer.Enabled && this.flashFsm.Start() == FlashFsm.Action.Flash)
             {
                 this.ActionsBox.Image = Properties.Resources.StartClearerLightGreen;
+            }
+        }
+
+        /// <inheritdoc />
+        public void ActivationChange(Form form, bool activated)
+        {
+            // Update the list of active keypads.
+            if (activated)
+            {
+                this.keypadActive.Add(form);
+            }
+            else
+            {
+                this.keypadActive.Remove(form);
+            }
+
+            // If the first keypad has become active, and this window was not, start blinking.
+            // If the last keypad has become inactive, and this window was not, stop blinking.
+            if (!this.isActivated && this.keypadActive.Any())
+            {
+                this.screenBox.Activated(true);
+            }
+
+            if (!this.isActivated && !this.keypadActive.Any())
+            {
+                this.screenBox.Activated(false);
             }
         }
 
@@ -1803,6 +1837,8 @@ namespace Wx3270
         {
             Trace.Line(Trace.Type.Window, "MainScreen Activated");
 
+            this.isActivated = true;
+
             // Give the main screen panel focus, which has the odd (but desired) effect of allowing
             // the IME to apply to the main screen.
             this.mainScreenPanel.Focus();
@@ -1831,7 +1867,13 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void MainScreen_Deactivate(object sender, EventArgs e)
         {
-            this.screenBox.Activated(false);
+            this.isActivated = false;
+
+            if (!this.keypadActive.Any())
+            {
+                // Stop blinking.
+                this.screenBox.Activated(false);
+            }
         }
 
         /// <summary>

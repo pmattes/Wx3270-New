@@ -227,9 +227,7 @@ namespace Wx3270
             }
         }
 
-        /// <summary>
-        /// Flash to indicate where the window is.
-        /// </summary>
+        /// <inheritdoc />
         public void Flash()
         {
             if (this.flashFsm.Start() == FlashFsm.Action.Flash)
@@ -237,6 +235,12 @@ namespace Wx3270
                 Trace.Line(Trace.Type.Window, "Keypad Flash 1");
                 this.flashButton.ForeColor = Color.LawnGreen;
             }
+        }
+
+        /// <inheritdoc />
+        public void ActivationChange(Form form, bool activated)
+        {
+            // This is never called.
         }
 
         /// <summary>
@@ -372,8 +376,22 @@ namespace Wx3270
             // to apply to the keypad window.
             this.outerPanel.Focus();
 
+            // Tell the main screen we have focus.
+            this.mainWindowFlash.ActivationChange((Form)sender, true);
+
             // Flash the main screen, for identification.
             this.activateTimer.Start();
+        }
+
+        /// <summary>
+        /// The keypad was deactivated.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        public void Deactivated(object sender, EventArgs e)
+        {
+            // Tell the main screen we no longer have focus.
+            this.mainWindowFlash.ActivationChange((Form)sender, false);
         }
 
         /// <summary>

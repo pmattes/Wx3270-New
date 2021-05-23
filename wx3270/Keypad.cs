@@ -73,12 +73,15 @@ namespace Wx3270
             this.keypadCommon.ApplyMaps(maps);
         }
 
-        /// <summary>
-        /// Flash to indicate where the window is.
-        /// </summary>
+        /// <inheritdoc />
         public void Flash()
         {
             this.keypadCommon.Flash();
+        }
+
+        /// <inheritdoc />
+        public void ActivationChange(Form form, bool activated)
+        {
         }
 
         /// <summary>
@@ -165,6 +168,16 @@ namespace Wx3270
         private void Keypad_Activated(object sender, EventArgs e)
         {
             this.keypadCommon.Activated(sender, e);
+        }
+
+        /// <summary>
+        /// The keypad is being deactivated.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void Keypad_Deactivate(object sender, EventArgs e)
+        {
+            this.keypadCommon.Deactivated(sender, e);
         }
     }
 }

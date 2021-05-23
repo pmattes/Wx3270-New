@@ -1631,6 +1631,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "wx3270 Keypad";
             this.Activated += new System.EventHandler(this.Keypad_Activated);
+            this.Deactivate += new System.EventHandler(this.Keypad_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Keypad_FormClosing);
             this.Enter += new System.EventHandler(this.Keypad_Enter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Keypad_KeyDown);
