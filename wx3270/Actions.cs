@@ -121,7 +121,6 @@ namespace Wx3270
 
             if (this.app.Restricted(Restrictions.Prompt))
             {
-                this.promptButton.RemoveFromParent();
                 this.promptLabel.RemoveFromParent();
             }
 
@@ -862,42 +861,22 @@ namespace Wx3270
                 }
             }
 
-            foreach (var control in ChildControls(element.Parent).Where(c => c != element))
+            foreach (var control in ChildControls(element.Parent).Where(c => c != element && (string)c.Tag == tag && c.Enabled))
             {
-                if ((string)control.Tag == tag)
+                if (control is CheckBox checkBox)
                 {
-                    if (!control.Enabled)
+                    checkBox.Checked = !checkBox.Checked;
+                }
+                else if (control is RadioButton radioButton)
+                {
+                    if (!radioButton.Checked)
                     {
-                        return;
-                    }
-
-                    var active = true;
-                    if (control is Button || control is NoSelectButton)
-                    {
-                    }
-                    else if (control is CheckBox checkBox)
-                    {
-                        checkBox.Checked = !checkBox.Checked;
-                    }
-                    else if (control is RadioButton radioButton)
-                    {
-                        if (!radioButton.Checked)
-                        {
-                            radioButton.Checked = true;
-                        }
-                    }
-                    else
-                    {
-                        active = false;
-                    }
-
-                    if (active)
-                    {
-                        click?.Invoke(this, new object[] { control, e });
-                        break;
+                        radioButton.Checked = true;
                     }
                 }
             }
+
+            click?.Invoke(this, new object[] { sender, e });
         }
 
         /// <summary>
