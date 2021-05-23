@@ -45,7 +45,7 @@
             this.undoButton = new Wx3270.NoSelectButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
-            this.recordButton = new System.Windows.Forms.Button();
+            this.recordButton = new Wx3270.NoSelectButton();
             this.contextMenuStrip1.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
@@ -267,6 +267,6 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.PictureBox helpPictureBox;
-        private System.Windows.Forms.Button recordButton;
+        private Wx3270.NoSelectButton recordButton;
     }
 }
