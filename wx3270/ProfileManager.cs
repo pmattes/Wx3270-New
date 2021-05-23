@@ -1138,6 +1138,9 @@ namespace Wx3270
                 ErrorBox.Show(warning, I18n.Get(Title.ProfileLoad), MessageBoxIcon.Warning);
             }
 
+            // Pending macro recordings are a disaster waiting to happen when we switch profiles.
+            this.App.MacroRecorder.Abort();
+
             // Close the previous profile.
             this.Close(previous);
 
