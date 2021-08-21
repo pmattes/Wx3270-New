@@ -96,6 +96,7 @@ namespace Wx3270
                 this.macroAddButton.RemoveFromParent();
                 this.macroRemoveButton.RemoveFromParent();
                 this.macroEditButton.RemoveFromParent();
+                this.recordButton.RemoveFromParent();
 
                 this.editToolStripMenuItem.RemoveFromOwner();
                 this.deleteToolStripMenuItem.RemoveFromOwner();

@@ -58,9 +58,14 @@ namespace Wx3270
         ModifyHost = 0x100,
 
         /// <summary>
+        /// Change any settings.
+        /// </summary>
+        ChangeSettings = 0x200,
+
+        /// <summary>
         /// Disallow everything.
         /// </summary>
-        All = FileTransfer | ModifyProfiles | Tracing | Prompt | ExternalFiles | SwitchProfile | NewWindow | ModifyHost,
+        All = FileTransfer | ModifyProfiles | Tracing | Prompt | ExternalFiles | SwitchProfile | NewWindow | ChangeSettings | ModifyHost,
     }
 
     /// <summary>

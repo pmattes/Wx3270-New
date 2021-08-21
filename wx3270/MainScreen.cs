@@ -918,6 +918,11 @@ namespace Wx3270
                 this.quickConnectMenuItem.RemoveFromOwner();
             }
 
+            if (this.App.Restricted(Restrictions.ChangeSettings))
+            {
+                this.SettingsBox.RemoveFromParent();
+            }
+
             // Localize.
             I18n.Localize(this, this.toolTip1);
             this.InitOiaLocalization();

@@ -17,8 +17,8 @@ namespace Wx3270
         /// <summary>
         /// Join folder names in a tree node's path.
         /// </summary>
-        /// <param name="treeNode">Tree node</param>
-        /// <returns>Joined path</returns>
+        /// <param name="treeNode">Tree node.</param>
+        /// <returns>Joined path.</returns>
         /// <remarks>
         /// This is used as the name of each TreeView node. It compresses folder nodes into a single component,
         /// separated by the TreeView's separator character '*' from the optional profile and host names.
@@ -47,16 +47,19 @@ namespace Wx3270
         /// <summary>
         /// Remove a control from a parent.
         /// </summary>
-        /// <param name="control">Control to remove</param>
+        /// <param name="control">Control to remove.</param>
         public static void RemoveFromParent(this Control control)
         {
-            control.Parent.Controls.Remove(control);
+            if (control.Parent != null)
+            {
+                control.Parent.Controls.Remove(control);
+            }
         }
 
         /// <summary>
         /// Remove a tool strip menu item from its owner.
         /// </summary>
-        /// <param name="item">Item to remove</param>
+        /// <param name="item">Item to remove.</param>
         public static void RemoveFromOwner(this ToolStripMenuItem item)
         {
             var owner = (ContextMenuStrip)item.Owner;

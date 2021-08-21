@@ -121,6 +121,7 @@ namespace Wx3270
 
             if (this.app.Restricted(Restrictions.Prompt))
             {
+                this.promptPictureBox.RemoveFromParent();
                 this.promptLabel.RemoveFromParent();
             }
 
@@ -128,13 +129,23 @@ namespace Wx3270
 
             if (this.app.Restricted(Restrictions.ExternalFiles))
             {
+                this.tracePictureBox.RemoveFromParent();
                 this.traceCheckBox.RemoveFromParent();
+                this.tracePr3287PictureBox.RemoveFromParent();
                 this.tracePr3287CheckBox.RemoveFromParent(); // How do we prevent pr3287 command line tracing?
+                this.uiTracePictureBox.RemoveFromParent();
                 this.uiTraceCheckBox.RemoveFromParent();
                 this.uiTraceCheckedListBox.RemoveFromParent();
             }
 
-            if (!this.app.Restricted(Restrictions.ExternalFiles))
+            if (this.app.Restricted(Restrictions.ChangeSettings))
+            {
+                this.visibleControlPictureBox.RemoveFromParent();
+                this.visibleControlCheckBox.RemoveFromParent();
+                this.controlCharDocButton.RemoveFromParent();
+            }
+
+            if (this.app.Allowed(Restrictions.ExternalFiles))
             {
                 this.uiTraceCheckBox.Checked = Trace.Flags != Trace.Type.None;
                 this.uiTraceCheckedListBox.Items.Add(Trace.Type.All, Trace.Flags == Trace.Type.All);
@@ -324,7 +335,7 @@ namespace Wx3270
                 case B3270.Setting.ScreenTrace:
                     this.traceScreenCheckBox.Checked = settingDictionary.TryGetValue(B3270.Setting.ScreenTrace, out bool screenTrace) && screenTrace;
                     this.traceScreenCheckBox.Enabled = true;
-                    this.fileRadioButton.Enabled = !screenTrace;
+                    this.fileRadioButton.Enabled = !screenTrace && this.app.Allowed(Restrictions.ExternalFiles);
                     this.printerRadioButton.Enabled = !screenTrace;
                     break;
             }
@@ -595,7 +606,7 @@ namespace Wx3270
                             this.traceScreenCheckBox.Checked = false;
                             this.traceScreenCheckBox.Enabled = true;
                             this.printerRadioButton.Enabled = true;
-                            this.fileRadioButton.Enabled = true;
+                            this.fileRadioButton.Enabled = this.app.Allowed(Restrictions.ExternalFiles);
                         }
                     });
             }
