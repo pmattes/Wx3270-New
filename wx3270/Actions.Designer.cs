@@ -35,13 +35,13 @@
             this.actionsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.screenImagesGroupBox = new System.Windows.Forms.GroupBox();
             this.screenImagesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.printScreenLabel = new System.Windows.Forms.Label();
             this.printScreenPictureBox = new System.Windows.Forms.PictureBox();
             this.screenTraceTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.toPrinterPictureBox = new System.Windows.Forms.PictureBox();
             this.toFilePictureBox = new System.Windows.Forms.PictureBox();
             this.printerRadioButton = new System.Windows.Forms.RadioButton();
             this.fileRadioButton = new System.Windows.Forms.RadioButton();
-            this.printScreenLabel = new System.Windows.Forms.Label();
             this.traceScreenCheckBox = new System.Windows.Forms.CheckBox();
             this.screenTracingPictureBox = new System.Windows.Forms.PictureBox();
             this.debuggingGroupBox = new System.Windows.Forms.GroupBox();
@@ -306,6 +306,19 @@
             this.screenImagesTableLayoutPanel.Size = new System.Drawing.Size(473, 127);
             this.screenImagesTableLayoutPanel.TabIndex = 131;
             // 
+            // printScreenLabel
+            // 
+            this.printScreenLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.printScreenLabel.AutoSize = true;
+            this.printScreenLabel.Location = new System.Drawing.Point(33, 8);
+            this.printScreenLabel.Name = "printScreenLabel";
+            this.printScreenLabel.Size = new System.Drawing.Size(184, 13);
+            this.printScreenLabel.TabIndex = 121;
+            this.printScreenLabel.Tag = "printScreen";
+            this.printScreenLabel.Text = "Send a screen snapshot to the printer";
+            this.printScreenLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.printScreenLabel.Click += new System.EventHandler(this.AssociatedClick);
+            // 
             // printScreenPictureBox
             // 
             this.printScreenPictureBox.Image = global::Wx3270.Properties.Resources.printout_small;
@@ -387,19 +400,6 @@
             this.fileRadioButton.Tag = "File";
             this.fileRadioButton.Text = "Save to file";
             this.fileRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // printScreenLabel
-            // 
-            this.printScreenLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.printScreenLabel.AutoSize = true;
-            this.printScreenLabel.Location = new System.Drawing.Point(33, 8);
-            this.printScreenLabel.Name = "printScreenLabel";
-            this.printScreenLabel.Size = new System.Drawing.Size(184, 13);
-            this.printScreenLabel.TabIndex = 121;
-            this.printScreenLabel.Tag = "printScreen";
-            this.printScreenLabel.Text = "Send a screen snapshot to the printer";
-            this.printScreenLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.printScreenLabel.Click += new System.EventHandler(this.AssociatedClick);
             // 
             // traceScreenCheckBox
             // 

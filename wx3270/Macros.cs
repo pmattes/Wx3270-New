@@ -102,6 +102,11 @@ namespace Wx3270
                 this.deleteToolStripMenuItem.RemoveFromOwner();
             }
 
+            if (app.Restricted(Restrictions.GetHelp))
+            {
+                this.helpPictureBox.RemoveFromParent();
+            }
+
             // Localize.
             I18n.Localize(this, this.toolTip1);
         }

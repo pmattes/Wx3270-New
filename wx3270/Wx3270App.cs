@@ -338,6 +338,16 @@ namespace Wx3270
         public MacroRecorder MacroRecorder { get; } = new MacroRecorder();
 
         /// <summary>
+        /// Gets a value indicating whether the window should start out maximized.
+        /// </summary>
+        public bool Maximize { get; private set; }
+
+        /// <summary>
+        /// Gets a value indicating whether the window should omit the border.
+        /// </summary>
+        public bool NoBorder { get; private set; }
+
+        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]
@@ -474,6 +484,12 @@ namespace Wx3270
                                 Usage($"Invalid location '{args[i]}' -- {e.Message}");
                             }
 
+                            break;
+                        case Constants.Option.Maximize:
+                            this.Maximize = true;
+                            break;
+                        case Constants.Option.NoBorder:
+                            this.NoBorder = true;
                             break;
                         case Constants.Option.NoProfile:
                             this.NoProfileMode = true;

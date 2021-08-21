@@ -277,6 +277,11 @@ namespace Wx3270
                 this.commonEditButton.RemoveFromParent();
             }
 
+            if (app.Restricted(Restrictions.GetHelp))
+            {
+                this.helpPictureBox.RemoveFromParent();
+            }
+
             // There may be nothing left of the common group box.
             if (this.commonFlowLayoutPanel.Controls.OfType<Button>().Count() == 0)
             {

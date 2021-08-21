@@ -923,6 +923,32 @@ namespace Wx3270
                 this.SettingsBox.RemoveFromParent();
             }
 
+            if (this.App.Restricted(Restrictions.Prompt))
+            {
+                this.x3270PromptToolStripMenuItem.RemoveFromOwner();
+            }
+
+            if (this.App.Restricted(Restrictions.FileTransfer))
+            {
+                this.fileTransferMenuItem.RemoveFromOwner();
+            }
+
+            if (this.App.Restricted(Restrictions.ExternalFiles))
+            {
+                this.tracingToolStripMenuItem.RemoveFromOwner();
+                this.saveToFileToolStripMenuItem.RemoveFromOwner();
+            }
+
+            if (this.App.Restricted(Restrictions.ChangeSettings))
+            {
+                this.controlCharsMenuItem.RemoveFromOwner();
+            }
+
+            if (this.App.Restricted(Restrictions.GetHelp))
+            {
+                this.helpPictureBox.RemoveFromParent();
+            }
+
             // Localize.
             I18n.Localize(this, this.toolTip1);
             this.InitOiaLocalization();
@@ -942,6 +968,19 @@ namespace Wx3270
                 // Toggling topmost on and off brings this window to the top, but does not force it to stay there.
                 this.TopMost = true;
                 this.TopMost = false;
+            }
+
+            // Handle maxmimized and no-border options.
+            if (this.App.Maximize)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+
+            if (this.App.NoBorder)
+            {
+                this.ControlBox = false;
+                this.FormBorderStyle = FormBorderStyle.None;
+                this.snapBox.RemoveFromParent();
             }
         }
 

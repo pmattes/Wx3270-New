@@ -62,10 +62,9 @@ namespace Wx3270
         /// <param name="item">Item to remove.</param>
         public static void RemoveFromOwner(this ToolStripMenuItem item)
         {
-            var owner = (ContextMenuStrip)item.Owner;
-            if (owner != null)
+            if (item.Owner != null)
             {
-                owner.Items.Remove(item);
+                item.Owner.Items.Remove(item);
             }
         }
     }

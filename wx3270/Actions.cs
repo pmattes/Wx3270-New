@@ -159,6 +159,14 @@ namespace Wx3270
                 this.uiTraceCheckedListBox.ItemCheck += new ItemCheckEventHandler(this.UiTraceCheckedListBox_ItemCheck);
             }
 
+            if (this.app.Restricted(Restrictions.GetHelp))
+            {
+                this.helpPictureBox.RemoveFromParent();
+                this.helpPictureBox2.RemoveFromParent();
+                this.helpPictureBox3.RemoveFromParent();
+                this.helpPictureBox4.RemoveFromParent();
+            }
+
             // Localize.
             I18n.Localize(this, this.toolTip1);
             I18n.LocalizeGlobal(Title.ReEnableKeyboard, "Re-Enable Keyboard");

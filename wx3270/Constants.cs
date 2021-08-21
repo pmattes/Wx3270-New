@@ -63,9 +63,14 @@ namespace Wx3270
         ChangeSettings = 0x200,
 
         /// <summary>
+        /// Get help.
+        /// </summary>
+        GetHelp = 0x400,
+
+        /// <summary>
         /// Disallow everything.
         /// </summary>
-        All = FileTransfer | ModifyProfiles | Tracing | Prompt | ExternalFiles | SwitchProfile | NewWindow | ChangeSettings | ModifyHost,
+        All = FileTransfer | ModifyProfiles | Tracing | Prompt | ExternalFiles | SwitchProfile | NewWindow | ModifyHost | ChangeSettings | GetHelp,
     }
 
     /// <summary>
@@ -76,7 +81,7 @@ namespace Wx3270
         /// <summary>
         /// The copyright message.
         /// </summary>
-        public const string Copyright = @"Copyright © 2016-2020 Paul Mattes.
+        public const string Copyright = @"Copyright © 2016-2021 Paul Mattes.
 All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -143,6 +148,16 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             /// The initial window location option.
             /// </summary>
             public const string Location = "-location";
+
+            /// <summary>
+            /// The window maximize option.
+            /// </summary>
+            public const string Maximize = "-maximize";
+
+            /// <summary>
+            /// The no-border option.
+            /// </summary>
+            public const string NoBorder = "-noborder";
 
             /// <summary>
             /// The no-profile option.
