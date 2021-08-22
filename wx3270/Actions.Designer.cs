@@ -53,7 +53,6 @@
             this.visibleControlFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.visibleControlPictureBox = new System.Windows.Forms.PictureBox();
             this.visibleControlCheckBox = new System.Windows.Forms.CheckBox();
-            this.controlCharDocButton = new Wx3270.NoSelectButton();
             this.uiTracePanel = new System.Windows.Forms.Panel();
             this.uiTraceFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
@@ -86,6 +85,10 @@
             this.guiCopyrightTextBox = new System.Windows.Forms.TextBox();
             this.guiVersionLabel = new System.Windows.Forms.Label();
             this.statusTab = new System.Windows.Forms.TabPage();
+            this.hostCertificateGroupBox = new System.Windows.Forms.GroupBox();
+            this.hostCertificateTextBox = new System.Windows.Forms.TextBox();
+            this.tlsSessionGroupBox = new System.Windows.Forms.GroupBox();
+            this.tlsSessionTextBox = new System.Windows.Forms.TextBox();
             this.helpPictureBox3 = new System.Windows.Forms.PictureBox();
             this.statusGroupBox = new System.Windows.Forms.GroupBox();
             this.statusLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -112,7 +115,6 @@
             this.recordsReceivedValueLabel = new System.Windows.Forms.Label();
             this.bytesReceivedValueLabel = new System.Windows.Forms.Label();
             this.fileTransferTab = new System.Windows.Forms.TabPage();
-            this.copyActionButton = new Wx3270.NoSelectButton();
             this.modeBox = new System.Windows.Forms.GroupBox();
             this.modeBinaryButton = new System.Windows.Forms.RadioButton();
             this.modeAsciiButton = new System.Windows.Forms.RadioButton();
@@ -161,13 +163,10 @@
             this.filesBox = new System.Windows.Forms.GroupBox();
             this.fileLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.hostFileTextBox = new System.Windows.Forms.TextBox();
-            this.fileTransferBrowseButton = new Wx3270.NoSelectButton();
             this.localFileLabel = new System.Windows.Forms.Label();
             this.localFileTextBox = new System.Windows.Forms.TextBox();
             this.hostFileLabel = new System.Windows.Forms.Label();
             this.helpPictureBox4 = new System.Windows.Forms.PictureBox();
-            this.fileTransferClearFormButton = new Wx3270.NoSelectButton();
-            this.transferButton = new Wx3270.NoSelectButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.transferLocalFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.connectionTimer = new System.Windows.Forms.Timer(this.components);
@@ -175,12 +174,11 @@
             this.screenTraceFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.localizationFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.ftPopdownTimer = new System.Windows.Forms.Timer(this.components);
-            this.tlsSessionLabel = new System.Windows.Forms.Label();
-            this.tlsStateValueLabel = new System.Windows.Forms.Label();
-            this.tlsGroupBox = new System.Windows.Forms.GroupBox();
-            this.tlsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.hostCertLabel = new System.Windows.Forms.Label();
-            this.hostCertValueLabel = new System.Windows.Forms.Label();
+            this.controlCharDocButton = new Wx3270.NoSelectButton();
+            this.copyActionButton = new Wx3270.NoSelectButton();
+            this.fileTransferBrowseButton = new Wx3270.NoSelectButton();
+            this.fileTransferClearFormButton = new Wx3270.NoSelectButton();
+            this.transferButton = new Wx3270.NoSelectButton();
             this.actionsTabs.SuspendLayout();
             this.actionsTab.SuspendLayout();
             this.actionsTableLayoutPanel.SuspendLayout();
@@ -216,6 +214,8 @@
             this.tlsLayoutPanel.SuspendLayout();
             this.guiAboutGroupBox.SuspendLayout();
             this.statusTab.SuspendLayout();
+            this.hostCertificateGroupBox.SuspendLayout();
+            this.tlsSessionGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).BeginInit();
             this.statusGroupBox.SuspendLayout();
             this.statusLayoutPanel.SuspendLayout();
@@ -235,8 +235,6 @@
             this.fileLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).BeginInit();
             this.borderPanel.SuspendLayout();
-            this.tlsGroupBox.SuspendLayout();
-            this.tlsTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // actionsTabs
@@ -553,18 +551,6 @@
             this.visibleControlCheckBox.Text = "Make 3270 fields and control characters visible";
             this.visibleControlCheckBox.UseVisualStyleBackColor = true;
             this.visibleControlCheckBox.Click += new System.EventHandler(this.VisibleControlCheckBox_Clicked);
-            // 
-            // controlCharDocButton
-            // 
-            this.controlCharDocButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.controlCharDocButton.Location = new System.Drawing.Point(287, 3);
-            this.controlCharDocButton.Name = "controlCharDocButton";
-            this.controlCharDocButton.Size = new System.Drawing.Size(75, 23);
-            this.controlCharDocButton.TabIndex = 10;
-            this.controlCharDocButton.TabStop = false;
-            this.controlCharDocButton.Text = "View Codes";
-            this.controlCharDocButton.UseVisualStyleBackColor = true;
-            this.controlCharDocButton.Click += new System.EventHandler(this.ControlCharDocButton_Click);
             // 
             // uiTracePanel
             // 
@@ -946,7 +932,8 @@
             // 
             // statusTab
             // 
-            this.statusTab.Controls.Add(this.tlsGroupBox);
+            this.statusTab.Controls.Add(this.hostCertificateGroupBox);
+            this.statusTab.Controls.Add(this.tlsSessionGroupBox);
             this.statusTab.Controls.Add(this.helpPictureBox3);
             this.statusTab.Controls.Add(this.statusGroupBox);
             this.statusTab.Location = new System.Drawing.Point(4, 22);
@@ -955,6 +942,47 @@
             this.statusTab.TabIndex = 2;
             this.statusTab.Text = "Status";
             this.statusTab.UseVisualStyleBackColor = true;
+            // 
+            // hostCertificateGroupBox
+            // 
+            this.hostCertificateGroupBox.Controls.Add(this.hostCertificateTextBox);
+            this.hostCertificateGroupBox.Enabled = false;
+            this.hostCertificateGroupBox.Location = new System.Drawing.Point(7, 376);
+            this.hostCertificateGroupBox.Name = "hostCertificateGroupBox";
+            this.hostCertificateGroupBox.Size = new System.Drawing.Size(645, 117);
+            this.hostCertificateGroupBox.TabIndex = 128;
+            this.hostCertificateGroupBox.TabStop = false;
+            this.hostCertificateGroupBox.Text = "TLS Host Certificate";
+            // 
+            // hostCertificateTextBox
+            // 
+            this.hostCertificateTextBox.Location = new System.Drawing.Point(6, 20);
+            this.hostCertificateTextBox.Multiline = true;
+            this.hostCertificateTextBox.Name = "hostCertificateTextBox";
+            this.hostCertificateTextBox.ReadOnly = true;
+            this.hostCertificateTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.hostCertificateTextBox.Size = new System.Drawing.Size(633, 86);
+            this.hostCertificateTextBox.TabIndex = 0;
+            // 
+            // tlsSessionGroupBox
+            // 
+            this.tlsSessionGroupBox.Controls.Add(this.tlsSessionTextBox);
+            this.tlsSessionGroupBox.Location = new System.Drawing.Point(7, 258);
+            this.tlsSessionGroupBox.Name = "tlsSessionGroupBox";
+            this.tlsSessionGroupBox.Size = new System.Drawing.Size(645, 112);
+            this.tlsSessionGroupBox.TabIndex = 127;
+            this.tlsSessionGroupBox.TabStop = false;
+            this.tlsSessionGroupBox.Text = "TLS Session";
+            // 
+            // tlsSessionTextBox
+            // 
+            this.tlsSessionTextBox.Location = new System.Drawing.Point(6, 19);
+            this.tlsSessionTextBox.Multiline = true;
+            this.tlsSessionTextBox.Name = "tlsSessionTextBox";
+            this.tlsSessionTextBox.ReadOnly = true;
+            this.tlsSessionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tlsSessionTextBox.Size = new System.Drawing.Size(633, 86);
+            this.tlsSessionTextBox.TabIndex = 1;
             // 
             // helpPictureBox3
             // 
@@ -972,6 +1000,7 @@
             // statusGroupBox
             // 
             this.statusGroupBox.Controls.Add(this.statusLayoutPanel);
+            this.statusGroupBox.Enabled = false;
             this.statusGroupBox.Location = new System.Drawing.Point(7, 7);
             this.statusGroupBox.Name = "statusGroupBox";
             this.statusGroupBox.Size = new System.Drawing.Size(645, 245);
@@ -1007,7 +1036,6 @@
             this.statusLayoutPanel.Controls.Add(this.bytesReceivedLabel, 0, 7);
             this.statusLayoutPanel.Controls.Add(this.recordsReceivedValueLabel, 1, 8);
             this.statusLayoutPanel.Controls.Add(this.bytesReceivedValueLabel, 1, 7);
-            this.statusLayoutPanel.Enabled = false;
             this.statusLayoutPanel.Location = new System.Drawing.Point(6, 19);
             this.statusLayoutPanel.Name = "statusLayoutPanel";
             this.statusLayoutPanel.RowCount = 11;
@@ -1278,19 +1306,6 @@
             this.fileTransferTab.TabIndex = 3;
             this.fileTransferTab.Text = "File Transfer";
             this.fileTransferTab.UseVisualStyleBackColor = true;
-            // 
-            // copyActionButton
-            // 
-            this.copyActionButton.Enabled = false;
-            this.copyActionButton.Location = new System.Drawing.Point(467, 499);
-            this.copyActionButton.Name = "copyActionButton";
-            this.copyActionButton.Size = new System.Drawing.Size(75, 23);
-            this.copyActionButton.TabIndex = 128;
-            this.copyActionButton.TabStop = false;
-            this.copyActionButton.Text = "Copy Action";
-            this.toolTip1.SetToolTip(this.copyActionButton, "Copy Transfer() action to clipboard");
-            this.copyActionButton.UseVisualStyleBackColor = true;
-            this.copyActionButton.Click += new System.EventHandler(this.CopyActionButton_Click);
             // 
             // modeBox
             // 
@@ -1864,18 +1879,6 @@
             this.hostFileTextBox.TextChanged += new System.EventHandler(this.FileTransferOptionChanged);
             this.hostFileTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.HostFileTextBox_Validating);
             // 
-            // fileTransferBrowseButton
-            // 
-            this.fileTransferBrowseButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.fileTransferBrowseButton.Location = new System.Drawing.Point(350, 3);
-            this.fileTransferBrowseButton.Name = "fileTransferBrowseButton";
-            this.fileTransferBrowseButton.Size = new System.Drawing.Size(75, 22);
-            this.fileTransferBrowseButton.TabIndex = 1;
-            this.fileTransferBrowseButton.TabStop = false;
-            this.fileTransferBrowseButton.Text = "Browse";
-            this.fileTransferBrowseButton.UseVisualStyleBackColor = true;
-            this.fileTransferBrowseButton.Click += new System.EventHandler(this.LocalFileTextBox_Click);
-            // 
             // localFileLabel
             // 
             this.localFileLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -1919,30 +1922,6 @@
             this.toolTip1.SetToolTip(this.helpPictureBox4, "Get help");
             this.helpPictureBox4.Click += new System.EventHandler(this.Help_Clicked);
             // 
-            // fileTransferClearFormButton
-            // 
-            this.fileTransferClearFormButton.CausesValidation = false;
-            this.fileTransferClearFormButton.Location = new System.Drawing.Point(386, 499);
-            this.fileTransferClearFormButton.Name = "fileTransferClearFormButton";
-            this.fileTransferClearFormButton.Size = new System.Drawing.Size(75, 23);
-            this.fileTransferClearFormButton.TabIndex = 10;
-            this.fileTransferClearFormButton.TabStop = false;
-            this.fileTransferClearFormButton.Text = "Reset Form";
-            this.fileTransferClearFormButton.UseVisualStyleBackColor = true;
-            this.fileTransferClearFormButton.Click += new System.EventHandler(this.FileTransferClearFormButton_Click);
-            // 
-            // transferButton
-            // 
-            this.transferButton.Enabled = false;
-            this.transferButton.Location = new System.Drawing.Point(548, 499);
-            this.transferButton.Name = "transferButton";
-            this.transferButton.Size = new System.Drawing.Size(75, 23);
-            this.transferButton.TabIndex = 9;
-            this.transferButton.TabStop = false;
-            this.transferButton.Text = "Transfer";
-            this.transferButton.UseVisualStyleBackColor = true;
-            this.transferButton.Click += new System.EventHandler(this.TransferButton_Click);
-            // 
             // transferLocalFileDialog
             // 
             this.transferLocalFileDialog.CheckFileExists = false;
@@ -1982,73 +1961,66 @@
             // 
             this.ftPopdownTimer.Interval = 5000;
             // 
-            // tlsSessionLabel
+            // controlCharDocButton
             // 
-            this.tlsSessionLabel.AutoSize = true;
-            this.tlsSessionLabel.Location = new System.Drawing.Point(3, 3);
-            this.tlsSessionLabel.Margin = new System.Windows.Forms.Padding(3);
-            this.tlsSessionLabel.Name = "tlsSessionLabel";
-            this.tlsSessionLabel.Size = new System.Drawing.Size(44, 13);
-            this.tlsSessionLabel.TabIndex = 7;
-            this.tlsSessionLabel.Text = "Session";
+            this.controlCharDocButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.controlCharDocButton.Location = new System.Drawing.Point(287, 3);
+            this.controlCharDocButton.Name = "controlCharDocButton";
+            this.controlCharDocButton.Size = new System.Drawing.Size(75, 23);
+            this.controlCharDocButton.TabIndex = 10;
+            this.controlCharDocButton.TabStop = false;
+            this.controlCharDocButton.Text = "View Codes";
+            this.controlCharDocButton.UseVisualStyleBackColor = true;
+            this.controlCharDocButton.Click += new System.EventHandler(this.ControlCharDocButton_Click);
             // 
-            // tlsStateValueLabel
+            // copyActionButton
             // 
-            this.tlsStateValueLabel.AutoSize = true;
-            this.tlsStateValueLabel.Location = new System.Drawing.Point(87, 3);
-            this.tlsStateValueLabel.Margin = new System.Windows.Forms.Padding(3);
-            this.tlsStateValueLabel.Name = "tlsStateValueLabel";
-            this.tlsStateValueLabel.Size = new System.Drawing.Size(36, 13);
-            this.tlsStateValueLabel.TabIndex = 8;
-            this.tlsStateValueLabel.Text = "`None";
+            this.copyActionButton.Enabled = false;
+            this.copyActionButton.Location = new System.Drawing.Point(467, 499);
+            this.copyActionButton.Name = "copyActionButton";
+            this.copyActionButton.Size = new System.Drawing.Size(75, 23);
+            this.copyActionButton.TabIndex = 128;
+            this.copyActionButton.TabStop = false;
+            this.copyActionButton.Text = "Copy Action";
+            this.toolTip1.SetToolTip(this.copyActionButton, "Copy Transfer() action to clipboard");
+            this.copyActionButton.UseVisualStyleBackColor = true;
+            this.copyActionButton.Click += new System.EventHandler(this.CopyActionButton_Click);
             // 
-            // tlsGroupBox
+            // fileTransferBrowseButton
             // 
-            this.tlsGroupBox.Controls.Add(this.tlsTableLayoutPanel);
-            this.tlsGroupBox.Location = new System.Drawing.Point(7, 258);
-            this.tlsGroupBox.Name = "tlsGroupBox";
-            this.tlsGroupBox.Size = new System.Drawing.Size(645, 235);
-            this.tlsGroupBox.TabIndex = 127;
-            this.tlsGroupBox.TabStop = false;
-            this.tlsGroupBox.Text = "TLS Status";
+            this.fileTransferBrowseButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.fileTransferBrowseButton.Location = new System.Drawing.Point(350, 3);
+            this.fileTransferBrowseButton.Name = "fileTransferBrowseButton";
+            this.fileTransferBrowseButton.Size = new System.Drawing.Size(75, 22);
+            this.fileTransferBrowseButton.TabIndex = 1;
+            this.fileTransferBrowseButton.TabStop = false;
+            this.fileTransferBrowseButton.Text = "Browse";
+            this.fileTransferBrowseButton.UseVisualStyleBackColor = true;
+            this.fileTransferBrowseButton.Click += new System.EventHandler(this.LocalFileTextBox_Click);
             // 
-            // tlsTableLayoutPanel
+            // fileTransferClearFormButton
             // 
-            this.tlsTableLayoutPanel.AutoSize = true;
-            this.tlsTableLayoutPanel.ColumnCount = 2;
-            this.tlsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 403F));
-            this.tlsTableLayoutPanel.Controls.Add(this.tlsSessionLabel, 0, 0);
-            this.tlsTableLayoutPanel.Controls.Add(this.tlsStateValueLabel, 1, 0);
-            this.tlsTableLayoutPanel.Controls.Add(this.hostCertLabel, 0, 1);
-            this.tlsTableLayoutPanel.Controls.Add(this.hostCertValueLabel, 1, 1);
-            this.tlsTableLayoutPanel.Location = new System.Drawing.Point(7, 20);
-            this.tlsTableLayoutPanel.Name = "tlsTableLayoutPanel";
-            this.tlsTableLayoutPanel.RowCount = 2;
-            this.tlsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlsTableLayoutPanel.Size = new System.Drawing.Size(499, 38);
-            this.tlsTableLayoutPanel.TabIndex = 0;
+            this.fileTransferClearFormButton.CausesValidation = false;
+            this.fileTransferClearFormButton.Location = new System.Drawing.Point(386, 499);
+            this.fileTransferClearFormButton.Name = "fileTransferClearFormButton";
+            this.fileTransferClearFormButton.Size = new System.Drawing.Size(75, 23);
+            this.fileTransferClearFormButton.TabIndex = 10;
+            this.fileTransferClearFormButton.TabStop = false;
+            this.fileTransferClearFormButton.Text = "Reset Form";
+            this.fileTransferClearFormButton.UseVisualStyleBackColor = true;
+            this.fileTransferClearFormButton.Click += new System.EventHandler(this.FileTransferClearFormButton_Click);
             // 
-            // hostCertLabel
+            // transferButton
             // 
-            this.hostCertLabel.AutoSize = true;
-            this.hostCertLabel.Location = new System.Drawing.Point(3, 22);
-            this.hostCertLabel.Margin = new System.Windows.Forms.Padding(3);
-            this.hostCertLabel.Name = "hostCertLabel";
-            this.hostCertLabel.Size = new System.Drawing.Size(78, 13);
-            this.hostCertLabel.TabIndex = 9;
-            this.hostCertLabel.Text = "Host certificate";
-            // 
-            // hostCertValueLabel
-            // 
-            this.hostCertValueLabel.AutoSize = true;
-            this.hostCertValueLabel.Location = new System.Drawing.Point(87, 22);
-            this.hostCertValueLabel.Margin = new System.Windows.Forms.Padding(3);
-            this.hostCertValueLabel.Name = "hostCertValueLabel";
-            this.hostCertValueLabel.Size = new System.Drawing.Size(36, 13);
-            this.hostCertValueLabel.TabIndex = 10;
-            this.hostCertValueLabel.Text = "`None";
+            this.transferButton.Enabled = false;
+            this.transferButton.Location = new System.Drawing.Point(548, 499);
+            this.transferButton.Name = "transferButton";
+            this.transferButton.Size = new System.Drawing.Size(75, 23);
+            this.transferButton.TabIndex = 9;
+            this.transferButton.TabStop = false;
+            this.transferButton.Text = "Transfer";
+            this.transferButton.UseVisualStyleBackColor = true;
+            this.transferButton.Click += new System.EventHandler(this.TransferButton_Click);
             // 
             // Actions
             // 
@@ -2122,6 +2094,10 @@
             this.guiAboutGroupBox.ResumeLayout(false);
             this.guiAboutGroupBox.PerformLayout();
             this.statusTab.ResumeLayout(false);
+            this.hostCertificateGroupBox.ResumeLayout(false);
+            this.hostCertificateGroupBox.PerformLayout();
+            this.tlsSessionGroupBox.ResumeLayout(false);
+            this.tlsSessionGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox3)).EndInit();
             this.statusGroupBox.ResumeLayout(false);
             this.statusLayoutPanel.ResumeLayout(false);
@@ -2153,10 +2129,6 @@
             this.fileLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).EndInit();
             this.borderPanel.ResumeLayout(false);
-            this.tlsGroupBox.ResumeLayout(false);
-            this.tlsGroupBox.PerformLayout();
-            this.tlsTableLayoutPanel.ResumeLayout(false);
-            this.tlsTableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2308,11 +2280,9 @@
         private System.Windows.Forms.TableLayoutPanel screenImagesTableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel screenTraceTableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel actionsTableLayoutPanel;
-        private System.Windows.Forms.Label tlsStateValueLabel;
-        private System.Windows.Forms.Label tlsSessionLabel;
-        private System.Windows.Forms.GroupBox tlsGroupBox;
-        private System.Windows.Forms.TableLayoutPanel tlsTableLayoutPanel;
-        private System.Windows.Forms.Label hostCertLabel;
-        private System.Windows.Forms.Label hostCertValueLabel;
+        private System.Windows.Forms.GroupBox tlsSessionGroupBox;
+        private System.Windows.Forms.GroupBox hostCertificateGroupBox;
+        private System.Windows.Forms.TextBox hostCertificateTextBox;
+        private System.Windows.Forms.TextBox tlsSessionTextBox;
     }
 }

@@ -85,9 +85,9 @@ namespace Wx3270
             this.app.ConnectAttempt.Add(this.mainScreen, this.OnConnectAttempt);
 
             this.app.BackEnd.Register(this.tlsState = new TlsState());
-            this.tlsStateValueLabel.Text = string.Empty;
-            this.hostCertValueLabel.Text = string.Empty;
-            this.tlsGroupBox.Enabled = false;
+            this.tlsSessionTextBox.Text = string.Empty;
+            this.hostCertificateTextBox.Text = string.Empty;
+            this.tlsSessionGroupBox.Enabled = false;
             this.tlsState.Add(this, this.TlsSessionChanged);
         }
 
@@ -140,7 +140,7 @@ namespace Wx3270
             }
             else
             {
-                this.statusLayoutPanel.Enabled = true;
+                this.statusGroupBox.Enabled = true;
                 this.hostValueLabel.Text = this.app.CurrentHostIp;
                 this.SetTls();
                 if (!this.connectionTimer.Enabled)
@@ -156,7 +156,7 @@ namespace Wx3270
                 this.modeValueLabel.Text = ConnectionNames[state];
             }
 
-            this.statusLayoutPanel.Enabled = connected;
+            this.statusGroupBox.Enabled = connected;
         }
 
         /// <summary>
@@ -175,7 +175,8 @@ namespace Wx3270
                     this.tlsModeValueLabel.Text = I18n.Get(TlsMode.SecureUnverified);
                 }
 
-                this.tlsGroupBox.Enabled = true;
+                this.tlsSessionGroupBox.Enabled = true;
+                this.hostCertificateGroupBox.Enabled = true;
             }
             else
             {
@@ -188,7 +189,8 @@ namespace Wx3270
                     this.tlsModeValueLabel.Text = I18n.Get(TlsMode.NotSecure);
                 }
 
-                this.tlsGroupBox.Enabled = false;
+                this.tlsSessionGroupBox.Enabled = false;
+                this.hostCertificateGroupBox.Enabled = false;
             }
         }
 
@@ -235,8 +237,8 @@ namespace Wx3270
         /// </summary>
         private void TlsSessionChanged()
         {
-            this.tlsStateValueLabel.Text = this.tlsState.SessionInfo;
-            this.hostCertValueLabel.Text = this.tlsState.HostCertificate;
+            this.tlsSessionTextBox.Text = this.tlsState.SessionInfo.Replace("\n", Environment.NewLine);
+            this.hostCertificateTextBox.Text = this.tlsState.HostCertificate.Replace("\n", Environment.NewLine);
         }
 
         /// <summary>
