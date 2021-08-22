@@ -175,6 +175,12 @@
             this.screenTraceFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.localizationFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.ftPopdownTimer = new System.Windows.Forms.Timer(this.components);
+            this.tlsSessionLabel = new System.Windows.Forms.Label();
+            this.tlsStateValueLabel = new System.Windows.Forms.Label();
+            this.tlsGroupBox = new System.Windows.Forms.GroupBox();
+            this.tlsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.hostCertLabel = new System.Windows.Forms.Label();
+            this.hostCertValueLabel = new System.Windows.Forms.Label();
             this.actionsTabs.SuspendLayout();
             this.actionsTab.SuspendLayout();
             this.actionsTableLayoutPanel.SuspendLayout();
@@ -229,6 +235,8 @@
             this.fileLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).BeginInit();
             this.borderPanel.SuspendLayout();
+            this.tlsGroupBox.SuspendLayout();
+            this.tlsTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // actionsTabs
@@ -938,6 +946,7 @@
             // 
             // statusTab
             // 
+            this.statusTab.Controls.Add(this.tlsGroupBox);
             this.statusTab.Controls.Add(this.helpPictureBox3);
             this.statusTab.Controls.Add(this.statusGroupBox);
             this.statusTab.Location = new System.Drawing.Point(4, 22);
@@ -965,7 +974,7 @@
             this.statusGroupBox.Controls.Add(this.statusLayoutPanel);
             this.statusGroupBox.Location = new System.Drawing.Point(7, 7);
             this.statusGroupBox.Name = "statusGroupBox";
-            this.statusGroupBox.Size = new System.Drawing.Size(645, 488);
+            this.statusGroupBox.Size = new System.Drawing.Size(645, 245);
             this.statusGroupBox.TabIndex = 7;
             this.statusGroupBox.TabStop = false;
             this.statusGroupBox.Text = "Connection Status";
@@ -1973,6 +1982,74 @@
             // 
             this.ftPopdownTimer.Interval = 5000;
             // 
+            // tlsSessionLabel
+            // 
+            this.tlsSessionLabel.AutoSize = true;
+            this.tlsSessionLabel.Location = new System.Drawing.Point(3, 3);
+            this.tlsSessionLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.tlsSessionLabel.Name = "tlsSessionLabel";
+            this.tlsSessionLabel.Size = new System.Drawing.Size(44, 13);
+            this.tlsSessionLabel.TabIndex = 7;
+            this.tlsSessionLabel.Text = "Session";
+            // 
+            // tlsStateValueLabel
+            // 
+            this.tlsStateValueLabel.AutoSize = true;
+            this.tlsStateValueLabel.Location = new System.Drawing.Point(87, 3);
+            this.tlsStateValueLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.tlsStateValueLabel.Name = "tlsStateValueLabel";
+            this.tlsStateValueLabel.Size = new System.Drawing.Size(36, 13);
+            this.tlsStateValueLabel.TabIndex = 8;
+            this.tlsStateValueLabel.Text = "`None";
+            // 
+            // tlsGroupBox
+            // 
+            this.tlsGroupBox.Controls.Add(this.tlsTableLayoutPanel);
+            this.tlsGroupBox.Location = new System.Drawing.Point(7, 258);
+            this.tlsGroupBox.Name = "tlsGroupBox";
+            this.tlsGroupBox.Size = new System.Drawing.Size(645, 235);
+            this.tlsGroupBox.TabIndex = 127;
+            this.tlsGroupBox.TabStop = false;
+            this.tlsGroupBox.Text = "TLS Status";
+            // 
+            // tlsTableLayoutPanel
+            // 
+            this.tlsTableLayoutPanel.AutoSize = true;
+            this.tlsTableLayoutPanel.ColumnCount = 2;
+            this.tlsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 403F));
+            this.tlsTableLayoutPanel.Controls.Add(this.tlsSessionLabel, 0, 0);
+            this.tlsTableLayoutPanel.Controls.Add(this.tlsStateValueLabel, 1, 0);
+            this.tlsTableLayoutPanel.Controls.Add(this.hostCertLabel, 0, 1);
+            this.tlsTableLayoutPanel.Controls.Add(this.hostCertValueLabel, 1, 1);
+            this.tlsTableLayoutPanel.Location = new System.Drawing.Point(7, 20);
+            this.tlsTableLayoutPanel.Name = "tlsTableLayoutPanel";
+            this.tlsTableLayoutPanel.RowCount = 2;
+            this.tlsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlsTableLayoutPanel.Size = new System.Drawing.Size(499, 38);
+            this.tlsTableLayoutPanel.TabIndex = 0;
+            // 
+            // hostCertLabel
+            // 
+            this.hostCertLabel.AutoSize = true;
+            this.hostCertLabel.Location = new System.Drawing.Point(3, 22);
+            this.hostCertLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.hostCertLabel.Name = "hostCertLabel";
+            this.hostCertLabel.Size = new System.Drawing.Size(78, 13);
+            this.hostCertLabel.TabIndex = 9;
+            this.hostCertLabel.Text = "Host certificate";
+            // 
+            // hostCertValueLabel
+            // 
+            this.hostCertValueLabel.AutoSize = true;
+            this.hostCertValueLabel.Location = new System.Drawing.Point(87, 22);
+            this.hostCertValueLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.hostCertValueLabel.Name = "hostCertValueLabel";
+            this.hostCertValueLabel.Size = new System.Drawing.Size(36, 13);
+            this.hostCertValueLabel.TabIndex = 10;
+            this.hostCertValueLabel.Text = "`None";
+            // 
             // Actions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2076,6 +2153,10 @@
             this.fileLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).EndInit();
             this.borderPanel.ResumeLayout(false);
+            this.tlsGroupBox.ResumeLayout(false);
+            this.tlsGroupBox.PerformLayout();
+            this.tlsTableLayoutPanel.ResumeLayout(false);
+            this.tlsTableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2227,5 +2308,11 @@
         private System.Windows.Forms.TableLayoutPanel screenImagesTableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel screenTraceTableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel actionsTableLayoutPanel;
+        private System.Windows.Forms.Label tlsStateValueLabel;
+        private System.Windows.Forms.Label tlsSessionLabel;
+        private System.Windows.Forms.GroupBox tlsGroupBox;
+        private System.Windows.Forms.TableLayoutPanel tlsTableLayoutPanel;
+        private System.Windows.Forms.Label hostCertLabel;
+        private System.Windows.Forms.Label hostCertValueLabel;
     }
 }

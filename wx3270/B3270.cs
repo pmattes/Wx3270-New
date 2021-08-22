@@ -422,6 +422,11 @@ namespace Wx3270
             public const string Host = "host";
 
             /// <summary>
+            /// Host certificate information.
+            /// </summary>
+            public const string HostCert = "host-cert";
+
+            /// <summary>
             /// Host IP address.
             /// </summary>
             public const string HostIp = "host-ip";
@@ -520,6 +525,11 @@ namespace Wx3270
             /// TLS secure connection state.
             /// </summary>
             public const string Secure = "secure";
+
+            /// <summary>
+            /// TLS session information.
+            /// </summary>
+            public const string Session = "session";
 
             /// <summary>
             /// Shown area of the thumb.

@@ -52,6 +52,11 @@ namespace Wx3270
         private DateTime connectionTime;
 
         /// <summary>
+        /// TLS state object.
+        /// </summary>
+        private TlsState tlsState;
+
+        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]
@@ -75,9 +80,15 @@ namespace Wx3270
             this.Clear();
             this.app.Stats.Add(this.mainScreen, this.OnStats);
             this.mainScreen.ConnectionStateEvent += this.OnConnect;
-            this.mainScreen.SslEvent += this.OnSsl;
+            this.mainScreen.SslEvent += this.OnTls;
             this.mainScreen.LuEvent += this.OnLu;
             this.app.ConnectAttempt.Add(this.mainScreen, this.OnConnectAttempt);
+
+            this.app.BackEnd.Register(this.tlsState = new TlsState());
+            this.tlsStateValueLabel.Text = string.Empty;
+            this.hostCertValueLabel.Text = string.Empty;
+            this.tlsGroupBox.Enabled = false;
+            this.tlsState.Add(this, this.TlsSessionChanged);
         }
 
         /// <summary>
@@ -131,7 +142,7 @@ namespace Wx3270
             {
                 this.statusLayoutPanel.Enabled = true;
                 this.hostValueLabel.Text = this.app.CurrentHostIp;
-                this.SetSsl();
+                this.SetTls();
                 if (!this.connectionTimer.Enabled)
                 {
                     this.timeValueLabel.Text = "0:00";
@@ -149,9 +160,9 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Set the SSL state.
+        /// Set the TLS state.
         /// </summary>
-        private void SetSsl()
+        private void SetTls()
         {
             if (this.app.OiaState.Secure)
             {
@@ -163,6 +174,8 @@ namespace Wx3270
                 {
                     this.tlsModeValueLabel.Text = I18n.Get(TlsMode.SecureUnverified);
                 }
+
+                this.tlsGroupBox.Enabled = true;
             }
             else
             {
@@ -174,15 +187,17 @@ namespace Wx3270
                 {
                     this.tlsModeValueLabel.Text = I18n.Get(TlsMode.NotSecure);
                 }
+
+                this.tlsGroupBox.Enabled = false;
             }
         }
 
         /// <summary>
-        /// The SSL state changed.
+        /// The TLS state changed.
         /// </summary>
-        private void OnSsl()
+        private void OnTls()
         {
-            this.SetSsl();
+            this.SetTls();
         }
 
         /// <summary>
@@ -213,6 +228,15 @@ namespace Wx3270
             t = new TimeSpan(t.Days, t.Hours, t.Minutes, t.Seconds, 0);
             this.timeValueLabel.Text = t.ToString("c");
             this.connectionTimer.Enabled = true;
+        }
+
+        /// <summary>
+        /// The TLS session and certificate information changed.
+        /// </summary>
+        private void TlsSessionChanged()
+        {
+            this.tlsStateValueLabel.Text = this.tlsState.SessionInfo;
+            this.hostCertValueLabel.Text = this.tlsState.HostCertificate;
         }
 
         /// <summary>

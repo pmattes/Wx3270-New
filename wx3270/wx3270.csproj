@@ -154,6 +154,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DefaultKeypadMap.cs" />
+    <Compile Include="TlsState.cs" />
     <Compile Include="UpdateState.cs" />
     <Compile Include="WatcherKey.cs" />
     <Compile Include="ServerEditor.cs">

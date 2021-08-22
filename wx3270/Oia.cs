@@ -344,8 +344,7 @@ namespace Wx3270
         private void ProcessTls(string name, AttributeDict attrs)
         {
             this.secure = attrs[B3270.Attribute.Secure] == B3270.Value.True;
-            string ver;
-            this.verified = attrs.TryGetValue(B3270.Attribute.Verified, out ver) && ver == B3270.Value.True;
+            this.verified = attrs.TryGetValue(B3270.Attribute.Verified, out string ver) && ver == B3270.Value.True;
             this.invoke.ScreenUpdate(ScreenUpdateType.Ssl, new UpdateState(this.OiaState));
         }
     }
