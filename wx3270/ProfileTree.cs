@@ -283,13 +283,13 @@ namespace Wx3270
             }
 
             // There may be nothing left of the common group box.
-            if (this.commonFlowLayoutPanel.Controls.OfType<Button>().Count() == 0)
+            if (!this.commonFlowLayoutPanel.Controls.OfType<Button>().Any())
             {
                 this.commonGroupBox.RemoveFromParent();
             }
 
             // There may be nothing left of the profile group box.
-            if (this.profileFlowLayoutPanel.Controls.OfType<Button>().Count() == 0)
+            if (!this.profileFlowLayoutPanel.Controls.OfType<Button>().Any())
             {
                 this.profileGroupBox.RemoveFromParent();
             }

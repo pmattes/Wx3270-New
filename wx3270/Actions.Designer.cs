@@ -449,7 +449,7 @@
             this.debuggingOverallLayoutPanel.RowCount = 2;
             this.debuggingOverallLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingOverallLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.debuggingOverallLayoutPanel.Size = new System.Drawing.Size(473, 279);
+            this.debuggingOverallLayoutPanel.Size = new System.Drawing.Size(473, 275);
             this.debuggingOverallLayoutPanel.TabIndex = 131;
             // 
             // debuggingUpperLayoutPanel
@@ -468,9 +468,8 @@
             this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.debuggingUpperLayoutPanel.Size = new System.Drawing.Size(467, 159);
+            this.debuggingUpperLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.debuggingUpperLayoutPanel.Size = new System.Drawing.Size(467, 155);
             this.debuggingUpperLayoutPanel.TabIndex = 129;
             // 
             // traceFlowLayoutPanel
@@ -682,7 +681,7 @@
             this.debuggingLowerLayoutPanel.Controls.Add(this.keymapPictureBox, 0, 1);
             this.debuggingLowerLayoutPanel.Controls.Add(this.cancelActionsPictureBox, 0, 2);
             this.debuggingLowerLayoutPanel.Controls.Add(this.reenablePictureBox, 0, 3);
-            this.debuggingLowerLayoutPanel.Location = new System.Drawing.Point(3, 168);
+            this.debuggingLowerLayoutPanel.Location = new System.Drawing.Point(3, 164);
             this.debuggingLowerLayoutPanel.Name = "debuggingLowerLayoutPanel";
             this.debuggingLowerLayoutPanel.RowCount = 4;
             this.debuggingLowerLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());

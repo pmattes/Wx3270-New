@@ -131,18 +131,15 @@ namespace Wx3270
             {
                 this.tracePictureBox.RemoveFromParent();
                 this.traceCheckBox.RemoveFromParent();
-                this.tracePr3287PictureBox.RemoveFromParent();
-                this.tracePr3287CheckBox.RemoveFromParent(); // How do we prevent pr3287 command line tracing?
-                this.uiTracePictureBox.RemoveFromParent();
-                this.uiTraceCheckBox.RemoveFromParent();
-                this.uiTraceCheckedListBox.RemoveFromParent();
+                this.tracePr3287FlowLayoutPanel.RemoveFromParent(); // How do we prevent pr3287 command line tracing?
+                this.uiTracePanel.RemoveFromParent();
             }
 
             if (this.app.Restricted(Restrictions.ChangeSettings))
             {
-                this.visibleControlPictureBox.RemoveFromParent();
-                this.visibleControlCheckBox.RemoveFromParent();
-                this.controlCharDocButton.RemoveFromParent();
+                // Ideally we would remove the row these controls are in, but the other rows are specific sizes
+                // and this makes a mess.
+                this.visibleControlFlowLayoutPanel.RemoveFromParent();
             }
 
             if (this.app.Allowed(Restrictions.ExternalFiles))
@@ -165,6 +162,26 @@ namespace Wx3270
                 this.helpPictureBox2.RemoveFromParent();
                 this.helpPictureBox3.RemoveFromParent();
                 this.helpPictureBox4.RemoveFromParent();
+            }
+
+            if (this.app.Restricted(Restrictions.Printing))
+            {
+                this.printScreenPictureBox.RemoveFromParent();
+                this.printScreenLabel.RemoveFromParent();
+                this.printerRadioButton.Enabled = false;
+            }
+
+            // There might not be any screen tracing options left.
+            if (!this.printerRadioButton.Enabled && !this.fileRadioButton.Enabled)
+            {
+                this.screenTracingPictureBox.RemoveFromParent();
+                this.traceScreenCheckBox.RemoveFromParent();
+                this.screenTraceTableLayoutPanel.RemoveFromParent();
+            }
+
+            if (this.screenImagesTableLayoutPanel.Controls.Count == 0)
+            {
+                this.screenImagesGroupBox.RemoveFromParent();
             }
 
             // Localize.
@@ -263,9 +280,12 @@ namespace Wx3270
         [Associated("printScreen")]
         public void PrintTextButton_Click(object sender, EventArgs e)
         {
-            this.BackEnd.RunAction(
-                new BackEndAction(B3270.Action.PrintText, B3270.Value.Gdi, B3270.Value.Dialog),
-                Wx3270.BackEnd.Ignore());
+            if (this.app.Allowed(Restrictions.Printing))
+            {
+                this.BackEnd.RunAction(
+                    new BackEndAction(B3270.Action.PrintText, B3270.Value.Gdi, B3270.Value.Dialog),
+                    Wx3270.BackEnd.Ignore());
+            }
         }
 
         /// <summary>

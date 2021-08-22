@@ -68,9 +68,14 @@ namespace Wx3270
         GetHelp = 0x400,
 
         /// <summary>
+        /// Use the printer.
+        /// </summary>
+        Printing = 0x800,
+
+        /// <summary>
         /// Disallow everything.
         /// </summary>
-        All = FileTransfer | ModifyProfiles | Tracing | Prompt | ExternalFiles | SwitchProfile | NewWindow | ModifyHost | ChangeSettings | GetHelp,
+        All = FileTransfer | ModifyProfiles | Tracing | Prompt | ExternalFiles | SwitchProfile | NewWindow | ModifyHost | ChangeSettings | GetHelp | Printing,
     }
 
     /// <summary>
@@ -270,6 +275,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             /// The name of the Paste action.
             /// </summary>
             public const string Paste = "uPaste";
+
+            /// <summary>
+            /// The name of the PrintText action.
+            /// </summary>
+            public const string PrintText = "uPrintText";
 
             /// <summary>
             /// The Quit if Not Connected action.

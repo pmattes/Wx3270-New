@@ -898,6 +898,9 @@ namespace Wx3270
             this.App.ChordResetEvent += this.ChordReset;
             this.chordTimer.Tick += (sender, args) => this.ChordReset();
 
+            // Register the local PrintText() action.
+            this.App.BackEnd.RegisterPassthru(Constants.Action.PrintText, this.PrintText);
+
             // Handle user-generated window title changes.
             this.App.WindowTitle.Add(this, () =>
             {
@@ -939,6 +942,12 @@ namespace Wx3270
                 this.saveToFileToolStripMenuItem.RemoveFromOwner();
             }
 
+            if (this.App.Restricted(Restrictions.Printing))
+            {
+                this.sendToPrinterToolStripMenuItem.RemoveFromOwner();
+                this.printScreenToolStripMenuItem.RemoveFromOwner();
+            }
+
             if (this.App.Restricted(Restrictions.ChangeSettings))
             {
                 this.controlCharsMenuItem.RemoveFromOwner();
@@ -947,6 +956,12 @@ namespace Wx3270
             if (this.App.Restricted(Restrictions.GetHelp))
             {
                 this.helpPictureBox.RemoveFromParent();
+            }
+
+            // The screen tracing menu item might be emtpy at this point.
+            if (!this.screenTracingMenuItem.HasDropDownItems)
+            {
+                this.screenTracingMenuItem.RemoveFromOwner();
             }
 
             // Localize.
@@ -1018,6 +1033,36 @@ namespace Wx3270
             this.chordTimer.Start();
 
             result = string.Empty;
+            return PassthruResult.Success;
+        }
+
+        /// <summary>
+        /// PrintText pass-through action.
+        /// </summary>
+        /// <param name="commandName">Command name.</param>
+        /// <param name="arguments">Command arguments.</param>
+        /// <param name="result">Immediate result.</param>
+        /// <param name="tag">Asynchronous result tag.</param>
+        /// <returns>Pass-through result.</returns>
+        private PassthruResult PrintText(string commandName, IEnumerable<string> arguments, out string result, string tag)
+        {
+            result = string.Empty;
+            if (this.App.Restricted(Restrictions.Printing))
+            {
+                return PassthruResult.Success;
+            }
+
+            BackEndAction action;
+            if (arguments.Count() > 0)
+            {
+                action = new BackEndAction(B3270.Action.PrintText, arguments);
+            }
+            else
+            {
+                action = new BackEndAction(B3270.Action.PrintText, B3270.Value.Gdi, B3270.Value.Dialog);
+            }
+
+            this.BackEnd.RunAction(action, Wx3270.BackEnd.Ignore());
             return PassthruResult.Success;
         }
 

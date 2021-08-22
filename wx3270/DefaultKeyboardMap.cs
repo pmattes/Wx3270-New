@@ -73,7 +73,7 @@ namespace Wx3270
             { KeyMap<KeyboardMap>.Key(Keys.E, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.EraseEOF + "()", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.F, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.Toggle + "(" + B3270.Setting.RightToLeftMode + ")", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.M, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.FieldMark + "()", Exact = true } },
-            { KeyMap<KeyboardMap>.Key(Keys.P, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PrintText + "(gdi,dialog)", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.P, KeyboardModifier.Alt), new KeyboardMap { Actions = Constants.Action.PrintText + "(gdi,dialog)", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.Q, KeyboardModifier.Alt), new KeyboardMap { Actions = Constants.Action.QuitIfNotConnected + "()", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.R, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Reset + "()", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.U, KeyboardModifier.Ctrl | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.DeleteField + "()", Exact = true } },
