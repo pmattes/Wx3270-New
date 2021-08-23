@@ -155,11 +155,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             public const string Location = "-location";
 
             /// <summary>
-            /// The window maximize option.
-            /// </summary>
-            public const string Maximize = "-maximize";
-
-            /// <summary>
             /// The no-border option.
             /// </summary>
             public const string NoBorder = "-noborder";

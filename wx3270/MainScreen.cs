@@ -985,12 +985,7 @@ namespace Wx3270
                 this.TopMost = false;
             }
 
-            // Handle maxmimized and no-border options.
-            if (this.App.Maximize)
-            {
-                this.WindowState = FormWindowState.Maximized;
-            }
-
+            // Handle the no-border option.
             if (this.App.NoBorder)
             {
                 this.ControlBox = false;
