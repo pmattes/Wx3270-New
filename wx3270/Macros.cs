@@ -91,7 +91,7 @@ namespace Wx3270
             VersionSpecific.Substitute(this.contextMenuStrip1);
 
             // Enforce restrictions.
-            if (app.Restricted(Restrictions.ModifyProfiles))
+            if (app.Restricted(Restrictions.ChangeSettings))
             {
                 this.macroAddButton.RemoveFromParent();
                 this.macroRemoveButton.RemoveFromParent();
