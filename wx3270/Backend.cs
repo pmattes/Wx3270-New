@@ -41,6 +41,11 @@ namespace Wx3270
         private static readonly string MessageName = I18n.MessageName(nameof(BackEnd));
 
         /// <summary>
+        /// Conrtol for method invocation.
+        /// </summary>
+        private readonly Control control;
+
+        /// <summary>
         /// The set of XML element start methods.
         /// </summary>
         private readonly Dictionary<string, Delegate> startTable = new Dictionary<string, Delegate>();
@@ -143,9 +148,11 @@ namespace Wx3270
         /// <summary>
         /// Initializes a new instance of the <see cref="BackEnd"/> class.
         /// </summary>
+        /// <param name="control">Control for method invocation.</param>
         /// <param name="startupConfig">Start-up configuration.</param>
-        public BackEnd(StartupConfig startupConfig)
+        public BackEnd(Control control, StartupConfig startupConfig)
         {
+            this.control = control;
             this.startupConfig = startupConfig;
             this.traceTimer.Elapsed += this.FlushDebug;
         }
@@ -285,7 +292,10 @@ namespace Wx3270
             }
             catch (Exception e)
             {
-                ErrorBox.Show(I18n.Get(Message.CannotStart) + ": " + Environment.NewLine + e.Message, I18n.Get(Title.Fatal));
+                ErrorBox.ShowCopy(
+                    this.control,
+                    I18n.Get(Message.CannotStart) + ": " + Environment.NewLine + e.Message,
+                    I18n.Get(Title.Fatal));
                 this.OnExit();
                 Environment.Exit(1);
             }
@@ -532,7 +542,7 @@ namespace Wx3270
                     return;
                 }
 
-                ErrorBox.Show(r, I18n.Get(Title.BackEndError), MessageBoxIcon.Warning);
+                ErrorBox.ShowCopy(this.control, r, I18n.Get(Title.BackEndError), MessageBoxIcon.Warning);
             }
         }
 
@@ -593,7 +603,8 @@ namespace Wx3270
                 }
 
                 var hex = (this.b3270.ExitCode & 0x80000000) != 0 ? $" (0x{this.b3270.ExitCode:X})" : string.Empty;
-                ErrorBox.Show(
+                ErrorBox.ShowCopy(
+                    this.control,
                     I18n.Get(Message.BackEndExit) + " " + this.b3270.ExitCode + hex + errorText,
                     I18n.Get(Title.BackEndError));
             }
@@ -676,8 +687,9 @@ namespace Wx3270
             {
                 // Fail now, because this is run asynchronously without ever being waited for,
                 // and otherwise the app would just mysteriously stall.
-                Console.WriteLine("BackEnd Caught exception: " + e.ToString());
-                ErrorBox.Show(
+                Console.WriteLine("BackEnd caught exception: " + e.ToString());
+                ErrorBox.ShowCopy(
+                    this.control,
                     I18n.Get(Message.XmlException) + ":" + Environment.NewLine + e.Message,
                     I18n.Get(Title.Fatal));
 

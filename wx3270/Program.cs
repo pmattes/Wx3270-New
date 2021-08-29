@@ -21,12 +21,14 @@ namespace Wx3270
         [STAThread]
         public static void Main(string[] args)
         {
+            Control mainControl = null;
             try
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
                 var main = new MainScreen();
+                mainControl = main;
                 var app = new Wx3270App(main, main);
                 app.Init(args);
                 main.Init(app);
@@ -48,7 +50,7 @@ namespace Wx3270
             }
             catch (Exception e)
             {
-                ErrorBox.Show(e.ToString(), "Fatal User Interface Error");
+                ErrorBox.ShowCopy(mainControl, e.ToString(), "Fatal User Interface Error");
             }
         }
     }

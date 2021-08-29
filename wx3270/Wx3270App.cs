@@ -696,7 +696,7 @@ namespace Wx3270
             // Start a back end instance.
             Wx3270.BackEnd.DebugFlag = false;
             startupConfig.MergeProfile(this.Current);
-            this.BackEnd = new BackEnd(startupConfig);
+            this.BackEnd = new BackEnd(this.control, startupConfig);
             Trace.BackEnd = this.BackEnd;
 
             // Register basic indication handlers.

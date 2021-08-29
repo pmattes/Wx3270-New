@@ -4,8 +4,10 @@
 
 namespace Wx3270
 {
+    using System;
     using System.Windows.Forms;
 
+    using I18nBase;
     using Wx3270.Contracts;
 
     /// <summary>
@@ -13,6 +15,16 @@ namespace Wx3270
     /// </summary>
     public static class ErrorBox
     {
+        /// <summary>
+        /// Message to click yes or no to save text to clipboard.
+        /// </summary>
+        private static readonly string ClickYesOrNo = I18n.Combine(nameof(ErrorBox), "ClickYesOrNo");
+
+        /// <summary>
+        /// True if localization is complete.
+        /// </summary>
+        private static bool localized = false;
+
         /// <summary>
         /// Pop up an error box.
         /// </summary>
@@ -22,6 +34,39 @@ namespace Wx3270
         public static void Show(string text, string title, MessageBoxIcon icon = MessageBoxIcon.Error)
         {
             MessageBox.Show(text, title, MessageBoxButtons.OK, icon);
+        }
+
+        /// <summary>
+        /// Pop up an error box with a Copy to Clipboard option.
+        /// </summary>
+        /// <param name="control">Control to run copy thread on.</param>
+        /// <param name="text">Body text.</param>
+        /// <param name="title">Title text.</param>
+        /// <param name="icon">Icon to display.</param>
+        public static void ShowCopy(Control control, string text, string title, MessageBoxIcon icon = MessageBoxIcon.Error)
+        {
+            if (control == null || !localized)
+            {
+                Show(text, title, icon);
+                return;
+            }
+
+            var result = MessageBox.Show(
+                text + Environment.NewLine + Environment.NewLine + I18n.Get(ClickYesOrNo),
+                title,
+                MessageBoxButtons.YesNo,
+                icon,
+                MessageBoxDefaultButton.Button2);
+            if (result == DialogResult.Yes && control != null)
+            {
+                var dataObject = new DataObject();
+                dataObject.SetText(title + ": " + text, TextDataFormat.UnicodeText);
+                control.Invoke(new MethodInvoker(() =>
+                {
+                    Clipboard.Clear();
+                    Clipboard.SetDataObject(dataObject, true);
+                }));
+            }
         }
 
         /// <summary>
@@ -47,6 +92,16 @@ namespace Wx3270
         public static BackEndCompletion Ignore()
         {
             return (cookie, success, result) => { };
+        }
+
+        /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
+        public static void Localize()
+        {
+            I18n.LocalizeGlobal(ClickYesOrNo, "Click Yes to copy text to clipboard, No to close window without saving");
+            localized = true;
         }
     }
 }
