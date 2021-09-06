@@ -3,13 +3,13 @@
 
 [Setup]
 AllowNoIcons=yes
-AppCopyright=Copyright (C) 2020 by Paul Mattes
+AppCopyright=Copyright (C) 2020-2021 by Paul Mattes
 AppName=wx3270
 AppPublisher=Paul Mattes
 AppPublisherURL=https://x3270.miraheze.org/wiki/Main_Page
 AppSupportURL=https://x3270.miraheze.org/wiki/Main_Page
 AppUpdatesURL=https://x3270.miraheze.org/wiki/Main_Page
-AppVerName=wx3270 1.0alpha4
+AppVerName=wx3270 1.0beta5
 ArchitecturesInstallIn64BitMode=x64
 ChangesAssociations=yes
 Compression=lzma
@@ -17,7 +17,7 @@ DefaultDirName={commonpf}\wx3270
 DefaultGroupName=wx3270
 DisableDirPage=no
 MinVersion=0,6.0
-OutputBaseFilename=wx3270-1.0alpha4-setup
+OutputBaseFilename=wx3270-1.0beta5-setup
 OutputDir=.
 SolidCompression=yes
 WizardSmallImageFile=wx3270\wx3270.bmp
