@@ -550,7 +550,7 @@ namespace Wx3270
             /// <summary>
             /// Release phase.
             /// </summary>
-            private const string ReleasePhase = "alpha";
+            private const string ReleasePhase = "beta";
 
             /// <summary>
             /// Gets the full version, for display rather than comparison.
