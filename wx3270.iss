@@ -3,7 +3,7 @@
 
 [Setup]
 AllowNoIcons=yes
-AppCopyright=Copyright (C) 2020-2021 by Paul Mattes
+AppCopyright=Copyright (C) 2016-2021 by Paul Mattes
 AppName=wx3270
 AppPublisher=Paul Mattes
 AppPublisherURL=https://x3270.miraheze.org/wiki/Main_Page
