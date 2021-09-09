@@ -191,8 +191,9 @@ namespace Wx3270
             I18n.LocalizeGlobal(Title.SaveLocalization, "Save Localization");
             I18n.LocalizeGlobal(Title.ScreenTrace, "Screen Tracing");
 
-            // Localize the file transfer tab.
+            // Localize the file transfer and about tabs.
             FileTransferLocalize();
+            AboutLocalize();
 
             // The About tab gets initialized after localization.
             this.AboutTabInit();

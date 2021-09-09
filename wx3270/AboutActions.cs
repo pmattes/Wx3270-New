@@ -14,6 +14,11 @@ namespace Wx3270
     public partial class Actions
     {
         /// <summary>
+        /// The name of the copyright message.
+        /// </summary>
+        private const string CopyrightName = "Copyright";
+
+        /// <summary>
         /// The back end hello handler.
         /// </summary>
         private IHello hello;
@@ -22,6 +27,14 @@ namespace Wx3270
         /// The back end TLS hello handler.
         /// </summary>
         private ITlsHello tlsHello;
+
+        /// <summary>
+        /// Localize the About tab.
+        /// </summary>
+        private static void AboutLocalize()
+        {
+            I18n.LocalizeGlobal(CopyrightName, Constants.Copyright);
+        }
 
         /// <summary>
         /// Initialize the About tab.
@@ -33,7 +46,7 @@ namespace Wx3270
 
             // Fill in the version and copyright strings.
             this.guiVersionLabel.Text = "wx3270 " + Profile.VersionClass.FullVersion;
-            this.guiCopyrightTextBox.Text = Constants.Copyright;
+            this.guiCopyrightTextBox.Text = I18n.Get(CopyrightName);
 
             // Go get the hello fields.
             this.OnHello();
@@ -55,7 +68,6 @@ namespace Wx3270
         {
             this.backendBuildLabel.Text = this.hello.Build;
             this.backendCopyrightTextBox.Text = this.hello.Copyright;
-            ////this.tlsLabel.Text = I18n.Localize(this.tlsLabel, "TLS provider:");
             this.tlsProviderValueLabel.Text = this.tlsHello.Provider;
         }
     }
