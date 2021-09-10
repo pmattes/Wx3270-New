@@ -52,6 +52,11 @@ namespace Wx3270
         private const string MacroStopRecordingItemName = "MainScreen.Item.StopRecording";
 
         /// <summary>
+        /// The name of the localized start button.
+        /// </summary>
+        private const string StartButtonName = "MainScreen.StartButton";
+
+        /// <summary>
         /// Name of localized message box titles.
         /// </summary>
         private static readonly string TitleName = I18n.TitleName(nameof(MainScreen));
@@ -356,6 +361,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(MacroRecordingToolTipName, "Recording macro - click to stop");
             I18n.LocalizeGlobal(MacroRecordingItemName, "Record new");
             I18n.LocalizeGlobal(MacroStopRecordingItemName, "Stop recording");
+            I18n.LocalizeGlobal(StartButtonName, "START");
         }
 
         /// <summary>
@@ -725,10 +731,10 @@ namespace Wx3270
                     switch (action)
                     {
                         case FlashFsm.Action.Flash:
-                            this.ActionsBox.Image = Properties.Resources.StartClearerLightGreen;
+                            this.ActionsBox.Image = Properties.Resources.StartClearerLightGreenBlank;
                             break;
                         case FlashFsm.Action.Restore:
-                            this.ActionsBox.Image = Properties.Resources.StartClearer;
+                            this.ActionsBox.Image = Properties.Resources.StartBlank;
                             break;
                         default:
                             break;
@@ -2431,6 +2437,33 @@ namespace Wx3270
         private void FileTransfer_Click(object sender, EventArgs e)
         {
             this.ActionsDialog.FileTransfer();
+        }
+
+        /// <summary>
+        /// Paint event handler for the start button.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void ActionsBox_paint(object sender, PaintEventArgs e)
+        {
+            var pictureBox = (PictureBox)sender;
+            using var font = new Font("Arial", 4.75F);
+            var textSize = new Size(0, 0);
+            var x = 0;
+            var text = I18n.Get(StartButtonName);
+            while (true)
+            {
+                textSize = TextRenderer.MeasureText(e.Graphics, text, font, new Size(1000, 1000), TextFormatFlags.Left | TextFormatFlags.NoPadding);
+                if (textSize.Width < pictureBox.Width - 6)
+                {
+                    x = ((pictureBox.Width - textSize.Width) / 2) + 1;
+                    break;
+                }
+
+                text = text.Substring(0, text.Length - 1);
+            }
+
+            e.Graphics.DrawString(text, font, Brushes.Moccasin, new Point(x, ((pictureBox.Height - textSize.Height) / 2) + 2));
         }
 
         /// <summary>

@@ -121,11 +121,14 @@
   <data name="Help-Small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Help-Small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="StartClearerLightGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\StartClearerLightGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="stop_recording" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stop_recording.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Question23" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Question23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StartBlank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StartBlank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="printout-small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\printout-small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,6 +196,9 @@
   <data name="FolderGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FolderGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="combolock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\combolock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Insert48-2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Insert48-2.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -232,8 +238,8 @@
   <data name="VisibleControl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\VisibleControl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="combolock" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\combolock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="StartClearerLightGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StartClearerLightGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="x3270if" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\x3270if.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,7 +250,7 @@
   <data name="record1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\record1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="stop_recording" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\stop_recording.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="StartClearerLightGreenBlank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StartClearerLightGreenBlank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

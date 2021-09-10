@@ -67,6 +67,14 @@ namespace I18nBase
             "wx3270", "wx3270>", "pr3287", "b3270", "shift", "cmd.exe", "Shift", "Ctrl", "Alt", "Num", "Lock",
             "Python", "PowerShell", "VBScript", "JScript", "Alt+Shift"
         };
+        
+        /// <summary>
+        /// Uppercase strings that do get translated.
+        /// </summary>
+        private static readonly HashSet<string> doTranslate = new HashSet<string>
+        {
+            "START"
+        };
 
         /// <summary>
         /// Gets or sets the requested culture.
@@ -327,7 +335,7 @@ namespace I18nBase
                     var newWord = word;
                     do
                     {
-                        if (newWord == newWord.ToUpperInvariant()
+                        if ((newWord == newWord.ToUpperInvariant() && !doTranslate.Contains(newWord))
                             || newWord == " "
                             || newWord == Environment.NewLine
                             || newWord == string.Empty

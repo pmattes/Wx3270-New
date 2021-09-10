@@ -752,6 +752,8 @@
     <None Include="Resources\record1.png" />
     <None Include="Resources\Tape4_flash.png" />
     <None Include="Resources\stop_recording.png" />
+    <None Include="Resources\StartBlank.png" />
+    <None Include="Resources\StartClearerLightGreenBlank.png" />
     <Content Include="wx3270.bmp" />
     <None Include="Resources\StartClearerLightGreen.png" />
     <None Include="Resources\ToggleUp4.png" />

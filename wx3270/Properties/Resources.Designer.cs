@@ -343,6 +343,16 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap StartBlank {
+            get {
+                object obj = ResourceManager.GetObject("StartBlank", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap StartClearer {
             get {
                 object obj = ResourceManager.GetObject("StartClearer", resourceCulture);
@@ -356,6 +366,16 @@ namespace Wx3270.Properties {
         internal static System.Drawing.Bitmap StartClearerLightGreen {
             get {
                 object obj = ResourceManager.GetObject("StartClearerLightGreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StartClearerLightGreenBlank {
+            get {
+                object obj = ResourceManager.GetObject("StartClearerLightGreenBlank", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
