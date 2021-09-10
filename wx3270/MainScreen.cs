@@ -964,6 +964,11 @@ namespace Wx3270
                 this.screenTracingMenuItem.RemoveFromOwner();
             }
 
+            if (this.App.NoBorder)
+            {
+                this.snapBox.RemoveFromParent();
+            }
+
             // Localize.
             I18n.Localize(this, this.toolTip1);
             this.InitOiaLocalization();
