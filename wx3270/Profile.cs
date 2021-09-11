@@ -120,7 +120,7 @@ namespace Wx3270
         /// <summary>
         /// Backing field for <see cref="KeypadMap"/>.
         /// </summary>
-        private KeyMap<KeypadMap> keypadMap = new KeyMap<KeypadMap>(DefaultKeypadMap);
+        private KeyMap<KeypadMap> keypadMap = new KeyMap<KeypadMap>(DefaultKeypadMap.Map);
 
         /// <summary>
         /// Backing field for <see cref="KeyboardMap"/>.
@@ -135,7 +135,19 @@ namespace Wx3270
         /// <summary>
         /// Gets the default profile.
         /// </summary>
-        public static Profile DefaultProfile { get; } = new Profile { Name = ProfileManager.DefaultValuesName };
+        public static Profile DefaultProfile
+        {
+            get
+            {
+                var p = new Profile { Name = ProfileManager.DefaultValuesName };
+                foreach (var kv in p.KeypadMap)
+                {
+                    kv.Value.Text = DefaultKeypadMap.Localize(kv.Key, kv.Value);
+                }
+
+                return p;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the profile name. (Not serialized.)

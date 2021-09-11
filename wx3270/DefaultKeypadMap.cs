@@ -6,15 +6,17 @@ namespace Wx3270
 {
     using System;
 
+    using I18nBase;
+
     /// <summary>
-    /// Configurable options, serialized in a file.
+    /// Default keypad map.
     /// </summary>
-    public partial class Profile
+    public class DefaultKeypadMap
     {
         /// <summary>
         /// Default definitions for the pop-up keypad.
         /// </summary>
-        private static readonly KeyMap<KeypadMap> DefaultKeypadMap = new KeyMap<KeypadMap>
+        public static readonly KeyMap<KeypadMap> Map = new KeyMap<KeypadMap>
         {
             { KeyMap<KeypadMap>.Key("PF1", KeyboardModifier.None), new KeypadMap { Text = "PF1", TextSize = 8.25F, Actions = B3270.Action.PF + "(1)" } },
             { KeyMap<KeypadMap>.Key("PF1", KeyboardModifier.Shift), new KeypadMap { Text = "PF13", TextSize = 8.25F, Actions = B3270.Action.PF + "(13)" } },
@@ -144,5 +146,60 @@ namespace Wx3270
             { KeyMap<KeypadMap>.Key("period", KeyboardModifier.Shift), new KeypadMap { Text = "⍙", TextSize = 14F, Actions = B3270.Action.Key + "(apl_deltaunderbar)" } },
             { KeyMap<KeypadMap>.Key("slash", KeyboardModifier.None), new KeypadMap { Text = "⌿", TextSize = 14F, Actions = B3270.Action.Key + "(apl_slashbar)" } },
         };
+
+        /// <summary>
+        /// Performs static localization.
+        /// </summary>
+        /// <remarks>
+        /// This is called from localization, very early in initiailization, due to the <see cref="I18nInitAttribute"/> attribute.
+        /// </remarks>
+        [I18nInit]
+        public static void Localize()
+        {
+            // Localize the default keypad map.
+            foreach (var kv in Map)
+            {
+                if (IsLocalized(kv.Key))
+                {
+                    I18n.LocalizeGlobal(KeyLocalizeName(kv.Key), kv.Value.Text, true);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns the localization name for a keymap entry.
+        /// </summary>
+        /// <param name="key">Key name.</param>
+        /// <returns>Localization name.</returns>
+        public static string KeyLocalizeName(string key)
+        {
+            return I18n.Combine("Keypad", key);
+        }
+
+        /// <summary>
+        /// Tests a key for localization.
+        /// </summary>
+        /// <param name="key">Key name.</param>
+        /// <returns>True if key is localized.</returns>
+        public static bool IsLocalized(string key)
+        {
+            return char.IsUpper(key[0]) && !key.StartsWith("PF") && !key.StartsWith("PA");
+        }
+
+        /// <summary>
+        /// Returns the localized text for a default keymap entry.
+        /// </summary>
+        /// <param name="key">Key name.</param>
+        /// <param name="map">Keymap entry.</param>
+        /// <returns>Localized name.</returns>
+        public static string Localize(string key, KeypadMap map)
+        {
+            if (IsLocalized(key))
+            {
+                return I18n.Get(KeyLocalizeName(key));
+            }
+
+            return map.Text;
+        }
     }
 }
