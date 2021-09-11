@@ -361,7 +361,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(MacroRecordingToolTipName, "Recording macro - click to stop");
             I18n.LocalizeGlobal(MacroRecordingItemName, "Record new");
             I18n.LocalizeGlobal(MacroStopRecordingItemName, "Stop recording");
-            I18n.LocalizeGlobal(StartButtonName, "START");
+            I18n.LocalizeGlobal(StartButtonName, "START", true);
         }
 
         /// <summary>

@@ -4,6 +4,8 @@
 
 namespace pg_US
 {
+    using System.Linq;
+
     /// <summary>
     /// Translations for Pig Latin.
     /// </summary>
@@ -20,6 +22,14 @@ namespace pg_US
             var newWord = s;
             var leftPunct = string.Empty;
             var rightPunct = string.Empty;
+            var isAllUpper = s == s.ToUpperInvariant();
+            var ay = isAllUpper ? "AY" : "ay";
+
+            // If it's got no letters, leave it alone.
+            if (s.All(c => !char.IsLetter(c)))
+            {
+                return s;
+            }
 
             // Strip off punctuation.
             while (newWord.Length > 0 && char.IsPunctuation(newWord[0]))
@@ -43,14 +53,20 @@ namespace pg_US
             // If it already starts with a vowel, it's easy.
             if ("AEIOUaeiou".Contains(newWord.Substring(0, 1)))
             {
-                return newWord += "ay";
+                return newWord + ay;
             }
 
             // Check for starting with an uppercase letter.
             var upper = char.IsUpper(newWord[0]);
             if (upper)
             {
-                newWord = newWord.Substring(0, 1).ToLowerInvariant() + newWord.Substring(1);
+                var first = newWord.Substring(0, 1);
+                if (!isAllUpper)
+                {
+                    first = first.ToLowerInvariant();
+                }
+
+                newWord = first + newWord.Substring(1);
             }
 
             // Isolate initial consonants.
@@ -62,7 +78,7 @@ namespace pg_US
             }
 
             // Recombine.
-            newWord += consonants + "ay";
+            newWord += consonants + ay;
 
             // Restore case.
             if (upper)

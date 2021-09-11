@@ -67,14 +67,6 @@ namespace I18nBase
             "wx3270", "wx3270>", "pr3287", "b3270", "shift", "cmd.exe", "Shift", "Ctrl", "Alt", "Num", "Lock",
             "Python", "PowerShell", "VBScript", "JScript", "Alt+Shift"
         };
-        
-        /// <summary>
-        /// Uppercase strings that do get translated.
-        /// </summary>
-        private static readonly HashSet<string> doTranslate = new HashSet<string>
-        {
-            "START"
-        };
 
         /// <summary>
         /// Gets or sets the requested culture.
@@ -302,10 +294,11 @@ namespace I18nBase
         /// <summary>
         /// Localize a string by calling the DLL. Remember the object name and cache the value.
         /// </summary>
-        /// <param name="s">String to localize</param>
-        /// <param name="path">Object path</param>
-        /// <returns>Translated string</returns>
-        public static string LocalizeFlat(string s, string path)
+        /// <param name="s">String to localize.</param>
+        /// <param name="path">Object path.</param>
+        /// <param name="always">Always localize, even if uppercase.</param>
+        /// <returns>Translated string.</returns>
+        public static string LocalizeFlat(string s, string path, bool always = false)
         {
             // Normalize the path.
             path = path.Replace(" ", "_").Replace(Environment.NewLine, "_");
@@ -335,7 +328,7 @@ namespace I18nBase
                     var newWord = word;
                     do
                     {
-                        if ((newWord == newWord.ToUpperInvariant() && !doTranslate.Contains(newWord))
+                        if ((!always && newWord == newWord.ToUpperInvariant())
                             || newWord == " "
                             || newWord == Environment.NewLine
                             || newWord == string.Empty

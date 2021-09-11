@@ -33,7 +33,7 @@ namespace Wx3270
         /// </summary>
         private static void AboutLocalize()
         {
-            I18n.LocalizeGlobal(CopyrightName, Constants.Copyright);
+            I18n.LocalizeGlobal(CopyrightName, Constants.Copyright, true);
         }
 
         /// <summary>

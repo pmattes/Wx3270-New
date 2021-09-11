@@ -150,10 +150,11 @@ namespace Wx3270
         /// </summary>
         /// <param name="pathName">Pathname.</param>
         /// <param name="text">English text to localize.</param>
+        /// <param name="always">Always localize, even if uppercase.</param>
         /// <returns>Localized text.</returns>
-        public static string LocalizeGlobal(string pathName, string text)
+        public static string LocalizeGlobal(string pathName, string text, bool always = false)
         {
-            return LocalizeFlat(text, pathName.Replace(" ", "_"));
+            return LocalizeFlat(text, pathName.Replace(" ", "_"), always);
         }
 
         /// <summary>
@@ -231,13 +232,14 @@ namespace Wx3270
         /// </summary>
         /// <param name="text">Text to localize.</param>
         /// <param name="path">Path name.</param>
+        /// <param name="always">Always localize, even if upper case.</param>
         /// <returns>Localized string.</returns>
         /// <remarks>
         /// Ideally this should be inherited from I18nBase, but you can't do that with static classes.
         /// </remarks>
-        private static string LocalizeFlat(string text, string path)
+        private static string LocalizeFlat(string text, string path, bool always = false)
         {
-            return I18nBase.LocalizeFlat(text, path);
+            return I18nBase.LocalizeFlat(text, path, always);
         }
 
         /// <summary>
