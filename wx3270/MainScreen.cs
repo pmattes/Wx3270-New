@@ -980,6 +980,24 @@ namespace Wx3270
                 this.screenTracingMenuItem.RemoveFromOwner();
             }
 
+            // The profile tree may be moot at this point.
+            if (this.App.Restricted(Restrictions.SwitchProfile) &&
+                this.App.Restricted(Restrictions.ModifyHost) &&
+                this.App.Restricted(Restrictions.ModifyProfiles) &&
+                this.App.Restricted(Restrictions.NewWindow) &&
+                this.App.Restricted(Restrictions.Disconnect) &&
+                this.ProfileManager.Current.Hosts.Any(host => host.AutoConnect == AutoConnect.Reconnect))
+            {
+                this.profilePictureBox.RemoveFromParent();
+            }
+
+            // The connect menu may be moot at this point.
+            if (this.App.Restricted(Restrictions.Disconnect) &&
+                this.ProfileManager.Current.Hosts.Any(host => host.AutoConnect == AutoConnect.Reconnect))
+            {
+                this.connectPictureBox.RemoveFromParent();
+            }
+
             if (this.App.NoBorder)
             {
                 this.snapBox.RemoveFromParent();
