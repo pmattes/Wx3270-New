@@ -73,9 +73,14 @@ namespace Wx3270
         Printing = 0x800,
 
         /// <summary>
+        /// Disconnect from the host.
+        /// </summary>
+        Disconnect = 0x1000,
+
+        /// <summary>
         /// Disallow everything.
         /// </summary>
-        All = FileTransfer | ModifyProfiles | Tracing | Prompt | ExternalFiles | SwitchProfile | NewWindow | ModifyHost | ChangeSettings | GetHelp | Printing,
+        All = FileTransfer | ModifyProfiles | Tracing | Prompt | ExternalFiles | SwitchProfile | NewWindow | ModifyHost | ChangeSettings | GetHelp | Printing | Disconnect,
     }
 
     /// <summary>

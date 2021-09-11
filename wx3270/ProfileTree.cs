@@ -245,6 +245,19 @@ namespace Wx3270
                 this.hostDeleteToolStripMenuItem.RemoveFromOwner();
             }
 
+            if (this.app.Restricted(Restrictions.ModifyProfiles) ||
+                this.app.Restricted(Restrictions.ModifyHost) ||
+                this.app.Restricted(Restrictions.ChangeSettings))
+            {
+                this.undoButton.RemoveFromParent();
+                this.redoButton.RemoveFromParent();
+            }
+
+            if (this.app.Restricted(Restrictions.Disconnect))
+            {
+                this.topDisconnectButton.RemoveFromParent();
+            }
+
             if (app.Restricted(Restrictions.ExternalFiles))
             {
                 this.commonShortcutButton.RemoveFromParent();

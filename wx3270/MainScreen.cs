@@ -964,6 +964,16 @@ namespace Wx3270
                 this.helpPictureBox.RemoveFromParent();
             }
 
+            if (this.App.Restricted(Restrictions.ChangeSettings) && this.ProfileManager.Current.Macros.Any())
+            {
+                this.macrosPictureBox.RemoveFromParent();
+            }
+
+            if (this.App.Restricted(Restrictions.Disconnect))
+            {
+                this.disconnectMenuItem.RemoveFromOwner();
+            }
+
             // The screen tracing menu item might be emtpy at this point.
             if (!this.screenTracingMenuItem.HasDropDownItems)
             {
