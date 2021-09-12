@@ -37,7 +37,12 @@ namespace Wx3270
                 I18n.SetupForms();
                 if (!string.IsNullOrEmpty(app.DumpLocalization))
                 {
-                    I18nBase.DumpTree(app.DumpLocalization);
+                    I18nBase.DumpMessages(app.DumpLocalization);
+                }
+
+                if (!string.IsNullOrEmpty(app.DumpMissingMessages))
+                {
+                    I18nBase.DumpMissingMessages(app.DumpMissingMessages);
                 }
 
                 I18nBase.AllowDynamic = false;

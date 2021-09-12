@@ -280,6 +280,11 @@ namespace Wx3270
         public string DumpLocalization { get; private set; }
 
         /// <summary>
+        /// Gets the missing message dump file.
+        /// </summary>
+        public string DumpMissingMessages { get; private set; }
+
+        /// <summary>
         /// Gets or sets the chord name.
         /// </summary>
         public string ChordName { get; set; }
@@ -450,6 +455,9 @@ namespace Wx3270
                             break;
                         case Constants.Option.DumpLocalization:
                             this.DumpLocalization = args[++i];
+                            break;
+                        case Constants.Option.DumpMissingMessages:
+                            this.DumpMissingMessages = args[++i];
                             break;
                         case Constants.Option.Edit:
                             this.EditMode = true;

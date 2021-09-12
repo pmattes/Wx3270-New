@@ -45,6 +45,11 @@ namespace I18nBase
         private static readonly Regex quotedActionRegex = new Regex("'[A-Za-z][A-Za-z0-9_]*\\(\\)'");
 
         /// <summary>
+        /// The set of messages not defined in the message catalog file.
+        /// </summary>
+        private static readonly Dictionary<string, string> missingMessages = new Dictionary<string, string>();
+
+        /// <summary>
         /// Localizations of known strings.
         /// </summary>
         private static Dictionary<string, string> Localized = new Dictionary<string, string>();
@@ -58,6 +63,11 @@ namespace I18nBase
         /// The method information for the LocalizeWord method.
         /// </summary>
         private static MethodInfo localizeWordMethodInfo;
+
+        /// <summary>
+        /// True if a message catalog is in use.
+        /// </summary>
+        private static bool usingMessageCatalog = false;
         
         /// <summary>
         /// Some strings that don't get translated.
@@ -196,6 +206,7 @@ namespace I18nBase
                             try
                             {
                                 Localized = serializer.Deserialize<Dictionary<string,string>>(reader);
+                                usingMessageCatalog = true;
                             }
                             catch (Exception e)
                             {
@@ -228,7 +239,7 @@ namespace I18nBase
         /// Dump the localization tree.
         /// </summary>
         /// <param name="fileName">File to save into</param>
-        public static void DumpTree(string fileName = null)
+        public static void DumpMessages(string fileName = null)
         {
             TextWriter t;
             if (fileName != null)
@@ -247,6 +258,37 @@ namespace I18nBase
             using (JsonWriter writer = new JsonTextWriter(t))
             {
                 serializer.Serialize(writer, KnownStrings);
+            }
+
+            if (fileName != null)
+            {
+                t.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Dump the set of messages that did not appear in the message catalog.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public static void DumpMissingMessages(string fileName = null)
+        {
+            TextWriter t;
+            if (fileName != null)
+            {
+                t = new StreamWriter(fileName, false, new UTF8Encoding());
+            }
+            else
+            {
+                t = Console.Out;
+            }
+
+            var serializer = new JsonSerializer()
+            {
+                Formatting = Formatting.Indented
+            };
+            using (JsonWriter writer = new JsonTextWriter(t))
+            {
+                serializer.Serialize(writer, missingMessages);
             }
 
             if (fileName != null)
@@ -302,6 +344,13 @@ namespace I18nBase
         {
             // Normalize the path.
             path = path.Replace(" ", "_").Replace(Environment.NewLine, "_");
+            
+            // If using a message catalog file, this path should be defined already.
+            // If it isn't remember that.
+            if (usingMessageCatalog && !Localized.ContainsKey(path))
+            {
+                missingMessages[path] = s;
+            }
 
             if (Localized.TryGetValue(path, out string localized))
             {
@@ -316,7 +365,7 @@ namespace I18nBase
 
             if (localizeWordMethodInfo == null)
             {
-                // No DLL, leave it in English.
+                // No DLL, leave it in U.S. English.
                 localized = s;
             }
             else

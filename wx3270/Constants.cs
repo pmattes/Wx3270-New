@@ -140,6 +140,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             public const string DumpLocalization = "-dumplocalization";
 
             /// <summary>
+            /// Dump the missing message localizations.
+            /// </summary>
+            public const string DumpMissingMessages = "-dumpmissingmessages";
+
+            /// <summary>
             /// The edit option. Suppresses auto-connect and implies read/write.
             /// </summary>
             public const string Edit = "-edit";
