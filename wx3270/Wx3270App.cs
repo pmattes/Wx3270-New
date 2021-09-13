@@ -348,6 +348,11 @@ namespace Wx3270
         public bool NoBorder { get; private set; }
 
         /// <summary>
+        /// Gets a value indicating whether the scroll bar should be removed.
+        /// </summary>
+        public bool NoScrollBar { get; private set; }
+
+        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]
@@ -493,6 +498,9 @@ namespace Wx3270
                             break;
                         case Constants.Option.NoProfile:
                             this.NoProfileMode = true;
+                            break;
+                        case Constants.Option.NoScrollBar:
+                            this.NoScrollBar = true;
                             break;
                         case Constants.Option.Profile:
                             profile = args[++i];

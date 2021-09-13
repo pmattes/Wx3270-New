@@ -771,6 +771,12 @@ namespace Wx3270
                 this.MinimumSize.Width - (this.Size.Width - this.ClientSize.Width),
                 this.MinimumSize.Height - (this.Size.Height - this.ClientSize.Height));
 
+            // Remove the scroll bar.
+            if (this.App.NoScrollBar)
+            {
+                this.vScrollBar1.RemoveFromParent();
+            }
+
             // Measure the overhead: the size of the fixed parts of the main screen.
             //
             // If we do it now, without ever setting a font in the screen box, we will get crazy results.
