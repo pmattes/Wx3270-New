@@ -73,6 +73,11 @@ namespace Wx3270
                 this.recordButton.Enabled = false;
             }
 
+            if (this.app != null && this.app.Restricted(Restrictions.GetHelp))
+            {
+                this.helpPictureBox.RemoveFromParent();
+            }
+
             // Localize.
             this.Text = I18n.NoLocal;
 

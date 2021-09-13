@@ -280,6 +280,11 @@ namespace Wx3270
 
             this.localProcessInputGroupBox.Enabled = this.connectionType.Value == ConnectionType.LocalProcess || !this.telnetCheckBox.Checked;
 
+            if (this.app != null && this.app.Restricted(Restrictions.GetHelp))
+            {
+                this.helpPictureBox.RemoveFromParent();
+            }
+
             // Substitute.
             VersionSpecific.Substitute(this);
 
