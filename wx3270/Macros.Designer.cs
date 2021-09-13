@@ -41,14 +41,16 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.recordButton = new Wx3270.NoSelectButton();
             this.redoButton = new Wx3270.NoSelectButton();
             this.undoButton = new Wx3270.NoSelectButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
-            this.recordButton = new Wx3270.NoSelectButton();
+            this.bottomFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.contextMenuStrip1.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
+            this.bottomFlowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // macroEditButton
@@ -175,10 +177,22 @@
             this.mainPanel.Size = new System.Drawing.Size(584, 533);
             this.mainPanel.TabIndex = 108;
             // 
+            // recordButton
+            // 
+            this.recordButton.ForeColor = System.Drawing.Color.Green;
+            this.recordButton.Location = new System.Drawing.Point(94, 493);
+            this.recordButton.Name = "recordButton";
+            this.recordButton.Size = new System.Drawing.Size(75, 23);
+            this.recordButton.TabIndex = 106;
+            this.recordButton.Text = "⏺ Record";
+            this.recordButton.UseVisualStyleBackColor = true;
+            this.recordButton.Click += new System.EventHandler(this.RecordButton_Click);
+            // 
             // redoButton
             // 
             this.redoButton.Enabled = false;
-            this.redoButton.Location = new System.Drawing.Point(533, 552);
+            this.redoButton.Location = new System.Drawing.Point(136, 3);
+            this.redoButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.redoButton.Name = "redoButton";
             this.redoButton.Size = new System.Drawing.Size(35, 23);
             this.redoButton.TabIndex = 109;
@@ -191,7 +205,7 @@
             // undoButton
             // 
             this.undoButton.Enabled = false;
-            this.undoButton.Location = new System.Drawing.Point(492, 552);
+            this.undoButton.Location = new System.Drawing.Point(95, 3);
             this.undoButton.Name = "undoButton";
             this.undoButton.Size = new System.Drawing.Size(35, 23);
             this.undoButton.TabIndex = 110;
@@ -204,7 +218,8 @@
             // helpPictureBox
             // 
             this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(574, 552);
+            this.helpPictureBox.Location = new System.Drawing.Point(177, 3);
+            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(6, 3, 0, 3);
             this.helpPictureBox.Name = "helpPictureBox";
             this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
             this.helpPictureBox.TabIndex = 111;
@@ -212,16 +227,18 @@
             this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
             this.helpPictureBox.Click += new System.EventHandler(this.Help_Click);
             // 
-            // recordButton
+            // bottomFlowLayoutPanel
             // 
-            this.recordButton.ForeColor = System.Drawing.Color.Green;
-            this.recordButton.Location = new System.Drawing.Point(94, 493);
-            this.recordButton.Name = "recordButton";
-            this.recordButton.Size = new System.Drawing.Size(75, 23);
-            this.recordButton.TabIndex = 106;
-            this.recordButton.Text = "⏺ Record";
-            this.recordButton.UseVisualStyleBackColor = true;
-            this.recordButton.Click += new System.EventHandler(this.RecordButton_Click);
+            this.bottomFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.bottomFlowLayoutPanel.Controls.Add(this.helpPictureBox);
+            this.bottomFlowLayoutPanel.Controls.Add(this.redoButton);
+            this.bottomFlowLayoutPanel.Controls.Add(this.undoButton);
+            this.bottomFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.bottomFlowLayoutPanel.Location = new System.Drawing.Point(397, 552);
+            this.bottomFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.bottomFlowLayoutPanel.Name = "bottomFlowLayoutPanel";
+            this.bottomFlowLayoutPanel.Size = new System.Drawing.Size(200, 34);
+            this.bottomFlowLayoutPanel.TabIndex = 112;
             // 
             // Macros
             // 
@@ -229,9 +246,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(115)))), ((int)(((byte)(191)))));
             this.ClientSize = new System.Drawing.Size(610, 585);
-            this.Controls.Add(this.helpPictureBox);
-            this.Controls.Add(this.undoButton);
-            this.Controls.Add(this.redoButton);
+            this.Controls.Add(this.bottomFlowLayoutPanel);
             this.Controls.Add(this.mainPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -246,6 +261,7 @@
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.bottomFlowLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -268,5 +284,6 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.PictureBox helpPictureBox;
         private Wx3270.NoSelectButton recordButton;
+        private System.Windows.Forms.FlowLayoutPanel bottomFlowLayoutPanel;
     }
 }

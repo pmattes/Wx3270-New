@@ -635,11 +635,11 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.Controls.Add(this.undoButton);
-            this.flowLayoutPanel1.Controls.Add(this.redoButton);
             this.flowLayoutPanel1.Controls.Add(this.helpPictureBox);
+            this.flowLayoutPanel1.Controls.Add(this.redoButton);
+            this.flowLayoutPanel1.Controls.Add(this.undoButton);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(578, 10);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -649,7 +649,7 @@
             // undoButton
             // 
             this.undoButton.Enabled = false;
-            this.undoButton.Location = new System.Drawing.Point(3, 3);
+            this.undoButton.Location = new System.Drawing.Point(6, 3);
             this.undoButton.Name = "undoButton";
             this.undoButton.Size = new System.Drawing.Size(35, 23);
             this.undoButton.TabIndex = 0;
@@ -660,8 +660,10 @@
             // 
             // redoButton
             // 
+            this.redoButton.AutoSize = true;
             this.redoButton.Enabled = false;
-            this.redoButton.Location = new System.Drawing.Point(44, 3);
+            this.redoButton.Location = new System.Drawing.Point(47, 3);
+            this.redoButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.redoButton.Name = "redoButton";
             this.redoButton.Size = new System.Drawing.Size(35, 23);
             this.redoButton.TabIndex = 1;
@@ -673,7 +675,8 @@
             // helpPictureBox
             // 
             this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(85, 3);
+            this.helpPictureBox.Location = new System.Drawing.Point(88, 3);
+            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(6, 3, 0, 3);
             this.helpPictureBox.Name = "helpPictureBox";
             this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
             this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1034,6 +1037,7 @@
             this.connectionFlowLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.topFlowLayoutPanel.ResumeLayout(false);
             this.topFlowLayoutPanel.PerformLayout();

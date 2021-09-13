@@ -100,6 +100,9 @@ namespace Wx3270
 
                 this.editToolStripMenuItem.RemoveFromOwner();
                 this.deleteToolStripMenuItem.RemoveFromOwner();
+
+                this.undoButton.RemoveFromParent();
+                this.redoButton.RemoveFromParent();
             }
 
             if (app.Restricted(Restrictions.GetHelp))

@@ -185,7 +185,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             public const string ReadOnly = "-readonly";
 
             /// <summary>
-            /// An abreviation for "-readonly".
+            /// An abbreviation for "-readonly".
             /// </summary>
             public const string Ro = "-ro";
 

@@ -204,6 +204,12 @@ namespace Wx3270
             // Register the safety check.
             this.ProfileManager.SafetyCheck += this.SafetyCheck;
 
+            // Process restrictions.
+            if (this.app.Restricted(Restrictions.GetHelp))
+            {
+                this.helpPictureBox.RemoveFromParent();
+            }
+
             // Localize.
             I18n.Localize(this, this.toolTip1);
 
