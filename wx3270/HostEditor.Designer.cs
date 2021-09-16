@@ -57,6 +57,7 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.connectRecordButton = new System.Windows.Forms.Button();
             this.optionsGroupBox = new System.Windows.Forms.GroupBox();
             this.optionsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tlsTunnelCheckBox = new System.Windows.Forms.CheckBox();
@@ -101,7 +102,6 @@
             this.commandLineOptionsLabel = new System.Windows.Forms.Label();
             this.commandLabel = new System.Windows.Forms.Label();
             this.commandOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.connectRecordButton = new System.Windows.Forms.Button();
             this.loadGroupBox.SuspendLayout();
             this.loadTableLayoutPanel.SuspendLayout();
             this.hostTypeGroupBox.SuspendLayout();
@@ -439,6 +439,7 @@
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 4;
             this.cancelButton.Text = "Cancel";
+            this.toolTip1.SetToolTip(this.cancelButton, "Discard all changes");
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
@@ -449,6 +450,7 @@
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 5;
             this.okButton.Text = "Save";
+            this.toolTip1.SetToolTip(this.okButton, "Save all changes");
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
@@ -463,6 +465,18 @@
             this.helpPictureBox.TabStop = false;
             this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
             this.helpPictureBox.Click += new System.EventHandler(this.Help_Click);
+            // 
+            // connectRecordButton
+            // 
+            this.connectRecordButton.ForeColor = System.Drawing.Color.ForestGreen;
+            this.connectRecordButton.Location = new System.Drawing.Point(84, 3);
+            this.connectRecordButton.Name = "connectRecordButton";
+            this.connectRecordButton.Size = new System.Drawing.Size(75, 23);
+            this.connectRecordButton.TabIndex = 133;
+            this.connectRecordButton.Text = "Connect+⏺";
+            this.toolTip1.SetToolTip(this.connectRecordButton, "Connect and start recording a login macro");
+            this.connectRecordButton.UseVisualStyleBackColor = true;
+            this.connectRecordButton.Click += new System.EventHandler(this.ConnectRecordButton_Click);
             // 
             // optionsGroupBox
             // 
@@ -1046,18 +1060,6 @@
             this.commandOpenFileDialog.Filter = "Programs|*.exe|All files|*.*";
             this.commandOpenFileDialog.Title = "Select command";
             // 
-            // connectRecordButton
-            // 
-            this.connectRecordButton.ForeColor = System.Drawing.Color.ForestGreen;
-            this.connectRecordButton.Location = new System.Drawing.Point(84, 3);
-            this.connectRecordButton.Name = "connectRecordButton";
-            this.connectRecordButton.Size = new System.Drawing.Size(75, 23);
-            this.connectRecordButton.TabIndex = 133;
-            this.connectRecordButton.Text = "Connect+⏺";
-            this.toolTip1.SetToolTip(this.connectRecordButton, "Connect and start recording login macro");
-            this.connectRecordButton.UseVisualStyleBackColor = true;
-            this.connectRecordButton.Click += new System.EventHandler(this.ConnectRecordButton_Click);
-            // 
             // HostEditor
             // 
             this.AcceptButton = this.okButton;
@@ -1074,6 +1076,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Connection Editor";
+            this.toolTip1.SetToolTip(this, "Save and make the connection");
             this.loadGroupBox.ResumeLayout(false);
             this.loadGroupBox.PerformLayout();
             this.loadTableLayoutPanel.ResumeLayout(false);

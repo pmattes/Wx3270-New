@@ -70,9 +70,9 @@
             this.useShiftLabel = new System.Windows.Forms.Label();
             this.treeView = new System.Windows.Forms.TreeView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.undoButton = new System.Windows.Forms.Button();
-            this.redoButton = new System.Windows.Forms.Button();
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.redoButton = new System.Windows.Forms.Button();
+            this.undoButton = new System.Windows.Forms.Button();
             this.topFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.topNewConnectionButton = new System.Windows.Forms.Button();
             this.topDisconnectButton = new System.Windows.Forms.Button();
@@ -483,7 +483,7 @@
             this.commonEditButton.TabIndex = 0;
             this.commonEditButton.Tag = "Edit";
             this.commonEditButton.Text = "✎ Edit";
-            this.toolTip1.SetToolTip(this.commonEditButton, "Edit the selected host or profile");
+            this.toolTip1.SetToolTip(this.commonEditButton, "Edit the selected connection or profile");
             this.commonEditButton.UseVisualStyleBackColor = true;
             this.commonEditButton.Click += new System.EventHandler(this.CommonButtonClick);
             // 
@@ -495,7 +495,7 @@
             this.commonDuplicateButton.TabIndex = 1;
             this.commonDuplicateButton.Tag = "Duplicate";
             this.commonDuplicateButton.Text = "Duplicate";
-            this.toolTip1.SetToolTip(this.commonDuplicateButton, "Duplicate the selected host or profile");
+            this.toolTip1.SetToolTip(this.commonDuplicateButton, "Duplicate the selected connection or profile");
             this.commonDuplicateButton.UseVisualStyleBackColor = true;
             this.commonDuplicateButton.Click += new System.EventHandler(this.CommonButtonClick);
             // 
@@ -507,7 +507,7 @@
             this.commonRenameButton.TabIndex = 2;
             this.commonRenameButton.Tag = "Rename";
             this.commonRenameButton.Text = "Rename";
-            this.toolTip1.SetToolTip(this.commonRenameButton, "Rename the selected host or profile");
+            this.toolTip1.SetToolTip(this.commonRenameButton, "Rename the selected connection or profile");
             this.commonRenameButton.UseVisualStyleBackColor = true;
             this.commonRenameButton.Click += new System.EventHandler(this.CommonButtonClick);
             // 
@@ -519,7 +519,7 @@
             this.commonShortcutButton.TabIndex = 4;
             this.commonShortcutButton.Tag = "Shortcut";
             this.commonShortcutButton.Text = "Shortcut";
-            this.toolTip1.SetToolTip(this.commonShortcutButton, "Connect to the selected host");
+            this.toolTip1.SetToolTip(this.commonShortcutButton, "Create a shortcut to the selected connection or profile");
             this.commonShortcutButton.UseVisualStyleBackColor = true;
             this.commonShortcutButton.Click += new System.EventHandler(this.CommonButtonClick);
             // 
@@ -532,7 +532,7 @@
             this.commonDeleteButton.TabIndex = 3;
             this.commonDeleteButton.Tag = "Delete";
             this.commonDeleteButton.Text = "❌ Delete";
-            this.toolTip1.SetToolTip(this.commonDeleteButton, "Delete the selected host or profile");
+            this.toolTip1.SetToolTip(this.commonDeleteButton, "Delete the selected connection or profile");
             this.commonDeleteButton.UseVisualStyleBackColor = true;
             this.commonDeleteButton.Click += new System.EventHandler(this.CommonButtonClick);
             // 
@@ -581,7 +581,7 @@
             this.connectionNewButton.TabIndex = 0;
             this.connectionNewButton.Tag = "New";
             this.connectionNewButton.Text = "➕ New";
-            this.toolTip1.SetToolTip(this.connectionNewButton, "Add a new host to the current profile");
+            this.toolTip1.SetToolTip(this.connectionNewButton, "Add a new connection to the current profile");
             this.connectionNewButton.UseVisualStyleBackColor = true;
             this.connectionNewButton.Click += new System.EventHandler(this.ConnectionButtonClick);
             // 
@@ -593,7 +593,7 @@
             this.connectionConnectButton.TabIndex = 1;
             this.connectionConnectButton.Tag = "Connect";
             this.connectionConnectButton.Text = "🗲 Connect";
-            this.toolTip1.SetToolTip(this.connectionConnectButton, "Connect to the selected host");
+            this.toolTip1.SetToolTip(this.connectionConnectButton, "Make the selected connection");
             this.connectionConnectButton.UseVisualStyleBackColor = true;
             this.connectionConnectButton.Click += new System.EventHandler(this.ConnectionButtonClick);
             // 
@@ -646,17 +646,18 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(111, 29);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
-            // undoButton
+            // helpPictureBox
             // 
-            this.undoButton.Enabled = false;
-            this.undoButton.Location = new System.Drawing.Point(6, 3);
-            this.undoButton.Name = "undoButton";
-            this.undoButton.Size = new System.Drawing.Size(35, 23);
-            this.undoButton.TabIndex = 0;
-            this.undoButton.Tag = "`";
-            this.undoButton.Text = "↶";
-            this.undoButton.UseVisualStyleBackColor = true;
-            this.undoButton.Click += new System.EventHandler(this.UndoButton_Click);
+            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox.Location = new System.Drawing.Point(88, 3);
+            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(6, 3, 0, 3);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.helpPictureBox.TabIndex = 2;
+            this.helpPictureBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
+            this.helpPictureBox.Click += new System.EventHandler(this.Help_Clicked);
             // 
             // redoButton
             // 
@@ -672,18 +673,17 @@
             this.redoButton.UseVisualStyleBackColor = true;
             this.redoButton.Click += new System.EventHandler(this.RedoButton_Click);
             // 
-            // helpPictureBox
+            // undoButton
             // 
-            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(88, 3);
-            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(6, 3, 0, 3);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.helpPictureBox.TabIndex = 2;
-            this.helpPictureBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
-            this.helpPictureBox.Click += new System.EventHandler(this.Help_Clicked);
+            this.undoButton.Enabled = false;
+            this.undoButton.Location = new System.Drawing.Point(6, 3);
+            this.undoButton.Name = "undoButton";
+            this.undoButton.Size = new System.Drawing.Size(35, 23);
+            this.undoButton.TabIndex = 0;
+            this.undoButton.Tag = "`";
+            this.undoButton.Text = "↶";
+            this.undoButton.UseVisualStyleBackColor = true;
+            this.undoButton.Click += new System.EventHandler(this.UndoButton_Click);
             // 
             // topFlowLayoutPanel
             // 
@@ -708,7 +708,7 @@
             this.topNewConnectionButton.TabIndex = 1;
             this.topNewConnectionButton.Tag = "NewConnection";
             this.topNewConnectionButton.Text = "🗲 New Connection";
-            this.toolTip1.SetToolTip(this.topNewConnectionButton, "Add a new host to the current profile");
+            this.toolTip1.SetToolTip(this.topNewConnectionButton, "Add a new connection to the current profile");
             this.topNewConnectionButton.UseVisualStyleBackColor = true;
             this.topNewConnectionButton.Click += new System.EventHandler(this.TopButtonClick);
             // 

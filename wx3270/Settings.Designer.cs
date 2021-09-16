@@ -1456,6 +1456,7 @@
             this.keyboardActionsEditButton.TabStop = false;
             this.keyboardActionsEditButton.Tag = "Edit";
             this.keyboardActionsEditButton.Text = "🖉 Edit";
+            this.toolTip1.SetToolTip(this.keyboardActionsEditButton, "Edit the actions for this key");
             this.keyboardActionsEditButton.UseVisualStyleBackColor = true;
             this.keyboardActionsEditButton.Click += new System.EventHandler(this.KeyboardAction_Click);
             // 
@@ -1470,6 +1471,7 @@
             this.keyboardActionsAddKeyButton.TabStop = false;
             this.keyboardActionsAddKeyButton.Tag = "Add";
             this.keyboardActionsAddKeyButton.Text = "➕ New";
+            this.toolTip1.SetToolTip(this.keyboardActionsAddKeyButton, "Create actions for this key");
             this.keyboardActionsAddKeyButton.UseVisualStyleBackColor = true;
             this.keyboardActionsAddKeyButton.Click += new System.EventHandler(this.KeyboardAction_Click);
             // 
@@ -2200,7 +2202,7 @@
             this.crosshairColorButton.TabStop = false;
             this.crosshairColorButton.Tag = "";
             this.crosshairColorButton.Text = "Crosshair Cursor";
-            this.toolTip1.SetToolTip(this.crosshairColorButton, "Background color for selected text");
+            this.toolTip1.SetToolTip(this.crosshairColorButton, "Color of the crosshair cursor");
             this.crosshairColorButton.UseVisualStyleBackColor = false;
             this.crosshairColorButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
             // 
@@ -3094,7 +3096,7 @@
             this.monoCrosshairButton.TabStop = false;
             this.monoCrosshairButton.Tag = "red";
             this.monoCrosshairButton.Text = "Crosshair Cursor";
-            this.toolTip1.SetToolTip(this.monoCrosshairButton, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
+            this.toolTip1.SetToolTip(this.monoCrosshairButton, "Color of crosshair cursor");
             this.monoCrosshairButton.UseVisualStyleBackColor = false;
             this.monoCrosshairButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
             // 
@@ -3108,7 +3110,7 @@
             this.monoSelectBackground.TabIndex = 3;
             this.monoSelectBackground.Tag = "red";
             this.monoSelectBackground.Text = "Selection Background";
-            this.toolTip1.SetToolTip(this.monoSelectBackground, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
+            this.toolTip1.SetToolTip(this.monoSelectBackground, "Background color of selected text");
             this.monoSelectBackground.UseVisualStyleBackColor = false;
             this.monoSelectBackground.Click += new System.EventHandler(this.SelectedButton_Click);
             // 
@@ -3295,7 +3297,7 @@
             this.monoIntensifiedButton.TabStop = false;
             this.monoIntensifiedButton.Tag = "";
             this.monoIntensifiedButton.Text = "Intensified";
-            this.toolTip1.SetToolTip(this.monoIntensifiedButton, "Turquoise\r\nHost color X\'F5\'");
+            this.toolTip1.SetToolTip(this.monoIntensifiedButton, "Intensified text color");
             this.monoIntensifiedButton.UseVisualStyleBackColor = false;
             this.monoIntensifiedButton.Click += new System.EventHandler(this.Mono_Click);
             // 
@@ -3310,7 +3312,7 @@
             this.monoNormalButton.TabStop = false;
             this.monoNormalButton.Tag = "green";
             this.monoNormalButton.Text = "Normal";
-            this.toolTip1.SetToolTip(this.monoNormalButton, "Green\r\nHost color X\'F4\'\r\nUnprotected text");
+            this.toolTip1.SetToolTip(this.monoNormalButton, "Normal text and status line color");
             this.monoNormalButton.UseVisualStyleBackColor = false;
             this.monoNormalButton.Click += new System.EventHandler(this.Mono_Click);
             // 
@@ -3325,7 +3327,7 @@
             this.monoBackgroundButton.TabStop = false;
             this.monoBackgroundButton.Tag = "blue";
             this.monoBackgroundButton.Text = "Screen Background";
-            this.toolTip1.SetToolTip(this.monoBackgroundButton, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
+            this.toolTip1.SetToolTip(this.monoBackgroundButton, "Screen background color");
             this.monoBackgroundButton.UseVisualStyleBackColor = false;
             this.monoBackgroundButton.Click += new System.EventHandler(this.Mono_Click);
             // 
@@ -3491,6 +3493,7 @@
             this.FontChangeButton.TabIndex = 2;
             this.FontChangeButton.TabStop = false;
             this.FontChangeButton.Text = "Change";
+            this.toolTip1.SetToolTip(this.FontChangeButton, "Change the font");
             this.FontChangeButton.UseVisualStyleBackColor = true;
             this.FontChangeButton.Click += new System.EventHandler(this.FontChangeButton_Click);
             // 
@@ -3543,6 +3546,7 @@
             this.PlayAudibleBell.TabIndex = 9;
             this.PlayAudibleBell.Tag = "`";
             this.PlayAudibleBell.Text = "▶";
+            this.toolTip1.SetToolTip(this.PlayAudibleBell, "Play the sound");
             this.PlayAudibleBell.UseVisualStyleBackColor = true;
             this.PlayAudibleBell.Click += new System.EventHandler(this.ConsoleBellPlayButton_Click);
             // 
@@ -3582,6 +3586,7 @@
             this.PlayKeyboardClick.TabIndex = 8;
             this.PlayKeyboardClick.Tag = "`";
             this.PlayKeyboardClick.Text = "▶";
+            this.toolTip1.SetToolTip(this.PlayKeyboardClick, "Play the sound");
             this.PlayKeyboardClick.UseVisualStyleBackColor = true;
             this.PlayKeyboardClick.Click += new System.EventHandler(this.KeyClickPlayButton_Click);
             // 
@@ -3683,6 +3688,7 @@
             this.httpdAddressBox.Size = new System.Drawing.Size(150, 20);
             this.httpdAddressBox.TabIndex = 0;
             this.httpdAddressBox.Tag = "address";
+            this.toolTip1.SetToolTip(this.httpdAddressBox, "IPv4 or IPv6 numeric address");
             this.httpdAddressBox.Click += new System.EventHandler(this.ServerEdit_Click);
             this.httpdAddressBox.Enter += new System.EventHandler(this.ServerTextBox_Enter);
             // 
@@ -3693,6 +3699,7 @@
             this.httpdPortBox.Size = new System.Drawing.Size(150, 20);
             this.httpdPortBox.TabIndex = 1;
             this.httpdPortBox.Tag = "port";
+            this.toolTip1.SetToolTip(this.httpdPortBox, "TCP port");
             this.httpdPortBox.Click += new System.EventHandler(this.ServerEdit_Click);
             this.httpdPortBox.Enter += new System.EventHandler(this.ServerTextBox_Enter);
             // 
@@ -3782,6 +3789,7 @@
             this.s3270AddressBox.Size = new System.Drawing.Size(150, 20);
             this.s3270AddressBox.TabIndex = 1;
             this.s3270AddressBox.Tag = "address";
+            this.toolTip1.SetToolTip(this.s3270AddressBox, "IPv4 or IPv6 numeric address");
             this.s3270AddressBox.Click += new System.EventHandler(this.ServerEdit_Click);
             this.s3270AddressBox.Enter += new System.EventHandler(this.ServerTextBox_Enter);
             // 
@@ -3792,6 +3800,7 @@
             this.s3270PortBox.Size = new System.Drawing.Size(150, 20);
             this.s3270PortBox.TabIndex = 2;
             this.s3270PortBox.Tag = "port";
+            this.toolTip1.SetToolTip(this.s3270PortBox, "TCP port");
             this.s3270PortBox.Click += new System.EventHandler(this.ServerEdit_Click);
             this.s3270PortBox.Enter += new System.EventHandler(this.ServerTextBox_Enter);
             // 
@@ -3895,6 +3904,7 @@
             this.portTextBox.Size = new System.Drawing.Size(150, 20);
             this.portTextBox.TabIndex = 2;
             this.portTextBox.Tag = "port";
+            this.toolTip1.SetToolTip(this.portTextBox, "TCP port to connect to");
             this.portTextBox.Click += new System.EventHandler(this.ProxyEditButton_Click);
             this.portTextBox.Enter += new System.EventHandler(this.ProxyTypeTextBox_Enter);
             // 
@@ -3906,6 +3916,7 @@
             this.addressTextBox.Size = new System.Drawing.Size(150, 20);
             this.addressTextBox.TabIndex = 1;
             this.addressTextBox.Tag = "address";
+            this.toolTip1.SetToolTip(this.addressTextBox, "Host name or numeric address to connect to");
             this.addressTextBox.Click += new System.EventHandler(this.ProxyEditButton_Click);
             this.addressTextBox.Enter += new System.EventHandler(this.ProxyTypeTextBox_Enter);
             // 

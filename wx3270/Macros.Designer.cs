@@ -62,6 +62,7 @@
             this.macroEditButton.TabIndex = 101;
             this.macroEditButton.TabStop = false;
             this.macroEditButton.Text = "Edit";
+            this.toolTip1.SetToolTip(this.macroEditButton, "Edit the selected macro");
             this.macroEditButton.UseVisualStyleBackColor = true;
             this.macroEditButton.Click += new System.EventHandler(this.MacroEditButton_Click);
             // 
@@ -74,6 +75,7 @@
             this.macroAddButton.TabIndex = 104;
             this.macroAddButton.TabStop = false;
             this.macroAddButton.Text = "➕ New";
+            this.toolTip1.SetToolTip(this.macroAddButton, "Create a new macro");
             this.macroAddButton.UseVisualStyleBackColor = true;
             this.macroAddButton.Click += new System.EventHandler(this.MacroAddButton_Click);
             // 
@@ -86,6 +88,7 @@
             this.macroTestButton.TabIndex = 103;
             this.macroTestButton.TabStop = false;
             this.macroTestButton.Text = "Run";
+            this.toolTip1.SetToolTip(this.macroTestButton, "Run the selected macro");
             this.macroTestButton.UseVisualStyleBackColor = true;
             this.macroTestButton.Click += new System.EventHandler(this.MacroTestButton_Click);
             // 
@@ -100,6 +103,7 @@
             this.macroRemoveButton.TabIndex = 105;
             this.macroRemoveButton.TabStop = false;
             this.macroRemoveButton.Text = "❌ Delete";
+            this.toolTip1.SetToolTip(this.macroRemoveButton, "Delete the selected macro");
             this.macroRemoveButton.UseVisualStyleBackColor = true;
             this.macroRemoveButton.Click += new System.EventHandler(this.MacroRemoveButton_Click);
             // 
@@ -185,6 +189,7 @@
             this.recordButton.Size = new System.Drawing.Size(75, 23);
             this.recordButton.TabIndex = 106;
             this.recordButton.Text = "⏺ Record";
+            this.toolTip1.SetToolTip(this.recordButton, "Create a new macro with the macro recorder");
             this.recordButton.UseVisualStyleBackColor = true;
             this.recordButton.Click += new System.EventHandler(this.RecordButton_Click);
             // 
