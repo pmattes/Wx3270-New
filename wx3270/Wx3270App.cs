@@ -275,14 +275,9 @@ namespace Wx3270
         public ISettingChange SettingChange { get; private set; }
 
         /// <summary>
-        /// Gets the localization dump file.
+        /// Gets the JSON localization dump file.
         /// </summary>
         public string DumpLocalization { get; private set; }
-
-        /// <summary>
-        /// Gets the missing message dump file.
-        /// </summary>
-        public string DumpMissingMessages { get; private set; }
 
         /// <summary>
         /// Gets or sets the chord name.
@@ -437,9 +432,10 @@ namespace Wx3270
 
             // Parse command line arguments.
             int? lastOpt = null;
+            var i = 0;
             try
             {
-                for (int i = 0; i < args.Length; i++)
+                for (i = 0; i < args.Length; i++)
                 {
                     if (lastOpt.HasValue)
                     {
@@ -460,9 +456,6 @@ namespace Wx3270
                             break;
                         case Constants.Option.DumpLocalization:
                             this.DumpLocalization = args[++i];
-                            break;
-                        case Constants.Option.DumpMissingMessages:
-                            this.DumpMissingMessages = args[++i];
                             break;
                         case Constants.Option.Edit:
                             this.EditMode = true;
@@ -565,7 +558,7 @@ namespace Wx3270
             }
             catch (IndexOutOfRangeException)
             {
-                Usage("Missing parameter value");
+                Usage($"Missing parameter value for {args[i - 1]}");
             }
 
             if (lastOpt.HasValue)

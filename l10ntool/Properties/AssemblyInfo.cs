@@ -8,12 +8,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("I18nBase")]
+[assembly: AssemblyTitle("l10ntool")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Paul Mattes")]
-[assembly: AssemblyProduct("I18nBase")]
-[assembly: AssemblyCopyright("Copyright © 2018-2021 Paul Mattes")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("l10ntool")]
+[assembly: AssemblyCopyright("Copyright © 2021 Paul Mattes")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9845ce4c-9168-4cc3-a278-d77c6ea94d67")]
+[assembly: Guid("3b878f2a-b1be-4590-8617-ab7264b5d504")]
 
 // Version information for an assembly consists of the following four values:
 //

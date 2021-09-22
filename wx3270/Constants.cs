@@ -135,14 +135,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             public const string Culture = "-culture";
 
             /// <summary>
-            /// Dump the localization dictionary.
+            /// Dump the localization dictionary in JSON format.
             /// </summary>
             public const string DumpLocalization = "-dumplocalization";
-
-            /// <summary>
-            /// Dump the missing message localizations.
-            /// </summary>
-            public const string DumpMissingMessages = "-dumpmissingmessages";
 
             /// <summary>
             /// The edit option. Suppresses auto-connect and implies read/write.

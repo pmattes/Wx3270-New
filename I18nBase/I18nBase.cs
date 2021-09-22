@@ -37,22 +37,36 @@ namespace I18nBase
         /// <summary>
         /// Regular expression for action names.
         /// </summary>
-        private static readonly Regex actionRegex = new Regex("[A-Za-z][A-Za-z0-9_]*\\(\\)");
+        private static readonly Regex ActionRegex = new Regex("[A-Za-z][A-Za-z0-9_]*\\(\\)");
 
         /// <summary>
         /// Regular expression for quoted action names.
         /// </summary>
-        private static readonly Regex quotedActionRegex = new Regex("'[A-Za-z][A-Za-z0-9_]*\\(\\)'");
+        private static readonly Regex QuotedActionRegex = new Regex("'[A-Za-z][A-Za-z0-9_]*\\(\\)'");
 
         /// <summary>
         /// The set of messages not defined in the message catalog file.
         /// </summary>
-        private static readonly Dictionary<string, string> missingMessages = new Dictionary<string, string>();
+        private static readonly Dictionary<string, string> MissingMessages = new Dictionary<string, string>();
+
+        /// <summary>
+        /// Some strings that don't get translated.
+        /// </summary>
+        private static readonly HashSet<string> NoTranslate = new HashSet<string>
+        {
+            "wx3270", "wx3270>", "pr3287", "b3270", "shift", "cmd.exe", "Shift", "Ctrl", "Alt", "Num", "Lock",
+            "Python", "PowerShell", "VBScript", "JScript", "Alt+Shift",
+        };
+
+        /// <summary>
+        /// The set of messages in the original US English.
+        /// </summary>
+        private static readonly Dictionary<string, string> UsEnglishMessages = new Dictionary<string, string>();
 
         /// <summary>
         /// Localizations of known strings.
         /// </summary>
-        private static Dictionary<string, string> Localized = new Dictionary<string, string>();
+        private static Dictionary<string, string> localized = new Dictionary<string, string>();
 
         /// <summary>
         /// The culture-specific DLL.
@@ -68,15 +82,6 @@ namespace I18nBase
         /// True if a message catalog is in use.
         /// </summary>
         private static bool usingMessageCatalog = false;
-        
-        /// <summary>
-        /// Some strings that don't get translated.
-        /// </summary>
-        private static readonly HashSet<string> noTranslate = new HashSet<string>
-        {
-            "wx3270", "wx3270>", "pr3287", "b3270", "shift", "cmd.exe", "Shift", "Ctrl", "Alt", "Num", "Lock",
-            "Python", "PowerShell", "VBScript", "JScript", "Alt+Shift"
-        };
 
         /// <summary>
         /// Gets or sets the requested culture.
@@ -94,39 +99,10 @@ namespace I18nBase
         public static bool AllowDynamic { get; set; } = true;
 
         /// <summary>
-        /// Split a string, but leave the whitespace as words.
-        /// </summary>
-        /// <param name="s">String to split</param>
-        /// <returns>Split string</returns>
-        private static List<string> SplitWhite(string s)
-        {
-            var ret = new List<string>();
-
-            var t = s;
-            foreach (var word in s.Split(new[] { " ", Environment.NewLine }, StringSplitOptions.None))
-            {
-                ret.Add(word);
-                t = t.Substring(word.Length);
-                if (t.StartsWith(" "))
-                {
-                    ret.Add(" ");
-                    t = t.Substring(1);
-                }
-                else if (t.StartsWith(Environment.NewLine))
-                {
-                    ret.Add(Environment.NewLine);
-                    t = t.Substring(Environment.NewLine.Length);
-                }
-            }
-
-            return ret;
-        }
-
-        /// <summary>
         /// Set up culture-specific information.
         /// </summary>
-        /// <param name="nameSpaceName">Name space name</param>
-        /// <param name="cultureName">Culture name</param>
+        /// <param name="nameSpaceName">Name space name.</param>
+        /// <param name="cultureName">Culture name.</param>
         public static void Setup(string nameSpaceName, string cultureName = null)
         {
             string foundFile = null;
@@ -205,7 +181,7 @@ namespace I18nBase
                         {
                             try
                             {
-                                Localized = serializer.Deserialize<Dictionary<string,string>>(reader);
+                                localized = serializer.Deserialize<Dictionary<string, string>>(reader);
                                 usingMessageCatalog = true;
                             }
                             catch (Exception e)
@@ -236,9 +212,9 @@ namespace I18nBase
         }
 
         /// <summary>
-        /// Dump the localization tree.
+        /// Dump the message catalog in JSON format.
         /// </summary>
-        /// <param name="fileName">File to save into</param>
+        /// <param name="fileName">File to save into.</param>
         public static void DumpMessages(string fileName = null)
         {
             TextWriter t;
@@ -253,7 +229,7 @@ namespace I18nBase
 
             var serializer = new JsonSerializer()
             {
-                Formatting = Formatting.Indented
+                Formatting = Formatting.Indented,
             };
             using (JsonWriter writer = new JsonTextWriter(t))
             {
@@ -267,41 +243,10 @@ namespace I18nBase
         }
 
         /// <summary>
-        /// Dump the set of messages that did not appear in the message catalog.
-        /// </summary>
-        /// <param name="fileName"></param>
-        public static void DumpMissingMessages(string fileName = null)
-        {
-            TextWriter t;
-            if (fileName != null)
-            {
-                t = new StreamWriter(fileName, false, new UTF8Encoding());
-            }
-            else
-            {
-                t = Console.Out;
-            }
-
-            var serializer = new JsonSerializer()
-            {
-                Formatting = Formatting.Indented
-            };
-            using (JsonWriter writer = new JsonTextWriter(t))
-            {
-                serializer.Serialize(writer, missingMessages);
-            }
-
-            if (fileName != null)
-            {
-                t.Dispose();
-            }
-        }
-
-        /// <summary>
         /// Combine path components.
         /// </summary>
-        /// <param name="components">Components to combine</param>
-        /// <returns>Combined components</returns>
+        /// <param name="components">Components to combine.</param>
+        /// <returns>Combined components.</returns>
         public static string Combine(params string[] components)
         {
             return string.Join(Separator, components);
@@ -310,8 +255,8 @@ namespace I18nBase
         /// <summary>
         /// Combine path components.
         /// </summary>
-        /// <param name="components">Components to combine</param>
-        /// <returns>Combined components</returns>
+        /// <param name="components">Components to combine.</param>
+        /// <returns>Combined components.</returns>
         public static string Combine(IEnumerable<string> components)
         {
             return string.Join(Separator, components);
@@ -320,17 +265,17 @@ namespace I18nBase
         /// <summary>
         /// Get a localized string by path.
         /// </summary>
-        /// <param name="path">Path name</param>
-        /// <param name="fallback">Fallback value</param>
-        /// <returns>Localized string</returns>
+        /// <param name="path">Path name.</param>
+        /// <param name="fallback">Fallback value.</param>
+        /// <returns>Localized string.</returns>
         public static string Get(string path, string fallback = null)
         {
-            if (fallback != null && !Localized.ContainsKey(path))
+            if (fallback != null && !localized.ContainsKey(path))
             {
                 return fallback;
             }
 
-            return Localized[path];
+            return localized[path];
         }
 
         /// <summary>
@@ -344,18 +289,21 @@ namespace I18nBase
         {
             // Normalize the path.
             path = path.Replace(" ", "_").Replace(Environment.NewLine, "_");
-            
+
             // If using a message catalog file, this path should be defined already.
-            // If it isn't remember that.
-            if (usingMessageCatalog && !Localized.ContainsKey(path))
+            // If it isn't, remember that.
+            if (usingMessageCatalog && !localized.ContainsKey(path))
             {
-                missingMessages[path] = s;
+                MissingMessages[path] = s;
             }
 
-            if (Localized.TryGetValue(path, out string localized))
+            // Remember the US English version.
+            UsEnglishMessages[path] = s;
+
+            if (localized.TryGetValue(path, out string trans))
             {
                 // Already known.
-                return localized;
+                return trans;
             }
 
             if (!AllowDynamic)
@@ -366,7 +314,7 @@ namespace I18nBase
             if (localizeWordMethodInfo == null)
             {
                 // No DLL, leave it in U.S. English.
-                localized = s;
+                trans = s;
             }
             else
             {
@@ -383,28 +331,57 @@ namespace I18nBase
                             || newWord == string.Empty
                             || newWord.StartsWith("{")
                             || newWord.Length == 1
-                            || noTranslate.Contains(newWord)
-                            || actionRegex.IsMatch(newWord)
-                            || quotedActionRegex.IsMatch(newWord))
+                            || NoTranslate.Contains(newWord)
+                            || ActionRegex.IsMatch(newWord)
+                            || QuotedActionRegex.IsMatch(newWord))
                         {
                             break;
                         }
 
                         // Ask the DLL.
                         newWord = (string)localizeWordMethodInfo.Invoke(null, new object[] { newWord });
-
-                    } while (false);
+                    }
+                    while (false);
 
                     newString.Add(newWord);
                 }
 
-                localized = string.Join("", newString);
+                trans = string.Join(string.Empty, newString);
             }
 
             // Remember.
             KnownStrings[path] = s;
-            Localized[path] = localized;
-            return localized;
+            localized[path] = trans;
+            return trans;
+        }
+
+        /// <summary>
+        /// Split a string, but leave the whitespace as words.
+        /// </summary>
+        /// <param name="s">String to split.</param>
+        /// <returns>Split string.</returns>
+        private static List<string> SplitWhite(string s)
+        {
+            var ret = new List<string>();
+
+            var t = s;
+            foreach (var word in s.Split(new[] { " ", Environment.NewLine }, StringSplitOptions.None))
+            {
+                ret.Add(word);
+                t = t.Substring(word.Length);
+                if (t.StartsWith(" "))
+                {
+                    ret.Add(" ");
+                    t = t.Substring(1);
+                }
+                else if (t.StartsWith(Environment.NewLine))
+                {
+                    ret.Add(Environment.NewLine);
+                    t = t.Substring(Environment.NewLine.Length);
+                }
+            }
+
+            return ret;
         }
     }
 }

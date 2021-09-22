@@ -40,11 +40,6 @@ namespace Wx3270
                     I18nBase.DumpMessages(app.DumpLocalization);
                 }
 
-                if (!string.IsNullOrEmpty(app.DumpMissingMessages))
-                {
-                    I18nBase.DumpMissingMessages(app.DumpMissingMessages);
-                }
-
                 I18nBase.AllowDynamic = false;
 
                 // Start the back end running.
