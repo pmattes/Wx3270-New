@@ -36,6 +36,11 @@ namespace L10ntool
             NotTranslated,
 
             /// <summary>
+            /// Added since the last version.
+            /// </summary>
+            Added,
+
+            /// <summary>
             /// Message has changed between old and new; new translation needed.
             /// </summary>
             EnglishChanged,
@@ -124,7 +129,7 @@ namespace L10ntool
                 else
                 {
                     // New path.
-                    classified[msg.Key] = new Tuple<EntryStatus, string, string>(EntryStatus.NotTranslated, msg.Value, string.Empty);
+                    classified[msg.Key] = new Tuple<EntryStatus, string, string>(EntryStatus.Added, msg.Value, string.Empty);
                 }
             }
 
