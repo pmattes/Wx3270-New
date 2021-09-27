@@ -550,6 +550,7 @@
             // controlCharDocButton
             // 
             this.controlCharDocButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.controlCharDocButton.AutoSize = true;
             this.controlCharDocButton.Location = new System.Drawing.Point(287, 3);
             this.controlCharDocButton.Name = "controlCharDocButton";
             this.controlCharDocButton.Size = new System.Drawing.Size(75, 23);
