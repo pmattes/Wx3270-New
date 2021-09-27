@@ -9,12 +9,23 @@ namespace L10ntool
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Localization utility.
     /// </summary>
     public class L10ntool
     {
+        /// <summary>
+        /// Map of verbs to parameters.
+        /// </summary>
+        private static Dictionary<Verb, IEnumerable<Parameter>> paramMap = new Dictionary<Verb, IEnumerable<Parameter>>
+        {
+            { Verb.CreateCsv, new[] { Parameter.InNewMsgcat, Parameter.OutCsv } },
+            { Verb.UpdateCsv, new[] { Parameter.InOldMsgcat, Parameter.InNewMsgcat, Parameter.InOldTranslatedMsgcat, Parameter.OutCsv } },
+            { Verb.CsvToMsgcat, new[] { Parameter.InCsv, Parameter.OutMsgcat } },
+        };
+
         /// <summary>
         /// Operation to perform.
         /// </summary>
@@ -133,38 +144,35 @@ namespace L10ntool
 
             var localize = new L10n();
 
+            if (verb == Verb.None)
+            {
+                throw new ArgumentException(
+                        string.Format(
+                            "Missing verb -- verbs are {0}",
+                            string.Join(" ", Enum.GetNames(typeof(Verb)).Where(name => name != nameof(Verb.None)).Select(name => EnumToOption(name)))));
+            }
+
+            var map = paramMap[verb];
+            if (!map.All(p => parameters.ContainsKey(p)))
+            {
+                throw new ArgumentException(
+                    string.Format(
+                        "Missing argument(s) for {0} -- requires {1}",
+                        EnumToOption(verb.ToString()),
+                        string.Join(" ", map.Select(p => EnumToOption(p.ToString())))));
+            }
+
+            if (parameters.Count != map.Count())
+            {
+                throw new ArgumentException("Extra parameter(s) for " + EnumToOption(verb.ToString()));
+            }
+
             switch (verb)
             {
-                case Verb.None:
-                    throw new ArgumentException("Missing verb");
                 case Verb.CreateCsv:
-                    if (!parameters.ContainsKey(Parameter.InNewMsgcat) ||
-                        !parameters.ContainsKey(Parameter.OutCsv))
-                    {
-                        throw new ArgumentException("Missing argument(s) for -create-csv");
-                    }
-
-                    if (parameters.Count != 2)
-                    {
-                        throw new ArgumentException("Extra argument(s) for -create-csv");
-                    }
-
                     localize.CreateCsv(parameters[Parameter.InNewMsgcat], parameters[Parameter.OutCsv]);
                     break;
                 case Verb.UpdateCsv:
-                    if (!parameters.ContainsKey(Parameter.InOldMsgcat) ||
-                        !parameters.ContainsKey(Parameter.InNewMsgcat) ||
-                        !parameters.ContainsKey(Parameter.InOldTranslatedMsgcat) ||
-                        !parameters.ContainsKey(Parameter.OutCsv))
-                    {
-                        throw new ArgumentException("Missing argument(s) for -update-csv");
-                    }
-
-                    if (parameters.Count != 4)
-                    {
-                        throw new ArgumentException("Extra argument(s) for -update-csv");
-                    }
-
                     localize.UpdateCsv(
                         parameters[Parameter.InOldMsgcat],
                         parameters[Parameter.InNewMsgcat],
@@ -172,20 +180,33 @@ namespace L10ntool
                         parameters[Parameter.OutCsv]);
                     break;
                 case Verb.CsvToMsgcat:
-                    if (!parameters.ContainsKey(Parameter.InCsv) ||
-                        !parameters.ContainsKey(Parameter.OutMsgcat))
-                    {
-                        throw new ArgumentException("Missing argument(s) for -update-csv");
-                    }
-
-                    if (parameters.Count != 2)
-                    {
-                        throw new ArgumentException("Extra argument(s) for -csv-to-msgcat");
-                    }
-
                     localize.CsvToMsgcat(parameters[Parameter.InCsv], parameters[Parameter.OutMsgcat]);
                     break;
             }
+        }
+
+        /// <summary>
+        /// Translates an enumeration name to an option name.
+        /// </summary>
+        /// <param name="enumName">Enumeration to translate.</param>
+        /// <returns>Translated enumeration.</returns>
+        private static string EnumToOption(string enumName)
+        {
+            var outList = new List<char>();
+            foreach (var c in enumName)
+            {
+                if (c == char.ToUpperInvariant(c))
+                {
+                    outList.Add('-');
+                    outList.Add(char.ToLowerInvariant(c));
+                }
+                else
+                {
+                    outList.Add(c);
+                }
+            }
+
+            return new string(outList.ToArray());
         }
     }
 }
