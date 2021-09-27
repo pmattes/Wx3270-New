@@ -47,16 +47,21 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.bottomFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.rightButtonsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.leftButtonFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.contextMenuStrip1.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.bottomFlowLayoutPanel.SuspendLayout();
+            this.rightButtonsFlowLayoutPanel.SuspendLayout();
+            this.leftButtonFlowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // macroEditButton
             // 
+            this.macroEditButton.AutoSize = true;
             this.macroEditButton.Enabled = false;
-            this.macroEditButton.Location = new System.Drawing.Point(409, 493);
+            this.macroEditButton.Location = new System.Drawing.Point(3, 3);
             this.macroEditButton.Name = "macroEditButton";
             this.macroEditButton.Size = new System.Drawing.Size(75, 23);
             this.macroEditButton.TabIndex = 101;
@@ -68,8 +73,10 @@
             // 
             // macroAddButton
             // 
+            this.macroAddButton.AutoSize = true;
             this.macroAddButton.ForeColor = System.Drawing.Color.Green;
-            this.macroAddButton.Location = new System.Drawing.Point(12, 493);
+            this.macroAddButton.Location = new System.Drawing.Point(0, 3);
+            this.macroAddButton.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.macroAddButton.Name = "macroAddButton";
             this.macroAddButton.Size = new System.Drawing.Size(75, 23);
             this.macroAddButton.TabIndex = 104;
@@ -81,8 +88,10 @@
             // 
             // macroTestButton
             // 
+            this.macroTestButton.AutoSize = true;
             this.macroTestButton.Enabled = false;
-            this.macroTestButton.Location = new System.Drawing.Point(490, 493);
+            this.macroTestButton.Location = new System.Drawing.Point(84, 3);
+            this.macroTestButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.macroTestButton.Name = "macroTestButton";
             this.macroTestButton.Size = new System.Drawing.Size(75, 23);
             this.macroTestButton.TabIndex = 103;
@@ -94,12 +103,13 @@
             // 
             // macroRemoveButton
             // 
+            this.macroRemoveButton.AutoSize = true;
+            this.macroRemoveButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.macroRemoveButton.Enabled = false;
             this.macroRemoveButton.ForeColor = System.Drawing.Color.Red;
-            this.macroRemoveButton.Location = new System.Drawing.Point(177, 493);
-            this.macroRemoveButton.Margin = new System.Windows.Forms.Padding(1);
+            this.macroRemoveButton.Location = new System.Drawing.Point(162, 3);
             this.macroRemoveButton.Name = "macroRemoveButton";
-            this.macroRemoveButton.Size = new System.Drawing.Size(75, 23);
+            this.macroRemoveButton.Size = new System.Drawing.Size(63, 23);
             this.macroRemoveButton.TabIndex = 105;
             this.macroRemoveButton.TabStop = false;
             this.macroRemoveButton.Text = "❌ Delete";
@@ -169,13 +179,10 @@
             // mainPanel
             // 
             this.mainPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.mainPanel.Controls.Add(this.recordButton);
+            this.mainPanel.Controls.Add(this.leftButtonFlowLayoutPanel);
+            this.mainPanel.Controls.Add(this.rightButtonsFlowLayoutPanel);
             this.mainPanel.Controls.Add(this.macrosListBox);
-            this.mainPanel.Controls.Add(this.macroEditButton);
             this.mainPanel.Controls.Add(this.macrosLabel);
-            this.mainPanel.Controls.Add(this.macroAddButton);
-            this.mainPanel.Controls.Add(this.macroTestButton);
-            this.mainPanel.Controls.Add(this.macroRemoveButton);
             this.mainPanel.Location = new System.Drawing.Point(13, 13);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(584, 533);
@@ -183,8 +190,9 @@
             // 
             // recordButton
             // 
+            this.recordButton.AutoSize = true;
             this.recordButton.ForeColor = System.Drawing.Color.Green;
-            this.recordButton.Location = new System.Drawing.Point(94, 493);
+            this.recordButton.Location = new System.Drawing.Point(81, 3);
             this.recordButton.Name = "recordButton";
             this.recordButton.Size = new System.Drawing.Size(75, 23);
             this.recordButton.TabIndex = 106;
@@ -245,6 +253,33 @@
             this.bottomFlowLayoutPanel.Size = new System.Drawing.Size(200, 34);
             this.bottomFlowLayoutPanel.TabIndex = 112;
             // 
+            // rightButtonsFlowLayoutPanel
+            // 
+            this.rightButtonsFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rightButtonsFlowLayoutPanel.AutoSize = true;
+            this.rightButtonsFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.rightButtonsFlowLayoutPanel.Controls.Add(this.macroTestButton);
+            this.rightButtonsFlowLayoutPanel.Controls.Add(this.macroEditButton);
+            this.rightButtonsFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.rightButtonsFlowLayoutPanel.Location = new System.Drawing.Point(406, 490);
+            this.rightButtonsFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.rightButtonsFlowLayoutPanel.Name = "rightButtonsFlowLayoutPanel";
+            this.rightButtonsFlowLayoutPanel.Size = new System.Drawing.Size(159, 29);
+            this.rightButtonsFlowLayoutPanel.TabIndex = 107;
+            // 
+            // leftButtonFlowLayoutPanel
+            // 
+            this.leftButtonFlowLayoutPanel.AutoSize = true;
+            this.leftButtonFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.leftButtonFlowLayoutPanel.Controls.Add(this.macroAddButton);
+            this.leftButtonFlowLayoutPanel.Controls.Add(this.recordButton);
+            this.leftButtonFlowLayoutPanel.Controls.Add(this.macroRemoveButton);
+            this.leftButtonFlowLayoutPanel.Location = new System.Drawing.Point(12, 490);
+            this.leftButtonFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.leftButtonFlowLayoutPanel.Name = "leftButtonFlowLayoutPanel";
+            this.leftButtonFlowLayoutPanel.Size = new System.Drawing.Size(228, 29);
+            this.leftButtonFlowLayoutPanel.TabIndex = 108;
+            // 
             // Macros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,6 +302,10 @@
             this.mainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.bottomFlowLayoutPanel.ResumeLayout(false);
+            this.rightButtonsFlowLayoutPanel.ResumeLayout(false);
+            this.rightButtonsFlowLayoutPanel.PerformLayout();
+            this.leftButtonFlowLayoutPanel.ResumeLayout(false);
+            this.leftButtonFlowLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -290,5 +329,7 @@
         private System.Windows.Forms.PictureBox helpPictureBox;
         private Wx3270.NoSelectButton recordButton;
         private System.Windows.Forms.FlowLayoutPanel bottomFlowLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel leftButtonFlowLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel rightButtonsFlowLayoutPanel;
     }
 }
