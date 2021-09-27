@@ -105,9 +105,10 @@
             // 
             // tableLayoutPanel
             // 
+            this.tableLayoutPanel.AutoSize = true;
             this.tableLayoutPanel.ColumnCount = 2;
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel.Controls.Add(this.sfLabelV, 1, 36);
             this.tableLayoutPanel.Controls.Add(this.sfLabelU, 1, 35);
             this.tableLayoutPanel.Controls.Add(this.sfLabelT, 1, 34);
@@ -179,6 +180,7 @@
             this.tableLayoutPanel.Controls.Add(this.nulLabel, 1, 2);
             this.tableLayoutPanel.Controls.Add(this.soLabel, 1, 3);
             this.tableLayoutPanel.Location = new System.Drawing.Point(12, 12);
+            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(12);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 37;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1136,6 +1138,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(483, 736);
             this.Controls.Add(this.tableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1148,6 +1151,7 @@
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
