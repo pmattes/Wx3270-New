@@ -1434,6 +1434,7 @@
             // 
             // keyboardActionsRemoveButton
             // 
+            this.keyboardActionsRemoveButton.AutoSize = true;
             this.keyboardActionsRemoveButton.Enabled = false;
             this.keyboardActionsRemoveButton.ForeColor = System.Drawing.Color.Red;
             this.keyboardActionsRemoveButton.Location = new System.Drawing.Point(174, 3);
@@ -1449,6 +1450,7 @@
             // 
             // keyboardActionsEditButton
             // 
+            this.keyboardActionsEditButton.AutoSize = true;
             this.keyboardActionsEditButton.Location = new System.Drawing.Point(93, 3);
             this.keyboardActionsEditButton.Name = "keyboardActionsEditButton";
             this.keyboardActionsEditButton.Size = new System.Drawing.Size(75, 23);
@@ -3487,6 +3489,7 @@
             // 
             // FontChangeButton
             // 
+            this.FontChangeButton.AutoSize = true;
             this.FontChangeButton.Location = new System.Drawing.Point(6, 42);
             this.FontChangeButton.Name = "FontChangeButton";
             this.FontChangeButton.Size = new System.Drawing.Size(75, 23);
@@ -3977,7 +3980,7 @@
             this.warningLabel.AutoSize = true;
             this.warningLabel.Location = new System.Drawing.Point(16, 16);
             this.warningLabel.Name = "warningLabel";
-            this.warningLabel.Size = new System.Drawing.Size(441, 52);
+            this.warningLabel.Size = new System.Drawing.Size(438, 52);
             this.warningLabel.TabIndex = 1;
             this.warningLabel.Text = resources.GetString("warningLabel.Text");
             // 

@@ -122,7 +122,7 @@
   </metadata>
   <data name="warningLabel.Text" xml:space="preserve">
     <value>These are miscellaneous settings that the b3270 back end allows to be changed.
-Wx3270 does not (yet) support changing them through options under the other settings tabs.
+wx3270 does not (yet) support changing them through options under the other settings tabs.
 
 Modify these settings at your own risk.</value>
   </data>
