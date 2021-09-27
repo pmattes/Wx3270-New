@@ -161,7 +161,7 @@
             this.purplePanel.Margin = new System.Windows.Forms.Padding(0);
             this.purplePanel.Name = "purplePanel";
             this.purplePanel.Padding = new System.Windows.Forms.Padding(15);
-            this.purplePanel.Size = new System.Drawing.Size(706, 662);
+            this.purplePanel.Size = new System.Drawing.Size(743, 662);
             this.purplePanel.TabIndex = 0;
             // 
             // notPurplePanel
@@ -171,12 +171,12 @@
             this.notPurplePanel.Controls.Add(this.innerTableLayoutPanel);
             this.notPurplePanel.Location = new System.Drawing.Point(16, 42);
             this.notPurplePanel.Name = "notPurplePanel";
-            this.notPurplePanel.Size = new System.Drawing.Size(672, 602);
+            this.notPurplePanel.Size = new System.Drawing.Size(709, 602);
             this.notPurplePanel.TabIndex = 6;
             // 
             // innerTableLayoutPanel
             // 
-            this.innerTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.innerTableLayoutPanel.AutoSize = true;
             this.innerTableLayoutPanel.ColumnCount = 1;
             this.innerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.innerTableLayoutPanel.Controls.Add(this.lowerPanel, 0, 1);
@@ -186,7 +186,7 @@
             this.innerTableLayoutPanel.RowCount = 2;
             this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.innerTableLayoutPanel.Size = new System.Drawing.Size(669, 599);
+            this.innerTableLayoutPanel.Size = new System.Drawing.Size(706, 599);
             this.innerTableLayoutPanel.TabIndex = 0;
             // 
             // lowerPanel
@@ -197,7 +197,7 @@
             this.lowerPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.lowerPanel.Location = new System.Drawing.Point(3, 367);
             this.lowerPanel.Name = "lowerPanel";
-            this.lowerPanel.Size = new System.Drawing.Size(663, 229);
+            this.lowerPanel.Size = new System.Drawing.Size(700, 229);
             this.lowerPanel.TabIndex = 6;
             // 
             // lowerTableLayoutPanel
@@ -220,7 +220,7 @@
             this.lowerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.lowerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.lowerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.lowerTableLayoutPanel.Size = new System.Drawing.Size(663, 229);
+            this.lowerTableLayoutPanel.Size = new System.Drawing.Size(700, 229);
             this.lowerTableLayoutPanel.TabIndex = 1;
             // 
             // folderGroupBox
@@ -231,7 +231,7 @@
             this.folderGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.folderGroupBox.Location = new System.Drawing.Point(3, 165);
             this.folderGroupBox.Name = "folderGroupBox";
-            this.folderGroupBox.Size = new System.Drawing.Size(657, 48);
+            this.folderGroupBox.Size = new System.Drawing.Size(694, 48);
             this.folderGroupBox.TabIndex = 4;
             this.folderGroupBox.TabStop = false;
             this.folderGroupBox.Text = "Folder";
@@ -246,7 +246,7 @@
             this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 16);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(651, 29);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(688, 29);
             this.flowLayoutPanel4.TabIndex = 6;
             // 
             // pictureBox3
@@ -295,7 +295,7 @@
             this.profileGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.profileGroupBox.Location = new System.Drawing.Point(3, 111);
             this.profileGroupBox.Name = "profileGroupBox";
-            this.profileGroupBox.Size = new System.Drawing.Size(657, 48);
+            this.profileGroupBox.Size = new System.Drawing.Size(694, 48);
             this.profileGroupBox.TabIndex = 3;
             this.profileGroupBox.TabStop = false;
             this.profileGroupBox.Text = "Profile";
@@ -314,7 +314,7 @@
             this.profileFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.profileFlowLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.profileFlowLayoutPanel.Name = "profileFlowLayoutPanel";
-            this.profileFlowLayoutPanel.Size = new System.Drawing.Size(651, 29);
+            this.profileFlowLayoutPanel.Size = new System.Drawing.Size(688, 29);
             this.profileFlowLayoutPanel.TabIndex = 6;
             // 
             // pictureBox2
@@ -449,7 +449,7 @@
             this.commonGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commonGroupBox.Location = new System.Drawing.Point(3, 3);
             this.commonGroupBox.Name = "commonGroupBox";
-            this.commonGroupBox.Size = new System.Drawing.Size(657, 48);
+            this.commonGroupBox.Size = new System.Drawing.Size(694, 48);
             this.commonGroupBox.TabIndex = 0;
             this.commonGroupBox.TabStop = false;
             this.commonGroupBox.Text = "Common";
@@ -467,7 +467,7 @@
             this.commonFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commonFlowLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.commonFlowLayoutPanel.Name = "commonFlowLayoutPanel";
-            this.commonFlowLayoutPanel.Size = new System.Drawing.Size(651, 29);
+            this.commonFlowLayoutPanel.Size = new System.Drawing.Size(688, 29);
             this.commonFlowLayoutPanel.TabIndex = 7;
             // 
             // pictureBox4
@@ -553,7 +553,7 @@
             this.connectionGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.connectionGroupBox.Location = new System.Drawing.Point(3, 57);
             this.connectionGroupBox.Name = "connectionGroupBox";
-            this.connectionGroupBox.Size = new System.Drawing.Size(657, 48);
+            this.connectionGroupBox.Size = new System.Drawing.Size(694, 48);
             this.connectionGroupBox.TabIndex = 2;
             this.connectionGroupBox.TabStop = false;
             this.connectionGroupBox.Text = "Connection";
@@ -568,7 +568,7 @@
             this.connectionFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.connectionFlowLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.connectionFlowLayoutPanel.Name = "connectionFlowLayoutPanel";
-            this.connectionFlowLayoutPanel.Size = new System.Drawing.Size(651, 29);
+            this.connectionFlowLayoutPanel.Size = new System.Drawing.Size(688, 29);
             this.connectionFlowLayoutPanel.TabIndex = 7;
             // 
             // pictureBox1
@@ -632,7 +632,7 @@
             this.treeView.PathSeparator = "*";
             this.treeView.SelectedImageIndex = 0;
             this.treeView.ShowNodeToolTips = true;
-            this.treeView.Size = new System.Drawing.Size(663, 358);
+            this.treeView.Size = new System.Drawing.Size(700, 358);
             this.treeView.TabIndex = 1;
             this.treeView.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.TreeView_BeforeLabelEdit);
             this.treeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.TreeView_AfterLabelEdit);
@@ -646,12 +646,13 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.Controls.Add(this.helpPictureBox);
             this.flowLayoutPanel1.Controls.Add(this.redoButton);
             this.flowLayoutPanel1.Controls.Add(this.undoButton);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(578, 10);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(614, 10);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(111, 29);
@@ -1021,6 +1022,7 @@
             this.purplePanel.ResumeLayout(false);
             this.purplePanel.PerformLayout();
             this.notPurplePanel.ResumeLayout(false);
+            this.notPurplePanel.PerformLayout();
             this.innerTableLayoutPanel.ResumeLayout(false);
             this.innerTableLayoutPanel.PerformLayout();
             this.lowerPanel.ResumeLayout(false);
