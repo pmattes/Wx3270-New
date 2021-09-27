@@ -275,6 +275,7 @@
             // 
             // folderUnwatchButton
             // 
+            this.folderUnwatchButton.AutoSize = true;
             this.folderUnwatchButton.ForeColor = System.Drawing.Color.Red;
             this.folderUnwatchButton.Location = new System.Drawing.Point(128, 3);
             this.folderUnwatchButton.Name = "folderUnwatchButton";
@@ -376,6 +377,7 @@
             // 
             // profileSwitchToButton
             // 
+            this.profileSwitchToButton.AutoSize = true;
             this.profileSwitchToButton.Location = new System.Drawing.Point(128, 3);
             this.profileSwitchToButton.Name = "profileSwitchToButton";
             this.profileSwitchToButton.Size = new System.Drawing.Size(90, 23);
@@ -388,6 +390,7 @@
             // 
             // profileMergeFromButton
             // 
+            this.profileMergeFromButton.AutoSize = true;
             this.profileMergeFromButton.Location = new System.Drawing.Point(224, 3);
             this.profileMergeFromButton.Name = "profileMergeFromButton";
             this.profileMergeFromButton.Size = new System.Drawing.Size(90, 23);
@@ -414,6 +417,7 @@
             // 
             // profileExportButton
             // 
+            this.profileExportButton.AutoSize = true;
             this.profileExportButton.Location = new System.Drawing.Point(416, 3);
             this.profileExportButton.Name = "profileExportButton";
             this.profileExportButton.Size = new System.Drawing.Size(90, 23);
@@ -426,6 +430,7 @@
             // 
             // profileDefaultButton
             // 
+            this.profileDefaultButton.AutoSize = true;
             this.profileDefaultButton.Location = new System.Drawing.Point(512, 3);
             this.profileDefaultButton.Name = "profileDefaultButton";
             this.profileDefaultButton.Size = new System.Drawing.Size(90, 23);
@@ -477,6 +482,7 @@
             // 
             // commonEditButton
             // 
+            this.commonEditButton.AutoSize = true;
             this.commonEditButton.Location = new System.Drawing.Point(32, 3);
             this.commonEditButton.Name = "commonEditButton";
             this.commonEditButton.Size = new System.Drawing.Size(90, 23);
@@ -489,6 +495,7 @@
             // 
             // commonDuplicateButton
             // 
+            this.commonDuplicateButton.AutoSize = true;
             this.commonDuplicateButton.Location = new System.Drawing.Point(128, 3);
             this.commonDuplicateButton.Name = "commonDuplicateButton";
             this.commonDuplicateButton.Size = new System.Drawing.Size(90, 23);
@@ -501,6 +508,7 @@
             // 
             // commonRenameButton
             // 
+            this.commonRenameButton.AutoSize = true;
             this.commonRenameButton.Location = new System.Drawing.Point(224, 3);
             this.commonRenameButton.Name = "commonRenameButton";
             this.commonRenameButton.Size = new System.Drawing.Size(90, 23);
@@ -513,6 +521,7 @@
             // 
             // commonShortcutButton
             // 
+            this.commonShortcutButton.AutoSize = true;
             this.commonShortcutButton.Location = new System.Drawing.Point(320, 3);
             this.commonShortcutButton.Name = "commonShortcutButton";
             this.commonShortcutButton.Size = new System.Drawing.Size(90, 23);
@@ -525,6 +534,7 @@
             // 
             // commonDeleteButton
             // 
+            this.commonDeleteButton.AutoSize = true;
             this.commonDeleteButton.ForeColor = System.Drawing.Color.Red;
             this.commonDeleteButton.Location = new System.Drawing.Point(416, 3);
             this.commonDeleteButton.Name = "commonDeleteButton";
@@ -587,6 +597,7 @@
             // 
             // connectionConnectButton
             // 
+            this.connectionConnectButton.AutoSize = true;
             this.connectionConnectButton.Location = new System.Drawing.Point(128, 3);
             this.connectionConnectButton.Name = "connectionConnectButton";
             this.connectionConnectButton.Size = new System.Drawing.Size(90, 23);
@@ -1030,6 +1041,7 @@
             this.commonGroupBox.ResumeLayout(false);
             this.commonGroupBox.PerformLayout();
             this.commonFlowLayoutPanel.ResumeLayout(false);
+            this.commonFlowLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.connectionGroupBox.ResumeLayout(false);
             this.connectionGroupBox.PerformLayout();
