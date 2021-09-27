@@ -178,6 +178,7 @@
             this.localizationFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.ftPopdownTimer = new System.Windows.Forms.Timer(this.components);
             this.uiTracePanel = new System.Windows.Forms.TableLayoutPanel();
+            this.fileTransferButtonsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.actionsTabs.SuspendLayout();
             this.actionsTab.SuspendLayout();
             this.actionsTableLayoutPanel.SuspendLayout();
@@ -233,6 +234,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox4)).BeginInit();
             this.borderPanel.SuspendLayout();
             this.uiTracePanel.SuspendLayout();
+            this.fileTransferButtonsFlowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // actionsTabs
@@ -1274,7 +1276,7 @@
             // fileTransferTab
             // 
             this.fileTransferTab.CausesValidation = false;
-            this.fileTransferTab.Controls.Add(this.copyActionButton);
+            this.fileTransferTab.Controls.Add(this.fileTransferButtonsFlowLayoutPanel);
             this.fileTransferTab.Controls.Add(this.modeBox);
             this.fileTransferTab.Controls.Add(this.tsoAllocationBox);
             this.fileTransferTab.Controls.Add(this.asciiBox);
@@ -1284,9 +1286,6 @@
             this.fileTransferTab.Controls.Add(this.hostTypeBox);
             this.fileTransferTab.Controls.Add(this.directionBox);
             this.fileTransferTab.Controls.Add(this.filesBox);
-            this.fileTransferTab.Controls.Add(this.helpPictureBox4);
-            this.fileTransferTab.Controls.Add(this.fileTransferClearFormButton);
-            this.fileTransferTab.Controls.Add(this.transferButton);
             this.fileTransferTab.Location = new System.Drawing.Point(4, 22);
             this.fileTransferTab.Name = "fileTransferTab";
             this.fileTransferTab.Size = new System.Drawing.Size(655, 525);
@@ -1296,8 +1295,10 @@
             // 
             // copyActionButton
             // 
+            this.copyActionButton.AutoSize = true;
             this.copyActionButton.Enabled = false;
-            this.copyActionButton.Location = new System.Drawing.Point(467, 499);
+            this.copyActionButton.Location = new System.Drawing.Point(84, 0);
+            this.copyActionButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.copyActionButton.Name = "copyActionButton";
             this.copyActionButton.Size = new System.Drawing.Size(75, 23);
             this.copyActionButton.TabIndex = 128;
@@ -1643,7 +1644,7 @@
             // lreclTextBox
             // 
             this.lreclTextBox.Enabled = false;
-            this.lreclTextBox.Location = new System.Drawing.Point(124, 63);
+            this.lreclTextBox.Location = new System.Drawing.Point(93, 63);
             this.lreclTextBox.Name = "lreclTextBox";
             this.lreclTextBox.Size = new System.Drawing.Size(116, 20);
             this.lreclTextBox.TabIndex = 4;
@@ -1654,7 +1655,7 @@
             // 
             this.lreclLabel.AutoSize = true;
             this.lreclLabel.Enabled = false;
-            this.lreclLabel.Location = new System.Drawing.Point(121, 47);
+            this.lreclLabel.Location = new System.Drawing.Point(90, 47);
             this.lreclLabel.Name = "lreclLabel";
             this.lreclLabel.Size = new System.Drawing.Size(106, 13);
             this.lreclLabel.TabIndex = 0;
@@ -1926,7 +1927,8 @@
             // helpPictureBox4
             // 
             this.helpPictureBox4.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox4.Location = new System.Drawing.Point(629, 499);
+            this.helpPictureBox4.Location = new System.Drawing.Point(246, 0);
+            this.helpPictureBox4.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
             this.helpPictureBox4.Name = "helpPictureBox4";
             this.helpPictureBox4.Size = new System.Drawing.Size(23, 23);
             this.helpPictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1938,8 +1940,10 @@
             // 
             // fileTransferClearFormButton
             // 
+            this.fileTransferClearFormButton.AutoSize = true;
             this.fileTransferClearFormButton.CausesValidation = false;
-            this.fileTransferClearFormButton.Location = new System.Drawing.Point(386, 499);
+            this.fileTransferClearFormButton.Location = new System.Drawing.Point(3, 0);
+            this.fileTransferClearFormButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.fileTransferClearFormButton.Name = "fileTransferClearFormButton";
             this.fileTransferClearFormButton.Size = new System.Drawing.Size(75, 23);
             this.fileTransferClearFormButton.TabIndex = 10;
@@ -1951,8 +1955,10 @@
             // 
             // transferButton
             // 
+            this.transferButton.AutoSize = true;
             this.transferButton.Enabled = false;
-            this.transferButton.Location = new System.Drawing.Point(548, 499);
+            this.transferButton.Location = new System.Drawing.Point(165, 0);
+            this.transferButton.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.transferButton.Name = "transferButton";
             this.transferButton.Size = new System.Drawing.Size(75, 23);
             this.transferButton.TabIndex = 9;
@@ -2016,6 +2022,22 @@
             this.uiTracePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.uiTracePanel.Size = new System.Drawing.Size(396, 64);
             this.uiTracePanel.TabIndex = 2;
+            // 
+            // fileTransferButtonsFlowLayoutPanel
+            // 
+            this.fileTransferButtonsFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.fileTransferButtonsFlowLayoutPanel.AutoSize = true;
+            this.fileTransferButtonsFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.fileTransferButtonsFlowLayoutPanel.Controls.Add(this.helpPictureBox4);
+            this.fileTransferButtonsFlowLayoutPanel.Controls.Add(this.transferButton);
+            this.fileTransferButtonsFlowLayoutPanel.Controls.Add(this.copyActionButton);
+            this.fileTransferButtonsFlowLayoutPanel.Controls.Add(this.fileTransferClearFormButton);
+            this.fileTransferButtonsFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.fileTransferButtonsFlowLayoutPanel.Location = new System.Drawing.Point(383, 499);
+            this.fileTransferButtonsFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.fileTransferButtonsFlowLayoutPanel.Name = "fileTransferButtonsFlowLayoutPanel";
+            this.fileTransferButtonsFlowLayoutPanel.Size = new System.Drawing.Size(269, 23);
+            this.fileTransferButtonsFlowLayoutPanel.TabIndex = 129;
             // 
             // Actions
             // 
@@ -2094,6 +2116,7 @@
             this.statusLayoutPanel.ResumeLayout(false);
             this.statusLayoutPanel.PerformLayout();
             this.fileTransferTab.ResumeLayout(false);
+            this.fileTransferTab.PerformLayout();
             this.modeBox.ResumeLayout(false);
             this.modeBox.PerformLayout();
             this.tsoAllocationBox.ResumeLayout(false);
@@ -2122,6 +2145,8 @@
             this.borderPanel.ResumeLayout(false);
             this.uiTracePanel.ResumeLayout(false);
             this.uiTracePanel.PerformLayout();
+            this.fileTransferButtonsFlowLayoutPanel.ResumeLayout(false);
+            this.fileTransferButtonsFlowLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2276,5 +2301,6 @@
         private System.Windows.Forms.TextBox hostCertificateTextBox;
         private System.Windows.Forms.TextBox tlsSessionTextBox;
         private System.Windows.Forms.TableLayoutPanel uiTracePanel;
+        private System.Windows.Forms.FlowLayoutPanel fileTransferButtonsFlowLayoutPanel;
     }
 }
