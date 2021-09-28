@@ -170,15 +170,21 @@ namespace L10ntool
             {
                 string line;
                 var lno = 0;
+                var delim = ',';
                 while ((line = ReadCsvLine(t)) != null)
                 {
                     lno++;
                     if (line.StartsWith("#"))
                     {
+                        if (lno == 1 && line.StartsWith("#Status;"))
+                        {
+                            delim = ';';
+                        }
+
                         continue;
                     }
 
-                    var fields = UnCsvIfy(line);
+                    var fields = UnCsvIfy(line, delim);
                     if (fields.Length != 3 && fields.Length != 4)
                     {
                         Console.Error.WriteLine($"Line {lno}: Ignoring line with wrong number of fields ({fields.Length})");
@@ -288,8 +294,9 @@ namespace L10ntool
         /// Translate a line of CSV to an array of fields.
         /// </summary>
         /// <param name="s">String to translate.</param>
+        /// <param name="delim">Delimiter character.</param>
         /// <returns>Array of fields.</returns>
-        private static string[] UnCsvIfy(string s)
+        private static string[] UnCsvIfy(string s, char delim)
         {
             var ret = new List<string>();
 
@@ -312,13 +319,13 @@ namespace L10ntool
                                 // Doubled quote.
                                 field += '"';
                             }
-                            else if (s[0] == ',')
+                            else if (s[0] == delim)
                             {
                                 done = true;
                             }
                             else
                             {
-                                Console.Error.WriteLine($"Invalid format: closing double quote not followed by comma (got '{s[0]}')");
+                                Console.Error.WriteLine($"Invalid format: closing double quote not followed by delimiter (got '{s[0]}')");
                                 return new string[0];
                             }
                         }
@@ -336,8 +343,8 @@ namespace L10ntool
                 }
                 else
                 {
-                    // Scan until a comma.
-                    while (s.Length != 0 && s[0] != ',')
+                    // Scan until a delimiter.
+                    while (s.Length != 0 && s[0] != delim)
                     {
                         field += s[0];
                         s = s.Substring(1);
@@ -345,7 +352,7 @@ namespace L10ntool
 
                     if (s != string.Empty)
                     {
-                        // Remove the comma.
+                        // Remove the delimiter.
                         s = s.Substring(1);
                     }
                 }
