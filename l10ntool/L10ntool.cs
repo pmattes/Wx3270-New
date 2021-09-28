@@ -97,33 +97,28 @@ namespace L10ntool
             var verb = Verb.None;
             var parameters = new Dictionary<Parameter, string>();
 
-            // Parse command-line arguments.
-            int i;
-            for (i = 0; i < args.Length; i++)
+            var verbOptions = Enum.GetNames(typeof(Verb)).Where(name => name != nameof(Verb.None)).Select(name => EnumToOption(name)).ToArray();
+            var parameterOptions = Enum.GetNames(typeof(Parameter)).Select(name => EnumToOption(name)).ToArray();
+
+            try
             {
-                try
+                // Parse command-line arguments.
+                int i;
+                for (i = 0; i < args.Length; i++)
                 {
-                    switch (args[i])
+                    try
                     {
-                        // Verbs. One is required.
-                        case "-create-csv":
-                        case "-update-csv":
-                        case "-csv-to-msgcat":
+                        if (verbOptions.Contains(args[i]))
+                        {
                             if (verb != Verb.None)
                             {
                                 throw new ArgumentException("Only one verb can be specified");
                             }
 
                             verb = (Verb)Enum.Parse(typeof(Verb), args[i].Replace("-", string.Empty), ignoreCase: true);
-                            break;
-
-                        // Parameters.
-                        case "-in-new-msgcat":
-                        case "-in-old-msgcat":
-                        case "-in-old-translated-msgcat":
-                        case "-in-csv":
-                        case "-out-csv":
-                        case "-out-msgcat":
+                        }
+                        else if (parameterOptions.Contains(args[i]))
+                        {
                             var p = (Parameter)Enum.Parse(typeof(Parameter), args[i].Replace("-", string.Empty), ignoreCase: true);
                             if (parameters.ContainsKey(p))
                             {
@@ -131,57 +126,69 @@ namespace L10ntool
                             }
 
                             parameters[p] = args[++i];
-                            break;
-                        default:
-                            throw new ArgumentException($"Unknown option {args[i]}");
+                        }
+                        else
+                        {
+                            throw new ArgumentException($"Unknown option {args[i]}.");
+                        }
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        throw new ArgumentException($"Missing value for {args[--i]}.");
                     }
                 }
-                catch (IndexOutOfRangeException)
+
+                if (verb == Verb.None)
                 {
-                    throw new ArgumentException($"Missing value for {args[--i]}");
+                    throw new ArgumentException(
+                            string.Format(
+                                "Missing verb. Verbs are: {0}.",
+                                string.Join(
+                                    " ",
+                                    Enum.GetNames(typeof(Verb)).Where(name => name != nameof(Verb.None)).Select(name => EnumToOption(name)))));
+                }
+
+                var map = paramMap[verb];
+                if (!map.All(p => parameters.ContainsKey(p)))
+                {
+                    throw new ArgumentException(
+                        string.Format(
+                            "Missing argument(s) for {0}. Requires {1}.",
+                            EnumToOption(verb.ToString()),
+                            string.Join(" ", map.Select(p => EnumToOption(p.ToString())))));
+                }
+
+                if (parameters.Count != map.Count())
+                {
+                    throw new ArgumentException(
+                        string.Format(
+                            "Extra parameter(s) for {0}: {1}.",
+                            EnumToOption(verb.ToString()),
+                            string.Join(" ", parameters.Keys.Except(map).Select(p => EnumToOption(p.ToString())))));
+                }
+
+                var localize = new L10n();
+                switch (verb)
+                {
+                    case Verb.CreateCsv:
+                        localize.CreateCsv(parameters[Parameter.InNewMsgcat], parameters[Parameter.OutCsv]);
+                        break;
+                    case Verb.UpdateCsv:
+                        localize.UpdateCsv(
+                            parameters[Parameter.InOldMsgcat],
+                            parameters[Parameter.InNewMsgcat],
+                            parameters[Parameter.InOldTranslatedMsgcat],
+                            parameters[Parameter.OutCsv]);
+                        break;
+                    case Verb.CsvToMsgcat:
+                        localize.CsvToMsgcat(parameters[Parameter.InCsv], parameters[Parameter.OutMsgcat]);
+                        break;
                 }
             }
-
-            var localize = new L10n();
-
-            if (verb == Verb.None)
+            catch (Exception e)
             {
-                throw new ArgumentException(
-                        string.Format(
-                            "Missing verb -- verbs are {0}",
-                            string.Join(" ", Enum.GetNames(typeof(Verb)).Where(name => name != nameof(Verb.None)).Select(name => EnumToOption(name)))));
-            }
-
-            var map = paramMap[verb];
-            if (!map.All(p => parameters.ContainsKey(p)))
-            {
-                throw new ArgumentException(
-                    string.Format(
-                        "Missing argument(s) for {0} -- requires {1}",
-                        EnumToOption(verb.ToString()),
-                        string.Join(" ", map.Select(p => EnumToOption(p.ToString())))));
-            }
-
-            if (parameters.Count != map.Count())
-            {
-                throw new ArgumentException("Extra parameter(s) for " + EnumToOption(verb.ToString()));
-            }
-
-            switch (verb)
-            {
-                case Verb.CreateCsv:
-                    localize.CreateCsv(parameters[Parameter.InNewMsgcat], parameters[Parameter.OutCsv]);
-                    break;
-                case Verb.UpdateCsv:
-                    localize.UpdateCsv(
-                        parameters[Parameter.InOldMsgcat],
-                        parameters[Parameter.InNewMsgcat],
-                        parameters[Parameter.InOldTranslatedMsgcat],
-                        parameters[Parameter.OutCsv]);
-                    break;
-                case Verb.CsvToMsgcat:
-                    localize.CsvToMsgcat(parameters[Parameter.InCsv], parameters[Parameter.OutMsgcat]);
-                    break;
+                Console.Error.WriteLine(e.Message);
+                return;
             }
         }
 
