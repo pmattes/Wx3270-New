@@ -352,7 +352,7 @@ namespace L10ntool
 
                     if (s != string.Empty)
                     {
-                        // Remove the delimiter.
+                        // Remove the delimio.
                         s = s.Substring(1);
                     }
                 }

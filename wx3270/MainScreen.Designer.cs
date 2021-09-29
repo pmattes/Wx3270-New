@@ -48,7 +48,22 @@
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OiaReverse = new System.Windows.Forms.Label();
             this.TopLeftLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.startLeftPictureBox = new System.Windows.Forms.PictureBox();
+            this.ActionsBox = new System.Windows.Forms.PictureBox();
             this.actionsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.x3270PromptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tracingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileTransferMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.screenTracingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendToPrinterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlCharsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cancelScriptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.printScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayKeymapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startRightPictureBox = new System.Windows.Forms.PictureBox();
+            this.KeypadBox = new System.Windows.Forms.PictureBox();
             this.keypadContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pF1PF12ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pF1ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,17 +118,24 @@
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectPictureBox = new System.Windows.Forms.PictureBox();
             this.connectMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.quickConnectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.disconnectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.profilePictureBox = new System.Windows.Forms.PictureBox();
             this.profileContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.loadMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.macrosPictureBox = new System.Windows.Forms.PictureBox();
             this.macrosContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.recordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.snapBox = new System.Windows.Forms.PictureBox();
+            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.TopLayoutPanel = new System.Windows.Forms.Panel();
             this.TopRightLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.SettingsBox = new System.Windows.Forms.PictureBox();
             this.settingsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,6 +145,8 @@
             this.ScreenBoxPanel = new System.Windows.Forms.Panel();
             this.innerScreenTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.innerScreenPanel = new System.Windows.Forms.Panel();
+            this.screenPictureBox = new System.Windows.Forms.PictureBox();
+            this.crosshairPictureBox = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.ScrollBarLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -179,55 +203,35 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activateTimer = new System.Windows.Forms.Timer(this.components);
             this.noFlashTimer = new System.Windows.Forms.Timer(this.components);
-            this.SettingsBox = new System.Windows.Forms.PictureBox();
-            this.ActionsBox = new System.Windows.Forms.PictureBox();
-            this.KeypadBox = new System.Windows.Forms.PictureBox();
-            this.connectPictureBox = new System.Windows.Forms.PictureBox();
-            this.profilePictureBox = new System.Windows.Forms.PictureBox();
-            this.macrosPictureBox = new System.Windows.Forms.PictureBox();
-            this.snapBox = new System.Windows.Forms.PictureBox();
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
-            this.screenPictureBox = new System.Windows.Forms.PictureBox();
-            this.crosshairPictureBox = new System.Windows.Forms.PictureBox();
-            this.x3270PromptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tracingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileTransferMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.screenTracingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sendToPrinterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.controlCharsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cancelScriptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.printScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.displayKeymapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OiaLayoutPanel.SuspendLayout();
             this.resetContextMenuStrip.SuspendLayout();
             this.TopLeftLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.startLeftPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ActionsBox)).BeginInit();
             this.actionsMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.startRightPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KeypadBox)).BeginInit();
             this.keypadContextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.connectPictureBox)).BeginInit();
             this.connectMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
             this.profileContextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.macrosPictureBox)).BeginInit();
             this.macrosContextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.snapBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.TopLayoutPanel.SuspendLayout();
             this.TopRightLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SettingsBox)).BeginInit();
             this.settingsMenuStrip.SuspendLayout();
             this.MainTable.SuspendLayout();
             this.ScreenBoxPanel.SuspendLayout();
             this.innerScreenTableLayoutPanel.SuspendLayout();
             this.innerScreenPanel.SuspendLayout();
-            this.ScrollBarLayoutPanel.SuspendLayout();
-            this.mainScreenPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SettingsBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ActionsBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KeypadBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.connectPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.macrosPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.snapBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.screenPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crosshairPictureBox)).BeginInit();
+            this.ScrollBarLayoutPanel.SuspendLayout();
+            this.mainScreenPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // OiaLayoutPanel
@@ -520,7 +524,9 @@
             // TopLeftLayoutPanel
             // 
             this.TopLeftLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.TopLeftLayoutPanel.Controls.Add(this.startLeftPictureBox);
             this.TopLeftLayoutPanel.Controls.Add(this.ActionsBox);
+            this.TopLeftLayoutPanel.Controls.Add(this.startRightPictureBox);
             this.TopLeftLayoutPanel.Controls.Add(this.KeypadBox);
             this.TopLeftLayoutPanel.Controls.Add(this.connectPictureBox);
             this.TopLeftLayoutPanel.Controls.Add(this.profilePictureBox);
@@ -533,6 +539,30 @@
             this.TopLeftLayoutPanel.Name = "TopLeftLayoutPanel";
             this.TopLeftLayoutPanel.Size = new System.Drawing.Size(223, 32);
             this.TopLeftLayoutPanel.TabIndex = 0;
+            // 
+            // startLeftPictureBox
+            // 
+            this.startLeftPictureBox.Image = global::Wx3270.Properties.Resources.StartBlankLeft;
+            this.startLeftPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.startLeftPictureBox.Margin = new System.Windows.Forms.Padding(0);
+            this.startLeftPictureBox.Name = "startLeftPictureBox";
+            this.startLeftPictureBox.Size = new System.Drawing.Size(4, 32);
+            this.startLeftPictureBox.TabIndex = 11;
+            this.startLeftPictureBox.TabStop = false;
+            // 
+            // ActionsBox
+            // 
+            this.ActionsBox.ContextMenuStrip = this.actionsMenuStrip;
+            this.ActionsBox.Image = global::Wx3270.Properties.Resources.StartBlankMiddleWide;
+            this.ActionsBox.Location = new System.Drawing.Point(4, 0);
+            this.ActionsBox.Margin = new System.Windows.Forms.Padding(0);
+            this.ActionsBox.Name = "ActionsBox";
+            this.ActionsBox.Size = new System.Drawing.Size(48, 32);
+            this.ActionsBox.TabIndex = 4;
+            this.ActionsBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.ActionsBox, "Actions");
+            this.ActionsBox.Click += new System.EventHandler(this.ActionsBox_Click);
+            this.ActionsBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ActionsBox_paint);
             // 
             // actionsMenuStrip
             // 
@@ -549,6 +579,123 @@
             this.actionsMenuStrip.Name = "actionsMenuStrip";
             this.actionsMenuStrip.ShowCheckMargin = true;
             this.actionsMenuStrip.Size = new System.Drawing.Size(229, 202);
+            // 
+            // x3270PromptToolStripMenuItem
+            // 
+            this.x3270PromptToolStripMenuItem.Image = global::Wx3270.Properties.Resources.x3270if;
+            this.x3270PromptToolStripMenuItem.Name = "x3270PromptToolStripMenuItem";
+            this.x3270PromptToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.x3270PromptToolStripMenuItem.Text = "wx3270> prompt";
+            this.x3270PromptToolStripMenuItem.Click += new System.EventHandler(this.ActionsPromptClick);
+            // 
+            // tracingToolStripMenuItem
+            // 
+            this.tracingToolStripMenuItem.Image = global::Wx3270.Properties.Resources.catf;
+            this.tracingToolStripMenuItem.Name = "tracingToolStripMenuItem";
+            this.tracingToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.tracingToolStripMenuItem.Text = "Tracing";
+            this.tracingToolStripMenuItem.Click += new System.EventHandler(this.ActionsTracingClick);
+            // 
+            // fileTransferMenuItem
+            // 
+            this.fileTransferMenuItem.Image = global::Wx3270.Properties.Resources.arrowslr;
+            this.fileTransferMenuItem.Name = "fileTransferMenuItem";
+            this.fileTransferMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.fileTransferMenuItem.Text = "File transfer";
+            this.fileTransferMenuItem.Click += new System.EventHandler(this.FileTransfer_Click);
+            // 
+            // screenTracingMenuItem
+            // 
+            this.screenTracingMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sendToPrinterToolStripMenuItem,
+            this.saveToFileToolStripMenuItem});
+            this.screenTracingMenuItem.Image = global::Wx3270.Properties.Resources.screentrace3;
+            this.screenTracingMenuItem.Name = "screenTracingMenuItem";
+            this.screenTracingMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.screenTracingMenuItem.Tag = "Toggle";
+            this.screenTracingMenuItem.Text = "Screen tracing";
+            this.screenTracingMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
+            // 
+            // sendToPrinterToolStripMenuItem
+            // 
+            this.sendToPrinterToolStripMenuItem.Image = global::Wx3270.Properties.Resources.printout_small;
+            this.sendToPrinterToolStripMenuItem.Name = "sendToPrinterToolStripMenuItem";
+            this.sendToPrinterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sendToPrinterToolStripMenuItem.Tag = "Printer";
+            this.sendToPrinterToolStripMenuItem.Text = "Send to Printer";
+            this.sendToPrinterToolStripMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
+            // 
+            // saveToFileToolStripMenuItem
+            // 
+            this.saveToFileToolStripMenuItem.Image = global::Wx3270.Properties.Resources.Floppy;
+            this.saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
+            this.saveToFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToFileToolStripMenuItem.Tag = "File";
+            this.saveToFileToolStripMenuItem.Text = "Save to File";
+            this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
+            // 
+            // controlCharsMenuItem
+            // 
+            this.controlCharsMenuItem.Image = global::Wx3270.Properties.Resources.VisibleControl;
+            this.controlCharsMenuItem.Name = "controlCharsMenuItem";
+            this.controlCharsMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.controlCharsMenuItem.Text = "Visible control characters";
+            this.controlCharsMenuItem.Click += new System.EventHandler(this.ActionsVisibleControlClick);
+            // 
+            // cancelScriptsToolStripMenuItem
+            // 
+            this.cancelScriptsToolStripMenuItem.Image = global::Wx3270.Properties.Resources.stop2;
+            this.cancelScriptsToolStripMenuItem.Name = "cancelScriptsToolStripMenuItem";
+            this.cancelScriptsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.cancelScriptsToolStripMenuItem.Text = "Cancel scripts";
+            this.cancelScriptsToolStripMenuItem.Click += new System.EventHandler(this.ActionsCancelScripts);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = global::Wx3270.Properties.Resources.combolock;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(228, 22);
+            this.toolStripMenuItem1.Text = "Re-enable keyboard";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.ReenableKeyboard_Click);
+            // 
+            // printScreenToolStripMenuItem
+            // 
+            this.printScreenToolStripMenuItem.Image = global::Wx3270.Properties.Resources.printout_small;
+            this.printScreenToolStripMenuItem.Name = "printScreenToolStripMenuItem";
+            this.printScreenToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.printScreenToolStripMenuItem.Text = "Print screen";
+            this.printScreenToolStripMenuItem.Click += new System.EventHandler(this.PrintScreen_Click);
+            // 
+            // displayKeymapToolStripMenuItem
+            // 
+            this.displayKeymapToolStripMenuItem.Image = global::Wx3270.Properties.Resources.PF1cropped;
+            this.displayKeymapToolStripMenuItem.Name = "displayKeymapToolStripMenuItem";
+            this.displayKeymapToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.displayKeymapToolStripMenuItem.Text = "Display keymap";
+            this.displayKeymapToolStripMenuItem.Click += new System.EventHandler(this.DisplayKeymap_Click);
+            // 
+            // startRightPictureBox
+            // 
+            this.startRightPictureBox.Image = global::Wx3270.Properties.Resources.StartBlankRight;
+            this.startRightPictureBox.Location = new System.Drawing.Point(52, 0);
+            this.startRightPictureBox.Margin = new System.Windows.Forms.Padding(0);
+            this.startRightPictureBox.Name = "startRightPictureBox";
+            this.startRightPictureBox.Size = new System.Drawing.Size(4, 32);
+            this.startRightPictureBox.TabIndex = 12;
+            this.startRightPictureBox.TabStop = false;
+            // 
+            // KeypadBox
+            // 
+            this.KeypadBox.ContextMenuStrip = this.keypadContextMenuStrip;
+            this.KeypadBox.Image = global::Wx3270.Properties.Resources.KeypadSmallHollow3;
+            this.KeypadBox.Location = new System.Drawing.Point(56, 0);
+            this.KeypadBox.Margin = new System.Windows.Forms.Padding(0);
+            this.KeypadBox.Name = "KeypadBox";
+            this.KeypadBox.Size = new System.Drawing.Size(36, 32);
+            this.KeypadBox.TabIndex = 4;
+            this.KeypadBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.KeypadBox, "Keypad\r\nLeft-click for 3270\r\nAlt-left-click for APL");
+            this.KeypadBox.Click += new System.EventHandler(this.KeypadBox_Click);
             // 
             // keypadContextMenuStrip
             // 
@@ -1028,6 +1175,19 @@
             this.toolStripMenuItem4.Text = "¬";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.KeypadMenuClick);
             // 
+            // connectPictureBox
+            // 
+            this.connectPictureBox.ContextMenuStrip = this.connectMenuStrip;
+            this.connectPictureBox.Image = global::Wx3270.Properties.Resources.PowerPlug32zap;
+            this.connectPictureBox.Location = new System.Drawing.Point(92, 0);
+            this.connectPictureBox.Margin = new System.Windows.Forms.Padding(0);
+            this.connectPictureBox.Name = "connectPictureBox";
+            this.connectPictureBox.Size = new System.Drawing.Size(32, 32);
+            this.connectPictureBox.TabIndex = 7;
+            this.connectPictureBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.connectPictureBox, "Host connection");
+            this.connectPictureBox.Click += new System.EventHandler(this.ConnectPictureBox_Click);
+            // 
             // connectMenuStrip
             // 
             this.connectMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1068,6 +1228,19 @@
             this.disconnectMenuItem.Text = "Disconnect";
             this.disconnectMenuItem.Click += new System.EventHandler(this.DisconnectMenuItem_Click);
             // 
+            // profilePictureBox
+            // 
+            this.profilePictureBox.ContextMenuStrip = this.profileContextMenuStrip;
+            this.profilePictureBox.Image = global::Wx3270.Properties.Resources.Folder;
+            this.profilePictureBox.Location = new System.Drawing.Point(124, 0);
+            this.profilePictureBox.Margin = new System.Windows.Forms.Padding(0);
+            this.profilePictureBox.Name = "profilePictureBox";
+            this.profilePictureBox.Size = new System.Drawing.Size(32, 32);
+            this.profilePictureBox.TabIndex = 6;
+            this.profilePictureBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.profilePictureBox, "Profile management");
+            this.profilePictureBox.Click += new System.EventHandler(this.ProfilePictureBox_Click);
+            // 
             // profileContextMenuStrip
             // 
             this.profileContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1091,12 +1264,58 @@
             this.loadContextMenuStrip.Size = new System.Drawing.Size(36, 4);
             this.loadContextMenuStrip.Text = "Load profile";
             // 
+            // macrosPictureBox
+            // 
+            this.macrosPictureBox.ContextMenuStrip = this.macrosContextMenuStrip;
+            this.macrosPictureBox.Image = global::Wx3270.Properties.Resources.Tape4;
+            this.macrosPictureBox.Location = new System.Drawing.Point(156, 0);
+            this.macrosPictureBox.Margin = new System.Windows.Forms.Padding(0);
+            this.macrosPictureBox.Name = "macrosPictureBox";
+            this.macrosPictureBox.Size = new System.Drawing.Size(32, 32);
+            this.macrosPictureBox.TabIndex = 8;
+            this.macrosPictureBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.macrosPictureBox, "Macros");
+            this.macrosPictureBox.Click += new System.EventHandler(this.MacrosPictureBox_Click);
+            // 
             // macrosContextMenuStrip
             // 
             this.macrosContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.recordToolStripMenuItem});
             this.macrosContextMenuStrip.Name = "macrosContextMenuStrip";
             this.macrosContextMenuStrip.Size = new System.Drawing.Size(112, 26);
+            // 
+            // recordToolStripMenuItem
+            // 
+            this.recordToolStripMenuItem.Image = global::Wx3270.Properties.Resources.record1;
+            this.recordToolStripMenuItem.Name = "recordToolStripMenuItem";
+            this.recordToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.recordToolStripMenuItem.Text = "Record";
+            // 
+            // snapBox
+            // 
+            this.snapBox.Image = global::Wx3270.Properties.Resources.ToggleDown4;
+            this.snapBox.Location = new System.Drawing.Point(191, 0);
+            this.snapBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.snapBox.Name = "snapBox";
+            this.snapBox.Size = new System.Drawing.Size(16, 32);
+            this.snapBox.TabIndex = 10;
+            this.snapBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.snapBox, "Snap screen size");
+            this.snapBox.Click += new System.EventHandler(this.SnapBox_Click);
+            // 
+            // helpPictureBox
+            // 
+            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("helpPictureBox.InitialImage")));
+            this.helpPictureBox.Location = new System.Drawing.Point(0, 32);
+            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(0);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(26, 32);
+            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.helpPictureBox.TabIndex = 9;
+            this.helpPictureBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
+            this.helpPictureBox.Click += new System.EventHandler(this.Help_Click);
             // 
             // TopLayoutPanel
             // 
@@ -1119,6 +1338,19 @@
             this.TopRightLayoutPanel.Name = "TopRightLayoutPanel";
             this.TopRightLayoutPanel.Size = new System.Drawing.Size(41, 32);
             this.TopRightLayoutPanel.TabIndex = 1;
+            // 
+            // SettingsBox
+            // 
+            this.SettingsBox.ContextMenuStrip = this.settingsMenuStrip;
+            this.SettingsBox.Image = global::Wx3270.Properties.Resources.KnobBlueCenter6;
+            this.SettingsBox.Location = new System.Drawing.Point(8, 1);
+            this.SettingsBox.Margin = new System.Windows.Forms.Padding(1);
+            this.SettingsBox.Name = "SettingsBox";
+            this.SettingsBox.Size = new System.Drawing.Size(32, 32);
+            this.SettingsBox.TabIndex = 4;
+            this.SettingsBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.SettingsBox, "Settings");
+            this.SettingsBox.Click += new System.EventHandler(this.SettingsBox_Click);
             // 
             // settingsMenuStrip
             // 
@@ -1230,6 +1462,30 @@
             this.innerScreenPanel.Name = "innerScreenPanel";
             this.innerScreenPanel.Size = new System.Drawing.Size(200, 100);
             this.innerScreenPanel.TabIndex = 0;
+            // 
+            // screenPictureBox
+            // 
+            this.screenPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.screenPictureBox.Margin = new System.Windows.Forms.Padding(0);
+            this.screenPictureBox.Name = "screenPictureBox";
+            this.screenPictureBox.Size = new System.Drawing.Size(100, 50);
+            this.screenPictureBox.TabIndex = 0;
+            this.screenPictureBox.TabStop = false;
+            this.screenPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ScreenBox_Paint);
+            this.screenPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ScreenBox_MouseDown);
+            this.screenPictureBox.MouseEnter += new System.EventHandler(this.ScreenBox_MouseEnter);
+            this.screenPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ScreenBox_MouseMove);
+            this.screenPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ScreenBox_MouseUp);
+            // 
+            // crosshairPictureBox
+            // 
+            this.crosshairPictureBox.Location = new System.Drawing.Point(79, 28);
+            this.crosshairPictureBox.Margin = new System.Windows.Forms.Padding(0);
+            this.crosshairPictureBox.Name = "crosshairPictureBox";
+            this.crosshairPictureBox.Size = new System.Drawing.Size(100, 50);
+            this.crosshairPictureBox.TabIndex = 1;
+            this.crosshairPictureBox.TabStop = false;
+            this.crosshairPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.CrosshairPictureBox_Paint);
             // 
             // vScrollBar1
             // 
@@ -1613,236 +1869,6 @@
             this.noFlashTimer.Interval = 1000;
             this.noFlashTimer.Tick += new System.EventHandler(this.NoFlashTimer_Tick);
             // 
-            // SettingsBox
-            // 
-            this.SettingsBox.ContextMenuStrip = this.settingsMenuStrip;
-            this.SettingsBox.Image = global::Wx3270.Properties.Resources.KnobBlueCenter6;
-            this.SettingsBox.Location = new System.Drawing.Point(8, 1);
-            this.SettingsBox.Margin = new System.Windows.Forms.Padding(1);
-            this.SettingsBox.Name = "SettingsBox";
-            this.SettingsBox.Size = new System.Drawing.Size(32, 32);
-            this.SettingsBox.TabIndex = 4;
-            this.SettingsBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.SettingsBox, "Settings");
-            this.SettingsBox.Click += new System.EventHandler(this.SettingsBox_Click);
-            // 
-            // ActionsBox
-            // 
-            this.ActionsBox.ContextMenuStrip = this.actionsMenuStrip;
-            this.ActionsBox.Image = global::Wx3270.Properties.Resources.StartBlank;
-            this.ActionsBox.Location = new System.Drawing.Point(0, 0);
-            this.ActionsBox.Margin = new System.Windows.Forms.Padding(0);
-            this.ActionsBox.Name = "ActionsBox";
-            this.ActionsBox.Size = new System.Drawing.Size(32, 32);
-            this.ActionsBox.TabIndex = 4;
-            this.ActionsBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.ActionsBox, "Actions");
-            this.ActionsBox.Click += new System.EventHandler(this.ActionsBox_Click);
-            this.ActionsBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ActionsBox_paint);
-            // 
-            // KeypadBox
-            // 
-            this.KeypadBox.ContextMenuStrip = this.keypadContextMenuStrip;
-            this.KeypadBox.Image = global::Wx3270.Properties.Resources.KeypadSmallHollow3;
-            this.KeypadBox.Location = new System.Drawing.Point(32, 0);
-            this.KeypadBox.Margin = new System.Windows.Forms.Padding(0);
-            this.KeypadBox.Name = "KeypadBox";
-            this.KeypadBox.Size = new System.Drawing.Size(36, 32);
-            this.KeypadBox.TabIndex = 4;
-            this.KeypadBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.KeypadBox, "Keypad\r\nLeft-click for 3270\r\nAlt-left-click for APL");
-            this.KeypadBox.Click += new System.EventHandler(this.KeypadBox_Click);
-            // 
-            // connectPictureBox
-            // 
-            this.connectPictureBox.ContextMenuStrip = this.connectMenuStrip;
-            this.connectPictureBox.Image = global::Wx3270.Properties.Resources.PowerPlug32zap;
-            this.connectPictureBox.Location = new System.Drawing.Point(68, 0);
-            this.connectPictureBox.Margin = new System.Windows.Forms.Padding(0);
-            this.connectPictureBox.Name = "connectPictureBox";
-            this.connectPictureBox.Size = new System.Drawing.Size(32, 32);
-            this.connectPictureBox.TabIndex = 7;
-            this.connectPictureBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.connectPictureBox, "Host connection");
-            this.connectPictureBox.Click += new System.EventHandler(this.ConnectPictureBox_Click);
-            // 
-            // profilePictureBox
-            // 
-            this.profilePictureBox.ContextMenuStrip = this.profileContextMenuStrip;
-            this.profilePictureBox.Image = global::Wx3270.Properties.Resources.Folder;
-            this.profilePictureBox.Location = new System.Drawing.Point(100, 0);
-            this.profilePictureBox.Margin = new System.Windows.Forms.Padding(0);
-            this.profilePictureBox.Name = "profilePictureBox";
-            this.profilePictureBox.Size = new System.Drawing.Size(32, 32);
-            this.profilePictureBox.TabIndex = 6;
-            this.profilePictureBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.profilePictureBox, "Profile management");
-            this.profilePictureBox.Click += new System.EventHandler(this.ProfilePictureBox_Click);
-            // 
-            // macrosPictureBox
-            // 
-            this.macrosPictureBox.ContextMenuStrip = this.macrosContextMenuStrip;
-            this.macrosPictureBox.Image = global::Wx3270.Properties.Resources.Tape4;
-            this.macrosPictureBox.Location = new System.Drawing.Point(132, 0);
-            this.macrosPictureBox.Margin = new System.Windows.Forms.Padding(0);
-            this.macrosPictureBox.Name = "macrosPictureBox";
-            this.macrosPictureBox.Size = new System.Drawing.Size(32, 32);
-            this.macrosPictureBox.TabIndex = 8;
-            this.macrosPictureBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.macrosPictureBox, "Macros");
-            this.macrosPictureBox.Click += new System.EventHandler(this.MacrosPictureBox_Click);
-            // 
-            // snapBox
-            // 
-            this.snapBox.Image = global::Wx3270.Properties.Resources.ToggleDown4;
-            this.snapBox.Location = new System.Drawing.Point(167, 0);
-            this.snapBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.snapBox.Name = "snapBox";
-            this.snapBox.Size = new System.Drawing.Size(16, 32);
-            this.snapBox.TabIndex = 10;
-            this.snapBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.snapBox, "Snap screen size");
-            this.snapBox.Click += new System.EventHandler(this.SnapBox_Click);
-            // 
-            // helpPictureBox
-            // 
-            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("helpPictureBox.InitialImage")));
-            this.helpPictureBox.Location = new System.Drawing.Point(186, 0);
-            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(0);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(26, 32);
-            this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.helpPictureBox.TabIndex = 9;
-            this.helpPictureBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
-            this.helpPictureBox.Click += new System.EventHandler(this.Help_Click);
-            // 
-            // screenPictureBox
-            // 
-            this.screenPictureBox.Location = new System.Drawing.Point(0, 0);
-            this.screenPictureBox.Margin = new System.Windows.Forms.Padding(0);
-            this.screenPictureBox.Name = "screenPictureBox";
-            this.screenPictureBox.Size = new System.Drawing.Size(100, 50);
-            this.screenPictureBox.TabIndex = 0;
-            this.screenPictureBox.TabStop = false;
-            this.screenPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ScreenBox_Paint);
-            this.screenPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ScreenBox_MouseDown);
-            this.screenPictureBox.MouseEnter += new System.EventHandler(this.ScreenBox_MouseEnter);
-            this.screenPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ScreenBox_MouseMove);
-            this.screenPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ScreenBox_MouseUp);
-            // 
-            // crosshairPictureBox
-            // 
-            this.crosshairPictureBox.Location = new System.Drawing.Point(79, 28);
-            this.crosshairPictureBox.Margin = new System.Windows.Forms.Padding(0);
-            this.crosshairPictureBox.Name = "crosshairPictureBox";
-            this.crosshairPictureBox.Size = new System.Drawing.Size(100, 50);
-            this.crosshairPictureBox.TabIndex = 1;
-            this.crosshairPictureBox.TabStop = false;
-            this.crosshairPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.CrosshairPictureBox_Paint);
-            // 
-            // x3270PromptToolStripMenuItem
-            // 
-            this.x3270PromptToolStripMenuItem.Image = global::Wx3270.Properties.Resources.x3270if;
-            this.x3270PromptToolStripMenuItem.Name = "x3270PromptToolStripMenuItem";
-            this.x3270PromptToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.x3270PromptToolStripMenuItem.Text = "wx3270> prompt";
-            this.x3270PromptToolStripMenuItem.Click += new System.EventHandler(this.ActionsPromptClick);
-            // 
-            // tracingToolStripMenuItem
-            // 
-            this.tracingToolStripMenuItem.Image = global::Wx3270.Properties.Resources.catf;
-            this.tracingToolStripMenuItem.Name = "tracingToolStripMenuItem";
-            this.tracingToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.tracingToolStripMenuItem.Text = "Tracing";
-            this.tracingToolStripMenuItem.Click += new System.EventHandler(this.ActionsTracingClick);
-            // 
-            // fileTransferMenuItem
-            // 
-            this.fileTransferMenuItem.Image = global::Wx3270.Properties.Resources.arrowslr;
-            this.fileTransferMenuItem.Name = "fileTransferMenuItem";
-            this.fileTransferMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.fileTransferMenuItem.Text = "File transfer";
-            this.fileTransferMenuItem.Click += new System.EventHandler(this.FileTransfer_Click);
-            // 
-            // screenTracingMenuItem
-            // 
-            this.screenTracingMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sendToPrinterToolStripMenuItem,
-            this.saveToFileToolStripMenuItem});
-            this.screenTracingMenuItem.Image = global::Wx3270.Properties.Resources.screentrace3;
-            this.screenTracingMenuItem.Name = "screenTracingMenuItem";
-            this.screenTracingMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.screenTracingMenuItem.Tag = "Toggle";
-            this.screenTracingMenuItem.Text = "Screen tracing";
-            this.screenTracingMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
-            // 
-            // sendToPrinterToolStripMenuItem
-            // 
-            this.sendToPrinterToolStripMenuItem.Image = global::Wx3270.Properties.Resources.printout_small;
-            this.sendToPrinterToolStripMenuItem.Name = "sendToPrinterToolStripMenuItem";
-            this.sendToPrinterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sendToPrinterToolStripMenuItem.Tag = "Printer";
-            this.sendToPrinterToolStripMenuItem.Text = "Send to Printer";
-            this.sendToPrinterToolStripMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
-            // 
-            // saveToFileToolStripMenuItem
-            // 
-            this.saveToFileToolStripMenuItem.Image = global::Wx3270.Properties.Resources.Floppy;
-            this.saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
-            this.saveToFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.saveToFileToolStripMenuItem.Tag = "File";
-            this.saveToFileToolStripMenuItem.Text = "Save to File";
-            this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.ScreenTracing_Click);
-            // 
-            // controlCharsMenuItem
-            // 
-            this.controlCharsMenuItem.Image = global::Wx3270.Properties.Resources.VisibleControl;
-            this.controlCharsMenuItem.Name = "controlCharsMenuItem";
-            this.controlCharsMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.controlCharsMenuItem.Text = "Visible control characters";
-            this.controlCharsMenuItem.Click += new System.EventHandler(this.ActionsVisibleControlClick);
-            // 
-            // cancelScriptsToolStripMenuItem
-            // 
-            this.cancelScriptsToolStripMenuItem.Image = global::Wx3270.Properties.Resources.stop2;
-            this.cancelScriptsToolStripMenuItem.Name = "cancelScriptsToolStripMenuItem";
-            this.cancelScriptsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.cancelScriptsToolStripMenuItem.Text = "Cancel scripts";
-            this.cancelScriptsToolStripMenuItem.Click += new System.EventHandler(this.ActionsCancelScripts);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Image = global::Wx3270.Properties.Resources.combolock;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(228, 22);
-            this.toolStripMenuItem1.Text = "Re-enable keyboard";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.ReenableKeyboard_Click);
-            // 
-            // printScreenToolStripMenuItem
-            // 
-            this.printScreenToolStripMenuItem.Image = global::Wx3270.Properties.Resources.printout_small;
-            this.printScreenToolStripMenuItem.Name = "printScreenToolStripMenuItem";
-            this.printScreenToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.printScreenToolStripMenuItem.Text = "Print screen";
-            this.printScreenToolStripMenuItem.Click += new System.EventHandler(this.PrintScreen_Click);
-            // 
-            // displayKeymapToolStripMenuItem
-            // 
-            this.displayKeymapToolStripMenuItem.Image = global::Wx3270.Properties.Resources.PF1cropped;
-            this.displayKeymapToolStripMenuItem.Name = "displayKeymapToolStripMenuItem";
-            this.displayKeymapToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.displayKeymapToolStripMenuItem.Text = "Display keymap";
-            this.displayKeymapToolStripMenuItem.Click += new System.EventHandler(this.DisplayKeymap_Click);
-            // 
-            // recordToolStripMenuItem
-            // 
-            this.recordToolStripMenuItem.Image = global::Wx3270.Properties.Resources.record1;
-            this.recordToolStripMenuItem.Name = "recordToolStripMenuItem";
-            this.recordToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
-            this.recordToolStripMenuItem.Text = "Record";
-            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1870,13 +1896,23 @@
             this.OiaLayoutPanel.PerformLayout();
             this.resetContextMenuStrip.ResumeLayout(false);
             this.TopLeftLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.startLeftPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ActionsBox)).EndInit();
             this.actionsMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.startRightPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KeypadBox)).EndInit();
             this.keypadContextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.connectPictureBox)).EndInit();
             this.connectMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).EndInit();
             this.profileContextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.macrosPictureBox)).EndInit();
             this.macrosContextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.snapBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.TopLayoutPanel.ResumeLayout(false);
             this.TopRightLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SettingsBox)).EndInit();
             this.settingsMenuStrip.ResumeLayout(false);
             this.MainTable.ResumeLayout(false);
             this.MainTable.PerformLayout();
@@ -1884,20 +1920,12 @@
             this.ScreenBoxPanel.PerformLayout();
             this.innerScreenTableLayoutPanel.ResumeLayout(false);
             this.innerScreenPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.screenPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.crosshairPictureBox)).EndInit();
             this.ScrollBarLayoutPanel.ResumeLayout(false);
             this.ScrollBarLayoutPanel.PerformLayout();
             this.mainScreenPanel.ResumeLayout(false);
             this.mainScreenPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SettingsBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ActionsBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KeypadBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.connectPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.macrosPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.snapBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screenPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.crosshairPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2076,6 +2104,8 @@
         private System.Windows.Forms.ToolStripMenuItem pA1ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem pA2ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem recordToolStripMenuItem;
+        private System.Windows.Forms.PictureBox startLeftPictureBox;
+        private System.Windows.Forms.PictureBox startRightPictureBox;
     }
 }
 

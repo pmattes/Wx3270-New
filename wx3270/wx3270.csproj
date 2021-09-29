@@ -136,6 +136,7 @@
     </Compile>
     <Compile Include="ActionSyntax.cs" />
     <Compile Include="AplMode.cs" />
+    <Compile Include="StartButton.cs" />
     <Compile Include="Contracts\IBrush.cs" />
     <Compile Include="Contracts\INormalize.cs" />
     <Compile Include="Contracts\IOpacity.cs" />
@@ -630,9 +631,6 @@
     <None Include="Resources\Tape4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\StartClearer.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\BlankPreview.png" />
   </ItemGroup>
   <ItemGroup>
@@ -695,15 +693,6 @@
     <EmbeddedResource Include="Resources\Template.js" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Help-Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Question23.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Question23b.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Question23c.png" />
   </ItemGroup>
   <ItemGroup>
@@ -752,10 +741,13 @@
     <None Include="Resources\record1.png" />
     <None Include="Resources\Tape4_flash.png" />
     <None Include="Resources\stop_recording.png" />
-    <None Include="Resources\StartBlank.png" />
-    <None Include="Resources\StartClearerLightGreenBlank.png" />
+    <None Include="Resources\StartBlankLeft.png" />
+    <None Include="Resources\StartBlankRight.png" />
+    <None Include="Resources\StartBlankMiddleWide.png" />
+    <None Include="Resources\StartClearerLeft.png" />
+    <None Include="Resources\StartClearerMiddle.png" />
+    <None Include="Resources\StartClearerRight.png" />
     <Content Include="wx3270.bmp" />
-    <None Include="Resources\StartClearerLightGreen.png" />
     <None Include="Resources\ToggleUp4.png" />
     <None Include="Resources\ToggleDown4.png" />
     <None Include="Resources\PF1cropped.png" />

@@ -92,6 +92,11 @@ namespace Wx3270
         private readonly HashSet<Form> keypadActive = new HashSet<Form>();
 
         /// <summary>
+        /// Start button renderer.
+        /// </summary>
+        private readonly StartButton startButton = new StartButton();
+
+        /// <summary>
         /// True if the window is activated.
         /// </summary>
         private bool isActivated;
@@ -531,7 +536,9 @@ namespace Wx3270
         {
             if (!this.noFlashTimer.Enabled && this.flashFsm.Start() == FlashFsm.Action.Flash)
             {
-                this.ActionsBox.Image = Properties.Resources.StartClearerLightGreen;
+                this.startLeftPictureBox.Image = Properties.Resources.StartClearerLeft;
+                this.ActionsBox.Image = Properties.Resources.StartClearerMiddle;
+                this.startRightPictureBox.Image = Properties.Resources.StartClearerRight;
             }
         }
 
@@ -731,10 +738,14 @@ namespace Wx3270
                     switch (action)
                     {
                         case FlashFsm.Action.Flash:
-                            this.ActionsBox.Image = Properties.Resources.StartClearerLightGreenBlank;
+                            this.startLeftPictureBox.Image = Properties.Resources.StartClearerLeft;
+                            this.ActionsBox.Image = Properties.Resources.StartClearerMiddle;
+                            this.startRightPictureBox.Image = Properties.Resources.StartClearerRight;
                             break;
                         case FlashFsm.Action.Restore:
-                            this.ActionsBox.Image = Properties.Resources.StartBlank;
+                            this.startLeftPictureBox.Image = Properties.Resources.StartBlankLeft;
+                            this.ActionsBox.Image = Properties.Resources.StartBlankMiddleWide;
+                            this.startRightPictureBox.Image = Properties.Resources.StartBlankRight;
                             break;
                         default:
                             break;
@@ -2480,24 +2491,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ActionsBox_paint(object sender, PaintEventArgs e)
         {
-            var pictureBox = (PictureBox)sender;
-            using var font = new Font("Arial", 4.75F);
-            var textSize = new Size(0, 0);
-            var x = 0;
-            var text = I18n.Get(StartButtonName);
-            while (true)
-            {
-                textSize = TextRenderer.MeasureText(e.Graphics, text, font, new Size(1000, 1000), TextFormatFlags.Left | TextFormatFlags.NoPadding);
-                if (textSize.Width < pictureBox.Width - 6)
-                {
-                    x = ((pictureBox.Width - textSize.Width) / 2) + 1;
-                    break;
-                }
-
-                text = text.Substring(0, text.Length - 1);
-            }
-
-            e.Graphics.DrawString(text, font, Brushes.Moccasin, new Point(x, ((pictureBox.Height - textSize.Height) / 2) + 2));
+            this.startButton.Render((PictureBox)sender, e, I18n.Get(StartButtonName));
         }
 
         /// <summary>

@@ -183,16 +183,6 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Help_Small {
-            get {
-                object obj = ResourceManager.GetObject("Help-Small", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Insert48_2 {
             get {
                 object obj = ResourceManager.GetObject("Insert48-2", resourceCulture);
@@ -283,26 +273,6 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Question23 {
-            get {
-                object obj = ResourceManager.GetObject("Question23", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Question23b {
-            get {
-                object obj = ResourceManager.GetObject("Question23b", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Question23c {
             get {
                 object obj = ResourceManager.GetObject("Question23c", resourceCulture);
@@ -343,9 +313,9 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap StartBlank {
+        internal static System.Drawing.Bitmap StartBlankLeft {
             get {
-                object obj = ResourceManager.GetObject("StartBlank", resourceCulture);
+                object obj = ResourceManager.GetObject("StartBlankLeft", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -353,9 +323,9 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap StartClearer {
+        internal static System.Drawing.Bitmap StartBlankMiddleWide {
             get {
-                object obj = ResourceManager.GetObject("StartClearer", resourceCulture);
+                object obj = ResourceManager.GetObject("StartBlankMiddleWide", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -363,9 +333,9 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap StartClearerLightGreen {
+        internal static System.Drawing.Bitmap StartBlankRight {
             get {
-                object obj = ResourceManager.GetObject("StartClearerLightGreen", resourceCulture);
+                object obj = ResourceManager.GetObject("StartBlankRight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -373,9 +343,29 @@ namespace Wx3270.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap StartClearerLightGreenBlank {
+        internal static System.Drawing.Bitmap StartClearerLeft {
             get {
-                object obj = ResourceManager.GetObject("StartClearerLightGreenBlank", resourceCulture);
+                object obj = ResourceManager.GetObject("StartClearerLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StartClearerMiddle {
+            get {
+                object obj = ResourceManager.GetObject("StartClearerMiddle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StartClearerRight {
+            get {
+                object obj = ResourceManager.GetObject("StartClearerRight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
