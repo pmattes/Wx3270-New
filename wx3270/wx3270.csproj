@@ -537,6 +537,7 @@
     <None Include="Local Processes.wx3270">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="MessageCatalog\fr" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -756,6 +757,10 @@
     <None Include="Resources\catf.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist "$(SolutionDir)MessageCatalog" mkdir "$(SolutionDir)MessageCatalog"
+xcopy /S /I /Y "$(SolutionDir)MessageCatalog" "$(TargetDir)\MessageCatalog"</PostBuildEvent>
+  </PropertyGroup>
   <!-- <Import Project="C:\Program Files (x86)\MSBuild\StyleCop\v5.0\StyleCop.Targets" /> -->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

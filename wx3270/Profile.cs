@@ -562,7 +562,7 @@ namespace Wx3270
             /// <summary>
             /// Release phase.
             /// </summary>
-            private const string ReleasePhase = "bpre";
+            private const string ReleasePhase = "cpre";
 
             /// <summary>
             /// Gets the full version, for display rather than comparison.
