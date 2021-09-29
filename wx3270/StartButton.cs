@@ -46,7 +46,7 @@ namespace Wx3270
         /// <summary>
         /// Pixels to offset the text vertically.
         /// </summary>
-        private const int Yoffset = 2;
+        private const int Yoffset = 3;
 
         /// <summary>
         /// True if the resize computation has been completed.
