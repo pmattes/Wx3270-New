@@ -1943,7 +1943,7 @@
             this.modifiersGroupBox.Size = new System.Drawing.Size(175, 80);
             this.modifiersGroupBox.TabIndex = 112;
             this.modifiersGroupBox.TabStop = false;
-            this.modifiersGroupBox.Tag = "<nowalk>";
+            this.modifiersGroupBox.Tag = "";
             this.modifiersGroupBox.Text = "Modifiers";
             // 
             // modifiersLayoutPanel
