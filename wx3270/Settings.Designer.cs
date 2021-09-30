@@ -2110,9 +2110,9 @@
             // colorPreviewGroupBox
             // 
             this.colorPreviewGroupBox.Controls.Add(this.colorPreviewTableLayoutPanel);
-            this.colorPreviewGroupBox.Location = new System.Drawing.Point(332, 21);
+            this.colorPreviewGroupBox.Location = new System.Drawing.Point(344, 21);
             this.colorPreviewGroupBox.Name = "colorPreviewGroupBox";
-            this.colorPreviewGroupBox.Size = new System.Drawing.Size(224, 132);
+            this.colorPreviewGroupBox.Size = new System.Drawing.Size(295, 132);
             this.colorPreviewGroupBox.TabIndex = 28;
             this.colorPreviewGroupBox.TabStop = false;
             this.colorPreviewGroupBox.Text = "Preview";
@@ -2180,7 +2180,7 @@
             this.colorMiscGroupBox.Controls.Add(this.selectedButton);
             this.colorMiscGroupBox.Location = new System.Drawing.Point(27, 533);
             this.colorMiscGroupBox.Name = "colorMiscGroupBox";
-            this.colorMiscGroupBox.Size = new System.Drawing.Size(529, 55);
+            this.colorMiscGroupBox.Size = new System.Drawing.Size(612, 55);
             this.colorMiscGroupBox.TabIndex = 1;
             this.colorMiscGroupBox.TabStop = false;
             this.colorMiscGroupBox.Text = "Other colors";
@@ -2189,9 +2189,9 @@
             // 
             this.crosshairSwatch.BackColor = System.Drawing.Color.Purple;
             this.crosshairSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crosshairSwatch.Location = new System.Drawing.Point(441, 18);
+            this.crosshairSwatch.Location = new System.Drawing.Point(483, 18);
             this.crosshairSwatch.Name = "crosshairSwatch";
-            this.crosshairSwatch.Size = new System.Drawing.Size(79, 21);
+            this.crosshairSwatch.Size = new System.Drawing.Size(121, 21);
             this.crosshairSwatch.TabIndex = 40;
             this.crosshairSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.crosshairSwatch, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
@@ -2201,7 +2201,7 @@
             // 
             this.crosshairColorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.crosshairColorButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.crosshairColorButton.Location = new System.Drawing.Point(273, 17);
+            this.crosshairColorButton.Location = new System.Drawing.Point(315, 17);
             this.crosshairColorButton.Name = "crosshairColorButton";
             this.crosshairColorButton.Size = new System.Drawing.Size(170, 23);
             this.crosshairColorButton.TabIndex = 39;
@@ -2218,7 +2218,7 @@
             this.selectionSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.selectionSwatch.Location = new System.Drawing.Point(177, 18);
             this.selectionSwatch.Name = "selectionSwatch";
-            this.selectionSwatch.Size = new System.Drawing.Size(79, 21);
+            this.selectionSwatch.Size = new System.Drawing.Size(119, 21);
             this.selectionSwatch.TabIndex = 38;
             this.selectionSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.selectionSwatch, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
@@ -2246,7 +2246,7 @@
             this.schemeBox.Controls.Add(this.whiteOnBlackButton);
             this.schemeBox.Location = new System.Drawing.Point(27, 21);
             this.schemeBox.Name = "schemeBox";
-            this.schemeBox.Size = new System.Drawing.Size(272, 132);
+            this.schemeBox.Size = new System.Drawing.Size(296, 132);
             this.schemeBox.TabIndex = 0;
             this.schemeBox.TabStop = false;
             this.schemeBox.Text = "Color scheme";
@@ -2341,7 +2341,7 @@
             this.hostColorsBox.Controls.Add(this.neutralBlackButton);
             this.hostColorsBox.Location = new System.Drawing.Point(27, 164);
             this.hostColorsBox.Name = "hostColorsBox";
-            this.hostColorsBox.Size = new System.Drawing.Size(529, 358);
+            this.hostColorsBox.Size = new System.Drawing.Size(612, 358);
             this.hostColorsBox.TabIndex = 1;
             this.hostColorsBox.TabStop = false;
             this.hostColorsBox.Text = "Host colors";
@@ -2368,7 +2368,7 @@
             // 
             this.whiteSwatch.BackColor = System.Drawing.Color.White;
             this.whiteSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.whiteSwatch.Location = new System.Drawing.Point(398, 245);
+            this.whiteSwatch.Location = new System.Drawing.Point(439, 245);
             this.whiteSwatch.Name = "whiteSwatch";
             this.whiteSwatch.Size = new System.Drawing.Size(25, 21);
             this.whiteSwatch.TabIndex = 36;
@@ -2392,7 +2392,7 @@
             // 
             this.paleTurquoiseSwatch.BackColor = System.Drawing.Color.PaleTurquoise;
             this.paleTurquoiseSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.paleTurquoiseSwatch.Location = new System.Drawing.Point(398, 216);
+            this.paleTurquoiseSwatch.Location = new System.Drawing.Point(439, 216);
             this.paleTurquoiseSwatch.Name = "paleTurquoiseSwatch";
             this.paleTurquoiseSwatch.Size = new System.Drawing.Size(25, 21);
             this.paleTurquoiseSwatch.TabIndex = 36;
@@ -2416,7 +2416,7 @@
             // 
             this.purpleSwatch.BackColor = System.Drawing.Color.DarkViolet;
             this.purpleSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.purpleSwatch.Location = new System.Drawing.Point(398, 187);
+            this.purpleSwatch.Location = new System.Drawing.Point(439, 187);
             this.purpleSwatch.Name = "purpleSwatch";
             this.purpleSwatch.Size = new System.Drawing.Size(25, 21);
             this.purpleSwatch.TabIndex = 36;
@@ -2440,7 +2440,7 @@
             // 
             this.deepBlueSwatch.BackColor = System.Drawing.Color.Blue;
             this.deepBlueSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.deepBlueSwatch.Location = new System.Drawing.Point(398, 158);
+            this.deepBlueSwatch.Location = new System.Drawing.Point(439, 158);
             this.deepBlueSwatch.Name = "deepBlueSwatch";
             this.deepBlueSwatch.Size = new System.Drawing.Size(25, 21);
             this.deepBlueSwatch.TabIndex = 36;
@@ -2452,7 +2452,7 @@
             // 
             this.pinkSwatch.BackColor = System.Drawing.Color.HotPink;
             this.pinkSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pinkSwatch.Location = new System.Drawing.Point(398, 129);
+            this.pinkSwatch.Location = new System.Drawing.Point(439, 129);
             this.pinkSwatch.Name = "pinkSwatch";
             this.pinkSwatch.Size = new System.Drawing.Size(25, 21);
             this.pinkSwatch.TabIndex = 36;
@@ -2476,7 +2476,7 @@
             // 
             this.turquoiseSwatch.BackColor = System.Drawing.Color.Turquoise;
             this.turquoiseSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.turquoiseSwatch.Location = new System.Drawing.Point(398, 100);
+            this.turquoiseSwatch.Location = new System.Drawing.Point(439, 100);
             this.turquoiseSwatch.Name = "turquoiseSwatch";
             this.turquoiseSwatch.Size = new System.Drawing.Size(25, 21);
             this.turquoiseSwatch.TabIndex = 36;
@@ -2512,7 +2512,7 @@
             // 
             this.redSwatch.BackColor = System.Drawing.Color.Red;
             this.redSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.redSwatch.Location = new System.Drawing.Point(398, 71);
+            this.redSwatch.Location = new System.Drawing.Point(439, 71);
             this.redSwatch.Name = "redSwatch";
             this.redSwatch.Size = new System.Drawing.Size(25, 21);
             this.redSwatch.TabIndex = 36;
@@ -2548,7 +2548,7 @@
             // 
             this.neutralBlackSwatch.BackColor = System.Drawing.Color.Black;
             this.neutralBlackSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.neutralBlackSwatch.Location = new System.Drawing.Point(398, 20);
+            this.neutralBlackSwatch.Location = new System.Drawing.Point(441, 21);
             this.neutralBlackSwatch.Name = "neutralBlackSwatch";
             this.neutralBlackSwatch.Size = new System.Drawing.Size(25, 39);
             this.neutralBlackSwatch.TabIndex = 34;
@@ -2564,7 +2564,7 @@
             this.neutralWhiteSample.ForeColor = System.Drawing.Color.White;
             this.neutralWhiteSample.Location = new System.Drawing.Point(156, 20);
             this.neutralWhiteSample.Name = "neutralWhiteSample";
-            this.neutralWhiteSample.Size = new System.Drawing.Size(100, 39);
+            this.neutralWhiteSample.Size = new System.Drawing.Size(140, 39);
             this.neutralWhiteSample.TabIndex = 33;
             this.neutralWhiteSample.Text = "Sample Text";
             this.neutralWhiteSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2579,7 +2579,7 @@
             this.greenSample.ForeColor = System.Drawing.Color.MediumSeaGreen;
             this.greenSample.Location = new System.Drawing.Point(156, 100);
             this.greenSample.Name = "greenSample";
-            this.greenSample.Size = new System.Drawing.Size(100, 21);
+            this.greenSample.Size = new System.Drawing.Size(140, 21);
             this.greenSample.TabIndex = 32;
             this.greenSample.Text = "Sample Text";
             this.greenSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2594,7 +2594,7 @@
             this.yellowSample.ForeColor = System.Drawing.Color.Yellow;
             this.yellowSample.Location = new System.Drawing.Point(156, 129);
             this.yellowSample.Name = "yellowSample";
-            this.yellowSample.Size = new System.Drawing.Size(100, 21);
+            this.yellowSample.Size = new System.Drawing.Size(140, 21);
             this.yellowSample.TabIndex = 31;
             this.yellowSample.Text = "Sample Text";
             this.yellowSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2607,9 +2607,9 @@
             this.paleTurquoiseSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.paleTurquoiseSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paleTurquoiseSample.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.paleTurquoiseSample.Location = new System.Drawing.Point(423, 216);
+            this.paleTurquoiseSample.Location = new System.Drawing.Point(464, 216);
             this.paleTurquoiseSample.Name = "paleTurquoiseSample";
-            this.paleTurquoiseSample.Size = new System.Drawing.Size(100, 21);
+            this.paleTurquoiseSample.Size = new System.Drawing.Size(140, 21);
             this.paleTurquoiseSample.TabIndex = 30;
             this.paleTurquoiseSample.Text = "Sample Text";
             this.paleTurquoiseSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2622,9 +2622,9 @@
             this.whiteSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.whiteSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.whiteSample.ForeColor = System.Drawing.Color.White;
-            this.whiteSample.Location = new System.Drawing.Point(423, 245);
+            this.whiteSample.Location = new System.Drawing.Point(464, 245);
             this.whiteSample.Name = "whiteSample";
-            this.whiteSample.Size = new System.Drawing.Size(100, 21);
+            this.whiteSample.Size = new System.Drawing.Size(140, 21);
             this.whiteSample.TabIndex = 29;
             this.whiteSample.Text = "Sample Text";
             this.whiteSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2637,9 +2637,9 @@
             this.purpleSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.purpleSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purpleSample.ForeColor = System.Drawing.Color.DarkViolet;
-            this.purpleSample.Location = new System.Drawing.Point(423, 187);
+            this.purpleSample.Location = new System.Drawing.Point(464, 187);
             this.purpleSample.Name = "purpleSample";
-            this.purpleSample.Size = new System.Drawing.Size(100, 21);
+            this.purpleSample.Size = new System.Drawing.Size(140, 21);
             this.purpleSample.TabIndex = 28;
             this.purpleSample.Text = "Sample Text";
             this.purpleSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2652,9 +2652,9 @@
             this.deepBlueSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.deepBlueSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deepBlueSample.ForeColor = System.Drawing.Color.Blue;
-            this.deepBlueSample.Location = new System.Drawing.Point(423, 158);
+            this.deepBlueSample.Location = new System.Drawing.Point(464, 158);
             this.deepBlueSample.Name = "deepBlueSample";
-            this.deepBlueSample.Size = new System.Drawing.Size(100, 21);
+            this.deepBlueSample.Size = new System.Drawing.Size(140, 21);
             this.deepBlueSample.TabIndex = 27;
             this.deepBlueSample.Text = "Sample Text";
             this.deepBlueSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2667,9 +2667,9 @@
             this.pinkSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pinkSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pinkSample.ForeColor = System.Drawing.Color.HotPink;
-            this.pinkSample.Location = new System.Drawing.Point(423, 129);
+            this.pinkSample.Location = new System.Drawing.Point(464, 129);
             this.pinkSample.Name = "pinkSample";
-            this.pinkSample.Size = new System.Drawing.Size(100, 21);
+            this.pinkSample.Size = new System.Drawing.Size(140, 21);
             this.pinkSample.TabIndex = 26;
             this.pinkSample.Text = "Sample Text";
             this.pinkSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2682,9 +2682,9 @@
             this.turquoiseSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.turquoiseSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.turquoiseSample.ForeColor = System.Drawing.Color.Turquoise;
-            this.turquoiseSample.Location = new System.Drawing.Point(423, 100);
+            this.turquoiseSample.Location = new System.Drawing.Point(464, 100);
             this.turquoiseSample.Name = "turquoiseSample";
-            this.turquoiseSample.Size = new System.Drawing.Size(100, 21);
+            this.turquoiseSample.Size = new System.Drawing.Size(140, 21);
             this.turquoiseSample.TabIndex = 25;
             this.turquoiseSample.Text = "Sample Text";
             this.turquoiseSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2699,7 +2699,7 @@
             this.graySample.ForeColor = System.Drawing.Color.Gray;
             this.graySample.Location = new System.Drawing.Point(156, 245);
             this.graySample.Name = "graySample";
-            this.graySample.Size = new System.Drawing.Size(100, 21);
+            this.graySample.Size = new System.Drawing.Size(140, 21);
             this.graySample.TabIndex = 24;
             this.graySample.Text = "Sample Text";
             this.graySample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2714,7 +2714,7 @@
             this.orangeSample.ForeColor = System.Drawing.Color.Orange;
             this.orangeSample.Location = new System.Drawing.Point(156, 187);
             this.orangeSample.Name = "orangeSample";
-            this.orangeSample.Size = new System.Drawing.Size(100, 21);
+            this.orangeSample.Size = new System.Drawing.Size(140, 21);
             this.orangeSample.TabIndex = 23;
             this.orangeSample.Text = "Sample Text";
             this.orangeSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2729,7 +2729,7 @@
             this.paleGreenSample.ForeColor = System.Drawing.Color.PaleGreen;
             this.paleGreenSample.Location = new System.Drawing.Point(156, 216);
             this.paleGreenSample.Name = "paleGreenSample";
-            this.paleGreenSample.Size = new System.Drawing.Size(100, 21);
+            this.paleGreenSample.Size = new System.Drawing.Size(140, 21);
             this.paleGreenSample.TabIndex = 22;
             this.paleGreenSample.Text = "Sample Text";
             this.paleGreenSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2744,7 +2744,7 @@
             this.blackSample.ForeColor = System.Drawing.Color.Black;
             this.blackSample.Location = new System.Drawing.Point(156, 158);
             this.blackSample.Name = "blackSample";
-            this.blackSample.Size = new System.Drawing.Size(100, 21);
+            this.blackSample.Size = new System.Drawing.Size(140, 21);
             this.blackSample.TabIndex = 21;
             this.blackSample.Text = "Sample Text";
             this.blackSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2757,9 +2757,9 @@
             this.redSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.redSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.redSample.ForeColor = System.Drawing.Color.Red;
-            this.redSample.Location = new System.Drawing.Point(423, 71);
+            this.redSample.Location = new System.Drawing.Point(464, 71);
             this.redSample.Name = "redSample";
-            this.redSample.Size = new System.Drawing.Size(100, 21);
+            this.redSample.Size = new System.Drawing.Size(140, 21);
             this.redSample.TabIndex = 20;
             this.redSample.Text = "Sample Text";
             this.redSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2774,7 +2774,7 @@
             this.blueSample.ForeColor = System.Drawing.Color.RoyalBlue;
             this.blueSample.Location = new System.Drawing.Point(156, 71);
             this.blueSample.Name = "blueSample";
-            this.blueSample.Size = new System.Drawing.Size(100, 21);
+            this.blueSample.Size = new System.Drawing.Size(140, 21);
             this.blueSample.TabIndex = 19;
             this.blueSample.Text = "Sample Text";
             this.blueSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2787,9 +2787,9 @@
             this.NnutralBlackSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NnutralBlackSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NnutralBlackSample.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.NnutralBlackSample.Location = new System.Drawing.Point(423, 20);
+            this.NnutralBlackSample.Location = new System.Drawing.Point(466, 21);
             this.NnutralBlackSample.Name = "NnutralBlackSample";
-            this.NnutralBlackSample.Size = new System.Drawing.Size(100, 39);
+            this.NnutralBlackSample.Size = new System.Drawing.Size(140, 39);
             this.NnutralBlackSample.TabIndex = 17;
             this.NnutralBlackSample.Text = "Sample Text";
             this.NnutralBlackSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2800,7 +2800,7 @@
             // 
             this.whiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.whiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.whiteButton.Location = new System.Drawing.Point(274, 244);
+            this.whiteButton.Location = new System.Drawing.Point(315, 244);
             this.whiteButton.Name = "whiteButton";
             this.whiteButton.Size = new System.Drawing.Size(126, 23);
             this.whiteButton.TabIndex = 15;
@@ -2830,7 +2830,7 @@
             // 
             this.paleTurquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paleTurquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.paleTurquoiseButton.Location = new System.Drawing.Point(274, 215);
+            this.paleTurquoiseButton.Location = new System.Drawing.Point(315, 215);
             this.paleTurquoiseButton.Name = "paleTurquoiseButton";
             this.paleTurquoiseButton.Size = new System.Drawing.Size(126, 23);
             this.paleTurquoiseButton.TabIndex = 13;
@@ -2860,7 +2860,7 @@
             // 
             this.purpleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purpleButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.purpleButton.Location = new System.Drawing.Point(274, 186);
+            this.purpleButton.Location = new System.Drawing.Point(315, 186);
             this.purpleButton.Name = "purpleButton";
             this.purpleButton.Size = new System.Drawing.Size(126, 23);
             this.purpleButton.TabIndex = 11;
@@ -2890,7 +2890,7 @@
             // 
             this.deepBlueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deepBlueButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.deepBlueButton.Location = new System.Drawing.Point(274, 157);
+            this.deepBlueButton.Location = new System.Drawing.Point(315, 157);
             this.deepBlueButton.Name = "deepBlueButton";
             this.deepBlueButton.Size = new System.Drawing.Size(126, 23);
             this.deepBlueButton.TabIndex = 9;
@@ -2949,7 +2949,7 @@
             // 
             this.turquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.turquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.turquoiseButton.Location = new System.Drawing.Point(274, 99);
+            this.turquoiseButton.Location = new System.Drawing.Point(315, 99);
             this.turquoiseButton.Name = "turquoiseButton";
             this.turquoiseButton.Size = new System.Drawing.Size(126, 23);
             this.turquoiseButton.TabIndex = 5;
@@ -2979,7 +2979,7 @@
             // 
             this.pinkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pinkButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pinkButton.Location = new System.Drawing.Point(274, 128);
+            this.pinkButton.Location = new System.Drawing.Point(315, 128);
             this.pinkButton.Name = "pinkButton";
             this.pinkButton.Size = new System.Drawing.Size(126, 23);
             this.pinkButton.TabIndex = 7;
@@ -2994,7 +2994,7 @@
             // 
             this.redButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.redButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.redButton.Location = new System.Drawing.Point(274, 70);
+            this.redButton.Location = new System.Drawing.Point(315, 70);
             this.redButton.Name = "redButton";
             this.redButton.Size = new System.Drawing.Size(126, 23);
             this.redButton.TabIndex = 3;
@@ -3024,7 +3024,7 @@
             // 
             this.neutralBlackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.neutralBlackButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.neutralBlackButton.Location = new System.Drawing.Point(273, 19);
+            this.neutralBlackButton.Location = new System.Drawing.Point(316, 20);
             this.neutralBlackButton.Name = "neutralBlackButton";
             this.neutralBlackButton.Size = new System.Drawing.Size(126, 41);
             this.neutralBlackButton.TabIndex = 1;
@@ -3058,7 +3058,7 @@
             this.monoOtherGroupBox.Controls.Add(this.monoSelectBackground);
             this.monoOtherGroupBox.Location = new System.Drawing.Point(27, 353);
             this.monoOtherGroupBox.Name = "monoOtherGroupBox";
-            this.monoOtherGroupBox.Size = new System.Drawing.Size(529, 61);
+            this.monoOtherGroupBox.Size = new System.Drawing.Size(616, 61);
             this.monoOtherGroupBox.TabIndex = 28;
             this.monoOtherGroupBox.TabStop = false;
             this.monoOtherGroupBox.Text = "Other colors";
@@ -3069,9 +3069,9 @@
             this.monoCrosshairSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.monoCrosshairSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monoCrosshairSample.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoCrosshairSample.Location = new System.Drawing.Point(398, 20);
+            this.monoCrosshairSample.Location = new System.Drawing.Point(440, 20);
             this.monoCrosshairSample.Name = "monoCrosshairSample";
-            this.monoCrosshairSample.Size = new System.Drawing.Size(125, 21);
+            this.monoCrosshairSample.Size = new System.Drawing.Size(170, 21);
             this.monoCrosshairSample.TabIndex = 38;
             this.monoCrosshairSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.monoCrosshairSample, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
@@ -3085,7 +3085,7 @@
             this.monoSelectBackgroundSwatch.ForeColor = System.Drawing.SystemColors.ControlText;
             this.monoSelectBackgroundSwatch.Location = new System.Drawing.Point(131, 20);
             this.monoSelectBackgroundSwatch.Name = "monoSelectBackgroundSwatch";
-            this.monoSelectBackgroundSwatch.Size = new System.Drawing.Size(125, 21);
+            this.monoSelectBackgroundSwatch.Size = new System.Drawing.Size(165, 21);
             this.monoSelectBackgroundSwatch.TabIndex = 20;
             this.monoSelectBackgroundSwatch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.monoSelectBackgroundSwatch, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
@@ -3095,7 +3095,7 @@
             // 
             this.monoCrosshairButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monoCrosshairButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoCrosshairButton.Location = new System.Drawing.Point(274, 19);
+            this.monoCrosshairButton.Location = new System.Drawing.Point(316, 19);
             this.monoCrosshairButton.Name = "monoCrosshairButton";
             this.monoCrosshairButton.Size = new System.Drawing.Size(126, 23);
             this.monoCrosshairButton.TabIndex = 37;
@@ -3123,9 +3123,9 @@
             // monoPreviewGroupBox
             // 
             this.monoPreviewGroupBox.Controls.Add(this.monoPreviewTableLayoutPanel);
-            this.monoPreviewGroupBox.Location = new System.Drawing.Point(332, 21);
+            this.monoPreviewGroupBox.Location = new System.Drawing.Point(344, 21);
             this.monoPreviewGroupBox.Name = "monoPreviewGroupBox";
-            this.monoPreviewGroupBox.Size = new System.Drawing.Size(224, 132);
+            this.monoPreviewGroupBox.Size = new System.Drawing.Size(300, 132);
             this.monoPreviewGroupBox.TabIndex = 27;
             this.monoPreviewGroupBox.TabStop = false;
             this.monoPreviewGroupBox.Text = "Preview";
@@ -3201,7 +3201,7 @@
             this.monoColorsBox.Controls.Add(this.monoBackgroundButton);
             this.monoColorsBox.Location = new System.Drawing.Point(27, 172);
             this.monoColorsBox.Name = "monoColorsBox";
-            this.monoColorsBox.Size = new System.Drawing.Size(529, 165);
+            this.monoColorsBox.Size = new System.Drawing.Size(616, 165);
             this.monoColorsBox.TabIndex = 1;
             this.monoColorsBox.TabStop = false;
             this.monoColorsBox.Text = "Host colors";
@@ -3211,7 +3211,7 @@
             this.MonoBackgroundList.FormattingEnabled = true;
             this.MonoBackgroundList.Location = new System.Drawing.Point(9, 103);
             this.MonoBackgroundList.Name = "MonoBackgroundList";
-            this.MonoBackgroundList.Size = new System.Drawing.Size(247, 43);
+            this.MonoBackgroundList.Size = new System.Drawing.Size(287, 43);
             this.MonoBackgroundList.TabIndex = 16;
             this.MonoBackgroundList.SelectedIndexChanged += new System.EventHandler(this.MonoBackgroundList_SelectedIndexChanged);
             // 
@@ -3228,7 +3228,7 @@
             // 
             this.monoIntensifiedSwatch.BackColor = System.Drawing.Color.Lime;
             this.monoIntensifiedSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.monoIntensifiedSwatch.Location = new System.Drawing.Point(398, 50);
+            this.monoIntensifiedSwatch.Location = new System.Drawing.Point(440, 50);
             this.monoIntensifiedSwatch.Name = "monoIntensifiedSwatch";
             this.monoIntensifiedSwatch.Size = new System.Drawing.Size(25, 21);
             this.monoIntensifiedSwatch.TabIndex = 36;
@@ -3256,11 +3256,11 @@
             this.monoNormalSample.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.monoNormalSample.Location = new System.Drawing.Point(156, 50);
             this.monoNormalSample.Name = "monoNormalSample";
-            this.monoNormalSample.Size = new System.Drawing.Size(100, 21);
+            this.monoNormalSample.Size = new System.Drawing.Size(140, 21);
             this.monoNormalSample.TabIndex = 32;
             this.monoNormalSample.Text = "Sample Text";
             this.monoNormalSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.monoNormalSample, "Green\r\nHost color X\'F4\'\r\nUnprotected text");
+            this.toolTip1.SetToolTip(this.monoNormalSample, "Normal text");
             this.monoNormalSample.Click += new System.EventHandler(this.Mono_Click);
             // 
             // monoIntensifiedSample
@@ -3269,13 +3269,13 @@
             this.monoIntensifiedSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.monoIntensifiedSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monoIntensifiedSample.ForeColor = System.Drawing.Color.Lime;
-            this.monoIntensifiedSample.Location = new System.Drawing.Point(423, 50);
+            this.monoIntensifiedSample.Location = new System.Drawing.Point(465, 50);
             this.monoIntensifiedSample.Name = "monoIntensifiedSample";
-            this.monoIntensifiedSample.Size = new System.Drawing.Size(100, 21);
+            this.monoIntensifiedSample.Size = new System.Drawing.Size(145, 21);
             this.monoIntensifiedSample.TabIndex = 25;
             this.monoIntensifiedSample.Text = "Sample Text";
             this.monoIntensifiedSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.monoIntensifiedSample, "Turquoise\r\nHost color X\'F5\'");
+            this.toolTip1.SetToolTip(this.monoIntensifiedSample, "Intensified text");
             this.monoIntensifiedSample.Click += new System.EventHandler(this.Mono_Click);
             // 
             // monoBackgroundSwatch
@@ -3286,7 +3286,7 @@
             this.monoBackgroundSwatch.ForeColor = System.Drawing.SystemColors.ControlText;
             this.monoBackgroundSwatch.Location = new System.Drawing.Point(131, 21);
             this.monoBackgroundSwatch.Name = "monoBackgroundSwatch";
-            this.monoBackgroundSwatch.Size = new System.Drawing.Size(125, 21);
+            this.monoBackgroundSwatch.Size = new System.Drawing.Size(165, 21);
             this.monoBackgroundSwatch.TabIndex = 19;
             this.monoBackgroundSwatch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.monoBackgroundSwatch, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
@@ -3296,7 +3296,7 @@
             // 
             this.monoIntensifiedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monoIntensifiedButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoIntensifiedButton.Location = new System.Drawing.Point(274, 49);
+            this.monoIntensifiedButton.Location = new System.Drawing.Point(316, 49);
             this.monoIntensifiedButton.Name = "monoIntensifiedButton";
             this.monoIntensifiedButton.Size = new System.Drawing.Size(126, 23);
             this.monoIntensifiedButton.TabIndex = 5;
@@ -3344,7 +3344,7 @@
             this.monoColorSchemeBox.Controls.Add(this.greenOnBlackButton);
             this.monoColorSchemeBox.Location = new System.Drawing.Point(27, 21);
             this.monoColorSchemeBox.Name = "monoColorSchemeBox";
-            this.monoColorSchemeBox.Size = new System.Drawing.Size(272, 132);
+            this.monoColorSchemeBox.Size = new System.Drawing.Size(296, 132);
             this.monoColorSchemeBox.TabIndex = 0;
             this.monoColorSchemeBox.TabStop = false;
             this.monoColorSchemeBox.Text = "Color scheme";
