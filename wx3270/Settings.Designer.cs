@@ -1160,9 +1160,9 @@
             this.modifiersTableLayoutPanel.AutoSize = true;
             this.modifiersTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.modifiersTableLayoutPanel.ColumnCount = 3;
-            this.modifiersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.modifiersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.modifiersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.modifiersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.modifiersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.modifiersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.modifiersTableLayoutPanel.Controls.Add(this.exactMatchCheckBox, 0, 2);
             this.modifiersTableLayoutPanel.Controls.Add(this.keyboardAplModeCheckBox, 2, 1);
             this.modifiersTableLayoutPanel.Controls.Add(this.keyboardShiftCheckBox, 0, 0);
@@ -1176,7 +1176,7 @@
             this.modifiersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.modifiersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.modifiersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.modifiersTableLayoutPanel.Size = new System.Drawing.Size(234, 69);
+            this.modifiersTableLayoutPanel.Size = new System.Drawing.Size(206, 69);
             this.modifiersTableLayoutPanel.TabIndex = 148;
             // 
             // exactMatchCheckBox
@@ -1195,7 +1195,7 @@
             // keyboardAplModeCheckBox
             // 
             this.keyboardAplModeCheckBox.AutoSize = true;
-            this.keyboardAplModeCheckBox.Location = new System.Drawing.Point(158, 26);
+            this.keyboardAplModeCheckBox.Location = new System.Drawing.Point(157, 26);
             this.keyboardAplModeCheckBox.Name = "keyboardAplModeCheckBox";
             this.keyboardAplModeCheckBox.Size = new System.Drawing.Size(46, 17);
             this.keyboardAplModeCheckBox.TabIndex = 4;
@@ -1219,7 +1219,7 @@
             // mode3270checkBox
             // 
             this.mode3270checkBox.AutoSize = true;
-            this.mode3270checkBox.Location = new System.Drawing.Point(80, 26);
+            this.mode3270checkBox.Location = new System.Drawing.Point(79, 26);
             this.mode3270checkBox.Name = "mode3270checkBox";
             this.mode3270checkBox.Size = new System.Drawing.Size(72, 17);
             this.mode3270checkBox.TabIndex = 5;
@@ -1243,7 +1243,7 @@
             // keyboardAltCheckBox
             // 
             this.keyboardAltCheckBox.AutoSize = true;
-            this.keyboardAltCheckBox.Location = new System.Drawing.Point(158, 3);
+            this.keyboardAltCheckBox.Location = new System.Drawing.Point(157, 3);
             this.keyboardAltCheckBox.Name = "keyboardAltCheckBox";
             this.keyboardAltCheckBox.Size = new System.Drawing.Size(38, 17);
             this.keyboardAltCheckBox.TabIndex = 1;
@@ -1255,7 +1255,7 @@
             // keyboardCtrlCheckBox
             // 
             this.keyboardCtrlCheckBox.AutoSize = true;
-            this.keyboardCtrlCheckBox.Location = new System.Drawing.Point(80, 3);
+            this.keyboardCtrlCheckBox.Location = new System.Drawing.Point(79, 3);
             this.keyboardCtrlCheckBox.Name = "keyboardCtrlCheckBox";
             this.keyboardCtrlCheckBox.Size = new System.Drawing.Size(41, 17);
             this.keyboardCtrlCheckBox.TabIndex = 3;
@@ -1292,9 +1292,9 @@
             this.groupBox1.Controls.Add(this.keymapSelectedLabel);
             this.groupBox1.Controls.Add(this.keyCharValuePanel);
             this.groupBox1.Controls.Add(this.scanCodeSelectedLabel);
-            this.groupBox1.Location = new System.Drawing.Point(310, 140);
+            this.groupBox1.Location = new System.Drawing.Point(330, 140);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(298, 110);
+            this.groupBox1.Size = new System.Drawing.Size(278, 110);
             this.groupBox1.TabIndex = 146;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected key";
@@ -1326,7 +1326,7 @@
             this.keyCharValuePanel.Location = new System.Drawing.Point(6, 73);
             this.keyCharValuePanel.Margin = new System.Windows.Forms.Padding(0);
             this.keyCharValuePanel.Name = "keyCharValuePanel";
-            this.keyCharValuePanel.Size = new System.Drawing.Size(271, 25);
+            this.keyCharValuePanel.Size = new System.Drawing.Size(245, 25);
             this.keyCharValuePanel.TabIndex = 127;
             this.keyCharValuePanel.Visible = false;
             // 
