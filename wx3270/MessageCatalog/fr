@@ -644,7 +644,7 @@
   "ProfileTree.Message.newKeymapTemplate": "Nouveau modèle de mappage du clavier",
   "ProfileTree.Message.newKeypadTemplate": "Nouveau modèle de mappage du pavé numérique",
   "ProfileTree.Message.newProfile": "Nouveau profil",
-  "ProfileTree.Message.openInNewWindow": "Ouvrir dans une nouvelle fenêtre",
+  "ProfileTree.Message.openInNewWindow": "Maj: Ouvrir dans une nouvelle fenêtre",
   "ProfileTree.Message.profileSaveFailed": "Échec de l'enregistrement du profil",
   "ProfileTree.Message.renameConnection": "renommer connexion {0} à {1}",
   "ProfileTree.Message.renameProfile": "renommer profil '{0}' à '{1}'",

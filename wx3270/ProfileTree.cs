@@ -323,7 +323,7 @@ namespace Wx3270
             // Update some tool tips.
             if (this.app.Allowed(Restrictions.NewWindow))
             {
-                var openText = Environment.NewLine + "Shift: " + I18n.Get(Message.OpenInNewWindow);
+                var openText = Environment.NewLine + I18n.Get(Message.OpenInNewWindow);
 
                 this.toolTip1.SetToolTip(this.profileSwitchToButton, this.toolTip1.GetToolTip(this.profileSwitchToButton) + openText);
                 this.toolTip1.SetToolTip(this.commonEditButton, this.toolTip1.GetToolTip(this.commonEditButton) + openText);
@@ -460,7 +460,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(Message.IsKeyboardMap, "Keyboard map template");
             I18n.LocalizeGlobal(Message.IsKeypadMap, "Keypad map template");
 
-            I18n.LocalizeGlobal(Message.OpenInNewWindow, "Open in new window");
+            I18n.LocalizeGlobal(Message.OpenInNewWindow, "Shift: Open in new window");
         }
 
         /// <summary>
