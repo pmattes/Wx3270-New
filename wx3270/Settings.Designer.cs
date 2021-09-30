@@ -315,6 +315,7 @@
             this.HostColorDialog = new System.Windows.Forms.ColorDialog();
             this.ScreenFontDialog = new System.Windows.Forms.FontDialog();
             this.opacityTimer = new System.Windows.Forms.Timer(this.components);
+            this.backgroundTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.settingsTabs.SuspendLayout();
             this.optionsTab.SuspendLayout();
             this.descriptionGroupBox.SuspendLayout();
@@ -416,6 +417,7 @@
             this.ButtonsLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
+            this.backgroundTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // settingsTabs
@@ -434,7 +436,7 @@
             this.settingsTabs.Location = new System.Drawing.Point(3, 3);
             this.settingsTabs.Name = "settingsTabs";
             this.settingsTabs.SelectedIndex = 0;
-            this.settingsTabs.Size = new System.Drawing.Size(644, 628);
+            this.settingsTabs.Size = new System.Drawing.Size(683, 628);
             this.settingsTabs.TabIndex = 0;
             // 
             // optionsTab
@@ -452,7 +454,7 @@
             this.optionsTab.Location = new System.Drawing.Point(4, 22);
             this.optionsTab.Name = "optionsTab";
             this.optionsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.optionsTab.Size = new System.Drawing.Size(636, 602);
+            this.optionsTab.Size = new System.Drawing.Size(675, 602);
             this.optionsTab.TabIndex = 0;
             this.optionsTab.Text = "Options";
             this.toolTip1.SetToolTip(this.optionsTab, "Window opacity");
@@ -461,7 +463,7 @@
             // descriptionGroupBox
             // 
             this.descriptionGroupBox.Controls.Add(this.descriptionTableLayoutPanel);
-            this.descriptionGroupBox.Location = new System.Drawing.Point(332, 487);
+            this.descriptionGroupBox.Location = new System.Drawing.Point(356, 485);
             this.descriptionGroupBox.Name = "descriptionGroupBox";
             this.descriptionGroupBox.Size = new System.Drawing.Size(276, 92);
             this.descriptionGroupBox.TabIndex = 9;
@@ -586,7 +588,7 @@
             // printerSessionGroupBox
             // 
             this.printerSessionGroupBox.Controls.Add(this.printerTableLayoutPanel);
-            this.printerSessionGroupBox.Location = new System.Drawing.Point(332, 365);
+            this.printerSessionGroupBox.Location = new System.Drawing.Point(356, 363);
             this.printerSessionGroupBox.Name = "printerSessionGroupBox";
             this.printerSessionGroupBox.Size = new System.Drawing.Size(276, 116);
             this.printerSessionGroupBox.TabIndex = 7;
@@ -876,7 +878,7 @@
             // CodePageGroupBox
             // 
             this.CodePageGroupBox.Controls.Add(this.CodePageListBox);
-            this.CodePageGroupBox.Location = new System.Drawing.Point(332, 229);
+            this.CodePageGroupBox.Location = new System.Drawing.Point(356, 227);
             this.CodePageGroupBox.Name = "CodePageGroupBox";
             this.CodePageGroupBox.Size = new System.Drawing.Size(276, 130);
             this.CodePageGroupBox.TabIndex = 6;
@@ -930,7 +932,7 @@
             // optionsSampleGroupBox
             // 
             this.optionsSampleGroupBox.Controls.Add(this.optionsPreviewLayoutPanel);
-            this.optionsSampleGroupBox.Location = new System.Drawing.Point(332, 18);
+            this.optionsSampleGroupBox.Location = new System.Drawing.Point(356, 16);
             this.optionsSampleGroupBox.Name = "optionsSampleGroupBox";
             this.optionsSampleGroupBox.Size = new System.Drawing.Size(276, 132);
             this.optionsSampleGroupBox.TabIndex = 4;
@@ -1076,7 +1078,7 @@
             this.CursorGroupBox.Controls.Add(this.UnderscoreCursorButton);
             this.CursorGroupBox.Controls.Add(this.cursorBlinkCheckBox);
             this.CursorGroupBox.Controls.Add(this.BlockCursorButton);
-            this.CursorGroupBox.Location = new System.Drawing.Point(332, 156);
+            this.CursorGroupBox.Location = new System.Drawing.Point(356, 154);
             this.CursorGroupBox.Name = "CursorGroupBox";
             this.CursorGroupBox.Size = new System.Drawing.Size(276, 67);
             this.CursorGroupBox.TabIndex = 5;
@@ -1150,7 +1152,7 @@
             this.keyboardTab.Controls.Add(this.keyboardPictureButton);
             this.keyboardTab.Location = new System.Drawing.Point(4, 22);
             this.keyboardTab.Name = "keyboardTab";
-            this.keyboardTab.Size = new System.Drawing.Size(636, 602);
+            this.keyboardTab.Size = new System.Drawing.Size(675, 602);
             this.keyboardTab.TabIndex = 2;
             this.keyboardTab.Text = "Keyboard";
             this.keyboardTab.UseVisualStyleBackColor = true;
@@ -1294,7 +1296,7 @@
             this.groupBox1.Controls.Add(this.scanCodeSelectedLabel);
             this.groupBox1.Location = new System.Drawing.Point(330, 140);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 110);
+            this.groupBox1.Size = new System.Drawing.Size(308, 110);
             this.groupBox1.TabIndex = 146;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected key";
@@ -1326,7 +1328,7 @@
             this.keyCharValuePanel.Location = new System.Drawing.Point(6, 73);
             this.keyCharValuePanel.Margin = new System.Windows.Forms.Padding(0);
             this.keyCharValuePanel.Name = "keyCharValuePanel";
-            this.keyCharValuePanel.Size = new System.Drawing.Size(245, 25);
+            this.keyCharValuePanel.Size = new System.Drawing.Size(287, 25);
             this.keyCharValuePanel.TabIndex = 127;
             this.keyCharValuePanel.Visible = false;
             // 
@@ -1386,7 +1388,7 @@
             this.modeAllLayoutPanel.RowCount = 2;
             this.modeAllLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.modeAllLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.modeAllLayoutPanel.Size = new System.Drawing.Size(578, 98);
+            this.modeAllLayoutPanel.Size = new System.Drawing.Size(608, 98);
             this.modeAllLayoutPanel.TabIndex = 133;
             // 
             // keyboardActionsInheritedLabel
@@ -1394,7 +1396,7 @@
             this.keyboardActionsInheritedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.keyboardActionsInheritedLabel.AutoSize = true;
             this.keyboardActionsInheritedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.keyboardActionsInheritedLabel.Location = new System.Drawing.Point(518, 79);
+            this.keyboardActionsInheritedLabel.Location = new System.Drawing.Point(548, 79);
             this.keyboardActionsInheritedLabel.Name = "keyboardActionsInheritedLabel";
             this.keyboardActionsInheritedLabel.Size = new System.Drawing.Size(57, 12);
             this.keyboardActionsInheritedLabel.TabIndex = 130;
@@ -1412,7 +1414,7 @@
             this.keyboardActionsTextBox.Name = "keyboardActionsTextBox";
             this.keyboardActionsTextBox.ReadOnly = true;
             this.keyboardActionsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.keyboardActionsTextBox.Size = new System.Drawing.Size(572, 73);
+            this.keyboardActionsTextBox.Size = new System.Drawing.Size(602, 73);
             this.keyboardActionsTextBox.TabIndex = 0;
             this.keyboardActionsTextBox.Tag = "ModeAll";
             this.keyboardActionsTextBox.Text = "actions";
@@ -1623,7 +1625,7 @@
             this.keypadTab.Controls.Add(this.fakeKeypadPanel);
             this.keypadTab.Location = new System.Drawing.Point(4, 22);
             this.keypadTab.Name = "keypadTab";
-            this.keypadTab.Size = new System.Drawing.Size(636, 602);
+            this.keypadTab.Size = new System.Drawing.Size(675, 602);
             this.keypadTab.TabIndex = 7;
             this.keypadTab.Text = "Keypad";
             this.keypadTab.UseVisualStyleBackColor = true;
@@ -1810,13 +1812,12 @@
             // 
             // keypadMappingGroupBox
             // 
+            this.keypadMappingGroupBox.Controls.Add(this.backgroundTableLayoutPanel);
             this.keypadMappingGroupBox.Controls.Add(this.tableLayoutPanel1);
-            this.keypadMappingGroupBox.Controls.Add(this.keypadRemoveButton);
-            this.keypadMappingGroupBox.Controls.Add(this.backgroundGroupBox);
             this.keypadMappingGroupBox.Enabled = false;
             this.keypadMappingGroupBox.Location = new System.Drawing.Point(20, 329);
             this.keypadMappingGroupBox.Name = "keypadMappingGroupBox";
-            this.keypadMappingGroupBox.Size = new System.Drawing.Size(571, 170);
+            this.keypadMappingGroupBox.Size = new System.Drawing.Size(630, 170);
             this.keypadMappingGroupBox.TabIndex = 2;
             this.keypadMappingGroupBox.TabStop = false;
             this.keypadMappingGroupBox.Text = "Key definition";
@@ -1942,9 +1943,12 @@
             // 
             // keypadRemoveButton
             // 
+            this.keypadRemoveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.keypadRemoveButton.AutoSize = true;
             this.keypadRemoveButton.Enabled = false;
             this.keypadRemoveButton.ForeColor = System.Drawing.Color.Red;
-            this.keypadRemoveButton.Location = new System.Drawing.Point(485, 71);
+            this.keypadRemoveButton.Location = new System.Drawing.Point(136, 45);
+            this.keypadRemoveButton.Margin = new System.Windows.Forms.Padding(10);
             this.keypadRemoveButton.Name = "keypadRemoveButton";
             this.keypadRemoveButton.Size = new System.Drawing.Size(76, 23);
             this.keypadRemoveButton.TabIndex = 43;
@@ -1959,7 +1963,7 @@
             this.backgroundGroupBox.AutoSize = true;
             this.backgroundGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.backgroundGroupBox.Controls.Add(this.backgroundLayoutPanel);
-            this.backgroundGroupBox.Location = new System.Drawing.Point(330, 26);
+            this.backgroundGroupBox.Location = new System.Drawing.Point(3, 3);
             this.backgroundGroupBox.Name = "backgroundGroupBox";
             this.backgroundGroupBox.Size = new System.Drawing.Size(120, 107);
             this.backgroundGroupBox.TabIndex = 1;
@@ -2098,7 +2102,7 @@
             this.colors3279Tab.Controls.Add(this.hostColorsBox);
             this.colors3279Tab.Location = new System.Drawing.Point(4, 22);
             this.colors3279Tab.Name = "colors3279Tab";
-            this.colors3279Tab.Size = new System.Drawing.Size(636, 602);
+            this.colors3279Tab.Size = new System.Drawing.Size(675, 602);
             this.colors3279Tab.TabIndex = 3;
             this.colors3279Tab.Text = "3279 Colors";
             this.colors3279Tab.UseVisualStyleBackColor = true;
@@ -3039,7 +3043,7 @@
             this.colors3278Tab.Controls.Add(this.monoColorSchemeBox);
             this.colors3278Tab.Location = new System.Drawing.Point(4, 22);
             this.colors3278Tab.Name = "colors3278Tab";
-            this.colors3278Tab.Size = new System.Drawing.Size(636, 602);
+            this.colors3278Tab.Size = new System.Drawing.Size(675, 602);
             this.colors3278Tab.TabIndex = 6;
             this.colors3278Tab.Text = "3278 Colors";
             this.colors3278Tab.UseVisualStyleBackColor = true;
@@ -3384,7 +3388,7 @@
             this.fontTab.Controls.Add(this.fontGroupBox);
             this.fontTab.Location = new System.Drawing.Point(4, 22);
             this.fontTab.Name = "fontTab";
-            this.fontTab.Size = new System.Drawing.Size(636, 602);
+            this.fontTab.Size = new System.Drawing.Size(675, 602);
             this.fontTab.TabIndex = 5;
             this.fontTab.Text = "Font";
             this.fontTab.UseVisualStyleBackColor = true;
@@ -3397,7 +3401,7 @@
             this.fontGroupBox.Controls.Add(this.FontChangeButton);
             this.fontGroupBox.Location = new System.Drawing.Point(22, 23);
             this.fontGroupBox.Name = "fontGroupBox";
-            this.fontGroupBox.Size = new System.Drawing.Size(598, 563);
+            this.fontGroupBox.Size = new System.Drawing.Size(628, 563);
             this.fontGroupBox.TabIndex = 4;
             this.fontGroupBox.TabStop = false;
             this.fontGroupBox.Text = "Display font";
@@ -3407,7 +3411,7 @@
             this.fontPreviewGroupBox.Controls.Add(this.fontPreviewTableLayoutPanel);
             this.fontPreviewGroupBox.Location = new System.Drawing.Point(6, 99);
             this.fontPreviewGroupBox.Name = "fontPreviewGroupBox";
-            this.fontPreviewGroupBox.Size = new System.Drawing.Size(586, 458);
+            this.fontPreviewGroupBox.Size = new System.Drawing.Size(616, 458);
             this.fontPreviewGroupBox.TabIndex = 6;
             this.fontPreviewGroupBox.TabStop = false;
             this.fontPreviewGroupBox.Text = "Preview";
@@ -3505,7 +3509,7 @@
             this.soundsTab.Controls.Add(this.soundsGroupBox);
             this.soundsTab.Location = new System.Drawing.Point(4, 22);
             this.soundsTab.Name = "soundsTab";
-            this.soundsTab.Size = new System.Drawing.Size(636, 602);
+            this.soundsTab.Size = new System.Drawing.Size(675, 602);
             this.soundsTab.TabIndex = 4;
             this.soundsTab.Text = "Sounds";
             this.soundsTab.UseVisualStyleBackColor = true;
@@ -3600,7 +3604,7 @@
             this.serversTab.Location = new System.Drawing.Point(4, 22);
             this.serversTab.Name = "serversTab";
             this.serversTab.Padding = new System.Windows.Forms.Padding(3);
-            this.serversTab.Size = new System.Drawing.Size(636, 602);
+            this.serversTab.Size = new System.Drawing.Size(675, 602);
             this.serversTab.TabIndex = 8;
             this.serversTab.Text = "Servers";
             this.serversTab.UseVisualStyleBackColor = true;
@@ -3813,7 +3817,7 @@
             this.proxyTab.Location = new System.Drawing.Point(4, 22);
             this.proxyTab.Name = "proxyTab";
             this.proxyTab.Padding = new System.Windows.Forms.Padding(3);
-            this.proxyTab.Size = new System.Drawing.Size(636, 602);
+            this.proxyTab.Size = new System.Drawing.Size(675, 602);
             this.proxyTab.TabIndex = 9;
             this.proxyTab.Text = "Proxy";
             this.proxyTab.UseVisualStyleBackColor = true;
@@ -3970,7 +3974,7 @@
             this.miscellaneousTab.Location = new System.Drawing.Point(4, 22);
             this.miscellaneousTab.Name = "miscellaneousTab";
             this.miscellaneousTab.Padding = new System.Windows.Forms.Padding(3);
-            this.miscellaneousTab.Size = new System.Drawing.Size(636, 602);
+            this.miscellaneousTab.Size = new System.Drawing.Size(675, 602);
             this.miscellaneousTab.TabIndex = 10;
             this.miscellaneousTab.Text = "Misc";
             this.miscellaneousTab.UseVisualStyleBackColor = true;
@@ -4048,13 +4052,13 @@
             this.ButtonsLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.ButtonsLayoutPanel.Location = new System.Drawing.Point(153, 637);
             this.ButtonsLayoutPanel.Name = "ButtonsLayoutPanel";
-            this.ButtonsLayoutPanel.Size = new System.Drawing.Size(494, 30);
+            this.ButtonsLayoutPanel.Size = new System.Drawing.Size(533, 30);
             this.ButtonsLayoutPanel.TabIndex = 0;
             // 
             // helpPictureBox
             // 
             this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(471, 3);
+            this.helpPictureBox.Location = new System.Drawing.Point(510, 3);
             this.helpPictureBox.Margin = new System.Windows.Forms.Padding(6, 3, 0, 3);
             this.helpPictureBox.Name = "helpPictureBox";
             this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
@@ -4067,7 +4071,7 @@
             // redoButton
             // 
             this.redoButton.Enabled = false;
-            this.redoButton.Location = new System.Drawing.Point(430, 3);
+            this.redoButton.Location = new System.Drawing.Point(469, 3);
             this.redoButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.redoButton.Name = "redoButton";
             this.redoButton.Size = new System.Drawing.Size(35, 23);
@@ -4081,7 +4085,7 @@
             // undoButton
             // 
             this.undoButton.Enabled = false;
-            this.undoButton.Location = new System.Drawing.Point(389, 3);
+            this.undoButton.Location = new System.Drawing.Point(428, 3);
             this.undoButton.Name = "undoButton";
             this.undoButton.Size = new System.Drawing.Size(35, 23);
             this.undoButton.TabIndex = 1;
@@ -4093,7 +4097,7 @@
             // 
             // setToDefaultsButton
             // 
-            this.setToDefaultsButton.Location = new System.Drawing.Point(291, 3);
+            this.setToDefaultsButton.Location = new System.Drawing.Point(330, 3);
             this.setToDefaultsButton.Name = "setToDefaultsButton";
             this.setToDefaultsButton.Size = new System.Drawing.Size(92, 23);
             this.setToDefaultsButton.TabIndex = 0;
@@ -4116,7 +4120,7 @@
             this.tableLayoutPanel.RowCount = 2;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel.Size = new System.Drawing.Size(650, 670);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(688, 670);
             this.tableLayoutPanel.TabIndex = 2;
             // 
             // HostColorDialog
@@ -4136,6 +4140,22 @@
             this.opacityTimer.Interval = 2000;
             this.opacityTimer.Tick += new System.EventHandler(this.OpacityTimer_Tick);
             // 
+            // backgroundTableLayoutPanel
+            // 
+            this.backgroundTableLayoutPanel.AutoSize = true;
+            this.backgroundTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.backgroundTableLayoutPanel.ColumnCount = 2;
+            this.backgroundTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.backgroundTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.backgroundTableLayoutPanel.Controls.Add(this.backgroundGroupBox, 0, 0);
+            this.backgroundTableLayoutPanel.Controls.Add(this.keypadRemoveButton, 1, 0);
+            this.backgroundTableLayoutPanel.Location = new System.Drawing.Point(334, 32);
+            this.backgroundTableLayoutPanel.Name = "backgroundTableLayoutPanel";
+            this.backgroundTableLayoutPanel.RowCount = 1;
+            this.backgroundTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.backgroundTableLayoutPanel.Size = new System.Drawing.Size(222, 113);
+            this.backgroundTableLayoutPanel.TabIndex = 44;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4143,7 +4163,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(148)))), ((int)(((byte)(202)))));
-            this.ClientSize = new System.Drawing.Size(680, 690);
+            this.ClientSize = new System.Drawing.Size(741, 690);
             this.Controls.Add(this.tableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -4308,6 +4328,8 @@
             this.ButtonsLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.tableLayoutPanel.ResumeLayout(false);
+            this.backgroundTableLayoutPanel.ResumeLayout(false);
+            this.backgroundTableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4599,5 +4621,6 @@
         private System.Windows.Forms.TextBox titleTextBox;
         private System.Windows.Forms.CheckBox exactMatchCheckBox;
         private System.Windows.Forms.TableLayoutPanel modifiersTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel backgroundTableLayoutPanel;
     }
 }
