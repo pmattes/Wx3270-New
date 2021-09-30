@@ -189,12 +189,6 @@ namespace Wx3270
             // Localize the entire form.
             I18n.Localize(this, this.toolTip1);
 
-            // Localize the 'Note:' label which lies inside the panel that contains the
-            // key labels, which is specifically marked to avoid walking.
-            // Also the 'Modifiers' group box label, for the same reason.
-            this.noteLabel.Text = I18n.Localize(this.noteLabel);
-            this.modifiersGroupBox.Text = I18n.Localize(this.modifiersGroupBox);
-
             // Finish up painting the window.
             if (mode == PictureMode.Display)
             {
