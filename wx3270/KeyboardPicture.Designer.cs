@@ -2100,9 +2100,9 @@
             this.nativeNameLabel.AutoSize = true;
             this.nativeNameLabel.Location = new System.Drawing.Point(1015, 11);
             this.nativeNameLabel.Name = "nativeNameLabel";
-            this.nativeNameLabel.Size = new System.Drawing.Size(69, 13);
+            this.nativeNameLabel.Size = new System.Drawing.Size(72, 13);
             this.nativeNameLabel.TabIndex = 117;
-            this.nativeNameLabel.Text = "Native Name";
+            this.nativeNameLabel.Text = "`Native Name";
             // 
             // aplLegendPanel
             // 
@@ -2283,16 +2283,16 @@
             this.keysPanel.Name = "keysPanel";
             this.keysPanel.Size = new System.Drawing.Size(1247, 373);
             this.keysPanel.TabIndex = 120;
-            this.keysPanel.Tag = "<nowalk>";
+            this.keysPanel.Tag = "";
             // 
             // layoutLabel
             // 
             this.layoutLabel.AutoSize = true;
             this.layoutLabel.Location = new System.Drawing.Point(1015, 27);
             this.layoutLabel.Name = "layoutLabel";
-            this.layoutLabel.Size = new System.Drawing.Size(39, 13);
+            this.layoutLabel.Size = new System.Drawing.Size(42, 13);
             this.layoutLabel.TabIndex = 118;
-            this.layoutLabel.Text = "Layout";
+            this.layoutLabel.Text = "`Layout";
             // 
             // modeFlowLayoutPanel
             // 
