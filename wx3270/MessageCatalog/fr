@@ -767,7 +767,7 @@
   "Settings.form.tableLayoutPanel.settingsTabs.colors3279Tab.colorMiscGroupBox.crosshairColorButton": "Curseur de mire",
   "Settings.form.tableLayoutPanel.settingsTabs.colors3279Tab.colorMiscGroupBox.crosshairColorButton.toolTip": "Couleur de la mire du curseur",
   "Settings.form.tableLayoutPanel.settingsTabs.colors3279Tab.colorMiscGroupBox.crosshairSwatch.toolTip": "Blanc\r\nCouleur hôte X'FF'\r\nTexte protégé intensifié",
-  "Settings.form.tableLayoutPanel.settingsTabs.colors3279Tab.colorMiscGroupBox.selectedButton": "Sélectionner le texte d'arrière-plan",
+  "Settings.form.tableLayoutPanel.settingsTabs.colors3279Tab.colorMiscGroupBox.selectedButton": "Arrière-plan sélectionné",
   "Settings.form.tableLayoutPanel.settingsTabs.colors3279Tab.colorMiscGroupBox.selectedButton.toolTip": "Couleur d'arrière-plan pour le texte sélectionné",
   "Settings.form.tableLayoutPanel.settingsTabs.colors3279Tab.colorMiscGroupBox.selectionSwatch.toolTip": "Blanc\r\nCouleur hôte X'FF'\r\nTexte protégé intensifié",
   "Settings.form.tableLayoutPanel.settingsTabs.colors3279Tab.colorPreviewGroupBox": "Prévisualisation",
