@@ -64,6 +64,28 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Gets the localization path for a control.
+        /// </summary>
+        /// <param name="control">Control to get path for.</param>
+        /// <returns>Localization path.</returns>
+        public static string Path(Control control)
+        {
+            var path = string.Empty;
+            while (control != null)
+            {
+                if (control is Form)
+                {
+                    path = Combine(FormName, path);
+                }
+
+                path = Combine(control.Name, path);
+                control = control.Parent;
+            }
+
+            return path.Replace(" ", "_");
+        }
+
+        /// <summary>
         /// Set up localization for forms. This happens late in initialization, just before starting the UI.
         /// </summary>
         public static void SetupForms()

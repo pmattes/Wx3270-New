@@ -249,7 +249,7 @@ namespace I18nBase
         /// <returns>Combined components.</returns>
         public static string Combine(params string[] components)
         {
-            return string.Join(Separator, components);
+            return string.Join(Separator, components.Where(component => !string.IsNullOrEmpty(component)));
         }
 
         /// <summary>
@@ -259,7 +259,7 @@ namespace I18nBase
         /// <returns>Combined components.</returns>
         public static string Combine(IEnumerable<string> components)
         {
-            return string.Join(Separator, components);
+            return string.Join(Separator, components.Where(component => !string.IsNullOrEmpty(component)));
         }
 
         /// <summary>

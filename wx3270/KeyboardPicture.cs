@@ -39,12 +39,12 @@ namespace Wx3270
         /// <summary>
         /// Small font size.
         /// </summary>
-        private const float SmallFont = 8.25F;
+        private const float SmallFontSize = 8.25F;
 
         /// <summary>
         /// Large font size.
         /// </summary>
-        private const float LargeFont = 11.25F;
+        private const float LargeFontSize = 11.25F;
 
         /// <summary>
         /// Message name.
@@ -163,6 +163,11 @@ namespace Wx3270
         };
 
         /// <summary>
+        /// Localized label dictionary.
+        /// </summary>
+        private readonly Dictionary<string, string> localizedLabelDictionary = new Dictionary<string, string>();
+
+        /// <summary>
         /// Key capture state machine.
         /// </summary>
         private readonly KeyCapture keyCapture = new KeyCapture();
@@ -188,6 +193,22 @@ namespace Wx3270
 
             // Localize the entire form.
             I18n.Localize(this, this.toolTip1);
+
+            // Remember the localized labels.
+            foreach (var label in this.keysPanel.Controls.OfType<Label>())
+            {
+                string tag;
+                if (label.Tag == null || string.IsNullOrEmpty(tag = (string)label.Tag))
+                {
+                    continue;
+                }
+
+                if (!tag.StartsWith("="))
+                {
+                    this.localizedLabelDictionary[tag] =
+                        label.Name == "spaceBar" ? string.Empty : I18n.Get(I18n.Path(label));
+                }
+            }
 
             // Finish up painting the window.
             if (mode == PictureMode.Display)
@@ -504,13 +525,15 @@ namespace Wx3270
                 // Otherwise it is a virtual key name.
                 if (!tag.StartsWith("="))
                 {
-                    label.Text = this.labelDictionary[tag];
-                    label.Font = new Font(label.Font.Name, SmallFont);
+                    // We need to find the translation of the en-US label found in labelDictionary.
+                    // label.Text = this.labelDictionary[tag];
+                    label.Text = this.localizedLabelDictionary[tag];
+                    label.Font = new Font(label.Font.Name, SmallFontSize);
                     continue;
                 }
 
                 // Letters get the large font.
-                label.Font = new Font(label.Font.Name, LargeFont);
+                label.Font = new Font(label.Font.Name, LargeFontSize);
 
                 var scanCode = uint.Parse(tag.Substring(1), NumberStyles.AllowHexSpecifier);
                 var currentVkey = KeyboardUtil.ScanCodeToVkey(scanCode, InputLanguage.CurrentInputLanguage);
@@ -624,7 +647,7 @@ namespace Wx3270
             foreach (var label in this.keysPanel.Controls.OfType<Label>())
             {
                 string tag;
-                label.Font = new Font(label.Font.Name, SmallFont);
+                label.Font = new Font(label.Font.Name, SmallFontSize);
                 if (label.Tag != null && !string.IsNullOrEmpty(tag = (string)label.Tag))
                 {
                     var text = string.Empty;
@@ -667,7 +690,7 @@ namespace Wx3270
             this.modeGroupBox.Enabled = true;
             foreach (var label in this.keysPanel.Controls.OfType<Label>())
             {
-                label.Font = new Font(label.Font.Name, SmallFont);
+                label.Font = new Font(label.Font.Name, SmallFontSize);
                 string tag;
                 if (label.Tag == null || string.IsNullOrEmpty(tag = (string)label.Tag))
                 {
@@ -749,7 +772,7 @@ namespace Wx3270
             this.aplLegendLabel.Visible = false;
             foreach (var label in this.keysPanel.Controls.OfType<Label>())
             {
-                label.Font = new Font(label.Font.Name, SmallFont);
+                label.Font = new Font(label.Font.Name, SmallFontSize);
                 string tag;
                 if (label.Tag != null && !string.IsNullOrEmpty(tag = (string)label.Tag))
                 {
