@@ -259,7 +259,6 @@
   "HostEditor.Title.luName": "Nom de LU",
   "HostEditor.Title.luNames": "Nom de LU",
   "HostEditor.Title.port": "Port proxy invalide",
-  "KeyboardPicture.bottomTableLayoutPanel.modeFlowLayoutPanel.modifiersGroupBox": "Modificateurs",
   "KeyboardPicture.form.aplLegendLabel": "APL\r\nLégende",
   "KeyboardPicture.form.aplLegendPanel.aplCtrlLabel": "Alt",
   "KeyboardPicture.form.aplLegendPanel.aplCtrlShiftLabel": "Alt+Maj",

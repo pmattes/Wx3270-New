@@ -129,7 +129,14 @@ namespace L10ntool
                 else
                 {
                     // New path.
-                    classified[msg.Key] = new Tuple<EntryStatus, string, string>(EntryStatus.Added, msg.Value, string.Empty);
+                    if (oldTranslatedMsgcat.ContainsKey(msg.Key))
+                    {
+                        classified[msg.Key] = new Tuple<EntryStatus, string, string>(EntryStatus.Translated, msg.Value, oldTranslatedMsgcat[msg.Key]);
+                    }
+                    else
+                    {
+                        classified[msg.Key] = new Tuple<EntryStatus, string, string>(EntryStatus.Added, msg.Value, string.Empty);
+                    }
                 }
             }
 
