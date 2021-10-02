@@ -115,7 +115,20 @@ namespace Wx3270
             I18n.LocalizeGlobal(KeypadString.RemoveKeyDefinition, "remove key definition");
             I18n.LocalizeGlobal(KeypadString.ChangeKeyBackground, "change key background");
             I18n.LocalizeGlobal(KeypadString.ChangeKeyText, "change key text");
-    }
+
+            // Localize the friendly modifier names.
+            foreach (var modifier in Enum.GetValues(typeof(KeyboardModifier)).Cast<KeyboardModifier>().Where(m => PopCount((uint)m) < 2))
+            {
+                if (modifier == KeyboardModifier.None)
+                {
+                    I18n.LocalizeGlobal(I18n.Combine(KeypadString.ModifierName, modifier.ToString()), "No modifiers");
+                }
+                else
+                {
+                    I18n.LocalizeGlobal(I18n.Combine(KeypadString.ModifierName, modifier.ToString()), modifier.ToString());
+                }
+            }
+        }
 
         /// <summary>
         /// Return the base name for a button name.
@@ -178,23 +191,23 @@ namespace Wx3270
         {
             if (mod == KeyboardModifier.None)
             {
-                return "No Modifiers";
+                return I18n.Get(I18n.Combine(KeypadString.ModifierName, KeyboardModifier.None.ToString()));
             }
 
             List<string> names = new List<string>();
             if (mod.HasFlag(KeyboardModifier.Shift))
             {
-                names.Add(KeyboardModifier.Shift.ToString());
+                names.Add(I18n.Get(I18n.Combine(KeypadString.ModifierName, KeyboardModifier.Shift.ToString())));
             }
 
             if (mod.HasFlag(KeyboardModifier.Ctrl))
             {
-                names.Add(KeyboardModifier.Ctrl.ToString());
+                names.Add(I18n.Get(I18n.Combine(KeypadString.ModifierName, KeyboardModifier.Ctrl.ToString())));
             }
 
             if (mod.HasFlag(KeyboardModifier.Alt))
             {
-                names.Add(KeyboardModifier.Alt.ToString());
+                names.Add(I18n.Get(I18n.Combine(KeypadString.ModifierName, KeyboardModifier.Alt.ToString())));
             }
 
             if (mod.HasFlag(KeyboardModifier.Apl))
@@ -213,6 +226,28 @@ namespace Wx3270
             }
 
             return string.Join("-", names);
+        }
+
+        /// <summary>
+        /// Return the number of set bits in an integer.
+        /// </summary>
+        /// <param name="n">Integer to evaluate.</param>
+        /// <returns>Number of set bits.</returns>
+        private static int PopCount(uint n)
+        {
+            uint bit = 1;
+            int bitCount = 0;
+            while (bit != 0)
+            {
+                if ((n & bit) != 0)
+                {
+                    bitCount++;
+                }
+
+                bit <<= 1;
+            }
+
+            return bitCount;
         }
 
         /// <summary>
@@ -941,6 +976,11 @@ namespace Wx3270
             /// Change description: Key text.
             /// </summary>
             public static readonly string ChangeKeyText = I18n.Combine(KeypadStringBase, "ChangeKeyText");
+
+            /// <summary>
+            /// Modifier name.
+            /// </summary>
+            public static readonly string ModifierName = I18n.Combine(KeypadStringBase, "Modifier");
         }
 
         /// <summary>

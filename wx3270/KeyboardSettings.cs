@@ -455,7 +455,7 @@ namespace Wx3270
             this.editedKeyName = this.editedKey.ToStringExtended();
             this.keymapSelectedLabel.Text = I18n.Get(KeyboardString.KeyCode) + string.Format(": {0}", this.editedKeyName);
             this.scanCodeSelectedLabel.Text = I18n.Get(KeyboardString.ScanCode) + string.Format(": {0:X2}", this.editedScanCode);
-            this.editedKeyChar = KeyboardUtil.FromVkey(this.editedKey, this.ModifierKeysEnum, out bool isDead);
+            this.editedKeyChar = KeyboardUtil.FromVkey(this.editedKey, this.ModifierKeysEnum, out _);
 
             if (this.ChordName == null && this.editedKeyChar != null)
             {

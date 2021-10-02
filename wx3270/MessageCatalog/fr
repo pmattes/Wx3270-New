@@ -1058,6 +1058,7 @@
   "Settings.keypadTab.String.ClickToAddMoreSpecific": "Cliquer pour ajouter une définition plus spécifique",
   "Settings.keypadTab.String.ClickToEdit": "Cliquer pour modifier les actions",
   "Settings.keypadTab.String.KeypadActions": "Actions du pavé numérique",
+  "Settings.keypadTab.String.Modifier.Shift": "Maj",
   "Settings.keypadTab.String.RemoveKeyDefinition": "Retirer la définition de la touche",
   "Settings.Message.cantParseListen": "Ne peut analyser {0} valeur d'écoute du port {1}",
   "Settings.Message.invalidListenValue": "Valeur {0} invalide",
