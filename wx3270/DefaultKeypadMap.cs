@@ -161,7 +161,8 @@ namespace Wx3270
             {
                 if (IsLocalized(kv.Key))
                 {
-                    I18n.LocalizeGlobal(KeyLocalizeName(kv.Key), kv.Value.Text, true);
+                    I18n.LocalizeGlobal(KeyLocalizeName(kv.Key), kv.Value.Text, always: true);
+                    I18n.LocalizeGlobal(KeyLocalizeSizeName(kv.Key), kv.Value.TextSize.ToString(), always: true);
                 }
             }
         }
@@ -174,6 +175,16 @@ namespace Wx3270
         public static string KeyLocalizeName(string key)
         {
             return I18n.Combine("Keypad", key);
+        }
+
+        /// <summary>
+        /// Returns the size localization name for a keymap entry.
+        /// </summary>
+        /// <param name="key">Key name.</param>
+        /// <returns>Localization name.</returns>
+        public static string KeyLocalizeSizeName(string key)
+        {
+            return I18n.Combine("Keypad", key, "Size");
         }
 
         /// <summary>
@@ -192,7 +203,7 @@ namespace Wx3270
         /// <param name="key">Key name.</param>
         /// <param name="map">Keymap entry.</param>
         /// <returns>Localized name.</returns>
-        public static string Localize(string key, KeypadMap map)
+        public static string LocalizeText(string key, KeypadMap map)
         {
             if (IsLocalized(key))
             {
@@ -200,6 +211,22 @@ namespace Wx3270
             }
 
             return map.Text;
+        }
+
+        /// <summary>
+        /// Returned the localized text size for a default keymap entry.
+        /// </summary>
+        /// <param name="key">Key name.</param>
+        /// <param name="map">Keymap entry.</param>
+        /// <returns>Localized size.</returns>
+        public static float LocalizeTextSize(string key, KeypadMap map)
+        {
+            if (IsLocalized(key))
+            {
+                return float.Parse(I18n.Get(KeyLocalizeSizeName(key)));
+            }
+
+            return map.TextSize;
         }
     }
 }

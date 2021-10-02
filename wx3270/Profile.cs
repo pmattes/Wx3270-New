@@ -142,7 +142,8 @@ namespace Wx3270
                 var p = new Profile { Name = ProfileManager.DefaultValuesName };
                 foreach (var kv in p.KeypadMap)
                 {
-                    kv.Value.Text = DefaultKeypadMap.Localize(kv.Key, kv.Value);
+                    kv.Value.Text = DefaultKeypadMap.LocalizeText(kv.Key, kv.Value);
+                    kv.Value.TextSize = DefaultKeypadMap.LocalizeTextSize(kv.Key, kv.Value);
                 }
 
                 return p;
