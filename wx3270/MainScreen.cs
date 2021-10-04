@@ -981,7 +981,7 @@ namespace Wx3270
                 this.helpPictureBox.RemoveFromParent();
             }
 
-            if (this.App.Restricted(Restrictions.ChangeSettings) && this.ProfileManager.Current.Macros.Any())
+            if (this.App.Restricted(Restrictions.ChangeSettings) && !this.ProfileManager.Current.Macros.Any())
             {
                 this.macrosPictureBox.RemoveFromParent();
             }

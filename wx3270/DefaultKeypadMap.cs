@@ -228,7 +228,7 @@ namespace Wx3270
                     return size;
                 }
 
-                return 5.00F;
+                return 6.00F;
             }
 
             return map.TextSize;
