@@ -37,7 +37,7 @@ namespace Wx3270
         /// <summary>
         /// Title group for localization.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(SelectionManager));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(SelectionManager));
 
         /// <summary>
         /// The application context.

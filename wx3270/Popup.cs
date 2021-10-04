@@ -17,7 +17,7 @@ namespace Wx3270
         /// <summary>
         /// The pop-up title group for localization.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(Popup));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(Popup));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Popup"/> class.

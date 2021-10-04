@@ -29,7 +29,7 @@ namespace Wx3270
         /// <summary>
         /// Localization category for message box titles.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(Connect));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(Connect));
 
         /// <summary>
         /// Localization category for message box messages.

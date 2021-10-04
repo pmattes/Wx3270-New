@@ -201,7 +201,10 @@ namespace I18nBase
             finally
             {
                 // We always call the static localization code for each class.
-                foreach (var m in Assembly.GetCallingAssembly().GetTypes().Where(t => t.IsClass && t.Namespace == nameSpaceName).SelectMany(t => t.GetMethods().Where(m => m.IsStatic)))
+                foreach (var m in Assembly.GetCallingAssembly()
+                    .GetTypes()
+                    .Where(t => t.IsClass && t.Namespace == nameSpaceName)
+                    .SelectMany(t => t.GetMethods().Where(m => m.IsStatic)))
                 {
                     if (m.CustomAttributes.Any(a => a.AttributeType == typeof(I18nInitAttribute)))
                     {

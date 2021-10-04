@@ -33,7 +33,7 @@ namespace Wx3270
         /// <summary>
         /// Title group name for localization.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(Wx3270App));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(Wx3270App));
 
         /// <summary>
         /// The main form (which runs the UI thread).

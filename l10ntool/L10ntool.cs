@@ -24,6 +24,7 @@ namespace L10ntool
             { Verb.CreateCsv, new[] { Parameter.InNewMsgcat, Parameter.OutCsv } },
             { Verb.UpdateCsv, new[] { Parameter.InOldMsgcat, Parameter.InNewMsgcat, Parameter.InOldTranslatedMsgcat, Parameter.OutCsv } },
             { Verb.CsvToMsgcat, new[] { Parameter.InCsv, Parameter.OutMsgcat } },
+            { Verb.RenameMsgcat, new[] { Parameter.InBeforeMsgcat, Parameter.InAfterMsgcat, Parameter.InOldTranslatedMsgcat, Parameter.OutMsgcat } },
         };
 
         /// <summary>
@@ -50,6 +51,11 @@ namespace L10ntool
             /// Create a message catalog file from a (presumably translated) CSV file.
             /// </summary>
             CsvToMsgcat,
+
+            /// <summary>
+            /// Rename entries in a message catalog.
+            /// </summary>
+            RenameMsgcat,
         }
 
         /// <summary>
@@ -86,6 +92,16 @@ namespace L10ntool
             /// Output message catalog.
             /// </summary>
             OutMsgcat,
+
+            /// <summary>
+            /// Rename 'before' message catalog.
+            /// </summary>
+            InBeforeMsgcat,
+
+            /// <summary>
+            /// Rename 'after' message catalog.
+            /// </summary>
+            InAfterMsgcat,
         }
 
         /// <summary>
@@ -182,6 +198,13 @@ namespace L10ntool
                         break;
                     case Verb.CsvToMsgcat:
                         localize.CsvToMsgcat(parameters[Parameter.InCsv], parameters[Parameter.OutMsgcat]);
+                        break;
+                    case Verb.RenameMsgcat:
+                        localize.Rename(
+                            parameters[Parameter.InBeforeMsgcat],
+                            parameters[Parameter.InAfterMsgcat],
+                            parameters[Parameter.InOldTranslatedMsgcat],
+                            parameters[Parameter.OutMsgcat]);
                         break;
                 }
             }

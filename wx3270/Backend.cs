@@ -33,7 +33,7 @@ namespace Wx3270
         /// <summary>
         /// Localization group for message box titles.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(BackEnd));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(BackEnd));
 
         /// <summary>
         /// Localization group for message box messages.

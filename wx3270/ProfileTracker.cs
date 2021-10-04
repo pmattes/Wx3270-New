@@ -19,7 +19,7 @@ namespace Wx3270
         /// <summary>
         /// The name of titles, for localization.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(ProfileTracker));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(ProfileTracker));
 
         /// <summary>
         /// The application context.

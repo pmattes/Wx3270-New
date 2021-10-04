@@ -21,7 +21,7 @@ namespace Wx3270
         /// <summary>
         /// Localization group for message box titles.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(Cmd));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(Cmd));
 
         /// <summary>
         /// Instance sequence number.

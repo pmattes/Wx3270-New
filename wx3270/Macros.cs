@@ -22,7 +22,7 @@ namespace Wx3270
         /// <summary>
         /// Title group for localization.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(Macros));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(Macros));
 
         /// <summary>
         /// Application instance.

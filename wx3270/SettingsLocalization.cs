@@ -14,7 +14,7 @@ namespace Wx3270
         /// <summary>
         /// Title group for localization.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(Settings));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(Settings));
 
         /// <summary>
         /// Message group for localization.

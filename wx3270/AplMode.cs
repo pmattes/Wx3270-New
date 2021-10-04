@@ -14,7 +14,7 @@ namespace Wx3270
         /// <summary>
         /// Error pop-up title.
         /// </summary>
-        private static readonly string ErrorTitle = I18n.Combine(I18n.TitleName(nameof(AplMode)), "Error");
+        private static readonly string ErrorTitle = I18n.Combine(I18n.PopUpTitleName(nameof(AplMode)), "Error");
 
         /// <summary>
         /// The back end.

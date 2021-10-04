@@ -50,7 +50,7 @@ namespace Wx3270
         /// <returns>Set of nodes in the control.</returns>
         public static IEnumerable<I18nNode> Walk(Control control, ToolTip toolTip = null)
         {
-            return Walk(string.Empty, control, toolTip);
+            return WalkInternal(control, toolTip);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Wx3270
         /// <returns>Set of nodes in the control.</returns>
         public static IEnumerable<I18nNode> Walk(ContextMenuStrip contextMenuStrip)
         {
-            return contextMenuStrip.Items.OfType<ToolStripMenuItem>().SelectMany(m => Walk(contextMenuStrip.Name, m));
+            return contextMenuStrip.Items.OfType<ToolStripMenuItem>().SelectMany(m => WalkInternal(m));
         }
 
         /// <summary>
@@ -70,19 +70,23 @@ namespace Wx3270
         /// <returns>Localization path.</returns>
         public static string Path(Control control)
         {
-            var path = string.Empty;
-            while (control != null)
+            if (control is Form)
             {
-                if (control is Form)
-                {
-                    path = Combine(FormName, path);
-                }
+                return Combine(control.Name, FormName).Replace(" ", "_");
+            }
 
-                path = Combine(control.Name, path);
+            var originalControl = control;
+            while (control != null && !(control is Form))
+            {
                 control = control.Parent;
             }
 
-            return path.Replace(" ", "_");
+            if (control == null)
+            {
+                throw new Exception($"I18n.Path: control {originalControl.Name} is not a child of a Form");
+            }
+
+            return Combine(control.Name, FormName, originalControl.Name).Replace(" ", "_");
         }
 
         /// <summary>
@@ -151,7 +155,7 @@ namespace Wx3270
         /// <returns>Localized text.</returns>
         public static string Localize(Control control, string text = null)
         {
-            return LocalizeFlat(text ?? control.Text, ComputedPath(control));
+            return LocalizeFlat(text ?? control.Text, Path(control));
         }
 
         /// <summary>
@@ -164,7 +168,7 @@ namespace Wx3270
         public static string Localize(Control control, string pathSuffix, string text = null)
         {
             pathSuffix = pathSuffix.Replace(" ", "_").Replace(Environment.NewLine, "_");
-            return LocalizeFlat(text ?? control.Text, Combine(ComputedPath(control), pathSuffix));
+            return LocalizeFlat(text ?? control.Text, Combine(Path(control), pathSuffix));
         }
 
         /// <summary>
@@ -220,13 +224,13 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Returns the title group name for a module.
+        /// Returns the pop-up title group name for a module.
         /// </summary>
         /// <param name="baseName">Base (module) name.</param>
         /// <returns>Group name.</returns>
-        public static string TitleName(string baseName)
+        public static string PopUpTitleName(string baseName)
         {
-            return Combine(baseName, "Title");
+            return Combine(baseName, "popUpTitle");
         }
 
         /// <summary>
@@ -236,7 +240,7 @@ namespace Wx3270
         /// <returns>Group name.</returns>
         public static string MessageName(string baseName)
         {
-            return Combine(baseName, "Message");
+            return Combine(baseName, "message");
         }
 
         /// <summary>
@@ -246,7 +250,7 @@ namespace Wx3270
         /// <returns>Group name.</returns>
         public static string StringName(string baseName)
         {
-            return Combine(baseName, "String");
+            return Combine(baseName, "string");
         }
 
         /// <summary>
@@ -275,42 +279,23 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Compute the path of a control.
-        /// </summary>
-        /// <param name="control">Control to scan.</param>
-        /// <returns>Path name.</returns>
-        private static string ComputedPath(Control control)
-        {
-            var names = new Stack<string>();
-            for (var c = control; c != null; c = c.Parent)
-            {
-                names.Push(c.Name);
-            }
-
-            return Combine(names);
-        }
-
-        /// <summary>
         /// Recursively walk the children of a control.
         /// </summary>
-        /// <param name="pathName">Path name.</param>
         /// <param name="control">Control to walk.</param>
         /// <param name="toolTip">Tool tip.</param>
         /// <returns>List of elements.</returns>
-        private static IEnumerable<I18nNode> Walk(string pathName, Control control, ToolTip toolTip)
+        private static IEnumerable<I18nNode> WalkInternal(Control control, ToolTip toolTip)
         {
             if ((control.Tag as string) == NoWalk)
             {
                 return new List<I18nNode>();
             }
 
-            var controlName = control is Form ? Combine(control.Name, FormName) : control.Name;
-            var path = pathName == string.Empty ? controlName : Combine(pathName, controlName);
             var ret = new List<I18nNode>
             {
                 new I18nNode
                 {
-                    Path = path,
+                    Path = Path(control),
                     Control = control,
                     Text = control.Text,
                     ToolTip = toolTip?.GetToolTip(control),
@@ -319,7 +304,7 @@ namespace Wx3270
 
             foreach (var child in control.Controls.OfType<Control>())
             {
-                ret.AddRange(Walk(path, child, toolTip));
+                ret.AddRange(WalkInternal(child, toolTip));
             }
 
             return ret;
@@ -328,16 +313,15 @@ namespace Wx3270
         /// <summary>
         /// Recursively walk the children of a context menu.
         /// </summary>
-        /// <param name="pathName">Path name.</param>
         /// <param name="menuItem">Menu item.</param>
         /// <returns>List of elements.</returns>
-        private static IEnumerable<I18nNode> Walk(string pathName, ToolStripMenuItem menuItem)
+        private static IEnumerable<I18nNode> WalkInternal(ToolStripMenuItem menuItem)
         {
             var ret = new List<I18nNode>
             {
                 new I18nNode
                 {
-                    Path = Combine(pathName, menuItem.Name),
+                    Path = menuItem.Name,
                     Control = null,
                     Text = menuItem.Text,
                     ToolTip = null,
@@ -346,7 +330,7 @@ namespace Wx3270
             };
             foreach (var child in menuItem.DropDownItems.OfType<ToolStripMenuItem>())
             {
-                ret.AddRange(Walk(Combine(pathName, menuItem.Name), child));
+                ret.AddRange(WalkInternal(child));
             }
 
             return ret;

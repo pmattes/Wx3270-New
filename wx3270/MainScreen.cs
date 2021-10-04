@@ -59,7 +59,7 @@ namespace Wx3270
         /// <summary>
         /// Name of localized message box titles.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(MainScreen));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(MainScreen));
 
         /// <summary>
         /// Name of localized message box messages.

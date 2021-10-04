@@ -36,7 +36,7 @@ namespace Wx3270
         /// <summary>
         /// Title name, for localization.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(ProfileTree));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(ProfileTree));
 
         /// <summary>
         /// Message name, for localization.

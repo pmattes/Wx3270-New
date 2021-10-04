@@ -22,7 +22,7 @@ namespace Wx3270
         /// <summary>
         /// Title group for localization.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(KeyHandler));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(KeyHandler));
 
         /// <summary>
         /// The application instance.

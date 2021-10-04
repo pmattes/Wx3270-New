@@ -18,7 +18,7 @@ namespace Wx3270
         /// <summary>
         /// Title group for localization.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(ServerEditor));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(ServerEditor));
 
         /// <summary>
         /// Message group for localization.

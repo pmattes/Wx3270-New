@@ -224,6 +224,70 @@ namespace L10ntool
         }
 
         /// <summary>
+        /// Rename entries in a message catalog.
+        /// </summary>
+        /// <param name="inBeforeMsgcat">Message catalog from before the rename change.</param>
+        /// <param name="inAfterMsgcat">Message catalog from after the rename change.</param>
+        /// <param name="inOldTranslatedMsgcat">Translated essage catalog to apply renames to.</param>
+        /// <param name="outMsgcat">Output message catalog.</param>
+        public void Rename(string inBeforeMsgcat, string inAfterMsgcat, string inOldTranslatedMsgcat, string outMsgcat)
+        {
+            // Read in the message catalogs.
+            var beforeMsgcat = ReadMessageCatalog(inBeforeMsgcat);
+            var afterMsgcat = ReadMessageCatalog(inAfterMsgcat);
+            var oldTranslatedMsgcat = ReadMessageCatalog(inOldTranslatedMsgcat);
+
+            // Construct the rename mapping.
+            var beforeKeys = beforeMsgcat.Keys.ToArray();
+            var afterKeys = afterMsgcat.Keys.ToArray();
+            var rename = new Dictionary<string, string>();
+            for (var i = 0; i < beforeMsgcat.Count; i++)
+            {
+                if (beforeKeys[i] != afterKeys[i])
+                {
+                    rename[beforeKeys[i]] = afterKeys[i];
+                }
+            }
+
+            // Construct the lists of keys to remove and entries to add with new keys.
+            var removeKeys = new List<string>();
+            var addKeyValues = new List<KeyValuePair<string, string>>();
+            foreach (var kv in oldTranslatedMsgcat)
+            {
+                if (rename.ContainsKey(kv.Key))
+                {
+                    removeKeys.Add(kv.Key);
+                    addKeyValues.Add(new KeyValuePair<string, string>(rename[kv.Key], kv.Value));
+                }
+            }
+
+            // Remove the old keys.
+            foreach (var removeKey in removeKeys)
+            {
+                oldTranslatedMsgcat.Remove(removeKey);
+            }
+
+            // Add the new values.
+            foreach (var addKeyValue in addKeyValues)
+            {
+                oldTranslatedMsgcat.Add(addKeyValue.Key, addKeyValue.Value);
+            }
+
+            // Dump out the message catalog.
+            using (var t = new StreamWriter(outMsgcat, append: false, new UTF8Encoding()))
+            {
+                var serializer = new JsonSerializer()
+                {
+                    Formatting = Formatting.Indented,
+                };
+                using (JsonWriter writer = new JsonTextWriter(t))
+                {
+                    serializer.Serialize(writer, oldTranslatedMsgcat);
+                }
+            }
+        }
+
+        /// <summary>
         /// Translate a string to valid CSV format.
         /// </summary>
         /// <param name="s">String to quote.</param>

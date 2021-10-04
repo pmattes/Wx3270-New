@@ -55,7 +55,7 @@ namespace Wx3270
         /// <summary>
         /// The name of titles, for localization.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(ProfileManager));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(ProfileManager));
 
         /// <summary>
         /// The name of strings, for localization.

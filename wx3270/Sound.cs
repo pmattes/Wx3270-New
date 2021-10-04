@@ -41,7 +41,7 @@ namespace Wx3270
         /// <summary>
         /// Title name, for localization.
         /// </summary>
-        private static readonly string TitleName = I18n.TitleName(nameof(Sound));
+        private static readonly string TitleName = I18n.PopUpTitleName(nameof(Sound));
 
         /// <summary>
         /// Message name, for localization.
