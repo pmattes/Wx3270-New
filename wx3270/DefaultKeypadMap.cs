@@ -223,7 +223,12 @@ namespace Wx3270
         {
             if (IsLocalized(key))
             {
-                return float.Parse(I18n.Get(KeyLocalizeSizeName(key)));
+                if (float.TryParse(I18n.Get(KeyLocalizeSizeName(key)), out float size))
+                {
+                    return size;
+                }
+
+                return 5.00F;
             }
 
             return map.TextSize;

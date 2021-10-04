@@ -85,7 +85,7 @@
             this.whitePanel.Location = new System.Drawing.Point(15, 15);
             this.whitePanel.Margin = new System.Windows.Forms.Padding(0);
             this.whitePanel.Name = "whitePanel";
-            this.whitePanel.Size = new System.Drawing.Size(432, 431);
+            this.whitePanel.Size = new System.Drawing.Size(435, 431);
             this.whitePanel.TabIndex = 0;
             // 
             // categoriesGroupBox
@@ -96,7 +96,7 @@
             this.categoriesGroupBox.Location = new System.Drawing.Point(15, 15);
             this.categoriesGroupBox.Margin = new System.Windows.Forms.Padding(15);
             this.categoriesGroupBox.Name = "categoriesGroupBox";
-            this.categoriesGroupBox.Size = new System.Drawing.Size(402, 401);
+            this.categoriesGroupBox.Size = new System.Drawing.Size(405, 401);
             this.categoriesGroupBox.TabIndex = 32;
             this.categoriesGroupBox.TabStop = false;
             this.categoriesGroupBox.Text = "Select Categories";
@@ -118,7 +118,7 @@
             this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.categoriesLayoutPanel.Size = new System.Drawing.Size(375, 353);
+            this.categoriesLayoutPanel.Size = new System.Drawing.Size(378, 353);
             this.categoriesLayoutPanel.TabIndex = 31;
             // 
             // legendLabel
@@ -135,6 +135,7 @@
             // 
             // importButton
             // 
+            this.importButton.AutoSize = true;
             this.importButton.Enabled = false;
             this.importButton.Location = new System.Drawing.Point(3, 327);
             this.importButton.Name = "importButton";
@@ -167,7 +168,7 @@
             this.categoriesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.categoriesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.categoriesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.categoriesTableLayoutPanel.Size = new System.Drawing.Size(341, 245);
+            this.categoriesTableLayoutPanel.Size = new System.Drawing.Size(372, 245);
             this.categoriesTableLayoutPanel.TabIndex = 30;
             // 
             // panel1
@@ -176,7 +177,7 @@
             this.panel1.Controls.Add(this.otherSettingsCheckBox);
             this.panel1.Location = new System.Drawing.Point(3, 213);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(335, 29);
+            this.panel1.Size = new System.Drawing.Size(366, 29);
             this.panel1.TabIndex = 29;
             // 
             // radioButton5
@@ -184,7 +185,7 @@
             this.radioButton5.AutoSize = true;
             this.radioButton5.Checked = true;
             this.radioButton5.Enabled = false;
-            this.radioButton5.Location = new System.Drawing.Point(119, 4);
+            this.radioButton5.Location = new System.Drawing.Point(157, 4);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(65, 17);
             this.radioButton5.TabIndex = 4;
@@ -212,7 +213,7 @@
             this.keyboardMapPanel.Controls.Add(this.keyboardCheckBox);
             this.keyboardMapPanel.Location = new System.Drawing.Point(3, 3);
             this.keyboardMapPanel.Name = "keyboardMapPanel";
-            this.keyboardMapPanel.Size = new System.Drawing.Size(335, 29);
+            this.keyboardMapPanel.Size = new System.Drawing.Size(366, 29);
             this.keyboardMapPanel.TabIndex = 22;
             // 
             // keyboardReplaceRadioButton
@@ -220,7 +221,7 @@
             this.keyboardReplaceRadioButton.AutoSize = true;
             this.keyboardReplaceRadioButton.Checked = true;
             this.keyboardReplaceRadioButton.Enabled = false;
-            this.keyboardReplaceRadioButton.Location = new System.Drawing.Point(119, 4);
+            this.keyboardReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
             this.keyboardReplaceRadioButton.Name = "keyboardReplaceRadioButton";
             this.keyboardReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
             this.keyboardReplaceRadioButton.TabIndex = 3;
@@ -233,7 +234,7 @@
             // 
             this.keyboardMergeradioButton.AutoSize = true;
             this.keyboardMergeradioButton.Enabled = false;
-            this.keyboardMergeradioButton.Location = new System.Drawing.Point(218, 5);
+            this.keyboardMergeradioButton.Location = new System.Drawing.Point(267, 5);
             this.keyboardMergeradioButton.Name = "keyboardMergeradioButton";
             this.keyboardMergeradioButton.Size = new System.Drawing.Size(55, 17);
             this.keyboardMergeradioButton.TabIndex = 2;
@@ -260,7 +261,7 @@
             this.keypadMapPanel.Controls.Add(this.keypadCheckBox);
             this.keypadMapPanel.Location = new System.Drawing.Point(3, 38);
             this.keypadMapPanel.Name = "keypadMapPanel";
-            this.keypadMapPanel.Size = new System.Drawing.Size(335, 29);
+            this.keypadMapPanel.Size = new System.Drawing.Size(366, 29);
             this.keypadMapPanel.TabIndex = 23;
             // 
             // keypadReplaceRadioButton
@@ -268,7 +269,7 @@
             this.keypadReplaceRadioButton.AutoSize = true;
             this.keypadReplaceRadioButton.Checked = true;
             this.keypadReplaceRadioButton.Enabled = false;
-            this.keypadReplaceRadioButton.Location = new System.Drawing.Point(119, 4);
+            this.keypadReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
             this.keypadReplaceRadioButton.Name = "keypadReplaceRadioButton";
             this.keypadReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
             this.keypadReplaceRadioButton.TabIndex = 3;
@@ -281,7 +282,7 @@
             // 
             this.keypadMergeRadioButton.AutoSize = true;
             this.keypadMergeRadioButton.Enabled = false;
-            this.keypadMergeRadioButton.Location = new System.Drawing.Point(218, 4);
+            this.keypadMergeRadioButton.Location = new System.Drawing.Point(267, 4);
             this.keypadMergeRadioButton.Name = "keypadMergeRadioButton";
             this.keypadMergeRadioButton.Size = new System.Drawing.Size(55, 17);
             this.keypadMergeRadioButton.TabIndex = 2;
@@ -308,7 +309,7 @@
             this.macrosPanel.Controls.Add(this.macrosCheckBox);
             this.macrosPanel.Location = new System.Drawing.Point(3, 108);
             this.macrosPanel.Name = "macrosPanel";
-            this.macrosPanel.Size = new System.Drawing.Size(335, 29);
+            this.macrosPanel.Size = new System.Drawing.Size(366, 29);
             this.macrosPanel.TabIndex = 28;
             // 
             // radioButton1
@@ -316,7 +317,7 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
             this.radioButton1.Enabled = false;
-            this.radioButton1.Location = new System.Drawing.Point(119, 4);
+            this.radioButton1.Location = new System.Drawing.Point(157, 4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(65, 17);
             this.radioButton1.TabIndex = 3;
@@ -329,7 +330,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Enabled = false;
-            this.radioButton2.Location = new System.Drawing.Point(218, 4);
+            this.radioButton2.Location = new System.Drawing.Point(267, 4);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(55, 17);
             this.radioButton2.TabIndex = 2;
@@ -355,7 +356,7 @@
             this.fontPanel.Controls.Add(this.fontCheckBox);
             this.fontPanel.Location = new System.Drawing.Point(3, 178);
             this.fontPanel.Name = "fontPanel";
-            this.fontPanel.Size = new System.Drawing.Size(335, 29);
+            this.fontPanel.Size = new System.Drawing.Size(366, 29);
             this.fontPanel.TabIndex = 25;
             // 
             // radioButton4
@@ -363,7 +364,7 @@
             this.radioButton4.AutoSize = true;
             this.radioButton4.Checked = true;
             this.radioButton4.Enabled = false;
-            this.radioButton4.Location = new System.Drawing.Point(119, 4);
+            this.radioButton4.Location = new System.Drawing.Point(157, 4);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(65, 17);
             this.radioButton4.TabIndex = 4;
@@ -391,7 +392,7 @@
             this.hostListPanel.Controls.Add(this.hostsCheckBox);
             this.hostListPanel.Location = new System.Drawing.Point(3, 73);
             this.hostListPanel.Name = "hostListPanel";
-            this.hostListPanel.Size = new System.Drawing.Size(335, 29);
+            this.hostListPanel.Size = new System.Drawing.Size(366, 29);
             this.hostListPanel.TabIndex = 26;
             // 
             // hostsReplaceRadioButton
@@ -399,7 +400,7 @@
             this.hostsReplaceRadioButton.AutoSize = true;
             this.hostsReplaceRadioButton.Checked = true;
             this.hostsReplaceRadioButton.Enabled = false;
-            this.hostsReplaceRadioButton.Location = new System.Drawing.Point(119, 4);
+            this.hostsReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
             this.hostsReplaceRadioButton.Name = "hostsReplaceRadioButton";
             this.hostsReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
             this.hostsReplaceRadioButton.TabIndex = 3;
@@ -412,7 +413,7 @@
             // 
             this.hostsMergeRadioButton.AutoSize = true;
             this.hostsMergeRadioButton.Enabled = false;
-            this.hostsMergeRadioButton.Location = new System.Drawing.Point(218, 4);
+            this.hostsMergeRadioButton.Location = new System.Drawing.Point(267, 4);
             this.hostsMergeRadioButton.Name = "hostsMergeRadioButton";
             this.hostsMergeRadioButton.Size = new System.Drawing.Size(55, 17);
             this.hostsMergeRadioButton.TabIndex = 2;
@@ -438,7 +439,7 @@
             this.colorsPanel.Controls.Add(this.colorsCheckBox);
             this.colorsPanel.Location = new System.Drawing.Point(3, 143);
             this.colorsPanel.Name = "colorsPanel";
-            this.colorsPanel.Size = new System.Drawing.Size(335, 29);
+            this.colorsPanel.Size = new System.Drawing.Size(366, 29);
             this.colorsPanel.TabIndex = 24;
             // 
             // radioButton3
@@ -446,7 +447,7 @@
             this.radioButton3.AutoSize = true;
             this.radioButton3.Checked = true;
             this.radioButton3.Enabled = false;
-            this.radioButton3.Location = new System.Drawing.Point(119, 4);
+            this.radioButton3.Location = new System.Drawing.Point(157, 4);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(65, 17);
             this.radioButton3.TabIndex = 4;
@@ -486,7 +487,7 @@
             this.purplePanel.Location = new System.Drawing.Point(0, 0);
             this.purplePanel.Name = "purplePanel";
             this.purplePanel.Padding = new System.Windows.Forms.Padding(15);
-            this.purplePanel.Size = new System.Drawing.Size(462, 461);
+            this.purplePanel.Size = new System.Drawing.Size(465, 461);
             this.purplePanel.TabIndex = 1;
             // 
             // MergeDialog

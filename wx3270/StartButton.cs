@@ -36,7 +36,7 @@ namespace Wx3270
         /// <summary>
         /// The width of a moderately-expanded start button.
         /// </summary>
-        private const int MediumButtonWidth = 32;
+        private const int MediumButtonWidth = 45;
 
         /// <summary>
         /// The maximum width of the start button.
