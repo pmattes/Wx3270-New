@@ -280,14 +280,14 @@ namespace Wx3270
             if (oia.CursorEnabled && oia.CursorRow > 0 && oia.CursorColumn > 0)
             {
                 Trace.Line(Trace.Type.Draw, $"ChangeOiaCursor enabled {oia.CursorRow}/{oia.CursorColumn}");
-                this.OiaCursor.Text = string.Format("{0:D3}/{1:D3}", oia.CursorRow, oia.CursorColumn);
-                this.toolTip1.SetToolTip(this.OiaCursor, string.Format(I18n.Get(OiaToolTipName.CursorPos), oia.CursorRow, oia.CursorColumn));
+                this.oiaCursor.Text = string.Format("{0:D3}/{1:D3}", oia.CursorRow, oia.CursorColumn);
+                this.toolTip1.SetToolTip(this.oiaCursor, string.Format(I18n.Get(OiaToolTipName.CursorPos), oia.CursorRow, oia.CursorColumn));
             }
             else
             {
                 Trace.Line(Trace.Type.Draw, $"ChangeOiaCursor disabled");
-                this.OiaCursor.Text = string.Empty;
-                this.toolTip1.SetToolTip(this.OiaCursor, string.Empty);
+                this.oiaCursor.Text = string.Empty;
+                this.toolTip1.SetToolTip(this.oiaCursor, string.Empty);
             }
         }
 
@@ -391,7 +391,7 @@ namespace Wx3270
         /// <param name="oia">OIA state.</param>
         public void ChangeOiaLu(IOiaState oia)
         {
-            this.OiaLu.Text = oia.Lu;
+            this.oiaLu.Text = oia.Lu;
         }
 
         /// <summary>
@@ -406,28 +406,28 @@ namespace Wx3270
                 var clock = this.oia3270Font ? OiaFont.Symbol.ClockLeft + OiaFont.Symbol.ClockRight : VersionSpecific.ClockDisplay;
                 if (secs < 10)
                 {
-                    this.OiaTiming.Text = clock + oia.Timing;
+                    this.oiaTiming.Text = clock + oia.Timing;
                 }
                 else if (secs < 60)
                 {
-                    this.OiaTiming.Text = clock + secs;
+                    this.oiaTiming.Text = clock + secs;
                 }
                 else if (secs < 60 * 60)
                 {
-                    this.OiaTiming.Text = clock + string.Format("{0}m", secs / 60);
+                    this.oiaTiming.Text = clock + string.Format("{0}m", secs / 60);
                 }
                 else if (secs < 60 * 60 * 24)
                 {
-                    this.OiaTiming.Text = clock + string.Format("{0}h", secs / (60 * 60));
+                    this.oiaTiming.Text = clock + string.Format("{0}h", secs / (60 * 60));
                 }
                 else
                 {
-                    this.OiaTiming.Text = clock + string.Format("{0}d", secs / (60 * 60 * 24));
+                    this.oiaTiming.Text = clock + string.Format("{0}d", secs / (60 * 60 * 24));
                 }
             }
             else
             {
-                this.OiaTiming.Text = string.Empty;
+                this.oiaTiming.Text = string.Empty;
             }
         }
 
@@ -603,8 +603,8 @@ namespace Wx3270
             I18n.LocalizeGlobal(OiaToolTipName.CursorPos, "Cursor is at row {0}, column {1} (1-origin)");
 
             // Localize other static tool tips.
-            this.toolTip1.SetToolTip(this.OiaLu, I18n.Localize(this.OiaLu, I18n.ToolTipName, this.toolTip1.GetToolTip(this.OiaLu)));
-            this.toolTip1.SetToolTip(this.OiaTiming, I18n.Localize(this.OiaTiming, I18n.ToolTipName, this.toolTip1.GetToolTip(this.OiaTiming)));
+            this.toolTip1.SetToolTip(this.oiaLu, I18n.Localize(this.oiaLu, I18n.ToolTipName, this.toolTip1.GetToolTip(this.oiaLu)));
+            this.toolTip1.SetToolTip(this.oiaTiming, I18n.Localize(this.oiaTiming, I18n.ToolTipName, this.toolTip1.GetToolTip(this.oiaTiming)));
 
             // Localize the "not connected" message.
             I18n.LocalizeGlobal(OiaMessage.NotConnected, "Not connected");

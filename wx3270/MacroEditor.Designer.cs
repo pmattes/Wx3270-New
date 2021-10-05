@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MacroEditor));
             this.saveButton = new System.Windows.Forms.Button();
-            this.EditorCancelButton = new System.Windows.Forms.Button();
+            this.editorCancelButton = new System.Windows.Forms.Button();
             this.MacroBox = new System.Windows.Forms.TextBox();
             this.StringButton = new System.Windows.Forms.Button();
             this.TabButton = new System.Windows.Forms.Button();
@@ -50,7 +50,7 @@
             this.cursorToButton = new System.Windows.Forms.Button();
             this.TransferFromButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.TextBoxLabel = new System.Windows.Forms.Label();
+            this.textBoxLabel = new System.Windows.Forms.Label();
             this.snippetsLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
@@ -139,17 +139,17 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.OkayButton_Click);
             // 
-            // EditorCancelButton
+            // editorCancelButton
             // 
-            this.EditorCancelButton.AutoSize = true;
-            this.EditorCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.EditorCancelButton.Location = new System.Drawing.Point(84, 3);
-            this.EditorCancelButton.Name = "EditorCancelButton";
-            this.EditorCancelButton.Size = new System.Drawing.Size(75, 23);
-            this.EditorCancelButton.TabIndex = 27;
-            this.EditorCancelButton.Text = "Cancel";
-            this.EditorCancelButton.UseVisualStyleBackColor = true;
-            this.EditorCancelButton.Click += new System.EventHandler(this.NotOkayButton_Click);
+            this.editorCancelButton.AutoSize = true;
+            this.editorCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.editorCancelButton.Location = new System.Drawing.Point(84, 3);
+            this.editorCancelButton.Name = "editorCancelButton";
+            this.editorCancelButton.Size = new System.Drawing.Size(75, 23);
+            this.editorCancelButton.TabIndex = 27;
+            this.editorCancelButton.Text = "Cancel";
+            this.editorCancelButton.UseVisualStyleBackColor = true;
+            this.editorCancelButton.Click += new System.EventHandler(this.NotOkayButton_Click);
             // 
             // MacroBox
             // 
@@ -370,15 +370,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Macro_Click);
             // 
-            // TextBoxLabel
+            // textBoxLabel
             // 
-            this.TextBoxLabel.AutoSize = true;
-            this.TextBoxLabel.Location = new System.Drawing.Point(3, 42);
-            this.TextBoxLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
-            this.TextBoxLabel.Name = "TextBoxLabel";
-            this.TextBoxLabel.Size = new System.Drawing.Size(57, 13);
-            this.TextBoxLabel.TabIndex = 21;
-            this.TextBoxLabel.Text = "Macro text";
+            this.textBoxLabel.AutoSize = true;
+            this.textBoxLabel.Location = new System.Drawing.Point(3, 42);
+            this.textBoxLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+            this.textBoxLabel.Name = "textBoxLabel";
+            this.textBoxLabel.Size = new System.Drawing.Size(57, 13);
+            this.textBoxLabel.TabIndex = 21;
+            this.textBoxLabel.Text = "Macro text";
             // 
             // snippetsLabel
             // 
@@ -921,7 +921,7 @@
             this.macroTableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 0, 4);
             this.macroTableLayoutPanel.Controls.Add(this.buttonsTableLayoutPanel, 0, 5);
             this.macroTableLayoutPanel.Controls.Add(this.nameLayoutPanel, 0, 0);
-            this.macroTableLayoutPanel.Controls.Add(this.TextBoxLabel, 0, 1);
+            this.macroTableLayoutPanel.Controls.Add(this.textBoxLabel, 0, 1);
             this.macroTableLayoutPanel.Controls.Add(this.MacroBox, 0, 2);
             this.macroTableLayoutPanel.Controls.Add(this.snippetsLabel, 0, 3);
             this.macroTableLayoutPanel.Location = new System.Drawing.Point(12, 12);
@@ -1024,7 +1024,7 @@
             this.rightButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.rightButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.rightButtonsTableLayoutPanel.Controls.Add(this.helpPictureBox, 2, 0);
-            this.rightButtonsTableLayoutPanel.Controls.Add(this.EditorCancelButton, 1, 0);
+            this.rightButtonsTableLayoutPanel.Controls.Add(this.editorCancelButton, 1, 0);
             this.rightButtonsTableLayoutPanel.Controls.Add(this.saveButton, 0, 0);
             this.rightButtonsTableLayoutPanel.Location = new System.Drawing.Point(256, 0);
             this.rightButtonsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
@@ -1041,7 +1041,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CancelButton = this.EditorCancelButton;
+            this.CancelButton = this.editorCancelButton;
             this.ClientSize = new System.Drawing.Size(1021, 716);
             this.Controls.Add(this.macroTableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1077,7 +1077,7 @@
         #endregion
 
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button EditorCancelButton;
+        private System.Windows.Forms.Button editorCancelButton;
         private System.Windows.Forms.TextBox MacroBox;
         private System.Windows.Forms.Button StringButton;
         private System.Windows.Forms.Button TabButton;
@@ -1096,7 +1096,7 @@
         private System.Windows.Forms.Button cursorToButton;
         private System.Windows.Forms.Button TransferFromButton;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label TextBoxLabel;
+        private System.Windows.Forms.Label textBoxLabel;
         private System.Windows.Forms.Label snippetsLabel;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TextBox nameTextBox;

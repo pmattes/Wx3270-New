@@ -63,7 +63,7 @@
             this.tlsTunnelCheckBox = new System.Windows.Forms.CheckBox();
             this.starttlsCheckBox = new System.Windows.Forms.CheckBox();
             this.nvtCheckBox = new System.Windows.Forms.CheckBox();
-            this.VerifyCertCheckBox = new System.Windows.Forms.CheckBox();
+            this.verifyCertCheckBox = new System.Windows.Forms.CheckBox();
             this.tn3270eCheckBox = new System.Windows.Forms.CheckBox();
             this.telnetCheckBox = new System.Windows.Forms.CheckBox();
             this.loginScreenCheckBox = new System.Windows.Forms.CheckBox();
@@ -500,7 +500,7 @@
             this.optionsLayoutPanel.Controls.Add(this.tlsTunnelCheckBox, 0, 0);
             this.optionsLayoutPanel.Controls.Add(this.starttlsCheckBox, 0, 1);
             this.optionsLayoutPanel.Controls.Add(this.nvtCheckBox, 0, 3);
-            this.optionsLayoutPanel.Controls.Add(this.VerifyCertCheckBox, 0, 2);
+            this.optionsLayoutPanel.Controls.Add(this.verifyCertCheckBox, 0, 2);
             this.optionsLayoutPanel.Controls.Add(this.tn3270eCheckBox, 0, 4);
             this.optionsLayoutPanel.Controls.Add(this.telnetCheckBox, 1, 0);
             this.optionsLayoutPanel.Controls.Add(this.loginScreenCheckBox, 0, 6);
@@ -553,19 +553,19 @@
             this.nvtCheckBox.Text = "NVT mode";
             this.nvtCheckBox.UseVisualStyleBackColor = true;
             // 
-            // VerifyCertCheckBox
+            // verifyCertCheckBox
             // 
-            this.VerifyCertCheckBox.AutoSize = true;
-            this.VerifyCertCheckBox.Checked = true;
-            this.VerifyCertCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.VerifyCertCheckBox.Location = new System.Drawing.Point(3, 49);
-            this.VerifyCertCheckBox.Name = "VerifyCertCheckBox";
-            this.VerifyCertCheckBox.Size = new System.Drawing.Size(124, 17);
-            this.VerifyCertCheckBox.TabIndex = 2;
-            this.VerifyCertCheckBox.Tag = "~Y:";
-            this.VerifyCertCheckBox.Text = "Verify host certificate";
-            this.VerifyCertCheckBox.UseVisualStyleBackColor = true;
-            this.VerifyCertCheckBox.CheckedChanged += new System.EventHandler(this.VerifyCertCheckBox_CheckedChanged);
+            this.verifyCertCheckBox.AutoSize = true;
+            this.verifyCertCheckBox.Checked = true;
+            this.verifyCertCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.verifyCertCheckBox.Location = new System.Drawing.Point(3, 49);
+            this.verifyCertCheckBox.Name = "verifyCertCheckBox";
+            this.verifyCertCheckBox.Size = new System.Drawing.Size(124, 17);
+            this.verifyCertCheckBox.TabIndex = 2;
+            this.verifyCertCheckBox.Tag = "~Y:";
+            this.verifyCertCheckBox.Text = "Verify host certificate";
+            this.verifyCertCheckBox.UseVisualStyleBackColor = true;
+            this.verifyCertCheckBox.CheckedChanged += new System.EventHandler(this.VerifyCertCheckBox_CheckedChanged);
             // 
             // tn3270eCheckBox
             // 
@@ -1183,7 +1183,7 @@
         private System.Windows.Forms.CheckBox tlsTunnelCheckBox;
         private System.Windows.Forms.CheckBox starttlsCheckBox;
         private System.Windows.Forms.CheckBox nvtCheckBox;
-        private System.Windows.Forms.CheckBox VerifyCertCheckBox;
+        private System.Windows.Forms.CheckBox verifyCertCheckBox;
         private System.Windows.Forms.CheckBox tn3270eCheckBox;
         private System.Windows.Forms.CheckBox telnetCheckBox;
         private System.Windows.Forms.CheckBox loginScreenCheckBox;

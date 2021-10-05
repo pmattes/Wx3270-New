@@ -37,13 +37,13 @@
             this.proxyComboBox = new System.Windows.Forms.ComboBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.portLabel = new System.Windows.Forms.Label();
+            this.addressLabel = new System.Windows.Forms.Label();
             this.portTextBox = new System.Windows.Forms.TextBox();
             this.addressTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.usernameLabel = new System.Windows.Forms.Label();
+            this.passwordLabel = new System.Windows.Forms.Label();
+            this.proxyTypeLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.okButton = new System.Windows.Forms.Button();
@@ -85,13 +85,13 @@
             this.tableLayoutPanel1.Controls.Add(this.proxyComboBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.passwordTextBox, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.usernameTextBox, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.portLabel, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.addressLabel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.portTextBox, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.addressTextBox, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.usernameLabel, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.passwordLabel, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.proxyTypeLabel, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
@@ -161,25 +161,25 @@
             this.usernameTextBox.TabIndex = 3;
             this.usernameTextBox.Tag = "username";
             // 
-            // label4
+            // portLabel
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 89);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Port";
+            this.portLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.portLabel.AutoSize = true;
+            this.portLabel.Location = new System.Drawing.Point(3, 89);
+            this.portLabel.Name = "portLabel";
+            this.portLabel.Size = new System.Drawing.Size(26, 13);
+            this.portLabel.TabIndex = 1;
+            this.portLabel.Text = "Port";
             // 
-            // label3
+            // addressLabel
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 48);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Address";
+            this.addressLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.addressLabel.AutoSize = true;
+            this.addressLabel.Location = new System.Drawing.Point(3, 48);
+            this.addressLabel.Name = "addressLabel";
+            this.addressLabel.Size = new System.Drawing.Size(45, 13);
+            this.addressLabel.TabIndex = 0;
+            this.addressLabel.Text = "Address";
             // 
             // portTextBox
             // 
@@ -199,35 +199,35 @@
             this.addressTextBox.TabIndex = 1;
             this.addressTextBox.Tag = "address";
             // 
-            // label2
+            // usernameLabel
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 130);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Username";
+            this.usernameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.usernameLabel.AutoSize = true;
+            this.usernameLabel.Location = new System.Drawing.Point(3, 130);
+            this.usernameLabel.Name = "usernameLabel";
+            this.usernameLabel.Size = new System.Drawing.Size(55, 13);
+            this.usernameLabel.TabIndex = 3;
+            this.usernameLabel.Text = "Username";
             // 
-            // label5
+            // passwordLabel
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 171);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Password";
+            this.passwordLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.passwordLabel.AutoSize = true;
+            this.passwordLabel.Location = new System.Drawing.Point(3, 171);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(53, 13);
+            this.passwordLabel.TabIndex = 4;
+            this.passwordLabel.Text = "Password";
             // 
-            // label6
+            // proxyTypeLabel
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 7);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Proxy type";
+            this.proxyTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.proxyTypeLabel.AutoSize = true;
+            this.proxyTypeLabel.Location = new System.Drawing.Point(3, 7);
+            this.proxyTypeLabel.Name = "proxyTypeLabel";
+            this.proxyTypeLabel.Size = new System.Drawing.Size(56, 13);
+            this.proxyTypeLabel.TabIndex = 5;
+            this.proxyTypeLabel.Text = "Proxy type";
             // 
             // flowLayoutPanel1
             // 
@@ -316,13 +316,13 @@
         private System.Windows.Forms.ComboBox proxyComboBox;
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.TextBox usernameTextBox;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label portLabel;
+        private System.Windows.Forms.Label addressLabel;
         private System.Windows.Forms.TextBox portTextBox;
         private System.Windows.Forms.TextBox addressTextBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label usernameLabel;
+        private System.Windows.Forms.Label passwordLabel;
+        private System.Windows.Forms.Label proxyTypeLabel;
         private System.Windows.Forms.Label portRequiredLabel;
         private System.Windows.Forms.Label addressRequiredLabel;
         private System.Windows.Forms.ToolTip toolTip1;

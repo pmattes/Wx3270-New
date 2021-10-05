@@ -33,9 +33,9 @@
             this.OiaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.Oia4AB = new System.Windows.Forms.Label();
             this.OiaTLS = new System.Windows.Forms.Label();
-            this.OiaLu = new System.Windows.Forms.Label();
-            this.OiaTiming = new System.Windows.Forms.Label();
-            this.OiaCursor = new System.Windows.Forms.Label();
+            this.oiaLu = new System.Windows.Forms.Label();
+            this.oiaTiming = new System.Windows.Forms.Label();
+            this.oiaCursor = new System.Windows.Forms.Label();
             this.OiaScript = new System.Windows.Forms.Label();
             this.OiaScreentrace = new System.Windows.Forms.Label();
             this.OiaPrinter = new System.Windows.Forms.Label();
@@ -49,7 +49,7 @@
             this.OiaReverse = new System.Windows.Forms.Label();
             this.TopLeftLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.startLeftPictureBox = new System.Windows.Forms.PictureBox();
-            this.ActionsBox = new System.Windows.Forms.PictureBox();
+            this.actionsBox = new System.Windows.Forms.PictureBox();
             this.actionsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.x3270PromptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tracingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +63,7 @@
             this.printScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayKeymapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startRightPictureBox = new System.Windows.Forms.PictureBox();
-            this.KeypadBox = new System.Windows.Forms.PictureBox();
+            this.keypadBox = new System.Windows.Forms.PictureBox();
             this.keypadContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pF1PF12ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pF1ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -135,7 +135,7 @@
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.TopLayoutPanel = new System.Windows.Forms.Panel();
             this.TopRightLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.SettingsBox = new System.Windows.Forms.PictureBox();
+            this.settingsBox = new System.Windows.Forms.PictureBox();
             this.settingsMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -207,10 +207,10 @@
             this.resetContextMenuStrip.SuspendLayout();
             this.TopLeftLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startLeftPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ActionsBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actionsBox)).BeginInit();
             this.actionsMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startRightPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KeypadBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.keypadBox)).BeginInit();
             this.keypadContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.connectPictureBox)).BeginInit();
             this.connectMenuStrip.SuspendLayout();
@@ -222,7 +222,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.TopLayoutPanel.SuspendLayout();
             this.TopRightLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SettingsBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.settingsBox)).BeginInit();
             this.settingsMenuStrip.SuspendLayout();
             this.MainTable.SuspendLayout();
             this.ScreenBoxPanel.SuspendLayout();
@@ -279,9 +279,9 @@
             this.OiaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.4961F));
             this.OiaLayoutPanel.Controls.Add(this.Oia4AB, 0, 0);
             this.OiaLayoutPanel.Controls.Add(this.OiaTLS, 25, 0);
-            this.OiaLayoutPanel.Controls.Add(this.OiaLu, 26, 0);
-            this.OiaLayoutPanel.Controls.Add(this.OiaTiming, 32, 0);
-            this.OiaLayoutPanel.Controls.Add(this.OiaCursor, 35, 0);
+            this.OiaLayoutPanel.Controls.Add(this.oiaLu, 26, 0);
+            this.OiaLayoutPanel.Controls.Add(this.oiaTiming, 32, 0);
+            this.OiaLayoutPanel.Controls.Add(this.oiaCursor, 35, 0);
             this.OiaLayoutPanel.Controls.Add(this.OiaScript, 20, 0);
             this.OiaLayoutPanel.Controls.Add(this.OiaScreentrace, 19, 0);
             this.OiaLayoutPanel.Controls.Add(this.OiaPrinter, 18, 0);
@@ -329,53 +329,53 @@
             this.OiaTLS.Text = "🔓";
             this.OiaTLS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // OiaLu
+            // oiaLu
             // 
-            this.OiaLu.AutoSize = true;
-            this.OiaLayoutPanel.SetColumnSpan(this.OiaLu, 6);
-            this.OiaLu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OiaLu.Font = new System.Drawing.Font("Consolas", 12F);
-            this.OiaLu.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.OiaLu.Location = new System.Drawing.Point(471, 0);
-            this.OiaLu.Name = "OiaLu";
-            this.OiaLu.Size = new System.Drawing.Size(102, 33);
-            this.OiaLu.TabIndex = 4;
-            this.OiaLu.Tag = "Main";
-            this.OiaLu.Text = "LU34567X";
-            this.OiaLu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.OiaLu, "Logical Unit name");
+            this.oiaLu.AutoSize = true;
+            this.OiaLayoutPanel.SetColumnSpan(this.oiaLu, 6);
+            this.oiaLu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaLu.Font = new System.Drawing.Font("Consolas", 12F);
+            this.oiaLu.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaLu.Location = new System.Drawing.Point(471, 0);
+            this.oiaLu.Name = "oiaLu";
+            this.oiaLu.Size = new System.Drawing.Size(102, 33);
+            this.oiaLu.TabIndex = 4;
+            this.oiaLu.Tag = "Main";
+            this.oiaLu.Text = "LU34567X";
+            this.oiaLu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.oiaLu, "Logical Unit name");
             // 
-            // OiaTiming
+            // oiaTiming
             // 
-            this.OiaTiming.AutoSize = true;
-            this.OiaLayoutPanel.SetColumnSpan(this.OiaTiming, 3);
-            this.OiaTiming.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OiaTiming.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OiaTiming.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.OiaTiming.Location = new System.Drawing.Point(576, 0);
-            this.OiaTiming.Margin = new System.Windows.Forms.Padding(0);
-            this.OiaTiming.Name = "OiaTiming";
-            this.OiaTiming.Size = new System.Drawing.Size(54, 33);
-            this.OiaTiming.TabIndex = 4;
-            this.OiaTiming.Text = "🕓:00";
-            this.OiaTiming.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.OiaTiming, "Command time");
+            this.oiaTiming.AutoSize = true;
+            this.OiaLayoutPanel.SetColumnSpan(this.oiaTiming, 3);
+            this.oiaTiming.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaTiming.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oiaTiming.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaTiming.Location = new System.Drawing.Point(576, 0);
+            this.oiaTiming.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaTiming.Name = "oiaTiming";
+            this.oiaTiming.Size = new System.Drawing.Size(54, 33);
+            this.oiaTiming.TabIndex = 4;
+            this.oiaTiming.Text = "🕓:00";
+            this.oiaTiming.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.oiaTiming, "Command time");
             // 
-            // OiaCursor
+            // oiaCursor
             // 
-            this.OiaCursor.AutoSize = true;
-            this.OiaLayoutPanel.SetColumnSpan(this.OiaCursor, 5);
-            this.OiaCursor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OiaCursor.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OiaCursor.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.OiaCursor.Location = new System.Drawing.Point(630, 0);
-            this.OiaCursor.Margin = new System.Windows.Forms.Padding(0);
-            this.OiaCursor.Name = "OiaCursor";
-            this.OiaCursor.Size = new System.Drawing.Size(99, 33);
-            this.OiaCursor.TabIndex = 4;
-            this.OiaCursor.Tag = "Main";
-            this.OiaCursor.Text = "000/000";
-            this.OiaCursor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.oiaCursor.AutoSize = true;
+            this.OiaLayoutPanel.SetColumnSpan(this.oiaCursor, 5);
+            this.oiaCursor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaCursor.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oiaCursor.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaCursor.Location = new System.Drawing.Point(630, 0);
+            this.oiaCursor.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaCursor.Name = "oiaCursor";
+            this.oiaCursor.Size = new System.Drawing.Size(99, 33);
+            this.oiaCursor.TabIndex = 4;
+            this.oiaCursor.Tag = "Main";
+            this.oiaCursor.Text = "000/000";
+            this.oiaCursor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // OiaScript
             // 
@@ -525,9 +525,9 @@
             // 
             this.TopLeftLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.TopLeftLayoutPanel.Controls.Add(this.startLeftPictureBox);
-            this.TopLeftLayoutPanel.Controls.Add(this.ActionsBox);
+            this.TopLeftLayoutPanel.Controls.Add(this.actionsBox);
             this.TopLeftLayoutPanel.Controls.Add(this.startRightPictureBox);
-            this.TopLeftLayoutPanel.Controls.Add(this.KeypadBox);
+            this.TopLeftLayoutPanel.Controls.Add(this.keypadBox);
             this.TopLeftLayoutPanel.Controls.Add(this.connectPictureBox);
             this.TopLeftLayoutPanel.Controls.Add(this.profilePictureBox);
             this.TopLeftLayoutPanel.Controls.Add(this.macrosPictureBox);
@@ -550,19 +550,19 @@
             this.startLeftPictureBox.TabIndex = 11;
             this.startLeftPictureBox.TabStop = false;
             // 
-            // ActionsBox
+            // actionsBox
             // 
-            this.ActionsBox.ContextMenuStrip = this.actionsMenuStrip;
-            this.ActionsBox.Image = global::Wx3270.Properties.Resources.StartBlankMiddleWide;
-            this.ActionsBox.Location = new System.Drawing.Point(4, 0);
-            this.ActionsBox.Margin = new System.Windows.Forms.Padding(0);
-            this.ActionsBox.Name = "ActionsBox";
-            this.ActionsBox.Size = new System.Drawing.Size(48, 32);
-            this.ActionsBox.TabIndex = 4;
-            this.ActionsBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.ActionsBox, "Actions");
-            this.ActionsBox.Click += new System.EventHandler(this.ActionsBox_Click);
-            this.ActionsBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ActionsBox_paint);
+            this.actionsBox.ContextMenuStrip = this.actionsMenuStrip;
+            this.actionsBox.Image = global::Wx3270.Properties.Resources.StartBlankMiddleWide;
+            this.actionsBox.Location = new System.Drawing.Point(4, 0);
+            this.actionsBox.Margin = new System.Windows.Forms.Padding(0);
+            this.actionsBox.Name = "actionsBox";
+            this.actionsBox.Size = new System.Drawing.Size(48, 32);
+            this.actionsBox.TabIndex = 4;
+            this.actionsBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.actionsBox, "Actions");
+            this.actionsBox.Click += new System.EventHandler(this.ActionsBox_Click);
+            this.actionsBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ActionsBox_paint);
             // 
             // actionsMenuStrip
             // 
@@ -684,18 +684,18 @@
             this.startRightPictureBox.TabIndex = 12;
             this.startRightPictureBox.TabStop = false;
             // 
-            // KeypadBox
+            // keypadBox
             // 
-            this.KeypadBox.ContextMenuStrip = this.keypadContextMenuStrip;
-            this.KeypadBox.Image = global::Wx3270.Properties.Resources.KeypadSmallHollow3;
-            this.KeypadBox.Location = new System.Drawing.Point(56, 0);
-            this.KeypadBox.Margin = new System.Windows.Forms.Padding(0);
-            this.KeypadBox.Name = "KeypadBox";
-            this.KeypadBox.Size = new System.Drawing.Size(36, 32);
-            this.KeypadBox.TabIndex = 4;
-            this.KeypadBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.KeypadBox, "Keypad\r\nLeft-click for 3270\r\nAlt-left-click for APL");
-            this.KeypadBox.Click += new System.EventHandler(this.KeypadBox_Click);
+            this.keypadBox.ContextMenuStrip = this.keypadContextMenuStrip;
+            this.keypadBox.Image = global::Wx3270.Properties.Resources.KeypadSmallHollow3;
+            this.keypadBox.Location = new System.Drawing.Point(56, 0);
+            this.keypadBox.Margin = new System.Windows.Forms.Padding(0);
+            this.keypadBox.Name = "keypadBox";
+            this.keypadBox.Size = new System.Drawing.Size(36, 32);
+            this.keypadBox.TabIndex = 4;
+            this.keypadBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.keypadBox, "Keypad\r\nLeft-click for 3270\r\nAlt-left-click for APL");
+            this.keypadBox.Click += new System.EventHandler(this.KeypadBox_Click);
             // 
             // keypadContextMenuStrip
             // 
@@ -1330,7 +1330,7 @@
             // 
             // TopRightLayoutPanel
             // 
-            this.TopRightLayoutPanel.Controls.Add(this.SettingsBox);
+            this.TopRightLayoutPanel.Controls.Add(this.settingsBox);
             this.TopRightLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.TopRightLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.TopRightLayoutPanel.Location = new System.Drawing.Point(688, 0);
@@ -1339,18 +1339,18 @@
             this.TopRightLayoutPanel.Size = new System.Drawing.Size(41, 32);
             this.TopRightLayoutPanel.TabIndex = 1;
             // 
-            // SettingsBox
+            // settingsBox
             // 
-            this.SettingsBox.ContextMenuStrip = this.settingsMenuStrip;
-            this.SettingsBox.Image = global::Wx3270.Properties.Resources.KnobBlueCenter6;
-            this.SettingsBox.Location = new System.Drawing.Point(8, 1);
-            this.SettingsBox.Margin = new System.Windows.Forms.Padding(1);
-            this.SettingsBox.Name = "SettingsBox";
-            this.SettingsBox.Size = new System.Drawing.Size(32, 32);
-            this.SettingsBox.TabIndex = 4;
-            this.SettingsBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.SettingsBox, "Settings");
-            this.SettingsBox.Click += new System.EventHandler(this.SettingsBox_Click);
+            this.settingsBox.ContextMenuStrip = this.settingsMenuStrip;
+            this.settingsBox.Image = global::Wx3270.Properties.Resources.KnobBlueCenter6;
+            this.settingsBox.Location = new System.Drawing.Point(8, 1);
+            this.settingsBox.Margin = new System.Windows.Forms.Padding(1);
+            this.settingsBox.Name = "settingsBox";
+            this.settingsBox.Size = new System.Drawing.Size(32, 32);
+            this.settingsBox.TabIndex = 4;
+            this.settingsBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.settingsBox, "Settings");
+            this.settingsBox.Click += new System.EventHandler(this.SettingsBox_Click);
             // 
             // settingsMenuStrip
             // 
@@ -1897,10 +1897,10 @@
             this.resetContextMenuStrip.ResumeLayout(false);
             this.TopLeftLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.startLeftPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ActionsBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actionsBox)).EndInit();
             this.actionsMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.startRightPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KeypadBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.keypadBox)).EndInit();
             this.keypadContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.connectPictureBox)).EndInit();
             this.connectMenuStrip.ResumeLayout(false);
@@ -1912,7 +1912,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.TopLayoutPanel.ResumeLayout(false);
             this.TopRightLayoutPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SettingsBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.settingsBox)).EndInit();
             this.settingsMenuStrip.ResumeLayout(false);
             this.MainTable.ResumeLayout(false);
             this.MainTable.PerformLayout();
@@ -1943,13 +1943,13 @@
         public System.Windows.Forms.Panel TopBar;
         public System.Windows.Forms.Label OiaLock;
         public System.Windows.Forms.Label Oia4AB;
-        private System.Windows.Forms.PictureBox ActionsBox;
-        private System.Windows.Forms.PictureBox KeypadBox;
-        private System.Windows.Forms.PictureBox SettingsBox;
-        public System.Windows.Forms.Label OiaTiming;
+        private System.Windows.Forms.PictureBox actionsBox;
+        private System.Windows.Forms.PictureBox keypadBox;
+        private System.Windows.Forms.PictureBox settingsBox;
+        public System.Windows.Forms.Label oiaTiming;
         public System.Windows.Forms.Label OiaCx;
-        public System.Windows.Forms.Label OiaCursor;
-        public System.Windows.Forms.Label OiaLu;
+        public System.Windows.Forms.Label oiaCursor;
+        public System.Windows.Forms.Label oiaLu;
         public System.Windows.Forms.Label OiaTLS;
         public System.Windows.Forms.ToolTip toolTip1;
         public System.Windows.Forms.Label OiaScript;

@@ -34,8 +34,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.portRequiredLabel = new System.Windows.Forms.Label();
             this.addressRequiredLabel = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.portLabel = new System.Windows.Forms.Label();
+            this.addressLabel = new System.Windows.Forms.Label();
             this.portTextBox = new System.Windows.Forms.TextBox();
             this.addressTextBox = new System.Windows.Forms.TextBox();
             this.serviceLabel = new System.Windows.Forms.Label();
@@ -78,8 +78,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.portRequiredLabel, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.addressRequiredLabel, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.portLabel, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.addressLabel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.portTextBox, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.addressTextBox, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.serviceLabel, 0, 0);
@@ -120,25 +120,25 @@
             this.addressRequiredLabel.Text = "required";
             this.addressRequiredLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // label4
+            // portLabel
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 86);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Port";
+            this.portLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.portLabel.AutoSize = true;
+            this.portLabel.Location = new System.Drawing.Point(3, 86);
+            this.portLabel.Name = "portLabel";
+            this.portLabel.Size = new System.Drawing.Size(26, 13);
+            this.portLabel.TabIndex = 1;
+            this.portLabel.Text = "Port";
             // 
-            // label3
+            // addressLabel
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 45);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Address";
+            this.addressLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.addressLabel.AutoSize = true;
+            this.addressLabel.Location = new System.Drawing.Point(3, 45);
+            this.addressLabel.Name = "addressLabel";
+            this.addressLabel.Size = new System.Drawing.Size(45, 13);
+            this.addressLabel.TabIndex = 0;
+            this.addressLabel.Text = "Address";
             // 
             // portTextBox
             // 
@@ -263,8 +263,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label portRequiredLabel;
         private System.Windows.Forms.Label addressRequiredLabel;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label portLabel;
+        private System.Windows.Forms.Label addressLabel;
         private System.Windows.Forms.TextBox portTextBox;
         private System.Windows.Forms.TextBox addressTextBox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;

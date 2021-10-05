@@ -34,20 +34,20 @@
             this.optionsTab = new System.Windows.Forms.TabPage();
             this.descriptionGroupBox = new System.Windows.Forms.GroupBox();
             this.descriptionTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.label9 = new System.Windows.Forms.Label();
+            this.profileDescriptionLabel = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.windowTitleLabel = new System.Windows.Forms.Label();
             this.titleTextBox = new System.Windows.Forms.TextBox();
             this.opacityGroupBox = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.percent100Label = new System.Windows.Forms.Label();
+            this.percent30Label = new System.Windows.Forms.Label();
             this.opacityLabel = new System.Windows.Forms.Label();
             this.opacityTrackBar = new System.Windows.Forms.TrackBar();
             this.printerSessionGroupBox = new System.Windows.Forms.GroupBox();
             this.printerTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.printerNameLabel = new System.Windows.Forms.Label();
+            this.pr3287OptionsLabel = new System.Windows.Forms.Label();
+            this.pr3287CodePageLabel = new System.Windows.Forms.Label();
             this.printerComboBox = new System.Windows.Forms.ComboBox();
             this.printerCodePageTextBox = new System.Windows.Forms.TextBox();
             this.printerOptionsTextBox = new System.Windows.Forms.TextBox();
@@ -97,21 +97,18 @@
             this.keyboardCtrlCheckBox = new System.Windows.Forms.CheckBox();
             this.ChordComboBox = new System.Windows.Forms.ComboBox();
             this.MatchTypeLabel = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.selectedKeyGroupBox = new System.Windows.Forms.GroupBox();
             this.SelectedKeyLabel = new System.Windows.Forms.Label();
             this.keymapSelectedLabel = new System.Windows.Forms.Label();
             this.keyCharValuePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.editedKeyCharLabel = new System.Windows.Forms.Label();
             this.editedKeyCharValueLabel = new System.Windows.Forms.Label();
             this.scanCodeSelectedLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.defineActionsLabel = new System.Windows.Forms.Label();
             this.modeAllLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.keyboardActionsInheritedLabel = new System.Windows.Forms.Label();
             this.keyboardActionsTextBox = new System.Windows.Forms.TextBox();
             this.keyboardActionsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.keyboardActionsRemoveButton = new Wx3270.NoSelectButton();
-            this.keyboardActionsEditButton = new Wx3270.NoSelectButton();
-            this.keyboardActionsAddKeyButton = new Wx3270.NoSelectButton();
             this.BehaviorLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.ActionsRadioButton = new System.Windows.Forms.RadioButton();
@@ -119,11 +116,10 @@
             this.matchFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.matchKeyRadioButton = new System.Windows.Forms.RadioButton();
             this.matchScanCodeRadioButton = new System.Windows.Forms.RadioButton();
-            this.KeyLabel = new System.Windows.Forms.Label();
+            this.keyLabel = new System.Windows.Forms.Label();
             this.ChordLabel = new System.Windows.Forms.Label();
             this.matchTypeflowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.keyboardModifiersLabel = new System.Windows.Forms.Label();
-            this.keyboardPictureButton = new Wx3270.NoSelectButton();
             this.keypadTab = new System.Windows.Forms.TabPage();
             this.KeypadTypeFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.keypadTypeLabel = new System.Windows.Forms.Label();
@@ -141,15 +137,7 @@
             this.rightButton = new System.Windows.Forms.RadioButton();
             this.leftButton = new System.Windows.Forms.RadioButton();
             this.keypadMappingGroupBox = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.editedButtonActionsTextBox = new System.Windows.Forms.TextBox();
-            this.keypadActionsInheritedLabel = new System.Windows.Forms.Label();
-            this.editedButtonTextLabel = new System.Windows.Forms.Label();
-            this.keypadTextSize = new System.Windows.Forms.NumericUpDown();
-            this.editedButtonActionsLabel = new System.Windows.Forms.Label();
-            this.editedButtonTextTextBox = new System.Windows.Forms.TextBox();
-            this.editedButtonTextSizeLabel = new System.Windows.Forms.Label();
-            this.keypadRemoveButton = new Wx3270.NoSelectButton();
+            this.backgroundTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.backgroundGroupBox = new System.Windows.Forms.GroupBox();
             this.backgroundLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.deletePictureBox = new System.Windows.Forms.PictureBox();
@@ -158,6 +146,14 @@
             this.insertRadioButton = new System.Windows.Forms.RadioButton();
             this.blankPictureBox = new System.Windows.Forms.PictureBox();
             this.deleteRadioButton = new System.Windows.Forms.RadioButton();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.editedButtonActionsTextBox = new System.Windows.Forms.TextBox();
+            this.keypadActionsInheritedLabel = new System.Windows.Forms.Label();
+            this.editedButtonTextLabel = new System.Windows.Forms.Label();
+            this.keypadTextSize = new System.Windows.Forms.NumericUpDown();
+            this.editedButtonActionsLabel = new System.Windows.Forms.Label();
+            this.editedButtonTextTextBox = new System.Windows.Forms.TextBox();
+            this.editedButtonTextSizeLabel = new System.Windows.Forms.Label();
             this.keymapModifiersLabel = new System.Windows.Forms.Label();
             this.selectLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -170,9 +166,7 @@
             this.colorPreviewScreenPictureBox = new System.Windows.Forms.PictureBox();
             this.colorMiscGroupBox = new System.Windows.Forms.GroupBox();
             this.crosshairSwatch = new System.Windows.Forms.PictureBox();
-            this.crosshairColorButton = new Wx3270.NoSelectButton();
             this.selectionSwatch = new System.Windows.Forms.PictureBox();
-            this.selectedButton = new Wx3270.NoSelectButton();
             this.schemeBox = new System.Windows.Forms.GroupBox();
             this.customButton = new System.Windows.Forms.RadioButton();
             this.blackOnWhiteButton = new System.Windows.Forms.RadioButton();
@@ -212,28 +206,10 @@
             this.redSample = new System.Windows.Forms.Label();
             this.blueSample = new System.Windows.Forms.Label();
             this.NnutralBlackSample = new System.Windows.Forms.Label();
-            this.whiteButton = new Wx3270.NoSelectButton();
-            this.grayButton = new Wx3270.NoSelectButton();
-            this.paleTurquoiseButton = new Wx3270.NoSelectButton();
-            this.paleGreenButton = new Wx3270.NoSelectButton();
-            this.purpleButton = new Wx3270.NoSelectButton();
-            this.orangeButton = new Wx3270.NoSelectButton();
-            this.deepBlueButton = new Wx3270.NoSelectButton();
-            this.blackButton = new Wx3270.NoSelectButton();
-            this.neutralWhiteButton = new Wx3270.NoSelectButton();
-            this.yellowButton = new Wx3270.NoSelectButton();
-            this.turquoiseButton = new Wx3270.NoSelectButton();
-            this.greenButton = new Wx3270.NoSelectButton();
-            this.pinkButton = new Wx3270.NoSelectButton();
-            this.redButton = new Wx3270.NoSelectButton();
-            this.blueButton = new Wx3270.NoSelectButton();
-            this.neutralBlackButton = new Wx3270.NoSelectButton();
             this.colors3278Tab = new System.Windows.Forms.TabPage();
             this.monoOtherGroupBox = new System.Windows.Forms.GroupBox();
             this.monoCrosshairSample = new System.Windows.Forms.Label();
             this.monoSelectBackgroundSwatch = new System.Windows.Forms.Label();
-            this.monoCrosshairButton = new Wx3270.NoSelectButton();
-            this.monoSelectBackground = new Wx3270.NoSelectButton();
             this.monoPreviewGroupBox = new System.Windows.Forms.GroupBox();
             this.monoPreviewTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.monoPreviewSeparatorPictureBox = new System.Windows.Forms.PictureBox();
@@ -247,9 +223,6 @@
             this.monoNormalSample = new System.Windows.Forms.Label();
             this.monoIntensifiedSample = new System.Windows.Forms.Label();
             this.monoBackgroundSwatch = new System.Windows.Forms.Label();
-            this.monoIntensifiedButton = new Wx3270.NoSelectButton();
-            this.monoNormalButton = new Wx3270.NoSelectButton();
-            this.monoBackgroundButton = new Wx3270.NoSelectButton();
             this.monoColorSchemeBox = new System.Windows.Forms.GroupBox();
             this.monoCustomButton = new System.Windows.Forms.RadioButton();
             this.greenOnWhiteButton = new System.Windows.Forms.RadioButton();
@@ -263,14 +236,11 @@
             this.fontPreviewScreenPictureBox = new System.Windows.Forms.PictureBox();
             this.sizeIgnoredLabel = new System.Windows.Forms.Label();
             this.fontLabel = new System.Windows.Forms.Label();
-            this.FontChangeButton = new Wx3270.NoSelectButton();
             this.soundsTab = new System.Windows.Forms.TabPage();
             this.soundsGroupBox = new System.Windows.Forms.GroupBox();
             this.soundLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.PlayAudibleBell = new Wx3270.NoSelectButton();
             this.keyboardClickCheckBox = new System.Windows.Forms.CheckBox();
             this.audibleBellCheckBox = new System.Windows.Forms.CheckBox();
-            this.PlayKeyboardClick = new Wx3270.NoSelectButton();
             this.serversTab = new System.Windows.Forms.TabPage();
             this.httpdBox = new System.Windows.Forms.GroupBox();
             this.httpdNoConfigLabel = new System.Windows.Forms.Label();
@@ -293,13 +263,13 @@
             this.proxyTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.portLabel = new System.Windows.Forms.Label();
+            this.addressLabel = new System.Windows.Forms.Label();
             this.portTextBox = new System.Windows.Forms.TextBox();
             this.addressTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.usernameLabel = new System.Windows.Forms.Label();
+            this.passwordLabel = new System.Windows.Forms.Label();
+            this.proxyTypeLabel = new System.Windows.Forms.Label();
             this.proxyTypeTextBox = new System.Windows.Forms.TextBox();
             this.miscellaneousTab = new System.Windows.Forms.TabPage();
             this.warningLabel = new System.Windows.Forms.Label();
@@ -307,15 +277,45 @@
             this.miscellaneousTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonsLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
-            this.redoButton = new Wx3270.NoSelectButton();
-            this.undoButton = new Wx3270.NoSelectButton();
-            this.setToDefaultsButton = new Wx3270.NoSelectButton();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.HostColorDialog = new System.Windows.Forms.ColorDialog();
             this.ScreenFontDialog = new System.Windows.Forms.FontDialog();
             this.opacityTimer = new System.Windows.Forms.Timer(this.components);
-            this.backgroundTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.keyboardActionsRemoveButton = new Wx3270.NoSelectButton();
+            this.keyboardActionsEditButton = new Wx3270.NoSelectButton();
+            this.keyboardActionsAddKeyButton = new Wx3270.NoSelectButton();
+            this.keyboardPictureButton = new Wx3270.NoSelectButton();
+            this.keypadRemoveButton = new Wx3270.NoSelectButton();
+            this.crosshairColorButton = new Wx3270.NoSelectButton();
+            this.selectedButton = new Wx3270.NoSelectButton();
+            this.whiteButton = new Wx3270.NoSelectButton();
+            this.grayButton = new Wx3270.NoSelectButton();
+            this.paleTurquoiseButton = new Wx3270.NoSelectButton();
+            this.paleGreenButton = new Wx3270.NoSelectButton();
+            this.purpleButton = new Wx3270.NoSelectButton();
+            this.orangeButton = new Wx3270.NoSelectButton();
+            this.deepBlueButton = new Wx3270.NoSelectButton();
+            this.blackButton = new Wx3270.NoSelectButton();
+            this.neutralWhiteButton = new Wx3270.NoSelectButton();
+            this.yellowButton = new Wx3270.NoSelectButton();
+            this.turquoiseButton = new Wx3270.NoSelectButton();
+            this.greenButton = new Wx3270.NoSelectButton();
+            this.pinkButton = new Wx3270.NoSelectButton();
+            this.redButton = new Wx3270.NoSelectButton();
+            this.blueButton = new Wx3270.NoSelectButton();
+            this.neutralBlackButton = new Wx3270.NoSelectButton();
+            this.monoCrosshairButton = new Wx3270.NoSelectButton();
+            this.monoSelectBackground = new Wx3270.NoSelectButton();
+            this.monoIntensifiedButton = new Wx3270.NoSelectButton();
+            this.monoNormalButton = new Wx3270.NoSelectButton();
+            this.monoBackgroundButton = new Wx3270.NoSelectButton();
+            this.FontChangeButton = new Wx3270.NoSelectButton();
+            this.PlayAudibleBell = new Wx3270.NoSelectButton();
+            this.PlayKeyboardClick = new Wx3270.NoSelectButton();
+            this.redoButton = new Wx3270.NoSelectButton();
+            this.undoButton = new Wx3270.NoSelectButton();
+            this.setToDefaultsButton = new Wx3270.NoSelectButton();
             this.settingsTabs.SuspendLayout();
             this.optionsTab.SuspendLayout();
             this.descriptionGroupBox.SuspendLayout();
@@ -341,7 +341,7 @@
             this.CursorGroupBox.SuspendLayout();
             this.keyboardTab.SuspendLayout();
             this.modifiersTableLayoutPanel.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.selectedKeyGroupBox.SuspendLayout();
             this.keyCharValuePanel.SuspendLayout();
             this.modeAllLayoutPanel.SuspendLayout();
             this.keyboardActionsFlowLayoutPanel.SuspendLayout();
@@ -352,13 +352,14 @@
             this.keypadModifiersLayoutPanel.SuspendLayout();
             this.keypadPositionGroupBox.SuspendLayout();
             this.keypadMappingGroupBox.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.keypadTextSize)).BeginInit();
+            this.backgroundTableLayoutPanel.SuspendLayout();
             this.backgroundGroupBox.SuspendLayout();
             this.backgroundLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.deletePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.insertPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.blankPictureBox)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.keypadTextSize)).BeginInit();
             this.colors3279Tab.SuspendLayout();
             this.colorPreviewGroupBox.SuspendLayout();
             this.colorPreviewTableLayoutPanel.SuspendLayout();
@@ -417,7 +418,6 @@
             this.ButtonsLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
-            this.backgroundTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // settingsTabs
@@ -476,7 +476,7 @@
             this.descriptionTableLayoutPanel.ColumnCount = 2;
             this.descriptionTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.descriptionTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.descriptionTableLayoutPanel.Controls.Add(this.label9, 0, 0);
+            this.descriptionTableLayoutPanel.Controls.Add(this.profileDescriptionLabel, 0, 0);
             this.descriptionTableLayoutPanel.Controls.Add(this.descriptionTextBox, 1, 0);
             this.descriptionTableLayoutPanel.Controls.Add(this.windowTitleLabel, 0, 1);
             this.descriptionTableLayoutPanel.Controls.Add(this.titleTextBox, 1, 1);
@@ -488,15 +488,15 @@
             this.descriptionTableLayoutPanel.Size = new System.Drawing.Size(259, 52);
             this.descriptionTableLayoutPanel.TabIndex = 1;
             // 
-            // label9
+            // profileDescriptionLabel
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 6);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 13);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Profile description";
+            this.profileDescriptionLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.profileDescriptionLabel.AutoSize = true;
+            this.profileDescriptionLabel.Location = new System.Drawing.Point(3, 6);
+            this.profileDescriptionLabel.Name = "profileDescriptionLabel";
+            this.profileDescriptionLabel.Size = new System.Drawing.Size(90, 13);
+            this.profileDescriptionLabel.TabIndex = 0;
+            this.profileDescriptionLabel.Text = "Profile description";
             // 
             // descriptionTextBox
             // 
@@ -530,8 +530,8 @@
             // 
             // opacityGroupBox
             // 
-            this.opacityGroupBox.Controls.Add(this.label8);
-            this.opacityGroupBox.Controls.Add(this.label7);
+            this.opacityGroupBox.Controls.Add(this.percent100Label);
+            this.opacityGroupBox.Controls.Add(this.percent30Label);
             this.opacityGroupBox.Controls.Add(this.opacityLabel);
             this.opacityGroupBox.Controls.Add(this.opacityTrackBar);
             this.opacityGroupBox.Location = new System.Drawing.Point(27, 89);
@@ -541,23 +541,23 @@
             this.opacityGroupBox.TabStop = false;
             this.opacityGroupBox.Text = "Opacity";
             // 
-            // label8
+            // percent100Label
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(234, 20);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 13);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "100%";
+            this.percent100Label.AutoSize = true;
+            this.percent100Label.Location = new System.Drawing.Point(234, 20);
+            this.percent100Label.Name = "percent100Label";
+            this.percent100Label.Size = new System.Drawing.Size(33, 13);
+            this.percent100Label.TabIndex = 5;
+            this.percent100Label.Text = "100%";
             // 
-            // label7
+            // percent30Label
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 20);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(27, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "30%";
+            this.percent30Label.AutoSize = true;
+            this.percent30Label.Location = new System.Drawing.Point(10, 20);
+            this.percent30Label.Name = "percent30Label";
+            this.percent30Label.Size = new System.Drawing.Size(27, 13);
+            this.percent30Label.TabIndex = 4;
+            this.percent30Label.Text = "30%";
             // 
             // opacityLabel
             // 
@@ -600,9 +600,9 @@
             this.printerTableLayoutPanel.ColumnCount = 2;
             this.printerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.printerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.printerTableLayoutPanel.Controls.Add(this.label12, 0, 0);
-            this.printerTableLayoutPanel.Controls.Add(this.label13, 0, 1);
-            this.printerTableLayoutPanel.Controls.Add(this.label14, 0, 2);
+            this.printerTableLayoutPanel.Controls.Add(this.printerNameLabel, 0, 0);
+            this.printerTableLayoutPanel.Controls.Add(this.pr3287OptionsLabel, 0, 1);
+            this.printerTableLayoutPanel.Controls.Add(this.pr3287CodePageLabel, 0, 2);
             this.printerTableLayoutPanel.Controls.Add(this.printerComboBox, 1, 0);
             this.printerTableLayoutPanel.Controls.Add(this.printerCodePageTextBox, 1, 2);
             this.printerTableLayoutPanel.Controls.Add(this.printerOptionsTextBox, 1, 1);
@@ -615,35 +615,35 @@
             this.printerTableLayoutPanel.Size = new System.Drawing.Size(259, 80);
             this.printerTableLayoutPanel.TabIndex = 0;
             // 
-            // label12
+            // printerNameLabel
             // 
-            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 7);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(66, 13);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Printer name";
+            this.printerNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.printerNameLabel.AutoSize = true;
+            this.printerNameLabel.Location = new System.Drawing.Point(3, 7);
+            this.printerNameLabel.Name = "printerNameLabel";
+            this.printerNameLabel.Size = new System.Drawing.Size(66, 13);
+            this.printerNameLabel.TabIndex = 0;
+            this.printerNameLabel.Text = "Printer name";
             // 
-            // label13
+            // pr3287OptionsLabel
             // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 33);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(77, 13);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "pr3287 options";
+            this.pr3287OptionsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pr3287OptionsLabel.AutoSize = true;
+            this.pr3287OptionsLabel.Location = new System.Drawing.Point(3, 33);
+            this.pr3287OptionsLabel.Name = "pr3287OptionsLabel";
+            this.pr3287OptionsLabel.Size = new System.Drawing.Size(77, 13);
+            this.pr3287OptionsLabel.TabIndex = 1;
+            this.pr3287OptionsLabel.Text = "pr3287 options";
             // 
-            // label14
+            // pr3287CodePageLabel
             // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(3, 60);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(94, 13);
-            this.label14.TabIndex = 2;
-            this.label14.Text = "pr3287 code page";
+            this.pr3287CodePageLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pr3287CodePageLabel.AutoSize = true;
+            this.pr3287CodePageLabel.Location = new System.Drawing.Point(3, 60);
+            this.pr3287CodePageLabel.Name = "pr3287CodePageLabel";
+            this.pr3287CodePageLabel.Size = new System.Drawing.Size(94, 13);
+            this.pr3287CodePageLabel.TabIndex = 2;
+            this.pr3287CodePageLabel.Text = "pr3287 code page";
             // 
             // printerComboBox
             // 
@@ -1138,14 +1138,14 @@
             this.keyboardTab.Controls.Add(this.modifiersTableLayoutPanel);
             this.keyboardTab.Controls.Add(this.ChordComboBox);
             this.keyboardTab.Controls.Add(this.MatchTypeLabel);
-            this.keyboardTab.Controls.Add(this.groupBox1);
-            this.keyboardTab.Controls.Add(this.label1);
+            this.keyboardTab.Controls.Add(this.selectedKeyGroupBox);
+            this.keyboardTab.Controls.Add(this.defineActionsLabel);
             this.keyboardTab.Controls.Add(this.modeAllLayoutPanel);
             this.keyboardTab.Controls.Add(this.keyboardActionsFlowLayoutPanel);
             this.keyboardTab.Controls.Add(this.BehaviorLabel);
             this.keyboardTab.Controls.Add(this.flowLayoutPanel1);
             this.keyboardTab.Controls.Add(this.matchFlowLayoutPanel);
-            this.keyboardTab.Controls.Add(this.KeyLabel);
+            this.keyboardTab.Controls.Add(this.keyLabel);
             this.keyboardTab.Controls.Add(this.ChordLabel);
             this.keyboardTab.Controls.Add(this.matchTypeflowLayoutPanel);
             this.keyboardTab.Controls.Add(this.keyboardModifiersLabel);
@@ -1288,18 +1288,18 @@
             this.MatchTypeLabel.TabIndex = 147;
             this.MatchTypeLabel.Text = "4. Select match type";
             // 
-            // groupBox1
+            // selectedKeyGroupBox
             // 
-            this.groupBox1.Controls.Add(this.SelectedKeyLabel);
-            this.groupBox1.Controls.Add(this.keymapSelectedLabel);
-            this.groupBox1.Controls.Add(this.keyCharValuePanel);
-            this.groupBox1.Controls.Add(this.scanCodeSelectedLabel);
-            this.groupBox1.Location = new System.Drawing.Point(330, 140);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(308, 110);
-            this.groupBox1.TabIndex = 146;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Selected key";
+            this.selectedKeyGroupBox.Controls.Add(this.SelectedKeyLabel);
+            this.selectedKeyGroupBox.Controls.Add(this.keymapSelectedLabel);
+            this.selectedKeyGroupBox.Controls.Add(this.keyCharValuePanel);
+            this.selectedKeyGroupBox.Controls.Add(this.scanCodeSelectedLabel);
+            this.selectedKeyGroupBox.Location = new System.Drawing.Point(330, 140);
+            this.selectedKeyGroupBox.Name = "selectedKeyGroupBox";
+            this.selectedKeyGroupBox.Size = new System.Drawing.Size(308, 110);
+            this.selectedKeyGroupBox.TabIndex = 146;
+            this.selectedKeyGroupBox.TabStop = false;
+            this.selectedKeyGroupBox.Text = "Selected key";
             // 
             // SelectedKeyLabel
             // 
@@ -1367,15 +1367,15 @@
             this.scanCodeSelectedLabel.TabIndex = 139;
             this.scanCodeSelectedLabel.Text = "`No scan code";
             // 
-            // label1
+            // defineActionsLabel
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 411);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
-            this.label1.TabIndex = 145;
-            this.label1.Text = "6. Define actions";
+            this.defineActionsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.defineActionsLabel.AutoSize = true;
+            this.defineActionsLabel.Location = new System.Drawing.Point(30, 411);
+            this.defineActionsLabel.Name = "defineActionsLabel";
+            this.defineActionsLabel.Size = new System.Drawing.Size(87, 13);
+            this.defineActionsLabel.TabIndex = 145;
+            this.defineActionsLabel.Text = "6. Define actions";
             // 
             // modeAllLayoutPanel
             // 
@@ -1433,51 +1433,6 @@
             this.keyboardActionsFlowLayoutPanel.Name = "keyboardActionsFlowLayoutPanel";
             this.keyboardActionsFlowLayoutPanel.Size = new System.Drawing.Size(250, 29);
             this.keyboardActionsFlowLayoutPanel.TabIndex = 141;
-            // 
-            // keyboardActionsRemoveButton
-            // 
-            this.keyboardActionsRemoveButton.AutoSize = true;
-            this.keyboardActionsRemoveButton.Enabled = false;
-            this.keyboardActionsRemoveButton.ForeColor = System.Drawing.Color.Red;
-            this.keyboardActionsRemoveButton.Location = new System.Drawing.Point(174, 3);
-            this.keyboardActionsRemoveButton.Name = "keyboardActionsRemoveButton";
-            this.keyboardActionsRemoveButton.Size = new System.Drawing.Size(73, 23);
-            this.keyboardActionsRemoveButton.TabIndex = 107;
-            this.keyboardActionsRemoveButton.TabStop = false;
-            this.keyboardActionsRemoveButton.Tag = "Delete";
-            this.keyboardActionsRemoveButton.Text = "❌ Delete";
-            this.toolTip1.SetToolTip(this.keyboardActionsRemoveButton, "Remove definition");
-            this.keyboardActionsRemoveButton.UseVisualStyleBackColor = true;
-            this.keyboardActionsRemoveButton.Click += new System.EventHandler(this.KeyboardAction_Click);
-            // 
-            // keyboardActionsEditButton
-            // 
-            this.keyboardActionsEditButton.AutoSize = true;
-            this.keyboardActionsEditButton.Location = new System.Drawing.Point(93, 3);
-            this.keyboardActionsEditButton.Name = "keyboardActionsEditButton";
-            this.keyboardActionsEditButton.Size = new System.Drawing.Size(75, 23);
-            this.keyboardActionsEditButton.TabIndex = 108;
-            this.keyboardActionsEditButton.TabStop = false;
-            this.keyboardActionsEditButton.Tag = "Edit";
-            this.keyboardActionsEditButton.Text = "🖉 Edit";
-            this.toolTip1.SetToolTip(this.keyboardActionsEditButton, "Edit the actions for this key");
-            this.keyboardActionsEditButton.UseVisualStyleBackColor = true;
-            this.keyboardActionsEditButton.Click += new System.EventHandler(this.KeyboardAction_Click);
-            // 
-            // keyboardActionsAddKeyButton
-            // 
-            this.keyboardActionsAddKeyButton.AutoSize = true;
-            this.keyboardActionsAddKeyButton.ForeColor = System.Drawing.Color.Green;
-            this.keyboardActionsAddKeyButton.Location = new System.Drawing.Point(3, 3);
-            this.keyboardActionsAddKeyButton.Name = "keyboardActionsAddKeyButton";
-            this.keyboardActionsAddKeyButton.Size = new System.Drawing.Size(84, 23);
-            this.keyboardActionsAddKeyButton.TabIndex = 109;
-            this.keyboardActionsAddKeyButton.TabStop = false;
-            this.keyboardActionsAddKeyButton.Tag = "Add";
-            this.keyboardActionsAddKeyButton.Text = "➕ New";
-            this.toolTip1.SetToolTip(this.keyboardActionsAddKeyButton, "Create actions for this key");
-            this.keyboardActionsAddKeyButton.UseVisualStyleBackColor = true;
-            this.keyboardActionsAddKeyButton.Click += new System.EventHandler(this.KeyboardAction_Click);
             // 
             // BehaviorLabel
             // 
@@ -1563,14 +1518,14 @@
             this.matchScanCodeRadioButton.UseVisualStyleBackColor = true;
             this.matchScanCodeRadioButton.Click += new System.EventHandler(this.MatchType_Click);
             // 
-            // KeyLabel
+            // keyLabel
             // 
-            this.KeyLabel.AutoSize = true;
-            this.KeyLabel.Location = new System.Drawing.Point(29, 82);
-            this.KeyLabel.Name = "KeyLabel";
-            this.KeyLabel.Size = new System.Drawing.Size(78, 13);
-            this.KeyLabel.TabIndex = 142;
-            this.KeyLabel.Text = "2. Select a key";
+            this.keyLabel.AutoSize = true;
+            this.keyLabel.Location = new System.Drawing.Point(29, 82);
+            this.keyLabel.Name = "keyLabel";
+            this.keyLabel.Size = new System.Drawing.Size(78, 13);
+            this.keyLabel.TabIndex = 142;
+            this.keyLabel.Text = "2. Select a key";
             // 
             // ChordLabel
             // 
@@ -1599,19 +1554,6 @@
             this.keyboardModifiersLabel.Size = new System.Drawing.Size(93, 13);
             this.keyboardModifiersLabel.TabIndex = 125;
             this.keyboardModifiersLabel.Text = "3. Select modifiers";
-            // 
-            // keyboardPictureButton
-            // 
-            this.keyboardPictureButton.BackgroundImage = global::Wx3270.Properties.Resources.KeyboardLayoutSmall;
-            this.keyboardPictureButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.keyboardPictureButton.Location = new System.Drawing.Point(29, 103);
-            this.keyboardPictureButton.Name = "keyboardPictureButton";
-            this.keyboardPictureButton.Size = new System.Drawing.Size(170, 70);
-            this.keyboardPictureButton.TabIndex = 131;
-            this.keyboardPictureButton.TabStop = false;
-            this.toolTip1.SetToolTip(this.keyboardPictureButton, "Display keyboard");
-            this.keyboardPictureButton.UseVisualStyleBackColor = true;
-            this.keyboardPictureButton.Click += new System.EventHandler(this.KeyboardPictureButton_Click);
             // 
             // keypadTab
             // 
@@ -1822,6 +1764,122 @@
             this.keypadMappingGroupBox.TabStop = false;
             this.keypadMappingGroupBox.Text = "Key definition";
             // 
+            // backgroundTableLayoutPanel
+            // 
+            this.backgroundTableLayoutPanel.AutoSize = true;
+            this.backgroundTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.backgroundTableLayoutPanel.ColumnCount = 2;
+            this.backgroundTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.backgroundTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.backgroundTableLayoutPanel.Controls.Add(this.backgroundGroupBox, 0, 0);
+            this.backgroundTableLayoutPanel.Controls.Add(this.keypadRemoveButton, 1, 0);
+            this.backgroundTableLayoutPanel.Location = new System.Drawing.Point(334, 32);
+            this.backgroundTableLayoutPanel.Name = "backgroundTableLayoutPanel";
+            this.backgroundTableLayoutPanel.RowCount = 1;
+            this.backgroundTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.backgroundTableLayoutPanel.Size = new System.Drawing.Size(222, 113);
+            this.backgroundTableLayoutPanel.TabIndex = 44;
+            // 
+            // backgroundGroupBox
+            // 
+            this.backgroundGroupBox.AutoSize = true;
+            this.backgroundGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.backgroundGroupBox.Controls.Add(this.backgroundLayoutPanel);
+            this.backgroundGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.backgroundGroupBox.Name = "backgroundGroupBox";
+            this.backgroundGroupBox.Size = new System.Drawing.Size(120, 107);
+            this.backgroundGroupBox.TabIndex = 1;
+            this.backgroundGroupBox.TabStop = false;
+            this.backgroundGroupBox.Text = "Background image";
+            // 
+            // backgroundLayoutPanel
+            // 
+            this.backgroundLayoutPanel.AutoSize = true;
+            this.backgroundLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.backgroundLayoutPanel.ColumnCount = 2;
+            this.backgroundLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.backgroundLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.backgroundLayoutPanel.Controls.Add(this.deletePictureBox, 1, 2);
+            this.backgroundLayoutPanel.Controls.Add(this.blankRadioButton, 0, 0);
+            this.backgroundLayoutPanel.Controls.Add(this.insertPictureBox, 1, 1);
+            this.backgroundLayoutPanel.Controls.Add(this.insertRadioButton, 0, 1);
+            this.backgroundLayoutPanel.Controls.Add(this.blankPictureBox, 1, 0);
+            this.backgroundLayoutPanel.Controls.Add(this.deleteRadioButton, 0, 2);
+            this.backgroundLayoutPanel.Location = new System.Drawing.Point(10, 19);
+            this.backgroundLayoutPanel.Name = "backgroundLayoutPanel";
+            this.backgroundLayoutPanel.RowCount = 3;
+            this.backgroundLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.backgroundLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.backgroundLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.backgroundLayoutPanel.Size = new System.Drawing.Size(104, 69);
+            this.backgroundLayoutPanel.TabIndex = 49;
+            // 
+            // deletePictureBox
+            // 
+            this.deletePictureBox.BackgroundImage = global::Wx3270.Properties.Resources.DeletePreview;
+            this.deletePictureBox.Location = new System.Drawing.Point(85, 49);
+            this.deletePictureBox.Name = "deletePictureBox";
+            this.deletePictureBox.Size = new System.Drawing.Size(16, 16);
+            this.deletePictureBox.TabIndex = 5;
+            this.deletePictureBox.TabStop = false;
+            // 
+            // blankRadioButton
+            // 
+            this.blankRadioButton.AutoSize = true;
+            this.blankRadioButton.Location = new System.Drawing.Point(3, 3);
+            this.blankRadioButton.Name = "blankRadioButton";
+            this.blankRadioButton.Size = new System.Drawing.Size(72, 17);
+            this.blankRadioButton.TabIndex = 0;
+            this.blankRadioButton.TabStop = true;
+            this.blankRadioButton.Tag = "Blank";
+            this.blankRadioButton.Text = "Blank key";
+            this.blankRadioButton.UseVisualStyleBackColor = true;
+            this.blankRadioButton.Click += new System.EventHandler(this.BackgroundImage_Click);
+            // 
+            // insertPictureBox
+            // 
+            this.insertPictureBox.BackgroundImage = global::Wx3270.Properties.Resources.InsertPreview;
+            this.insertPictureBox.Location = new System.Drawing.Point(85, 26);
+            this.insertPictureBox.Name = "insertPictureBox";
+            this.insertPictureBox.Size = new System.Drawing.Size(16, 16);
+            this.insertPictureBox.TabIndex = 4;
+            this.insertPictureBox.TabStop = false;
+            // 
+            // insertRadioButton
+            // 
+            this.insertRadioButton.AutoSize = true;
+            this.insertRadioButton.Location = new System.Drawing.Point(3, 26);
+            this.insertRadioButton.Name = "insertRadioButton";
+            this.insertRadioButton.Size = new System.Drawing.Size(71, 17);
+            this.insertRadioButton.TabIndex = 1;
+            this.insertRadioButton.TabStop = true;
+            this.insertRadioButton.Tag = "Insert";
+            this.insertRadioButton.Text = "Insert key";
+            this.insertRadioButton.UseVisualStyleBackColor = true;
+            this.insertRadioButton.Click += new System.EventHandler(this.BackgroundImage_Click);
+            // 
+            // blankPictureBox
+            // 
+            this.blankPictureBox.BackgroundImage = global::Wx3270.Properties.Resources.BlankPreview;
+            this.blankPictureBox.Location = new System.Drawing.Point(85, 3);
+            this.blankPictureBox.Name = "blankPictureBox";
+            this.blankPictureBox.Size = new System.Drawing.Size(16, 16);
+            this.blankPictureBox.TabIndex = 3;
+            this.blankPictureBox.TabStop = false;
+            // 
+            // deleteRadioButton
+            // 
+            this.deleteRadioButton.AutoSize = true;
+            this.deleteRadioButton.Location = new System.Drawing.Point(3, 49);
+            this.deleteRadioButton.Name = "deleteRadioButton";
+            this.deleteRadioButton.Size = new System.Drawing.Size(76, 17);
+            this.deleteRadioButton.TabIndex = 2;
+            this.deleteRadioButton.TabStop = true;
+            this.deleteRadioButton.Tag = "Delete";
+            this.deleteRadioButton.Text = "Delete key";
+            this.deleteRadioButton.UseVisualStyleBackColor = true;
+            this.deleteRadioButton.Click += new System.EventHandler(this.BackgroundImage_Click);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AutoSize = true;
@@ -1940,123 +1998,6 @@
             this.editedButtonTextSizeLabel.Size = new System.Drawing.Size(49, 13);
             this.editedButtonTextSizeLabel.TabIndex = 4;
             this.editedButtonTextSizeLabel.Text = "Text size";
-            // 
-            // keypadRemoveButton
-            // 
-            this.keypadRemoveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.keypadRemoveButton.AutoSize = true;
-            this.keypadRemoveButton.Enabled = false;
-            this.keypadRemoveButton.ForeColor = System.Drawing.Color.Red;
-            this.keypadRemoveButton.Location = new System.Drawing.Point(136, 45);
-            this.keypadRemoveButton.Margin = new System.Windows.Forms.Padding(10);
-            this.keypadRemoveButton.Name = "keypadRemoveButton";
-            this.keypadRemoveButton.Size = new System.Drawing.Size(76, 23);
-            this.keypadRemoveButton.TabIndex = 43;
-            this.keypadRemoveButton.TabStop = false;
-            this.keypadRemoveButton.Text = "❌ Delete";
-            this.toolTip1.SetToolTip(this.keypadRemoveButton, "Remove definition");
-            this.keypadRemoveButton.UseVisualStyleBackColor = true;
-            this.keypadRemoveButton.Click += new System.EventHandler(this.KeypadRemoveButton_Click);
-            // 
-            // backgroundGroupBox
-            // 
-            this.backgroundGroupBox.AutoSize = true;
-            this.backgroundGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.backgroundGroupBox.Controls.Add(this.backgroundLayoutPanel);
-            this.backgroundGroupBox.Location = new System.Drawing.Point(3, 3);
-            this.backgroundGroupBox.Name = "backgroundGroupBox";
-            this.backgroundGroupBox.Size = new System.Drawing.Size(120, 107);
-            this.backgroundGroupBox.TabIndex = 1;
-            this.backgroundGroupBox.TabStop = false;
-            this.backgroundGroupBox.Text = "Background image";
-            // 
-            // backgroundLayoutPanel
-            // 
-            this.backgroundLayoutPanel.AutoSize = true;
-            this.backgroundLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.backgroundLayoutPanel.ColumnCount = 2;
-            this.backgroundLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.backgroundLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.backgroundLayoutPanel.Controls.Add(this.deletePictureBox, 1, 2);
-            this.backgroundLayoutPanel.Controls.Add(this.blankRadioButton, 0, 0);
-            this.backgroundLayoutPanel.Controls.Add(this.insertPictureBox, 1, 1);
-            this.backgroundLayoutPanel.Controls.Add(this.insertRadioButton, 0, 1);
-            this.backgroundLayoutPanel.Controls.Add(this.blankPictureBox, 1, 0);
-            this.backgroundLayoutPanel.Controls.Add(this.deleteRadioButton, 0, 2);
-            this.backgroundLayoutPanel.Location = new System.Drawing.Point(10, 19);
-            this.backgroundLayoutPanel.Name = "backgroundLayoutPanel";
-            this.backgroundLayoutPanel.RowCount = 3;
-            this.backgroundLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.backgroundLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.backgroundLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.backgroundLayoutPanel.Size = new System.Drawing.Size(104, 69);
-            this.backgroundLayoutPanel.TabIndex = 49;
-            // 
-            // deletePictureBox
-            // 
-            this.deletePictureBox.BackgroundImage = global::Wx3270.Properties.Resources.DeletePreview;
-            this.deletePictureBox.Location = new System.Drawing.Point(85, 49);
-            this.deletePictureBox.Name = "deletePictureBox";
-            this.deletePictureBox.Size = new System.Drawing.Size(16, 16);
-            this.deletePictureBox.TabIndex = 5;
-            this.deletePictureBox.TabStop = false;
-            // 
-            // blankRadioButton
-            // 
-            this.blankRadioButton.AutoSize = true;
-            this.blankRadioButton.Location = new System.Drawing.Point(3, 3);
-            this.blankRadioButton.Name = "blankRadioButton";
-            this.blankRadioButton.Size = new System.Drawing.Size(72, 17);
-            this.blankRadioButton.TabIndex = 0;
-            this.blankRadioButton.TabStop = true;
-            this.blankRadioButton.Tag = "Blank";
-            this.blankRadioButton.Text = "Blank key";
-            this.blankRadioButton.UseVisualStyleBackColor = true;
-            this.blankRadioButton.Click += new System.EventHandler(this.BackgroundImage_Click);
-            // 
-            // insertPictureBox
-            // 
-            this.insertPictureBox.BackgroundImage = global::Wx3270.Properties.Resources.InsertPreview;
-            this.insertPictureBox.Location = new System.Drawing.Point(85, 26);
-            this.insertPictureBox.Name = "insertPictureBox";
-            this.insertPictureBox.Size = new System.Drawing.Size(16, 16);
-            this.insertPictureBox.TabIndex = 4;
-            this.insertPictureBox.TabStop = false;
-            // 
-            // insertRadioButton
-            // 
-            this.insertRadioButton.AutoSize = true;
-            this.insertRadioButton.Location = new System.Drawing.Point(3, 26);
-            this.insertRadioButton.Name = "insertRadioButton";
-            this.insertRadioButton.Size = new System.Drawing.Size(71, 17);
-            this.insertRadioButton.TabIndex = 1;
-            this.insertRadioButton.TabStop = true;
-            this.insertRadioButton.Tag = "Insert";
-            this.insertRadioButton.Text = "Insert key";
-            this.insertRadioButton.UseVisualStyleBackColor = true;
-            this.insertRadioButton.Click += new System.EventHandler(this.BackgroundImage_Click);
-            // 
-            // blankPictureBox
-            // 
-            this.blankPictureBox.BackgroundImage = global::Wx3270.Properties.Resources.BlankPreview;
-            this.blankPictureBox.Location = new System.Drawing.Point(85, 3);
-            this.blankPictureBox.Name = "blankPictureBox";
-            this.blankPictureBox.Size = new System.Drawing.Size(16, 16);
-            this.blankPictureBox.TabIndex = 3;
-            this.blankPictureBox.TabStop = false;
-            // 
-            // deleteRadioButton
-            // 
-            this.deleteRadioButton.AutoSize = true;
-            this.deleteRadioButton.Location = new System.Drawing.Point(3, 49);
-            this.deleteRadioButton.Name = "deleteRadioButton";
-            this.deleteRadioButton.Size = new System.Drawing.Size(76, 17);
-            this.deleteRadioButton.TabIndex = 2;
-            this.deleteRadioButton.TabStop = true;
-            this.deleteRadioButton.Tag = "Delete";
-            this.deleteRadioButton.Text = "Delete key";
-            this.deleteRadioButton.UseVisualStyleBackColor = true;
-            this.deleteRadioButton.Click += new System.EventHandler(this.BackgroundImage_Click);
             // 
             // keymapModifiersLabel
             // 
@@ -2197,21 +2138,6 @@
             this.toolTip1.SetToolTip(this.crosshairSwatch, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
             this.crosshairSwatch.Click += new System.EventHandler(this.CrosshairColorButton_Click);
             // 
-            // crosshairColorButton
-            // 
-            this.crosshairColorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.crosshairColorButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.crosshairColorButton.Location = new System.Drawing.Point(315, 17);
-            this.crosshairColorButton.Name = "crosshairColorButton";
-            this.crosshairColorButton.Size = new System.Drawing.Size(170, 23);
-            this.crosshairColorButton.TabIndex = 39;
-            this.crosshairColorButton.TabStop = false;
-            this.crosshairColorButton.Tag = "";
-            this.crosshairColorButton.Text = "Crosshair Cursor";
-            this.toolTip1.SetToolTip(this.crosshairColorButton, "Color of the crosshair cursor");
-            this.crosshairColorButton.UseVisualStyleBackColor = false;
-            this.crosshairColorButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
-            // 
             // selectionSwatch
             // 
             this.selectionSwatch.BackColor = System.Drawing.Color.DarkGray;
@@ -2223,21 +2149,6 @@
             this.selectionSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.selectionSwatch, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
             this.selectionSwatch.Click += new System.EventHandler(this.SelectedButton_Click);
-            // 
-            // selectedButton
-            // 
-            this.selectedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectedButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.selectedButton.Location = new System.Drawing.Point(9, 17);
-            this.selectedButton.Name = "selectedButton";
-            this.selectedButton.Size = new System.Drawing.Size(170, 23);
-            this.selectedButton.TabIndex = 37;
-            this.selectedButton.TabStop = false;
-            this.selectedButton.Tag = "";
-            this.selectedButton.Text = "Selected Text Background";
-            this.toolTip1.SetToolTip(this.selectedButton, "Background color for selected text");
-            this.selectedButton.UseVisualStyleBackColor = false;
-            this.selectedButton.Click += new System.EventHandler(this.SelectedButton_Click);
             // 
             // schemeBox
             // 
@@ -2796,245 +2707,6 @@
             this.toolTip1.SetToolTip(this.NnutralBlackSample, "Neutral Black\r\nHost color X\'F0\'\r\nScreen background color");
             this.NnutralBlackSample.Click += new System.EventHandler(this.Color_Click);
             // 
-            // whiteButton
-            // 
-            this.whiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.whiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.whiteButton.Location = new System.Drawing.Point(315, 244);
-            this.whiteButton.Name = "whiteButton";
-            this.whiteButton.Size = new System.Drawing.Size(126, 23);
-            this.whiteButton.TabIndex = 15;
-            this.whiteButton.TabStop = false;
-            this.whiteButton.Tag = "white";
-            this.whiteButton.Text = "White";
-            this.toolTip1.SetToolTip(this.whiteButton, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
-            this.whiteButton.UseVisualStyleBackColor = false;
-            this.whiteButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // grayButton
-            // 
-            this.grayButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grayButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.grayButton.Location = new System.Drawing.Point(7, 244);
-            this.grayButton.Name = "grayButton";
-            this.grayButton.Size = new System.Drawing.Size(126, 23);
-            this.grayButton.TabIndex = 14;
-            this.grayButton.TabStop = false;
-            this.grayButton.Tag = "grey";
-            this.grayButton.Text = "Gray";
-            this.toolTip1.SetToolTip(this.grayButton, "Gray\r\nHost color X\'FE\'");
-            this.grayButton.UseVisualStyleBackColor = false;
-            this.grayButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // paleTurquoiseButton
-            // 
-            this.paleTurquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paleTurquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.paleTurquoiseButton.Location = new System.Drawing.Point(315, 215);
-            this.paleTurquoiseButton.Name = "paleTurquoiseButton";
-            this.paleTurquoiseButton.Size = new System.Drawing.Size(126, 23);
-            this.paleTurquoiseButton.TabIndex = 13;
-            this.paleTurquoiseButton.TabStop = false;
-            this.paleTurquoiseButton.Tag = "paleTurquoise";
-            this.paleTurquoiseButton.Text = "Pale Turquoise";
-            this.toolTip1.SetToolTip(this.paleTurquoiseButton, "Pale Turquoise\r\nHost color X\'FD\'");
-            this.paleTurquoiseButton.UseVisualStyleBackColor = false;
-            this.paleTurquoiseButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // paleGreenButton
-            // 
-            this.paleGreenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paleGreenButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.paleGreenButton.Location = new System.Drawing.Point(6, 215);
-            this.paleGreenButton.Name = "paleGreenButton";
-            this.paleGreenButton.Size = new System.Drawing.Size(126, 23);
-            this.paleGreenButton.TabIndex = 12;
-            this.paleGreenButton.TabStop = false;
-            this.paleGreenButton.Tag = "paleGreen";
-            this.paleGreenButton.Text = "Pale Green";
-            this.toolTip1.SetToolTip(this.paleGreenButton, "Pale Green\r\nHost color X\'FC\'");
-            this.paleGreenButton.UseVisualStyleBackColor = false;
-            this.paleGreenButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // purpleButton
-            // 
-            this.purpleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.purpleButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.purpleButton.Location = new System.Drawing.Point(315, 186);
-            this.purpleButton.Name = "purpleButton";
-            this.purpleButton.Size = new System.Drawing.Size(126, 23);
-            this.purpleButton.TabIndex = 11;
-            this.purpleButton.TabStop = false;
-            this.purpleButton.Tag = "purple";
-            this.purpleButton.Text = "Purple";
-            this.toolTip1.SetToolTip(this.purpleButton, "Purple\r\nHost color X\'FB\'");
-            this.purpleButton.UseVisualStyleBackColor = false;
-            this.purpleButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // orangeButton
-            // 
-            this.orangeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.orangeButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.orangeButton.Location = new System.Drawing.Point(7, 186);
-            this.orangeButton.Name = "orangeButton";
-            this.orangeButton.Size = new System.Drawing.Size(126, 23);
-            this.orangeButton.TabIndex = 10;
-            this.orangeButton.TabStop = false;
-            this.orangeButton.Tag = "orange";
-            this.orangeButton.Text = "Orange";
-            this.toolTip1.SetToolTip(this.orangeButton, "Orange\r\nHost color X\'FA\'");
-            this.orangeButton.UseVisualStyleBackColor = false;
-            this.orangeButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // deepBlueButton
-            // 
-            this.deepBlueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deepBlueButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.deepBlueButton.Location = new System.Drawing.Point(315, 157);
-            this.deepBlueButton.Name = "deepBlueButton";
-            this.deepBlueButton.Size = new System.Drawing.Size(126, 23);
-            this.deepBlueButton.TabIndex = 9;
-            this.deepBlueButton.TabStop = false;
-            this.deepBlueButton.Tag = "deepBlue";
-            this.deepBlueButton.Text = "Deep Blue";
-            this.toolTip1.SetToolTip(this.deepBlueButton, "Deep Blue\r\nHost color X\'F9\'");
-            this.deepBlueButton.UseVisualStyleBackColor = false;
-            this.deepBlueButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // blackButton
-            // 
-            this.blackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blackButton.Location = new System.Drawing.Point(6, 157);
-            this.blackButton.Name = "blackButton";
-            this.blackButton.Size = new System.Drawing.Size(126, 23);
-            this.blackButton.TabIndex = 8;
-            this.blackButton.TabStop = false;
-            this.blackButton.Tag = "black";
-            this.blackButton.Text = "Black";
-            this.toolTip1.SetToolTip(this.blackButton, "Black\r\nHost color X\'F8\'");
-            this.blackButton.UseVisualStyleBackColor = false;
-            this.blackButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // neutralWhiteButton
-            // 
-            this.neutralWhiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.neutralWhiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.neutralWhiteButton.Location = new System.Drawing.Point(7, 19);
-            this.neutralWhiteButton.Name = "neutralWhiteButton";
-            this.neutralWhiteButton.Size = new System.Drawing.Size(126, 41);
-            this.neutralWhiteButton.TabIndex = 0;
-            this.neutralWhiteButton.TabStop = false;
-            this.neutralWhiteButton.Tag = "neutralWhite";
-            this.neutralWhiteButton.Text = "Neutral White\r\nScreen Foreground";
-            this.toolTip1.SetToolTip(this.neutralWhiteButton, "Neutral White\r\nHost color X\'F7\'\r\nIntensified protected text");
-            this.neutralWhiteButton.UseVisualStyleBackColor = false;
-            this.neutralWhiteButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // yellowButton
-            // 
-            this.yellowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.yellowButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.yellowButton.Location = new System.Drawing.Point(7, 128);
-            this.yellowButton.Name = "yellowButton";
-            this.yellowButton.Size = new System.Drawing.Size(126, 23);
-            this.yellowButton.TabIndex = 6;
-            this.yellowButton.TabStop = false;
-            this.yellowButton.Tag = "yellow";
-            this.yellowButton.Text = "Yellow";
-            this.toolTip1.SetToolTip(this.yellowButton, "Yellow\r\nHost color X\'F6\'");
-            this.yellowButton.UseVisualStyleBackColor = false;
-            this.yellowButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // turquoiseButton
-            // 
-            this.turquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.turquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.turquoiseButton.Location = new System.Drawing.Point(315, 99);
-            this.turquoiseButton.Name = "turquoiseButton";
-            this.turquoiseButton.Size = new System.Drawing.Size(126, 23);
-            this.turquoiseButton.TabIndex = 5;
-            this.turquoiseButton.TabStop = false;
-            this.turquoiseButton.Tag = "turquoise";
-            this.turquoiseButton.Text = "Turquoise";
-            this.toolTip1.SetToolTip(this.turquoiseButton, "Turquoise\r\nHost color X\'F5\'");
-            this.turquoiseButton.UseVisualStyleBackColor = false;
-            this.turquoiseButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // greenButton
-            // 
-            this.greenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.greenButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.greenButton.Location = new System.Drawing.Point(7, 99);
-            this.greenButton.Name = "greenButton";
-            this.greenButton.Size = new System.Drawing.Size(126, 23);
-            this.greenButton.TabIndex = 4;
-            this.greenButton.TabStop = false;
-            this.greenButton.Tag = "green";
-            this.greenButton.Text = "Green";
-            this.toolTip1.SetToolTip(this.greenButton, "Green\r\nHost color X\'F4\'\r\nUnprotected text");
-            this.greenButton.UseVisualStyleBackColor = false;
-            this.greenButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // pinkButton
-            // 
-            this.pinkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pinkButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pinkButton.Location = new System.Drawing.Point(315, 128);
-            this.pinkButton.Name = "pinkButton";
-            this.pinkButton.Size = new System.Drawing.Size(126, 23);
-            this.pinkButton.TabIndex = 7;
-            this.pinkButton.TabStop = false;
-            this.pinkButton.Tag = "pink";
-            this.pinkButton.Text = "Pink";
-            this.toolTip1.SetToolTip(this.pinkButton, "Pink\r\nHost color X\'F3\'");
-            this.pinkButton.UseVisualStyleBackColor = false;
-            this.pinkButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // redButton
-            // 
-            this.redButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.redButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.redButton.Location = new System.Drawing.Point(315, 70);
-            this.redButton.Name = "redButton";
-            this.redButton.Size = new System.Drawing.Size(126, 23);
-            this.redButton.TabIndex = 3;
-            this.redButton.TabStop = false;
-            this.redButton.Tag = "red";
-            this.redButton.Text = "Red";
-            this.toolTip1.SetToolTip(this.redButton, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
-            this.redButton.UseVisualStyleBackColor = false;
-            this.redButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // blueButton
-            // 
-            this.blueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blueButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.blueButton.Location = new System.Drawing.Point(7, 70);
-            this.blueButton.Name = "blueButton";
-            this.blueButton.Size = new System.Drawing.Size(126, 23);
-            this.blueButton.TabIndex = 2;
-            this.blueButton.TabStop = false;
-            this.blueButton.Tag = "blue";
-            this.blueButton.Text = "Blue";
-            this.toolTip1.SetToolTip(this.blueButton, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
-            this.blueButton.UseVisualStyleBackColor = false;
-            this.blueButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // neutralBlackButton
-            // 
-            this.neutralBlackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.neutralBlackButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.neutralBlackButton.Location = new System.Drawing.Point(316, 20);
-            this.neutralBlackButton.Name = "neutralBlackButton";
-            this.neutralBlackButton.Size = new System.Drawing.Size(126, 41);
-            this.neutralBlackButton.TabIndex = 1;
-            this.neutralBlackButton.TabStop = false;
-            this.neutralBlackButton.Tag = "neutralBlack";
-            this.neutralBlackButton.Text = "Neutral Black\r\nScreen Background";
-            this.toolTip1.SetToolTip(this.neutralBlackButton, "Neutral Black\r\nHost color X\'F0\'\r\nScreen background color");
-            this.neutralBlackButton.UseVisualStyleBackColor = false;
-            this.neutralBlackButton.Click += new System.EventHandler(this.Color_Click);
-            // 
             // colors3278Tab
             // 
             this.colors3278Tab.Controls.Add(this.monoOtherGroupBox);
@@ -3090,35 +2762,6 @@
             this.monoSelectBackgroundSwatch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.monoSelectBackgroundSwatch, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
             this.monoSelectBackgroundSwatch.Click += new System.EventHandler(this.SelectedButton_Click);
-            // 
-            // monoCrosshairButton
-            // 
-            this.monoCrosshairButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoCrosshairButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoCrosshairButton.Location = new System.Drawing.Point(316, 19);
-            this.monoCrosshairButton.Name = "monoCrosshairButton";
-            this.monoCrosshairButton.Size = new System.Drawing.Size(126, 23);
-            this.monoCrosshairButton.TabIndex = 37;
-            this.monoCrosshairButton.TabStop = false;
-            this.monoCrosshairButton.Tag = "red";
-            this.monoCrosshairButton.Text = "Crosshair Cursor";
-            this.toolTip1.SetToolTip(this.monoCrosshairButton, "Color of crosshair cursor");
-            this.monoCrosshairButton.UseVisualStyleBackColor = false;
-            this.monoCrosshairButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
-            // 
-            // monoSelectBackground
-            // 
-            this.monoSelectBackground.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoSelectBackground.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoSelectBackground.Location = new System.Drawing.Point(7, 19);
-            this.monoSelectBackground.Name = "monoSelectBackground";
-            this.monoSelectBackground.Size = new System.Drawing.Size(126, 23);
-            this.monoSelectBackground.TabIndex = 3;
-            this.monoSelectBackground.Tag = "red";
-            this.monoSelectBackground.Text = "Selection Background";
-            this.toolTip1.SetToolTip(this.monoSelectBackground, "Background color of selected text");
-            this.monoSelectBackground.UseVisualStyleBackColor = false;
-            this.monoSelectBackground.Click += new System.EventHandler(this.SelectedButton_Click);
             // 
             // monoPreviewGroupBox
             // 
@@ -3292,51 +2935,6 @@
             this.toolTip1.SetToolTip(this.monoBackgroundSwatch, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
             this.monoBackgroundSwatch.Click += new System.EventHandler(this.Mono_Click);
             // 
-            // monoIntensifiedButton
-            // 
-            this.monoIntensifiedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoIntensifiedButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoIntensifiedButton.Location = new System.Drawing.Point(316, 49);
-            this.monoIntensifiedButton.Name = "monoIntensifiedButton";
-            this.monoIntensifiedButton.Size = new System.Drawing.Size(126, 23);
-            this.monoIntensifiedButton.TabIndex = 5;
-            this.monoIntensifiedButton.TabStop = false;
-            this.monoIntensifiedButton.Tag = "";
-            this.monoIntensifiedButton.Text = "Intensified";
-            this.toolTip1.SetToolTip(this.monoIntensifiedButton, "Intensified text color");
-            this.monoIntensifiedButton.UseVisualStyleBackColor = false;
-            this.monoIntensifiedButton.Click += new System.EventHandler(this.Mono_Click);
-            // 
-            // monoNormalButton
-            // 
-            this.monoNormalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoNormalButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoNormalButton.Location = new System.Drawing.Point(7, 49);
-            this.monoNormalButton.Name = "monoNormalButton";
-            this.monoNormalButton.Size = new System.Drawing.Size(126, 23);
-            this.monoNormalButton.TabIndex = 4;
-            this.monoNormalButton.TabStop = false;
-            this.monoNormalButton.Tag = "green";
-            this.monoNormalButton.Text = "Normal";
-            this.toolTip1.SetToolTip(this.monoNormalButton, "Normal text and status line color");
-            this.monoNormalButton.UseVisualStyleBackColor = false;
-            this.monoNormalButton.Click += new System.EventHandler(this.Mono_Click);
-            // 
-            // monoBackgroundButton
-            // 
-            this.monoBackgroundButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoBackgroundButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoBackgroundButton.Location = new System.Drawing.Point(7, 20);
-            this.monoBackgroundButton.Name = "monoBackgroundButton";
-            this.monoBackgroundButton.Size = new System.Drawing.Size(126, 23);
-            this.monoBackgroundButton.TabIndex = 2;
-            this.monoBackgroundButton.TabStop = false;
-            this.monoBackgroundButton.Tag = "blue";
-            this.monoBackgroundButton.Text = "Screen Background";
-            this.toolTip1.SetToolTip(this.monoBackgroundButton, "Screen background color");
-            this.monoBackgroundButton.UseVisualStyleBackColor = false;
-            this.monoBackgroundButton.Click += new System.EventHandler(this.Mono_Click);
-            // 
             // monoColorSchemeBox
             // 
             this.monoColorSchemeBox.Controls.Add(this.monoCustomButton);
@@ -3491,19 +3089,6 @@
             this.fontLabel.TabIndex = 1;
             this.fontLabel.Text = "Consolas, 10pt";
             // 
-            // FontChangeButton
-            // 
-            this.FontChangeButton.AutoSize = true;
-            this.FontChangeButton.Location = new System.Drawing.Point(6, 42);
-            this.FontChangeButton.Name = "FontChangeButton";
-            this.FontChangeButton.Size = new System.Drawing.Size(75, 23);
-            this.FontChangeButton.TabIndex = 2;
-            this.FontChangeButton.TabStop = false;
-            this.FontChangeButton.Text = "Change";
-            this.toolTip1.SetToolTip(this.FontChangeButton, "Change the font");
-            this.FontChangeButton.UseVisualStyleBackColor = true;
-            this.FontChangeButton.Click += new System.EventHandler(this.FontChangeButton_Click);
-            // 
             // soundsTab
             // 
             this.soundsTab.Controls.Add(this.soundsGroupBox);
@@ -3543,20 +3128,6 @@
             this.soundLayoutPanel.Size = new System.Drawing.Size(131, 58);
             this.soundLayoutPanel.TabIndex = 11;
             // 
-            // PlayAudibleBell
-            // 
-            this.PlayAudibleBell.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PlayAudibleBell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlayAudibleBell.Location = new System.Drawing.Point(106, 32);
-            this.PlayAudibleBell.Name = "PlayAudibleBell";
-            this.PlayAudibleBell.Size = new System.Drawing.Size(22, 23);
-            this.PlayAudibleBell.TabIndex = 9;
-            this.PlayAudibleBell.Tag = "`";
-            this.PlayAudibleBell.Text = "▶";
-            this.toolTip1.SetToolTip(this.PlayAudibleBell, "Play the sound");
-            this.PlayAudibleBell.UseVisualStyleBackColor = true;
-            this.PlayAudibleBell.Click += new System.EventHandler(this.ConsoleBellPlayButton_Click);
-            // 
             // keyboardClickCheckBox
             // 
             this.keyboardClickCheckBox.AutoSize = true;
@@ -3582,20 +3153,6 @@
             this.audibleBellCheckBox.Text = "Audible Bell";
             this.audibleBellCheckBox.UseVisualStyleBackColor = true;
             this.audibleBellCheckBox.Click += new System.EventHandler(this.AudibleBell_Click);
-            // 
-            // PlayKeyboardClick
-            // 
-            this.PlayKeyboardClick.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PlayKeyboardClick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlayKeyboardClick.Location = new System.Drawing.Point(106, 3);
-            this.PlayKeyboardClick.Name = "PlayKeyboardClick";
-            this.PlayKeyboardClick.Size = new System.Drawing.Size(22, 23);
-            this.PlayKeyboardClick.TabIndex = 8;
-            this.PlayKeyboardClick.Tag = "`";
-            this.PlayKeyboardClick.Text = "▶";
-            this.toolTip1.SetToolTip(this.PlayKeyboardClick, "Play the sound");
-            this.PlayKeyboardClick.UseVisualStyleBackColor = true;
-            this.PlayKeyboardClick.Click += new System.EventHandler(this.KeyClickPlayButton_Click);
             // 
             // serversTab
             // 
@@ -3842,13 +3399,13 @@
             this.proxyTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.proxyTableLayoutPanel.Controls.Add(this.passwordTextBox, 1, 4);
             this.proxyTableLayoutPanel.Controls.Add(this.usernameTextBox, 1, 3);
-            this.proxyTableLayoutPanel.Controls.Add(this.label4, 0, 2);
-            this.proxyTableLayoutPanel.Controls.Add(this.label3, 0, 1);
+            this.proxyTableLayoutPanel.Controls.Add(this.portLabel, 0, 2);
+            this.proxyTableLayoutPanel.Controls.Add(this.addressLabel, 0, 1);
             this.proxyTableLayoutPanel.Controls.Add(this.portTextBox, 1, 2);
             this.proxyTableLayoutPanel.Controls.Add(this.addressTextBox, 1, 1);
-            this.proxyTableLayoutPanel.Controls.Add(this.label2, 0, 3);
-            this.proxyTableLayoutPanel.Controls.Add(this.label5, 0, 4);
-            this.proxyTableLayoutPanel.Controls.Add(this.label6, 0, 0);
+            this.proxyTableLayoutPanel.Controls.Add(this.usernameLabel, 0, 3);
+            this.proxyTableLayoutPanel.Controls.Add(this.passwordLabel, 0, 4);
+            this.proxyTableLayoutPanel.Controls.Add(this.proxyTypeLabel, 0, 0);
             this.proxyTableLayoutPanel.Controls.Add(this.proxyTypeTextBox, 1, 0);
             this.proxyTableLayoutPanel.Location = new System.Drawing.Point(6, 19);
             this.proxyTableLayoutPanel.Name = "proxyTableLayoutPanel";
@@ -3883,25 +3440,25 @@
             this.usernameTextBox.Click += new System.EventHandler(this.ProxyEditButton_Click);
             this.usernameTextBox.Enter += new System.EventHandler(this.ProxyTypeTextBox_Enter);
             // 
-            // label4
+            // portLabel
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 58);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Port";
+            this.portLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.portLabel.AutoSize = true;
+            this.portLabel.Location = new System.Drawing.Point(3, 58);
+            this.portLabel.Name = "portLabel";
+            this.portLabel.Size = new System.Drawing.Size(26, 13);
+            this.portLabel.TabIndex = 1;
+            this.portLabel.Text = "Port";
             // 
-            // label3
+            // addressLabel
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Address";
+            this.addressLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.addressLabel.AutoSize = true;
+            this.addressLabel.Location = new System.Drawing.Point(3, 32);
+            this.addressLabel.Name = "addressLabel";
+            this.addressLabel.Size = new System.Drawing.Size(45, 13);
+            this.addressLabel.TabIndex = 0;
+            this.addressLabel.Text = "Address";
             // 
             // portTextBox
             // 
@@ -3927,35 +3484,35 @@
             this.addressTextBox.Click += new System.EventHandler(this.ProxyEditButton_Click);
             this.addressTextBox.Enter += new System.EventHandler(this.ProxyTypeTextBox_Enter);
             // 
-            // label2
+            // usernameLabel
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 84);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Username";
+            this.usernameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.usernameLabel.AutoSize = true;
+            this.usernameLabel.Location = new System.Drawing.Point(3, 84);
+            this.usernameLabel.Name = "usernameLabel";
+            this.usernameLabel.Size = new System.Drawing.Size(55, 13);
+            this.usernameLabel.TabIndex = 3;
+            this.usernameLabel.Text = "Username";
             // 
-            // label5
+            // passwordLabel
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 110);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Password";
+            this.passwordLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.passwordLabel.AutoSize = true;
+            this.passwordLabel.Location = new System.Drawing.Point(3, 110);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(53, 13);
+            this.passwordLabel.TabIndex = 4;
+            this.passwordLabel.Text = "Password";
             // 
-            // label6
+            // proxyTypeLabel
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 6);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Proxy type";
+            this.proxyTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.proxyTypeLabel.AutoSize = true;
+            this.proxyTypeLabel.Location = new System.Drawing.Point(3, 6);
+            this.proxyTypeLabel.Name = "proxyTypeLabel";
+            this.proxyTypeLabel.Size = new System.Drawing.Size(56, 13);
+            this.proxyTypeLabel.TabIndex = 5;
+            this.proxyTypeLabel.Text = "Proxy type";
             // 
             // proxyTypeTextBox
             // 
@@ -4068,6 +3625,498 @@
             this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
             this.helpPictureBox.Click += new System.EventHandler(this.Help_Click);
             // 
+            // tableLayoutPanel
+            // 
+            this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel.ColumnCount = 2;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel.Controls.Add(this.ButtonsLayoutPanel, 1, 1);
+            this.tableLayoutPanel.Controls.Add(this.settingsTabs, 0, 0);
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 2;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel.Size = new System.Drawing.Size(688, 670);
+            this.tableLayoutPanel.TabIndex = 2;
+            // 
+            // HostColorDialog
+            // 
+            this.HostColorDialog.AnyColor = true;
+            // 
+            // ScreenFontDialog
+            // 
+            this.ScreenFontDialog.AllowVerticalFonts = false;
+            this.ScreenFontDialog.FixedPitchOnly = true;
+            this.ScreenFontDialog.FontMustExist = true;
+            this.ScreenFontDialog.MinSize = 1;
+            this.ScreenFontDialog.ShowEffects = false;
+            // 
+            // opacityTimer
+            // 
+            this.opacityTimer.Interval = 2000;
+            this.opacityTimer.Tick += new System.EventHandler(this.OpacityTimer_Tick);
+            // 
+            // keyboardActionsRemoveButton
+            // 
+            this.keyboardActionsRemoveButton.AutoSize = true;
+            this.keyboardActionsRemoveButton.Enabled = false;
+            this.keyboardActionsRemoveButton.ForeColor = System.Drawing.Color.Red;
+            this.keyboardActionsRemoveButton.Location = new System.Drawing.Point(174, 3);
+            this.keyboardActionsRemoveButton.Name = "keyboardActionsRemoveButton";
+            this.keyboardActionsRemoveButton.Size = new System.Drawing.Size(73, 23);
+            this.keyboardActionsRemoveButton.TabIndex = 107;
+            this.keyboardActionsRemoveButton.TabStop = false;
+            this.keyboardActionsRemoveButton.Tag = "Delete";
+            this.keyboardActionsRemoveButton.Text = "❌ Delete";
+            this.toolTip1.SetToolTip(this.keyboardActionsRemoveButton, "Remove definition");
+            this.keyboardActionsRemoveButton.UseVisualStyleBackColor = true;
+            this.keyboardActionsRemoveButton.Click += new System.EventHandler(this.KeyboardAction_Click);
+            // 
+            // keyboardActionsEditButton
+            // 
+            this.keyboardActionsEditButton.AutoSize = true;
+            this.keyboardActionsEditButton.Location = new System.Drawing.Point(93, 3);
+            this.keyboardActionsEditButton.Name = "keyboardActionsEditButton";
+            this.keyboardActionsEditButton.Size = new System.Drawing.Size(75, 23);
+            this.keyboardActionsEditButton.TabIndex = 108;
+            this.keyboardActionsEditButton.TabStop = false;
+            this.keyboardActionsEditButton.Tag = "Edit";
+            this.keyboardActionsEditButton.Text = "🖉 Edit";
+            this.toolTip1.SetToolTip(this.keyboardActionsEditButton, "Edit the actions for this key");
+            this.keyboardActionsEditButton.UseVisualStyleBackColor = true;
+            this.keyboardActionsEditButton.Click += new System.EventHandler(this.KeyboardAction_Click);
+            // 
+            // keyboardActionsAddKeyButton
+            // 
+            this.keyboardActionsAddKeyButton.AutoSize = true;
+            this.keyboardActionsAddKeyButton.ForeColor = System.Drawing.Color.Green;
+            this.keyboardActionsAddKeyButton.Location = new System.Drawing.Point(3, 3);
+            this.keyboardActionsAddKeyButton.Name = "keyboardActionsAddKeyButton";
+            this.keyboardActionsAddKeyButton.Size = new System.Drawing.Size(84, 23);
+            this.keyboardActionsAddKeyButton.TabIndex = 109;
+            this.keyboardActionsAddKeyButton.TabStop = false;
+            this.keyboardActionsAddKeyButton.Tag = "Add";
+            this.keyboardActionsAddKeyButton.Text = "➕ New";
+            this.toolTip1.SetToolTip(this.keyboardActionsAddKeyButton, "Create actions for this key");
+            this.keyboardActionsAddKeyButton.UseVisualStyleBackColor = true;
+            this.keyboardActionsAddKeyButton.Click += new System.EventHandler(this.KeyboardAction_Click);
+            // 
+            // keyboardPictureButton
+            // 
+            this.keyboardPictureButton.BackgroundImage = global::Wx3270.Properties.Resources.KeyboardLayoutSmall;
+            this.keyboardPictureButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.keyboardPictureButton.Location = new System.Drawing.Point(29, 103);
+            this.keyboardPictureButton.Name = "keyboardPictureButton";
+            this.keyboardPictureButton.Size = new System.Drawing.Size(170, 70);
+            this.keyboardPictureButton.TabIndex = 131;
+            this.keyboardPictureButton.TabStop = false;
+            this.toolTip1.SetToolTip(this.keyboardPictureButton, "Display keyboard");
+            this.keyboardPictureButton.UseVisualStyleBackColor = true;
+            this.keyboardPictureButton.Click += new System.EventHandler(this.KeyboardPictureButton_Click);
+            // 
+            // keypadRemoveButton
+            // 
+            this.keypadRemoveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.keypadRemoveButton.AutoSize = true;
+            this.keypadRemoveButton.Enabled = false;
+            this.keypadRemoveButton.ForeColor = System.Drawing.Color.Red;
+            this.keypadRemoveButton.Location = new System.Drawing.Point(136, 45);
+            this.keypadRemoveButton.Margin = new System.Windows.Forms.Padding(10);
+            this.keypadRemoveButton.Name = "keypadRemoveButton";
+            this.keypadRemoveButton.Size = new System.Drawing.Size(76, 23);
+            this.keypadRemoveButton.TabIndex = 43;
+            this.keypadRemoveButton.TabStop = false;
+            this.keypadRemoveButton.Text = "❌ Delete";
+            this.toolTip1.SetToolTip(this.keypadRemoveButton, "Remove definition");
+            this.keypadRemoveButton.UseVisualStyleBackColor = true;
+            this.keypadRemoveButton.Click += new System.EventHandler(this.KeypadRemoveButton_Click);
+            // 
+            // crosshairColorButton
+            // 
+            this.crosshairColorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.crosshairColorButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.crosshairColorButton.Location = new System.Drawing.Point(315, 17);
+            this.crosshairColorButton.Name = "crosshairColorButton";
+            this.crosshairColorButton.Size = new System.Drawing.Size(170, 23);
+            this.crosshairColorButton.TabIndex = 39;
+            this.crosshairColorButton.TabStop = false;
+            this.crosshairColorButton.Tag = "";
+            this.crosshairColorButton.Text = "Crosshair Cursor";
+            this.toolTip1.SetToolTip(this.crosshairColorButton, "Color of the crosshair cursor");
+            this.crosshairColorButton.UseVisualStyleBackColor = false;
+            this.crosshairColorButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
+            // 
+            // selectedButton
+            // 
+            this.selectedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectedButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.selectedButton.Location = new System.Drawing.Point(9, 17);
+            this.selectedButton.Name = "selectedButton";
+            this.selectedButton.Size = new System.Drawing.Size(170, 23);
+            this.selectedButton.TabIndex = 37;
+            this.selectedButton.TabStop = false;
+            this.selectedButton.Tag = "";
+            this.selectedButton.Text = "Selected Text Background";
+            this.toolTip1.SetToolTip(this.selectedButton, "Background color for selected text");
+            this.selectedButton.UseVisualStyleBackColor = false;
+            this.selectedButton.Click += new System.EventHandler(this.SelectedButton_Click);
+            // 
+            // whiteButton
+            // 
+            this.whiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.whiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.whiteButton.Location = new System.Drawing.Point(315, 244);
+            this.whiteButton.Name = "whiteButton";
+            this.whiteButton.Size = new System.Drawing.Size(126, 23);
+            this.whiteButton.TabIndex = 15;
+            this.whiteButton.TabStop = false;
+            this.whiteButton.Tag = "white";
+            this.whiteButton.Text = "White";
+            this.toolTip1.SetToolTip(this.whiteButton, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
+            this.whiteButton.UseVisualStyleBackColor = false;
+            this.whiteButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // grayButton
+            // 
+            this.grayButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grayButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.grayButton.Location = new System.Drawing.Point(7, 244);
+            this.grayButton.Name = "grayButton";
+            this.grayButton.Size = new System.Drawing.Size(126, 23);
+            this.grayButton.TabIndex = 14;
+            this.grayButton.TabStop = false;
+            this.grayButton.Tag = "grey";
+            this.grayButton.Text = "Gray";
+            this.toolTip1.SetToolTip(this.grayButton, "Gray\r\nHost color X\'FE\'");
+            this.grayButton.UseVisualStyleBackColor = false;
+            this.grayButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // paleTurquoiseButton
+            // 
+            this.paleTurquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paleTurquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.paleTurquoiseButton.Location = new System.Drawing.Point(315, 215);
+            this.paleTurquoiseButton.Name = "paleTurquoiseButton";
+            this.paleTurquoiseButton.Size = new System.Drawing.Size(126, 23);
+            this.paleTurquoiseButton.TabIndex = 13;
+            this.paleTurquoiseButton.TabStop = false;
+            this.paleTurquoiseButton.Tag = "paleTurquoise";
+            this.paleTurquoiseButton.Text = "Pale Turquoise";
+            this.toolTip1.SetToolTip(this.paleTurquoiseButton, "Pale Turquoise\r\nHost color X\'FD\'");
+            this.paleTurquoiseButton.UseVisualStyleBackColor = false;
+            this.paleTurquoiseButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // paleGreenButton
+            // 
+            this.paleGreenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paleGreenButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.paleGreenButton.Location = new System.Drawing.Point(6, 215);
+            this.paleGreenButton.Name = "paleGreenButton";
+            this.paleGreenButton.Size = new System.Drawing.Size(126, 23);
+            this.paleGreenButton.TabIndex = 12;
+            this.paleGreenButton.TabStop = false;
+            this.paleGreenButton.Tag = "paleGreen";
+            this.paleGreenButton.Text = "Pale Green";
+            this.toolTip1.SetToolTip(this.paleGreenButton, "Pale Green\r\nHost color X\'FC\'");
+            this.paleGreenButton.UseVisualStyleBackColor = false;
+            this.paleGreenButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // purpleButton
+            // 
+            this.purpleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.purpleButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.purpleButton.Location = new System.Drawing.Point(315, 186);
+            this.purpleButton.Name = "purpleButton";
+            this.purpleButton.Size = new System.Drawing.Size(126, 23);
+            this.purpleButton.TabIndex = 11;
+            this.purpleButton.TabStop = false;
+            this.purpleButton.Tag = "purple";
+            this.purpleButton.Text = "Purple";
+            this.toolTip1.SetToolTip(this.purpleButton, "Purple\r\nHost color X\'FB\'");
+            this.purpleButton.UseVisualStyleBackColor = false;
+            this.purpleButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // orangeButton
+            // 
+            this.orangeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.orangeButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.orangeButton.Location = new System.Drawing.Point(7, 186);
+            this.orangeButton.Name = "orangeButton";
+            this.orangeButton.Size = new System.Drawing.Size(126, 23);
+            this.orangeButton.TabIndex = 10;
+            this.orangeButton.TabStop = false;
+            this.orangeButton.Tag = "orange";
+            this.orangeButton.Text = "Orange";
+            this.toolTip1.SetToolTip(this.orangeButton, "Orange\r\nHost color X\'FA\'");
+            this.orangeButton.UseVisualStyleBackColor = false;
+            this.orangeButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // deepBlueButton
+            // 
+            this.deepBlueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deepBlueButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.deepBlueButton.Location = new System.Drawing.Point(315, 157);
+            this.deepBlueButton.Name = "deepBlueButton";
+            this.deepBlueButton.Size = new System.Drawing.Size(126, 23);
+            this.deepBlueButton.TabIndex = 9;
+            this.deepBlueButton.TabStop = false;
+            this.deepBlueButton.Tag = "deepBlue";
+            this.deepBlueButton.Text = "Deep Blue";
+            this.toolTip1.SetToolTip(this.deepBlueButton, "Deep Blue\r\nHost color X\'F9\'");
+            this.deepBlueButton.UseVisualStyleBackColor = false;
+            this.deepBlueButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // blackButton
+            // 
+            this.blackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blackButton.Location = new System.Drawing.Point(6, 157);
+            this.blackButton.Name = "blackButton";
+            this.blackButton.Size = new System.Drawing.Size(126, 23);
+            this.blackButton.TabIndex = 8;
+            this.blackButton.TabStop = false;
+            this.blackButton.Tag = "black";
+            this.blackButton.Text = "Black";
+            this.toolTip1.SetToolTip(this.blackButton, "Black\r\nHost color X\'F8\'");
+            this.blackButton.UseVisualStyleBackColor = false;
+            this.blackButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // neutralWhiteButton
+            // 
+            this.neutralWhiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.neutralWhiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.neutralWhiteButton.Location = new System.Drawing.Point(7, 19);
+            this.neutralWhiteButton.Name = "neutralWhiteButton";
+            this.neutralWhiteButton.Size = new System.Drawing.Size(126, 41);
+            this.neutralWhiteButton.TabIndex = 0;
+            this.neutralWhiteButton.TabStop = false;
+            this.neutralWhiteButton.Tag = "neutralWhite";
+            this.neutralWhiteButton.Text = "Neutral White\r\nScreen Foreground";
+            this.toolTip1.SetToolTip(this.neutralWhiteButton, "Neutral White\r\nHost color X\'F7\'\r\nIntensified protected text");
+            this.neutralWhiteButton.UseVisualStyleBackColor = false;
+            this.neutralWhiteButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // yellowButton
+            // 
+            this.yellowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yellowButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.yellowButton.Location = new System.Drawing.Point(7, 128);
+            this.yellowButton.Name = "yellowButton";
+            this.yellowButton.Size = new System.Drawing.Size(126, 23);
+            this.yellowButton.TabIndex = 6;
+            this.yellowButton.TabStop = false;
+            this.yellowButton.Tag = "yellow";
+            this.yellowButton.Text = "Yellow";
+            this.toolTip1.SetToolTip(this.yellowButton, "Yellow\r\nHost color X\'F6\'");
+            this.yellowButton.UseVisualStyleBackColor = false;
+            this.yellowButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // turquoiseButton
+            // 
+            this.turquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.turquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.turquoiseButton.Location = new System.Drawing.Point(315, 99);
+            this.turquoiseButton.Name = "turquoiseButton";
+            this.turquoiseButton.Size = new System.Drawing.Size(126, 23);
+            this.turquoiseButton.TabIndex = 5;
+            this.turquoiseButton.TabStop = false;
+            this.turquoiseButton.Tag = "turquoise";
+            this.turquoiseButton.Text = "Turquoise";
+            this.toolTip1.SetToolTip(this.turquoiseButton, "Turquoise\r\nHost color X\'F5\'");
+            this.turquoiseButton.UseVisualStyleBackColor = false;
+            this.turquoiseButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // greenButton
+            // 
+            this.greenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.greenButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.greenButton.Location = new System.Drawing.Point(7, 99);
+            this.greenButton.Name = "greenButton";
+            this.greenButton.Size = new System.Drawing.Size(126, 23);
+            this.greenButton.TabIndex = 4;
+            this.greenButton.TabStop = false;
+            this.greenButton.Tag = "green";
+            this.greenButton.Text = "Green";
+            this.toolTip1.SetToolTip(this.greenButton, "Green\r\nHost color X\'F4\'\r\nUnprotected text");
+            this.greenButton.UseVisualStyleBackColor = false;
+            this.greenButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // pinkButton
+            // 
+            this.pinkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pinkButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pinkButton.Location = new System.Drawing.Point(315, 128);
+            this.pinkButton.Name = "pinkButton";
+            this.pinkButton.Size = new System.Drawing.Size(126, 23);
+            this.pinkButton.TabIndex = 7;
+            this.pinkButton.TabStop = false;
+            this.pinkButton.Tag = "pink";
+            this.pinkButton.Text = "Pink";
+            this.toolTip1.SetToolTip(this.pinkButton, "Pink\r\nHost color X\'F3\'");
+            this.pinkButton.UseVisualStyleBackColor = false;
+            this.pinkButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // redButton
+            // 
+            this.redButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.redButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.redButton.Location = new System.Drawing.Point(315, 70);
+            this.redButton.Name = "redButton";
+            this.redButton.Size = new System.Drawing.Size(126, 23);
+            this.redButton.TabIndex = 3;
+            this.redButton.TabStop = false;
+            this.redButton.Tag = "red";
+            this.redButton.Text = "Red";
+            this.toolTip1.SetToolTip(this.redButton, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
+            this.redButton.UseVisualStyleBackColor = false;
+            this.redButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // blueButton
+            // 
+            this.blueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blueButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.blueButton.Location = new System.Drawing.Point(7, 70);
+            this.blueButton.Name = "blueButton";
+            this.blueButton.Size = new System.Drawing.Size(126, 23);
+            this.blueButton.TabIndex = 2;
+            this.blueButton.TabStop = false;
+            this.blueButton.Tag = "blue";
+            this.blueButton.Text = "Blue";
+            this.toolTip1.SetToolTip(this.blueButton, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
+            this.blueButton.UseVisualStyleBackColor = false;
+            this.blueButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // neutralBlackButton
+            // 
+            this.neutralBlackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.neutralBlackButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.neutralBlackButton.Location = new System.Drawing.Point(316, 20);
+            this.neutralBlackButton.Name = "neutralBlackButton";
+            this.neutralBlackButton.Size = new System.Drawing.Size(126, 41);
+            this.neutralBlackButton.TabIndex = 1;
+            this.neutralBlackButton.TabStop = false;
+            this.neutralBlackButton.Tag = "neutralBlack";
+            this.neutralBlackButton.Text = "Neutral Black\r\nScreen Background";
+            this.toolTip1.SetToolTip(this.neutralBlackButton, "Neutral Black\r\nHost color X\'F0\'\r\nScreen background color");
+            this.neutralBlackButton.UseVisualStyleBackColor = false;
+            this.neutralBlackButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // monoCrosshairButton
+            // 
+            this.monoCrosshairButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoCrosshairButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoCrosshairButton.Location = new System.Drawing.Point(316, 19);
+            this.monoCrosshairButton.Name = "monoCrosshairButton";
+            this.monoCrosshairButton.Size = new System.Drawing.Size(126, 23);
+            this.monoCrosshairButton.TabIndex = 37;
+            this.monoCrosshairButton.TabStop = false;
+            this.monoCrosshairButton.Tag = "red";
+            this.monoCrosshairButton.Text = "Crosshair Cursor";
+            this.toolTip1.SetToolTip(this.monoCrosshairButton, "Color of crosshair cursor");
+            this.monoCrosshairButton.UseVisualStyleBackColor = false;
+            this.monoCrosshairButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
+            // 
+            // monoSelectBackground
+            // 
+            this.monoSelectBackground.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoSelectBackground.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoSelectBackground.Location = new System.Drawing.Point(7, 19);
+            this.monoSelectBackground.Name = "monoSelectBackground";
+            this.monoSelectBackground.Size = new System.Drawing.Size(126, 23);
+            this.monoSelectBackground.TabIndex = 3;
+            this.monoSelectBackground.Tag = "red";
+            this.monoSelectBackground.Text = "Selection Background";
+            this.toolTip1.SetToolTip(this.monoSelectBackground, "Background color of selected text");
+            this.monoSelectBackground.UseVisualStyleBackColor = false;
+            this.monoSelectBackground.Click += new System.EventHandler(this.SelectedButton_Click);
+            // 
+            // monoIntensifiedButton
+            // 
+            this.monoIntensifiedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoIntensifiedButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoIntensifiedButton.Location = new System.Drawing.Point(316, 49);
+            this.monoIntensifiedButton.Name = "monoIntensifiedButton";
+            this.monoIntensifiedButton.Size = new System.Drawing.Size(126, 23);
+            this.monoIntensifiedButton.TabIndex = 5;
+            this.monoIntensifiedButton.TabStop = false;
+            this.monoIntensifiedButton.Tag = "";
+            this.monoIntensifiedButton.Text = "Intensified";
+            this.toolTip1.SetToolTip(this.monoIntensifiedButton, "Intensified text color");
+            this.monoIntensifiedButton.UseVisualStyleBackColor = false;
+            this.monoIntensifiedButton.Click += new System.EventHandler(this.Mono_Click);
+            // 
+            // monoNormalButton
+            // 
+            this.monoNormalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoNormalButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoNormalButton.Location = new System.Drawing.Point(7, 49);
+            this.monoNormalButton.Name = "monoNormalButton";
+            this.monoNormalButton.Size = new System.Drawing.Size(126, 23);
+            this.monoNormalButton.TabIndex = 4;
+            this.monoNormalButton.TabStop = false;
+            this.monoNormalButton.Tag = "green";
+            this.monoNormalButton.Text = "Normal";
+            this.toolTip1.SetToolTip(this.monoNormalButton, "Normal text and status line color");
+            this.monoNormalButton.UseVisualStyleBackColor = false;
+            this.monoNormalButton.Click += new System.EventHandler(this.Mono_Click);
+            // 
+            // monoBackgroundButton
+            // 
+            this.monoBackgroundButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoBackgroundButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoBackgroundButton.Location = new System.Drawing.Point(7, 20);
+            this.monoBackgroundButton.Name = "monoBackgroundButton";
+            this.monoBackgroundButton.Size = new System.Drawing.Size(126, 23);
+            this.monoBackgroundButton.TabIndex = 2;
+            this.monoBackgroundButton.TabStop = false;
+            this.monoBackgroundButton.Tag = "blue";
+            this.monoBackgroundButton.Text = "Screen Background";
+            this.toolTip1.SetToolTip(this.monoBackgroundButton, "Screen background color");
+            this.monoBackgroundButton.UseVisualStyleBackColor = false;
+            this.monoBackgroundButton.Click += new System.EventHandler(this.Mono_Click);
+            // 
+            // FontChangeButton
+            // 
+            this.FontChangeButton.AutoSize = true;
+            this.FontChangeButton.Location = new System.Drawing.Point(6, 42);
+            this.FontChangeButton.Name = "FontChangeButton";
+            this.FontChangeButton.Size = new System.Drawing.Size(75, 23);
+            this.FontChangeButton.TabIndex = 2;
+            this.FontChangeButton.TabStop = false;
+            this.FontChangeButton.Text = "Change";
+            this.toolTip1.SetToolTip(this.FontChangeButton, "Change the font");
+            this.FontChangeButton.UseVisualStyleBackColor = true;
+            this.FontChangeButton.Click += new System.EventHandler(this.FontChangeButton_Click);
+            // 
+            // PlayAudibleBell
+            // 
+            this.PlayAudibleBell.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PlayAudibleBell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayAudibleBell.Location = new System.Drawing.Point(106, 32);
+            this.PlayAudibleBell.Name = "PlayAudibleBell";
+            this.PlayAudibleBell.Size = new System.Drawing.Size(22, 23);
+            this.PlayAudibleBell.TabIndex = 9;
+            this.PlayAudibleBell.Tag = "`";
+            this.PlayAudibleBell.Text = "▶";
+            this.toolTip1.SetToolTip(this.PlayAudibleBell, "Play the sound");
+            this.PlayAudibleBell.UseVisualStyleBackColor = true;
+            this.PlayAudibleBell.Click += new System.EventHandler(this.ConsoleBellPlayButton_Click);
+            // 
+            // PlayKeyboardClick
+            // 
+            this.PlayKeyboardClick.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PlayKeyboardClick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayKeyboardClick.Location = new System.Drawing.Point(106, 3);
+            this.PlayKeyboardClick.Name = "PlayKeyboardClick";
+            this.PlayKeyboardClick.Size = new System.Drawing.Size(22, 23);
+            this.PlayKeyboardClick.TabIndex = 8;
+            this.PlayKeyboardClick.Tag = "`";
+            this.PlayKeyboardClick.Text = "▶";
+            this.toolTip1.SetToolTip(this.PlayKeyboardClick, "Play the sound");
+            this.PlayKeyboardClick.UseVisualStyleBackColor = true;
+            this.PlayKeyboardClick.Click += new System.EventHandler(this.KeyClickPlayButton_Click);
+            // 
             // redoButton
             // 
             this.redoButton.Enabled = false;
@@ -4106,55 +4155,6 @@
             this.toolTip1.SetToolTip(this.setToDefaultsButton, "Revert to all default values");
             this.setToDefaultsButton.UseVisualStyleBackColor = true;
             this.setToDefaultsButton.Click += new System.EventHandler(this.DefaultsButton_Click);
-            // 
-            // tableLayoutPanel
-            // 
-            this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel.ColumnCount = 2;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel.Controls.Add(this.ButtonsLayoutPanel, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.settingsTabs, 0, 0);
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 2;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel.Size = new System.Drawing.Size(688, 670);
-            this.tableLayoutPanel.TabIndex = 2;
-            // 
-            // HostColorDialog
-            // 
-            this.HostColorDialog.AnyColor = true;
-            // 
-            // ScreenFontDialog
-            // 
-            this.ScreenFontDialog.AllowVerticalFonts = false;
-            this.ScreenFontDialog.FixedPitchOnly = true;
-            this.ScreenFontDialog.FontMustExist = true;
-            this.ScreenFontDialog.MinSize = 1;
-            this.ScreenFontDialog.ShowEffects = false;
-            // 
-            // opacityTimer
-            // 
-            this.opacityTimer.Interval = 2000;
-            this.opacityTimer.Tick += new System.EventHandler(this.OpacityTimer_Tick);
-            // 
-            // backgroundTableLayoutPanel
-            // 
-            this.backgroundTableLayoutPanel.AutoSize = true;
-            this.backgroundTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.backgroundTableLayoutPanel.ColumnCount = 2;
-            this.backgroundTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.backgroundTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.backgroundTableLayoutPanel.Controls.Add(this.backgroundGroupBox, 0, 0);
-            this.backgroundTableLayoutPanel.Controls.Add(this.keypadRemoveButton, 1, 0);
-            this.backgroundTableLayoutPanel.Location = new System.Drawing.Point(334, 32);
-            this.backgroundTableLayoutPanel.Name = "backgroundTableLayoutPanel";
-            this.backgroundTableLayoutPanel.RowCount = 1;
-            this.backgroundTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.backgroundTableLayoutPanel.Size = new System.Drawing.Size(222, 113);
-            this.backgroundTableLayoutPanel.TabIndex = 44;
             // 
             // Settings
             // 
@@ -4215,8 +4215,8 @@
             this.keyboardTab.PerformLayout();
             this.modifiersTableLayoutPanel.ResumeLayout(false);
             this.modifiersTableLayoutPanel.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.selectedKeyGroupBox.ResumeLayout(false);
+            this.selectedKeyGroupBox.PerformLayout();
             this.keyCharValuePanel.ResumeLayout(false);
             this.keyCharValuePanel.PerformLayout();
             this.modeAllLayoutPanel.ResumeLayout(false);
@@ -4237,9 +4237,8 @@
             this.keypadPositionGroupBox.PerformLayout();
             this.keypadMappingGroupBox.ResumeLayout(false);
             this.keypadMappingGroupBox.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.keypadTextSize)).EndInit();
+            this.backgroundTableLayoutPanel.ResumeLayout(false);
+            this.backgroundTableLayoutPanel.PerformLayout();
             this.backgroundGroupBox.ResumeLayout(false);
             this.backgroundGroupBox.PerformLayout();
             this.backgroundLayoutPanel.ResumeLayout(false);
@@ -4247,6 +4246,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.deletePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.insertPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.blankPictureBox)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.keypadTextSize)).EndInit();
             this.colors3279Tab.ResumeLayout(false);
             this.colors3279Tab.PerformLayout();
             this.colorPreviewGroupBox.ResumeLayout(false);
@@ -4328,8 +4330,6 @@
             this.ButtonsLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.tableLayoutPanel.ResumeLayout(false);
-            this.backgroundTableLayoutPanel.ResumeLayout(false);
-            this.backgroundTableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4545,9 +4545,9 @@
         private System.Windows.Forms.Label s3270NoConfigLabel;
         private System.Windows.Forms.GroupBox printerSessionGroupBox;
         private System.Windows.Forms.TableLayoutPanel printerTableLayoutPanel;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label printerNameLabel;
+        private System.Windows.Forms.Label pr3287OptionsLabel;
+        private System.Windows.Forms.Label pr3287CodePageLabel;
         private System.Windows.Forms.ComboBox printerComboBox;
         private System.Windows.Forms.TextBox printerOptionsTextBox;
         private System.Windows.Forms.TextBox printerCodePageTextBox;
@@ -4571,10 +4571,10 @@
         private System.Windows.Forms.CheckBox aplCheckBox;
         private System.Windows.Forms.CheckBox nvtCheckBox;
         private System.Windows.Forms.CheckBox only3270CheckBox;
-        private System.Windows.Forms.Label KeyLabel;
+        private System.Windows.Forms.Label keyLabel;
         private System.Windows.Forms.Label ChordLabel;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox selectedKeyGroupBox;
+        private System.Windows.Forms.Label defineActionsLabel;
         private System.Windows.Forms.Label BehaviorLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.RadioButton ActionsRadioButton;
@@ -4591,20 +4591,20 @@
         private System.Windows.Forms.TableLayoutPanel proxyTableLayoutPanel;
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.TextBox usernameTextBox;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label portLabel;
+        private System.Windows.Forms.Label addressLabel;
         private System.Windows.Forms.TextBox portTextBox;
         private System.Windows.Forms.TextBox addressTextBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label usernameLabel;
+        private System.Windows.Forms.Label passwordLabel;
+        private System.Windows.Forms.Label proxyTypeLabel;
         private System.Windows.Forms.TextBox proxyTypeTextBox;
         private System.Windows.Forms.GroupBox opacityGroupBox;
         private System.Windows.Forms.TrackBar opacityTrackBar;
         private System.Windows.Forms.Label opacityLabel;
         private System.Windows.Forms.Timer opacityTimer;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label percent100Label;
+        private System.Windows.Forms.Label percent30Label;
         private System.Windows.Forms.TabPage miscellaneousTab;
         private System.Windows.Forms.GroupBox miscellaneousGroupBox;
         private System.Windows.Forms.TableLayoutPanel miscellaneousTableLayoutPanel;
@@ -4616,7 +4616,7 @@
         private System.Windows.Forms.GroupBox descriptionGroupBox;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.TableLayoutPanel descriptionTableLayoutPanel;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label profileDescriptionLabel;
         private System.Windows.Forms.Label windowTitleLabel;
         private System.Windows.Forms.TextBox titleTextBox;
         private System.Windows.Forms.CheckBox exactMatchCheckBox;

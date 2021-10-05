@@ -537,7 +537,7 @@ namespace Wx3270
             if (!this.noFlashTimer.Enabled && this.flashFsm.Start() == FlashFsm.Action.Flash)
             {
                 this.startLeftPictureBox.Image = Properties.Resources.StartClearerLeft;
-                this.ActionsBox.Image = Properties.Resources.StartClearerMiddle;
+                this.actionsBox.Image = Properties.Resources.StartClearerMiddle;
                 this.startRightPictureBox.Image = Properties.Resources.StartClearerRight;
             }
         }
@@ -739,12 +739,12 @@ namespace Wx3270
                     {
                         case FlashFsm.Action.Flash:
                             this.startLeftPictureBox.Image = Properties.Resources.StartClearerLeft;
-                            this.ActionsBox.Image = Properties.Resources.StartClearerMiddle;
+                            this.actionsBox.Image = Properties.Resources.StartClearerMiddle;
                             this.startRightPictureBox.Image = Properties.Resources.StartClearerRight;
                             break;
                         case FlashFsm.Action.Restore:
                             this.startLeftPictureBox.Image = Properties.Resources.StartBlankLeft;
-                            this.ActionsBox.Image = Properties.Resources.StartBlankMiddleWide;
+                            this.actionsBox.Image = Properties.Resources.StartBlankMiddleWide;
                             this.startRightPictureBox.Image = Properties.Resources.StartBlankRight;
                             break;
                         default:
@@ -946,7 +946,7 @@ namespace Wx3270
 
             if (this.App.Restricted(Restrictions.ChangeSettings))
             {
-                this.SettingsBox.RemoveFromParent();
+                this.settingsBox.RemoveFromParent();
             }
 
             if (this.App.Restricted(Restrictions.Prompt))

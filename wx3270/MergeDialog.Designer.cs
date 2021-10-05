@@ -36,7 +36,7 @@
             this.importButton = new System.Windows.Forms.Button();
             this.categoriesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.otherReplaceRadioButton = new System.Windows.Forms.RadioButton();
             this.otherSettingsCheckBox = new System.Windows.Forms.CheckBox();
             this.keyboardMapPanel = new System.Windows.Forms.Panel();
             this.keyboardReplaceRadioButton = new System.Windows.Forms.RadioButton();
@@ -47,18 +47,18 @@
             this.keypadMergeRadioButton = new System.Windows.Forms.RadioButton();
             this.keypadCheckBox = new System.Windows.Forms.CheckBox();
             this.macrosPanel = new System.Windows.Forms.Panel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.macrosReplaceRadioButton = new System.Windows.Forms.RadioButton();
+            this.macrosMergeRadioButton = new System.Windows.Forms.RadioButton();
             this.macrosCheckBox = new System.Windows.Forms.CheckBox();
             this.fontPanel = new System.Windows.Forms.Panel();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.fontReplaceRadioButton = new System.Windows.Forms.RadioButton();
             this.fontCheckBox = new System.Windows.Forms.CheckBox();
             this.hostListPanel = new System.Windows.Forms.Panel();
             this.hostsReplaceRadioButton = new System.Windows.Forms.RadioButton();
             this.hostsMergeRadioButton = new System.Windows.Forms.RadioButton();
             this.hostsCheckBox = new System.Windows.Forms.CheckBox();
             this.colorsPanel = new System.Windows.Forms.Panel();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.colorsReplaceRadioButton = new System.Windows.Forms.RadioButton();
             this.colorsCheckBox = new System.Windows.Forms.CheckBox();
             this.sourceProfileLabel = new System.Windows.Forms.Label();
             this.purplePanel = new System.Windows.Forms.Panel();
@@ -173,26 +173,26 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.radioButton5);
+            this.panel1.Controls.Add(this.otherReplaceRadioButton);
             this.panel1.Controls.Add(this.otherSettingsCheckBox);
             this.panel1.Location = new System.Drawing.Point(3, 213);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(366, 29);
             this.panel1.TabIndex = 29;
             // 
-            // radioButton5
+            // otherReplaceRadioButton
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Checked = true;
-            this.radioButton5.Enabled = false;
-            this.radioButton5.Location = new System.Drawing.Point(157, 4);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(65, 17);
-            this.radioButton5.TabIndex = 4;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Tag = "OtherSettingsReplace";
-            this.radioButton5.Text = "Replace";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.otherReplaceRadioButton.AutoSize = true;
+            this.otherReplaceRadioButton.Checked = true;
+            this.otherReplaceRadioButton.Enabled = false;
+            this.otherReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
+            this.otherReplaceRadioButton.Name = "otherReplaceRadioButton";
+            this.otherReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.otherReplaceRadioButton.TabIndex = 4;
+            this.otherReplaceRadioButton.TabStop = true;
+            this.otherReplaceRadioButton.Tag = "OtherSettingsReplace";
+            this.otherReplaceRadioButton.Text = "Replace";
+            this.otherReplaceRadioButton.UseVisualStyleBackColor = true;
             // 
             // otherSettingsCheckBox
             // 
@@ -304,39 +304,39 @@
             // 
             // macrosPanel
             // 
-            this.macrosPanel.Controls.Add(this.radioButton1);
-            this.macrosPanel.Controls.Add(this.radioButton2);
+            this.macrosPanel.Controls.Add(this.macrosReplaceRadioButton);
+            this.macrosPanel.Controls.Add(this.macrosMergeRadioButton);
             this.macrosPanel.Controls.Add(this.macrosCheckBox);
             this.macrosPanel.Location = new System.Drawing.Point(3, 108);
             this.macrosPanel.Name = "macrosPanel";
             this.macrosPanel.Size = new System.Drawing.Size(366, 29);
             this.macrosPanel.TabIndex = 28;
             // 
-            // radioButton1
+            // macrosReplaceRadioButton
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Enabled = false;
-            this.radioButton1.Location = new System.Drawing.Point(157, 4);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(65, 17);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Tag = "MacrosReplace";
-            this.radioButton1.Text = "Replace";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.macrosReplaceRadioButton.AutoSize = true;
+            this.macrosReplaceRadioButton.Checked = true;
+            this.macrosReplaceRadioButton.Enabled = false;
+            this.macrosReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
+            this.macrosReplaceRadioButton.Name = "macrosReplaceRadioButton";
+            this.macrosReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.macrosReplaceRadioButton.TabIndex = 3;
+            this.macrosReplaceRadioButton.TabStop = true;
+            this.macrosReplaceRadioButton.Tag = "MacrosReplace";
+            this.macrosReplaceRadioButton.Text = "Replace";
+            this.macrosReplaceRadioButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // macrosMergeRadioButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Enabled = false;
-            this.radioButton2.Location = new System.Drawing.Point(267, 4);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(55, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.Tag = "MacrosMerge";
-            this.radioButton2.Text = "Merge";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.macrosMergeRadioButton.AutoSize = true;
+            this.macrosMergeRadioButton.Enabled = false;
+            this.macrosMergeRadioButton.Location = new System.Drawing.Point(267, 4);
+            this.macrosMergeRadioButton.Name = "macrosMergeRadioButton";
+            this.macrosMergeRadioButton.Size = new System.Drawing.Size(55, 17);
+            this.macrosMergeRadioButton.TabIndex = 2;
+            this.macrosMergeRadioButton.Tag = "MacrosMerge";
+            this.macrosMergeRadioButton.Text = "Merge";
+            this.macrosMergeRadioButton.UseVisualStyleBackColor = true;
             // 
             // macrosCheckBox
             // 
@@ -352,26 +352,26 @@
             // 
             // fontPanel
             // 
-            this.fontPanel.Controls.Add(this.radioButton4);
+            this.fontPanel.Controls.Add(this.fontReplaceRadioButton);
             this.fontPanel.Controls.Add(this.fontCheckBox);
             this.fontPanel.Location = new System.Drawing.Point(3, 178);
             this.fontPanel.Name = "fontPanel";
             this.fontPanel.Size = new System.Drawing.Size(366, 29);
             this.fontPanel.TabIndex = 25;
             // 
-            // radioButton4
+            // fontReplaceRadioButton
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Checked = true;
-            this.radioButton4.Enabled = false;
-            this.radioButton4.Location = new System.Drawing.Point(157, 4);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(65, 17);
-            this.radioButton4.TabIndex = 4;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Tag = "FontReplace";
-            this.radioButton4.Text = "Replace";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.fontReplaceRadioButton.AutoSize = true;
+            this.fontReplaceRadioButton.Checked = true;
+            this.fontReplaceRadioButton.Enabled = false;
+            this.fontReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
+            this.fontReplaceRadioButton.Name = "fontReplaceRadioButton";
+            this.fontReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.fontReplaceRadioButton.TabIndex = 4;
+            this.fontReplaceRadioButton.TabStop = true;
+            this.fontReplaceRadioButton.Tag = "FontReplace";
+            this.fontReplaceRadioButton.Text = "Replace";
+            this.fontReplaceRadioButton.UseVisualStyleBackColor = true;
             // 
             // fontCheckBox
             // 
@@ -435,26 +435,26 @@
             // 
             // colorsPanel
             // 
-            this.colorsPanel.Controls.Add(this.radioButton3);
+            this.colorsPanel.Controls.Add(this.colorsReplaceRadioButton);
             this.colorsPanel.Controls.Add(this.colorsCheckBox);
             this.colorsPanel.Location = new System.Drawing.Point(3, 143);
             this.colorsPanel.Name = "colorsPanel";
             this.colorsPanel.Size = new System.Drawing.Size(366, 29);
             this.colorsPanel.TabIndex = 24;
             // 
-            // radioButton3
+            // colorsReplaceRadioButton
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Checked = true;
-            this.radioButton3.Enabled = false;
-            this.radioButton3.Location = new System.Drawing.Point(157, 4);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(65, 17);
-            this.radioButton3.TabIndex = 4;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Tag = "ColorsReplace";
-            this.radioButton3.Text = "Replace";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.colorsReplaceRadioButton.AutoSize = true;
+            this.colorsReplaceRadioButton.Checked = true;
+            this.colorsReplaceRadioButton.Enabled = false;
+            this.colorsReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
+            this.colorsReplaceRadioButton.Name = "colorsReplaceRadioButton";
+            this.colorsReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.colorsReplaceRadioButton.TabIndex = 4;
+            this.colorsReplaceRadioButton.TabStop = true;
+            this.colorsReplaceRadioButton.Tag = "ColorsReplace";
+            this.colorsReplaceRadioButton.Text = "Replace";
+            this.colorsReplaceRadioButton.UseVisualStyleBackColor = true;
             // 
             // colorsCheckBox
             // 
@@ -550,24 +550,24 @@
         private System.Windows.Forms.RadioButton keypadMergeRadioButton;
         private System.Windows.Forms.CheckBox keypadCheckBox;
         private System.Windows.Forms.Panel macrosPanel;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton macrosReplaceRadioButton;
+        private System.Windows.Forms.RadioButton macrosMergeRadioButton;
         private System.Windows.Forms.CheckBox macrosCheckBox;
         private System.Windows.Forms.Panel fontPanel;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton fontReplaceRadioButton;
         private System.Windows.Forms.CheckBox fontCheckBox;
         private System.Windows.Forms.Panel hostListPanel;
         private System.Windows.Forms.RadioButton hostsReplaceRadioButton;
         private System.Windows.Forms.RadioButton hostsMergeRadioButton;
         private System.Windows.Forms.CheckBox hostsCheckBox;
         private System.Windows.Forms.Panel colorsPanel;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton colorsReplaceRadioButton;
         private System.Windows.Forms.CheckBox colorsCheckBox;
         private System.Windows.Forms.Panel purplePanel;
         private System.Windows.Forms.GroupBox categoriesGroupBox;
         private System.Windows.Forms.Label sourceProfileLabel;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton otherReplaceRadioButton;
         private System.Windows.Forms.CheckBox otherSettingsCheckBox;
     }
 }

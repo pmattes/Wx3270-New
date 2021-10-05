@@ -85,7 +85,7 @@
             this.keyA = new System.Windows.Forms.Label();
             this.keyC = new System.Windows.Forms.Label();
             this.keyD = new System.Windows.Forms.Label();
-            this.BackSpaceKey = new System.Windows.Forms.Label();
+            this.backSpaceKey = new System.Windows.Forms.Label();
             this.tabKey = new System.Windows.Forms.Label();
             this.key10 = new System.Windows.Forms.Label();
             this.key11 = new System.Windows.Forms.Label();
@@ -153,8 +153,8 @@
             this.modeGroupBox = new System.Windows.Forms.GroupBox();
             this.modeLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.modeTable = new System.Windows.Forms.TableLayoutPanel();
-            this.Mode3270CheckBox = new System.Windows.Forms.CheckBox();
-            this.NvtModeCheckBox = new System.Windows.Forms.CheckBox();
+            this.mode3270CheckBox = new System.Windows.Forms.CheckBox();
+            this.nvtModeCheckBox = new System.Windows.Forms.CheckBox();
             this.key56 = new System.Windows.Forms.Label();
             this.nativeNameLabel = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -167,8 +167,8 @@
             this.keysPanel = new System.Windows.Forms.Panel();
             this.layoutLabel = new System.Windows.Forms.Label();
             this.modeFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.ChordBox = new System.Windows.Forms.GroupBox();
-            this.ChordComboBox = new System.Windows.Forms.ComboBox();
+            this.chordBox = new System.Windows.Forms.GroupBox();
+            this.chordComboBox = new System.Windows.Forms.ComboBox();
             this.bottomTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.displayGroupBox.SuspendLayout();
             this.displayTable.SuspendLayout();
@@ -179,7 +179,7 @@
             this.aplLegendPanel.SuspendLayout();
             this.keysPanel.SuspendLayout();
             this.modeFlowLayoutPanel.SuspendLayout();
-            this.ChordBox.SuspendLayout();
+            this.chordBox.SuspendLayout();
             this.bottomTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1020,20 +1020,20 @@
             this.keyD.UseMnemonic = false;
             this.keyD.Click += new System.EventHandler(this.KeyboardPicture_Click);
             // 
-            // BackSpaceKey
+            // backSpaceKey
             // 
-            this.BackSpaceKey.AutoEllipsis = true;
-            this.BackSpaceKey.BackColor = System.Drawing.Color.Gainsboro;
-            this.BackSpaceKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.BackSpaceKey.Location = new System.Drawing.Point(711, 81);
-            this.BackSpaceKey.Name = "BackSpaceKey";
-            this.BackSpaceKey.Size = new System.Drawing.Size(86, 48);
-            this.BackSpaceKey.TabIndex = 55;
-            this.BackSpaceKey.Tag = "Back";
-            this.BackSpaceKey.Text = "Backspace";
-            this.BackSpaceKey.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.BackSpaceKey.UseMnemonic = false;
-            this.BackSpaceKey.Click += new System.EventHandler(this.KeyboardPicture_Click);
+            this.backSpaceKey.AutoEllipsis = true;
+            this.backSpaceKey.BackColor = System.Drawing.Color.Gainsboro;
+            this.backSpaceKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.backSpaceKey.Location = new System.Drawing.Point(711, 81);
+            this.backSpaceKey.Name = "backSpaceKey";
+            this.backSpaceKey.Size = new System.Drawing.Size(86, 48);
+            this.backSpaceKey.TabIndex = 55;
+            this.backSpaceKey.Tag = "Back";
+            this.backSpaceKey.Text = "Backspace";
+            this.backSpaceKey.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.backSpaceKey.UseMnemonic = false;
+            this.backSpaceKey.Click += new System.EventHandler(this.KeyboardPicture_Click);
             // 
             // tabKey
             // 
@@ -2046,8 +2046,8 @@
             this.modeTable.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.modeTable.ColumnCount = 1;
             this.modeTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.modeTable.Controls.Add(this.Mode3270CheckBox, 0, 1);
-            this.modeTable.Controls.Add(this.NvtModeCheckBox, 0, 0);
+            this.modeTable.Controls.Add(this.mode3270CheckBox, 0, 1);
+            this.modeTable.Controls.Add(this.nvtModeCheckBox, 0, 0);
             this.modeTable.Location = new System.Drawing.Point(11, 16);
             this.modeTable.Name = "modeTable";
             this.modeTable.RowCount = 2;
@@ -2056,29 +2056,29 @@
             this.modeTable.Size = new System.Drawing.Size(56, 46);
             this.modeTable.TabIndex = 116;
             // 
-            // Mode3270CheckBox
+            // mode3270CheckBox
             // 
-            this.Mode3270CheckBox.AutoSize = true;
-            this.Mode3270CheckBox.Location = new System.Drawing.Point(3, 26);
-            this.Mode3270CheckBox.Name = "Mode3270CheckBox";
-            this.Mode3270CheckBox.Size = new System.Drawing.Size(50, 17);
-            this.Mode3270CheckBox.TabIndex = 117;
-            this.Mode3270CheckBox.Tag = "Mode3270";
-            this.Mode3270CheckBox.Text = "3270";
-            this.Mode3270CheckBox.UseVisualStyleBackColor = true;
-            this.Mode3270CheckBox.CheckedChanged += new System.EventHandler(this.ModeModifierCheckedChanged);
+            this.mode3270CheckBox.AutoSize = true;
+            this.mode3270CheckBox.Location = new System.Drawing.Point(3, 26);
+            this.mode3270CheckBox.Name = "mode3270CheckBox";
+            this.mode3270CheckBox.Size = new System.Drawing.Size(50, 17);
+            this.mode3270CheckBox.TabIndex = 117;
+            this.mode3270CheckBox.Tag = "Mode3270";
+            this.mode3270CheckBox.Text = "3270";
+            this.mode3270CheckBox.UseVisualStyleBackColor = true;
+            this.mode3270CheckBox.CheckedChanged += new System.EventHandler(this.ModeModifierCheckedChanged);
             // 
-            // NvtModeCheckBox
+            // nvtModeCheckBox
             // 
-            this.NvtModeCheckBox.AutoSize = true;
-            this.NvtModeCheckBox.Location = new System.Drawing.Point(3, 3);
-            this.NvtModeCheckBox.Name = "NvtModeCheckBox";
-            this.NvtModeCheckBox.Size = new System.Drawing.Size(48, 17);
-            this.NvtModeCheckBox.TabIndex = 116;
-            this.NvtModeCheckBox.Tag = "ModeNvt";
-            this.NvtModeCheckBox.Text = "NVT";
-            this.NvtModeCheckBox.UseVisualStyleBackColor = true;
-            this.NvtModeCheckBox.CheckedChanged += new System.EventHandler(this.ModeModifierCheckedChanged);
+            this.nvtModeCheckBox.AutoSize = true;
+            this.nvtModeCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.nvtModeCheckBox.Name = "nvtModeCheckBox";
+            this.nvtModeCheckBox.Size = new System.Drawing.Size(48, 17);
+            this.nvtModeCheckBox.TabIndex = 116;
+            this.nvtModeCheckBox.Tag = "ModeNvt";
+            this.nvtModeCheckBox.Text = "NVT";
+            this.nvtModeCheckBox.UseVisualStyleBackColor = true;
+            this.nvtModeCheckBox.CheckedChanged += new System.EventHandler(this.ModeModifierCheckedChanged);
             // 
             // key56
             // 
@@ -2277,7 +2277,7 @@
             this.keysPanel.Controls.Add(this.key11);
             this.keysPanel.Controls.Add(this.keyD);
             this.keysPanel.Controls.Add(this.key10);
-            this.keysPanel.Controls.Add(this.BackSpaceKey);
+            this.keysPanel.Controls.Add(this.backSpaceKey);
             this.keysPanel.Controls.Add(this.tabKey);
             this.keysPanel.Location = new System.Drawing.Point(12, 12);
             this.keysPanel.Name = "keysPanel";
@@ -2300,7 +2300,7 @@
             this.modeFlowLayoutPanel.Controls.Add(this.modeGroupBox);
             this.modeFlowLayoutPanel.Controls.Add(this.modifiersGroupBox);
             this.modeFlowLayoutPanel.Controls.Add(this.displayGroupBox);
-            this.modeFlowLayoutPanel.Controls.Add(this.ChordBox);
+            this.modeFlowLayoutPanel.Controls.Add(this.chordBox);
             this.modeFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.modeFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.modeFlowLayoutPanel.Location = new System.Drawing.Point(3, 3);
@@ -2308,28 +2308,28 @@
             this.modeFlowLayoutPanel.Size = new System.Drawing.Size(1045, 90);
             this.modeFlowLayoutPanel.TabIndex = 121;
             // 
-            // ChordBox
+            // chordBox
             // 
-            this.ChordBox.Controls.Add(this.ChordComboBox);
-            this.ChordBox.Location = new System.Drawing.Point(281, 3);
-            this.ChordBox.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.ChordBox.Name = "ChordBox";
-            this.ChordBox.Size = new System.Drawing.Size(243, 81);
-            this.ChordBox.TabIndex = 151;
-            this.ChordBox.TabStop = false;
-            this.ChordBox.Text = "Chord";
+            this.chordBox.Controls.Add(this.chordComboBox);
+            this.chordBox.Location = new System.Drawing.Point(281, 3);
+            this.chordBox.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.chordBox.Name = "chordBox";
+            this.chordBox.Size = new System.Drawing.Size(243, 81);
+            this.chordBox.TabIndex = 151;
+            this.chordBox.TabStop = false;
+            this.chordBox.Text = "Chord";
             // 
-            // ChordComboBox
+            // chordComboBox
             // 
-            this.ChordComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ChordComboBox.FormattingEnabled = true;
-            this.ChordComboBox.Items.AddRange(new object[] {
+            this.chordComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.chordComboBox.FormattingEnabled = true;
+            this.chordComboBox.Items.AddRange(new object[] {
             "None"});
-            this.ChordComboBox.Location = new System.Drawing.Point(6, 22);
-            this.ChordComboBox.Name = "ChordComboBox";
-            this.ChordComboBox.Size = new System.Drawing.Size(225, 21);
-            this.ChordComboBox.TabIndex = 150;
-            this.ChordComboBox.SelectedIndexChanged += new System.EventHandler(this.ChordIndexChanged);
+            this.chordComboBox.Location = new System.Drawing.Point(6, 22);
+            this.chordComboBox.Name = "chordComboBox";
+            this.chordComboBox.Size = new System.Drawing.Size(225, 21);
+            this.chordComboBox.TabIndex = 150;
+            this.chordComboBox.SelectedIndexChanged += new System.EventHandler(this.ChordIndexChanged);
             // 
             // bottomTableLayoutPanel
             // 
@@ -2383,7 +2383,7 @@
             this.keysPanel.PerformLayout();
             this.modeFlowLayoutPanel.ResumeLayout(false);
             this.modeFlowLayoutPanel.PerformLayout();
-            this.ChordBox.ResumeLayout(false);
+            this.chordBox.ResumeLayout(false);
             this.bottomTableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -2447,7 +2447,7 @@
         private System.Windows.Forms.Label keyA;
         private System.Windows.Forms.Label keyC;
         private System.Windows.Forms.Label keyD;
-        private System.Windows.Forms.Label BackSpaceKey;
+        private System.Windows.Forms.Label backSpaceKey;
         private System.Windows.Forms.Label tabKey;
         private System.Windows.Forms.Label key10;
         private System.Windows.Forms.Label key11;
@@ -2524,13 +2524,13 @@
         private System.Windows.Forms.FlowLayoutPanel modeFlowLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel bottomTableLayoutPanel;
         private System.Windows.Forms.RadioButton scanCodesRadioButton;
-        private System.Windows.Forms.CheckBox NvtModeCheckBox;
-        private System.Windows.Forms.CheckBox Mode3270CheckBox;
+        private System.Windows.Forms.CheckBox nvtModeCheckBox;
+        private System.Windows.Forms.CheckBox mode3270CheckBox;
         private System.Windows.Forms.TableLayoutPanel modifiersTable;
         private System.Windows.Forms.TableLayoutPanel displayTable;
         private System.Windows.Forms.TableLayoutPanel modeTable;
-        private System.Windows.Forms.GroupBox ChordBox;
-        private System.Windows.Forms.ComboBox ChordComboBox;
+        private System.Windows.Forms.GroupBox chordBox;
+        private System.Windows.Forms.ComboBox chordComboBox;
         private System.Windows.Forms.Label layoutLabel;
     }
 }

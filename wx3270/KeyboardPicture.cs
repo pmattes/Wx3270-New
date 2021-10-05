@@ -189,7 +189,7 @@ namespace Wx3270
             this.keyCapture.AbortEvent += this.OnAbortEvent;
 
             // Set up the chord selector.
-            this.ChordComboBox.SelectedIndex = 0;
+            this.chordComboBox.SelectedIndex = 0;
 
             // Localize the entire form.
             I18n.Localize(this, this.toolTip1);
@@ -278,14 +278,14 @@ namespace Wx3270
         {
             get
             {
-                return this.ChordComboBox.SelectedIndex;
+                return this.chordComboBox.SelectedIndex;
             }
 
             set
             {
-                this.ChordComboBox.Items.Clear();
-                this.ChordComboBox.Items.AddRange(this.Map.Chords().ToArray());
-                this.ChordComboBox.SelectedIndex = value;
+                this.chordComboBox.Items.Clear();
+                this.chordComboBox.Items.AddRange(this.Map.Chords().ToArray());
+                this.chordComboBox.SelectedIndex = value;
             }
         }
 
@@ -306,12 +306,12 @@ namespace Wx3270
                     }
                 }
 
-                if (this.Mode3270CheckBox.Checked)
+                if (this.mode3270CheckBox.Checked)
                 {
                     ret |= KeyboardModifier.Mode3270;
                 }
 
-                if (this.NvtModeCheckBox.Checked)
+                if (this.nvtModeCheckBox.Checked)
                 {
                     ret |= KeyboardModifier.ModeNvt;
                 }
@@ -331,8 +331,8 @@ namespace Wx3270
                     }
                 }
 
-                this.Mode3270CheckBox.Checked = (value & KeyboardModifier.Mode3270) != 0;
-                this.NvtModeCheckBox.Checked = (value & KeyboardModifier.ModeNvt) != 0;
+                this.mode3270CheckBox.Checked = (value & KeyboardModifier.Mode3270) != 0;
+                this.nvtModeCheckBox.Checked = (value & KeyboardModifier.ModeNvt) != 0;
             }
         }
 
@@ -366,7 +366,7 @@ namespace Wx3270
         {
             get
             {
-                var selected = (string)this.ChordComboBox.SelectedItem;
+                var selected = (string)this.chordComboBox.SelectedItem;
                 return selected == Settings.NoChord ? null : selected;
             }
         }
@@ -466,10 +466,10 @@ namespace Wx3270
                             if (this.Map.TryGetClosestMatch(keyCode.ToStringExtended(), KeyHelper.ScanName(scanCode), mods, null, out KeyboardMap map)
                                 && KeyMap<KeyboardMap>.IsChord(map.Actions))
                             {
-                                var matchIndex = this.ChordComboBox.Items.OfType<string>().ToList().IndexOf(KeyMap<KeyboardMap>.DisplayChord(KeyMap<KeyboardMap>.ChordName(map.Actions)));
+                                var matchIndex = this.chordComboBox.Items.OfType<string>().ToList().IndexOf(KeyMap<KeyboardMap>.DisplayChord(KeyMap<KeyboardMap>.ChordName(map.Actions)));
                                 if (matchIndex >= 0)
                                 {
-                                    this.ChordComboBox.SelectedIndex = matchIndex;
+                                    this.chordComboBox.SelectedIndex = matchIndex;
                                 }
                             }
 

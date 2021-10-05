@@ -217,7 +217,7 @@ namespace Wx3270
 
             if (!ActionSyntax.Check(text, out _, out _, out int index, out string errorText))
             {
-                if (this.ActiveControl.Equals(this.EditorCancelButton))
+                if (this.ActiveControl.Equals(this.editorCancelButton))
                 {
                     // Allow the form to be closed, but get rid of the bad text so it does not haunt us later.
                     textBox.Text = string.Empty;

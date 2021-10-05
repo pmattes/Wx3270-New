@@ -230,13 +230,19 @@ namespace I18nBase
                 t = Console.Out;
             }
 
+            var sortedMessages = new Dictionary<string, string>();
+            foreach (var key in KnownStrings.Keys.OrderBy(k => k))
+            {
+                sortedMessages[key] = KnownStrings[key];
+            }
+
             var serializer = new JsonSerializer()
             {
                 Formatting = Formatting.Indented,
             };
             using (JsonWriter writer = new JsonTextWriter(t))
             {
-                serializer.Serialize(writer, KnownStrings);
+                serializer.Serialize(writer, sortedMessages);
             }
 
             if (fileName != null)
