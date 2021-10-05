@@ -484,7 +484,7 @@
   "MainScreen.NotConnected": "Non connecté",
   "MainScreen.Resize": "redimensionner",
   "MainScreen.Snap": "recalibrer",
-  "MainScreen.StartButton": "DÉMARRER",
+  "MainScreen.StartButton": "START",
   "ServerEditor.message.missingListenAddress": "Adresse d'écoute manquante",
   "ServerEditor.message.invalidListenPort": "Port d'écoute invalide",
   "ServerEditor.message.invalidListenAddress": "Adresse d'écoute invalide",
