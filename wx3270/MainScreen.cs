@@ -788,6 +788,14 @@ namespace Wx3270
                 this.vScrollBar1.RemoveFromParent();
             }
 
+            // Remove the menu bar.
+            if (this.App.NoButtons)
+            {
+                this.TopBar.RemoveFromParent();
+                this.TopLayoutPanel.RemoveFromParent();
+                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
+            }
+
             // Measure the overhead: the size of the fixed parts of the main screen.
             //
             // If we do it now, without ever setting a font in the screen box, we will get crazy results.
@@ -1020,12 +1028,6 @@ namespace Wx3270
                 this.snapBox.RemoveFromParent();
             }
 
-            if (this.App.NoButtons)
-            {
-                this.TopLayoutPanel.RemoveFromParent();
-                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
-            }
-
             // Localize.
             I18n.Localize(this, this.toolTip1);
             this.InitOiaLocalization();
@@ -1039,20 +1041,20 @@ namespace Wx3270
             // Set up the connect menu.
             this.ProfileTreeChanged(this.App.ProfileTracker.Tree);
 
-            // Make this window topmost, if requested.
-            if (this.App.Topmost)
-            {
-                // Toggling topmost on and off brings this window to the top, but does not force it to stay there.
-                this.TopMost = true;
-                this.TopMost = false;
-            }
-
             // Handle the no-border option.
             if (this.App.NoBorder)
             {
                 this.ControlBox = false;
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.snapBox.RemoveFromParent();
+            }
+
+            // Make this window topmost, if requested.
+            if (this.App.Topmost)
+            {
+                // Toggling topmost on and off brings this window to the top, but does not force it to stay there.
+                this.TopMost = true;
+                this.TopMost = false;
             }
         }
 
