@@ -1020,6 +1020,12 @@ namespace Wx3270
                 this.snapBox.RemoveFromParent();
             }
 
+            if (this.App.NoButtons)
+            {
+                this.TopLayoutPanel.RemoveFromParent();
+                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
+            }
+
             // Localize.
             I18n.Localize(this, this.toolTip1);
             this.InitOiaLocalization();

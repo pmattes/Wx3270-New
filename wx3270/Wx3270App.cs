@@ -348,6 +348,11 @@ namespace Wx3270
         public bool NoScrollBar { get; private set; }
 
         /// <summary>
+        /// Gets a value indicating whether the button bar should be removed.
+        /// </summary>
+        public bool NoButtons { get; private set; }
+
+        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]
@@ -488,6 +493,9 @@ namespace Wx3270
                             break;
                         case Constants.Option.NoBorder:
                             this.NoBorder = true;
+                            break;
+                        case Constants.Option.NoButtons:
+                            this.NoButtons = true;
                             break;
                         case Constants.Option.NoProfile:
                             this.NoProfileMode = true;

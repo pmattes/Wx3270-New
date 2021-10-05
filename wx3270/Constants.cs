@@ -165,6 +165,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             public const string NoBorder = "-noborder";
 
             /// <summary>
+            /// The no-buttons option.
+            /// </summary>
+            public const string NoButtons = "-nobuttons";
+
+            /// <summary>
             /// The no-profile option.
             /// </summary>
             public const string NoProfile = "-noprofile";
