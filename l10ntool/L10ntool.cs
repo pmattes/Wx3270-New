@@ -19,12 +19,13 @@ namespace L10ntool
         /// <summary>
         /// Map of verbs to parameters.
         /// </summary>
-        private static Dictionary<Verb, IEnumerable<Parameter>> paramMap = new Dictionary<Verb, IEnumerable<Parameter>>
+        private static readonly Dictionary<Verb, IEnumerable<Parameter>> ParamMap = new Dictionary<Verb, IEnumerable<Parameter>>
         {
             { Verb.CreateCsv, new[] { Parameter.InNewMsgcat, Parameter.OutCsv } },
             { Verb.UpdateCsv, new[] { Parameter.InOldMsgcat, Parameter.InNewMsgcat, Parameter.InOldTranslatedMsgcat, Parameter.OutCsv } },
             { Verb.CsvToMsgcat, new[] { Parameter.InCsv, Parameter.OutMsgcat } },
             { Verb.RenameMsgcat, new[] { Parameter.InBeforeMsgcat, Parameter.InAfterMsgcat, Parameter.InOldTranslatedMsgcat, Parameter.OutMsgcat } },
+            { Verb.AddMissing, new[] { Parameter.InNewMsgcat, Parameter.InOldTranslatedMsgcat, Parameter.OutMsgcat } },
         };
 
         /// <summary>
@@ -56,6 +57,11 @@ namespace L10ntool
             /// Rename entries in a message catalog.
             /// </summary>
             RenameMsgcat,
+
+            /// <summary>
+            /// Add missing entries to a message catalog.
+            /// </summary>
+            AddMissing,
         }
 
         /// <summary>
@@ -164,7 +170,7 @@ namespace L10ntool
                                     Enum.GetNames(typeof(Verb)).Where(name => name != nameof(Verb.None)).Select(name => EnumToOption(name)))));
                 }
 
-                var map = paramMap[verb];
+                var map = ParamMap[verb];
                 if (!map.All(p => parameters.ContainsKey(p)))
                 {
                     throw new ArgumentException(
@@ -203,6 +209,12 @@ namespace L10ntool
                         localize.Rename(
                             parameters[Parameter.InBeforeMsgcat],
                             parameters[Parameter.InAfterMsgcat],
+                            parameters[Parameter.InOldTranslatedMsgcat],
+                            parameters[Parameter.OutMsgcat]);
+                        break;
+                    case Verb.AddMissing:
+                        localize.AddMissing(
+                            parameters[Parameter.InNewMsgcat],
                             parameters[Parameter.InOldTranslatedMsgcat],
                             parameters[Parameter.OutMsgcat]);
                         break;

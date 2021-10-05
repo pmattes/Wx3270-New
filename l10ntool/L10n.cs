@@ -288,6 +288,48 @@ namespace L10ntool
         }
 
         /// <summary>
+        /// Add missing translations.
+        /// </summary>
+        /// <param name="inNewMsgcat">New en-US message catalog.</param>
+        /// <param name="inOldTranslatedMsgcat">Old translated message catalog.</param>
+        /// <param name="outMsgcat">Output message catalog.</param>
+        public void AddMissing(string inNewMsgcat, string inOldTranslatedMsgcat, string outMsgcat)
+        {
+            // Read in the message catalogs.
+            var newMsgcat = ReadMessageCatalog(inNewMsgcat);
+            var oldTranslatedMsgcat = ReadMessageCatalog(inOldTranslatedMsgcat);
+
+            // Fill in the missing entries.
+            var newTranslatedMsgcat = new Dictionary<string, string>(oldTranslatedMsgcat);
+            foreach (var kv in newMsgcat)
+            {
+                if (!newTranslatedMsgcat.ContainsKey(kv.Key))
+                {
+                    newTranslatedMsgcat.Add(kv.Key, kv.Value);
+                }
+            }
+
+            // Dump out the new message catalog, sorted.
+            var sortedMsgcat = new Dictionary<string, string>();
+            foreach (var key in newTranslatedMsgcat.Keys.OrderBy(k => k))
+            {
+                sortedMsgcat.Add(key, newTranslatedMsgcat[key]);
+            }
+
+            using (var t = new StreamWriter(outMsgcat, append: false, new UTF8Encoding()))
+            {
+                var serializer = new JsonSerializer()
+                {
+                    Formatting = Formatting.Indented,
+                };
+                using (JsonWriter writer = new JsonTextWriter(t))
+                {
+                    serializer.Serialize(writer, sortedMsgcat);
+                }
+            }
+        }
+
+        /// <summary>
         /// Translate a string to valid CSV format.
         /// </summary>
         /// <param name="s">String to quote.</param>
