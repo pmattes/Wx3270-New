@@ -1115,7 +1115,7 @@
   "Settings.form.RowsUpDown": "43",
   "Settings.form.s3270AddressBox.toolTip": "Adresse IPv4 ou IPv6 numérique",
   "Settings.form.s3270AddressLabel": "Adresse",
-  "Settings.form.s3270Box": "serveur s3270",
+  "Settings.form.s3270Box": "Serveur s3270",
   "Settings.form.s3270CheckBox": "Guetter les connexions",
   "Settings.form.s3270CheckBox.toolTip": "Guetter les scripts de style 3270",
   "Settings.form.s3270NoConfigLabel": "Configuration désactivée à cause d'une option de la ligne de commande",
