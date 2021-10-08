@@ -318,6 +318,12 @@ namespace Wx3270
         public bool AlwaysInsert { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the scrollbar should appear.
+        /// </summary>
+        [JsonProperty]
+        public bool ScrollBar { get; set; } = true;
+
+        /// <summary>
         /// Gets or sets the macros.
         /// </summary>
         [JsonProperty]

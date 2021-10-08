@@ -49,6 +49,9 @@ namespace Wx3270
                 this.printerComboBox.Items.Add(printer);
             }
 
+            // Set up the scroll bar checkbox.
+            this.scrollbarCheckBox.Enabled = !this.app.NoScrollBar;
+
             // Subscribe to profile change events and merges.
             this.ProfileManager.ChangeTo += this.ProfileOptionsChanged;
             this.ProfileManager.RegisterMerge(ImportType.OtherSettingsReplace, this.MergeOptions);
@@ -266,6 +269,12 @@ namespace Wx3270
             // Set description and window title.
             this.descriptionTextBox.Text = profile.Description;
             this.titleTextBox.Text = profile.WindowTitle;
+
+            // Set scroll bar.
+            if (!this.app.NoScrollBar)
+            {
+                this.scrollbarCheckBox.Checked = profile.ScrollBar;
+            }
         }
 
         /// <summary>
@@ -343,6 +352,37 @@ namespace Wx3270
             {
                 // Tell the emulator.
                 this.BackEnd.RunAction(new BackEndAction(B3270.Action.Set, settingName, B3270.ToggleArgument.Action(checkBox.Checked)), ErrorBox.Completion(I18n.Get(Title.Settings)));
+            }
+        }
+
+        /// <summary>
+        /// A miscellaneous local checkbox changed state.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void MiscLocalCheckBoxChanged(object sender, EventArgs e)
+        {
+            if (!(sender is CheckBox checkBox))
+            {
+                return;
+            }
+
+            var settingName = (string)checkBox.Tag;
+            switch (settingName)
+            {
+                case ChangeKeyword.ScrollBar:
+                    var size = this.mainScreen.ToggleScrollBar(checkBox.Checked);
+                    this.ProfileManager.PushAndSave(
+                        (current) =>
+                        {
+                            current.ScrollBar = checkBox.Checked;
+                            if (size != null)
+                            {
+                                current.Size = size.Value;
+                            }
+                        },
+                        this.ChangeName(settingName));
+                    break;
             }
         }
 

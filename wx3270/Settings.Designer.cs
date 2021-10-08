@@ -316,6 +316,8 @@
             this.redoButton = new Wx3270.NoSelectButton();
             this.undoButton = new Wx3270.NoSelectButton();
             this.setToDefaultsButton = new Wx3270.NoSelectButton();
+            this.miscFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.scrollbarCheckBox = new System.Windows.Forms.CheckBox();
             this.settingsTabs.SuspendLayout();
             this.optionsTab.SuspendLayout();
             this.descriptionGroupBox.SuspendLayout();
@@ -418,6 +420,7 @@
             this.ButtonsLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
+            this.miscFlowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // settingsTabs
@@ -465,7 +468,7 @@
             this.descriptionGroupBox.Controls.Add(this.descriptionTableLayoutPanel);
             this.descriptionGroupBox.Location = new System.Drawing.Point(356, 485);
             this.descriptionGroupBox.Name = "descriptionGroupBox";
-            this.descriptionGroupBox.Size = new System.Drawing.Size(276, 92);
+            this.descriptionGroupBox.Size = new System.Drawing.Size(294, 92);
             this.descriptionGroupBox.TabIndex = 9;
             this.descriptionGroupBox.TabStop = false;
             this.descriptionGroupBox.Text = "Description and window title";
@@ -536,7 +539,7 @@
             this.opacityGroupBox.Controls.Add(this.opacityTrackBar);
             this.opacityGroupBox.Location = new System.Drawing.Point(27, 89);
             this.opacityGroupBox.Name = "opacityGroupBox";
-            this.opacityGroupBox.Size = new System.Drawing.Size(274, 73);
+            this.opacityGroupBox.Size = new System.Drawing.Size(302, 73);
             this.opacityGroupBox.TabIndex = 8;
             this.opacityGroupBox.TabStop = false;
             this.opacityGroupBox.Text = "Opacity";
@@ -562,7 +565,7 @@
             // opacityLabel
             // 
             this.opacityLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.opacityLabel.Location = new System.Drawing.Point(123, 43);
+            this.opacityLabel.Location = new System.Drawing.Point(137, 43);
             this.opacityLabel.Name = "opacityLabel";
             this.opacityLabel.Size = new System.Drawing.Size(34, 17);
             this.opacityLabel.TabIndex = 3;
@@ -590,7 +593,7 @@
             this.printerSessionGroupBox.Controls.Add(this.printerTableLayoutPanel);
             this.printerSessionGroupBox.Location = new System.Drawing.Point(356, 363);
             this.printerSessionGroupBox.Name = "printerSessionGroupBox";
-            this.printerSessionGroupBox.Size = new System.Drawing.Size(276, 116);
+            this.printerSessionGroupBox.Size = new System.Drawing.Size(294, 116);
             this.printerSessionGroupBox.TabIndex = 7;
             this.printerSessionGroupBox.TabStop = false;
             this.printerSessionGroupBox.Text = "Printer";
@@ -679,7 +682,7 @@
             this.TerminalNameGroupBox.Controls.Add(this.TerminalNameLayoutPanel);
             this.TerminalNameGroupBox.Location = new System.Drawing.Point(28, 324);
             this.TerminalNameGroupBox.Name = "TerminalNameGroupBox";
-            this.TerminalNameGroupBox.Size = new System.Drawing.Size(274, 108);
+            this.TerminalNameGroupBox.Size = new System.Drawing.Size(302, 108);
             this.TerminalNameGroupBox.TabIndex = 2;
             this.TerminalNameGroupBox.TabStop = false;
             this.TerminalNameGroupBox.Text = "Terminal name";
@@ -741,7 +744,7 @@
             this.ModelGroupBox.Controls.Add(this.OversizeLayoutPanel);
             this.ModelGroupBox.Location = new System.Drawing.Point(27, 168);
             this.ModelGroupBox.Name = "ModelGroupBox";
-            this.ModelGroupBox.Size = new System.Drawing.Size(274, 150);
+            this.ModelGroupBox.Size = new System.Drawing.Size(302, 150);
             this.ModelGroupBox.TabIndex = 1;
             this.ModelGroupBox.TabStop = false;
             this.ModelGroupBox.Text = "Screen size";
@@ -880,7 +883,7 @@
             this.CodePageGroupBox.Controls.Add(this.CodePageListBox);
             this.CodePageGroupBox.Location = new System.Drawing.Point(356, 227);
             this.CodePageGroupBox.Name = "CodePageGroupBox";
-            this.CodePageGroupBox.Size = new System.Drawing.Size(276, 130);
+            this.CodePageGroupBox.Size = new System.Drawing.Size(294, 130);
             this.CodePageGroupBox.TabIndex = 6;
             this.CodePageGroupBox.TabStop = false;
             this.CodePageGroupBox.Text = "Host code page";
@@ -900,7 +903,7 @@
             this.DisplayGroupBox.Controls.Add(this.MonoButton);
             this.DisplayGroupBox.Location = new System.Drawing.Point(28, 18);
             this.DisplayGroupBox.Name = "DisplayGroupBox";
-            this.DisplayGroupBox.Size = new System.Drawing.Size(273, 65);
+            this.DisplayGroupBox.Size = new System.Drawing.Size(301, 65);
             this.DisplayGroupBox.TabIndex = 0;
             this.DisplayGroupBox.TabStop = false;
             this.DisplayGroupBox.Text = "Display";
@@ -934,7 +937,7 @@
             this.optionsSampleGroupBox.Controls.Add(this.optionsPreviewLayoutPanel);
             this.optionsSampleGroupBox.Location = new System.Drawing.Point(356, 16);
             this.optionsSampleGroupBox.Name = "optionsSampleGroupBox";
-            this.optionsSampleGroupBox.Size = new System.Drawing.Size(276, 132);
+            this.optionsSampleGroupBox.Size = new System.Drawing.Size(294, 132);
             this.optionsSampleGroupBox.TabIndex = 4;
             this.optionsSampleGroupBox.TabStop = false;
             this.optionsSampleGroupBox.Text = "Preview";
@@ -996,14 +999,10 @@
             // 
             // MiscGroupBox
             // 
-            this.MiscGroupBox.Controls.Add(this.alwaysInsertCheckBox);
-            this.MiscGroupBox.Controls.Add(this.showTimingCheckBox);
-            this.MiscGroupBox.Controls.Add(this.nopCheckBox);
-            this.MiscGroupBox.Controls.Add(this.typeaheadCheckBox);
-            this.MiscGroupBox.Controls.Add(this.MonoCaseCheckBox);
+            this.MiscGroupBox.Controls.Add(this.miscFlowLayoutPanel);
             this.MiscGroupBox.Location = new System.Drawing.Point(28, 438);
             this.MiscGroupBox.Name = "MiscGroupBox";
-            this.MiscGroupBox.Size = new System.Drawing.Size(274, 141);
+            this.MiscGroupBox.Size = new System.Drawing.Size(302, 141);
             this.MiscGroupBox.TabIndex = 3;
             this.MiscGroupBox.TabStop = false;
             this.MiscGroupBox.Text = "Miscellaneous";
@@ -1011,7 +1010,7 @@
             // alwaysInsertCheckBox
             // 
             this.alwaysInsertCheckBox.AutoSize = true;
-            this.alwaysInsertCheckBox.Location = new System.Drawing.Point(12, 112);
+            this.alwaysInsertCheckBox.Location = new System.Drawing.Point(3, 95);
             this.alwaysInsertCheckBox.Name = "alwaysInsertCheckBox";
             this.alwaysInsertCheckBox.Size = new System.Drawing.Size(129, 17);
             this.alwaysInsertCheckBox.TabIndex = 4;
@@ -1024,7 +1023,7 @@
             // showTimingCheckBox
             // 
             this.showTimingCheckBox.AutoSize = true;
-            this.showTimingCheckBox.Location = new System.Drawing.Point(12, 89);
+            this.showTimingCheckBox.Location = new System.Drawing.Point(3, 72);
             this.showTimingCheckBox.Name = "showTimingCheckBox";
             this.showTimingCheckBox.Size = new System.Drawing.Size(83, 17);
             this.showTimingCheckBox.TabIndex = 3;
@@ -1037,7 +1036,7 @@
             // nopCheckBox
             // 
             this.nopCheckBox.AutoSize = true;
-            this.nopCheckBox.Location = new System.Drawing.Point(12, 66);
+            this.nopCheckBox.Location = new System.Drawing.Point(3, 49);
             this.nopCheckBox.Name = "nopCheckBox";
             this.nopCheckBox.Size = new System.Drawing.Size(127, 17);
             this.nopCheckBox.TabIndex = 2;
@@ -1049,7 +1048,7 @@
             // typeaheadCheckBox
             // 
             this.typeaheadCheckBox.AutoSize = true;
-            this.typeaheadCheckBox.Location = new System.Drawing.Point(12, 42);
+            this.typeaheadCheckBox.Location = new System.Drawing.Point(3, 26);
             this.typeaheadCheckBox.Name = "typeaheadCheckBox";
             this.typeaheadCheckBox.Size = new System.Drawing.Size(80, 17);
             this.typeaheadCheckBox.TabIndex = 1;
@@ -1062,7 +1061,7 @@
             // MonoCaseCheckBox
             // 
             this.MonoCaseCheckBox.AutoSize = true;
-            this.MonoCaseCheckBox.Location = new System.Drawing.Point(12, 19);
+            this.MonoCaseCheckBox.Location = new System.Drawing.Point(3, 3);
             this.MonoCaseCheckBox.Name = "MonoCaseCheckBox";
             this.MonoCaseCheckBox.Size = new System.Drawing.Size(76, 17);
             this.MonoCaseCheckBox.TabIndex = 0;
@@ -1080,7 +1079,7 @@
             this.CursorGroupBox.Controls.Add(this.BlockCursorButton);
             this.CursorGroupBox.Location = new System.Drawing.Point(356, 154);
             this.CursorGroupBox.Name = "CursorGroupBox";
-            this.CursorGroupBox.Size = new System.Drawing.Size(276, 67);
+            this.CursorGroupBox.Size = new System.Drawing.Size(294, 67);
             this.CursorGroupBox.TabIndex = 5;
             this.CursorGroupBox.TabStop = false;
             this.CursorGroupBox.Text = "Cursor";
@@ -4156,6 +4155,32 @@
             this.setToDefaultsButton.UseVisualStyleBackColor = true;
             this.setToDefaultsButton.Click += new System.EventHandler(this.DefaultsButton_Click);
             // 
+            // miscFlowLayoutPanel
+            // 
+            this.miscFlowLayoutPanel.Controls.Add(this.MonoCaseCheckBox);
+            this.miscFlowLayoutPanel.Controls.Add(this.typeaheadCheckBox);
+            this.miscFlowLayoutPanel.Controls.Add(this.nopCheckBox);
+            this.miscFlowLayoutPanel.Controls.Add(this.showTimingCheckBox);
+            this.miscFlowLayoutPanel.Controls.Add(this.alwaysInsertCheckBox);
+            this.miscFlowLayoutPanel.Controls.Add(this.scrollbarCheckBox);
+            this.miscFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.miscFlowLayoutPanel.Location = new System.Drawing.Point(9, 16);
+            this.miscFlowLayoutPanel.Name = "miscFlowLayoutPanel";
+            this.miscFlowLayoutPanel.Size = new System.Drawing.Size(287, 119);
+            this.miscFlowLayoutPanel.TabIndex = 10;
+            // 
+            // scrollbarCheckBox
+            // 
+            this.scrollbarCheckBox.AutoSize = true;
+            this.scrollbarCheckBox.Location = new System.Drawing.Point(138, 3);
+            this.scrollbarCheckBox.Name = "scrollbarCheckBox";
+            this.scrollbarCheckBox.Size = new System.Drawing.Size(70, 17);
+            this.scrollbarCheckBox.TabIndex = 5;
+            this.scrollbarCheckBox.Tag = "ScrollBar";
+            this.scrollbarCheckBox.Text = "Scroll bar";
+            this.scrollbarCheckBox.UseVisualStyleBackColor = true;
+            this.scrollbarCheckBox.CheckedChanged += new System.EventHandler(this.MiscLocalCheckBox_Changed);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4208,7 +4233,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.optionsPreviewSeparatorPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.optionsPreviewScreenPictureBox)).EndInit();
             this.MiscGroupBox.ResumeLayout(false);
-            this.MiscGroupBox.PerformLayout();
             this.CursorGroupBox.ResumeLayout(false);
             this.CursorGroupBox.PerformLayout();
             this.keyboardTab.ResumeLayout(false);
@@ -4330,6 +4354,8 @@
             this.ButtonsLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.tableLayoutPanel.ResumeLayout(false);
+            this.miscFlowLayoutPanel.ResumeLayout(false);
+            this.miscFlowLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4622,5 +4648,7 @@
         private System.Windows.Forms.CheckBox exactMatchCheckBox;
         private System.Windows.Forms.TableLayoutPanel modifiersTableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel backgroundTableLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel miscFlowLayoutPanel;
+        private System.Windows.Forms.CheckBox scrollbarCheckBox;
     }
 }

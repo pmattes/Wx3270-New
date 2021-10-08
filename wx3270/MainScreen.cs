@@ -162,6 +162,21 @@ namespace Wx3270
         private ToolStripMenuItem macroRecordItem;
 
         /// <summary>
+        /// The width of the fixed screen elements.
+        /// </summary>
+        private int fixedWidth;
+
+        /// <summary>
+        /// The height of the fixed screen elements.
+        /// </summary>
+        private int fixedHeight;
+
+        /// <summary>
+        /// True if the scroll bar is displayed.
+        /// </summary>
+        private bool scrollBarDisplayed = true;
+
+        /// <summary>
         /// The window handle.
         /// </summary>
         private IntPtr handle;
@@ -509,7 +524,7 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Snap the screen (make it fit the current font tightly).
+        /// z the screen (make it fit the current font tightly).
         /// </summary>
         public void Snap()
         {
@@ -577,6 +592,60 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Add or remove the scroll bar.
+        /// </summary>
+        /// <param name="displayed">True if scroll bar should be displayed.</param>
+        /// <returns>New screen size, or null.</returns>
+        public Size? ToggleScrollBar(bool displayed)
+        {
+            if (this.App.NoScrollBar || displayed == this.scrollBarDisplayed)
+            {
+                return null;
+            }
+
+            // If currently maximized, restore first. This is rather hacky, but it works.
+            var wasMaximized = false;
+            if (this.Maximized)
+            {
+                this.Restore();
+                wasMaximized = true;
+            }
+
+            if (!displayed)
+            {
+                this.BackEnd.RunAction(
+                    new BackEndAction(
+                        B3270.Action.Scroll,
+                        "Set",
+                        "0"),
+                    (cookie, success, result) => { });
+                this.vScrollBar1.RemoveFromParent();
+            }
+            else
+            {
+                this.ScrollBarLayoutPanel.SuspendLayout();
+                this.ScrollBarLayoutPanel.Controls.Add(this.vScrollBar1);
+                this.ScrollBarLayoutPanel.Controls.SetChildIndex(this.vScrollBar1, 0);
+                this.ScrollBarLayoutPanel.ResumeLayout();
+            }
+
+            this.scrollBarDisplayed = displayed;
+
+            // Reevluate the fixed area of the screen and set the overall screen size.
+            this.ResetFixed(displayed);
+            this.ClientSize = this.mainScreenPanel.Size;
+            var size = this.Size;
+
+            // Return to maximized if needed.
+            if (wasMaximized)
+            {
+                this.Maximize();
+            }
+
+            return size;
+        }
+
+        /// <summary>
         /// Override for key event processing.
         /// </summary>
         /// <param name="msg">Message received.</param>
@@ -590,6 +659,41 @@ namespace Wx3270
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        /// <summary>
+        /// Add or remove the scroll bar.
+        /// </summary>
+        /// <param name="displayed">True if scroll bar should be displayed.</param>
+        private void ToggleScrollBarInternal(bool displayed)
+        {
+            if (this.App.NoScrollBar || displayed == this.scrollBarDisplayed)
+            {
+                return;
+            }
+
+            if (!displayed)
+            {
+                this.BackEnd.RunAction(
+                    new BackEndAction(
+                        B3270.Action.Scroll,
+                        "Set",
+                        "0"),
+                    (cookie, success, result) => { });
+                this.vScrollBar1.RemoveFromParent();
+            }
+            else
+            {
+                this.ScrollBarLayoutPanel.SuspendLayout();
+                this.ScrollBarLayoutPanel.Controls.Add(this.vScrollBar1);
+                this.ScrollBarLayoutPanel.Controls.SetChildIndex(this.vScrollBar1, 0);
+                this.ScrollBarLayoutPanel.ResumeLayout();
+            }
+
+            this.scrollBarDisplayed = displayed;
+
+            // Reevaluate the sizes of the fixed elements.
+            this.ResetFixed(displayed);
         }
 
         /// <summary>
@@ -646,10 +750,13 @@ namespace Wx3270
                 if (maximize || size.HasValue)
                 {
                     // Run the following after any other back-end action, such as changing the model:
-                    // Maximize.
+                    //  Scroll bar.
+                    //  Maximize.
                     // Set the size, even if we are going to maximize, so when we un-maximize, we get the right size.
                     this.BackEnd.RunAction(new BackEndAction(B3270.Action.Query, B3270.Query.Model), (cookie, success, result) =>
                     {
+                        this.ToggleScrollBarInternal(profile.ScrollBar);
+
                         if (maximize)
                         {
                             this.Maximize();
@@ -727,6 +834,24 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Re-measure the size of the fixed parts of the screen.
+        /// </summary>
+        /// <param name="scrollBar">True if the scroll bar is displayed.</param>
+        private void ResetFixed(bool scrollBar)
+        {
+            if (scrollBar)
+            {
+                this.fixedWidth += this.vScrollBar1.Width;
+            }
+            else
+            {
+                this.fixedWidth -= this.vScrollBar1.Width;
+            }
+
+            this.screenBox.SetFixed(this.fixedWidth, this.fixedHeight);
+        }
+
+        /// <summary>
         /// Secondary initialization, called after the main screen objects have been set up.
         /// </summary>
         private void SecondaryInit()
@@ -786,6 +911,7 @@ namespace Wx3270
             if (this.App.NoScrollBar)
             {
                 this.vScrollBar1.RemoveFromParent();
+                this.scrollBarDisplayed = false;
             }
 
             // Remove the menu bar.
@@ -812,9 +938,9 @@ namespace Wx3270
                 hh = ScreenBox.ComputeCellSize(g, this.OiaLock.Font).Height;
             }
 
-            var fixedWidth = this.mainScreenPanel.Width - this.screenPictureBox.Parent.Width;
-            var fixedHeight = this.mainScreenPanel.Height - this.screenPictureBox.Parent.Height - hh;
-            this.screenBox.SetFixed(fixedWidth, fixedHeight);
+            this.fixedWidth = this.mainScreenPanel.Width - this.screenPictureBox.Parent.Width;
+            this.fixedHeight = this.mainScreenPanel.Height - this.screenPictureBox.Parent.Height - hh;
+            this.screenBox.SetFixed(this.fixedWidth, this.fixedHeight);
 
             // Set up the macro recorder.
             this.MacroRecorder.FlashEvent += this.OnFlashEvent;

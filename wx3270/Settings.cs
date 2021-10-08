@@ -53,6 +53,7 @@ namespace Wx3270
             { ChangeKeyword.Misc, "miscellaneous setting" },
             { ChangeKeyword.Description, "profile description" },
             { ChangeKeyword.WindowTitle, "window title" },
+            { ChangeKeyword.ScrollBar, "scroll bar" },
         };
 
         /// <summary>
@@ -577,6 +578,16 @@ namespace Wx3270
         private void MiscCheckBox_Changed(object sender, EventArgs e)
         {
             this.MiscCheckBoxCheckedChanged(sender, e);
+        }
+
+        /// <summary>
+        /// A miscellaneous local checkbox changed state.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void MiscLocalCheckBox_Changed(object sender, EventArgs e)
+        {
+            this.MiscLocalCheckBoxChanged(sender, e);
         }
 
         /// <summary>
@@ -1184,6 +1195,11 @@ namespace Wx3270
             /// Window title.
             /// </summary>
             public const string WindowTitle = "WindowTitle";
+
+            /// <summary>
+            /// Scroll bar.
+            /// </summary>
+            public const string ScrollBar = "ScrollBar";
         }
     }
 }
