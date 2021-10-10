@@ -1573,7 +1573,7 @@
             this.asciiBox.Size = new System.Drawing.Size(221, 104);
             this.asciiBox.TabIndex = 5;
             this.asciiBox.TabStop = false;
-            this.asciiBox.Text = "Ascii options";
+            this.asciiBox.Text = "ASCII options";
             // 
             // codePageLayoutPanel
             // 
