@@ -22,7 +22,7 @@ namespace Wx3270
         /// <summary>
         /// Defining a keymap entry.
         /// </summary>
-        Keymap,
+        Select,
 
         /// <summary>
         /// Displaying the keymap.
@@ -178,7 +178,7 @@ namespace Wx3270
         /// <param name="map">Keyboard map to display.</param>
         /// <param name="mode">Picture mode.</param>
         /// <param name="app">Application context.</param>
-        public KeyboardPicture(KeyMap<KeyboardMap> map, PictureMode mode = PictureMode.Keymap, Wx3270App app = null)
+        public KeyboardPicture(KeyMap<KeyboardMap> map, PictureMode mode = PictureMode.Select, Wx3270App app = null)
         {
             this.InitializeComponent();
 
@@ -208,6 +208,12 @@ namespace Wx3270
                     this.localizedLabelDictionary[tag] =
                         label.Name == "spaceBar" ? string.Empty : I18n.Get(I18n.Path(label));
                 }
+            }
+
+            // Handle restrictions.
+            if (app != null && app.Restricted(Restrictions.GetHelp))
+            {
+                this.helpPictureBox.RemoveFromParent();
             }
 
             // Finish up painting the window.
@@ -339,7 +345,7 @@ namespace Wx3270
         /// <summary>
         /// Gets or sets the picture mode.
         /// </summary>
-        public PictureMode PictureMode { get; set; } = PictureMode.Keymap;
+        public PictureMode PictureMode { get; set; } = PictureMode.Select;
 
         /// <summary>
         /// Gets the handle for the en-US culture, or -1 if that culture is not present.
@@ -420,7 +426,7 @@ namespace Wx3270
         {
             switch (this.PictureMode)
             {
-                case PictureMode.Keymap:
+                case PictureMode.Select:
                     // Clear out the key state.
                     KeyboardUtil.ClearKeyboardState();
 
@@ -1100,7 +1106,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void KeyboardPicture_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this.PictureMode == PictureMode.Keymap)
+            if (this.PictureMode == PictureMode.Select)
             {
                 return;
             }
@@ -1108,6 +1114,16 @@ namespace Wx3270
             e.Cancel = true;
             this.Hide();
             this.Owner.BringToFront();
+        }
+
+        /// <summary>
+        /// The Help button was pressed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void HelpClick(object sender, EventArgs e)
+        {
+            Wx3270App.GetHelp("Keymap" + this.PictureMode.ToString());
         }
 
         /// <summary>

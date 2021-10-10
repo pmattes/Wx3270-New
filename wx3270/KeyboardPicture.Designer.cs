@@ -170,6 +170,7 @@
             this.chordBox = new System.Windows.Forms.GroupBox();
             this.chordComboBox = new System.Windows.Forms.ComboBox();
             this.bottomTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.displayGroupBox.SuspendLayout();
             this.displayTable.SuspendLayout();
             this.modifiersGroupBox.SuspendLayout();
@@ -181,6 +182,7 @@
             this.modeFlowLayoutPanel.SuspendLayout();
             this.chordBox.SuspendLayout();
             this.bottomTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // escapeKey
@@ -1878,7 +1880,7 @@
             this.displayGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.displayGroupBox.Controls.Add(this.displayLayoutPanel);
             this.displayGroupBox.Controls.Add(this.displayTable);
-            this.displayGroupBox.Location = new System.Drawing.Point(537, 3);
+            this.displayGroupBox.Location = new System.Drawing.Point(469, 3);
             this.displayGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.displayGroupBox.Name = "displayGroupBox";
             this.displayGroupBox.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
@@ -1936,7 +1938,7 @@
             this.modifiersGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.modifiersGroupBox.Controls.Add(this.modifiersLayoutPanel);
             this.modifiersGroupBox.Controls.Add(this.modifiersTable);
-            this.modifiersGroupBox.Location = new System.Drawing.Point(774, 3);
+            this.modifiersGroupBox.Location = new System.Drawing.Point(706, 3);
             this.modifiersGroupBox.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.modifiersGroupBox.Name = "modifiersGroupBox";
             this.modifiersGroupBox.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
@@ -2021,7 +2023,7 @@
             this.modeGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.modeGroupBox.Controls.Add(this.modeLayoutPanel);
             this.modeGroupBox.Controls.Add(this.modeTable);
-            this.modeGroupBox.Location = new System.Drawing.Point(969, 4);
+            this.modeGroupBox.Location = new System.Drawing.Point(901, 4);
             this.modeGroupBox.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.modeGroupBox.Name = "modeGroupBox";
             this.modeGroupBox.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
@@ -2114,7 +2116,7 @@
             this.aplLegendPanel.Controls.Add(this.aplCtrlShiftLabel);
             this.aplLegendPanel.Controls.Add(this.aplNormalLabel);
             this.aplLegendPanel.Controls.Add(this.aplCtrlLabel);
-            this.aplLegendPanel.Location = new System.Drawing.Point(74, 405);
+            this.aplLegendPanel.Location = new System.Drawing.Point(112, 405);
             this.aplLegendPanel.Name = "aplLegendPanel";
             this.aplLegendPanel.Size = new System.Drawing.Size(112, 66);
             this.aplLegendPanel.TabIndex = 118;
@@ -2161,7 +2163,7 @@
             // aplLegendLabel
             // 
             this.aplLegendLabel.AutoSize = true;
-            this.aplLegendLabel.Location = new System.Drawing.Point(18, 422);
+            this.aplLegendLabel.Location = new System.Drawing.Point(56, 422);
             this.aplLegendLabel.Name = "aplLegendLabel";
             this.aplLegendLabel.Size = new System.Drawing.Size(43, 26);
             this.aplLegendLabel.TabIndex = 119;
@@ -2305,13 +2307,13 @@
             this.modeFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.modeFlowLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.modeFlowLayoutPanel.Name = "modeFlowLayoutPanel";
-            this.modeFlowLayoutPanel.Size = new System.Drawing.Size(1045, 90);
+            this.modeFlowLayoutPanel.Size = new System.Drawing.Size(977, 90);
             this.modeFlowLayoutPanel.TabIndex = 121;
             // 
             // chordBox
             // 
             this.chordBox.Controls.Add(this.chordComboBox);
-            this.chordBox.Location = new System.Drawing.Point(281, 3);
+            this.chordBox.Location = new System.Drawing.Point(213, 3);
             this.chordBox.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.chordBox.Name = "chordBox";
             this.chordBox.Size = new System.Drawing.Size(243, 81);
@@ -2336,12 +2338,23 @@
             this.bottomTableLayoutPanel.ColumnCount = 1;
             this.bottomTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.bottomTableLayoutPanel.Controls.Add(this.modeFlowLayoutPanel, 0, 0);
-            this.bottomTableLayoutPanel.Location = new System.Drawing.Point(192, 392);
+            this.bottomTableLayoutPanel.Location = new System.Drawing.Point(248, 392);
             this.bottomTableLayoutPanel.Name = "bottomTableLayoutPanel";
             this.bottomTableLayoutPanel.RowCount = 1;
             this.bottomTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.bottomTableLayoutPanel.Size = new System.Drawing.Size(1051, 96);
+            this.bottomTableLayoutPanel.Size = new System.Drawing.Size(983, 96);
             this.bottomTableLayoutPanel.TabIndex = 122;
+            // 
+            // helpPictureBox
+            // 
+            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox.Location = new System.Drawing.Point(22, 423);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(24, 24);
+            this.helpPictureBox.TabIndex = 123;
+            this.helpPictureBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
+            this.helpPictureBox.Click += new System.EventHandler(this.HelpClick);
             // 
             // KeyboardPicture
             // 
@@ -2349,6 +2362,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1269, 510);
+            this.Controls.Add(this.helpPictureBox);
             this.Controls.Add(this.bottomTableLayoutPanel);
             this.Controls.Add(this.keysPanel);
             this.Controls.Add(this.aplLegendLabel);
@@ -2385,6 +2399,7 @@
             this.modeFlowLayoutPanel.PerformLayout();
             this.chordBox.ResumeLayout(false);
             this.bottomTableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2532,5 +2547,6 @@
         private System.Windows.Forms.GroupBox chordBox;
         private System.Windows.Forms.ComboBox chordComboBox;
         private System.Windows.Forms.Label layoutLabel;
+        private System.Windows.Forms.PictureBox helpPictureBox;
     }
 }
