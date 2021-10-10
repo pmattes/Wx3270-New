@@ -1796,10 +1796,10 @@
             this.keyNamesRadioButton.AutoSize = true;
             this.keyNamesRadioButton.Location = new System.Drawing.Point(91, 3);
             this.keyNamesRadioButton.Name = "keyNamesRadioButton";
-            this.keyNamesRadioButton.Size = new System.Drawing.Size(77, 17);
+            this.keyNamesRadioButton.Size = new System.Drawing.Size(75, 17);
             this.keyNamesRadioButton.TabIndex = 105;
             this.keyNamesRadioButton.Tag = "Names";
-            this.keyNamesRadioButton.Text = "Key names";
+            this.keyNamesRadioButton.Text = "Key codes";
             this.keyNamesRadioButton.UseVisualStyleBackColor = true;
             this.keyNamesRadioButton.CheckedChanged += new System.EventHandler(this.DisplayCheckedChanged);
             this.keyNamesRadioButton.Enter += new System.EventHandler(this.KeyboardMap_Enter);

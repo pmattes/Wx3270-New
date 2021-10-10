@@ -343,7 +343,7 @@
   "KeyboardPicture.form.keyB": ")\r\n0",
   "KeyboardPicture.form.keyC": "_\r\n-",
   "KeyboardPicture.form.keyD": "+\r\n=",
-  "KeyboardPicture.form.keyNamesRadioButton": "Noms des touches",
+  "KeyboardPicture.form.keyNamesRadioButton": "Codes clés",
   "KeyboardPicture.form.labelsRadioButton": "Libellés",
   "KeyboardPicture.form.leftAltKey": "Alt",
   "KeyboardPicture.form.leftCtrlKey": "Ctrl",
