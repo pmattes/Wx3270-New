@@ -2373,7 +2373,7 @@ namespace Wx3270
                 return;
             }
 
-            using (var mergeDialog = new MergeDialog(this, mergeProfile.Name, destProfile.Name, profileType.Value))
+            using (var mergeDialog = new MergeDialog(this.app, this, mergeProfile.Name, destProfile.Name, profileType.Value))
             {
                 if (mergeDialog.ShowDialog(this) != DialogResult.OK)
                 {

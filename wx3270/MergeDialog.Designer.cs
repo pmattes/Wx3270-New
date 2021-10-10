@@ -62,6 +62,8 @@
             this.colorsCheckBox = new System.Windows.Forms.CheckBox();
             this.sourceProfileLabel = new System.Windows.Forms.Label();
             this.purplePanel = new System.Windows.Forms.Panel();
+            this.buttonPanel = new System.Windows.Forms.Panel();
+            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.whitePanel.SuspendLayout();
             this.categoriesGroupBox.SuspendLayout();
             this.categoriesLayoutPanel.SuspendLayout();
@@ -74,6 +76,8 @@
             this.hostListPanel.SuspendLayout();
             this.colorsPanel.SuspendLayout();
             this.purplePanel.SuspendLayout();
+            this.buttonPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // whitePanel
@@ -85,7 +89,7 @@
             this.whitePanel.Location = new System.Drawing.Point(15, 15);
             this.whitePanel.Margin = new System.Windows.Forms.Padding(0);
             this.whitePanel.Name = "whitePanel";
-            this.whitePanel.Size = new System.Drawing.Size(435, 431);
+            this.whitePanel.Size = new System.Drawing.Size(435, 433);
             this.whitePanel.TabIndex = 0;
             // 
             // categoriesGroupBox
@@ -96,7 +100,7 @@
             this.categoriesGroupBox.Location = new System.Drawing.Point(15, 15);
             this.categoriesGroupBox.Margin = new System.Windows.Forms.Padding(15);
             this.categoriesGroupBox.Name = "categoriesGroupBox";
-            this.categoriesGroupBox.Size = new System.Drawing.Size(405, 401);
+            this.categoriesGroupBox.Size = new System.Drawing.Size(405, 403);
             this.categoriesGroupBox.TabIndex = 32;
             this.categoriesGroupBox.TabStop = false;
             this.categoriesGroupBox.Text = "Select Categories";
@@ -108,9 +112,9 @@
             this.categoriesLayoutPanel.ColumnCount = 1;
             this.categoriesLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.categoriesLayoutPanel.Controls.Add(this.legendLabel, 0, 1);
-            this.categoriesLayoutPanel.Controls.Add(this.importButton, 0, 3);
             this.categoriesLayoutPanel.Controls.Add(this.categoriesTableLayoutPanel, 0, 2);
             this.categoriesLayoutPanel.Controls.Add(this.sourceProfileLabel, 0, 0);
+            this.categoriesLayoutPanel.Controls.Add(this.buttonPanel, 0, 3);
             this.categoriesLayoutPanel.Location = new System.Drawing.Point(21, 29);
             this.categoriesLayoutPanel.Name = "categoriesLayoutPanel";
             this.categoriesLayoutPanel.RowCount = 4;
@@ -118,7 +122,7 @@
             this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.categoriesLayoutPanel.Size = new System.Drawing.Size(378, 353);
+            this.categoriesLayoutPanel.Size = new System.Drawing.Size(378, 355);
             this.categoriesLayoutPanel.TabIndex = 31;
             // 
             // legendLabel
@@ -137,7 +141,7 @@
             // 
             this.importButton.AutoSize = true;
             this.importButton.Enabled = false;
-            this.importButton.Location = new System.Drawing.Point(3, 327);
+            this.importButton.Location = new System.Drawing.Point(0, 0);
             this.importButton.Name = "importButton";
             this.importButton.Size = new System.Drawing.Size(110, 23);
             this.importButton.TabIndex = 27;
@@ -487,8 +491,28 @@
             this.purplePanel.Location = new System.Drawing.Point(0, 0);
             this.purplePanel.Name = "purplePanel";
             this.purplePanel.Padding = new System.Windows.Forms.Padding(15);
-            this.purplePanel.Size = new System.Drawing.Size(465, 461);
+            this.purplePanel.Size = new System.Drawing.Size(465, 463);
             this.purplePanel.TabIndex = 1;
+            // 
+            // buttonPanel
+            // 
+            this.buttonPanel.Controls.Add(this.helpPictureBox);
+            this.buttonPanel.Controls.Add(this.importButton);
+            this.buttonPanel.Location = new System.Drawing.Point(3, 327);
+            this.buttonPanel.Name = "buttonPanel";
+            this.buttonPanel.Size = new System.Drawing.Size(372, 25);
+            this.buttonPanel.TabIndex = 32;
+            // 
+            // helpPictureBox
+            // 
+            this.helpPictureBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox.Location = new System.Drawing.Point(348, 0);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(24, 25);
+            this.helpPictureBox.TabIndex = 28;
+            this.helpPictureBox.TabStop = false;
+            this.helpPictureBox.Click += new System.EventHandler(this.HelpClick);
             // 
             // MergeDialog
             // 
@@ -529,6 +553,9 @@
             this.colorsPanel.PerformLayout();
             this.purplePanel.ResumeLayout(false);
             this.purplePanel.PerformLayout();
+            this.buttonPanel.ResumeLayout(false);
+            this.buttonPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -569,5 +596,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton otherReplaceRadioButton;
         private System.Windows.Forms.CheckBox otherSettingsCheckBox;
+        private System.Windows.Forms.Panel buttonPanel;
+        private System.Windows.Forms.PictureBox helpPictureBox;
     }
 }

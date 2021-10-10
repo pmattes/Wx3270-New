@@ -94,11 +94,12 @@ namespace Wx3270
         /// <summary>
         /// Initializes a new instance of the <see cref="MergeDialog"/> class.
         /// </summary>
+        /// <param name="app">Application context.</param>
         /// <param name="profileDialog">Parent profile dialog.</param>
         /// <param name="sourceProfileName">Source profile name.</param>
         /// <param name="destinationProfileName">Destination profile name.</param>
         /// <param name="profileType">Profile type.</param>
-        public MergeDialog(Form profileDialog, string sourceProfileName, string destinationProfileName, ProfileType profileType)
+        public MergeDialog(Wx3270App app, Form profileDialog, string sourceProfileName, string destinationProfileName, ProfileType profileType)
         {
             this.InitializeComponent();
             this.profileDialog = profileDialog;
@@ -119,6 +120,12 @@ namespace Wx3270
                     break;
             }
 
+            // Handle restrictions.
+            if (app != null && app.Restricted(Restrictions.GetHelp))
+            {
+                this.helpPictureBox.RemoveFromParent();
+            }
+
             // Localize.
             I18n.Localize(this);
         }
@@ -136,7 +143,7 @@ namespace Wx3270
         {
             I18n.LocalizeGlobal(Label.SourceProfile, "Source profile");
             I18n.LocalizeGlobal(Label.DestinationProfile, "Destination profile");
-            new MergeDialog(null, "foo", "bar", ProfileType.Full).Dispose();
+            new MergeDialog(null, null, "foo", "bar", ProfileType.Full).Dispose();
         }
 
         /// <summary>
@@ -284,6 +291,16 @@ namespace Wx3270
         private void MergeDialog_Activated(object sender, EventArgs e)
         {
             this.Location = MainScreen.CenteredOn(this.profileDialog, this);
+        }
+
+        /// <summary>
+        /// The help button was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void HelpClick(object sender, EventArgs e)
+        {
+            Wx3270App.GetHelp("Merge");
         }
 
         /// <summary>
