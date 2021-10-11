@@ -958,7 +958,7 @@ namespace Wx3270
                             }
 
                             var toolTip = new List<string>();
-                            if (!string.IsNullOrWhiteSpace(profile.Profile.Description))
+                            if (profile.Profile != null && !string.IsNullOrWhiteSpace(profile.Profile.Description))
                             {
                                 toolTip.Add(profile.Profile.Description);
                             }
@@ -975,11 +975,11 @@ namespace Wx3270
                                     toolTip.Add(I18n.Get(Message.IsDefaultProfile));
                                 }
                             }
-                            else if (profile.Profile.ProfileType == ProfileType.KeyboardMapTemplate)
+                            else if (profile.Profile != null && profile.Profile.ProfileType == ProfileType.KeyboardMapTemplate)
                             {
                                 toolTip.Add(I18n.Get(Message.IsKeyboardMap));
                             }
-                            else if (profile.Profile.ProfileType == ProfileType.KeypadMapTemplate)
+                            else if (profile.Profile != null && profile.Profile.ProfileType == ProfileType.KeypadMapTemplate)
                             {
                                 toolTip.Add(I18n.Get(Message.IsKeypadMap));
                             }
@@ -1194,7 +1194,7 @@ namespace Wx3270
                 var profileNode = node as ProfileTreeNode;
                 this.profileSwitchToButton.Enabled = !this.connected && !profileNode.IsBroken && !profileNode.IsDefaults && !profileNode.IsCurrent;
                 this.profileMergeFromButton.Enabled = !this.connected && !profileNode.IsBroken && !profileNode.IsCurrent;
-                this.profileExportButton.Enabled = profileNode.IsBroken && !profileNode.IsDefaults;
+                this.profileExportButton.Enabled = !profileNode.IsBroken && !profileNode.IsDefaults;
                 this.profileDefaultButton.Enabled = !profileNode.IsBroken && !profileNode.IsDefaults;
 
                 // Set common buttons.
