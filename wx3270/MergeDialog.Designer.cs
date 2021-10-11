@@ -33,7 +33,6 @@
             this.categoriesGroupBox = new System.Windows.Forms.GroupBox();
             this.categoriesLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.legendLabel = new System.Windows.Forms.Label();
-            this.importButton = new System.Windows.Forms.Button();
             this.categoriesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.otherReplaceRadioButton = new System.Windows.Forms.RadioButton();
@@ -61,9 +60,10 @@
             this.colorsReplaceRadioButton = new System.Windows.Forms.RadioButton();
             this.colorsCheckBox = new System.Windows.Forms.CheckBox();
             this.sourceProfileLabel = new System.Windows.Forms.Label();
-            this.purplePanel = new System.Windows.Forms.Panel();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.importButton = new System.Windows.Forms.Button();
+            this.purplePanel = new System.Windows.Forms.Panel();
             this.whitePanel.SuspendLayout();
             this.categoriesGroupBox.SuspendLayout();
             this.categoriesLayoutPanel.SuspendLayout();
@@ -75,9 +75,9 @@
             this.fontPanel.SuspendLayout();
             this.hostListPanel.SuspendLayout();
             this.colorsPanel.SuspendLayout();
-            this.purplePanel.SuspendLayout();
             this.buttonPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
+            this.purplePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // whitePanel
@@ -136,18 +136,6 @@
             this.legendLabel.Text = "Replace: The entire category will be replaced by the contents of the source profi" +
     "le\r\nMerge: Items with new names will be added; items with the same names will be" +
     " replaced";
-            // 
-            // importButton
-            // 
-            this.importButton.AutoSize = true;
-            this.importButton.Enabled = false;
-            this.importButton.Location = new System.Drawing.Point(0, 0);
-            this.importButton.Name = "importButton";
-            this.importButton.Size = new System.Drawing.Size(110, 23);
-            this.importButton.TabIndex = 27;
-            this.importButton.Text = "Merge";
-            this.importButton.UseVisualStyleBackColor = true;
-            this.importButton.Click += new System.EventHandler(this.ImportButton_Click);
             // 
             // categoriesTableLayoutPanel
             // 
@@ -430,10 +418,10 @@
             this.hostsCheckBox.AutoSize = true;
             this.hostsCheckBox.Location = new System.Drawing.Point(4, 5);
             this.hostsCheckBox.Name = "hostsCheckBox";
-            this.hostsCheckBox.Size = new System.Drawing.Size(63, 17);
+            this.hostsCheckBox.Size = new System.Drawing.Size(85, 17);
             this.hostsCheckBox.TabIndex = 1;
             this.hostsCheckBox.Tag = "";
-            this.hostsCheckBox.Text = "Host list";
+            this.hostsCheckBox.Text = "Connections";
             this.hostsCheckBox.UseVisualStyleBackColor = true;
             this.hostsCheckBox.CheckedChanged += new System.EventHandler(this.MergeCheckBox_CheckedChanged);
             // 
@@ -483,17 +471,6 @@
             this.sourceProfileLabel.Tag = "`";
             this.sourceProfileLabel.Text = "`Source Profile: Foo\r\n\r\nDestination Profile: Bar";
             // 
-            // purplePanel
-            // 
-            this.purplePanel.AutoSize = true;
-            this.purplePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.purplePanel.Controls.Add(this.whitePanel);
-            this.purplePanel.Location = new System.Drawing.Point(0, 0);
-            this.purplePanel.Name = "purplePanel";
-            this.purplePanel.Padding = new System.Windows.Forms.Padding(15);
-            this.purplePanel.Size = new System.Drawing.Size(465, 463);
-            this.purplePanel.TabIndex = 1;
-            // 
             // buttonPanel
             // 
             this.buttonPanel.Controls.Add(this.helpPictureBox);
@@ -513,6 +490,29 @@
             this.helpPictureBox.TabIndex = 28;
             this.helpPictureBox.TabStop = false;
             this.helpPictureBox.Click += new System.EventHandler(this.HelpClick);
+            // 
+            // importButton
+            // 
+            this.importButton.AutoSize = true;
+            this.importButton.Enabled = false;
+            this.importButton.Location = new System.Drawing.Point(0, 0);
+            this.importButton.Name = "importButton";
+            this.importButton.Size = new System.Drawing.Size(110, 23);
+            this.importButton.TabIndex = 27;
+            this.importButton.Text = "Merge";
+            this.importButton.UseVisualStyleBackColor = true;
+            this.importButton.Click += new System.EventHandler(this.ImportButton_Click);
+            // 
+            // purplePanel
+            // 
+            this.purplePanel.AutoSize = true;
+            this.purplePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.purplePanel.Controls.Add(this.whitePanel);
+            this.purplePanel.Location = new System.Drawing.Point(0, 0);
+            this.purplePanel.Name = "purplePanel";
+            this.purplePanel.Padding = new System.Windows.Forms.Padding(15);
+            this.purplePanel.Size = new System.Drawing.Size(465, 463);
+            this.purplePanel.TabIndex = 1;
             // 
             // MergeDialog
             // 
@@ -551,11 +551,11 @@
             this.hostListPanel.PerformLayout();
             this.colorsPanel.ResumeLayout(false);
             this.colorsPanel.PerformLayout();
-            this.purplePanel.ResumeLayout(false);
-            this.purplePanel.PerformLayout();
             this.buttonPanel.ResumeLayout(false);
             this.buttonPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.purplePanel.ResumeLayout(false);
+            this.purplePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -120,6 +120,12 @@ namespace Wx3270
                     break;
             }
 
+            if (app != null && sourceProfileName == ProfileManager.DefaultValuesName)
+            {
+                this.hostsCheckBox.Enabled = false;
+                this.macrosCheckBox.Enabled = false;
+            }
+
             // Handle restrictions.
             if (app != null && app.Restricted(Restrictions.GetHelp))
             {

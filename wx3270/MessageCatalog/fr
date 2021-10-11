@@ -641,7 +641,7 @@
   "MergeDialog.form.colorsReplaceRadioButton": "Remplacer",
   "MergeDialog.form.fontCheckBox": "Police",
   "MergeDialog.form.fontReplaceRadioButton": "Remplacer",
-  "MergeDialog.form.hostsCheckBox": "Liste d'hôtes",
+  "MergeDialog.form.hostsCheckBox": "Connexions",
   "MergeDialog.form.hostsMergeRadioButton": "Fusionner",
   "MergeDialog.form.hostsReplaceRadioButton": "Remplacer",
   "MergeDialog.form.importButton": "Fusionner",
