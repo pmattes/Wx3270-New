@@ -175,6 +175,7 @@ namespace Wx3270
                     if (tag.EndsWith("Replace"))
                     {
                         radioButton.Checked = false;
+                        radioButton.Enabled = false;
                     }
                     else if (tag.EndsWith("Merge"))
                     {
