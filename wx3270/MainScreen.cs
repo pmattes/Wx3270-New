@@ -1671,6 +1671,7 @@ namespace Wx3270
                 case ScreenUpdateType.Connection:
                     this.ChangeOiaTls(updateState.OiaState);
                     this.ChangeOiaNetwork(updateState.OiaState);
+                    this.ChangeOiaLock(updateState.OiaState);
                     this.ConnectionStateEvent();
                     break;
                 case ScreenUpdateType.Network:
