@@ -396,17 +396,18 @@ namespace Wx3270
         /// <summary>
         /// Change tracing mode.
         /// </summary>
-        /// <param name="value">True if tracing should now be on.</param>
-        private void TraceChanged(bool value)
+        /// <param name="isOn">True if tracing should now be on.</param>
+        /// <param name="fromCheckBox">True if the change came from the checkbox.</param>
+        private void TraceChanged(bool isOn, bool fromCheckBox = false)
         {
-            this.BackEnd.RunAction(new BackEndAction(B3270.Action.Set, B3270.Setting.Trace, B3270.ToggleArgument.Action(value)), ErrorBox.Ignore());
-            if (value && Trace.Flags == Trace.Type.None)
+            this.BackEnd.RunAction(new BackEndAction(B3270.Action.Set, B3270.Setting.Trace, B3270.ToggleArgument.Action(isOn)), ErrorBox.Ignore());
+            if (isOn && !fromCheckBox && Trace.Flags == Trace.Type.None)
             {
                 this.uiTraceCheckBox.Checked = true;
                 this.ToggleUiTracing(true);
             }
 
-            if (!value)
+            if (!isOn)
             {
                 // Turn off UI tracing, too.
                 this.uiTraceCheckBox.Checked = false;
@@ -422,7 +423,7 @@ namespace Wx3270
         [Associated("trace")]
         private void TraceCheckBox_Click(object sender, EventArgs e)
         {
-            this.TraceChanged(this.traceCheckBox.Checked);
+            this.TraceChanged(this.traceCheckBox.Checked, fromCheckBox: true);
         }
 
         /// <summary>
@@ -865,7 +866,7 @@ namespace Wx3270
                 if (Trace.Flags != Trace.Type.None && !this.Tracing)
                 {
                     // Start back end tracing so we can see the output.
-                    this.TraceChanged(true);
+                    this.TraceChanged(true, fromCheckBox: true);
                 }
             }
             finally
