@@ -1056,7 +1056,7 @@ namespace Wx3270
             this.chordTimer.Tick += (sender, args) => this.ChordReset();
 
             // Register the local PrintText() action.
-            this.App.BackEnd.RegisterPassthru(Constants.Action.PrintText, this.PrintText);
+            this.BackEnd.RegisterPassthru(Constants.Action.PrintText, this.PrintText);
 
             // Handle user-generated window title changes.
             this.App.WindowTitle.Add(this, () =>
