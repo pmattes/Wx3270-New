@@ -7,7 +7,6 @@ namespace Wx3270
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Security.Permissions;
     using System.Text;
     using System.Windows.Forms;
 
@@ -47,16 +46,6 @@ namespace Wx3270
         private readonly MainScreen mainScreen;
 
         /// <summary>
-        /// The host we are connecting to.
-        /// </summary>
-        private HostEntry connectHostEntry;
-
-        /// <summary>
-        /// True if there is an asynchronous connection completion to run.
-        /// </summary>
-        private bool connectCompletePending;
-
-        /// <summary>
         /// The pending connection completion.
         /// </summary>
         private ConnectComplete connectComplete;
@@ -83,25 +72,7 @@ namespace Wx3270
         /// <summary>
         /// Gets the host we are connecting to.
         /// </summary>
-        public HostEntry ConnectHostEntry
-        {
-            get
-            {
-                return this.connectHostEntry;
-            }
-
-            private set
-            {
-                if (value != null)
-                {
-                    this.connectHostEntry = value;
-                }
-                else
-                {
-                    this.connectHostEntry = null;
-                }
-            }
-        }
+        public HostEntry ConnectHostEntry { get; private set; }
 
         /// <summary>
         /// Gets the emulator back end.
@@ -126,12 +97,33 @@ namespace Wx3270
         /// </summary>
         /// <param name="entry">Host entry.</param>
         /// <returns>True if connection was successfully initiated.</returns>
-        /// <param name="complete">Asynchronous completion delegate.</param>
-        public bool ConnectToHost(HostEntry entry, ConnectComplete complete = null)
+        public bool ConnectToHost(HostEntry entry)
         {
+            return this.ConnectToHost(entry, out _, null);
+        }
+
+        /// <summary>
+        /// Connect to a host.
+        /// </summary>
+        /// <param name="entry">Host entry.</param>
+        /// <param name="errorMessage">Returned error message, if <paramref name="complete"/> is not null.</param>
+        /// <param name="complete">Asynchronous completion delegate.</param>
+        /// <returns>True if connection was successfully initiated.</returns>
+        public bool ConnectToHost(HostEntry entry, out string errorMessage, ConnectComplete complete)
+        {
+            errorMessage = string.Empty;
+
             if (!this.app.TlsHello.Supported && entry.Prefixes.Contains(B3270.Prefix.TlsTunnel))
             {
-                ErrorBox.Show(I18n.Get(Message.TlsNotSupported), I18n.Get(Title.Connect));
+                if (complete != null)
+                {
+                    errorMessage = I18n.Get(Message.TlsNotSupported);
+                }
+                else
+                {
+                    ErrorBox.Show(I18n.Get(Message.TlsNotSupported), I18n.Get(Title.Connect));
+                }
+
                 return false;
             }
 
@@ -154,7 +146,7 @@ namespace Wx3270
             var allAdded = AddToggleIfSupported(tlsOptionsSupported, settings, B3270.Setting.StartTls, entry.AllowStartTls ? B3270.Value.True : B3270.Value.False)
                 && AddToggleIfSupported(tlsOptionsSupported, settings, B3270.Setting.AcceptHostname, entry.AcceptHostName, required: true)
                 && AddToggleIfSupported(tlsOptionsSupported, settings, B3270.Setting.ClientCert, entry.ClientCertificateName, required: true);
-            if (!allAdded)
+            if (!allAdded && complete == null)
             {
                 ErrorBox.Show(I18n.Get(Message.TlsOptionsNotSupported), I18n.Get(Title.Connect), MessageBoxIcon.Warning);
             }
@@ -206,7 +198,6 @@ namespace Wx3270
             this.mainScreen.ConnectHostType = entry.HostType; // for file transfers
             this.ConnectHostEntry = entry;
             this.connectComplete = complete;
-            this.connectCompletePending = complete != null;
             this.suppressConnectError = false;
             this.app.BackEnd.RunActions(
                 actions,
@@ -215,9 +206,9 @@ namespace Wx3270
                     if (!success)
                     {
                         this.ConnectHostEntry = null;
-                        if (this.connectCompletePending)
+                        if (this.connectComplete != null)
                         {
-                            this.connectCompletePending = false;
+                            // Pass the error back to the uConnect action, without an error pop-up.
                             this.connectComplete(false, result);
                             this.connectComplete = null;
                         }
@@ -234,9 +225,8 @@ namespace Wx3270
                             this.app.Cmd.Connect(entry);
                         }
 
-                        if (this.connectCompletePending)
+                        if (this.connectComplete != null)
                         {
-                            this.connectCompletePending = false;
                             this.connectComplete(true, result);
                             this.connectComplete = null;
                         }
@@ -249,7 +239,7 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Disconnect from the host.
+        /// Explcit disconnect from the host.
         /// </summary>
         public void Disconnect()
         {
@@ -312,7 +302,6 @@ namespace Wx3270
             if (connectionState == ConnectionState.NotConnected)
             {
                 this.ConnectHostEntry = null;
-                this.connectCompletePending = false;
                 this.connectComplete = null;
                 this.suppressConnectError = false;
                 return;

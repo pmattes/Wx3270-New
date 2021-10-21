@@ -3237,12 +3237,14 @@ namespace Wx3270
             result = string.Empty;
             if (!this.connect.ConnectToHost(
                 hostEntry,
+                out string errorMessage,
                 (success, r) =>
                 {
                     // Asynchronous completion.
                     this.app.BackEnd.PassthruComplete(success, r, tag);
                 }))
             {
+                result = errorMessage;
                 return PassthruResult.Failure;
             }
 
