@@ -100,7 +100,7 @@ namespace Wx3270
         [I18nInit]
         public static void Localize()
         {
-            I18n.LocalizeGlobal(ClickYesOrNo, "Click Yes to copy text to clipboard, No to close window without saving");
+            I18n.LocalizeGlobal(ClickYesOrNo, "Click Yes to copy text to clipboard, No to close window without saving.");
             localized = true;
         }
     }
