@@ -890,6 +890,11 @@ namespace Wx3270
             public const string Child = "child";
 
             /// <summary>
+            /// Asynchronous connection error.
+            /// </summary>
+            public const string ConnectionError = "connection-error";
+
+            /// <summary>
             /// Back-end error.
             /// </summary>
             public const string Error = "error";

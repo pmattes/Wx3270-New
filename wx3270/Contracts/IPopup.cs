@@ -4,6 +4,8 @@
 
 namespace Wx3270
 {
+    using System;
+
     using Wx3270.Contracts;
 
     /// <summary>
@@ -11,5 +13,9 @@ namespace Wx3270
     /// </summary>
     public interface IPopup : IBackEndEvent
     {
+        /// <summary>
+        /// Asynchronous connect error event.
+        /// </summary>
+        event Action<string> ConnectErrorEvent;
     }
 }

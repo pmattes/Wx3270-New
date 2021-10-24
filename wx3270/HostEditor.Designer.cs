@@ -422,6 +422,7 @@
             // 
             // connectButton
             // 
+            this.connectButton.AutoSize = true;
             this.connectButton.ForeColor = System.Drawing.Color.ForestGreen;
             this.connectButton.Location = new System.Drawing.Point(3, 3);
             this.connectButton.Name = "connectButton";
@@ -433,6 +434,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.AutoSize = true;
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(165, 3);
             this.cancelButton.Name = "cancelButton";
@@ -445,6 +447,7 @@
             // 
             // okButton
             // 
+            this.okButton.AutoSize = true;
             this.okButton.Location = new System.Drawing.Point(246, 3);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
@@ -468,6 +471,7 @@
             // 
             // connectRecordButton
             // 
+            this.connectRecordButton.AutoSize = true;
             this.connectRecordButton.ForeColor = System.Drawing.Color.ForestGreen;
             this.connectRecordButton.Location = new System.Drawing.Point(84, 3);
             this.connectRecordButton.Name = "connectRecordButton";
@@ -1088,6 +1092,7 @@
             this.rightTableLayoutPanel.ResumeLayout(false);
             this.rightTableLayoutPanel.PerformLayout();
             this.buttonsTableLayoutPanel.ResumeLayout(false);
+            this.buttonsTableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.optionsGroupBox.ResumeLayout(false);
             this.optionsLayoutPanel.ResumeLayout(false);

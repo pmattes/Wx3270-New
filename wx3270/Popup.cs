@@ -31,6 +31,11 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Connection error event.
+        /// </summary>
+        public event Action<string> ConnectErrorEvent;
+
+        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]
@@ -54,6 +59,17 @@ namespace Wx3270
             var errorOverride = attributes.TryGetValue(B3270.Attribute.Error, out string error) && error.Equals(B3270.Value.True);
             switch (attributes[B3270.Attribute.Type])
             {
+                case B3270.PopupType.ConnectionError:
+                    if (this.ConnectErrorEvent != null)
+                    {
+                        this.ConnectErrorEvent(text);
+                    }
+                    else
+                    {
+                        ErrorBox.Show(text, I18n.Get(Title.Error));
+                    }
+
+                    break;
                 case B3270.PopupType.Error:
                     ErrorBox.Show(text, I18n.Get(Title.Error));
                     break;
