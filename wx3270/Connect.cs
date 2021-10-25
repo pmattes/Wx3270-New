@@ -330,7 +330,7 @@ namespace Wx3270
             this.connectMessageBox = new NonModalMessageBox(
                 I18n.Get(Title.Connect),
                 text,
-                retryAbort: reconnect,
+                retryAbort: reconnect && this.app.Allowed(Restrictions.Disconnect),
                 this.ConnectErrorPopupComplete);
             this.connectMessageBox.Show(this.mainScreen);
         }
