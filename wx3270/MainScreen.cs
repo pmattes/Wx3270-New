@@ -512,9 +512,15 @@ namespace Wx3270
         {
             // Change the display font.
             this.ScreenNewFont(font);
+            var newFont = font;
+            if (this.Maximized)
+            {
+                // Recompute the font size when maximized (ignore the selected size).
+                newFont = this.screenBox.RecomputeFont(this.ClientSize, ResizeType.Dynamic);
+            }
 
             // Change the OIA.
-            this.RefontOia(font);
+            this.RefontOia(newFont);
 
             if (!this.Maximized)
             {
@@ -524,7 +530,7 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// z the screen (make it fit the current font tightly).
+        /// Make the screen fit the current font tightly.
         /// </summary>
         public void Snap()
         {
@@ -2589,6 +2595,7 @@ namespace Wx3270
                 Trace.Line(Trace.Type.Window, " ==> resize");
                 this.screenBox.Maximize(this.Maximized, this.ClientSize);
                 var newFont = this.screenBox.RecomputeFont(this.ClientSize, ResizeType.Dynamic);
+
                 if (this.ProfileManager.PushAndSave(
                     (current) =>
                     {
