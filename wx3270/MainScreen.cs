@@ -668,6 +668,17 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Rounds a floating point number down.
+        /// </summary>
+        /// <param name="f">Number to round.</param>
+        /// <param name="granularity">Rounding granularity.</param>
+        /// <returns>Rounded number.</returns>
+        private static float RoundDown(float f, float granularity)
+        {
+            return (float)(Math.Truncate(f / granularity) * granularity);
+        }
+
+        /// <summary>
         /// Add or remove the scroll bar.
         /// </summary>
         /// <param name="displayed">True if scroll bar should be displayed.</param>
@@ -1740,9 +1751,16 @@ namespace Wx3270
                         {
                             var mainRatio = (float)mainCellSize.Width / (float)mainCellSize.Height;
                             var xRatio = (float)xCellSize.Width / (float)mainCellSize.Height;
-                            var newSize = font.Size * mainRatio / xRatio;
+                            var newSize = RoundDown(font.Size * mainRatio / xRatio, 0.25F);
                             try3270Font.Dispose();
+                            Trace.Line(Trace.Type.Window, "Trying new OIA 3270 font {0} (vs. {1})", newSize, font.Size, mainRatio, xRatio);
                             try3270Font = new Font("3270", newSize);
+
+                            xCellSize = TextRenderer.MeasureText(g, "X", try3270Font, new Size(1000, 1000), TextFormatFlags.Left | TextFormatFlags.NoPadding);
+                            if (xCellSize.Width > mainCellSize.Width)
+                            {
+                                Trace.Line(Trace.Type.Window, " (Too big!)");
+                            }
                         }
                     }
                 }
