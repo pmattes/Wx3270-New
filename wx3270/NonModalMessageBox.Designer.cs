@@ -47,6 +47,7 @@ namespace Wx3270
             this.textLabel.AutoSize = true;
             this.textLabel.Location = new System.Drawing.Point(72, 28);
             this.textLabel.Margin = new System.Windows.Forms.Padding(3, 0, 15, 0);
+            this.textLabel.MaximumSize = new System.Drawing.Size(250, 0);
             this.textLabel.Name = "textLabel";
             this.textLabel.Size = new System.Drawing.Size(53, 13);
             this.textLabel.TabIndex = 0;
