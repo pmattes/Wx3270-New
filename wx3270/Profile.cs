@@ -569,7 +569,7 @@ namespace Wx3270
             /// <summary>
             /// Release phase.
             /// </summary>
-            private const string ReleasePhase = "gpre";
+            private const string ReleasePhase = "ga";
 
             /// <summary>
             /// Gets the full version, for display rather than comparison.
