@@ -30,11 +30,6 @@ namespace I18nBase
         private const string CatalogDir = "MessageCatalog";
 
         /// <summary>
-        /// The set of known strings.
-        /// </summary>
-        private static readonly Dictionary<string, string> KnownStrings = new Dictionary<string, string>();
-
-        /// <summary>
         /// Regular expression for action names.
         /// </summary>
         private static readonly Regex ActionRegex = new Regex("[A-Za-z][A-Za-z0-9_]*\\(\\)");
@@ -45,11 +40,6 @@ namespace I18nBase
         private static readonly Regex QuotedActionRegex = new Regex("'[A-Za-z][A-Za-z0-9_]*\\(\\)'");
 
         /// <summary>
-        /// The set of messages not defined in the message catalog file.
-        /// </summary>
-        private static readonly Dictionary<string, string> MissingMessages = new Dictionary<string, string>();
-
-        /// <summary>
         /// Some strings that don't get translated.
         /// </summary>
         private static readonly HashSet<string> NoTranslate = new HashSet<string>
@@ -57,11 +47,6 @@ namespace I18nBase
             "wx3270", "wx3270>", "pr3287", "b3270", "shift", "cmd.exe", "Shift", "Ctrl", "Alt", "Num", "Lock",
             "Python", "PowerShell", "VBScript", "JScript", "Alt+Shift",
         };
-
-        /// <summary>
-        /// The set of messages in the original US English.
-        /// </summary>
-        private static readonly Dictionary<string, string> UsEnglishMessages = new Dictionary<string, string>();
 
         /// <summary>
         /// Localizations of known strings.
@@ -79,9 +64,9 @@ namespace I18nBase
         private static MethodInfo localizeWordMethodInfo;
 
         /// <summary>
-        /// True if a message catalog is in use.
+        /// Gets a value indicating whether a message catalog is in use.
         /// </summary>
-        private static bool usingMessageCatalog = false;
+        public static bool UsingMessageCatalog { get; private set; }
 
         /// <summary>
         /// Gets or sets the requested culture.
@@ -103,59 +88,62 @@ namespace I18nBase
         /// </summary>
         /// <param name="nameSpaceName">Name space name.</param>
         /// <param name="cultureName">Culture name.</param>
-        public static void Setup(string nameSpaceName, string cultureName = null)
+        /// <param name="dumping">True if dumping the message catalog.</param>
+        public static void Setup(string nameSpaceName, string cultureName = null, bool dumping = false)
         {
-            string foundFile = null;
             try
             {
+                if (dumping)
+                {
+                    // Don't look for a message catalog or a DLL, but do static initialilzation in the finally block below.
+                    return;
+                }
+
+                // Get the current culture if a specific one was not requested.
                 if (cultureName == null)
                 {
                     cultureName = CultureInfo.CurrentCulture.Name;
                 }
 
+                // Remember what was requested, for display.
                 RequestedCulture = cultureName;
-                if (RequestedCulture == "en-US")
-                {
-                    return;
-                }
 
-                try
+                // Try the specific culture name.
+                var effectiveCultureName = cultureName;
+                if (!TryCulture(cultureName, out string foundFile, out i18Assembly))
                 {
-                    i18Assembly = Assembly.LoadFrom("i18n-" + cultureName + ".dll");
-                }
-                catch (FileNotFoundException)
-                {
-                    var tryFile = Path.Combine(CatalogDir, cultureName);
-                    if (File.Exists(tryFile))
-                    {
-                        foundFile = tryFile;
-                    }
-
-                    if (foundFile == null && cultureName.Contains("-"))
+                    if (cultureName.Contains("-"))
                     {
                         // Try again without the country suffix.
-                        cultureName = cultureName.Substring(0, cultureName.IndexOf('-'));
-                        try
+                        effectiveCultureName = cultureName.Substring(0, cultureName.IndexOf('-'));
+                        if (!TryCulture(effectiveCultureName, out foundFile, out i18Assembly))
                         {
-                            i18Assembly = Assembly.LoadFrom("i18n-" + cultureName + ".dll");
+                            return;
                         }
-                        catch (FileNotFoundException)
+                    }
+                }
+
+                if (foundFile != null)
+                {
+                    // Deserialize the message catalog.
+                    var serializer = new JsonSerializer();
+                    using (StreamReader t = new StreamReader(foundFile, new UTF8Encoding()))
+                    {
+                        using (JsonReader reader = new JsonTextReader(t))
                         {
-                            tryFile = Path.Combine(CatalogDir, cultureName);
-                            if (File.Exists(tryFile))
+                            try
                             {
-                                foundFile = tryFile;
+                                localized = serializer.Deserialize<Dictionary<string, string>>(reader);
+                                UsingMessageCatalog = true;
+                            }
+                            catch (Exception e)
+                            {
+                                throw new Exception($"Cannot deserialize message catalog '{foundFile}': {e.Message}");
                             }
                         }
                     }
                 }
-
-                if (i18Assembly == null && foundFile == null)
-                {
-                    return;
-                }
-
-                if (i18Assembly != null)
+                else if (i18Assembly != null)
                 {
                     // Find the localize method in the DLL.
                     var name = cultureName.Replace("-", "_");
@@ -171,44 +159,27 @@ namespace I18nBase
                         throw new Exception("Cannot find Localize method in i18n DLL");
                     }
                 }
-                else if (foundFile != null)
-                {
-                    // Deserialize the message catalog.
-                    var serializer = new JsonSerializer();
-                    using (StreamReader t = new StreamReader(foundFile, new UTF8Encoding()))
-                    {
-                        using (JsonReader reader = new JsonTextReader(t))
-                        {
-                            try
-                            {
-                                localized = serializer.Deserialize<Dictionary<string, string>>(reader);
-                                usingMessageCatalog = true;
-                            }
-                            catch (Exception e)
-                            {
-                                throw new Exception($"Cannot deserialize message catalog '{foundFile}': {e.Message}");
-                            }
-                        }
-                    }
-                }
                 else
                 {
                     return;
                 }
 
-                EffectiveCulture = cultureName;
+                EffectiveCulture = effectiveCultureName;
             }
             finally
             {
-                // We always call the static localization code for each class.
-                foreach (var m in Assembly.GetCallingAssembly()
-                    .GetTypes()
-                    .Where(t => t.IsClass && t.Namespace == nameSpaceName)
-                    .SelectMany(t => t.GetMethods().Where(m => m.IsStatic)))
+                if (dumping || i18Assembly != null)
                 {
-                    if (m.CustomAttributes.Any(a => a.AttributeType == typeof(I18nInitAttribute)))
+                    // Call static initialization.
+                    foreach (var m in Assembly.GetCallingAssembly()
+                        .GetTypes()
+                        .Where(t => t.IsClass && t.Namespace == nameSpaceName)
+                        .SelectMany(t => t.GetMethods().Where(m => m.IsStatic)))
                     {
-                        m.Invoke(null, new object[0]);
+                        if (m.CustomAttributes.Any(a => a.AttributeType == typeof(I18nInitAttribute)))
+                        {
+                            m.Invoke(null, new object[0]);
+                        }
                     }
                 }
             }
@@ -231,9 +202,9 @@ namespace I18nBase
             }
 
             var sortedMessages = new Dictionary<string, string>();
-            foreach (var key in KnownStrings.Keys.OrderBy(k => k))
+            foreach (var key in localized.Keys.OrderBy(k => k))
             {
-                sortedMessages[key] = KnownStrings[key];
+                sortedMessages[key] = localized[key];
             }
 
             var serializer = new JsonSerializer()
@@ -299,16 +270,6 @@ namespace I18nBase
             // Normalize the path.
             path = path.Replace(" ", "_").Replace(Environment.NewLine, "_");
 
-            // If using a message catalog file, this path should be defined already.
-            // If it isn't, remember that.
-            if (usingMessageCatalog && !localized.ContainsKey(path))
-            {
-                MissingMessages[path] = s;
-            }
-
-            // Remember the US English version.
-            UsEnglishMessages[path] = s;
-
             if (localized.TryGetValue(path, out string trans))
             {
                 // Already known.
@@ -317,7 +278,7 @@ namespace I18nBase
 
             if (!AllowDynamic)
             {
-                throw new Exception("Improper i18n");
+                throw new Exception($"Unitialized i18n for {path}");
             }
 
             if (localizeWordMethodInfo == null)
@@ -359,9 +320,41 @@ namespace I18nBase
             }
 
             // Remember.
-            KnownStrings[path] = s;
             localized[path] = trans;
             return trans;
+        }
+
+        /// <summary>
+        /// Look for a file or DLL matching a culture name.
+        /// </summary>
+        /// <param name="cultureName">Culture name.</param>
+        /// <param name="foundFileName">Returned found file name.</param>
+        /// <param name="foundAssembly">Returned found assembly.</param>
+        /// <returns>True if match found.</returns>
+        private static bool TryCulture(string cultureName, out string foundFileName, out Assembly foundAssembly)
+        {
+            foundFileName = null;
+            foundAssembly = null;
+
+            // Try for a match on a file.
+            var tryFile = Path.Combine(CatalogDir, cultureName);
+            if (File.Exists(tryFile))
+            {
+                foundFileName = tryFile;
+                return true;
+            }
+
+            // Try for a match on a DLL.
+            try
+            {
+                foundAssembly = Assembly.LoadFrom("i18n-" + cultureName + ".dll");
+                return true;
+            }
+            catch (FileNotFoundException)
+            {
+            }
+
+            return false;
         }
 
         /// <summary>

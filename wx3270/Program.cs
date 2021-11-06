@@ -5,6 +5,7 @@
 namespace Wx3270
 {
     using System;
+    using System.Diagnostics;
     using System.Windows.Forms;
 
     using I18nBase;
@@ -24,6 +25,9 @@ namespace Wx3270
             Control mainControl = null;
             try
             {
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
@@ -34,7 +38,12 @@ namespace Wx3270
                 main.Init(app);
 
                 // Set up forms localization. This needs to happen after main screen initialization.
-                I18n.SetupForms();
+                // It is only necessary if a message catalog file is not being used.
+                if (!I18nBase.UsingMessageCatalog)
+                {
+                    I18n.SetupForms();
+                }
+
                 if (!string.IsNullOrEmpty(app.DumpLocalization))
                 {
                     I18nBase.DumpMessages(app.DumpLocalization);
@@ -44,6 +53,12 @@ namespace Wx3270
 
                 // Start the back end running.
                 app.BackEnd.Run();
+
+                // Trace how long it took to come up.
+                stopwatch.Stop();
+                Trace.Line(
+                    Trace.Type.Window,
+                    string.Format("Initialization took {0:F3} seconds", stopwatch.Elapsed.TotalMilliseconds / 1000.0));
 
                 // Start the event loop.
                 Application.Run();
