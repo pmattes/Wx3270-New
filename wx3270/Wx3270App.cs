@@ -673,10 +673,7 @@ namespace Wx3270
             }
             catch (Exception e)
             {
-                if (culture != null)
-                {
-                    ErrorBox.Show(e.Message, "wx3270 Localization", MessageBoxIcon.Information);
-                }
+                ErrorBox.Show(e.Message, "wx3270 Localization", MessageBoxIcon.Information);
             }
 
             // Load the profile for the first time, so we can use its settings to create basic objects.
