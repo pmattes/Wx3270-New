@@ -669,7 +669,7 @@ namespace Wx3270
             // Set up internationalization.
             try
             {
-                I18nBase.Setup("Wx3270", culture, !string.IsNullOrEmpty(this.DumpLocalization));
+                I18nBase.Setup("Wx3270", culture, forceBootstrap: !string.IsNullOrEmpty(this.DumpLocalization));
             }
             catch (Exception e)
             {

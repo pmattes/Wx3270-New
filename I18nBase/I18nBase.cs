@@ -88,12 +88,12 @@ namespace I18nBase
         /// </summary>
         /// <param name="nameSpaceName">Name space name.</param>
         /// <param name="cultureName">Culture name.</param>
-        /// <param name="dumping">True if dumping the message catalog.</param>
-        public static void Setup(string nameSpaceName, string cultureName = null, bool dumping = false)
+        /// <param name="forceBootstrap">True to force bootstrapping instead of using a catalog or DLL.</param>
+        public static void Setup(string nameSpaceName, string cultureName = null, bool forceBootstrap = false)
         {
             try
             {
-                if (dumping)
+                if (forceBootstrap)
                 {
                     // Don't look for a message catalog or a DLL, but do static initialilzation in the finally block below.
                     return;
@@ -168,7 +168,7 @@ namespace I18nBase
             }
             finally
             {
-                if (dumping || i18Assembly != null)
+                if (!UsingMessageCatalog)
                 {
                     // Call static initialization.
                     foreach (var m in Assembly.GetCallingAssembly()
