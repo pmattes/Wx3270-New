@@ -546,6 +546,8 @@
     <None Include="Local Processes.wx3270">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="MessageCatalog\en" />
+    <None Include="MessageCatalog\en-US" />
     <None Include="MessageCatalog\fr" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

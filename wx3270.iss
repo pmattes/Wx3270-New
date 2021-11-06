@@ -9,7 +9,7 @@ AppPublisher=Paul Mattes
 AppPublisherURL=https://x3270.miraheze.org/wiki/Main_Page
 AppSupportURL=https://x3270.miraheze.org/wiki/Main_Page
 AppUpdatesURL=https://x3270.miraheze.org/wiki/Main_Page
-AppVerName=wx3270 1.0ga7
+AppVerName=wx3270 1.1pre0
 ArchitecturesInstallIn64BitMode=x64
 ChangesAssociations=yes
 Compression=lzma
@@ -17,7 +17,7 @@ DefaultDirName={commonpf}\wx3270
 DefaultGroupName=wx3270
 DisableDirPage=no
 MinVersion=0,6.0
-OutputBaseFilename=wx3270-1.0ga7-setup
+OutputBaseFilename=wx3270-1.1pre0-setup
 OutputDir=.
 SolidCompression=yes
 WizardSmallImageFile=wx3270\wx3270.bmp
@@ -76,6 +76,8 @@ Source: "wx3270\bin\x64\Release\Right to Left.wx3270"; DestDir: "{app}\Library";
 Source: "wx3270\bin\x64\Release\ASCII sites.wx3270"; DestDir: "{app}\Library"; Flags: ignoreversion
 Source: "wx3270\a270.ttf"; DestDir: "{fonts}"; FontInstall: "3270 Regular"; Flags: onlyifdoesntexist uninsneveruninstall
 Source: "wx3270Restrict\bin\Release\wx3270Restrict.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "wx3270\bin\x64\Release\MessageCatalog\en"; DestDir: "{app}\MessageCatalog"; Flags: ignoreversion
+Source: "wx3270\bin\x64\Release\MessageCatalog\en-US"; DestDir: "{app}\MessageCatalog"; Flags: ignoreversion
 Source: "wx3270\bin\x64\Release\MessageCatalog\fr"; DestDir: "{app}\MessageCatalog"; Flags: ignoreversion
 
 [Tasks]

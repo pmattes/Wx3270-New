@@ -94,7 +94,11 @@ namespace Wx3270
         /// </summary>
         public static void SetupForms()
         {
-            foreach (var m in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsClass && t.Namespace == "Wx3270").SelectMany(t => t.GetMethods().Where(m => m.IsStatic)))
+            foreach (var m in Assembly
+                .GetExecutingAssembly()
+                .GetTypes()
+                .Where(t => t.IsClass && t.Namespace == "Wx3270")
+                .SelectMany(t => t.GetMethods().Where(m => m.IsStatic)))
             {
                 if (m.CustomAttributes.Any(a => a.AttributeType == typeof(I18nFormInitAttribute)))
                 {
