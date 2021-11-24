@@ -28,7 +28,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Components]
 Name: "base"; Description: "Basic executables"; Types: full compact custom; Flags: fixed
-Name: "x3270is"; Description: "Script interface DLL"; Types: full compact custom
+Name: "x3270is"; Description: "x3270is script interface DLL"; Types: full compact custom
 
 [Files]
 ; x64 files
