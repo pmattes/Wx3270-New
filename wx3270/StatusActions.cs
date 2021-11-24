@@ -89,6 +89,14 @@ namespace Wx3270
             this.hostCertificateTextBox.Text = string.Empty;
             this.tlsSessionGroupBox.Enabled = false;
             this.tlsState.Add(this, this.TlsSessionChanged);
+
+            if (ConnectionNames.Count == 0)
+            {
+                foreach (var kv in UntranslatedConnectionNames)
+                {
+                    ConnectionNames[kv.Key] = I18n.Get(I18n.Combine(nameof(Actions), "ConnectionState", kv.Key.ToString()));
+                }
+            }
         }
 
         /// <summary>
