@@ -42,6 +42,7 @@ namespace Wx3270
             { KeyMap<KeyboardMap>.Key(Keys.F2, KeyboardModifier.None), new KeyboardMap { Actions = B3270.Action.PF + "(2)" } },
             { KeyMap<KeyboardMap>.Key(Keys.F3, KeyboardModifier.None), new KeyboardMap { Actions = B3270.Action.PF + "(3)" } },
             { KeyMap<KeyboardMap>.Key(Keys.F4, KeyboardModifier.None), new KeyboardMap { Actions = B3270.Action.PF + "(4)" } },
+            { KeyMap<KeyboardMap>.Key(Keys.F4, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.Quit + "(-force)" } },
             { KeyMap<KeyboardMap>.Key(Keys.F5, KeyboardModifier.None), new KeyboardMap { Actions = B3270.Action.PF + "(5)" } },
             { KeyMap<KeyboardMap>.Key(Keys.F6, KeyboardModifier.None), new KeyboardMap { Actions = B3270.Action.PF + "(6)" } },
             { KeyMap<KeyboardMap>.Key(Keys.F7, KeyboardModifier.None), new KeyboardMap { Actions = B3270.Action.PF + "(7)" } },
