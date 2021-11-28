@@ -1205,10 +1205,10 @@ namespace Wx3270
                 this.commonShortcutButton.Enabled = true;
 
                 // Set connection buttons.
-                this.connectionNewButton.Enabled = profileNode.Profile.ProfileType == ProfileType.Full;
+                this.connectionNewButton.Enabled = profileNode.Profile?.ProfileType == ProfileType.Full;
                 if (!this.connected)
                 {
-                    this.topNewConnectionButton.Enabled = profileNode.Profile.ProfileType == ProfileType.Full;
+                    this.topNewConnectionButton.Enabled = profileNode.Profile?.ProfileType == ProfileType.Full;
                 }
 
                 // Set folder buttons.
