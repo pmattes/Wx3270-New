@@ -22,6 +22,11 @@ namespace Wx3270
     public partial class MainScreen : Form, IUpdate, IShift, IFlash
     {
         /// <summary>
+        /// The name of the 3270 font.
+        /// </summary>
+        public const string Name3270Font = "3270";
+
+        /// <summary>
         /// The name of the resize localization.
         /// </summary>
         private const string ResizeName = "MainScreen.Resize";
@@ -1735,10 +1740,10 @@ namespace Wx3270
             var try3270Font = font;
 
             // Find a 3270 font with the same metrics.
-            if (font.Name != "3270")
+            if (font.Name != Name3270Font)
             {
-                try3270Font = new Font("3270", font.Size);
-                if (try3270Font.Name == "3270")
+                try3270Font = new Font(Name3270Font, font.Size);
+                if (try3270Font.Name == Name3270Font)
                 {
                     this.oia3270Font = true;
 
@@ -1754,7 +1759,7 @@ namespace Wx3270
                             var newSize = RoundDown(font.Size * mainRatio / xRatio, 0.25F);
                             try3270Font.Dispose();
                             Trace.Line(Trace.Type.Window, "Trying new OIA 3270 font {0} (vs. {1})", newSize, font.Size, mainRatio, xRatio);
-                            try3270Font = new Font("3270", newSize);
+                            try3270Font = new Font(Name3270Font, newSize);
 
                             xCellSize = TextRenderer.MeasureText(g, "X", try3270Font, new Size(1000, 1000), TextFormatFlags.Left | TextFormatFlags.NoPadding);
                             if (xCellSize.Width > mainCellSize.Width)

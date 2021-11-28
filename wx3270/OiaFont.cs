@@ -11,158 +11,159 @@ namespace Wx3270
     {
         /// <summary>
         /// Special symbols in the 3270 font.
+        /// These live in the Unicode Private Use area (U+E000 - U+F8FF).
         /// </summary>
         public class Symbol
         {
             /// <summary>
             /// The letter A over a box.
             /// </summary>
-            public const string CommA = "\u1e00";
+            public const string CommA = "\ue000";
 
             /// <summary>
             /// The insert indicator, like a '^'.
             /// </summary>
-            public const string Insert = "\u1e01";
+            public const string Insert = "\ue001";
 
             /// <summary>
             /// The letter B over a box.
             /// </summary>
-            public const string CommB = "\u1e02";
+            public const string CommB = "\ue002";
 
             /// <summary>
             /// The number 6 in a box.
             /// </summary>
-            public const string Box6 = "\u1e03";
+            public const string Box6 = "\ue003";
 
             /// <summary>
             /// An arrow pointing to the right.
             /// </summary>
-            public const string RightArrow = "\u1e04";
+            public const string RightArrow = "\ue004";
 
             /// <summary>
             /// A hollow arrow pointing upward, used to indicate the Shift key.
             /// </summary>
-            public const string UpShift = "\u1e05";
+            public const string UpShift = "\ue005";
 
             /// <summary>
             /// An underlined letter B.
             /// </summary>
-            public const string UnderB = "\u1e06";
+            public const string UnderB = "\ue006";
 
             /// <summary>
             /// A hollow arrow pointing downward.
             /// </summary>
-            public const string DownShift = "\u1e07";
+            public const string DownShift = "\ue007";
 
             /// <summary>
             /// A question mark in a box.
             /// </summary>
-            public const string BoxQuestion = "\u1e08";
+            public const string BoxQuestion = "\ue008";
 
             /// <summary>
             /// A solid box.
             /// </summary>
-            public const string BoxSolid = "\u1e09";
+            public const string BoxSolid = "\ue009";
 
             /// <summary>
             /// A broken communication line.
             /// </summary>
-            public const string CommBad = "\u1e0a";
+            public const string CommBad = "\ue00a";
 
             /// <summary>
             /// The high side of a communication line.
             /// </summary>
-            public const string CommHigh = "\u1e0b";
+            public const string CommHigh = "\ue00b";
 
             /// <summary>
             /// The zig-zag part of a communication line.
             /// </summary>
-            public const string CommJag = "\u1e0c";
+            public const string CommJag = "\ue00c";
 
             /// <summary>
             /// The low side of a communication line.
             /// </summary>
-            public const string CommLow = "\u1e0d";
+            public const string CommLow = "\ue00d";
 
             /// <summary>
             /// The left side of a clock face.
             /// </summary>
-            public const string ClockLeft = "\u1e0e";
+            public const string ClockLeft = "\ue00e";
 
             /// <summary>
             /// The right side of a clock face.
             /// </summary>
-            public const string ClockRight = "\u1e0f";
+            public const string ClockRight = "\ue00f";
 
             /// <summary>
             /// The keyboard lock sybols, like an X.
             /// </summary>
-            public const string X = "\u1e10";
+            public const string X = "\ue010";
 
             /// <summary>
             /// An arrow pointing left.
             /// </summary>
-            public const string LeftArrow = "\u1e11";
+            public const string LeftArrow = "\ue011";
 
             /// <summary>
             /// The left side of a key (lock) symbol.
             /// </summary>
-            public const string KeyLeft = "\u1e12";
+            public const string KeyLeft = "\ue012";
 
             /// <summary>
             /// The right side of a key (lock) symbol.
             /// </summary>
-            public const string KeyRight = "\u1e13";
+            public const string KeyRight = "\ue013";
 
             /// <summary>
             /// The number 4 in a box.
             /// </summary>
-            public const string Box4 = "\u1e14";
+            public const string Box4 = "\ue014";
 
             /// <summary>
             /// An underlined letter A.
             /// </summary>
-            public const string UnderA = "\u1e15";
+            public const string UnderA = "\ue015";
 
             /// <summary>
             /// A magnetic card.
             /// </summary>
-            public const string MagCard = "\u1e16";
+            public const string MagCard = "\ue016";
 
             /// <summary>
             /// A human symbol in a box.
             /// </summary>
-            public const string BoxHuman = "\u1e17";
+            public const string BoxHuman = "\ue017";
 
             /// <summary>
             /// A human symbol.
             /// </summary>
-            public const string Human = "\u1e18";
+            public const string Human = "\ue018";
 
             /// <summary>
             /// The letter N in a box.
             /// </summary>
-            public const string BoxN = "\u1e19";
+            public const string BoxN = "\ue019";
 
             /// <summary>
             /// A printer symbol.
             /// </summary>
-            public const string Printer = "\u1e1a";
+            public const string Printer = "\ue01a";
 
             /// <summary>
             /// A lock symbol.
             /// </summary>
-            public const string Lock = "\u1e1b";
+            public const string Lock = "\ue01b";
 
             /// <summary>
             /// A field mark symbol.
             /// </summary>
-            public const string FieldMark = "\u1e1c";
+            public const char FieldMark = '\ue02a';
 
             /// <summary>
             /// A dup symbol.
             /// </summary>
-            public const string Dup = "\u1e1d";
+            public const char Dup = '\ue03b';
         }
     }
 }
