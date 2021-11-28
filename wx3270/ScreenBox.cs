@@ -383,7 +383,7 @@ namespace Wx3270
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            var font3270 = this.ScreenFont.Name == "3270";
+            var font3270 = this.ScreenFont.Name == MainScreen.Name3270Font;
 
             if (font3270 && this.ScreenFont.SizeInPoints >= 10)
             {
@@ -499,12 +499,12 @@ namespace Wx3270
                         if (ch == '*' && font3270)
                         {
                             // Dup.
-                            ch = OiaFont.Symbol.Dup[0];
+                            ch = OiaFont.Symbol.Dup;
                         }
                         else if (ch == ';' && font3270)
                         {
                             // Field Mark.
-                            ch = OiaFont.Symbol.FieldMark[0];
+                            ch = OiaFont.Symbol.FieldMark;
                         }
                         else
                         {

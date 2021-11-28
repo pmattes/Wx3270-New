@@ -5,7 +5,6 @@
 namespace Wx3270
 {
     using System.Threading;
-    using System.Windows.Ink;
 
     /// <summary>
     /// Selection state.

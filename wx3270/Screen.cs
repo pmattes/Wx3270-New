@@ -538,7 +538,7 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Process a chae or attr element.
+        /// Process a char or attr element.
         /// </summary>
         /// <param name="attributes">Element attributes.</param>
         /// <param name="text">Text to store, or null.</param>
@@ -578,13 +578,22 @@ namespace Wx3270
             {
                 for (int i = 0; i < count; i++)
                 {
+                    var extraUnderline = false;
                     if (text != null)
                     {
                         // DBCS characters are stored with the real character in the first location, and a 0 in the second.
                         // The right-hand side of a DBCS cell is the *only* time a 0 will appear in Text.
                         if (!dbcs || (i & 1) == 0)
                         {
-                            this.screenImage.Image[this.curRow, column].Text = text[0];
+                            var t = text[0];
+                            if (t >= B3270.PuaBase + 'A' && t <= B3270.PuaBase + 'Z')
+                            {
+                                // Handle APL underlined alphabetics.
+                                extraUnderline = true;
+                                t -= (char)B3270.PuaBase;
+                            }
+
+                            this.screenImage.Image[this.curRow, column].Text = t;
                             text = text.Skip(1).ToArray();
                         }
                         else
@@ -606,6 +615,12 @@ namespace Wx3270
                     if (gr.HasValue)
                     {
                         this.screenImage.Image[this.curRow, column].GraphicRendition = gr.Value;
+                    }
+
+                    if (extraUnderline)
+                    {
+                        // Handle APL underlined alphabetics.
+                        this.screenImage.Image[this.curRow, column].GraphicRendition |= GraphicRendition.Underline;
                     }
 
                     column++;
