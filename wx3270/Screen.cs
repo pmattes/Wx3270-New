@@ -584,7 +584,20 @@ namespace Wx3270
                         // The right-hand side of a DBCS cell is the *only* time a 0 will appear in Text.
                         if (!dbcs || (i & 1) == 0)
                         {
-                            this.screenImage.Image[this.curRow, column].Text = text[0];
+                            var t = text[0];
+                            if (t >= 0xd800 && t <= 0xdb7f)
+                            {
+                                // High surrogate. We don't know what to do with this at the moment, so we substitute a blob.
+                                t = '▧';
+                            }
+                            else if (t >= 0xdc00 && t <= 0xdfff)
+                            {
+                                // Low surrogate. Second half of something we don't know what to do with.
+                                text = text.Skip(1).ToArray();
+                                continue;
+                            }
+
+                            this.screenImage.Image[this.curRow, column].Text = t;
                             text = text.Skip(1).ToArray();
                         }
                         else
