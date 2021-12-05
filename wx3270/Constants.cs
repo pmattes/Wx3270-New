@@ -239,6 +239,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             /// Display a copyright message and exit.
             /// </summary>
             public const string V = "-v";
+
+            /// <summary>
+            /// Write a version string to a file and exit.
+            /// </summary>
+            public const string Vfile = "-vfile";
         }
 
         /// <summary>

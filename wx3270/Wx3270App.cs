@@ -553,6 +553,10 @@ namespace Wx3270
                                 MessageBoxIcon.Information);
                             Environment.Exit(0);
                             break;
+                        case Constants.Option.Vfile:
+                            File.WriteAllText(args[++i], "wx3270 " + Profile.VersionClass.FullVersion, Encoding.UTF8);
+                            Environment.Exit(0);
+                            break;
                         default:
                             if (args[i].StartsWith("-"))
                             {
