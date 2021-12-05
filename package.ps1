@@ -26,7 +26,19 @@ $files = `
 Write-Host -ForegroundColor Green 'Signing', $files.Count, 'binaries'
 & $signtool sign /f $cert /p $pass /td SHA256 /tr $timestamp $files
 
+# Figure out the version.
+$vfile = [System.IO.Path]::GetTempFileName()
+Start-Process -Wait -FilePath .\Wx3270\bin\x64\Release\wx3270.exe -ArgumentList "-vfile",$vfile
+$version = ((Get-Content $vfile) -split " ")[1]
+Remove-Item $vfile
+Write-Host -ForegroundColor Green 'Version is', $version
+
+# Filter the Inno Setup file.
+$iss = ((Get-Content wx3270.iss) -replace "%VERSION%", $version) -replace "%YEAR%", (Get-Date).Year
+Set-Content -Encoding UTF8 -Path tmp.iss -Value $iss
+
 # Run Inno Setup to create the installer.
 Write-Host -ForegroundColor Green 'Running Inno Setup'
 $signparm = '/smystandard="' + "$signtool sign /f `$q$cert`$q /p $pass /td SHA256 /tr $timestamp `$p" + '"'
-& $inno $signparm /Qp wx3270.iss
+& $inno $signparm /Qp tmp.iss
+Remove-Item tmp.iss
