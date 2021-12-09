@@ -157,5 +157,11 @@ namespace Wx3270.Contracts
         /// </summary>
         /// <param name="text">Text to trace.</param>
         void Trace(string text);
+
+        /// <summary>
+        /// Exit the application.
+        /// </summary>
+        /// <param name="errorCode">Error code.</param>
+        void Exit(int errorCode);
     }
 }

@@ -23,6 +23,7 @@ namespace Wx3270
         public static void Main(string[] args)
         {
             Control mainControl = null;
+            Wx3270App app = null;
             try
             {
                 var stopwatch = new Stopwatch();
@@ -33,7 +34,7 @@ namespace Wx3270
 
                 var main = new MainScreen();
                 mainControl = main;
-                var app = new Wx3270App(main, main);
+                app = new Wx3270App(main, main);
                 app.Init(args);
                 main.Init(app);
 
@@ -66,6 +67,8 @@ namespace Wx3270
             catch (Exception e)
             {
                 ErrorBox.ShowCopy(mainControl, e.ToString(), "Fatal User Interface Error");
+                app?.BackEnd?.Exit(1);
+                Environment.Exit(1);
             }
         }
     }

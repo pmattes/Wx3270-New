@@ -296,8 +296,7 @@ namespace Wx3270
                     this.control,
                     I18n.Get(Message.CannotStart) + ": " + Environment.NewLine + e.Message,
                     I18n.Get(Title.Fatal));
-                this.OnExit();
-                Environment.Exit(1);
+                this.Exit(1);
             }
 
             // Set up XML processing methods.
@@ -501,6 +500,20 @@ namespace Wx3270
             this.traceTimer.Start();
         }
 
+        /// <inheritdoc />
+        public void Exit(int returnCode)
+        {
+            try
+            {
+                this.OnExit();
+            }
+            catch (Exception)
+            {
+            }
+
+            Environment.Exit(returnCode);
+        }
+
         /// <summary>
         /// Get the name of a temporary profile file.
         /// </summary>
@@ -580,6 +593,8 @@ namespace Wx3270
         /// <param name="eventArgs">Event arguments.</param>
         private void Exited(object sender, EventArgs eventArgs)
         {
+            var errorCode = 0;
+
             // If the backend never really got started, clean up the start-up profile.
             if (this.startupProfilePath != null)
             {
@@ -607,13 +622,11 @@ namespace Wx3270
                     this.control,
                     I18n.Get(Message.BackEndExit) + " " + this.b3270.ExitCode + hex + errorText,
                     I18n.Get(Title.BackEndError));
+                errorCode = 1;
             }
 
-            // Do miscellaneous clean-up.
-            this.OnExit();
-
-            // Done.
-            Environment.Exit(0);
+            // Do miscellaneous clean-up and quit.
+            this.Exit(errorCode);
         }
 
         /// <summary>
@@ -693,11 +706,8 @@ namespace Wx3270
                     I18n.Get(Message.XmlException) + ":" + Environment.NewLine + e.Message,
                     I18n.Get(Title.Fatal));
 
-                // Do miscellaneous clean-up.
-                this.OnExit();
-
-                // Done.
-                Environment.Exit(1);
+                // Do miscellaneous clean-up and exit.
+                this.Exit(1);
             }
         }
 

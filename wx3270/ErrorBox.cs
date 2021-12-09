@@ -21,9 +21,9 @@ namespace Wx3270
         private static readonly string ClickYesOrNo = I18n.Combine(nameof(ErrorBox), "ClickYesOrNo");
 
         /// <summary>
-        /// True if localization is complete.
+        /// The English test of the yes or no message.
         /// </summary>
-        private static bool localized = false;
+        private static readonly string YesOrNoText = "Click Yes to copy text to clipboard, No to close window without saving.";
 
         /// <summary>
         /// Pop up an error box.
@@ -45,14 +45,14 @@ namespace Wx3270
         /// <param name="icon">Icon to display.</param>
         public static void ShowCopy(Control control, string text, string title, MessageBoxIcon icon = MessageBoxIcon.Error)
         {
-            if (control == null || !localized)
+            if (control == null)
             {
                 Show(text, title, icon);
                 return;
             }
 
             var result = MessageBox.Show(
-                text + Environment.NewLine + Environment.NewLine + I18n.Get(ClickYesOrNo),
+                text + Environment.NewLine + Environment.NewLine + I18n.Get(ClickYesOrNo, YesOrNoText),
                 title,
                 MessageBoxButtons.YesNo,
                 icon,
@@ -100,8 +100,7 @@ namespace Wx3270
         [I18nInit]
         public static void Localize()
         {
-            I18n.LocalizeGlobal(ClickYesOrNo, "Click Yes to copy text to clipboard, No to close window without saving.");
-            localized = true;
+            I18n.LocalizeGlobal(ClickYesOrNo, YesOrNoText);
         }
     }
 }
