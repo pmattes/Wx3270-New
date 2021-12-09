@@ -502,6 +502,7 @@
   "Macros.form.title": "Macros",
   "Macros.popUpTitle.macroError": "Macro",
   "Macros.popUpTitle.macroOutput": "Macro Output",
+  "MainScreen.Close": "Fatal close error",
   "MainScreen.form.actionsBox.cancelScriptsToolStripMenuItem": "Cancel scripts",
   "MainScreen.form.actionsBox.controlCharsMenuItem": "Visible control characters",
   "MainScreen.form.actionsBox.displayKeymapToolStripMenuItem": "Display keymap",

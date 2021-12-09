@@ -62,6 +62,11 @@ namespace Wx3270
         private const string StartButtonName = "MainScreen.StartButton";
 
         /// <summary>
+        /// The name of the localized close error message.
+        /// </summary>
+        private const string CloseName = "MainScreen.Close";
+
+        /// <summary>
         /// Name of localized message box titles.
         /// </summary>
         private static readonly string TitleName = I18n.PopUpTitleName(nameof(MainScreen));
@@ -387,6 +392,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(MacroRecordingItemName, "Record new");
             I18n.LocalizeGlobal(MacroStopRecordingItemName, "Stop recording");
             I18n.LocalizeGlobal(StartButtonName, "START", true);
+            I18n.LocalizeGlobal(CloseName, "Fatal close error");
         }
 
         /// <summary>
@@ -2114,7 +2120,15 @@ namespace Wx3270
         private void MainScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            this.AppClose();
+            try
+            {
+                this.AppClose();
+            }
+            catch (Exception ex)
+            {
+                ErrorBox.ShowCopy(this, ex.ToString(), I18n.Get(CloseName));
+                this.BackEnd.Exit(1);
+            }
         }
 
         /// <summary>

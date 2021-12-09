@@ -502,6 +502,7 @@
   "Macros.form.title": "Macros",
   "Macros.popUpTitle.macroError": "Macro",
   "Macros.popUpTitle.macroOutput": "Sortie macro",
+  "MainScreen.Close": "Erreur fatale lors de la fermeture",
   "MainScreen.form.actionsBox.cancelScriptsToolStripMenuItem": "Annuler les scripts",
   "MainScreen.form.actionsBox.controlCharsMenuItem": "Caractères de contrôle visibles",
   "MainScreen.form.actionsBox.displayKeymapToolStripMenuItem": "Afficher la disposition du clavier",
