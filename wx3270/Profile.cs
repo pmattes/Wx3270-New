@@ -567,16 +567,11 @@ namespace Wx3270
         public class VersionClass
         {
             /// <summary>
-            /// Release phase.
-            /// </summary>
-            private const string ReleasePhase = "pre";
-
-            /// <summary>
             /// Gets the full version, for display rather than comparison.
             /// </summary>
             public static string FullVersion =>
                 typeof(Profile).Assembly.GetName().Version.Major.ToString() + "." +
-                typeof(Profile).Assembly.GetName().Version.Minor + ReleasePhase +
+                typeof(Profile).Assembly.GetName().Version.Minor + Release.PhaseName +
                 typeof(Profile).Assembly.GetName().Version.Build;
 
             /// <summary>
