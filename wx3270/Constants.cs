@@ -305,6 +305,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             /// The name of the UI switch profile action.
             /// </summary>
             public const string SwitchProfile = "uSwitchProfile";
+
+            /// <summary>
+            /// Save a copy of the main screen image to a file.
+            /// </summary>
+            public const string SnapScreen = "uSnapScreen";
         }
 
         /// <summary>

@@ -203,6 +203,7 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activateTimer = new System.Windows.Forms.Timer(this.components);
             this.noFlashTimer = new System.Windows.Forms.Timer(this.components);
+            this.snapshotTimer = new System.Windows.Forms.Timer(this.components);
             this.OiaLayoutPanel.SuspendLayout();
             this.resetContextMenuStrip.SuspendLayout();
             this.TopLeftLayoutPanel.SuspendLayout();
@@ -1869,6 +1870,11 @@
             this.noFlashTimer.Interval = 1000;
             this.noFlashTimer.Tick += new System.EventHandler(this.NoFlashTimer_Tick);
             // 
+            // snapshotTimer
+            // 
+            this.snapshotTimer.Interval = 1000;
+            this.snapshotTimer.Tick += new System.EventHandler(this.SnapshotElapsed);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2106,6 +2112,7 @@
         private System.Windows.Forms.ToolStripMenuItem recordToolStripMenuItem;
         private System.Windows.Forms.PictureBox startLeftPictureBox;
         private System.Windows.Forms.PictureBox startRightPictureBox;
+        private System.Windows.Forms.Timer snapshotTimer;
     }
 }
 

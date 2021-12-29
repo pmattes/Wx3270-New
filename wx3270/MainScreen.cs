@@ -1182,6 +1182,12 @@ namespace Wx3270
                 this.snapBox.RemoveFromParent();
             }
 
+            // Set up the screen snap action.
+            if (this.App.Allowed(Restrictions.ExternalFiles))
+            {
+                this.App.BackEnd.RegisterPassthru(Constants.Action.SnapScreen, this.UiSnapScreen);
+            }
+
             // Localize.
             I18n.Localize(this, this.toolTip1);
             this.InitOiaLocalization();
@@ -2671,6 +2677,99 @@ namespace Wx3270
         private void ActionsBox_paint(object sender, PaintEventArgs e)
         {
             this.startButton.Render((PictureBox)sender, e, I18n.Get(StartButtonName));
+        }
+
+        /// <summary>
+        /// Take a screen snapshot.
+        /// </summary>
+        /// <param name="fileName">PNG file to save the image in.</param>
+        /// <param name="tag">Pass-through tag.</param>
+        /// <param name="errmsg">Error message.</param>
+        /// <returns>True for success.</returns>
+        private bool SnapScreen(string fileName, string tag, out string errmsg)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                errmsg = "Window is minimized";
+                return false;
+            }
+
+            if (this.snapshotTimer.Enabled)
+            {
+                errmsg = "Snapshot already pending";
+                return false;
+            }
+
+            errmsg = null;
+            var wasTopMost = this.TopMost;
+            this.TopMost = true;
+            this.BringToFront();
+            this.Activate();
+
+            this.snapshotTimer.Tag = (fileName, tag, wasTopMost);
+            this.snapshotTimer.Start();
+
+            return true;
+        }
+
+        /// <summary>
+        /// The snapshot timer elapsed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void SnapshotElapsed(object sender, EventArgs e)
+        {
+            this.snapshotTimer.Stop();
+
+            string errmsg = null;
+            var control = this.ScrollBarLayoutPanel;
+            Image bmp = new Bitmap(control.Width, control.Height);
+            var gr = Graphics.FromImage(bmp);
+            gr.CopyFromScreen(this.RectangleToScreen(control.ClientRectangle).Location, Point.Empty, control.Size);
+            (var fileName, var tag, bool wasTopMost) = ((string, string, bool))this.snapshotTimer.Tag;
+            try
+            {
+                bmp.Save(fileName);
+            }
+            catch (Exception ex)
+            {
+                errmsg = ex.Message;
+            }
+
+            this.TopMost = wasTopMost;
+            this.App.BackEnd.PassthruComplete(string.IsNullOrEmpty(errmsg), errmsg, tag);
+        }
+
+        /// <summary>
+        /// The UI snap screen action.
+        /// </summary>
+        /// <param name="commandName">Command name.</param>
+        /// <param name="arguments">Command arguments.</param>
+        /// <param name="result">Returned result.</param>
+        /// <param name="tag">Tag for asynchronous completion.</param>
+        /// <returns>Pass-through result.</returns>
+        private PassthruResult UiSnapScreen(string commandName, IEnumerable<string> arguments, out string result, string tag)
+        {
+            result = null;
+            var args = arguments.ToList();
+            if (args.Count != 1)
+            {
+                result = Constants.Action.SnapScreen + "() takes 1 argument";
+                return PassthruResult.Failure;
+            }
+
+            // Take the snapshot in the UI thread.
+            string errmsg = null;
+            this.Invoke(new MethodInvoker(() => this.SnapScreen(args[0], tag, out errmsg)));
+            if (string.IsNullOrEmpty(errmsg))
+            {
+                return PassthruResult.Pending;
+            }
+            else
+            {
+                result = errmsg;
+                return PassthruResult.Failure;
+            }
         }
 
         /// <summary>
