@@ -2683,10 +2683,9 @@ namespace Wx3270
         /// Take a screen snapshot.
         /// </summary>
         /// <param name="fileName">PNG file to save the image in.</param>
-        /// <param name="tag">Pass-through tag.</param>
         /// <param name="errmsg">Error message.</param>
         /// <returns>True for success.</returns>
-        private bool SnapScreen(string fileName, string tag, out string errmsg)
+        private bool SnapScreen(string fileName, out string errmsg)
         {
             if (this.WindowState == FormWindowState.Minimized)
             {
@@ -2694,39 +2693,9 @@ namespace Wx3270
                 return false;
             }
 
-            if (this.snapshotTimer.Enabled)
-            {
-                errmsg = "Snapshot already pending";
-                return false;
-            }
-
             errmsg = null;
-            var wasTopMost = this.TopMost;
-            this.TopMost = true;
-            this.BringToFront();
-            this.Activate();
-
-            this.snapshotTimer.Tag = (fileName, tag, wasTopMost);
-            this.snapshotTimer.Start();
-
-            return true;
-        }
-
-        /// <summary>
-        /// The snapshot timer elapsed.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void SnapshotElapsed(object sender, EventArgs e)
-        {
-            this.snapshotTimer.Stop();
-
-            string errmsg = null;
-            var control = this.ScrollBarLayoutPanel;
-            Image bmp = new Bitmap(control.Width, control.Height);
-            var gr = Graphics.FromImage(bmp);
-            gr.CopyFromScreen(this.RectangleToScreen(control.ClientRectangle).Location, Point.Empty, control.Size);
-            (var fileName, var tag, bool wasTopMost) = ((string, string, bool))this.snapshotTimer.Tag;
+            var bmp = new Bitmap(this.Width, this.Height);
+            this.DrawToBitmap(bmp, new Rectangle(Point.Empty, this.Size));
             try
             {
                 bmp.Save(fileName);
@@ -2736,8 +2705,7 @@ namespace Wx3270
                 errmsg = ex.Message;
             }
 
-            this.TopMost = wasTopMost;
-            this.App.BackEnd.PassthruComplete(string.IsNullOrEmpty(errmsg), errmsg, tag);
+            return string.IsNullOrEmpty(errmsg);
         }
 
         /// <summary>
@@ -2760,10 +2728,10 @@ namespace Wx3270
 
             // Take the snapshot in the UI thread.
             string errmsg = null;
-            this.Invoke(new MethodInvoker(() => this.SnapScreen(args[0], tag, out errmsg)));
+            this.Invoke(new MethodInvoker(() => this.SnapScreen(args[0], out errmsg)));
             if (string.IsNullOrEmpty(errmsg))
             {
-                return PassthruResult.Pending;
+                return PassthruResult.Success;
             }
             else
             {
