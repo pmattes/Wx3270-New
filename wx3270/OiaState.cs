@@ -120,6 +120,9 @@ namespace Wx3270
                     case B3270.OiaLock.Field:
                         this.Lock = Lock.Field;
                         break;
+                    case B3270.OiaLock.FileTransfer:
+                        this.Lock = Lock.FileTransfer;
+                        break;
                     default:
                         if (lockValue.StartsWith(B3270.OiaLock.Oerr + " ", StringComparison.InvariantCultureIgnoreCase))
                         {

@@ -100,6 +100,11 @@ namespace Wx3270.Contracts
         Field,
 
         /// <summary>
+        /// Waiting for a file transfer to complete.
+        /// </summary>
+        FileTransfer,
+
+        /// <summary>
         /// Unknown value.
         /// </summary>
         Unknown,

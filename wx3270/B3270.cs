@@ -818,6 +818,11 @@ namespace Wx3270
             public const string Field = "field";
 
             /// <summary>
+            /// Waiting for a file transfer to complete.
+            /// </summary>
+            public const string FileTransfer = "file-transfer";
+
+            /// <summary>
             /// Inhibit state.
             /// </summary>
             public const string Inhibit = "inhibit";

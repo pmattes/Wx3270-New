@@ -257,6 +257,18 @@ namespace Wx3270
 
                     tooltip = I18n.Get(OiaToolTipName.KeyboardLocked) + ":" + Environment.NewLine + I18n.Get(OiaToolTipName.Field);
                     break;
+                case Lock.FileTransfer:
+                    if (this.oia3270Font)
+                    {
+                        text = OiaFont.Symbol.X + " " + "[File Transfer]";
+                    }
+                    else
+                    {
+                        text = VersionSpecific.DeleteDisplay + " [File Transfer]";
+                    }
+
+                    tooltip = I18n.Get(OiaToolTipName.KeyboardLocked) + ":" + Environment.NewLine + I18n.Get(OiaToolTipName.FileTransfer);
+                    break;
                 case Lock.Unlocked:
                     break;
             }
@@ -809,6 +821,11 @@ namespace Wx3270
             /// Waiting for input field.
             /// </summary>
             public static readonly string Field = I18n.Combine(nameof(MainScreen), I18n.ToolTipName, "Field");
+
+            /// <summary>
+            /// Waiting for a file transfer.
+            /// </summary>
+            public static readonly string FileTransfer = I18n.Combine(nameof(MainScreen), I18n.ToolTipName, "FileTransfer");
         }
 
         /// <summary>

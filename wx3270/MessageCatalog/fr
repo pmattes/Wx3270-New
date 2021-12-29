@@ -601,6 +601,7 @@
   "MainScreen.toolTip.Deferred": "délai de {0}ms après la requête de déblocage hôte",
   "MainScreen.toolTip.Disabled": "Désactivé par script",
   "MainScreen.toolTip.Field": "En attente de l'hôte pour reformater l'écran",
+  "MainScreen.toolTip.FileTransfer": "En attente d'un transfert de fichier",
   "MainScreen.toolTip.Inhibit": "Requête de réponse envoyée, pas encore de réponse",
   "MainScreen.toolTip.Insert": "Mode insertion activé",
   "MainScreen.toolTip.IoConnected": "Connecté",

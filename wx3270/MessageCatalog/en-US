@@ -601,6 +601,7 @@
   "MainScreen.toolTip.Deferred": "{0}ms delay after host unlock request",
   "MainScreen.toolTip.Disabled": "Disabled by script",
   "MainScreen.toolTip.Field": "Waiting for the host to format the screen",
+  "MainScreen.toolTip.FileTransfer": "Waiting for a file transfer",
   "MainScreen.toolTip.Inhibit": "Query Reply sent, no response yet",
   "MainScreen.toolTip.Insert": "Insert mode is on",
   "MainScreen.toolTip.IoConnected": "Connected",
