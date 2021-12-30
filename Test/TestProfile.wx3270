@@ -1,0 +1,1634 @@
+﻿{
+  "Version": {
+    "Major": 1,
+    "Minor": 1
+  },
+  "ProfileType": "Full",
+  "KeypadPosition": "Centered",
+  "KeyClick": false,
+  "AudibleBell": false,
+  "Colors": {
+    "HostColors": {
+      "NeutralBlack": "Black",
+      "Blue": "RoyalBlue",
+      "Red": "Red",
+      "Pink": "HotPink",
+      "Green": "0, 164, 0",
+      "Turquoise": "Turquoise",
+      "Yellow": "Yellow",
+      "NeutralWhite": "White",
+      "Black": "Black",
+      "DeepBlue": "Blue",
+      "Orange": "Orange",
+      "Purple": "DarkViolet",
+      "PaleGreen": "PaleGreen",
+      "PaleTurquoise": "PaleTurquoise",
+      "Grey": "Gray",
+      "White": "White"
+    },
+    "MonoColors": {
+      "Normal": "0, 178, 0",
+      "Intensified": "Lime",
+      "Background": "Black"
+    },
+    "SelectBackground": "DarkGray",
+    "CrosshairColor": "Purple"
+  },
+  "Font": {
+    "Name": "3270",
+    "EmSize": 10.0,
+    "Style": "Regular"
+  },
+  "HostCodePage": "bracket",
+  "Model": 4,
+  "ExtendedMode": true,
+  "TerminalNameOverride": "",
+  "ColorMode": true,
+  "CursorType": "Block",
+  "CursorBlink": false,
+  "CrosshairCursor": false,
+  "Monocase": false,
+  "Maximize": false,
+  "Typeahead": true,
+  "ShowTiming": false,
+  "AlwaysInsert": false,
+  "ScrollBar": true,
+  "Macros": [],
+  "Hosts": [
+    {
+      "Name": "test",
+      "ConnectionType": "Host",
+      "Host": "127.0.0.1",
+      "Port": "9998",
+      "LuNames": "",
+      "AllowStartTls": true,
+      "Prefixes": "",
+      "AcceptHostName": "",
+      "ClientCertificateName": "",
+      "LoginMacro": "",
+      "Description": "",
+      "WindowTitle": "",
+      "AutoConnect": "Connect",
+      "HostType": "Vm",
+      "PrinterSessionType": "None",
+      "PrinterSessionLu": "",
+      "Command": "",
+      "CommandLineOptions": "",
+      "NoTelnetInputType": "Line"
+    }
+  ],
+  "KeypadMap": {
+    "PF1 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF1",
+      "TextSize": 8.25,
+      "Actions": "PF(1)",
+      "Exact": false
+    },
+    "PF1 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF13",
+      "TextSize": 8.25,
+      "Actions": "PF(13)",
+      "Exact": false
+    },
+    "PF2 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF2",
+      "TextSize": 8.25,
+      "Actions": "PF(2)",
+      "Exact": false
+    },
+    "PF2 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF14",
+      "TextSize": 8.25,
+      "Actions": "PF(14)",
+      "Exact": false
+    },
+    "PF3 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF3",
+      "TextSize": 8.25,
+      "Actions": "PF(3)",
+      "Exact": false
+    },
+    "PF3 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF15",
+      "TextSize": 8.25,
+      "Actions": "PF(15)",
+      "Exact": false
+    },
+    "PF4 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF4",
+      "TextSize": 8.25,
+      "Actions": "PF(4)",
+      "Exact": false
+    },
+    "PF4 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF16",
+      "TextSize": 8.25,
+      "Actions": "PF(16)",
+      "Exact": false
+    },
+    "PF5 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF5",
+      "TextSize": 8.25,
+      "Actions": "PF(5)",
+      "Exact": false
+    },
+    "PF5 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF17",
+      "TextSize": 8.25,
+      "Actions": "PF(17)",
+      "Exact": false
+    },
+    "PF6 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF6",
+      "TextSize": 8.25,
+      "Actions": "PF(6)",
+      "Exact": false
+    },
+    "PF6 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF18",
+      "TextSize": 8.25,
+      "Actions": "PF(18)",
+      "Exact": false
+    },
+    "PF7 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF7",
+      "TextSize": 8.25,
+      "Actions": "PF(7)",
+      "Exact": false
+    },
+    "PF7 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF19",
+      "TextSize": 8.25,
+      "Actions": "PF(19)",
+      "Exact": false
+    },
+    "PF8 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF8",
+      "TextSize": 8.25,
+      "Actions": "PF(8)",
+      "Exact": false
+    },
+    "PF8 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF20",
+      "TextSize": 8.25,
+      "Actions": "PF(20)",
+      "Exact": false
+    },
+    "PF9 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF9",
+      "TextSize": 8.25,
+      "Actions": "PF(9)",
+      "Exact": false
+    },
+    "PF9 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF21",
+      "TextSize": 8.25,
+      "Actions": "PF(21)",
+      "Exact": false
+    },
+    "PF10 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF10",
+      "TextSize": 8.25,
+      "Actions": "PF(10)",
+      "Exact": false
+    },
+    "PF10 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF22",
+      "TextSize": 8.25,
+      "Actions": "PF(22)",
+      "Exact": false
+    },
+    "PF11 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF11",
+      "TextSize": 8.25,
+      "Actions": "PF(11)",
+      "Exact": false
+    },
+    "PF11 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF23",
+      "TextSize": 8.25,
+      "Actions": "PF(23)",
+      "Exact": false
+    },
+    "PF12 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PF12",
+      "TextSize": 8.25,
+      "Actions": "PF(12)",
+      "Exact": false
+    },
+    "PF12 Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "PF24",
+      "TextSize": 8.25,
+      "Actions": "PF(24)",
+      "Exact": false
+    },
+    "PA1 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PA1",
+      "TextSize": 8.25,
+      "Actions": "PA(1)",
+      "Exact": false
+    },
+    "PA2 None": {
+      "BackgroundImage": "Blank",
+      "Text": "PA2",
+      "TextSize": 8.25,
+      "Actions": "PA(2)",
+      "Exact": false
+    },
+    "Not None": {
+      "BackgroundImage": "Blank",
+      "Text": "¬",
+      "TextSize": 14.0,
+      "Actions": "Key(U+00AC)",
+      "Exact": false
+    },
+    "Tab None": {
+      "BackgroundImage": "Blank",
+      "Text": "→|",
+      "TextSize": 14.25,
+      "Actions": "Tab()",
+      "Exact": false
+    },
+    "BackTab None": {
+      "BackgroundImage": "Blank",
+      "Text": "|←",
+      "TextSize": 14.25,
+      "Actions": "BackTab()",
+      "Exact": false
+    },
+    "Erase None": {
+      "BackgroundImage": "Blank",
+      "Text": "←",
+      "TextSize": 14.25,
+      "Actions": "Erase()",
+      "Exact": false
+    },
+    "Newline None": {
+      "BackgroundImage": "Blank",
+      "Text": "⤶",
+      "TextSize": 27.75,
+      "Actions": "Newline()",
+      "Exact": false
+    },
+    "Reset None": {
+      "BackgroundImage": "Blank",
+      "Text": "RESET",
+      "TextSize": 6.75,
+      "Actions": "Reset()",
+      "Exact": false
+    },
+    "Enter None": {
+      "BackgroundImage": "Blank",
+      "Text": "ENTER",
+      "TextSize": 6.75,
+      "Actions": "Enter()",
+      "Exact": false
+    },
+    "EraseInput None": {
+      "BackgroundImage": "Blank",
+      "Text": "ERASE\r\nINPUT",
+      "TextSize": 6.0,
+      "Actions": "EraseInput()",
+      "Exact": false
+    },
+    "CursorSelect None": {
+      "BackgroundImage": "Blank",
+      "Text": "CURSR\r\nSEL",
+      "TextSize": 6.0,
+      "Actions": "CursorSelect()",
+      "Exact": false
+    },
+    "Clear None": {
+      "BackgroundImage": "Blank",
+      "Text": "CLEAR",
+      "TextSize": 6.0,
+      "Actions": "Clear()",
+      "Exact": false
+    },
+    "EraseEOF None": {
+      "BackgroundImage": "Blank",
+      "Text": "ERASE\r\nEOF",
+      "TextSize": 6.0,
+      "Actions": "EraseEOF()",
+      "Exact": false
+    },
+    "Dup None": {
+      "BackgroundImage": "Blank",
+      "Text": "DUP",
+      "TextSize": 6.0,
+      "Actions": "Dup()",
+      "Exact": false
+    },
+    "FieldMark None": {
+      "BackgroundImage": "Blank",
+      "Text": "FIELD\r\nMARK",
+      "TextSize": 6.0,
+      "Actions": "FieldMark()",
+      "Exact": false
+    },
+    "Attn None": {
+      "BackgroundImage": "Blank",
+      "Text": "ATTN",
+      "TextSize": 6.0,
+      "Actions": "Attn()",
+      "Exact": false
+    },
+    "CursorBlink None": {
+      "BackgroundImage": "Blank",
+      "Text": "CURSR\r\nBLINK",
+      "TextSize": 6.0,
+      "Actions": "Toggle(cursorBlink)",
+      "Exact": false
+    },
+    "SysReq None": {
+      "BackgroundImage": "Blank",
+      "Text": "SYS\r\nREQ",
+      "TextSize": 6.0,
+      "Actions": "SysReq()",
+      "Exact": false
+    },
+    "Insert None": {
+      "BackgroundImage": "Insert",
+      "Text": "",
+      "TextSize": 6.75,
+      "Actions": "Toggle(insertMode)",
+      "Exact": false
+    },
+    "Up None": {
+      "BackgroundImage": "Blank",
+      "Text": "↑",
+      "TextSize": 14.25,
+      "Actions": "Up()",
+      "Exact": false
+    },
+    "Delete None": {
+      "BackgroundImage": "Delete",
+      "Text": "",
+      "TextSize": 6.75,
+      "Actions": "Delete()",
+      "Exact": false
+    },
+    "Left None": {
+      "BackgroundImage": "Blank",
+      "Text": "←",
+      "TextSize": 14.25,
+      "Actions": "Left()",
+      "Exact": false
+    },
+    "Down None": {
+      "BackgroundImage": "Blank",
+      "Text": "↓",
+      "TextSize": 14.25,
+      "Actions": "Down()",
+      "Exact": false
+    },
+    "Right None": {
+      "BackgroundImage": "Blank",
+      "Text": "→",
+      "TextSize": 14.25,
+      "Actions": "Right()",
+      "Exact": false
+    },
+    "BlankButton8 Mode3270": {
+      "BackgroundImage": "Blank",
+      "Text": "SAVE\r\nA",
+      "TextSize": 6.0,
+      "Actions": "SaveInput(A)",
+      "Exact": false
+    },
+    "BlankButton8 Shift, Mode3270": {
+      "BackgroundImage": "Blank",
+      "Text": "SAVE\r\nB",
+      "TextSize": 6.0,
+      "Actions": "SaveInput(B)",
+      "Exact": false
+    },
+    "BlankButton8 Ctrl, Mode3270": {
+      "BackgroundImage": "Blank",
+      "Text": "SAVE\r\nC",
+      "TextSize": 6.0,
+      "Actions": "SaveInput(C)",
+      "Exact": false
+    },
+    "BlankButton8 Alt, Mode3270": {
+      "BackgroundImage": "Blank",
+      "Text": "SAVE\r\nD",
+      "TextSize": 6.0,
+      "Actions": "SaveInput(D)",
+      "Exact": false
+    },
+    "BlankButton9 Mode3270": {
+      "BackgroundImage": "Blank",
+      "Text": "RE-\r\nSTORE\r\nA",
+      "TextSize": 6.0,
+      "Actions": "RestoreInput(A)",
+      "Exact": false
+    },
+    "BlankButton9 Shift, Mode3270": {
+      "BackgroundImage": "Blank",
+      "Text": "RE-\r\nSTORE\r\nB",
+      "TextSize": 6.0,
+      "Actions": "RestoreInput(B)",
+      "Exact": false
+    },
+    "BlankButton9 Ctrl, Mode3270": {
+      "BackgroundImage": "Blank",
+      "Text": "RE-\r\nSTORE\r\nC",
+      "TextSize": 6.0,
+      "Actions": "RestoreInput(C)",
+      "Exact": false
+    },
+    "BlankButton9 Alt, Mode3270": {
+      "BackgroundImage": "Blank",
+      "Text": "RE-\r\nSTORE\r\nD",
+      "TextSize": 6.0,
+      "Actions": "RestoreInput(D)",
+      "Exact": false
+    },
+    "grave None": {
+      "BackgroundImage": "Blank",
+      "Text": "⋄",
+      "TextSize": 16.0,
+      "Actions": "Key(apl_diamond)",
+      "Exact": false
+    },
+    "one None": {
+      "BackgroundImage": "Blank",
+      "Text": "¨",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_diaeresis)",
+      "Exact": false
+    },
+    "one Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⌶",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_downtackup)",
+      "Exact": false
+    },
+    "two None": {
+      "BackgroundImage": "Blank",
+      "Text": "¯",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_overbar)",
+      "Exact": false
+    },
+    "two Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍫",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_deltilde)",
+      "Exact": false
+    },
+    "three None": {
+      "BackgroundImage": "Blank",
+      "Text": "<",
+      "TextSize": 14.0,
+      "Actions": "Key(\"<\")",
+      "Exact": false
+    },
+    "three Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍒",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_delstile)",
+      "Exact": false
+    },
+    "four None": {
+      "BackgroundImage": "Blank",
+      "Text": "≤",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_notgreater)",
+      "Exact": false
+    },
+    "four Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍋",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_deltastile)",
+      "Exact": false
+    },
+    "five None": {
+      "BackgroundImage": "Blank",
+      "Text": "=",
+      "TextSize": 14.0,
+      "Actions": "Key(=)",
+      "Exact": false
+    },
+    "five Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⌽",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_circlestile)",
+      "Exact": false
+    },
+    "six None": {
+      "BackgroundImage": "Blank",
+      "Text": "≥",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_notless)",
+      "Exact": false
+    },
+    "six Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍉",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_circleslope)",
+      "Exact": false
+    },
+    "seven None": {
+      "BackgroundImage": "Blank",
+      "Text": ">",
+      "TextSize": 14.0,
+      "Actions": "Key(\">\")",
+      "Exact": false
+    },
+    "seven Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⊖",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_circlebar)",
+      "Exact": false
+    },
+    "eight None": {
+      "BackgroundImage": "Blank",
+      "Text": "≠",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_notequal)",
+      "Exact": false
+    },
+    "eight Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍟",
+      "TextSize": 16.0,
+      "Actions": "Key(apl_circlestar)",
+      "Exact": false
+    },
+    "nine None": {
+      "BackgroundImage": "Blank",
+      "Text": "∨",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_downcaret)",
+      "Exact": false
+    },
+    "nine Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍱",
+      "TextSize": 16.0,
+      "Actions": "Key(apl_downcarettilde)",
+      "Exact": false
+    },
+    "zero None": {
+      "BackgroundImage": "Blank",
+      "Text": "∧",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_upcaret)",
+      "Exact": false
+    },
+    "zero Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍲",
+      "TextSize": 16.0,
+      "Actions": "Key(apl_upcarettilde)",
+      "Exact": false
+    },
+    "minus None": {
+      "BackgroundImage": "Blank",
+      "Text": "×",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_multiply)",
+      "Exact": false
+    },
+    "minus Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "!",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_quotedot)",
+      "Exact": false
+    },
+    "equals None": {
+      "BackgroundImage": "Blank",
+      "Text": "÷",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_divide)",
+      "Exact": false
+    },
+    "equals Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⌹",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_quaddivide)",
+      "Exact": false
+    },
+    "q None": {
+      "BackgroundImage": "Blank",
+      "Text": "?",
+      "TextSize": 14.0,
+      "Actions": "Key(?)",
+      "Exact": false
+    },
+    "w None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍵",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_omega)",
+      "Exact": false
+    },
+    "e None": {
+      "BackgroundImage": "Blank",
+      "Text": "∊",
+      "TextSize": 20.0,
+      "Actions": "Key(apl_epsilon)",
+      "Exact": false
+    },
+    "e Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍷",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_epsilonunderbar)",
+      "Exact": false
+    },
+    "r None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍴",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_rho)",
+      "Exact": false
+    },
+    "t None": {
+      "BackgroundImage": "Blank",
+      "Text": "~",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_tilde)",
+      "Exact": false
+    },
+    "y None": {
+      "BackgroundImage": "Blank",
+      "Text": "↑",
+      "TextSize": 12.0,
+      "Actions": "Key(apl_uparrow)",
+      "Exact": false
+    },
+    "u None": {
+      "BackgroundImage": "Blank",
+      "Text": "↓",
+      "TextSize": 12.0,
+      "Actions": "Key(apl_downarrow)",
+      "Exact": false
+    },
+    "i None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍳",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_iota)",
+      "Exact": false
+    },
+    "i Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍸",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_iotaunderbar)",
+      "Exact": false
+    },
+    "o None": {
+      "BackgroundImage": "Blank",
+      "Text": "○",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_circle)",
+      "Exact": false
+    },
+    "o Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍥",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_diaeresiscircle)",
+      "Exact": false
+    },
+    "p None": {
+      "BackgroundImage": "Blank",
+      "Text": "*",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_star)",
+      "Exact": false
+    },
+    "leftBracket None": {
+      "BackgroundImage": "Blank",
+      "Text": "←",
+      "TextSize": 12.0,
+      "Actions": "Key(apl_leftarrow)",
+      "Exact": false
+    },
+    "leftBracket Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍞",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_quadquote)",
+      "Exact": false
+    },
+    "rightBracket None": {
+      "BackgroundImage": "Blank",
+      "Text": "→",
+      "TextSize": 12.0,
+      "Actions": "Key(apl_rightarrow)",
+      "Exact": false
+    },
+    "backslash None": {
+      "BackgroundImage": "Blank",
+      "Text": "⊢",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_righttack)",
+      "Exact": false
+    },
+    "backslash Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⊣",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_lefttack)",
+      "Exact": false
+    },
+    "a None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍺",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_alpha)",
+      "Exact": false
+    },
+    "s None": {
+      "BackgroundImage": "Blank",
+      "Text": "⌈",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_upstile)",
+      "Exact": false
+    },
+    "d None": {
+      "BackgroundImage": "Blank",
+      "Text": "⌊",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_downstile)",
+      "Exact": false
+    },
+    "f None": {
+      "BackgroundImage": "Blank",
+      "Text": "_",
+      "TextSize": 14.0,
+      "Actions": "Key(_)",
+      "Exact": false
+    },
+    "g None": {
+      "BackgroundImage": "Blank",
+      "Text": "∇",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_del)",
+      "Exact": false
+    },
+    "h None": {
+      "BackgroundImage": "Blank",
+      "Text": "∆",
+      "TextSize": 11.0,
+      "Actions": "Key(apl_delta)",
+      "Exact": false
+    },
+    "j None": {
+      "BackgroundImage": "Blank",
+      "Text": "∘",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_jot)",
+      "Exact": false
+    },
+    "j Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍤",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_diaeresisjot)",
+      "Exact": false
+    },
+    "k None": {
+      "BackgroundImage": "Blank",
+      "Text": "'",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_quote)",
+      "Exact": false
+    },
+    "l None": {
+      "BackgroundImage": "Blank",
+      "Text": "⎕",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_quad)",
+      "Exact": false
+    },
+    "l Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⌷",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_squad)",
+      "Exact": false
+    },
+    "semicolon None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍎",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_downtackjot)",
+      "Exact": false
+    },
+    "semicolon Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "≡",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_equalunderbar)",
+      "Exact": false
+    },
+    "apostrophe None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍕",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_uptackjot)",
+      "Exact": false
+    },
+    "z None": {
+      "BackgroundImage": "Blank",
+      "Text": "⊂",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_leftshoe)",
+      "Exact": false
+    },
+    "x None": {
+      "BackgroundImage": "Blank",
+      "Text": "⊃",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_rightshoe)",
+      "Exact": false
+    },
+    "c None": {
+      "BackgroundImage": "Blank",
+      "Text": "∩",
+      "TextSize": 8.0,
+      "Actions": "Key(apl_upshoe)",
+      "Exact": false
+    },
+    "v None": {
+      "BackgroundImage": "Blank",
+      "Text": "∪",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_downshoe)",
+      "Exact": false
+    },
+    "b None": {
+      "BackgroundImage": "Blank",
+      "Text": "⊥",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_uptack)",
+      "Exact": false
+    },
+    "n None": {
+      "BackgroundImage": "Blank",
+      "Text": "⊤",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_downtack)",
+      "Exact": false
+    },
+    "m None": {
+      "BackgroundImage": "Blank",
+      "Text": "|",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_stile)",
+      "Exact": false
+    },
+    "comma None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍝",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_upshoejot)",
+      "Exact": false
+    },
+    "comma Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍪",
+      "TextSize": 20.0,
+      "Actions": "Key(apl_commabar)",
+      "Exact": false
+    },
+    "period None": {
+      "BackgroundImage": "Blank",
+      "Text": "⍀",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_slopebar)",
+      "Exact": false
+    },
+    "period Shift": {
+      "BackgroundImage": "Blank",
+      "Text": "⍙",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_deltaunderbar)",
+      "Exact": false
+    },
+    "slash None": {
+      "BackgroundImage": "Blank",
+      "Text": "⌿",
+      "TextSize": 14.0,
+      "Actions": "Key(apl_slashbar)",
+      "Exact": false
+    }
+  },
+  "KeyboardMap": {
+    "Return Mode3270": {
+      "Actions": "Enter()",
+      "Exact": false
+    },
+    "NumPadReturn Mode3270": {
+      "Actions": "Enter()",
+      "Exact": false
+    },
+    "Return Shift, Mode3270": {
+      "Actions": "Newline()",
+      "Exact": false
+    },
+    "Back None": {
+      "Actions": "Erase()",
+      "Exact": false
+    },
+    "Delete None": {
+      "Actions": "Delete()",
+      "Exact": false
+    },
+    "Insert None": {
+      "Actions": "Toggle(insertMode)",
+      "Exact": false
+    },
+    "Home None": {
+      "Actions": "Home()",
+      "Exact": false
+    },
+    "End Mode3270": {
+      "Actions": "FieldEnd()",
+      "Exact": false
+    },
+    "Up None": {
+      "Actions": "Up()",
+      "Exact": false
+    },
+    "Up Shift": {
+      "Actions": "uKeyboardSelect(up)",
+      "Exact": false
+    },
+    "Down None": {
+      "Actions": "Down()",
+      "Exact": false
+    },
+    "Down Shift": {
+      "Actions": "uKeyboardSelect(down)",
+      "Exact": false
+    },
+    "Left None": {
+      "Actions": "Left()",
+      "Exact": false
+    },
+    "Left Shift": {
+      "Actions": "uKeyboardSelect(left)",
+      "Exact": false
+    },
+    "Left Alt, Mode3270": {
+      "Actions": "PreviousWord()",
+      "Exact": false
+    },
+    "Right None": {
+      "Actions": "Right()",
+      "Exact": false
+    },
+    "Right Shift": {
+      "Actions": "uKeyboardSelect(right)",
+      "Exact": false
+    },
+    "Right Alt, Mode3270": {
+      "Actions": "NextWord()",
+      "Exact": false
+    },
+    "Tab None": {
+      "Actions": "Tab()",
+      "Exact": false
+    },
+    "Tab Shift, Mode3270": {
+      "Actions": "BackTab()",
+      "Exact": false
+    },
+    "PageUp None": {
+      "Actions": "Scroll(backward)",
+      "Exact": false
+    },
+    "Next None": {
+      "Actions": "Scroll(forward)",
+      "Exact": false
+    },
+    "F1 None": {
+      "Actions": "PF(1)",
+      "Exact": false
+    },
+    "F2 None": {
+      "Actions": "PF(2)",
+      "Exact": false
+    },
+    "F3 None": {
+      "Actions": "PF(3)",
+      "Exact": false
+    },
+    "F4 None": {
+      "Actions": "PF(4)",
+      "Exact": false
+    },
+    "F4 Alt": {
+      "Actions": "Quit(-force)",
+      "Exact": false
+    },
+    "F5 None": {
+      "Actions": "PF(5)",
+      "Exact": false
+    },
+    "F6 None": {
+      "Actions": "PF(6)",
+      "Exact": false
+    },
+    "F7 None": {
+      "Actions": "PF(7)",
+      "Exact": false
+    },
+    "F8 None": {
+      "Actions": "PF(8)",
+      "Exact": false
+    },
+    "F9 None": {
+      "Actions": "PF(9)",
+      "Exact": false
+    },
+    "F10 None": {
+      "Actions": "PF(10)",
+      "Exact": false
+    },
+    "F11 None": {
+      "Actions": "PF(11)",
+      "Exact": false
+    },
+    "F12 None": {
+      "Actions": "PF(12)",
+      "Exact": false
+    },
+    "F1 Shift": {
+      "Actions": "PF(13)",
+      "Exact": false
+    },
+    "F2 Shift": {
+      "Actions": "PF(14)",
+      "Exact": false
+    },
+    "F3 Shift": {
+      "Actions": "PF(15)",
+      "Exact": false
+    },
+    "F4 Shift": {
+      "Actions": "PF(16)",
+      "Exact": false
+    },
+    "F5 Shift": {
+      "Actions": "PF(17)",
+      "Exact": false
+    },
+    "F6 Shift": {
+      "Actions": "PF(18)",
+      "Exact": false
+    },
+    "F7 Shift": {
+      "Actions": "PF(19)",
+      "Exact": false
+    },
+    "F8 Shift": {
+      "Actions": "PF(20)",
+      "Exact": false
+    },
+    "F9 Shift": {
+      "Actions": "PF(21)",
+      "Exact": false
+    },
+    "F10 Shift": {
+      "Actions": "PF(22)",
+      "Exact": false
+    },
+    "F11 Shift": {
+      "Actions": "PF(23)",
+      "Exact": false
+    },
+    "F12 Shift": {
+      "Actions": "PF(24)",
+      "Exact": false
+    },
+    "D1 Alt": {
+      "Actions": "PA(1)",
+      "Exact": true
+    },
+    "D2 Alt": {
+      "Actions": "PA(2)",
+      "Exact": true
+    },
+    "D3 Alt": {
+      "Actions": "PA(3)",
+      "Exact": true
+    },
+    "A Alt, Mode3270": {
+      "Actions": "Attn()",
+      "Exact": true
+    },
+    "C Ctrl": {
+      "Actions": "uCopy()",
+      "Exact": true
+    },
+    "C Ctrl, Shift, ModeNvt": {
+      "Actions": "Key(U+0003)",
+      "Exact": true
+    },
+    "C Alt": {
+      "Actions": "Clear()",
+      "Exact": true
+    },
+    "D Alt, Mode3270": {
+      "Actions": "Dup()",
+      "Exact": true
+    },
+    "E Alt, Mode3270": {
+      "Actions": "EraseEOF()",
+      "Exact": true
+    },
+    "F Alt": {
+      "Actions": "Toggle(rightToLeftMode)",
+      "Exact": true
+    },
+    "M Alt, Mode3270": {
+      "Actions": "FieldMark()",
+      "Exact": true
+    },
+    "P Alt": {
+      "Actions": "uPrintText(gdi,dialog)",
+      "Exact": true
+    },
+    "Q Alt": {
+      "Actions": "uQuitIfNotConnected()",
+      "Exact": true
+    },
+    "R Alt, Mode3270": {
+      "Actions": "Reset()",
+      "Exact": true
+    },
+    "U Ctrl, Mode3270": {
+      "Actions": "DeleteField()",
+      "Exact": true
+    },
+    "V Ctrl": {
+      "Actions": "uPaste()",
+      "Exact": true
+    },
+    "V Ctrl, Shift, ModeNvt": {
+      "Actions": "Key(U+0016)",
+      "Exact": true
+    },
+    "V Alt, Mode3270": {
+      "Actions": "Toggle(reverseInputMode)",
+      "Exact": true
+    },
+    "X Ctrl": {
+      "Actions": "uCut()",
+      "Exact": true
+    },
+    "X Ctrl, Shift, ModeNvt": {
+      "Actions": "Key(U+0018)",
+      "Exact": true
+    },
+    "RControlKey Mode3270": {
+      "Actions": "Enter()",
+      "Exact": false
+    },
+    "Escape Shift": {
+      "Actions": "Toggle(aplMode)",
+      "Exact": false
+    },
+    "Scan29 Alt, Apl": {
+      "Actions": "Key(apl_diamond)",
+      "Exact": true
+    },
+    "Scan29 Alt, Shift, Apl": {
+      "Actions": "!",
+      "Exact": true
+    },
+    "Scan02 Alt, Apl": {
+      "Actions": "Key(apl_diaeresis)",
+      "Exact": true
+    },
+    "Scan02 Alt, Shift, Apl": {
+      "Actions": "Key(apl_downtackup)",
+      "Exact": true
+    },
+    "Scan03 Alt, Apl": {
+      "Actions": "Key(apl_overbar)",
+      "Exact": true
+    },
+    "Scan03 Alt, Shift, Apl": {
+      "Actions": "Key(apl_deltilde)",
+      "Exact": true
+    },
+    "Scan04 Alt, Apl": {
+      "Actions": "Key(<)",
+      "Exact": true
+    },
+    "Scan04 Alt, Shift, Apl": {
+      "Actions": "Key(apl_delstile)",
+      "Exact": true
+    },
+    "Scan05 Alt, Apl": {
+      "Actions": "Key(apl_notgreater)",
+      "Exact": true
+    },
+    "Scan05 Alt, Shift, Apl": {
+      "Actions": "Key(apl_deltastile)",
+      "Exact": true
+    },
+    "Scan06 Alt, Apl": {
+      "Actions": "Key(=)",
+      "Exact": true
+    },
+    "Scan06 Alt, Shift, Apl": {
+      "Actions": "Key(apl_circlestile)",
+      "Exact": true
+    },
+    "Scan07 Alt, Apl": {
+      "Actions": "Key(apl_notless)",
+      "Exact": true
+    },
+    "Scan07 Alt, Shift, Apl": {
+      "Actions": "Key(apl_circleslope)",
+      "Exact": true
+    },
+    "Scan08 Alt, Apl": {
+      "Actions": "Key(>)",
+      "Exact": true
+    },
+    "Scan08 Alt, Shift, Apl": {
+      "Actions": "Key(apl_circlebar)",
+      "Exact": true
+    },
+    "Scan09 Alt, Apl": {
+      "Actions": "Key(apl_notequal)",
+      "Exact": true
+    },
+    "Scan09 Alt, Shift, Apl": {
+      "Actions": "Key(apl_circlestar)",
+      "Exact": true
+    },
+    "Scan0A Alt, Apl": {
+      "Actions": "Key(apl_downcaret)",
+      "Exact": true
+    },
+    "Scan0A Alt, Shift, Apl": {
+      "Actions": "Key(apl_downcarettilde)",
+      "Exact": true
+    },
+    "Scan0B Alt, Apl": {
+      "Actions": "Key(apl_upcaret)",
+      "Exact": true
+    },
+    "Scan0B Alt, Shift, Apl": {
+      "Actions": "Key(apl_upcarettilde)",
+      "Exact": true
+    },
+    "Scan0C Alt, Apl": {
+      "Actions": "Key(apl_multiply)",
+      "Exact": true
+    },
+    "Scan0C Alt, Shift, Apl": {
+      "Actions": "Key(apl_quotedot)",
+      "Exact": true
+    },
+    "Scan0D Alt, Apl": {
+      "Actions": "Key(apl_divide)",
+      "Exact": true
+    },
+    "Scan0D Alt, Shift, Apl": {
+      "Actions": "Key(apl_quaddivide)",
+      "Exact": true
+    },
+    "Scan10 Alt, Apl": {
+      "Actions": "Key(?)",
+      "Exact": true
+    },
+    "Scan10 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Qunderbar)",
+      "Exact": true
+    },
+    "Scan11 Alt, Apl": {
+      "Actions": "Key(apl_omega)",
+      "Exact": true
+    },
+    "Scan11 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Wunderbar)",
+      "Exact": true
+    },
+    "Scan12 Alt, Apl": {
+      "Actions": "Key(apl_epsilon)",
+      "Exact": true
+    },
+    "Scan12 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Eunderbar)",
+      "Exact": true
+    },
+    "Scan13 Alt, Apl": {
+      "Actions": "Key(apl_rho)",
+      "Exact": true
+    },
+    "Scan13 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Runderbar)",
+      "Exact": true
+    },
+    "Scan14 Alt, Apl": {
+      "Actions": "Key(~)",
+      "Exact": true
+    },
+    "Scan14 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Tunderbar)",
+      "Exact": true
+    },
+    "Scan15 Alt, Apl": {
+      "Actions": "Key(apl_uparrow)",
+      "Exact": true
+    },
+    "Scan15 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Yunderbar)",
+      "Exact": true
+    },
+    "Scan16 Alt, Apl": {
+      "Actions": "Key(apl_downarrow)",
+      "Exact": true
+    },
+    "Scan16 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Uunderbar)",
+      "Exact": true
+    },
+    "Scan17 Alt, Apl": {
+      "Actions": "Key(apl_iota)",
+      "Exact": true
+    },
+    "Scan17 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Iunderbar)",
+      "Exact": true
+    },
+    "Scan18 Alt, Apl": {
+      "Actions": "Key(apl_circle)",
+      "Exact": true
+    },
+    "Scan18 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Ounderbar)",
+      "Exact": true
+    },
+    "Scan19 Alt, Apl": {
+      "Actions": "Key(*)",
+      "Exact": true
+    },
+    "Scan19 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Punderbar)",
+      "Exact": true
+    },
+    "Scan1A Alt, Apl": {
+      "Actions": "Key(apl_leftarrow)",
+      "Exact": true
+    },
+    "Scan1A Alt, Shift, Apl": {
+      "Actions": "Key(apl_quadquote)",
+      "Exact": true
+    },
+    "Scan1B Alt, Apl": {
+      "Actions": "Key(apl_rightarrow)",
+      "Exact": true
+    },
+    "Scan1B Alt, Shift, Apl": {
+      "Actions": "!",
+      "Exact": true
+    },
+    "Scan2B Alt, Apl": {
+      "Actions": "Key(apl_lefttack)",
+      "Exact": true
+    },
+    "Scan2B Alt, Shift, Apl": {
+      "Actions": "Key(apl_righttack)",
+      "Exact": true
+    },
+    "Scan1E Alt, Apl": {
+      "Actions": "Key(apl_alpha)",
+      "Exact": true
+    },
+    "Scan1E Alt, Shift, Apl": {
+      "Actions": "Key(apl_Aunderbar)",
+      "Exact": true
+    },
+    "Scan1F Alt, Apl": {
+      "Actions": "Key(apl_upstile)",
+      "Exact": true
+    },
+    "Scan1F Alt, Shift, Apl": {
+      "Actions": "Key(apl_Sunderbar)",
+      "Exact": true
+    },
+    "Scan20 Alt, Apl": {
+      "Actions": "Key(apl_downstile)",
+      "Exact": true
+    },
+    "Scan20 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Dunderbar)",
+      "Exact": true
+    },
+    "Scan21 Alt, Apl": {
+      "Actions": "Key(_)",
+      "Exact": true
+    },
+    "Scan21 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Funderbar)",
+      "Exact": true
+    },
+    "Scan22 Alt, Apl": {
+      "Actions": "Key(apl_del)",
+      "Exact": true
+    },
+    "Scan22 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Gunderbar)",
+      "Exact": true
+    },
+    "Scan23 Alt, Apl": {
+      "Actions": "Key(apl_delta)",
+      "Exact": true
+    },
+    "Scan23 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Hunderbar)",
+      "Exact": true
+    },
+    "Scan24 Alt, Apl": {
+      "Actions": "Key(apl_jot)",
+      "Exact": true
+    },
+    "Scan24 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Junderbar)",
+      "Exact": true
+    },
+    "Scan25 Alt, Apl": {
+      "Actions": "Key(')",
+      "Exact": true
+    },
+    "Scan25 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Kunderbar)",
+      "Exact": false
+    },
+    "Scan26 Alt, Apl": {
+      "Actions": "Key(apl_quad)",
+      "Exact": true
+    },
+    "Scan26 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Lunderbar)",
+      "Exact": true
+    },
+    "Scan27 Alt, Apl": {
+      "Actions": "Key(apl_downtackjot)",
+      "Exact": true
+    },
+    "Scan27 Alt, Shift, Apl": {
+      "Actions": "Key(apl_equiv)",
+      "Exact": true
+    },
+    "Scan28 Alt, Apl": {
+      "Actions": "Key(apl_uptackjot)",
+      "Exact": true
+    },
+    "Scan28 Alt, Shift, Apl": {
+      "Actions": "!",
+      "Exact": true
+    },
+    "Scan2C Alt, Apl": {
+      "Actions": "Key(apl_leftshoe)",
+      "Exact": true
+    },
+    "Scan2C Alt, Shift, Apl": {
+      "Actions": "Key(apl_Zunderbar)",
+      "Exact": true
+    },
+    "Scan2D Alt, Apl": {
+      "Actions": "Key(apl_rightshoe)",
+      "Exact": true
+    },
+    "Scan2D Alt, Shift, Apl": {
+      "Actions": "Key(apl_Xunderbar)",
+      "Exact": true
+    },
+    "Scan2E Alt, Apl": {
+      "Actions": "Key(apl_upshoe)",
+      "Exact": true
+    },
+    "Scan2E Alt, Shift, Apl": {
+      "Actions": "Key(apl_Cunderbar)",
+      "Exact": true
+    },
+    "Scan2F Alt, Apl": {
+      "Actions": "Key(apl_downshoe)",
+      "Exact": true
+    },
+    "Scan2F Alt, Shift, Apl": {
+      "Actions": "Key(apl_Vunderbar)",
+      "Exact": true
+    },
+    "Scan30 Alt, Apl": {
+      "Actions": "Key(apl_downtack)",
+      "Exact": true
+    },
+    "Scan30 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Bunderbar)",
+      "Exact": true
+    },
+    "Scan31 Alt, Apl": {
+      "Actions": "Key(apl_uptack)",
+      "Exact": true
+    },
+    "Scan31 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Nunderbar)",
+      "Exact": true
+    },
+    "Scan32 Alt, Apl": {
+      "Actions": "Key(apl_stile)",
+      "Exact": true
+    },
+    "Scan32 Alt, Shift, Apl": {
+      "Actions": "Key(apl_Dunderbar)",
+      "Exact": true
+    },
+    "Scan33 Alt, Apl": {
+      "Actions": "Key(apl_uptackjot)",
+      "Exact": true
+    },
+    "Scan33 Alt, Shift, Apl": {
+      "Actions": "Key(apl_commabar)",
+      "Exact": true
+    },
+    "Scan34 Alt, Apl": {
+      "Actions": "Key(apl_slopebar)",
+      "Exact": true
+    },
+    "Scan34 Alt, Shift, Apl": {
+      "Actions": "Key(apl_deltaunderbar)",
+      "Exact": true
+    },
+    "Scan35 Alt, Apl": {
+      "Actions": "Key(apl_slashbar)",
+      "Exact": true
+    },
+    "Scan35 Alt, Shift, Apl": {
+      "Actions": "!",
+      "Exact": true
+    }
+  },
+  "ListenPort": {
+    "httpd": {
+      "Address": "0.0.0.0",
+      "Port": 9997
+    }
+  },
+  "Printer": "",
+  "PrinterCodePage": "",
+  "PrinterOptions": "",
+  "NopInterval": 0,
+  "Location": "224, 54",
+  "Size": null,
+  "Proxy": {
+    "Type": null,
+    "Address": null,
+    "Port": null,
+    "Username": null,
+    "Password": null
+  },
+  "OpacityPercent": 100,
+  "Description": null,
+  "WindowTitle": null,
+  "MiscSettings": {}
+}
