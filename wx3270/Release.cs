@@ -15,7 +15,7 @@ namespace Wx3270
         /// <remarks>
         /// CHANGE THIS WHENEVER PRE-RELEASE CODE IS CUT, AND MAKE SURE IT IS NULL WHEN A TAGGED RELEASE IS CUT.
         /// </remarks>
-        private const string PreReleaseIteration = "C";
+        private const string PreReleaseIteration = null;
 
         /// <summary>
         /// Release phases.
@@ -44,7 +44,7 @@ namespace Wx3270
         /// <remarks>
         /// CHANGE THIS WHEN THE RELEASE PHASE CHANGES.
         /// </remarks>
-        public static Phases Phase => Phases.Alpha;
+        public static Phases Phase => Phases.GA;
 
         /// <summary>
         /// Gets the name of the release phase.
