@@ -10,6 +10,7 @@ AppPublisherURL=https://x3270.miraheze.org/wiki/Main_Page
 AppSupportURL=https://x3270.miraheze.org/wiki/Main_Page
 AppUpdatesURL=https://x3270.miraheze.org/wiki/Main_Page
 AppVerName=wx3270 %VERSION%
+AppVersion=%VERSION%
 ArchitecturesInstallIn64BitMode=x64
 ChangesAssociations=yes
 Compression=lzma
