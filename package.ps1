@@ -42,3 +42,8 @@ Write-Host -ForegroundColor Green 'Running Inno Setup'
 $signparm = '/smystandard="' + "$signtool sign /f `$q$cert`$q /p $pass /td SHA256 /tr $timestamp `$p" + '"'
 & $inno $signparm /Qp tmp.iss
 Remove-Item tmp.iss
+
+# Create the no-install zipfiles.
+$files = Get-Content noinstall-files.txt
+$files.ForEach({$_ -replace '^', 'wx3270\bin\x64\Release\'}) | Compress-Archive -DestinationPath "wx3270-$version-noinstall64.zip"
+$files.ForEach({$_ -replace '^', 'wx3270\bin\x86\Release\'}) | Compress-Archive -DestinationPath "wx3270-$version-noinstall32.zip"
