@@ -1899,7 +1899,10 @@ namespace Wx3270
         private void ScreenBox_ClientSizeChanged(object sender, EventArgs e)
         {
             // Force a repaint.
-            this.ScreenNeedsDrawing(this.App.ScreenImage, "sizeChange", true);
+            if (this.App != null && this.App.ScreenImage != null)
+            {
+                this.ScreenNeedsDrawing(this.App.ScreenImage, "sizeChange", true);
+            }
         }
 
         /// <summary>
