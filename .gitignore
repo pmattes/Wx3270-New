@@ -198,5 +198,6 @@ __pycache__
 
 # Misc files
 *-setup.exe
+*noinstall*.zip
 /.vs/VSWorkspaceState.json
 /.vs/slnx.sqlite
