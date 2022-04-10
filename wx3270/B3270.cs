@@ -1026,6 +1026,16 @@ namespace Wx3270
             public const string Oversize = "oversize";
 
             /// <summary>
+            /// The IPv4 preference setting.
+            /// </summary>
+            public const string PreferIpv4 = "preferIpv4";
+
+            /// <summary>
+            /// The IPv6 preference setting.
+            /// </summary>
+            public const string PreferIpv6 = "preferIpv6";
+
+            /// <summary>
             /// The printer code page setting.
             /// </summary>
             public const string PrinterCodePage = "printer.codepage";

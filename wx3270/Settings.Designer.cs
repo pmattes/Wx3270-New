@@ -83,6 +83,8 @@
             this.showTimingCheckBox = new System.Windows.Forms.CheckBox();
             this.alwaysInsertCheckBox = new System.Windows.Forms.CheckBox();
             this.scrollbarCheckBox = new System.Windows.Forms.CheckBox();
+            this.retryCheckBox = new System.Windows.Forms.CheckBox();
+            this.preferIpv4CheckBox = new System.Windows.Forms.CheckBox();
             this.CursorGroupBox = new System.Windows.Forms.GroupBox();
             this.crosshairCursorCheckBox = new System.Windows.Forms.CheckBox();
             this.UnderscoreCursorButton = new System.Windows.Forms.RadioButton();
@@ -318,7 +320,7 @@
             this.HostColorDialog = new System.Windows.Forms.ColorDialog();
             this.ScreenFontDialog = new System.Windows.Forms.FontDialog();
             this.opacityTimer = new System.Windows.Forms.Timer(this.components);
-            this.retryCheckBox = new System.Windows.Forms.CheckBox();
+            this.preferIpv6CheckBox = new System.Windows.Forms.CheckBox();
             this.settingsTabs.SuspendLayout();
             this.optionsTab.SuspendLayout();
             this.descriptionGroupBox.SuspendLayout();
@@ -1017,6 +1019,8 @@
             this.miscFlowLayoutPanel.Controls.Add(this.alwaysInsertCheckBox);
             this.miscFlowLayoutPanel.Controls.Add(this.scrollbarCheckBox);
             this.miscFlowLayoutPanel.Controls.Add(this.retryCheckBox);
+            this.miscFlowLayoutPanel.Controls.Add(this.preferIpv4CheckBox);
+            this.miscFlowLayoutPanel.Controls.Add(this.preferIpv6CheckBox);
             this.miscFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.miscFlowLayoutPanel.Location = new System.Drawing.Point(9, 16);
             this.miscFlowLayoutPanel.Name = "miscFlowLayoutPanel";
@@ -1098,6 +1102,30 @@
             this.scrollbarCheckBox.Text = "Scroll bar";
             this.scrollbarCheckBox.UseVisualStyleBackColor = true;
             this.scrollbarCheckBox.CheckedChanged += new System.EventHandler(this.MiscLocalCheckBox_Changed);
+            // 
+            // retryCheckBox
+            // 
+            this.retryCheckBox.AutoSize = true;
+            this.retryCheckBox.Location = new System.Drawing.Point(138, 26);
+            this.retryCheckBox.Name = "retryCheckBox";
+            this.retryCheckBox.Size = new System.Drawing.Size(107, 17);
+            this.retryCheckBox.TabIndex = 6;
+            this.retryCheckBox.Tag = "retry";
+            this.retryCheckBox.Text = "Retry connection";
+            this.retryCheckBox.UseVisualStyleBackColor = true;
+            this.retryCheckBox.CheckedChanged += new System.EventHandler(this.MiscCheckBox_Changed);
+            // 
+            // preferIpv4CheckBox
+            // 
+            this.preferIpv4CheckBox.AutoSize = true;
+            this.preferIpv4CheckBox.Location = new System.Drawing.Point(138, 49);
+            this.preferIpv4CheckBox.Name = "preferIpv4CheckBox";
+            this.preferIpv4CheckBox.Size = new System.Drawing.Size(130, 17);
+            this.preferIpv4CheckBox.TabIndex = 7;
+            this.preferIpv4CheckBox.Tag = "preferIpv4";
+            this.preferIpv4CheckBox.Text = "Prefer IPv4 addresses";
+            this.preferIpv4CheckBox.UseVisualStyleBackColor = true;
+            this.preferIpv4CheckBox.CheckedChanged += new System.EventHandler(this.MiscCheckBox_Changed);
             // 
             // CursorGroupBox
             // 
@@ -4183,17 +4211,17 @@
             this.opacityTimer.Interval = 2000;
             this.opacityTimer.Tick += new System.EventHandler(this.OpacityTimer_Tick);
             // 
-            // retryCheckBox
+            // preferIpv6CheckBox
             // 
-            this.retryCheckBox.AutoSize = true;
-            this.retryCheckBox.Location = new System.Drawing.Point(138, 26);
-            this.retryCheckBox.Name = "retryCheckBox";
-            this.retryCheckBox.Size = new System.Drawing.Size(107, 17);
-            this.retryCheckBox.TabIndex = 6;
-            this.retryCheckBox.Tag = "retry";
-            this.retryCheckBox.Text = "Retry connection";
-            this.retryCheckBox.UseVisualStyleBackColor = true;
-            this.retryCheckBox.CheckedChanged += new System.EventHandler(this.MiscCheckBox_Changed);
+            this.preferIpv6CheckBox.AutoSize = true;
+            this.preferIpv6CheckBox.Location = new System.Drawing.Point(138, 72);
+            this.preferIpv6CheckBox.Name = "preferIpv6CheckBox";
+            this.preferIpv6CheckBox.Size = new System.Drawing.Size(130, 17);
+            this.preferIpv6CheckBox.TabIndex = 8;
+            this.preferIpv6CheckBox.Tag = "preferIpv6";
+            this.preferIpv6CheckBox.Text = "Prefer IPv6 addresses";
+            this.preferIpv6CheckBox.UseVisualStyleBackColor = true;
+            this.preferIpv6CheckBox.CheckedChanged += new System.EventHandler(this.MiscCheckBox_Changed);
             // 
             // Settings
             // 
@@ -4665,5 +4693,7 @@
         private System.Windows.Forms.FlowLayoutPanel miscFlowLayoutPanel;
         private System.Windows.Forms.CheckBox scrollbarCheckBox;
         private System.Windows.Forms.CheckBox retryCheckBox;
+        private System.Windows.Forms.CheckBox preferIpv4CheckBox;
+        private System.Windows.Forms.CheckBox preferIpv6CheckBox;
     }
 }

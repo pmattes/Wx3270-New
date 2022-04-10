@@ -274,6 +274,10 @@ namespace Wx3270
             // Set retry.
             this.retryCheckBox.Checked = profile.Retry;
 
+            // Set IPv4/Ipv6 preference.
+            this.preferIpv4CheckBox.Checked = profile.PreferIpv4;
+            this.preferIpv6CheckBox.Checked = profile.PreferIpv6;
+
             // Set description and window title.
             this.descriptionTextBox.Text = profile.Description;
             this.titleTextBox.Text = profile.WindowTitle;
@@ -356,6 +360,12 @@ namespace Wx3270
                             break;
                         case B3270.Setting.Retry:
                             current.Retry = checkBox.Checked;
+                            break;
+                        case B3270.Setting.PreferIpv4:
+                            current.PreferIpv4 = checkBox.Checked;
+                            break;
+                        case B3270.Setting.PreferIpv6:
+                            current.PreferIpv6 = checkBox.Checked;
                             break;
                     }
                 },

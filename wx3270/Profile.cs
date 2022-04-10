@@ -327,7 +327,19 @@ namespace Wx3270
         /// Gets or sets a value indicating whether to re-try connections.
         /// </summary>
         [JsonProperty]
-        public bool Retry { get; set; } = true;
+        public bool Retry { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to prefer IPv4 addresses when resolving host names.
+        /// </summary>
+        [JsonProperty]
+        public bool PreferIpv4 { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to prefer IPv6 addresses when resolving host names.
+        /// </summary>
+        [JsonProperty]
+        public bool PreferIpv6 { get; set; } = false;
 
         /// <summary>
         /// Gets or sets the macros.

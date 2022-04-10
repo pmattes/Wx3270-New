@@ -703,7 +703,7 @@ namespace Wx3270
                 Console.WriteLine("BackEnd caught exception: " + e.ToString());
                 ErrorBox.ShowCopy(
                     this.control,
-                    I18n.Get(Message.XmlException) + ":" + Environment.NewLine + e.Message,
+                    I18n.Get(Message.XmlException) + ":" + Environment.NewLine + e,
                     I18n.Get(Title.Fatal));
 
                 // Do miscellaneous clean-up and exit.
