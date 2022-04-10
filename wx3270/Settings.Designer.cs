@@ -469,7 +469,7 @@
             // descriptionGroupBox
             // 
             this.descriptionGroupBox.Controls.Add(this.descriptionTableLayoutPanel);
-            this.descriptionGroupBox.Location = new System.Drawing.Point(356, 485);
+            this.descriptionGroupBox.Location = new System.Drawing.Point(363, 485);
             this.descriptionGroupBox.Name = "descriptionGroupBox";
             this.descriptionGroupBox.Size = new System.Drawing.Size(294, 92);
             this.descriptionGroupBox.TabIndex = 9;
@@ -540,9 +540,9 @@
             this.opacityGroupBox.Controls.Add(this.percent30Label);
             this.opacityGroupBox.Controls.Add(this.opacityLabel);
             this.opacityGroupBox.Controls.Add(this.opacityTrackBar);
-            this.opacityGroupBox.Location = new System.Drawing.Point(27, 89);
+            this.opacityGroupBox.Location = new System.Drawing.Point(18, 89);
             this.opacityGroupBox.Name = "opacityGroupBox";
-            this.opacityGroupBox.Size = new System.Drawing.Size(302, 73);
+            this.opacityGroupBox.Size = new System.Drawing.Size(329, 73);
             this.opacityGroupBox.TabIndex = 8;
             this.opacityGroupBox.TabStop = false;
             this.opacityGroupBox.Text = "Opacity";
@@ -568,7 +568,7 @@
             // opacityLabel
             // 
             this.opacityLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.opacityLabel.Location = new System.Drawing.Point(137, 43);
+            this.opacityLabel.Location = new System.Drawing.Point(150, 43);
             this.opacityLabel.Name = "opacityLabel";
             this.opacityLabel.Size = new System.Drawing.Size(34, 17);
             this.opacityLabel.TabIndex = 3;
@@ -594,7 +594,7 @@
             // printerSessionGroupBox
             // 
             this.printerSessionGroupBox.Controls.Add(this.printerTableLayoutPanel);
-            this.printerSessionGroupBox.Location = new System.Drawing.Point(356, 363);
+            this.printerSessionGroupBox.Location = new System.Drawing.Point(363, 363);
             this.printerSessionGroupBox.Name = "printerSessionGroupBox";
             this.printerSessionGroupBox.Size = new System.Drawing.Size(294, 116);
             this.printerSessionGroupBox.TabIndex = 7;
@@ -683,9 +683,9 @@
             // TerminalNameGroupBox
             // 
             this.TerminalNameGroupBox.Controls.Add(this.TerminalNameLayoutPanel);
-            this.TerminalNameGroupBox.Location = new System.Drawing.Point(28, 324);
+            this.TerminalNameGroupBox.Location = new System.Drawing.Point(19, 324);
             this.TerminalNameGroupBox.Name = "TerminalNameGroupBox";
-            this.TerminalNameGroupBox.Size = new System.Drawing.Size(302, 108);
+            this.TerminalNameGroupBox.Size = new System.Drawing.Size(329, 108);
             this.TerminalNameGroupBox.TabIndex = 2;
             this.TerminalNameGroupBox.TabStop = false;
             this.TerminalNameGroupBox.Text = "Terminal name";
@@ -745,9 +745,9 @@
             // ModelGroupBox
             // 
             this.ModelGroupBox.Controls.Add(this.OversizeLayoutPanel);
-            this.ModelGroupBox.Location = new System.Drawing.Point(27, 168);
+            this.ModelGroupBox.Location = new System.Drawing.Point(18, 168);
             this.ModelGroupBox.Name = "ModelGroupBox";
-            this.ModelGroupBox.Size = new System.Drawing.Size(302, 150);
+            this.ModelGroupBox.Size = new System.Drawing.Size(329, 150);
             this.ModelGroupBox.TabIndex = 1;
             this.ModelGroupBox.TabStop = false;
             this.ModelGroupBox.Text = "Screen size";
@@ -884,7 +884,7 @@
             // CodePageGroupBox
             // 
             this.CodePageGroupBox.Controls.Add(this.CodePageListBox);
-            this.CodePageGroupBox.Location = new System.Drawing.Point(356, 227);
+            this.CodePageGroupBox.Location = new System.Drawing.Point(363, 227);
             this.CodePageGroupBox.Name = "CodePageGroupBox";
             this.CodePageGroupBox.Size = new System.Drawing.Size(294, 130);
             this.CodePageGroupBox.TabIndex = 6;
@@ -904,9 +904,9 @@
             // 
             this.DisplayGroupBox.Controls.Add(this.ColorButton);
             this.DisplayGroupBox.Controls.Add(this.MonoButton);
-            this.DisplayGroupBox.Location = new System.Drawing.Point(28, 18);
+            this.DisplayGroupBox.Location = new System.Drawing.Point(19, 18);
             this.DisplayGroupBox.Name = "DisplayGroupBox";
-            this.DisplayGroupBox.Size = new System.Drawing.Size(301, 65);
+            this.DisplayGroupBox.Size = new System.Drawing.Size(328, 65);
             this.DisplayGroupBox.TabIndex = 0;
             this.DisplayGroupBox.TabStop = false;
             this.DisplayGroupBox.Text = "Display";
@@ -938,7 +938,7 @@
             // optionsSampleGroupBox
             // 
             this.optionsSampleGroupBox.Controls.Add(this.optionsPreviewLayoutPanel);
-            this.optionsSampleGroupBox.Location = new System.Drawing.Point(356, 16);
+            this.optionsSampleGroupBox.Location = new System.Drawing.Point(363, 16);
             this.optionsSampleGroupBox.Name = "optionsSampleGroupBox";
             this.optionsSampleGroupBox.Size = new System.Drawing.Size(294, 132);
             this.optionsSampleGroupBox.TabIndex = 4;
@@ -1003,9 +1003,9 @@
             // MiscGroupBox
             // 
             this.MiscGroupBox.Controls.Add(this.miscFlowLayoutPanel);
-            this.MiscGroupBox.Location = new System.Drawing.Point(28, 438);
+            this.MiscGroupBox.Location = new System.Drawing.Point(19, 438);
             this.MiscGroupBox.Name = "MiscGroupBox";
-            this.MiscGroupBox.Size = new System.Drawing.Size(302, 141);
+            this.MiscGroupBox.Size = new System.Drawing.Size(329, 141);
             this.MiscGroupBox.TabIndex = 3;
             this.MiscGroupBox.TabStop = false;
             this.MiscGroupBox.Text = "Miscellaneous";
@@ -1024,7 +1024,7 @@
             this.miscFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.miscFlowLayoutPanel.Location = new System.Drawing.Point(9, 16);
             this.miscFlowLayoutPanel.Name = "miscFlowLayoutPanel";
-            this.miscFlowLayoutPanel.Size = new System.Drawing.Size(287, 119);
+            this.miscFlowLayoutPanel.Size = new System.Drawing.Size(314, 119);
             this.miscFlowLayoutPanel.TabIndex = 10;
             // 
             // MonoCaseCheckBox
@@ -1133,7 +1133,7 @@
             this.CursorGroupBox.Controls.Add(this.UnderscoreCursorButton);
             this.CursorGroupBox.Controls.Add(this.cursorBlinkCheckBox);
             this.CursorGroupBox.Controls.Add(this.BlockCursorButton);
-            this.CursorGroupBox.Location = new System.Drawing.Point(356, 154);
+            this.CursorGroupBox.Location = new System.Drawing.Point(363, 154);
             this.CursorGroupBox.Name = "CursorGroupBox";
             this.CursorGroupBox.Size = new System.Drawing.Size(294, 67);
             this.CursorGroupBox.TabIndex = 5;
