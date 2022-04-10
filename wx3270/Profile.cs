@@ -324,6 +324,12 @@ namespace Wx3270
         public bool ScrollBar { get; set; } = true;
 
         /// <summary>
+        /// Gets or sets a value indicating whether to re-try connections.
+        /// </summary>
+        [JsonProperty]
+        public bool Retry { get; set; } = true;
+
+        /// <summary>
         /// Gets or sets the macros.
         /// </summary>
         [JsonProperty]

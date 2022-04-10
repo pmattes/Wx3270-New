@@ -180,6 +180,11 @@ namespace Wx3270
                 settings.AddRange(new[] { B3270.Setting.NopSeconds, newProfile.NopInterval.ToString() });
             }
 
+            if (oldProfile == null || oldProfile.Retry != newProfile.Retry)
+            {
+                settings.AddRange(new[] { B3270.Setting.Retry, B3270.ToggleArgument.Action(newProfile.Retry) });
+            }
+
             if (settings.Count != 0)
             {
                 this.BackEnd.RunAction(new BackEndAction(B3270.Action.Set, settings), ErrorBox.Completion(I18n.Get(Title.Settings)));
@@ -266,6 +271,9 @@ namespace Wx3270
             // Set NOP interval.
             this.nopCheckBox.Checked = profile.NopInterval != 0;
 
+            // Set retry.
+            this.retryCheckBox.Checked = profile.Retry;
+
             // Set description and window title.
             this.descriptionTextBox.Text = profile.Description;
             this.titleTextBox.Text = profile.WindowTitle;
@@ -345,6 +353,9 @@ namespace Wx3270
                             break;
                         case B3270.Setting.AlwaysInsert:
                             current.AlwaysInsert = checkBox.Checked;
+                            break;
+                        case B3270.Setting.Retry:
+                            current.Retry = checkBox.Checked;
                             break;
                     }
                 },

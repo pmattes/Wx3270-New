@@ -160,9 +160,18 @@ namespace Wx3270
             }
 
             var reconnect = entry.AutoConnect == AutoConnect.Reconnect;
-            settings.AddRange(new[] { B3270.Setting.Reconnect, reconnect ? B3270.Value.True : B3270.Value.False });
-            settings.AddRange(new[] { B3270.Setting.LoginMacro, CleanLoginMacro(entry.LoginMacro) });
-            settings.AddRange(new[] { B3270.Setting.NoTelnetInputMode, entry.NoTelnetInputType.ToString() });
+            settings.AddRange(
+                new[]
+                {
+                    B3270.Setting.Reconnect,
+                    reconnect ? B3270.Value.True : B3270.Value.False,
+                    B3270.Setting.LoginMacro,
+                    CleanLoginMacro(entry.LoginMacro),
+                    B3270.Setting.NoTelnetInputMode,
+                    entry.NoTelnetInputType.ToString(),
+                    B3270.Setting.Retry,
+                    this.app.ProfileManager.Current.Retry ? B3270.Value.True : B3270.Value.False,
+                });
 
             var actions = new List<BackEndAction>() { new BackEndAction(B3270.Action.Set, settings) };
             if (entry.ConnectionType == ConnectionType.Host)
@@ -252,7 +261,8 @@ namespace Wx3270
 
                 // Stop reconnecting and disconnect.
                 this.BackEnd.RunActions(
-                    new[] {
+                    new[]
+                    {
                         new BackEndAction(
                             B3270.Action.Set,
                             B3270.Setting.Reconnect,
@@ -359,7 +369,8 @@ namespace Wx3270
             {
                 // Stop reconnecting, and suppress further connect pop-ups until it takes effect.
                 this.BackEnd.RunActions(
-                    new[] {
+                    new[]
+                    {
                         new BackEndAction(
                             B3270.Action.Set,
                             B3270.Setting.Reconnect,
