@@ -137,7 +137,7 @@ namespace Wx3270
             {
                 this.BackEnd.RunAction(
                     new BackEndAction(B3270.Action.Set, name, textBox.Text),
-                    (_, success, result) =>
+                    (cookie, success, result, misc) =>
                     {
                         if (success)
                         {

@@ -173,7 +173,8 @@ namespace Wx3270
         /// <param name="cookie">Call context.</param>
         /// <param name="success">True if command succeeded.</param>
         /// <param name="result">Error text.</param>
-        private void ConnectDone(object cookie, bool success, string result)
+        /// <param name="misc">Miscellaneous attributes.</param>
+        private void ConnectDone(object cookie, bool success, string result, AttributeDict misc)
         {
             if (!success)
             {

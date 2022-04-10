@@ -76,7 +76,7 @@ namespace Wx3270
         /// <returns>Completion method.</returns>
         public static BackEndCompletion Completion(string title)
         {
-            return (cookie, success, result) =>
+            return (cookie, success, result, misc) =>
             {
                 if (!success)
                 {
@@ -91,7 +91,7 @@ namespace Wx3270
         /// <returns>Completion method.</returns>
         public static BackEndCompletion Ignore()
         {
-            return (cookie, success, result) => { };
+            return (cookie, success, result, misc) => { };
         }
 
         /// <summary>

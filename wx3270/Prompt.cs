@@ -73,7 +73,7 @@ namespace Wx3270
 
             this.backEnd.RunAction(
                 new BackEndAction(B3270.Action.Prompt, "wx3270", Constants.Action.Help, tempName),
-                (cookie, success, result) =>
+                (cookie, success, result, misc) =>
                 {
                     if (!success)
                     {

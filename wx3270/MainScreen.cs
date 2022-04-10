@@ -635,7 +635,7 @@ namespace Wx3270
                         B3270.Action.Scroll,
                         "Set",
                         "0"),
-                    (cookie, success, result) => { });
+                    Wx3270.BackEnd.Ignore());
                 this.vScrollBar1.RemoveFromParent();
             }
             else
@@ -707,7 +707,7 @@ namespace Wx3270
                         B3270.Action.Scroll,
                         "Set",
                         "0"),
-                    (cookie, success, result) => { });
+                    Wx3270.BackEnd.Ignore());
                 this.vScrollBar1.RemoveFromParent();
             }
             else
@@ -781,7 +781,7 @@ namespace Wx3270
                     //  Scroll bar.
                     //  Maximize.
                     // Set the size, even if we are going to maximize, so when we un-maximize, we get the right size.
-                    this.BackEnd.RunAction(new BackEndAction(B3270.Action.Query, B3270.Query.Model), (cookie, success, result) =>
+                    this.BackEnd.RunAction(new BackEndAction(B3270.Action.Query, B3270.Query.Model), (cookie, success, result, misc) =>
                     {
                         this.ToggleScrollBarInternal(profile.ScrollBar);
 
@@ -2321,7 +2321,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ResetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.BackEnd.RunAction(new BackEndAction(B3270.Action.Reset), (cookie, success, result) => { });
+            this.BackEnd.RunAction(new BackEndAction(B3270.Action.Reset), Wx3270.BackEnd.Ignore());
         }
 
         /// <summary>
@@ -2370,7 +2370,7 @@ namespace Wx3270
                         B3270.Action.Scroll,
                         "Set",
                         setValue.ToString()),
-                    (cookie, success, result) => { });
+                    Wx3270.BackEnd.Ignore());
             }
         }
 

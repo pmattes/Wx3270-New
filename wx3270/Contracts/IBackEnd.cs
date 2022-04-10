@@ -13,7 +13,8 @@ namespace Wx3270.Contracts
     /// <param name="cookie">Context passed to <see cref="IBackEnd.RunActions"/> call.</param>
     /// <param name="success">True if command succeeded.</param>
     /// <param name="result">Result string, might be empty.</param>
-    public delegate void BackEndCompletion(object cookie, bool success, string result);
+    /// <param name="misc">Miscellaneous attributes.</param>
+    public delegate void BackEndCompletion(object cookie, bool success, string result, AttributeDict misc);
 
     /// <summary>
     /// Delegate for a pass-through action called because of a UI action.

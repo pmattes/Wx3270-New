@@ -541,7 +541,7 @@ namespace Wx3270
             // Run the command.
             this.BackEnd.RunAction(
                 this.TransferAction(),
-                (cookie, success, result) =>
+                (cookie, success, result, misc) =>
                 {
                     if (!success)
                     {

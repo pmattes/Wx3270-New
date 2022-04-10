@@ -250,7 +250,7 @@ namespace Wx3270
                 this.BackEnd.RunActions(
                     ActionSyntax.FormatForRun(macro.Macro),
                     "macro",
-                    (cookie, success, result) =>
+                    (cookie, success, result, misc) =>
                     {
                         this.macrosInProgress.TryRemove(fullMacroName, out bool ignored);
                         if (success && !string.IsNullOrWhiteSpace(result))
@@ -557,7 +557,7 @@ namespace Wx3270
             this.BackEnd.RunActions(
                     ActionSyntax.FormatForRun(macro.Macro),
                     "macro",
-                    (cookie, success, res) =>
+                    (cookie, success, res, misc) =>
                     {
                         this.macrosInProgress.TryRemove(fullMacroName, out bool ignored);
                         this.app.BackEnd.PassthruComplete(success, res, tag);

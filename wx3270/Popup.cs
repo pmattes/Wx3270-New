@@ -33,7 +33,7 @@ namespace Wx3270
         /// <summary>
         /// Connection error event.
         /// </summary>
-        public event Action<string> ConnectErrorEvent;
+        public event Action<string, bool> ConnectErrorEvent;
 
         /// <summary>
         /// Static localization.
@@ -62,7 +62,7 @@ namespace Wx3270
                 case B3270.PopupType.ConnectionError:
                     if (this.ConnectErrorEvent != null)
                     {
-                        this.ConnectErrorEvent(text);
+                        this.ConnectErrorEvent(text, attributes.ContainsKey(B3270.Attribute.Retrying) && bool.Parse(attributes[B3270.Attribute.Retrying]));
                     }
                     else
                     {

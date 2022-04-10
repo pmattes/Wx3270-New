@@ -624,7 +624,7 @@ namespace Wx3270
                 this.fileRadioButton.Enabled = false;
                 this.BackEnd.RunAction(
                     action,
-                    (cookie, success, result) =>
+                    (cookie, success, result, misc) =>
                     {
                         if (!success)
                         {
@@ -646,8 +646,7 @@ namespace Wx3270
                 this.traceScreenCheckBox.Checked = false;
                 this.traceScreenCheckBox.Enabled = false;
                 this.BackEnd.RunAction(
-                    new BackEndAction(B3270.Action.ScreenTrace, "off"),
-                    (cookie, success, result) => { });
+                    new BackEndAction(B3270.Action.ScreenTrace, "off"), Wx3270.BackEnd.Ignore());
             }
         }
 

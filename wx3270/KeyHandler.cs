@@ -477,7 +477,8 @@ namespace Wx3270
         /// <param name="cookie">Call context.</param>
         /// <param name="success">Success or failure.</param>
         /// <param name="text">Error message or result.</param>
-        private void KeyDone(object cookie, bool success, string text)
+        /// <param name="misc">Miscellaneous attributes.</param>
+        private void KeyDone(object cookie, bool success, string text, AttributeDict misc)
         {
             if (success && !string.IsNullOrEmpty(text))
             {

@@ -198,7 +198,7 @@ namespace Wx3270
         /// <returns>Completion delegate.</returns>
         public static BackEndCompletion Ignore()
         {
-            return (cookie, success, result) => { };
+            return (cookie, success, result, misc) => { };
         }
 
         /// <inheritdoc />
@@ -740,7 +740,7 @@ namespace Wx3270
 
             if (this.completions.TryGetValue(tag, out Completion completion))
             {
-                completion.BackEndCompletion(completion.Cookie, success, text);
+                completion.BackEndCompletion(completion.Cookie, success, text, attributes);
                 this.completions.Remove(tag);
             }
         }

@@ -128,7 +128,7 @@ namespace Wx3270
             if ((uint)exitCode == CtrlCExit)
             {
                 // The trace window was closed by ^C or the window close button. Stop tracing.
-                this.backEnd.RunAction(new BackEndAction(B3270.Action.Set, B3270.Setting.Trace, B3270.Value.False), (cookie, success, text) => { });
+                this.backEnd.RunAction(new BackEndAction(B3270.Action.Set, B3270.Setting.Trace, B3270.Value.False), BackEnd.Ignore());
             }
         }
     }

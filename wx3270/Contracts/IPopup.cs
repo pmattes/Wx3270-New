@@ -16,6 +16,6 @@ namespace Wx3270
         /// <summary>
         /// Asynchronous connect error event.
         /// </summary>
-        event Action<string> ConnectErrorEvent;
+        event Action<string, bool> ConnectErrorEvent;
     }
 }

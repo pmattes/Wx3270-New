@@ -409,7 +409,8 @@ namespace Wx3270
         /// <param name="context">Call context.</param>
         /// <param name="success">Success indication.</param>
         /// <param name="text">Result or error text.</param>
-        private void KeypadCompletion(object context, bool success, string text)
+        /// <param name="misc">Miscellaneous attributes.</param>
+        private void KeypadCompletion(object context, bool success, string text, AttributeDict misc)
         {
             if (success && !string.IsNullOrWhiteSpace(text))
             {
