@@ -394,7 +394,6 @@ namespace Wx3270
             {
                 this.ConnectHostEntry = null;
                 this.connectComplete = null;
-                this.connectErrorPopups = true;
                 this.BackEnd.RunAction(new BackEndAction(B3270.Action.Set, B3270.Setting.LoginMacro, string.Empty), ErrorBox.Ignore());
             }
 
