@@ -238,7 +238,7 @@ namespace Wx3270
                         this.ConnectHostEntry = null;
                         if (!fromUconnect && this.connectErrorPopups)
                         {
-                            this.ConnectError(result, misc.ContainsKey(B3270.Attribute.Retrying) && bool.Parse(misc[B3270.Attribute.Retrying]));
+                            this.ConnectError(result, false);
                         }
                     }
 
