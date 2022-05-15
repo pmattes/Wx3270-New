@@ -592,6 +592,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(OiaToolTipName.Unknown, "Cause unknown");
             I18n.LocalizeGlobal(OiaToolTipName.Disabled, "Disabled by script");
             I18n.LocalizeGlobal(OiaToolTipName.Field, "Waiting for the host to format the screen");
+            I18n.LocalizeGlobal(OiaToolTipName.FileTransfer, "Waiting for a file transfer");
 
             I18n.LocalizeGlobal(OiaToolTipName.Dbcs, "Invalid DBCS operation");
             I18n.LocalizeGlobal(OiaToolTipName.Numeric, "Non-number entered into numeric field");

@@ -45,5 +45,5 @@ Remove-Item tmp.iss
 
 # Create the no-install zipfiles.
 $files = Get-Content noinstall-files.txt
-$files.ForEach({$_ -replace '^', 'wx3270\bin\x64\Release\'}) | Compress-Archive -DestinationPath "wx3270-$version-noinstall64.zip"
-$files.ForEach({$_ -replace '^', 'wx3270\bin\x86\Release\'}) | Compress-Archive -DestinationPath "wx3270-$version-noinstall32.zip"
+$files.ForEach({$_ -replace '^', 'wx3270\bin\x64\Release\'}) | Compress-Archive -Force -DestinationPath "wx3270-$version-noinstall64.zip"
+$files.ForEach({$_ -replace '^', 'wx3270\bin\x86\Release\'}) | Compress-Archive -Force -DestinationPath "wx3270-$version-noinstall32.zip"
