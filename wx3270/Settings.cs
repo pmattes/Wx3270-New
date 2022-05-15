@@ -31,6 +31,7 @@ namespace Wx3270
             { B3270.Setting.PrinterName, "printer name" },
             { B3270.Setting.PrinterOptions, "printer options" },
             { B3270.Setting.Proxy, "proxy options" },
+            { B3270.Setting.Retry, "retry connection" },
             { B3270.Setting.TermName, "terminal name" },
             { B3270.Setting.Typeahead, "typeahead" },
             { B3270.Setting.ShowTiming, "show timing" },

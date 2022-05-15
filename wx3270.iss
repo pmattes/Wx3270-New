@@ -51,9 +51,9 @@ Source: "wx3270\bin\x64\Release\System.ValueTuple.xml"; DestDir: "{app}"; Flags:
 ; x86 files
 Source: "wx3270\bin\x86\Release\wx3270.exe"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
 Source: "wx3270\bin\x86\Release\wx3270.exe.config"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
-Source: "extern\x3270-win64\b3270.exe"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
-Source: "extern\x3270-win64\x3270if.exe"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
-Source: "extern\x3270-win64\pr3287.exe"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
+Source: "extern\x3270-win32\b3270.exe"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
+Source: "extern\x3270-win32\x3270if.exe"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
+Source: "extern\x3270-win32\pr3287.exe"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
 Source: "wx3270\bin\x86\Release\TraceHelper.exe"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
 Source: "wx3270\bin\x86\Release\TraceHelper.exe.config"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
 Source: "wx3270\bin\x86\Release\i18n-en.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode

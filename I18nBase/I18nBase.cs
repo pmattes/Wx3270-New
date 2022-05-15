@@ -250,12 +250,18 @@ namespace I18nBase
         /// <returns>Localized string.</returns>
         public static string Get(string path, string fallback = null)
         {
-            if (fallback != null && !localized.ContainsKey(path))
+            var found = localized.ContainsKey(path);
+            if (found)
+            {
+                return localized[path];
+            }
+
+            if (fallback != null)
             {
                 return fallback;
             }
 
-            return localized[path];
+            throw new Exception($"Uninitialized i18n for {path}");
         }
 
         /// <summary>
@@ -337,7 +343,7 @@ namespace I18nBase
             foundAssembly = null;
 
             // Try for a match on a file.
-            var tryFile = Path.Combine(CatalogDir, cultureName);
+            var tryFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.Combine(CatalogDir, cultureName));
             if (File.Exists(tryFile))
             {
                 foundFileName = tryFile;
