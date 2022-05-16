@@ -523,6 +523,9 @@ namespace Wx3270
                 args.Add("\"" + host + "\"");
             }
 
+            args.Add(Constants.Option.Culture);
+            args.Add(I18nBase.EffectiveCulture);
+
             if (editMode)
             {
                 args.Add(Constants.Option.Edit);
