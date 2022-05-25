@@ -86,10 +86,6 @@ namespace Wx3270
             // Register the uMacro() action.
             app.BackEnd.RegisterPassthru(Constants.Action.Macro, this.UiMacro);
 
-            // Substitute.
-            VersionSpecific.Substitute(this);
-            VersionSpecific.Substitute(this.contextMenuStrip1);
-
             // Enforce restrictions.
             if (app.Restricted(Restrictions.ChangeSettings))
             {
@@ -112,6 +108,10 @@ namespace Wx3270
 
             // Localize.
             I18n.Localize(this, this.toolTip1);
+
+            // Substitute.
+            VersionSpecific.Substitute(this);
+            VersionSpecific.Substitute(this.contextMenuStrip1);
         }
 
         /// <summary>

@@ -195,14 +195,6 @@ namespace Wx3270
             app.BackEnd.RegisterPassthru(Constants.Action.Connect, this.UiConnect);
             app.BackEnd.RegisterPassthru(Constants.Action.SwitchProfile, this.UiSwitchProfile);
 
-            // Fix up some text.
-            VersionSpecific.Substitute(this);
-            VersionSpecific.Substitute(this.hostContextMenuStrip);
-            VersionSpecific.Substitute(this.profileContextMenuStrip);
-            VersionSpecific.Substitute(this.brokenProfileContextMenuStrip);
-            VersionSpecific.Substitute(this.folderContextMenuStrip);
-            VersionSpecific.Substitute(this.defaultsContextMenuStrip);
-
             // Handle restrictions.
             if (app.Restricted(Restrictions.ModifyProfiles))
             {
@@ -319,6 +311,14 @@ namespace Wx3270
             this.exportProfileDialog.Title = I18n.Localize(this, "exportProfileDialog", this.exportProfileDialog.Title);
             this.shortcutDialog.Title = I18n.Localize(this, "shortcutDialog", this.shortcutDialog.Title);
             this.watchFolderDialog.Description = I18n.Localize(this, I18n.Combine("watchFolderDialog", "Description"), this.watchFolderDialog.Description);
+
+            // Fix up some text.
+            VersionSpecific.Substitute(this);
+            VersionSpecific.Substitute(this.hostContextMenuStrip);
+            VersionSpecific.Substitute(this.profileContextMenuStrip);
+            VersionSpecific.Substitute(this.brokenProfileContextMenuStrip);
+            VersionSpecific.Substitute(this.folderContextMenuStrip);
+            VersionSpecific.Substitute(this.defaultsContextMenuStrip);
 
             // Update some tool tips.
             if (this.app.Allowed(Restrictions.NewWindow))

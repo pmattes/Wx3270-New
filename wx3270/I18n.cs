@@ -47,10 +47,11 @@ namespace Wx3270
         /// </summary>
         /// <param name="control">Control to walk.</param>
         /// <param name="toolTip">Tool tip.</param>
+        /// <param name="always">True to recurse unconditionally.</param>
         /// <returns>Set of nodes in the control.</returns>
-        public static IEnumerable<I18nNode> Walk(Control control, ToolTip toolTip = null)
+        public static IEnumerable<I18nNode> Walk(Control control, ToolTip toolTip = null, bool always = false)
         {
-            return WalkInternal(control, toolTip);
+            return WalkInternal(control, toolTip, always);
         }
 
         /// <summary>
@@ -287,10 +288,11 @@ namespace Wx3270
         /// </summary>
         /// <param name="control">Control to walk.</param>
         /// <param name="toolTip">Tool tip.</param>
+        /// <param name="always">True to always recurse.</param>
         /// <returns>List of elements.</returns>
-        private static IEnumerable<I18nNode> WalkInternal(Control control, ToolTip toolTip)
+        private static IEnumerable<I18nNode> WalkInternal(Control control, ToolTip toolTip, bool always)
         {
-            if ((control.Tag as string) == NoWalk)
+            if (!always && (control.Tag as string) == NoWalk)
             {
                 return new List<I18nNode>();
             }
@@ -308,7 +310,7 @@ namespace Wx3270
 
             foreach (var child in control.Controls.OfType<Control>())
             {
-                ret.AddRange(WalkInternal(child, toolTip));
+                ret.AddRange(WalkInternal(child, toolTip, always));
             }
 
             return ret;

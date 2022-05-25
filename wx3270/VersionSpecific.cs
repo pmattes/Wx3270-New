@@ -124,6 +124,16 @@ namespace Wx3270
         public const string ProtectedAlt = "Protected";
 
         /// <summary>
+        /// The record symbol as it appears in constants, and is displayed on Windows 10.
+        /// </summary>
+        public const string Rec = "⏺";
+
+        /// <summary>
+        /// The record symbol as it is displayed on older versions.
+        /// </summary>
+        public const string RecAlt = "●";
+
+        /// <summary>
         /// Gets the displayed Add symbol.
         /// </summary>
         public static string AddDisplay => Win10OrGreater ? Add : AddAlt;
@@ -189,6 +199,11 @@ namespace Wx3270
         public static string ClockPlusSpace => Win10OrGreater ? Clock + " " : string.Empty;
 
         /// <summary>
+        /// Gets a value indicating whether the platform supports Private Use Area (PUA) characters.
+        /// </summary>
+        public static bool SupportsPua => Win10OrGreater;
+
+        /// <summary>
         /// Do version-specific text substitutions.
         /// </summary>
         /// <param name="text">Text to operate on.</param>
@@ -200,7 +215,8 @@ namespace Wx3270
                 .Replace(Delete, DeleteAlt)
                 .Replace(Edit + " ", string.Empty)
                 .Replace(Connect, ConnectAlt)
-                .Replace(Clock, ClockAlt);
+                .Replace(Clock, ClockAlt)
+                .Replace(Rec, RecAlt);
         }
 
         /// <summary>
@@ -214,7 +230,7 @@ namespace Wx3270
                 return;
             }
 
-            foreach (var node in I18n.Walk(control).Select(n => n.Control))
+            foreach (var node in I18n.Walk(control, always: true).Select(n => n.Control))
             {
                 node.Text = Substitute(node.Text);
             }
