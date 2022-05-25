@@ -285,9 +285,6 @@ namespace Wx3270
                 this.helpPictureBox.RemoveFromParent();
             }
 
-            // Substitute.
-            VersionSpecific.Substitute(this);
-
             // Localize.
             I18n.Localize(this, this.toolTip1);
             foreach (var checkPrefix in this.sets.Values)
@@ -297,6 +294,9 @@ namespace Wx3270
                     checkPrefix.CheckBox.Text = (checkPrefix.CheckBox.Tag as string) + " " + I18n.Get(Message.HostPrefix);
                 }
             }
+
+            // Substitute.
+            VersionSpecific.Substitute(this);
 
             // Set the profile name label, which we do not want localized.
             this.profileNameLabel.Text = hostEntry != null ? hostEntry.Profile.Name : profile.Name;
