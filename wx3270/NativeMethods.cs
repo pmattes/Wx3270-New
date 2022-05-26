@@ -74,6 +74,11 @@ namespace Wx3270
         public const int WM_KEYUP = 0x0101;
 
         /// <summary>
+        /// Source copy BitBlt operation.
+        /// </summary>
+        public const int SRCCOPY = 0xCC0020;
+
+        /// <summary>
         /// The Win32 GetStdHandle call.
         /// </summary>
         /// <param name="nStdHandle">Handle, as defined above.</param>
@@ -135,5 +140,21 @@ namespace Wx3270
         /// <returns>False for success.</returns>
         [DllImport("user32.dll")]
         public static extern bool GetKeyboardLayoutName([Out] StringBuilder pwszLKID);
+
+        /// <summary>
+        /// Bit block transfer operation.
+        /// </summary>
+        /// <param name="hdc">Destination device context handle.</param>
+        /// <param name="x">X coordinate of destination rectangle.</param>
+        /// <param name="y">Y coordinate of destination rectangle.</param>
+        /// <param name="cx">Width of source and destination rectangles.</param>
+        /// <param name="cy">Height of source and destination rectangles.</param>
+        /// <param name="hdcSrc">Handle to source device context.</param>
+        /// <param name="x1">X coordinate of source rectangle.</param>
+        /// <param name="y1">Y coordinate of source rectangle.</param>
+        /// <param name="rop">Raster operation code.</param>
+        /// <returns>Nonzero for success.</returns>
+        [DllImport("gdi32.dll")]
+        public static extern int BitBlt(IntPtr hdc, int x, int y, int cx, int cy, IntPtr hdcSrc, int x1, int y1, int rop);
     }
 }
