@@ -8,6 +8,7 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
+    using System.Runtime.InteropServices;
     using System.Windows.Forms;
     using I18nBase;
     using Wx3270.Contracts;
@@ -2689,6 +2690,29 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Create an image of the main screen.
+        /// </summary>
+        /// <returns>Bitmap.</returns>
+        private Image PrintClientRectangleToImage()
+        {
+            var bmp = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
+            using (var bmpGraphics = Graphics.FromImage(bmp))
+            {
+                var bmpDC = bmpGraphics.GetHdc();
+                using (Graphics formGraphics = Graphics.FromHwnd(this.Handle))
+                {
+                    var formDC = formGraphics.GetHdc();
+                    NativeMethods.BitBlt(bmpDC, 0, 0, this.ClientSize.Width, this.ClientSize.Height, formDC, 0, 0, NativeMethods.SRCCOPY);
+                    formGraphics.ReleaseHdc(formDC);
+                }
+
+                bmpGraphics.ReleaseHdc(bmpDC);
+            }
+
+            return bmp;
+        }
+
+        /// <summary>
         /// Take a screen snapshot.
         /// </summary>
         /// <param name="fileName">PNG file to save the image in.</param>
@@ -2703,8 +2727,7 @@ namespace Wx3270
             }
 
             errmsg = null;
-            var bmp = new Bitmap(this.Width, this.Height);
-            this.DrawToBitmap(bmp, new Rectangle(Point.Empty, this.Size));
+            using var bmp = this.PrintClientRectangleToImage();
             try
             {
                 bmp.Save(fileName);
