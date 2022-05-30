@@ -59,7 +59,7 @@
       "Name": "test",
       "ConnectionType": "Host",
       "Host": "127.0.0.1",
-      "Port": "9998",
+      "Port": "%PPORT%",
       "LuNames": "",
       "AllowStartTls": true,
       "Prefixes": "",
@@ -1611,7 +1611,7 @@
   "ListenPort": {
     "httpd": {
       "Address": "0.0.0.0",
-      "Port": 9997
+      "Port": %WPORT%
     }
   },
   "Printer": "",
