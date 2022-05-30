@@ -2715,7 +2715,7 @@ namespace Wx3270
         /// <summary>
         /// Take a screen snapshot.
         /// </summary>
-        /// <param name="fileName">PNG file to save the image in.</param>
+        /// <param name="fileName">File to save the image in.</param>
         /// <param name="errmsg">Error message.</param>
         /// <returns>True for success.</returns>
         private bool SnapScreen(string fileName, out string errmsg)
@@ -2726,6 +2726,7 @@ namespace Wx3270
                 return false;
             }
 
+            Application.DoEvents();
             errmsg = null;
             using var bmp = this.PrintClientRectangleToImage();
             try
