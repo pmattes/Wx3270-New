@@ -150,6 +150,11 @@ namespace Wx3270
         public bool NoProfileMode { get; private set; }
 
         /// <summary>
+        /// Gets a value indicating whether to watch the folder where the profile is.
+        /// </summary>
+        public bool NoWatchMode { get; private set; }
+
+        /// <summary>
         /// Gets the command-line host connection.
         /// </summary>
         public string HostConnection { get; private set; }
@@ -503,6 +508,9 @@ namespace Wx3270
                         case Constants.Option.NoScrollBar:
                             this.NoScrollBar = true;
                             break;
+                        case Constants.Option.NoWatch:
+                            this.NoWatchMode = true;
+                            break;
                         case Constants.Option.Profile:
                             profile = args[++i];
                             break;
@@ -702,7 +710,7 @@ namespace Wx3270
             // Start the profile tree.
             this.ProfileTracker = new ProfileTracker(this, Wx3270.ProfileManager.ProfileDirectory);
             this.ProfileTracker.Watch(Wx3270.ProfileManager.ProfileDirectory);
-            if (profile != null)
+            if (profile != null && !this.NoWatchMode)
             {
                 // Watch whatever directory the command-line profile is in, too.
                 this.ProfileTracker.Watch(Path.GetDirectoryName(Path.GetFullPath(profile)));

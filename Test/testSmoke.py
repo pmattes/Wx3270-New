@@ -31,6 +31,7 @@ import filecmp
 import os
 from subprocess import Popen, PIPE, DEVNULL
 import unittest
+import re
 import requests
 import tempfile
 import time
@@ -44,11 +45,25 @@ class TestWx3270Smoke(cti.cti):
     def test_wx3270_smoke(self):
 
         # Start 'playback' to feed wx3270.
-        with playback.playback(self, 'Test/ibmlink.trc', port=9998) as p:
+        pport, pts = cti.unused_port()
+        wport, wts = cti.unused_port()
+        with playback.playback(self, 'Test/ibmlink.trc', port=pport) as p:
+            pts.close()
+
+            # Create a profile.
+            with open('Test/TestProfile.wx3270', encoding='utf-8') as f:
+                content = f.read()
+            sub = re.sub('%PPORT%', str(pport), re.sub('%WPORT%', str(wport), content))
+            handle, profile_name = tempfile.mkstemp(suffix='.wx3270')
+            os.close(handle)
+            with open(profile_name, 'w', encoding='utf-8') as f:
+                print(sub, end='', file=f)
 
             # Start wx3270.
-            wx3270 = Popen(["wx3270/bin/x64/Debug/wx3270.exe", "-profile", "Test/TestProfile"])
-            self.check_listen(9997)
+            wx3270 = Popen(['wx3270/bin/x64/Debug/wx3270.exe', '-nowatch', '-readonly', '-profile', profile_name])
+            self.check_listen(wport)
+            wts.close()
+            os.unlink(profile_name)
 
             # Feed wx3270 some data.
             p.send_records(4)
@@ -59,7 +74,7 @@ class TestWx3270Smoke(cti.cti):
             # Dump the window contents.
             (handle, name) = tempfile.mkstemp(suffix='.gif')
             os.close(handle)
-            r = requests.get(f'http://127.0.0.1:9997/3270/rest/json/uSnapScreen("{name}")')
+            r = requests.get(f'http://127.0.0.1:{wport}/3270/rest/json/uSnapScreen("{name}")')
             self.assertEqual(requests.codes.ok, r.status_code)
 
         # Wait for the processes to exit.
