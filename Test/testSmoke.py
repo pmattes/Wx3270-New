@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (c) 2021 Paul Mattes.
+# Copyright (c) 2021-2022 Paul Mattes.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -27,44 +27,42 @@
 #
 # wx3270 smoke tests
 
-import unittest
-from subprocess import Popen, PIPE, DEVNULL
-import os
-import tempfile
 import filecmp
+import os
+from subprocess import Popen, PIPE, DEVNULL
+import unittest
 import requests
-import TestCommon
+import tempfile
+import time
 
-class TestWx3270Smoke(unittest.TestCase):
+import Common.Test.playback as playback
+import Common.Test.cti as cti
+
+class TestWx3270Smoke(cti.cti):
 
     # x3270 smoke test
     def test_wx3270_smoke(self):
 
-        # Start 'playback' to read wx3270's output.
-        playback = Popen(["extern/x3270-win64/playback.exe", "-w", "-p", "9998",
-            "Test/ibmlink.trc"], stdin=PIPE, stdout=DEVNULL)
-        TestCommon.check_listen(9998)
+        # Start 'playback' to feed wx3270.
+        with playback.playback(self, 'Test/ibmlink.trc', port=9998) as p:
 
-        # Start wx3270.
-        wx3270 = Popen(["wx3270/bin/Debug/wx3270.exe",
-            "-profile", "Test/TestProfile"])
-        TestCommon.check_listen(9997)
+            # Start wx3270.
+            wx3270 = Popen(["wx3270/bin/x64/Debug/wx3270.exe", "-profile", "Test/TestProfile"])
+            self.check_listen(9997)
 
-        # Feed wx3270 some data.
-        playback.stdin.write(b"r\nr\nr\nr\n")
-        playback.stdin.flush()
-        TestCommon.check_push(playback, 9997, 1)
+            # Feed wx3270 some data.
+            p.send_records(4)
 
-        # Dump the window contents.
-        (handle, name) = tempfile.mkstemp(suffix='.gif')
-        os.close(handle)
-        r = requests.get(f'http://127.0.0.1:9997/3270/rest/json/uSnapScreen("{name}")')
-        self.assertEqual(requests.codes.ok, r.status_code)
+            # Give it a moment to compose itself.
+            time.sleep(2)
+
+            # Dump the window contents.
+            (handle, name) = tempfile.mkstemp(suffix='.gif')
+            os.close(handle)
+            r = requests.get(f'http://127.0.0.1:9997/3270/rest/json/uSnapScreen("{name}")')
+            self.assertEqual(requests.codes.ok, r.status_code)
 
         # Wait for the processes to exit.
-        playback.stdin.close()
-        playback.kill()
-        playback.wait(timeout=2)
         wx3270.kill()
         wx3270.wait(timeout=2)
 
