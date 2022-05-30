@@ -69,12 +69,13 @@ class TestWx3270Smoke(cti.cti):
             p.send_records(4)
 
             # Give it a moment to compose itself.
-            time.sleep(2)
+            # time.sleep(1)
 
             # Dump the window contents.
             (handle, name) = tempfile.mkstemp(suffix='.gif')
             os.close(handle)
             r = requests.get(f'http://127.0.0.1:{wport}/3270/rest/json/uSnapScreen("{name}")')
+            # print('file is', name)
             self.assertEqual(requests.codes.ok, r.status_code)
 
         # Wait for the processes to exit.
@@ -82,6 +83,8 @@ class TestWx3270Smoke(cti.cti):
         wx3270.wait(timeout=2)
 
         # Make sure the image is correct.
+        if not filecmp.cmp(name, 'Test/ibmlink.gif'):
+            os.system(f'start name')
         self.assertTrue(filecmp.cmp(name, 'Test/ibmlink.gif'))
         os.unlink(name)
 
