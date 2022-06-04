@@ -7,6 +7,9 @@ namespace Wx3270
     /// <summary>
     /// Information about the release, beyond the Assembly Version.
     /// </summary>
+    /// <remarks>
+    /// This information is used by <see cref="Profile.VersionClass.FullVersion"></see>.
+    /// </remarks>
     public static class Release
     {
         /// <summary>
@@ -15,7 +18,7 @@ namespace Wx3270
         /// <remarks>
         /// CHANGE THIS WHENEVER PRE-RELEASE CODE IS CUT, AND MAKE SURE IT IS NULL WHEN A TAGGED RELEASE IS CUT.
         /// </remarks>
-        private const string PreReleaseIteration = "A";
+        private const string PreReleaseIteration = null;
 
         /// <summary>
         /// Release phases.
