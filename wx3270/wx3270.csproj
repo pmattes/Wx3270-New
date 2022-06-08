@@ -535,7 +535,9 @@
     <EmbeddedResource Include="VisibleControls.resx">
       <DependentUpon>VisibleControls.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="3270.ttf" />
+    <None Include="3270.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="app.manifest" />
     <None Include="ASCII sites.wx3270">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
