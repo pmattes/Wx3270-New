@@ -541,7 +541,10 @@ namespace Wx3270
                 this.visibleControls = new VisibleControls();
             }
 
-            this.visibleControls.Show(this.mainScreen);
+            if (!this.visibleControls.Visible)
+            {
+                this.visibleControls.Show(this.mainScreen);
+            }
         }
 
         /// <summary>
