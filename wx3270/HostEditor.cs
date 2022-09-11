@@ -682,7 +682,7 @@ namespace Wx3270
             }
 
             string error = null;
-            var badChars = " @,:.[]=";
+            var badChars = " @,:[]=";
             var text = textBox.Text.Trim(new[] { ' ' });
             textBox.Text = text;
             if (text.Any(c => badChars.Contains(c)))
