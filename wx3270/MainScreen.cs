@@ -2363,7 +2363,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void VScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
-            if (e.Type == ScrollEventType.EndScroll)
+            if (this.scrollBarDisplayed && e.Type == ScrollEventType.EndScroll)
             {
                 var setValue = this.App.ScreenImage.Thumb.Saved - e.NewValue;
                 if (setValue < 0)
