@@ -8,7 +8,6 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
-    using System.Runtime.InteropServices;
     using System.Windows.Forms;
     using I18nBase;
     using Wx3270.Contracts;
