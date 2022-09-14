@@ -249,7 +249,7 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Explcit disconnect from the host.
+        /// Explcit disconnect from the UI.
         /// </summary>
         public void Disconnect()
         {
@@ -365,22 +365,30 @@ namespace Wx3270
             this.connectMessageBox.Dispose();
             this.connectMessageBox = null;
 
-            if (result == DialogResult.Cancel && this.app.ConnectionState != ConnectionState.NotConnected)
+            if (result == DialogResult.Cancel)
             {
-                // Stop reconnecting, and suppress further connect pop-ups until it takes effect.
-                this.BackEnd.RunActions(
-                    new[]
-                    {
-                        new BackEndAction(
-                            B3270.Action.Set,
-                            B3270.Setting.Reconnect,
-                            B3270.Value.False,
-                            B3270.Setting.Retry,
-                            B3270.Value.False),
-                        new BackEndAction(B3270.Action.Disconnect),
-                    },
-                    ErrorBox.Completion(I18n.Get(Title.Disconnect)));
-                this.connectErrorPopups = false;
+                if (this.app.ConnectionState != ConnectionState.NotConnected)
+                {
+                    // Stop reconnecting, and suppress further connect pop-ups until it takes effect.
+                    this.BackEnd.RunActions(
+                        new[]
+                        {
+                            new BackEndAction(
+                                B3270.Action.Set,
+                                B3270.Setting.Reconnect,
+                                B3270.Value.False,
+                                B3270.Setting.Retry,
+                                B3270.Value.False),
+                            new BackEndAction(B3270.Action.Disconnect),
+                        },
+                        ErrorBox.Completion(I18n.Get(Title.Disconnect)));
+                    this.connectErrorPopups = false;
+                }
+
+                // This might have been an auto-reconnect entry.
+                this.ConnectHostEntry = null;
+                this.mainScreen.Retitle();
+
             }
         }
 
@@ -390,7 +398,7 @@ namespace Wx3270
         private void HostConnectionChange()
         {
             var connectionState = this.app.ConnectionState;
-            if (connectionState == ConnectionState.NotConnected)
+            if (connectionState == ConnectionState.NotConnected && this.ConnectHostEntry != null && this.ConnectHostEntry.AutoConnect != AutoConnect.Reconnect)
             {
                 this.ConnectHostEntry = null;
                 this.connectComplete = null;
