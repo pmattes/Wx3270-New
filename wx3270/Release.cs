@@ -18,7 +18,7 @@ namespace Wx3270
         /// <remarks>
         /// CHANGE THIS WHENEVER PRE-RELEASE CODE IS CUT, AND MAKE SURE IT IS NULL WHEN A TAGGED RELEASE IS CUT.
         /// </remarks>
-        private const string PreReleaseIteration = null; // "A";
+        private const string PreReleaseIteration = "A";
 
         /// <summary>
         /// Release phases.
