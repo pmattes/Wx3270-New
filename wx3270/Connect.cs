@@ -388,7 +388,6 @@ namespace Wx3270
                 // This might have been an auto-reconnect entry.
                 this.ConnectHostEntry = null;
                 this.mainScreen.Retitle();
-
             }
         }
 
