@@ -239,7 +239,6 @@ namespace Wx3270
                     writer.WriteLine(B3270.ResourceFormat.Value(B3270.ResourceName.Oversize, this.startupConfig.OversizeParameter));
                 }
 
-                writer.WriteLine(B3270.ResourceFormat.Value(B3270.ResourceName.UnlockDelay, B3270.Value.True));
                 writer.WriteLine(B3270.ResourceFormat.Value(B3270.ResourceName.TraceDir, Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory).Replace(@"\", @"\\")));
                 if (this.startupConfig.Trace)
                 {
