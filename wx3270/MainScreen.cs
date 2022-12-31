@@ -2191,6 +2191,9 @@ namespace Wx3270
                     this.activateTimer.Start();
                 }
             }
+
+            // Handle the activation.
+            this.App.KeyHandler.Activate();
         }
 
         /// <summary>

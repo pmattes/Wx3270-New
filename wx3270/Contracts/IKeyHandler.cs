@@ -50,5 +50,10 @@ namespace Wx3270.Contracts
         /// </summary>
         /// <param name="shift">Shift interface.</param>
         void Enter(IShift shift);
+
+        /// <summary>
+        /// Process a window activation.
+        /// </summary>
+        void Activate();
     }
 }
