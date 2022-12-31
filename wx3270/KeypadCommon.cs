@@ -381,6 +381,9 @@ namespace Wx3270
 
             // Flash the main screen, for identification.
             this.activateTimer.Start();
+
+            // Tell the key handler we have been activated.
+            this.KeyHandler.Activate();
         }
 
         /// <summary>

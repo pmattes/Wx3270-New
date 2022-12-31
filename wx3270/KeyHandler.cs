@@ -459,6 +459,19 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Form activation.
+        /// </summary>
+        public void Activate()
+        {
+            // The form has been activated. It is entirely possible that Windows told us about an Alt (LMenu) KeyDown, but
+            // will never tell us about the corresponding KeyUp, because it was used to do a window switch and we were not
+            // active at the right time. So give up on trying to track what modifiers are down.
+            this.modsPressed.Clear();
+            this.modDisqualified = false;
+            Trace.Line(Trace.Type.Key, "Activate: modDisqualified -> {0}", this.modDisqualified);
+        }
+
+        /// <summary>
         /// Translate a set of modifier keys to a keyboard modifier.
         /// </summary>
         /// <param name="modifiers">Set of modifier keys.</param>
