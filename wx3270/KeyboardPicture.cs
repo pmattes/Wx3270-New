@@ -10,6 +10,7 @@ namespace Wx3270
     using System.Globalization;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
     using System.Windows.Forms;
 
     using Microsoft.Win32;
@@ -696,7 +697,8 @@ namespace Wx3270
             this.modeGroupBox.Enabled = true;
             foreach (var label in this.keysPanel.Controls.OfType<Label>())
             {
-                label.Font = new Font(label.Font.Name, SmallFontSize);
+                var fontSize = SmallFontSize;
+                var fontStyle = FontStyle.Regular;
                 string tag;
                 if (label.Tag == null || string.IsNullOrEmpty(tag = (string)label.Tag))
                 {
@@ -704,6 +706,7 @@ namespace Wx3270
                 }
 
                 var text = string.Empty;
+                var toolTipText = string.Empty;
                 try
                 {
                     var key = tag;
@@ -748,23 +751,114 @@ namespace Wx3270
                         KeyMap<KeyboardMap>.ProfileChord(this.ChordName),
                         out KeyboardMap map))
                     {
-                        text = map.Actions;
+                        toolTipText = map.Actions;
+                        text = this.DecodeKeyAction(map.Actions, out bool single, out bool underline);
+                        if (single)
+                        {
+                            fontSize = LargeFontSize;
+                        }
+
+                        if (underline)
+                        {
+                            fontStyle = FontStyle.Underline;
+                        }
                     }
                     else if (vkey != 0 && this.ChordName == null)
                     {
                         var keyChar = KeyboardUtil.FromVkey(vkey, this.KeyboardModifierKeys, out bool isDead);
                         if (keyChar.HasValue)
                         {
-                            text = string.Format("Key(U+{0:X4})", (int)keyChar.Value);
+                            if ((int)keyChar.Value <= 0x20 || ((int)keyChar.Value >= 0x7f && (int)keyChar.Value < 0xa1))
+                            {
+                                var friendlyNames = new Dictionary<int, string>
+                                {
+                                    { 0x1b, "Escape" },
+                                    { 0x0a, "Line Feed" },
+                                    { 0x0d, "Carriage Return" },
+                                    { 0x20, "Space" },
+                                };
+                                if (friendlyNames.ContainsKey((int)keyChar.Value))
+                                {
+                                    text = friendlyNames[(int)keyChar.Value];
+                                    toolTipText = string.Format("Key(U+{0:X4})", (int)keyChar.Value);
+                                }
+                                else
+                                {
+                                    text = string.Format("Key(U+{0:X4})", (int)keyChar.Value);
+                                    toolTipText = text;
+                                }
+                            }
+                            else
+                            {
+                                text = keyChar.Value.ToString();
+                                toolTipText = string.Format("Key(U+{0:X4})", (int)keyChar.Value);
+                                fontSize = LargeFontSize;
+                            }
                         }
                     }
                 }
                 finally
                 {
                     label.Text = text;
-                    this.toolTip1.SetToolTip(label, text);
+                    label.Font = new Font(label.Font.Name, fontSize, fontStyle);
+                    this.toolTip1.SetToolTip(label, toolTipText);
                 }
             }
+        }
+
+        /// <summary>
+        /// Decode a 'Key()' action for display.
+        /// </summary>
+        /// <param name="action">Action to decode.</param>
+        /// <param name="single">Returned true if the action is a single key.</param>
+        /// <param name="underline">Returned true to display underlined.</param>
+        /// <returns>Display form of action.</returns>
+        private string DecodeKeyAction(string action, out bool single, out bool underline)
+        {
+            single = false;
+            underline = false;
+            if (action == B3270.Action.Comment)
+            {
+                return string.Empty;
+            }
+
+            if (!action.StartsWith("Key("))
+            {
+                return action;
+            }
+
+            // Single character.
+            var regex = new Regex(@"^Key\((?<key>.)\)$");
+            var matches = regex.Match(action);
+            if (matches.Success)
+            {
+                single = true;
+                return matches.Groups["key"].Value;
+            }
+
+            // APL symbol.
+            regex = new Regex(@"^Key\(apl_(?<apl>[a-zA-Z]+)\)$");
+            matches = regex.Match(action);
+            if (matches.Success)
+            {
+                foreach (var entry in DefaultKeypadMap.Map)
+                {
+                    if (entry.Value.Actions == action)
+                    {
+                        single = true;
+                        return entry.Value.Text;
+                    }
+                }
+
+                var aplSym = matches.Groups["apl"].Value;
+                if (aplSym.EndsWith("underbar"))
+                {
+                    underline = true;
+                    return aplSym.Substring(0, 1);
+                }
+            }
+
+            return action;
         }
 
         /// <summary>

@@ -131,7 +131,7 @@ namespace Wx3270
             { KeyMap<KeypadMap>.Key("l", KeyboardModifier.None), new KeypadMap { Text = "⎕", TextSize = 14F, Actions = B3270.Action.Key + "(apl_quad)" } },
             { KeyMap<KeypadMap>.Key("l", KeyboardModifier.Shift), new KeypadMap { Text = "⌷", TextSize = 14F, Actions = B3270.Action.Key + "(apl_squad)" } },
             { KeyMap<KeypadMap>.Key("semicolon", KeyboardModifier.None), new KeypadMap { Text = "⍎", TextSize = 14F, Actions = B3270.Action.Key + "(apl_downtackjot)" } },
-            { KeyMap<KeypadMap>.Key("semicolon", KeyboardModifier.Shift), new KeypadMap { Text = "≡", TextSize = 14F, Actions = B3270.Action.Key + "(apl_equalunderbar)" } },
+            { KeyMap<KeypadMap>.Key("semicolon", KeyboardModifier.Shift), new KeypadMap { Text = "≡", TextSize = 14F, Actions = B3270.Action.Key + "(apl_equiv)" } },
             { KeyMap<KeypadMap>.Key("apostrophe", KeyboardModifier.None), new KeypadMap { Text = "⍕", TextSize = 14F, Actions = B3270.Action.Key + "(apl_uptackjot)" } },
             { KeyMap<KeypadMap>.Key("z", KeyboardModifier.None), new KeypadMap { Text = "⊂", TextSize = 14F, Actions = B3270.Action.Key + "(apl_leftshoe)" } },
             { KeyMap<KeypadMap>.Key("x", KeyboardModifier.None), new KeypadMap { Text = "⊃", TextSize = 14F, Actions = B3270.Action.Key + "(apl_rightshoe)" } },
