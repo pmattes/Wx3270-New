@@ -74,23 +74,31 @@ namespace Wx3270
                 return;
             }
 
-            // Propagate the results to the setting dialog.
-            this.SetFont(this.ScreenFontDialog.Font, this.editedColors, this.ColorButton.Checked);
-            var font = this.ScreenFontDialog.Font;
-            this.fontLabel.Text = FriendlyName(font);
-            this.fontScreenSample.ScreenBox.ScreenNewFont(font, this.CreateSampleImage(this.ColorMode));
+            this.PropagateNewFont(this.ScreenFontDialog.Font);
+        }
+
+        /// <summary>
+        /// Step the font (one size bigger or smaller).
+        /// </summary>
+        /// <param name="newFont">New font.</param>
+        public void PropagateNewFont(Font newFont)
+        {
+            // Propagate to the setting dialog.
+            this.SetFont(newFont, this.editedColors, this.ColorButton.Checked);
+            this.fontLabel.Text = FriendlyName(newFont);
+            this.fontScreenSample.ScreenBox.ScreenNewFont(newFont, this.CreateSampleImage(this.ColorMode));
             this.fontScreenSample.Invalidate();
-            this.fontPreviewStatusLineLabel.Font = font;
+            this.fontPreviewStatusLineLabel.Font = newFont;
 
             // Change the screen.
-            this.mainScreen.Refont(this.editedFont);
+            this.mainScreen.Refont(newFont);
 
             // Change the profile.
-            var newFont = new FontProfile(this.editedFont);
+            var newFontProfile = new FontProfile(this.editedFont);
             this.ProfileManager.PushAndSave(
                 (current) =>
                 {
-                    current.Font = newFont;
+                    current.Font = newFontProfile;
                     current.Size = this.mainScreen.Size;
                 },
                 this.ChangeName(ChangeKeyword.Font));

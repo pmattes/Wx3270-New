@@ -307,14 +307,19 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             public const string QuitIfNotConnected = "uQuitIfNotConnected";
 
             /// <summary>
-            /// The name of the UI switch profile action.
-            /// </summary>
-            public const string SwitchProfile = "uSwitchProfile";
-
-            /// <summary>
             /// Save a copy of the main screen image to a file.
             /// </summary>
             public const string SnapScreen = "uSnapScreen";
+
+            /// <summary>
+            /// Make the emulator font bigger or smaller.
+            /// </summary>
+            public const string StepEfont = "uStepEfont";
+
+            /// <summary>
+            /// The name of the UI switch profile action.
+            /// </summary>
+            public const string SwitchProfile = "uSwitchProfile";
         }
 
         /// <summary>
@@ -346,6 +351,16 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             /// The keyboard map library.
             /// </summary>
             public const string Library = "Library";
+
+            /// <summary>
+            /// Keyword for making the font bigger.
+            /// </summary>
+            public const string Bigger = "bigger";
+
+            /// <summary>
+            /// Keyword for making the font smaller.
+            /// </summary>
+            public const string Smaller = "smaller";
         }
     }
 }

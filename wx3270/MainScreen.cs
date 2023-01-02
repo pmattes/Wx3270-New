@@ -1182,10 +1182,11 @@ namespace Wx3270
                 this.snapBox.RemoveFromParent();
             }
 
-            // Set up the screen snap action.
+            // Set up the screen snap and step emulator font actions.
             if (this.App.Allowed(Restrictions.ExternalFiles))
             {
                 this.App.BackEnd.RegisterPassthru(Constants.Action.SnapScreen, this.UiSnapScreen);
+                this.App.BackEnd.RegisterPassthru(Constants.Action.StepEfont, this.UiStepEfont);
             }
 
             // Localize.
@@ -2764,6 +2765,72 @@ namespace Wx3270
             // Take the snapshot in the UI thread.
             string errmsg = null;
             this.Invoke(new MethodInvoker(() => this.SnapScreen(args[0], out errmsg)));
+            if (string.IsNullOrEmpty(errmsg))
+            {
+                return PassthruResult.Success;
+            }
+            else
+            {
+                result = errmsg;
+                return PassthruResult.Failure;
+            }
+        }
+
+        /// <summary>
+        /// Increase or decrease the emulator font size.
+        /// </summary>
+        /// <param name="keyword">Bigger or Smaller.</param>
+        /// <param name="errmsg">Error message.</param>
+        /// <returns>True for success.</returns>
+        private bool StepEfont(string keyword, out string errmsg)
+        {
+            errmsg = null;
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                return false;
+            }
+
+            bool bigger = false;
+            if (keyword.Equals(Constants.Misc.Bigger, StringComparison.InvariantCultureIgnoreCase))
+            {
+                bigger = true;
+            }
+            else if (!keyword.Equals(Constants.Misc.Smaller, StringComparison.InvariantCultureIgnoreCase))
+            {
+                errmsg = $"Keyword must be '{Constants.Misc.Bigger}' or '{Constants.Misc.Smaller}'";
+                return false;
+            }
+
+            var newSize = this.ScreenFont.Size + (bigger ? 1.0F : -1.0F);
+            if (newSize > 0.0)
+            {
+                this.settings.PropagateNewFont(new Font(this.ScreenFont.FontFamily, newSize));
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// The UI step emulator font action.
+        /// </summary>
+        /// <param name="commandName">Command name.</param>
+        /// <param name="arguments">Command arguments.</param>
+        /// <param name="result">Returned result.</param>
+        /// <param name="tag">Tag for asynchronous completion.</param>
+        /// <returns>Pass-through result.</returns>
+        private PassthruResult UiStepEfont(string commandName, IEnumerable<string> arguments, out string result, string tag)
+        {
+            result = null;
+            var args = arguments.ToList();
+            if (args.Count != 1)
+            {
+                result = Constants.Action.StepEfont + "() takes 1 argument";
+                return PassthruResult.Failure;
+            }
+
+            // Take the snapshot in the UI thread.
+            string errmsg = null;
+            this.Invoke(new MethodInvoker(() => this.StepEfont(args[0], out errmsg)));
             if (string.IsNullOrEmpty(errmsg))
             {
                 return PassthruResult.Success;

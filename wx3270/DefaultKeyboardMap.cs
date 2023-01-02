@@ -83,6 +83,8 @@ namespace Wx3270
             { KeyMap<KeyboardMap>.Key(Keys.X, KeyboardModifier.Ctrl | KeyboardModifier.Shift | KeyboardModifier.ModeNvt), new KeyboardMap { Actions = B3270.Action.Key + "(U+0018)", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.RControlKey, KeyboardModifier.None | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Enter + "()" } },
             { KeyMap<KeyboardMap>.Key(Keys.Escape, KeyboardModifier.Shift), new KeyboardMap { Actions = B3270.Action.Toggle + "(" + B3270.Setting.AplMode + ")" } },
+            { KeyMap<KeyboardMap>.Key(Keys.Oemplus, KeyboardModifier.Ctrl), new KeyboardMap { Actions = Constants.Action.StepEfont + "(" + Constants.Misc.Bigger + ")" } },
+            { KeyMap<KeyboardMap>.Key(Keys.OemMinus, KeyboardModifier.Ctrl), new KeyboardMap { Actions = Constants.Action.StepEfont + "(" + Constants.Misc.Smaller + ")" } },
             { KeyMap<KeyboardMap>.Key("Scan29", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_diamond)", Exact = true } }, // `~
             { KeyMap<KeyboardMap>.Key("Scan29", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Comment, Exact = true } }, // `~
             { KeyMap<KeyboardMap>.Key("Scan02", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_diaeresis)", Exact = true } }, // 1!
