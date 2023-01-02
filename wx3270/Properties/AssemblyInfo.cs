@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Paul Mattes")]
 [assembly: AssemblyProduct("wx3270")]
-[assembly: AssemblyCopyright("Copyright © 2016-2022 Paul Mattes")]
+[assembly: AssemblyCopyright("Copyright © 2016-2023 Paul Mattes")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
