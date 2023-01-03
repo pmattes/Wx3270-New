@@ -75,6 +75,9 @@ Source: "wx3270\bin\x64\Release\Enter.wx3270"; DestDir: "{app}\Library"; Flags: 
 Source: "wx3270\bin\x64\Release\Local Processes.wx3270"; DestDir: "{app}\Library"; Flags: ignoreversion
 Source: "wx3270\bin\x64\Release\Right to Left.wx3270"; DestDir: "{app}\Library"; Flags: ignoreversion
 Source: "wx3270\bin\x64\Release\ASCII sites.wx3270"; DestDir: "{app}\Library"; Flags: ignoreversion
+Source: "wx3270\3270Condensed-Regular.ttf"; DestDir: "{autofonts}"; FontInstall: "IBM 3270 Condensed"
+Source: "wx3270\3270-Regular.ttf"; DestDir: "{autofonts}"; FontInstall: "IBM 3270"
+Source: "wx3270\3270SemiCondensed-Regular.ttf"; DestDir: "{autofonts}"; FontInstall: "IBM 3270 Semi-Condensed"
 Source: "wx3270\3270.ttf"; DestDir: "{autofonts}"; FontInstall: "3270 Regular"
 Source: "wx3270Restrict\bin\Release\wx3270Restrict.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "wx3270\bin\x64\Release\MessageCatalog\en"; DestDir: "{app}\MessageCatalog"; Flags: ignoreversion

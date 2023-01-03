@@ -17,9 +17,19 @@ namespace Wx3270
     public class FontProfile : IEquatable<FontProfile>
     {
         /// <summary>
+        /// The name of the bit-mapped 3270 font.
+        /// </summary>
+        public const string Name3270Font = "3270";
+
+        /// <summary>
+        /// The name of Ricardo Bánffy's 3270 font.
+        /// </summary>
+        public const string Name3270FontRb = "IBM 3270";
+
+        /// <summary>
         /// The default font name.
         /// </summary>
-        public const string DefaultName = "3270";
+        public const string DefaultName = Name3270FontRb;
 
         /// <summary>
         /// The default font size.
@@ -66,7 +76,7 @@ namespace Wx3270
         /// <summary>
         /// Initializes a new instance of the <see cref="FontProfile"/> class.
         /// </summary>
-        /// <param name="font">Font to capture</param>
+        /// <param name="font">Font to capture.</param>
         public FontProfile(Font font)
         {
             this.Name = font.Name;
@@ -113,7 +123,7 @@ namespace Wx3270
         /// <summary>
         /// Constructs a real <see cref="System.Drawing.Font"/> from a profile.
         /// </summary>
-        /// <returns>Real font</returns>
+        /// <returns>Real font.</returns>
         public Font Font()
         {
             var font = new Font(this.Name, this.EmSize, this.Style);
@@ -128,8 +138,8 @@ namespace Wx3270
         /// <summary>
         /// Equality test for a font profile.
         /// </summary>
-        /// <param name="other">Other profile</param>
-        /// <returns>True if they are equal</returns>
+        /// <param name="other">Other profile.</param>
+        /// <returns>True if they are equal.</returns>
         public bool Equals(FontProfile other)
         {
             if (other == null)

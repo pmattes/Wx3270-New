@@ -383,7 +383,7 @@ namespace Wx3270
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            var font3270 = this.ScreenFont.Name == MainScreen.Name3270Font;
+            var font3270 = this.ScreenFont.Name == FontProfile.Name3270Font || this.ScreenFont.Name.StartsWith(FontProfile.Name3270FontRb);
 
             if (font3270 && this.ScreenFont.SizeInPoints >= 10)
             {
