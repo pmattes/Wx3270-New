@@ -74,6 +74,22 @@ namespace Wx3270
     }
 
     /// <summary>
+    /// Printer type.
+    /// </summary>
+    public enum PrinterType
+    {
+        /// <summary>
+        /// Real printer.
+        /// </summary>
+        Printer,
+
+        /// <summary>
+        /// Save to files.
+        /// </summary>
+        File,
+    }
+
+    /// <summary>
     /// Configurable options, serialized in a file.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
@@ -380,6 +396,13 @@ namespace Wx3270
         /// </summary>
         [JsonProperty]
         public Dictionary<string, ListenPort> ListenPort { get; set; } = new Dictionary<string, ListenPort>();
+
+        /// <summary>
+        /// Gets or sets the printer type.
+        /// </summary>
+        [JsonProperty]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public PrinterType PrinterType { get; set; } = PrinterType.Printer;
 
         /// <summary>
         /// Gets or sets the printer name.

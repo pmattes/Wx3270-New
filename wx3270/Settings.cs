@@ -1038,6 +1038,16 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// The save directory text box was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void SaveDirectory_Click(object sender, EventArgs e)
+        {
+            this.SaveDirectoryClick(sender, e);
+        }
+
+        /// <summary>
         /// Context for a sample screen image.
         /// </summary>
         private class ScreenSample
@@ -1201,6 +1211,16 @@ namespace Wx3270
             /// Scroll bar.
             /// </summary>
             public const string ScrollBar = "ScrollBar";
+
+            /// <summary>
+            /// Printer type (real printer or save to files).
+            /// </summary>
+            public const string PrinterType = "PrinterType";
+
+            /// <summary>
+            /// Printer save path.
+            /// </summary>
+            public const string PrinterSavePath = "PrinterSavePath";
         }
     }
 }

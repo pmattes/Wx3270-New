@@ -26,6 +26,11 @@ namespace Wx3270
         private RadioEnum<CursorType> cursorType;
 
         /// <summary>
+        /// The printer type radio buttons.
+        /// </summary>
+        private RadioEnum<PrinterType> printerType;
+
+        /// <summary>
         /// Initialize the Options tab.
         /// </summary>
         private void OptionsTabInit()
@@ -42,6 +47,8 @@ namespace Wx3270
             // Set up the radio buttons.
             this.cursorType = new RadioEnum<CursorType>(this.CursorGroupBox);
             this.cursorType.Changed += this.CursorCheckedChanged;
+            this.printerType = new RadioEnum<PrinterType>(this.printerSessionGroupBox);
+            this.printerType.Changed += this.PrinterTypeChanged;
 
             // Set up the printer list.
             foreach (var printer in PrinterSettings.InstalledPrinters)
@@ -89,7 +96,8 @@ namespace Wx3270
         private bool MergeOptions(Profile toProfile, Profile fromProfile, ImportType importType)
         {
             // Note: We do not merge the description.
-            if (toProfile.Printer == fromProfile.Printer &&
+            if (toProfile.PrinterType == fromProfile.PrinterType &&
+                toProfile.Printer == fromProfile.Printer &&
                 toProfile.PrinterCodePage == fromProfile.PrinterCodePage &&
                 toProfile.PrinterOptions == fromProfile.PrinterOptions &&
                 toProfile.NopInterval == fromProfile.NopInterval)
@@ -97,6 +105,7 @@ namespace Wx3270
                 return false;
             }
 
+            toProfile.PrinterType = fromProfile.PrinterType;
             toProfile.Printer = fromProfile.Printer;
             toProfile.PrinterCodePage = fromProfile.PrinterCodePage;
             toProfile.PrinterOptions = fromProfile.PrinterOptions;
@@ -259,14 +268,29 @@ namespace Wx3270
             // Set always insert.
             this.alwaysInsertCheckBox.Checked = profile.AlwaysInsert;
 
+            // Set the printer type and name/path.
+            this.printerType.Value = profile.PrinterType;
+            if (this.printerType.Value == PrinterType.Printer)
+            {
+                this.SetPrinterName(profile.Printer);
+                this.savePathTextBox.Text = string.Empty;
+            }
+            else
+            {
+                this.savePathTextBox.Text = profile.Printer;
+                this.printerComboBox.SelectedIndex = -1;
+            }
+
+            this.savePathLabel.Enabled = this.printerType.Value == PrinterType.File;
+            this.savePathTextBox.Enabled = this.printerType.Value == PrinterType.File;
+            this.printerNameLabel.Enabled = this.printerType.Value == PrinterType.Printer;
+            this.printerComboBox.Enabled = this.printerType.Value == PrinterType.Printer;
+
             // Set printer options.
             this.printerOptionsTextBox.Text = profile.PrinterOptions;
 
             // Set printer code page.
             this.printerCodePageTextBox.Text = profile.PrinterCodePage;
-
-            // Set printer name.
-            this.SetPrinterName(profile.Printer);
 
             // Set NOP interval.
             this.nopCheckBox.Checked = profile.NopInterval != 0;
@@ -306,6 +330,37 @@ namespace Wx3270
                 this.BackEnd.RunAction(
                     new BackEndAction(B3270.Action.Set, B3270.Setting.AltCursor, B3270.ToggleArgument.Action(this.CursorType == CursorType.Underscore)),
                     ErrorBox.Completion(I18n.Get(Title.Settings)));
+            }
+        }
+
+        /// <summary>
+        /// One of the printer type radio buttons changed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void PrinterTypeChanged(object sender, EventArgs e)
+        {
+            if (this.ProfileManager.Current.PrinterType == this.printerType.Value)
+            {
+                return;
+            }
+
+            // Change the profile.
+            if (this.ProfileManager.PushAndSave(
+                (current) =>
+                {
+                    current.PrinterType = this.printerType.Value;
+                    current.Printer = string.Empty;
+                },
+                this.ChangeName(ChangeKeyword.PrinterType)))
+            {
+                // Change visibility and values.
+                this.savePathLabel.Enabled = this.printerType.Value == PrinterType.File;
+                this.savePathTextBox.Enabled = this.printerType.Value == PrinterType.File;
+                this.printerNameLabel.Enabled = this.printerType.Value == PrinterType.Printer;
+                this.printerComboBox.Enabled = this.printerType.Value == PrinterType.Printer;
+                this.printerComboBox.SelectedIndex = -1;
+                this.savePathTextBox.Text = string.Empty;
             }
         }
 
@@ -487,6 +542,24 @@ namespace Wx3270
             if (this.ProfileManager.PushAndSave((current) => current.WindowTitle = this.titleTextBox.Text, this.ChangeName(ChangeKeyword.WindowTitle)))
             {
                 this.mainScreen.Retitle();
+            }
+        }
+
+        /// <summary>
+        /// The save directory text box was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void SaveDirectoryClick(object sender, EventArgs e)
+        {
+            switch (this.printerSaveFolderBrowserDialog.ShowDialog())
+            {
+                case DialogResult.Cancel:
+                    return;
+                case DialogResult.OK:
+                    this.savePathTextBox.Text = this.printerSaveFolderBrowserDialog.SelectedPath;
+                    this.ProfileManager.PushAndSave((current) => current.Printer = this.savePathTextBox.Text, this.ChangeName(ChangeKeyword.PrinterSavePath));
+                    break;
             }
         }
 
