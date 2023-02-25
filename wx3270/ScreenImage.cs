@@ -212,52 +212,125 @@ namespace Wx3270
         /// <returns>True if screen changed.</returns>
         public bool SetSelect(int row, int column, bool selected)
         {
+            var changed = false;
             if (selected)
             {
+                // Set selected state.
                 if (!this.Image[row, column].GraphicRendition.HasFlag(GraphicRendition.Selected))
                 {
                     this.Image[row, column].GraphicRendition |= GraphicRendition.Selected;
-                    return true;
+                    changed = true;
+                }
+
+                // Include DBCS. Either side causes both sides to be selected.
+                if (this.Image[row, column].IsDbcsLeft)
+                {
+                    if (!this.Image[row, column + 1].GraphicRendition.HasFlag(GraphicRendition.Selected))
+                    {
+                        this.Image[row, column + 1].GraphicRendition |= GraphicRendition.Selected;
+                        changed = true;
+                    }
+                }
+
+                if (this.Image[row, column].IsDbcsRight)
+                {
+                    if (!this.Image[row, column - 1].GraphicRendition.HasFlag(GraphicRendition.Selected))
+                    {
+                        this.Image[row, column - 1].GraphicRendition |= GraphicRendition.Selected;
+                        changed = true;
+                    }
                 }
             }
             else
             {
+                // Clear selected state.
                 if (this.Image[row, column].GraphicRendition.HasFlag(GraphicRendition.Selected))
                 {
                     this.Image[row, column].GraphicRendition &= ~GraphicRendition.Selected;
-                    return true;
+                    changed = true;
+                }
+
+                // Cover DBCS. Clearing either side causes both sides to be deselected.
+                if (this.Image[row, column].IsDbcsLeft)
+                {
+                    if (this.Image[row, column + 1].GraphicRendition.HasFlag(GraphicRendition.Selected))
+                    {
+                        this.Image[row, column + 1].GraphicRendition &= ~GraphicRendition.Selected;
+                        changed = true;
+                    }
+                }
+
+                if (this.Image[row, column].IsDbcsRight)
+                {
+                    if (this.Image[row, column - 1].GraphicRendition.HasFlag(GraphicRendition.Selected))
+                    {
+                        this.Image[row, column - 1].GraphicRendition &= ~GraphicRendition.Selected;
+                        changed = true;
+                    }
                 }
             }
 
-            return false;
+            return changed;
         }
 
         /// <summary>
-        /// Set a region as selected.
+        /// Set a region to be selected, and clear everything else. NVT mode.
         /// </summary>
-        /// <param name="row">Row (0-origin).</param>
-        /// <param name="column">Column (0-origin).</param>
-        /// <param name="rows">Number of rows.</param>
-        /// <param name="columns">Number of columns.</param>
-        /// <returns>True if screen changed.</returns>
-        public bool SetSelect(int row, int column, int rows, int columns)
+        /// <param name="startBaddr">Start buffer address.</param>
+        /// <param name="endBaddr">End buffer address, inclusive.</param>
+        /// <returns>True if anything changed.</returns>
+        public bool SetSelectNvt(int startBaddr, int endBaddr)
         {
+            // If endBaddr is the left half of a DBCS character, include the right half.
+            // If we don't do this, then when we scanned the right half, we would unselect the left half.
+            if (this.Image[endBaddr / this.MaxColumns, endBaddr % this.MaxColumns].IsDbcsLeft)
+            {
+                endBaddr++;
+            }
+
             var changed = false;
             for (var r = 0; r < this.MaxRows; r++)
             {
                 for (var c = 0; c < this.MaxColumns; c++)
                 {
-                    var isSet = this.SelectState switch
-                    {
-                        SelectState.LastNvt =>
-                            IsLinearSelected(r, c, row, column, rows, columns),
-                        _ =>
-                            r >= row && r < row + rows && c >= column && c < column + columns,
-                    };
+                    var baddr = (r * this.MaxColumns) + c;
                     changed |= this.SetSelect(
                         r,
                         c,
-                        isSet);
+                        baddr >= startBaddr && baddr <= endBaddr);
+                }
+            }
+
+            return changed;
+        }
+
+        /// <summary>
+        /// Set a region to be selected, and clear everything else. 3270 mode.
+        /// </summary>
+        /// <param name="startRow0">Starting row, 0-origin.</param>
+        /// <param name="startColumn0">Starting column, 0-origin.</param>
+        /// <param name="rows">Number of rows.</param>
+        /// <param name="columns">Number of columns.</param>
+        /// <returns>True if anything changed.</returns>
+        public bool SetSelect3270(int startRow0, int startColumn0, int rows, int columns)
+        {
+            var changed = false;
+            for (var r = 0; r < this.MaxRows; r++)
+            {
+                // If the last character in this row is the left half of a DBCS character, include the right half.
+                // If we don't do this, then when we scanned the right half, we would unselect the left half.
+                int mc = columns;
+                if (r >= startRow0 && r < startRow0 + rows && this.Image[r, startColumn0 + columns - 1].IsDbcsLeft)
+                {
+                    mc++;
+                }
+
+                for (var c = 0; c < this.MaxColumns; c++)
+                {
+                    changed |= this.SetSelect(
+                        r,
+                        c,
+                        r >= startRow0 && r < startRow0 + rows && c >= startColumn0 && c < startColumn0 + mc);
                 }
             }
 
@@ -359,52 +432,6 @@ namespace Wx3270
 
             this.CursorRow1 = 1;
             this.CursorColumn1 = 1;
-        }
-
-        /// <summary>
-        /// Tests a screen location for a linear selection.
-        /// </summary>
-        /// <param name="row">Row to evaluate.</param>
-        /// <param name="column">Column to evaluate.</param>
-        /// <param name="startRow">Start row of selection (0-origin).</param>
-        /// <param name="startColumn">Start column of selection (0-origin).</param>
-        /// <param name="rows">Number of rows selected.</param>
-        /// <param name="columns">Number of columns selected.</param>
-        /// <returns>True if selected.</returns>
-        private static bool IsLinearSelected(int row, int column, int startRow, int startColumn, int rows, int columns)
-        {
-            if (row < startRow || row >= startRow + rows)
-            {
-                // No match vertically.
-                return false;
-            }
-
-            if (row == startRow)
-            {
-                // First row.
-                if (column >= startColumn)
-                {
-                    if (rows == 1)
-                    {
-                        // First and last row.
-                        return column < startColumn + columns;
-                    }
-
-                    // First row.
-                    return true;
-                }
-
-                return false;
-            }
-
-            if (rows > 1 && row < startRow + rows - 1)
-            {
-                // Middle row.
-                return true;
-            }
-
-            // Last row.
-            return column < startColumn + columns;
         }
     }
 }

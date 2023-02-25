@@ -1970,8 +1970,8 @@ namespace Wx3270
                 return;
             }
 
-            var cellLocation = this.screenBox.CellCoordinates(e.Location);
-            this.App.SelectionManager.MouseDown(cellLocation.Item1, cellLocation.Item2, ModifierKeys.HasFlag(Keys.Shift));
+            var (row1, column1) = this.screenBox.CellCoordinates1(e.Location);
+            this.App.SelectionManager.MouseDown(row1, column1, ModifierKeys.HasFlag(Keys.Shift), e.Location);
         }
 
         /// <summary>
@@ -1986,8 +1986,8 @@ namespace Wx3270
                 return;
             }
 
-            var cellLocation = this.screenBox.CellCoordinates(e.Location);
-            this.App.SelectionManager.MouseMove(cellLocation.Item1, cellLocation.Item2);
+            var (row1, column1) = this.screenBox.CellCoordinates1(e.Location);
+            this.App.SelectionManager.MouseMove(this.screenBox, row1, column1, e.Location);
         }
 
         /// <summary>
@@ -2002,8 +2002,8 @@ namespace Wx3270
                 return;
             }
 
-            var cellLocation = this.screenBox.CellCoordinates(e.Location);
-            this.App.SelectionManager.MouseUp(cellLocation.Item1, cellLocation.Item2);
+            var (row1, column1) = this.screenBox.CellCoordinates1(e.Location);
+            this.App.SelectionManager.MouseUp(row1, column1);
         }
 
         /// <summary>

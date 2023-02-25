@@ -821,26 +821,25 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Set the selection state of one cell.
+        /// Set a region to be selected, and clear everything else. NVT mode.
         /// </summary>
-        /// <param name="row">Row (0-origin).</param>
-        /// <param name="column">Column (0-origin).</param>
-        /// <param name="selected">Desired state.</param>
-        public void SetSelect(int row, int column, bool selected)
+        /// <param name="startBaddr">Start buffer address.</param>
+        /// <param name="endBaddr">End buffer address, inclusive.</param>
+        public void SetSelectNvt(int startBaddr, int endBaddr)
         {
-            this.screen.SetSelect(row, column, selected);
+            this.screen.SetSelectNvt(startBaddr, endBaddr);
         }
 
         /// <summary>
-        /// Set a region to be selected, and clear everything else.
+        /// Set a region to be selected, and clear everything else. 3270 mode.
         /// </summary>
-        /// <param name="row">Row (0-origin).</param>
-        /// <param name="column">Column (0-origin).</param>
+        /// <param name="startRow0">Starting row, 0-origin.</param>
+        /// <param name="startColumn0">Starting column, 0-origin.</param>
         /// <param name="rows">Number of rows.</param>
         /// <param name="columns">Number of columns.</param>
-        public void SetSelect(int row, int column, int rows, int columns)
+        public void SetSelect3270(int startRow0, int startColumn0, int rows, int columns)
         {
-            this.screen.SetSelect(row, column, rows, columns);
+            this.screen.SetSelect3270(startRow0, startColumn0, rows, columns);
         }
 
         /// <summary>

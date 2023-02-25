@@ -4,6 +4,8 @@
 
 namespace Wx3270.Contracts
 {
+    using System.Drawing;
+
     /// <summary>
     /// Selection manager.
     /// </summary>
@@ -17,24 +19,27 @@ namespace Wx3270.Contracts
         /// <summary>
         /// Process a mouse button down event.
         /// </summary>
-        /// <param name="row1">1-origin row</param>
-        /// <param name="column1">1-origin column</param>
-        /// <param name="shift">True if shift key is presses</param>
-        void MouseDown(int row1, int column1, bool shift);
+        /// <param name="row1">1-origin row.</param>
+        /// <param name="column1">1-origin column.</param>
+        /// <param name="shift">True if shift key is presses.</param>
+        /// <param name="location">Untranslated location.</param>
+        void MouseDown(int row1, int column1, bool shift, Point location);
 
         /// <summary>
         /// Process a mouse move event.
         /// </summary>
-        /// <param name="row">1-origin row</param>
-        /// <param name="column">1-origin column</param>
-        void MouseMove(int row, int column);
+        /// <param name="cell">Cell measurer.</param>
+        /// <param name="row1">1-origin row.</param>
+        /// <param name="column1">1-origin column.</param>
+        /// <param name="location">Untranslated location.</param>
+        void MouseMove(ICell cell, int row1, int column1, Point location);
 
         /// <summary>
         /// Process a mouse up event.
         /// </summary>
-        /// <param name="row">1-origin row</param>
-        /// <param name="column">1-origin column</param>
-        void MouseUp(int row, int column);
+        /// <param name="row1">1-origin row.</param>
+        /// <param name="column1">1-origin column.</param>
+        void MouseUp(int row1, int column1);
 
         /// <summary>
         /// Clear the selection.
