@@ -538,6 +538,11 @@ namespace Wx3270
         /// </summary>
         private void Reselect()
         {
+            // Whenever we change the selection state, we can forget about bouncing the cursor back
+            // from a double-click.
+            this.cursorUnmoveRow1 = null;
+            this.cursorUnmoveColumn1 = null;
+
             if (this.app.ScreenImage.SelectState == SelectState.LastNvt)
             {
                 // Do an NVT-mode continuous select, passing the start and end buffer addresses.
@@ -637,8 +642,6 @@ namespace Wx3270
             // Change the selection area.
             this.selectEnd = newEnd;
             this.Reselect();
-
-            // Move the cursor, too.
 
             // Success.
             return PassthruResult.Success;
