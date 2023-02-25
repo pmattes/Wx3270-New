@@ -7,6 +7,7 @@ namespace Wx3270
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Drawing;
     using System.Linq;
     using System.Text;
     using System.Windows.Forms;
@@ -45,11 +46,6 @@ namespace Wx3270
         private readonly Wx3270App app;
 
         /// <summary>
-        /// The mouse-up timer.
-        /// </summary>
-        private readonly Timer mouseUpTimer = new Timer();
-
-        /// <summary>
         /// The starting corner of the selection.
         /// </summary>
         private Corner selectAnchor;
@@ -75,6 +71,36 @@ namespace Wx3270
         private bool mouseIsDown = false;
 
         /// <summary>
+        /// Location in pixels where the first mouse click happened.
+        /// </summary>
+        private Point initialLocation;
+
+        /// <summary>
+        /// Row where the first mouse click happened.
+        /// </summary>
+        private int initialRow0;
+
+        /// <summary>
+        /// Column where the first mouse click happened.
+        /// </summary>
+        private int initialColumn0;
+
+        /// <summary>
+        /// Cursor row before we moved it.
+        /// </summary>
+        private int? cursorUnmoveRow1;
+
+        /// <summary>
+        /// Cursor column before we moved it.
+        /// </summary>
+        private int? cursorUnmoveColumn1;
+
+        /// <summary>
+        /// True if MouseUp should move the cursor.
+        /// </summary>
+        private bool canMove = false;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SelectionManager"/> class.
         /// </summary>
         /// <param name="app">Application context.</param>
@@ -95,10 +121,6 @@ namespace Wx3270
                     new BackEndAction(B3270.Action.Set, B3270.Setting.OverlayPaste, B3270.ToggleAction.Set),
                     ErrorBox.Completion(I18n.Get(Title.Initialization)));
             };
-
-            // Get the mouse-up timer ready.
-            this.mouseUpTimer.Interval = SystemInformation.DoubleClickTime;
-            this.mouseUpTimer.Tick += this.MouseUpTick;
         }
 
         /// <summary>
@@ -128,26 +150,6 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Gets the starting row of the selection, 0-origin.
-        /// </summary>
-        private int SelectStartRow0 => this.SelectStartBaddr0 / this.app.ScreenImage.LogicalColumns;
-
-        /// <summary>
-        /// Gets the ending row of the selection, 0-origin.
-        /// </summary>
-        private int SelectEndRow0 => this.SelectEndBaddr0 / this.app.ScreenImage.LogicalColumns;
-
-        /// <summary>
-        /// Gets the starting column of the selection, 0-origin.
-        /// </summary>
-        private int SelectStartColumn0 => this.SelectStartBaddr0 % this.app.ScreenImage.LogicalColumns;
-
-        /// <summary>
-        /// Gets the ending column of the selection, 0-origin.
-        /// </summary>
-        private int SelectEndColumn0 => this.SelectEndBaddr0 % this.app.ScreenImage.LogicalColumns;
-
-        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]
@@ -168,7 +170,7 @@ namespace Wx3270
         }
 
         /// <inheritdoc />
-        public void MouseDown(int row1, int column1, bool shift)
+        public void MouseDown(int row1, int column1, bool shift, Point location)
         {
             if ((DateTime.UtcNow - this.activateTime).TotalMilliseconds < ActivateClickMsec)
             {
@@ -177,9 +179,13 @@ namespace Wx3270
 
             this.mouseIsDown = true;
 
-            if (!shift)
+            if (!shift && this.Unselect())
             {
-                this.Unselect();
+                this.canMove = false;
+            }
+            else
+            {
+                this.canMove = true;
             }
 
             var image = this.app.ScreenImage;
@@ -191,7 +197,15 @@ namespace Wx3270
                 // First, no triple clicks.
                 this.clickTime = DateTime.MinValue;
 
-                this.mouseUpTimer.Stop();
+                this.canMove = false;
+
+                if (this.cursorUnmoveRow1.HasValue)
+                {
+                    // Undo a cursor move.
+                    this.MoveTo(this.cursorUnmoveRow1.Value, this.cursorUnmoveColumn1.Value);
+                    this.cursorUnmoveRow1 = null;
+                    this.cursorUnmoveColumn1 = null;
+                }
 
                 if (shift)
                 {
@@ -207,8 +221,9 @@ namespace Wx3270
                     {
                         // No visible text in this spot.
                         this.Reselect();
-                        return;
                     }
+
+                    return;
                 }
 
                 var leftColumn0 = column0;
@@ -329,35 +344,158 @@ namespace Wx3270
 
                 this.selectEnd = new Corner(row0, column0);
                 this.Reselect();
+                this.canMove = false;
             }
             else
             {
-                this.selectAnchor = new Corner(row0, column0);
-                this.mouseUpTimer.Start();
+                this.initialLocation = location;
+                this.initialRow0 = row0;
+                this.initialColumn0 = column0;
             }
 
             this.clickTime = DateTime.UtcNow;
         }
 
         /// <inheritdoc />
-        public void MouseMove(int row, int column)
+        public void MouseMove(ICell cell, int row1, int column1, Point location)
         {
-            if (this.mouseIsDown)
-            {
-                this.selectEnd = new Corner(row - 1, column - 1);
-                if (this.selectAnchor == null)
-                {
-                    this.selectAnchor = new Corner(row - 1, column - 1);
-                }
+            var row0 = row1 - 1;
+            var column0 = column1 - 1;
 
-                this.Reselect();
-                this.mouseUpTimer.Stop();
+            if (this.clickTime == DateTime.MinValue)
+            {
+                // Double click: ignore mouse movement.
+                return;
             }
+
+            if (!this.mouseIsDown)
+            {
+                // Should not happen.
+                return;
+            }
+
+            if (this.selectAnchor == null)
+            {
+                do
+                {
+                    // Initial movement.
+                    int? anchorRow0 = null;
+                    int? anchorColumn0 = null;
+                    int? endColumn0 = null;
+
+                    if (location.X < this.initialLocation.X)
+                    {
+                        // Movement to the left.
+                        if (cell.WithinRightThird(this.initialLocation))
+                        {
+                            if (cell.WithinLeftThird(this.initialLocation) || column0 < this.initialColumn0)
+                            {
+                                // Moved enough to set the anchor to the initial cell.
+                                anchorColumn0 = this.initialColumn0;
+                            }
+                        }
+                        else if (column0 < this.initialColumn0 && cell.WithinLeftHalf(location))
+                        {
+                            // Moved enough to set the anchor to the cell to the left of the initial cell.
+                            anchorColumn0 = this.initialColumn0 - 1;
+                        }
+
+                        if (anchorColumn0 != null)
+                        {
+                            // If we're in the same column as we started, that's the end column.
+                            // Otherwise, if we're in the left half of a different column, that's the end column.
+                            // Otherwise, the end column is the one to the right of where we are now.
+                            endColumn0 = (column0 == this.initialColumn0) ? column0 :
+                                (cell.WithinLeftHalf(location) ? column0 : column0 + 1);
+                        }
+                    }
+                    else if (location.X > this.initialLocation.X)
+                    {
+                        // Movement to the right.
+                        if (cell.WithinLeftThird(this.initialLocation))
+                        {
+                            if (cell.WithinRightThird(this.initialLocation) || column0 > this.initialColumn0)
+                            {
+                                // Moved enough to set the anchor to the initial cell.
+                                anchorColumn0 = this.initialColumn0;
+                            }
+                        }
+                        else if (column0 > this.initialColumn0 && cell.WithinRightHalf(location))
+                        {
+                            // Moved enough to set the anchor to the cell to the right of the initial cell.
+                            anchorColumn0 = this.initialColumn0 + 1;
+                        }
+
+                        if (anchorColumn0 != null)
+                        {
+                            // If we're in the same column as we started, that's the end column.
+                            // Otherwise, if we're in the right half of a different column, that's the end column.
+                            // Otherwise, the end column is the one to the left of where we are now.
+                            endColumn0 = (column0 == this.initialColumn0) ? column0 :
+                                (cell.WithinRightHalf(location) ? column0 : column0 - 1);
+                        }
+                    }
+
+                    if (((row0 > this.initialRow0) && cell.WithinBottomHalf(location)) ||
+                        ((row0 < this.initialRow0) && cell.WithinTopHalf(location)))
+                    {
+                        // Moved up or down by a row.
+                        anchorRow0 = this.initialRow0;
+                    }
+
+                    if (anchorColumn0 == null && anchorRow0 == null)
+                    {
+                        // Not enough movement in either dimension.
+                        // break;
+                        return;
+                    }
+
+                    if (anchorRow0 == null)
+                    {
+                        // Insufficient vertical movement.
+                        anchorRow0 = this.initialRow0;
+                    }
+
+                    if (anchorColumn0 == null)
+                    {
+                        // Insufficient horizontal movement, but sufficient vertical movement.
+                        anchorColumn0 = endColumn0 = this.initialColumn0;
+                    }
+
+                    this.selectAnchor = new Corner(anchorRow0.Value, anchorColumn0.Value);
+                    this.selectEnd = new Corner(row0, endColumn0.Value);
+                    this.Reselect();
+                }
+                while (false);
+            }
+            else
+            {
+                // Extend the selection if we've crossed the middle of a new cell.
+                if ((((row0 > this.selectEnd.Row0) && cell.WithinBottomHalf(location)) ||
+                        ((row0 < this.selectEnd.Row0) && cell.WithinTopHalf(location))) ||
+                    ((column0 < this.selectEnd.Column0 && cell.WithinLeftHalf(location)) ||
+                        (column0 > this.selectEnd.Column0 && cell.WithinRightHalf(location))))
+                {
+                    this.selectEnd = new Corner(row0, column0);
+                    this.Reselect();
+                }
+            }
+
+            this.canMove = false;
         }
 
         /// <inheritdoc />
         public void MouseUp(int row, int column)
         {
+            // Save the cursor location and move it.
+            if (this.canMove)
+            {
+                this.canMove = false;
+                this.cursorUnmoveRow1 = this.app.ScreenImage.CursorRow1;
+                this.cursorUnmoveColumn1 = this.app.ScreenImage.CursorColumn1;
+                this.MoveTo(this.initialRow0 + 1, this.initialColumn0 + 1);
+            }
+
             this.mouseIsDown = false;
         }
 
@@ -369,25 +507,11 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Mouse-up timer tick.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void MouseUpTick(object sender, EventArgs e)
-        {
-            // The mouse-up timer expired without the mouse moving or clicking again.
-            // This is a cursor move.
-            this.mouseUpTimer.Stop();
-            this.MoveTo(this.selectAnchor.Row0 + 1, this.selectAnchor.Column0 + 1);
-        }
-
-        /// <summary>
         /// Unselect everything.
         /// </summary>
         /// <returns>True if anything was selected.</returns>
         private bool Unselect()
         {
-            this.mouseUpTimer.Stop();
             var changed = this.app.UnselectAll();
             this.selectAnchor = null;
             this.selectEnd = null;
@@ -414,11 +538,20 @@ namespace Wx3270
         /// </summary>
         private void Reselect()
         {
-            this.app.SetSelect(
-                this.SelectStartRow0,
-                this.SelectStartColumn0,
-                this.SelectEndRow0 - this.SelectStartRow0 + 1,
-                this.SelectEndColumn0 - this.SelectStartColumn0 + 1);
+            if (this.app.ScreenImage.SelectState == SelectState.LastNvt)
+            {
+                // Do an NVT-mode continuous select, passing the start and end buffer addresses.
+                this.app.SetSelectNvt(this.SelectStartBaddr0, this.SelectEndBaddr0);
+            }
+            else
+            {
+                // Do a 3270-mode rectangular select, passing the upper-left corner, number of rows and number of columns.
+                this.app.SetSelect3270(
+                    Math.Min(this.selectAnchor.Row0, this.selectEnd.Row0),
+                    Math.Min(this.selectAnchor.Column0, this.selectEnd.Column0),
+                    Math.Abs(this.selectAnchor.Row0 - this.selectEnd.Row0) + 1,
+                    Math.Abs(this.selectAnchor.Column0 - this.selectEnd.Column0) + 1);
+            }
         }
 
         /// <summary>
@@ -657,13 +790,20 @@ namespace Wx3270
                 return copyResult;
             }
 
+            if (this.app.ScreenImage.SelectState != SelectState.Last3270)
+            {
+                // Clearing the screen is possible (and useful) only in 3270 mode.
+                this.app.UnselectAll();
+                return PassthruResult.Success;
+            }
+
             // Clear the selected region.
             var action = new BackEndAction(
                 B3270.Action.ClearRegion,
-                this.SelectStartRow0 + 1,
-                this.SelectStartColumn0 + 1,
-                this.SelectEndRow0 - this.SelectStartRow0 + 1,
-                this.SelectEndColumn0 - this.SelectStartColumn0 + 1);
+                Math.Min(this.selectAnchor.Row0, this.selectEnd.Row0) + 1,
+                Math.Min(this.selectAnchor.Column0, this.selectEnd.Column0) + 1,
+                Math.Abs(this.selectAnchor.Row0 - this.selectEnd.Row0) + 1,
+                Math.Abs(this.selectAnchor.Column0 - this.selectEnd.Column0) + 1);
             this.app.BackEnd.RunAction(action, ErrorBox.Completion(I18n.Get(Title.Cut)));
 
             // Clear the selection. This would likely happen automatically because a keymap macro which called this action

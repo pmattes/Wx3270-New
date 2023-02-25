@@ -41,7 +41,7 @@ namespace Wx3270
     /// <summary>
     /// A 3270 display.
     /// </summary>
-    public class ScreenBox : IBrush, IMeasure
+    public class ScreenBox : IBrush, IMeasure, ICell
     {
         /// <summary>
         /// Cache of solid color brushes.
@@ -828,8 +828,9 @@ namespace Wx3270
         /// Translate mouse coordinates to a row and column.
         /// </summary>
         /// <param name="mouseLocation">Location from mouse event.</param>
+        /// <param name="translateFlip">True to do flip translation.</param>
         /// <returns>1-origin row and column.</returns>
-        public Tuple<int, int> CellCoordinates(Point mouseLocation)
+        public (int, int) CellCoordinates1(Point mouseLocation, bool translateFlip = true)
         {
             // Figure out where the mouse is in terms of character cells.
             var y = mouseLocation.Y;
@@ -843,7 +844,67 @@ namespace Wx3270
             var column = x / this.CellSize.Width;
 
             // Return those coordinates.
-            return new Tuple<int, int>(row + 1, (this.flipped ? (this.logicalColumns - 1) - column : column) + 1);
+            return (row + 1, (translateFlip && this.flipped ? (this.logicalColumns - 1) - column : column) + 1);
+        }
+
+        /// <summary>
+        /// Translate mouse coordinates to a row and column.
+        /// </summary>
+        /// <param name="mouseLocation">Location from mouse event.</param>
+        /// <param name="translateFlip">True to do flip translation.</param>
+        /// <returns>0-origin row and column.</returns>
+        public (int, int) CellCoordinates0(Point mouseLocation, bool translateFlip = true)
+        {
+            var (row1, column1) = this.CellCoordinates1(mouseLocation, translateFlip);
+            return (row1 - 1, column1 - 1);
+        }
+
+        /// <inheritdoc />
+        public bool WithinLeftThird(Point location)
+        {
+            var (row0, column0) = this.CellCoordinates0(location, translateFlip: false);
+            return this.WithinCell(location, row0, column0) && location.X <= (this.CellSize.Width * column0) + (this.CellSize.Width / 3);
+        }
+
+        /// <inheritdoc />
+        public bool WithinRightThird(Point location)
+        {
+            var (row0, column0) = this.CellCoordinates0(location, translateFlip: false);
+            return this.WithinCell(location, row0, column0) && location.X >= (this.CellSize.Width * column0) + ((this.CellSize.Width * 2) / 3);
+        }
+
+        /// <inheritdoc />
+        public bool WithinLeftHalf(Point location)
+        {
+            var (row0, column0) = this.CellCoordinates0(location, translateFlip: false);
+            return this.WithinCell(location, row0, column0) && location.X <= (this.CellSize.Width * column0) + (this.CellSize.Width / 2);
+        }
+
+        /// <inheritdoc />
+        public bool WithinRightHalf(Point location)
+        {
+            var (row0, column0) = this.CellCoordinates0(location, translateFlip: false);
+            return this.WithinCell(location, row0, column0) && location.X >= (this.CellSize.Width * column0) + (this.CellSize.Width / 2);
+        }
+
+        /// <inheritdoc />
+        public bool WithinTopHalf(Point location)
+        {
+            var (row0, column0) = this.CellCoordinates0(location, translateFlip: false);
+            return this.WithinCell(location, row0, column0) && location.Y <= (this.CellSize.Height * row0) + (this.CellSize.Height / 2);
+        }
+
+        /// <inheritdoc />
+        public bool WithinBottomHalf(Point location)
+        {
+            var (row0, column0) = this.CellCoordinates0(location, translateFlip: false);
+            return this.WithinCell(location, row0, column0) && location.Y >= (this.CellSize.Height * row0) + (this.CellSize.Height / 2);
+        }
+
+        /// <inheritdoc />
+        public bool IsLastColumn0(int column0)
+        {
+            return column0 >= (this.logicalColumns - 1);
         }
 
         /// <summary>
@@ -1006,6 +1067,22 @@ namespace Wx3270
         private static Color ColorBackground(ScreenImage image, Colors colors)
         {
             return image.ColorMode ? colors.HostColors[HostColor.NeutralBlack] : colors.MonoColors.Background;
+        }
+
+        /// <summary>
+        /// Check for a location being within the boundaries of a character cell.
+        /// </summary>
+        /// <param name="p">Location to test.</param>
+        /// <param name="row0">0-origin cell row.</param>
+        /// <param name="column0">0-origin cell column.</param>
+        /// <returns>True if within the cell.</returns>
+        private bool WithinCell(Point p, int row0, int column0)
+        {
+            var within = p.X >= this.CellSize.Width * column0 &&
+                   p.X < this.CellSize.Width * (column0 + 1) &&
+                   p.Y >= this.CellSize.Height * row0 &&
+                   p.Y < this.CellSize.Height * (row0 + 1);
+            return within;
         }
 
         /// <summary>

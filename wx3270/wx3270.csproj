@@ -136,6 +136,7 @@
     </Compile>
     <Compile Include="ActionSyntax.cs" />
     <Compile Include="AplMode.cs" />
+    <Compile Include="Contracts\ICell.cs" />
     <Compile Include="Release.cs" />
     <Compile Include="NonModalMessageBox.cs">
       <SubType>Form</SubType>
