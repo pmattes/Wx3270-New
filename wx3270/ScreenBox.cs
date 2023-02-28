@@ -860,45 +860,17 @@ namespace Wx3270
         }
 
         /// <inheritdoc />
-        public bool WithinLeftThird(Point location)
+        public double HorizontalFraction(Point location)
         {
             var (row0, column0) = this.CellCoordinates0(location, translateFlip: false);
-            return this.WithinCell(location, row0, column0) && location.X <= (this.CellSize.Width * column0) + (this.CellSize.Width / 3);
+            return this.WithinCell(location, row0, column0) ? (double)(location.X - (this.CellSize.Width * column0)) / this.CellSize.Width : 0.0;
         }
 
         /// <inheritdoc />
-        public bool WithinRightThird(Point location)
+        public double VerticalFraction(Point location)
         {
             var (row0, column0) = this.CellCoordinates0(location, translateFlip: false);
-            return this.WithinCell(location, row0, column0) && location.X >= (this.CellSize.Width * column0) + ((this.CellSize.Width * 2) / 3);
-        }
-
-        /// <inheritdoc />
-        public bool WithinLeftHalf(Point location)
-        {
-            var (row0, column0) = this.CellCoordinates0(location, translateFlip: false);
-            return this.WithinCell(location, row0, column0) && location.X <= (this.CellSize.Width * column0) + (this.CellSize.Width / 2);
-        }
-
-        /// <inheritdoc />
-        public bool WithinRightHalf(Point location)
-        {
-            var (row0, column0) = this.CellCoordinates0(location, translateFlip: false);
-            return this.WithinCell(location, row0, column0) && location.X >= (this.CellSize.Width * column0) + (this.CellSize.Width / 2);
-        }
-
-        /// <inheritdoc />
-        public bool WithinTopHalf(Point location)
-        {
-            var (row0, column0) = this.CellCoordinates0(location, translateFlip: false);
-            return this.WithinCell(location, row0, column0) && location.Y <= (this.CellSize.Height * row0) + (this.CellSize.Height / 2);
-        }
-
-        /// <inheritdoc />
-        public bool WithinBottomHalf(Point location)
-        {
-            var (row0, column0) = this.CellCoordinates0(location, translateFlip: false);
-            return this.WithinCell(location, row0, column0) && location.Y >= (this.CellSize.Height * row0) + (this.CellSize.Height / 2);
+            return this.WithinCell(location, row0, column0) ? (double)(location.Y - (this.CellSize.Height * row0)) / this.CellSize.Height : 0.0;
         }
 
         /// <inheritdoc />

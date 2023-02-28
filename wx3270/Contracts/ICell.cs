@@ -12,46 +12,18 @@ namespace Wx3270.Contracts
     public interface ICell
     {
         /// <summary>
-        /// Tests whether a location is in the left third of a character cell.
+        /// Computes the horizontal fraction of the location within a cell.
         /// </summary>
-        /// <param name="location">Location to test.</param>
-        /// <returns>True if in the left third.</returns>
-        public bool WithinLeftThird(Point location);
+        /// <param name="location">Coordinates to test.</param>
+        /// <returns>Horizontal fraction, 0.0 (left edge) to 1.0 (right edge).</returns>
+        public double HorizontalFraction(Point location);
 
         /// <summary>
-        /// Tests whether a location is in the right third of a character cell.
+        /// Computes the vertical fraction of the location within a cell.
         /// </summary>
-        /// <param name="location">Location to test.</param>
-        /// <returns>True if in the right third.</returns>
-        public bool WithinRightThird(Point location);
-
-        /// <summary>
-        /// Tests whether a location is in the left half of a character cell.
-        /// </summary>
-        /// <param name="location">Location to test.</param>
-        /// <returns>True if in the left half.</returns>
-        public bool WithinLeftHalf(Point location);
-
-        /// <summary>
-        /// Tests whether a location is in the right half of a character cell.
-        /// </summary>
-        /// <param name="location">Location to test.</param>
-        /// <returns>True if in the right half.</returns>
-        public bool WithinRightHalf(Point location);
-
-        /// <summary>
-        /// Tests whether a location is in the top half of a character cell.
-        /// </summary>
-        /// <param name="location">Location to test.</param>
-        /// <returns>True if in the top half.</returns>
-        public bool WithinTopHalf(Point location);
-
-        /// <summary>
-        /// Tests whether a location is in the bottom half of a character cell.
-        /// </summary>
-        /// <param name="location">Location to test.</param>
-        /// <returns>True if in the bottom half.</returns>
-        public bool WithinBottomHalf(Point location);
+        /// <param name="location">Coordinates to test.</param>
+        /// <returns>Vertical fraction, 0.0 (top edge) to 1.0 (bottom edge).</returns>
+        public double VerticalFraction(Point location);
 
         /// <summary>
         /// Tests whether a column is the rightmost.
