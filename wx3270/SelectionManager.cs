@@ -36,6 +36,31 @@ namespace Wx3270
         private const string Https = "https://";
 
         /// <summary>
+        /// Fraction for half of a cell.
+        /// </summary>
+        private const double Half = 0.5;
+
+        /// <summary>
+        /// Fraction for the left third of a cell.
+        /// </summary>
+        private const double LeftThird = 1.0 / 3.0;
+
+        /// <summary>
+        /// Fraction for the right third of a cell.
+        /// </summary>
+        private const double RightThird = 2.0 / 3.0;
+
+        /// <summary>
+        /// Fraction for the left quarter of a cell.
+        /// </summary>
+        private const double LeftQuarter = 0.25;
+
+        /// <summary>
+        /// Fraction for the right quarter of a cell.
+        /// </summary>
+        private const double RightQuarter = 0.75;
+
+        /// <summary>
         /// Title group for localization.
         /// </summary>
         private static readonly string TitleName = I18n.PopUpTitleName(nameof(SelectionManager));
@@ -386,15 +411,15 @@ namespace Wx3270
                     if (location.X < this.initialLocation.X)
                     {
                         // Movement to the left.
-                        if (cell.WithinRightThird(this.initialLocation))
+                        if (cell.HorizontalFraction(this.initialLocation) >= LeftThird)
                         {
-                            if (cell.WithinLeftThird(this.initialLocation) || column0 < this.initialColumn0)
+                            if (column0 < this.initialColumn0 || cell.HorizontalFraction(location) <= LeftQuarter)
                             {
                                 // Moved enough to set the anchor to the initial cell.
                                 anchorColumn0 = this.initialColumn0;
                             }
                         }
-                        else if (column0 < this.initialColumn0 && cell.WithinLeftHalf(location))
+                        else if (column0 < this.initialColumn0 && cell.HorizontalFraction(location) <= Half)
                         {
                             // Moved enough to set the anchor to the cell to the left of the initial cell.
                             anchorColumn0 = this.initialColumn0 - 1;
@@ -406,21 +431,21 @@ namespace Wx3270
                             // Otherwise, if we're in the left half of a different column, that's the end column.
                             // Otherwise, the end column is the one to the right of where we are now.
                             endColumn0 = (column0 == this.initialColumn0) ? column0 :
-                                (cell.WithinLeftHalf(location) ? column0 : column0 + 1);
+                                (cell.HorizontalFraction(location) <= 0.5 ? column0 : column0 + 1);
                         }
                     }
                     else if (location.X > this.initialLocation.X)
                     {
                         // Movement to the right.
-                        if (cell.WithinLeftThird(this.initialLocation))
+                        if (cell.HorizontalFraction(this.initialLocation) <= RightThird)
                         {
-                            if (cell.WithinRightThird(this.initialLocation) || column0 > this.initialColumn0)
+                            if (column0 > this.initialColumn0 || cell.HorizontalFraction(location) >= RightQuarter)
                             {
                                 // Moved enough to set the anchor to the initial cell.
                                 anchorColumn0 = this.initialColumn0;
                             }
                         }
-                        else if (column0 > this.initialColumn0 && cell.WithinRightHalf(location))
+                        else if (column0 > this.initialColumn0 && cell.HorizontalFraction(location) > Half)
                         {
                             // Moved enough to set the anchor to the cell to the right of the initial cell.
                             anchorColumn0 = this.initialColumn0 + 1;
@@ -432,12 +457,12 @@ namespace Wx3270
                             // Otherwise, if we're in the right half of a different column, that's the end column.
                             // Otherwise, the end column is the one to the left of where we are now.
                             endColumn0 = (column0 == this.initialColumn0) ? column0 :
-                                (cell.WithinRightHalf(location) ? column0 : column0 - 1);
+                                (cell.HorizontalFraction(location) >= Half ? column0 : column0 - 1);
                         }
                     }
 
-                    if (((row0 > this.initialRow0) && cell.WithinBottomHalf(location)) ||
-                        ((row0 < this.initialRow0) && cell.WithinTopHalf(location)))
+                    if (((row0 > this.initialRow0) && cell.VerticalFraction(location) >= Half) ||
+                        ((row0 < this.initialRow0) && cell.VerticalFraction(location) <= Half))
                     {
                         // Moved up or down by a row.
                         anchorRow0 = this.initialRow0;
@@ -471,10 +496,11 @@ namespace Wx3270
             else
             {
                 // Extend the selection if we've crossed the middle of a new cell.
-                if ((((row0 > this.selectEnd.Row0) && cell.WithinBottomHalf(location)) ||
-                        ((row0 < this.selectEnd.Row0) && cell.WithinTopHalf(location))) ||
-                    ((column0 < this.selectEnd.Column0 && cell.WithinLeftHalf(location)) ||
-                        (column0 > this.selectEnd.Column0 && cell.WithinRightHalf(location))))
+                // Reduce the selection if we've crossed into a new cell anywhere.
+                if ((row0 > this.selectEnd.Row0 && cell.VerticalFraction(location) >= Half) ||
+                    row0 < this.selectEnd.Row0 ||
+                    (column0 > this.selectEnd.Column0 && cell.HorizontalFraction(location) >= Half) ||
+                    column0 < this.selectEnd.Column0)
                 {
                     this.selectEnd = new Corner(row0, column0);
                     this.Reselect();
