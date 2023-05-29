@@ -32,7 +32,7 @@ namespace Wx3270
             { B3270.ConnectionState.Connected3270, ConnectionState.Connected3270 },
             { B3270.ConnectionState.ConnectedUnbound, ConnectionState.ConnectedUnbound },
             { B3270.ConnectionState.ConnectedEnvt, ConnectionState.ConnectedEnvt },
-            { B3270.ConnectionState.ConnectedEsscp, ConnectionState.ConnectedEsscp },
+            { B3270.ConnectionState.ConnectedSscp, ConnectionState.ConnectedEsscp },
             { B3270.ConnectionState.ConnectedTn3270E, ConnectionState.ConnectedTn3270e },
         };
 

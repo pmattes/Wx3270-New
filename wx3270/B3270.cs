@@ -738,7 +738,7 @@ namespace Wx3270
             /// <summary>
             /// Connected in TN3270E SSCP-LU mode.
             /// </summary>
-            public const string ConnectedEsscp = "connected-e-sscp";
+            public const string ConnectedSscp = "connected-sscp";
 
             /// <summary>
             /// Connected in TN3270E 3270 mode.
