@@ -201,3 +201,4 @@ __pycache__
 *noinstall*.zip
 /.vs/VSWorkspaceState.json
 /.vs/slnx.sqlite
+/wx3270/.vs/wx3270/FileContentIndex
