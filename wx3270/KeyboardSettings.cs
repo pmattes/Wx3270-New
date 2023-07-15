@@ -432,7 +432,10 @@ namespace Wx3270
 
             this.toolTip1.SetToolTip(this.keyboardActionsTextBox, toolTip);
 
-            this.ProfileManager.PushAndSave((current) => current.KeyboardMap = new KeyMap<KeyboardMap>(this.editedKeyboardMap), I18n.Get(KeyboardString.UndoKey));
+            if (this.ProfileManager.PushAndSave((current) => current.KeyboardMap = new KeyMap<KeyboardMap>(this.editedKeyboardMap), I18n.Get(KeyboardString.UndoKey)))
+            {
+                this.mainScreen.KeymapChanged();
+            }
         }
 
         /// <summary>
@@ -503,7 +506,7 @@ namespace Wx3270
                     text = this.keyboardActionsTextBox.Text;
                     break;
                 case "Delete":
-                    this.editedKeyboardMap.Remove(KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers));
+                    this.editedKeyboardMap.Remove(KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers, KeyMap<KeyboardMap>.ProfileChord(this.ChordName)));
                     this.SelectKeyboard();
                     return;
                 default:
