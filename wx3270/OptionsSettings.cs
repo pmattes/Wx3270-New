@@ -92,7 +92,12 @@ namespace Wx3270
             if (toProfile.Printer == fromProfile.Printer &&
                 toProfile.PrinterCodePage == fromProfile.PrinterCodePage &&
                 toProfile.PrinterOptions == fromProfile.PrinterOptions &&
-                toProfile.NopInterval == fromProfile.NopInterval)
+                toProfile.NopInterval == fromProfile.NopInterval &&
+                toProfile.Retry == fromProfile.Retry &&
+                toProfile.PreferIpv4 == fromProfile.PreferIpv4 &&
+                toProfile.PreferIpv6 == fromProfile.PreferIpv6 &&
+                toProfile.ScrollBar == fromProfile.ScrollBar &&
+                toProfile.MenuBar == fromProfile.MenuBar)
             {
                 return false;
             }
@@ -101,6 +106,11 @@ namespace Wx3270
             toProfile.PrinterCodePage = fromProfile.PrinterCodePage;
             toProfile.PrinterOptions = fromProfile.PrinterOptions;
             toProfile.NopInterval = fromProfile.NopInterval;
+            toProfile.Retry = fromProfile.Retry;
+            toProfile.PreferIpv4 = fromProfile.PreferIpv4;
+            toProfile.PreferIpv6 = fromProfile.PreferIpv6;
+            toProfile.ScrollBar = fromProfile.ScrollBar;
+            toProfile.MenuBar = fromProfile.MenuBar;
             return true;
         }
 
