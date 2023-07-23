@@ -199,6 +199,5 @@ __pycache__
 # Misc files
 *-setup.exe
 *noinstall*.zip
-/.vs/VSWorkspaceState.json
-/.vs/slnx.sqlite
-/wx3270/.vs/wx3270/FileContentIndex
+.vs/
+
