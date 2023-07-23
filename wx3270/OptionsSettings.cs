@@ -96,8 +96,7 @@ namespace Wx3270
                 toProfile.Retry == fromProfile.Retry &&
                 toProfile.PreferIpv4 == fromProfile.PreferIpv4 &&
                 toProfile.PreferIpv6 == fromProfile.PreferIpv6 &&
-                toProfile.ScrollBar == fromProfile.ScrollBar &&
-                toProfile.MenuBar == fromProfile.MenuBar)
+                toProfile.ScrollBar == fromProfile.ScrollBar)
             {
                 return false;
             }
@@ -110,7 +109,6 @@ namespace Wx3270
             toProfile.PreferIpv4 = fromProfile.PreferIpv4;
             toProfile.PreferIpv6 = fromProfile.PreferIpv6;
             toProfile.ScrollBar = fromProfile.ScrollBar;
-            toProfile.MenuBar = fromProfile.MenuBar;
             return true;
         }
 

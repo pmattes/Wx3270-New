@@ -432,10 +432,7 @@ namespace Wx3270
 
             this.toolTip1.SetToolTip(this.keyboardActionsTextBox, toolTip);
 
-            if (this.ProfileManager.PushAndSave((current) => current.KeyboardMap = new KeyMap<KeyboardMap>(this.editedKeyboardMap), I18n.Get(KeyboardString.UndoKey)))
-            {
-                this.mainScreen.KeymapChanged();
-            }
+            this.ProfileManager.PushAndSave((current) => current.KeyboardMap = new KeyMap<KeyboardMap>(this.editedKeyboardMap), I18n.Get(KeyboardString.UndoKey));
         }
 
         /// <summary>
