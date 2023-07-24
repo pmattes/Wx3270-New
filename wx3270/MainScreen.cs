@@ -1382,6 +1382,18 @@ namespace Wx3270
                 this.App.BackEnd.RegisterPassthru(Constants.Action.MenuBar, this.UiMenuBar);
             }
 
+            if (this.App.NoButtons)
+            {
+                // De-populate the context menu.
+                foreach (var item in this.screenBoxContextMenuStrip.Items.Cast<ToolStripMenuItem>().ToList())
+                {
+                    if (item.Name != "editToolStripMenuItem" && item.Name != "keypadToolStripMenuItem")
+                    {
+                        item.RemoveFromOwner();
+                    }
+                }
+            }
+
             // Clone the menu bar menus to the context menu.
             this.CloneMenus();
 
@@ -1493,11 +1505,19 @@ namespace Wx3270
         private void CloneMenus()
         {
             // Clone the menus.
-            this.CloneMenu(this.actionsMenuStrip, this.actionsToolStripMenuItem, this.ActionsClick);
-            this.CloneMenu(this.connectMenuStrip, this.connectToolStripMenuItem, this.ConnectToProfileHost);
+            if (!this.App.NoButtons)
+            {
+                this.CloneMenu(this.actionsMenuStrip, this.actionsToolStripMenuItem, this.ActionsClick);
+                this.CloneMenu(this.connectMenuStrip, this.connectToolStripMenuItem, this.ConnectToProfileHost);
+            }
+
             this.CloneMenu(this.keypadContextMenuStrip, this.keypadToolStripMenuItem, this.KeypadMenuClick);
-            this.CloneMenu(this.loadContextMenuStrip, this.profilesToolStripMenuItem, this.LoadProfileHandler);
-            this.CloneMenu(this.macrosContextMenuStrip, this.macrosToolStripMenuItem, this.RunMacro);
+
+            if (!this.App.NoButtons)
+            {
+                this.CloneMenu(this.loadContextMenuStrip, this.profilesToolStripMenuItem, this.LoadProfileHandler);
+                this.CloneMenu(this.macrosContextMenuStrip, this.macrosToolStripMenuItem, this.RunMacro);
+            }
         }
 
         /// <summary>
@@ -1894,7 +1914,10 @@ namespace Wx3270
 
             this.loadMenuItem.DropDownItems.Clear();
             PopulateConnectMenu(this.connectMenuItem.DropDownItems);
-            PopulateConnectMenu(((ToolStripMenuItem)this.connectToolStripMenuItem.DropDownItems[1]).DropDownItems); // A bit hacky, I know.
+            if (!this.App.NoButtons)
+            {
+                PopulateConnectMenu(((ToolStripMenuItem)this.connectToolStripMenuItem.DropDownItems[1]).DropDownItems); // A bit hacky, I know.
+            }
 
             // Next comes any folder that is under MyDocuments\wx3270 (ProfileManager.SeedProfileDirectory), with that prefix removed.
             var seedRoot = newFolderTree.Where(p => p.PathName == Wx3270.ProfileManager.SeedProfileDirectory).FirstOrDefault();
@@ -1914,7 +1937,10 @@ namespace Wx3270
             this.profilesToolStripMenuItem.DropDownItems.Clear();
             this.profilesToolStripMenuItem.DropDownItems.Add(firstItem);
             this.profilesToolStripMenuItem.DropDownItems[0].Click += this.ProfilePictureBox_Click;
-            this.CloneMenu(this.loadContextMenuStrip, this.profilesToolStripMenuItem, this.LoadProfileHandler);
+            if (!this.App.NoButtons)
+            {
+                this.CloneMenu(this.loadContextMenuStrip, this.profilesToolStripMenuItem, this.LoadProfileHandler);
+            }
         }
 
         /// <summary>

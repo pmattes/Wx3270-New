@@ -56,8 +56,9 @@ namespace Wx3270
                 this.printerComboBox.Items.Add(printer);
             }
 
-            // Set up the scroll bar checkbox.
+            // Set up the scroll bar and menu bar checkboxes.
             this.scrollbarCheckBox.Enabled = !this.app.NoScrollBar;
+            this.menuBarCheckBox.Enabled = !this.app.NoButtons;
 
             // Subscribe to profile change events and merges.
             this.ProfileManager.ChangeTo += this.ProfileOptionsChanged;
@@ -72,7 +73,10 @@ namespace Wx3270
                 new[] { B3270.Setting.PrinterName, B3270.Setting.PrinterOptions, B3270.Setting.PrinterCodePage, B3270.Setting.NopSeconds });
 
             // Subscribe to menu bar changes.
-            this.mainScreen.MenuBarSetEvent += () => this.menuBarCheckBox.Checked = true;
+            if (!this.app.NoButtons)
+            {
+                this.mainScreen.MenuBarSetEvent += () => this.menuBarCheckBox.Checked = true;
+            }
         }
 
         /// <summary>
@@ -320,16 +324,10 @@ namespace Wx3270
             this.titleTextBox.Text = profile.WindowTitle;
 
             // Set scroll bar.
-            if (!this.app.NoScrollBar)
-            {
-                this.scrollbarCheckBox.Checked = profile.ScrollBar;
-            }
+            this.scrollbarCheckBox.Checked = profile.ScrollBar;
 
-            // Set hidden menu bar.
-            if (!this.app.NoButtons)
-            {
-                this.menuBarCheckBox.Checked = profile.MenuBar;
-            }
+            // Set menu bar.
+            this.menuBarCheckBox.Checked = profile.MenuBar;
         }
 
         /// <summary>
@@ -467,30 +465,38 @@ namespace Wx3270
             switch (settingName)
             {
                 case ChangeKeyword.ScrollBar:
-                    size = this.mainScreen.ToggleScrollBar(checkBox.Checked);
-                    this.ProfileManager.PushAndSave(
-                        (current) =>
-                        {
-                            current.ScrollBar = checkBox.Checked;
-                            if (size != null)
+                    if (!this.app.NoScrollBar)
+                    {
+                        size = this.mainScreen.ToggleScrollBar(checkBox.Checked);
+                        this.ProfileManager.PushAndSave(
+                            (current) =>
                             {
-                                current.Size = size.Value;
-                            }
-                        },
-                        this.ChangeName(settingName));
+                                current.ScrollBar = checkBox.Checked;
+                                if (size != null)
+                                {
+                                    current.Size = size.Value;
+                                }
+                            },
+                            this.ChangeName(settingName));
+                    }
+
                     break;
                 case ChangeKeyword.MenuBar:
-                    size = this.mainScreen.ToggleFixedMenuBar(checkBox.Checked);
-                    this.ProfileManager.PushAndSave(
-                        (current) =>
-                        {
-                            current.MenuBar = checkBox.Checked;
-                            if (size != null)
+                    if (!this.app.NoButtons)
+                    {
+                        size = this.mainScreen.ToggleFixedMenuBar(checkBox.Checked);
+                        this.ProfileManager.PushAndSave(
+                            (current) =>
                             {
-                                current.Size = size.Value;
-                            }
-                        },
-                        this.ChangeName(settingName));
+                                current.MenuBar = checkBox.Checked;
+                                if (size != null)
+                                {
+                                    current.Size = size.Value;
+                                }
+                            },
+                            this.ChangeName(settingName));
+                    }
+
                     break;
             }
         }
