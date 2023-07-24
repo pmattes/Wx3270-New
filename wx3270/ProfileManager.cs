@@ -184,6 +184,9 @@ namespace Wx3270
         /// <inheritdoc />
         public event ChangeHandler ProfileClosing = (profile) => { };
 
+        /// <inheritdoc />
+        public event OldVersionHandler OldVersion = (Profile.VersionClass oldVersion, ref bool saved) => { };
+
         /// <summary>
         /// Gets the directory where profiles are kept.
         /// </summary>
@@ -372,7 +375,7 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Read a profile.
+        /// Read a profile without returning a locked stream.
         /// </summary>
         /// <param name="profilePath">Profile name.</param>
         /// <param name="error">Returned error message.</param>
@@ -382,22 +385,9 @@ namespace Wx3270
         /// <returns>Profile, or null.</returns>
         public static Profile Read(string profilePath, out string error, out string warning, out bool busy, out bool notFound)
         {
-            return Read(profilePath, out error, out warning, false, out FileStream stream, out busy, out notFound);
-        }
-
-        /// <summary>
-        /// Read a profile.
-        /// </summary>
-        /// <param name="profilePath">Profile name.</param>
-        /// <param name="error">Returned error message.</param>
-        /// <param name="warning">Returned warning message.</param>
-        /// <param name="stream">Returned open stream.</param>
-        /// <param name="busy">Returned true if the file is busy.</param>
-        /// <param name="notFound">Returned true if the file is not found.</param>
-        /// <returns>Profile, or null.</returns>
-        public static Profile Read(string profilePath, out string error, out string warning, out FileStream stream, out bool busy, out bool notFound)
-        {
-            return Read(profilePath, out error, out warning, true, out stream, out busy, out notFound);
+            var profile = Read(profilePath, out error, out warning, locked: false, out FileStream stream, out busy, out notFound, out _);
+            stream?.Close();
+            return profile;
         }
 
         /// <inheritdoc />
@@ -848,8 +838,9 @@ namespace Wx3270
         /// <param name="openStream">Returned open stream.</param>
         /// <param name="busy">Returned true if the file is busy.</param>
         /// <param name="notFound">Returned true if the file was not found.</param>
+        /// <param name="oldVersion">Returned old version if the file is from an old version and is opened read/write.</param>
         /// <returns>Profile, or null.</returns>
-        private static Profile Read(string profilePath, out string error, out string warning, bool locked, out FileStream openStream, out bool busy, out bool notFound)
+        private static Profile Read(string profilePath, out string error, out string warning, bool locked, out FileStream openStream, out bool busy, out bool notFound, out Profile.VersionClass oldVersion)
         {
             // No errors to begin with.
             error = null;
@@ -859,6 +850,7 @@ namespace Wx3270
             openStream = null;
             busy = false;
             notFound = false;
+            oldVersion = null;
 
             // Open the profile file. It might be busy, so try a few times.
             FileStream stream = null;
@@ -944,6 +936,10 @@ namespace Wx3270
             if (profile.Version > thisVersion)
             {
                 warning = string.Format(I18n.Get(Message.ProfileVersionMismatch), profile.Version, thisVersion);
+            }
+            else if (profile.Version < thisVersion && locked)
+            {
+                oldVersion = profile.Version;
             }
 
             // Up- or downgrade the version number for saving later.
@@ -1076,8 +1072,9 @@ namespace Wx3270
             string error;
             string warning;
             FileStream stream = null;
-            var busy = false;
-            var notFound = false;
+            bool busy;
+            bool notFound;
+            Profile.VersionClass oldVersion = null;
             Profile profile;
             if (readOnly)
             {
@@ -1085,7 +1082,7 @@ namespace Wx3270
             }
             else
             {
-                profile = Read(profilePath, out error, out warning, out stream, out busy, out notFound);
+                profile = Read(profilePath, out error, out warning, locked: true, out stream, out busy, out notFound, out oldVersion);
             }
 
             if (profile != null)
@@ -1160,6 +1157,18 @@ namespace Wx3270
 
             // Switch to the new one.
             this.currentFileStream = stream;
+
+            // Tell interested parties that we've loaded up an old version.
+            if (oldVersion != null)
+            {
+                var saved = false;
+                this.OldVersion(oldVersion, ref saved);
+                if (!saved)
+                {
+                    // Write the profile back out with the new version number applied.
+                    this.Save();
+                }
+            }
 
             return true;
         }

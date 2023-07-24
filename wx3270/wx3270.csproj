@@ -773,6 +773,8 @@
     <None Include="Resources\StartClearerMiddle.png" />
     <None Include="Resources\StartClearerRight.png" />
     <None Include="Resources\ErrorIcon.png" />
+    <None Include="Resources\StartClearer.png" />
+    <None Include="Resources\ToggleDown3wide.png" />
     <Content Include="wx3270.bmp" />
     <None Include="Resources\ToggleUp4.png" />
     <None Include="Resources\ToggleDown4.png" />

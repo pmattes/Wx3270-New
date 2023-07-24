@@ -79,6 +79,113 @@ namespace Wx3270
         public const int SRCCOPY = 0xCC0020;
 
         /// <summary>
+        /// Flags for the uType parameter of <see cref="SHMessageBoxCheck"/>.
+        /// </summary>
+        public enum MessageBoxCheckFlags : uint
+        {
+            /// <summary>
+            /// Display the OK button.
+            /// </summary>
+            MB_OK = 0x00000000,
+
+            /// <summary>
+            /// Display the OK and Cancel buttons.
+            /// </summary>
+            MB_OKCANCEL = 0x00000001,
+
+            /// <summary>
+            /// Display the YES and NO buttons.
+            /// </summary>
+            MB_YESNO = 0x00000004,
+
+            /// <summary>
+            /// Display the stop icon (raised hand).
+            /// </summary>
+            MB_ICONHAND = 0x00000010,
+
+            /// <summary>
+            /// Display the question icon.
+            /// </summary>
+            MB_ICONQUESTION = 0x00000020,
+
+            /// <summary>
+            /// Display the error icon (exclamation point).
+            /// </summary>
+            MB_ICONEXCLAMATION = 0x00000030,
+
+            /// <summary>
+            /// Display the information icon (lower-case i).
+            /// </summary>
+            MB_ICONINFORMATION = 0x00000040,
+        }
+
+        /// <summary>
+        /// Return values from displaying a message box.
+        /// </summary>
+        public enum MessageBoxReturnValue : int
+        {
+            /// <summary>
+            /// Message box failed.
+            /// </summary>
+            IDERROR = -1,
+
+            /// <summary>
+            /// OK button pressed.
+            /// </summary>
+            IDOK = 1,
+
+            /// <summary>
+            /// Cancel button pressed or window closed.
+            /// </summary>
+            IDCANCEL = 2,
+
+            /// <summary>
+            /// Abort button pressed.
+            /// </summary>
+            IDABORT = 3,
+
+            /// <summary>
+            /// Retry button pressed.
+            /// </summary>
+            IDRETRY = 4,
+
+            /// <summary>
+            /// Ignore button pressed.
+            /// </summary>
+            IDIGNORE = 5,
+
+            /// <summary>
+            /// Yes button pressed.
+            /// </summary>
+            IDYES = 6,
+
+            /// <summary>
+            /// No button pressed.
+            /// </summary>
+            IDNO = 7,
+
+            /// <summary>
+            /// Close button pressed.
+            /// </summary>
+            IDCLOSE = 8,
+
+            /// <summary>
+            /// Help button pressed.
+            /// </summary>
+            IDHELP = 9,
+
+            /// <summary>
+            /// Try again button pressed.
+            /// </summary>
+            IDTRYAGAIN = 10,
+
+            /// <summary>
+            /// Continue button pressed.
+            /// </summary>
+            IDCONTINUE = 11,
+        }
+
+        /// <summary>
         /// The Win32 GetStdHandle call.
         /// </summary>
         /// <param name="nStdHandle">Handle, as defined above.</param>
@@ -156,5 +263,24 @@ namespace Wx3270
         /// <returns>Nonzero for success.</returns>
         [DllImport("gdi32.dll")]
         public static extern int BitBlt(IntPtr hdc, int x, int y, int cx, int cy, IntPtr hdcSrc, int x1, int y1, int rop);
+
+        /// <summary>
+        /// Show a message box with a 'do not remind me' checkbox.
+        /// </summary>
+        /// <param name="hwnd">Owning window.</param>
+        /// <param name="pszText">Text to display.</param>
+        /// <param name="pszTitle">Title for the message box.</param>
+        /// <param name="uType">Message box type.</param>
+        /// <param name="iDefault">Default value.</param>
+        /// <param name="pszRegVal">Registry key to save 'do not remind me' in.</param>
+        /// <returns>Message box result.</returns>
+        [DllImport("shlwapi.dll", EntryPoint = "#185", ExactSpelling = true, PreserveSig = true)]
+        public static extern MessageBoxReturnValue SHMessageBoxCheckW(
+            [In] IntPtr hwnd,
+            [In] string pszText,
+            [In] string pszTitle,
+            [In] MessageBoxCheckFlags uType,
+            [In] MessageBoxReturnValue iDefault,
+            [In] string pszRegVal);
     }
 }

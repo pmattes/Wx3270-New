@@ -187,19 +187,12 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
-/x3270/.vs/X3270/v15/Server/sqlite3
-/x3270/.vs/wx3270/v15/Server/sqlite3
 
 # Python cache
 __pycache__
-/wx3270/.vs/wx3270/DesignTimeBuild/.dtbcache
-/wx3270/.vs/wx3270/v16/Server/sqlite3
-/wx3270/.vs/wx3270/v16/TestStore/0
 
 # Misc files
 *-setup.exe
 *noinstall*.zip
-/.vs/VSWorkspaceState.json
-/.vs/slnx.sqlite
 /wx3270/packages/Newtonsoft.Json.13.0.2
-/wx3270/.vs/wx3270/FileContentIndex
+/wx3270/.vs/

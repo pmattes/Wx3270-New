@@ -39,6 +39,25 @@ namespace Wx3270
         /// <summary>
         /// Pop up an error box with a Copy to Clipboard option.
         /// </summary>
+        /// <param name="text">Body text.</param>
+        /// <param name="title">Title text.</param>
+        /// <param name="icon">Icon to display.</param>
+        /// <param name="control">Optional control to own the pop-up.</param>
+        /// <returns>Dialog result.</returns>
+        public static DialogResult ShowYesNo(string text, string title, MessageBoxIcon icon = MessageBoxIcon.Information, Control control = null)
+        {
+            return MessageBox.Show(
+                control,
+                text,
+                title,
+                MessageBoxButtons.YesNo,
+                icon,
+                MessageBoxDefaultButton.Button2);
+        }
+
+        /// <summary>
+        /// Pop up an error box with a Copy to Clipboard option.
+        /// </summary>
         /// <param name="control">Control to run copy thread on.</param>
         /// <param name="text">Body text.</param>
         /// <param name="title">Title text.</param>
@@ -51,13 +70,8 @@ namespace Wx3270
                 return;
             }
 
-            var result = MessageBox.Show(
-                text + Environment.NewLine + Environment.NewLine + I18n.Get(ClickYesOrNo, YesOrNoText),
-                title,
-                MessageBoxButtons.YesNo,
-                icon,
-                MessageBoxDefaultButton.Button2);
-            if (result == DialogResult.Yes && control != null)
+            var result = ShowYesNo(text + Environment.NewLine + Environment.NewLine + I18n.Get(ClickYesOrNo, YesOrNoText), title, icon);
+            if (result == DialogResult.Yes)
             {
                 var dataObject = new DataObject();
                 dataObject.SetText(title + ": " + text, TextDataFormat.UnicodeText);

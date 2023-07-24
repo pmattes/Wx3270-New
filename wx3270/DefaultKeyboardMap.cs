@@ -4,6 +4,7 @@
 
 namespace Wx3270
 {
+    using System.Collections.Generic;
     using System.Windows.Forms;
 
     /// <summary>
@@ -11,6 +12,24 @@ namespace Wx3270
     /// </summary>
     public partial class Profile
     {
+        /// <summary>
+        /// Set of keymaps to add for each new version.
+        /// </summary>
+        private static readonly Dictionary<VersionClass, KeyMap<KeyboardMap>> AddedKeyboardMaps = new Dictionary<VersionClass, KeyMap<KeyboardMap>>
+        {
+            {
+                // 1.2 adds full screen, font stepping and the temporary menu bar.
+                new VersionClass() { Major = 1, Minor = 2 },
+                new KeyMap<KeyboardMap>
+                {
+                    { KeyMap<KeyboardMap>.Key(Keys.F11, KeyboardModifier.Alt), new KeyboardMap { Actions = Constants.Action.FullScreen + "()" } },
+                    { KeyMap<KeyboardMap>.Key(Keys.Oemplus, KeyboardModifier.Ctrl), new KeyboardMap { Actions = Constants.Action.StepEfont + "(" + Constants.Misc.Bigger + ")" } },
+                    { KeyMap<KeyboardMap>.Key(Keys.OemMinus, KeyboardModifier.Ctrl), new KeyboardMap { Actions = Constants.Action.StepEfont + "(" + Constants.Misc.Smaller + ")" } },
+                    { KeyMap<KeyboardMap>.Key(Keys.N, KeyboardModifier.Alt), new KeyboardMap { Actions = Constants.Action.MenuBar + "()", Exact = true } },
+                }
+            },
+        };
+
         /// <summary>
         /// Default keyboard map.
         /// </summary>
@@ -63,6 +82,7 @@ namespace Wx3270
             { KeyMap<KeyboardMap>.Key(Keys.F10, KeyboardModifier.Shift), new KeyboardMap { Actions = B3270.Action.PF + "(22)" } },
             { KeyMap<KeyboardMap>.Key(Keys.F11, KeyboardModifier.Shift), new KeyboardMap { Actions = B3270.Action.PF + "(23)" } },
             { KeyMap<KeyboardMap>.Key(Keys.F12, KeyboardModifier.Shift), new KeyboardMap { Actions = B3270.Action.PF + "(24)" } },
+            { KeyMap<KeyboardMap>.Key(Keys.F11, KeyboardModifier.Alt), new KeyboardMap { Actions = Constants.Action.FullScreen + "()" } },
             { KeyMap<KeyboardMap>.Key(Keys.D1, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PA + "(1)", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.D2, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PA + "(2)", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.D3, KeyboardModifier.Alt), new KeyboardMap { Actions = B3270.Action.PA + "(3)", Exact = true } },
@@ -73,6 +93,7 @@ namespace Wx3270
             { KeyMap<KeyboardMap>.Key(Keys.D, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Dup + "()", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.E, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.EraseEOF + "()", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.M, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.FieldMark + "()", Exact = true } },
+            { KeyMap<KeyboardMap>.Key(Keys.N, KeyboardModifier.Alt), new KeyboardMap { Actions = Constants.Action.MenuBar + "()", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.P, KeyboardModifier.Alt), new KeyboardMap { Actions = Constants.Action.PrintText + "(gdi,dialog)", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.Q, KeyboardModifier.Alt), new KeyboardMap { Actions = Constants.Action.QuitIfNotConnected + "()", Exact = true } },
             { KeyMap<KeyboardMap>.Key(Keys.R, KeyboardModifier.Alt | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Reset + "()", Exact = true } },
@@ -180,5 +201,10 @@ namespace Wx3270
             { KeyMap<KeyboardMap>.Key("Scan35", KeyboardModifier.Alt | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Key + "(apl_slashbar)", Exact = true } }, // /?
             { KeyMap<KeyboardMap>.Key("Scan35", KeyboardModifier.Alt | KeyboardModifier.Shift | KeyboardModifier.Apl), new KeyboardMap { Actions = B3270.Action.Comment, Exact = true } }, // /?
         };
+
+        /// <summary>
+        /// Gets the per-version added keymaps.
+        /// </summary>
+        public static Dictionary<VersionClass, KeyMap<KeyboardMap>> PerVersionAddedKeyboardMaps => AddedKeyboardMaps;
     }
 }

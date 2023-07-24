@@ -97,6 +97,11 @@ namespace Wx3270
         private string stringName;
 
         /// <summary>
+        /// Modification event.
+        /// </summary>
+        public event Action KeyboardMapModified = () => { };
+
+        /// <summary>
         /// Gets the localized name of 'no chord'.
         /// </summary>
         public static string NoChord => I18n.Get(KeyboardString.NoChord);
@@ -188,6 +193,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(KeyboardString.DefaultInputChar, "Default input");
             I18n.LocalizeGlobal(KeyboardString.UndoKey, "key change");
             I18n.LocalizeGlobal(KeyboardString.UndoKeypadPosition, "keypad position");
+            I18n.LocalizeGlobal(KeyboardString.UpdateKeymapVersion, "Update keyboard map for newer version");
         }
 
         /// <summary>
@@ -212,6 +218,57 @@ namespace Wx3270
             // Play with focus.
             this.keyboardActionsTextBox.GotFocus += (sender, args) => this.keyboardActionsEditButton.Focus();
 
+            // Subscribe to old version events.
+            this.ProfileManager.OldVersion += (Profile.VersionClass oldVersion, ref bool saved) =>
+            {
+                var addedMappings = Profile.PerVersionAddedKeyboardMaps.Where(kv => kv.Key > oldVersion).Select(kv => kv.Value).ToList();
+                if (addedMappings.Any())
+                {
+                    var newKeys = new List<string>();
+                    foreach (var mapping in addedMappings)
+                    {
+                        foreach (var entry in mapping)
+                        {
+                            newKeys.Add(KeyMap<KeyboardMap>.DecodeKeyName(entry.Key));
+                        }
+                    }
+
+                    var joinedStrings = string.Join(", ", newKeys.ToArray(), 0, newKeys.Count - 1);
+                    if (newKeys.Count > 1)
+                    {
+                        joinedStrings += " " + I18n.Get(KeyboardString.And) + " " + newKeys.Last();
+                    }
+
+                    var yesNo = MessageBox.Show(
+                        string.Format(I18n.Get(Message.OldProfile), oldVersion, joinedStrings),
+                        I18n.Get(Title.OldProfile),
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button2);
+                    if (yesNo == DialogResult.Yes)
+                    {
+                        saved |= this.ProfileManager.PushAndSave(
+                            (current) =>
+                            {
+                                foreach (var mapping in addedMappings)
+                                {
+                                    foreach (var entry in mapping)
+                                    {
+                                        current.KeyboardMap[entry.Key] = entry.Value;
+                                    }
+                                }
+                            },
+                            I18n.Get(KeyboardString.UpdateKeymapVersion));
+                    }
+                }
+            };
+
+            // Set up message box titles.
+            I18n.LocalizeGlobal(Title.OldProfile, "Old Profile Version Detected");
+
+            // Set up message box messages.
+            I18n.LocalizeGlobal(Message.OldProfile, "This profile is from wx3270 version {0}. New default keyboard mappings have been added since then." + Environment.NewLine + Environment.NewLine + "Update the keyboard mappings for {1}?");
+
             // Set up the localized strings.
             this.stringName = I18n.StringName(I18n.Combine(nameof(Settings), this.keyboardTab.Name));
             I18n.LocalizeGlobal(KeyboardString.Undefined, "not defined");
@@ -221,6 +278,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(KeyboardString.InheritedFrom, "inherited from {0}");
             I18n.LocalizeGlobal(KeyboardString.DefaultInput, "uses default input rule");
             I18n.LocalizeGlobal(KeyboardString.StartChord, "Wait for second key");
+            I18n.LocalizeGlobal(KeyboardString.And, "and");
 
             // Localize the mouse-over text for the actions text box.
             I18n.LocalizeGlobal(KeyboardToolTip.ClickToEdit, "Click to edit definition");
@@ -432,7 +490,10 @@ namespace Wx3270
 
             this.toolTip1.SetToolTip(this.keyboardActionsTextBox, toolTip);
 
-            this.ProfileManager.PushAndSave((current) => current.KeyboardMap = new KeyMap<KeyboardMap>(this.editedKeyboardMap), I18n.Get(KeyboardString.UndoKey));
+            if (this.ProfileManager.PushAndSave((current) => current.KeyboardMap = new KeyMap<KeyboardMap>(this.editedKeyboardMap), I18n.Get(KeyboardString.UndoKey)))
+            {
+                this.KeyboardMapModified();
+            }
         }
 
         /// <summary>
@@ -503,7 +564,7 @@ namespace Wx3270
                     text = this.keyboardActionsTextBox.Text;
                     break;
                 case "Delete":
-                    this.editedKeyboardMap.Remove(KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers));
+                    this.editedKeyboardMap.Remove(KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers, KeyMap<KeyboardMap>.ProfileChord(this.ChordName)));
                     this.SelectKeyboard();
                     return;
                 default:
@@ -875,6 +936,28 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Message box titles.
+        /// </summary>
+        private static partial class Title
+        {
+            /// <summary>
+            /// Old profile version detected.
+            /// </summary>
+            public static readonly string OldProfile = I18n.Combine(TitleName, "oldProfile");
+        }
+
+        /// <summary>
+        /// Message box messages.
+        /// </summary>
+        private static partial class Message
+        {
+            /// <summary>
+            /// Old profile version detected.
+            /// </summary>
+            public static readonly string OldProfile = I18n.Combine(MessageName, "oldProfile");
+        }
+
+        /// <summary>
         /// Localized strings.
         /// </summary>
         private static class KeyboardString
@@ -948,6 +1031,16 @@ namespace Wx3270
             /// Undo key change.
             /// </summary>
             public static readonly string UndoKeypadPosition = I18n.Combine(KeyboardStringBase, "UndoKeypad");
+
+            /// <summary>
+            /// The word 'and'.
+            /// </summary>
+            public static readonly string And = I18n.Combine(KeyboardStringBase, "and");
+
+            /// <summary>
+            /// Change name for updating the keyboard map.
+            /// </summary>
+            public static readonly string UpdateKeymapVersion = I18n.Combine(KeyboardStringBase, "updateKeymapVersion");
         }
 
         /// <summary>

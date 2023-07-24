@@ -43,7 +43,7 @@ namespace Wx3270
         /// <summary>
         /// Message box titles.
         /// </summary>
-        private class Title
+        private partial class Title
         {
             /// <summary>
             /// Settings errors.
@@ -54,7 +54,7 @@ namespace Wx3270
         /// <summary>
         /// Message box messages.
         /// </summary>
-        private class Message
+        private partial class Message
         {
             /// <summary>
             /// Bad listen value.

@@ -305,7 +305,7 @@ namespace L10ntool
             {
                 if (!newTranslatedMsgcat.ContainsKey(kv.Key))
                 {
-                    newTranslatedMsgcat.Add(kv.Key, kv.Value);
+                    newTranslatedMsgcat.Add(kv.Key, "[*] " + kv.Value);
                 }
             }
 

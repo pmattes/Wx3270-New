@@ -8,13 +8,17 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
+    using System.Threading;
     using System.Windows.Forms;
+    using System.Windows.Input;
     using I18nBase;
+    using Microsoft.Win32;
     using Wx3270.Contracts;
 
     using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
     using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
     using MouseEventHandler = System.Windows.Forms.MouseEventHandler;
+    using Timer = System.Windows.Forms.Timer;
 
     /// <summary>
     /// The main screen.
@@ -50,6 +54,11 @@ namespace Wx3270
         /// The name of the menu item to stop recording.
         /// </summary>
         private const string MacroStopRecordingItemName = "MainScreen.Item.StopRecording";
+
+        /// <summary>
+        /// The number of steps in the overlay menu bar animation.
+        /// </summary>
+        private const int OverlayMenuBarSteps = 6;
 
         /// <summary>
         /// The name of the localized start button.
@@ -182,6 +191,31 @@ namespace Wx3270
         private bool scrollBarDisplayed = true;
 
         /// <summary>
+        /// True if in F11 full screen mode.
+        /// </summary>
+        private bool fullScreen = false;
+
+        /// <summary>
+        /// True if the overlay menu bar is displayed.
+        /// </summary>
+        private bool overlayMenuBarDisplayed = false;
+
+        /// <summary>
+        /// The roll up / roll down step of the overlay menu bar.
+        /// </summary>
+        private int overlayMenuBarStep;
+
+        /// <summary>
+        /// The overlay menu bar animation direction (-1 for up, +1 for down, 0 for stable).
+        /// </summary>
+        private int overlayMenuBarDirection = 0;
+
+        /// <summary>
+        /// True if the menu bar is disabled (config option).
+        /// </summary>
+        private bool menuBarDisabled = false;
+
+        /// <summary>
         /// The window handle.
         /// </summary>
         private IntPtr handle;
@@ -223,6 +257,11 @@ namespace Wx3270
         /// Event signaled when the font changes dynamically.
         /// </summary>
         public event Action<Font> DynamicFontEvent = (f) => { };
+
+        /// <summary>
+        /// Event signaled when the fixed menu bar is supposed to be set.
+        /// </summary>
+        public event Action MenuBarSetEvent = () => { };
 
         /// <summary>
         /// The stages of flashing.
@@ -604,7 +643,7 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Add or remove the scroll bar.
+        /// Add or remove the scroll bar. Called when the scroll bar option changes.
         /// </summary>
         /// <param name="displayed">True if scroll bar should be displayed.</param>
         /// <returns>New screen size, or null.</returns>
@@ -643,8 +682,8 @@ namespace Wx3270
 
             this.scrollBarDisplayed = displayed;
 
-            // Reevluate the fixed area of the screen and set the overall screen size.
-            this.ResetFixed(displayed);
+            // Re-evluate the fixed area of the screen and set the overall screen size.
+            this.AdjustFixedForScrollBar(displayed);
             this.ClientSize = this.mainScreenPanel.Size;
             var size = this.Size;
 
@@ -652,6 +691,95 @@ namespace Wx3270
             if (wasMaximized)
             {
                 this.Maximize();
+            }
+
+            return size;
+        }
+
+        /// <summary>
+        /// Change the state of the menu bar. Called when the option changes.
+        /// </summary>
+        /// <param name="displayed">True if the menu bar should be displayed.</param>
+        /// <returns>New screen size, or null.</returns>
+        public Size? ToggleFixedMenuBar(bool displayed)
+        {
+            if (this.App.NoButtons || displayed == !this.menuBarDisabled)
+            {
+                return null;
+            }
+
+            if (this.overlayMenuBarDisplayed)
+            {
+                // Get rid of the overlay menu bar.
+                this.TopBar.RemoveFromParent();
+                this.TopLayoutPanel.RemoveFromParent();
+                this.overlayMenuBarDisplayed = false;
+            }
+
+            var wasFullScreen = false;
+            if (this.fullScreen)
+            {
+                this.DoFullScreen();
+                wasFullScreen = true;
+            }
+
+            // If currently maximized, restore first. This is rather hacky, but it works.
+            var wasMaximized = false;
+            if (this.Maximized)
+            {
+                this.Restore();
+                wasMaximized = true;
+            }
+
+            if (!displayed)
+            {
+                // Hide the menu bar.
+                this.TopBar.RemoveFromParent();
+                this.TopLayoutPanel.RemoveFromParent();
+                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
+                this.fixedHeight -= this.TopBar.Height + this.TopLayoutPanel.Height;
+            }
+            else
+            {
+                // Put the menu bar back.
+                this.TopBar.Location = new Point(0, 0);
+                this.MainTable.Controls.Add(this.TopBar, 0, 1);
+                this.MainTable.Controls.Add(this.TopLayoutPanel, 0, 0);
+                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 2F);
+                this.fixedHeight += this.TopBar.Height + this.TopLayoutPanel.Height;
+            }
+
+            this.menuBarDisabled = !displayed;
+            this.temporaryToolStripMenuItem.Enabled = !displayed || wasFullScreen;
+            this.permanentToolStripMenuItem.Enabled = !displayed;
+
+            // Re-evaluate the fixed area of the screen and set the overall screen size.
+            this.screenBox.SetFixed(this.fixedWidth, this.fixedHeight);
+            this.ClientSize = this.mainScreenPanel.Size;
+            var size = this.Size;
+
+            // Return to maximized if needed.
+            if (wasMaximized)
+            {
+                this.Maximize();
+            }
+
+            if (wasFullScreen)
+            {
+                this.DoFullScreen(withWarning: false);
+            }
+
+            if (!displayed && !wasFullScreen)
+            {
+                this.PopUpMenuBarWarning();
+            }
+
+            if (displayed && wasFullScreen)
+            {
+                ErrorBox.Show(
+                    I18n.Get(ErrorMessage.MenuBarToggleNop),
+                    I18n.Get(Title.MenuBarEnabled),
+                    MessageBoxIcon.Information);
             }
 
             return size;
@@ -685,7 +813,7 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Add or remove the scroll bar.
+        /// Add or remove the scroll bar. Called when the profile changes.
         /// </summary>
         /// <param name="displayed">True if scroll bar should be displayed.</param>
         private void ToggleScrollBarInternal(bool displayed)
@@ -716,7 +844,50 @@ namespace Wx3270
             this.scrollBarDisplayed = displayed;
 
             // Reevaluate the sizes of the fixed elements.
-            this.ResetFixed(displayed);
+            this.AdjustFixedForScrollBar(displayed);
+        }
+
+        /// <summary>
+        /// Add or remove the menu bar. Called when the profile changes.
+        /// </summary>
+        /// <param name="displayed">True if the menubar should be displayed.</param>
+        private void ToggleMenuBarInternal(bool displayed)
+        {
+            if (this.App.NoButtons || displayed == !this.menuBarDisabled)
+            {
+                return;
+            }
+
+            if (this.overlayMenuBarDisplayed)
+            {
+                // Get rid of the overlay menu bar.
+                this.overlayMenuBarStep = OverlayMenuBarSteps;
+                this.overlayMenuBarDirection = -1;
+                this.overlayMenuBarTimer.Start();
+            }
+
+            if (!displayed)
+            {
+                // Hide the menu bar.
+                this.TopBar.RemoveFromParent();
+                this.TopLayoutPanel.RemoveFromParent();
+                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
+                this.fixedHeight -= this.TopBar.Height + this.TopLayoutPanel.Height;
+            }
+            else
+            {
+                // Put the menu bar back.
+                this.TopBar.Location = new Point(0, 0);
+                this.MainTable.Controls.Add(this.TopBar, 0, 1);
+                this.MainTable.Controls.Add(this.TopLayoutPanel, 0, 0);
+                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 2F);
+                this.fixedHeight += this.TopBar.Height + this.TopLayoutPanel.Height;
+            }
+
+            this.menuBarDisabled = !displayed;
+
+            // Re-evluate the fixed area of the screen and set the overall screen size.
+            this.screenBox.SetFixed(this.fixedWidth, this.fixedHeight);
         }
 
         /// <summary>
@@ -769,21 +940,34 @@ namespace Wx3270
             this.ProfileManager.ChangeFinal += (profile, isNew) =>
             {
                 var maximize = profile.Maximize;
+                var fullScreen = profile.FullScreen;
                 Size? size = profile.Size.HasValue ? (Size?)new Size(profile.Size.Value.Width, profile.Size.Value.Height) : null;
                 if (maximize || size.HasValue)
                 {
                     // Run the following after any other back-end action, such as changing the model:
                     //  Scroll bar.
-                    //  Maximize.
+                    //  Menu bar.
+                    //  Maximize and FullScreen.
                     // Set the size, even if we are going to maximize, so when we un-maximize, we get the right size.
                     this.BackEnd.RunAction(new BackEndAction(B3270.Action.Query, B3270.Query.Model), (cookie, success, result, misc) =>
                     {
                         this.ToggleScrollBarInternal(profile.ScrollBar);
+                        this.ToggleMenuBarInternal(profile.MenuBar);
 
                         if (maximize)
                         {
-                            this.Maximize();
+                            if (fullScreen)
+                            {
+                                this.SetFullScreen();
+                            }
+                            else
+                            {
+                                this.Maximize();
+                            }
                         }
+
+                        this.temporaryToolStripMenuItem.Enabled = this.menuBarDisabled || this.fullScreen;
+                        this.permanentToolStripMenuItem.Enabled = this.menuBarDisabled && !this.fullScreen;
 
                         if (size.HasValue)
                         {
@@ -792,6 +976,9 @@ namespace Wx3270
                         }
                     });
                 }
+
+                // Update key mappings.
+                this.UpdateMenuKeyMappings();
             };
             this.ProfileManager.ProfileClosing += (profile) =>
             {
@@ -857,10 +1044,10 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Re-measure the size of the fixed parts of the screen.
+        /// Adjust the size of the fixed parts of the screen based on the scroll bar appearing or disappearing.
         /// </summary>
         /// <param name="scrollBar">True if the scroll bar is displayed.</param>
-        private void ResetFixed(bool scrollBar)
+        private void AdjustFixedForScrollBar(bool scrollBar)
         {
             if (scrollBar)
             {
@@ -914,7 +1101,7 @@ namespace Wx3270
             this.screenBox.FontChanged += (font, dynamic) =>
             {
                 this.RefontOia(font);
-                if (dynamic)
+                if (dynamic && this.WindowState == FormWindowState.Normal && this.FormBorderStyle != FormBorderStyle.None)
                 {
                     this.DynamicFontEvent(font);
                 }
@@ -990,8 +1177,8 @@ namespace Wx3270
             this.ConnectionStateEvent += () =>
             {
                 this.Retitle();
-                this.disconnectMenuItem.Enabled = this.App.ConnectionState != ConnectionState.NotConnected;
-                this.quickConnectMenuItem.Enabled = this.App.ConnectionState == ConnectionState.NotConnected;
+                this.SetPairedEnabled(this.disconnectMenuItem, this.App.ConnectionState != ConnectionState.NotConnected);
+                this.SetPairedEnabled(this.quickConnectMenuItem, this.App.ConnectionState == ConnectionState.NotConnected);
             };
 
             // Subscribe to toggle changes.
@@ -1184,18 +1371,44 @@ namespace Wx3270
                 this.App.BackEnd.RegisterPassthru(Constants.Action.StepEfont, this.UiStepEfont);
             }
 
+            // Set up the full-screen action.
+            if (!this.App.NoBorder)
+            {
+                this.App.BackEnd.RegisterPassthru(Constants.Action.FullScreen, this.UiFullScreen);
+            }
+
+            if (!this.App.NoButtons)
+            {
+                this.App.BackEnd.RegisterPassthru(Constants.Action.MenuBar, this.UiMenuBar);
+            }
+
+            // Clone the menu bar menus to the context menu.
+            this.CloneMenus();
+
             // Localize.
             I18n.Localize(this, this.toolTip1);
             this.InitOiaLocalization();
             I18n.LocalizeGlobal(Title.HostConnect, "Host Connect");
             I18n.LocalizeGlobal(Title.MacroError, "Macro Error");
             I18n.LocalizeGlobal(Title.KeypadMenuError, "Keypad Menu Error");
+            I18n.LocalizeGlobal(Title.FullScreen, "Full Screen Mode");
+            I18n.LocalizeGlobal(Title.MenuBarDisabled, "Menu Bar Disabled");
+            I18n.LocalizeGlobal(Title.MenuBarEnabled, "Menu Bar Enabled");
             I18n.LocalizeGlobal(ErrorMessage.NoSuchHost, "No such host connection");
             I18n.LocalizeGlobal(ErrorMessage.InvalidPrefixes, "Invalid prefix(es) in command-line host");
+            I18n.LocalizeGlobal(ErrorMessage.MenuBarToggle, "To display the menu bar, right-click on the main screen and select 'Menu bar'.");
+            I18n.LocalizeGlobal(ErrorMessage.MenuBarToggleNop, "The menu bar is not displayed in full screen mode. Right-click on the main screen for the context menu.");
+            I18n.LocalizeGlobal(ErrorMessage.FullScreenToggle, "To exit full screen mode, right-click on the main screen and select 'Full screen'.");
             I18n.LocalizeGlobal(SaveType.CommandLineHost, "Command-line host connection");
+
+            // Update the menu key mappings.
+            this.UpdateMenuKeyMappings();
 
             // Set up the connect menu.
             this.ProfileTreeChanged(this.App.ProfileTracker.Tree);
+
+            // Set up keyboard map changes.
+            this.settings.KeyboardMapModified += this.UpdateMenuKeyMappings;
 
             // Handle the no-border option.
             if (this.App.NoBorder)
@@ -1212,6 +1425,185 @@ namespace Wx3270
                 this.TopMost = true;
                 this.TopMost = false;
             }
+        }
+
+        /// <summary>
+        /// Clone a context menu strip to a tool strip menu item.
+        /// </summary>
+        /// <param name="from">Context menu strip to clone.</param>
+        /// <param name="to">Tool strip menu item to attach it to.</param>
+        /// <param name="handler">Event handler for copied menu items.</param>
+        private void CloneSubmenu(ToolStripMenuItem from, ToolStripMenuItem to, EventHandler handler)
+        {
+            foreach (var item in from.DropDownItems)
+            {
+                var fromItem = (ToolStripMenuItem)item;
+                var toItem = new ToolStripMenuItem()
+                {
+                    Name = fromItem.Name,
+                    Size = fromItem.Size,
+                    Tag = fromItem.Tag,
+                    Text = fromItem.Text,
+                    ForeColor = fromItem.ForeColor,
+                    Image = fromItem.Image,
+                    Enabled = fromItem.Enabled,
+                };
+                toItem.Click += new EventHandler(handler);
+                to.DropDownItems.Add(toItem);
+                if (fromItem.DropDownItems.Count > 0)
+                {
+                    this.CloneSubmenu(fromItem, toItem, handler);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Clone a context menu strip to a tool strip menu item.
+        /// </summary>
+        /// <param name="from">Context menu strip to clone.</param>
+        /// <param name="to">Tool strip menu item to attach it to.</param>
+        /// <param name="handler">Event handler for copied menu items.</param>
+        private void CloneMenu(ContextMenuStrip from, ToolStripMenuItem to, EventHandler handler)
+        {
+            foreach (var item in from.Items)
+            {
+                var fromItem = (ToolStripMenuItem)item;
+                var toItem = new ToolStripMenuItem()
+                {
+                    Name = fromItem.Name,
+                    Size = fromItem.Size,
+                    Tag = fromItem.Tag,
+                    Text = fromItem.Text,
+                    ForeColor = fromItem.ForeColor,
+                    Image = fromItem.Image,
+                    Enabled = fromItem.Enabled,
+                };
+                toItem.Click += new EventHandler(handler);
+                to.DropDownItems.Add(toItem);
+                if (fromItem.DropDownItems.Count > 0)
+                {
+                    this.CloneSubmenu(fromItem, toItem, handler);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Clone the menu bar context menus to the main context menu.
+        /// </summary>
+        private void CloneMenus()
+        {
+            // Clone the menus.
+            this.CloneMenu(this.actionsMenuStrip, this.actionsToolStripMenuItem, this.ActionsClick);
+            this.CloneMenu(this.connectMenuStrip, this.connectToolStripMenuItem, this.ConnectToProfileHost);
+            this.CloneMenu(this.keypadContextMenuStrip, this.keypadToolStripMenuItem, this.KeypadMenuClick);
+            this.CloneMenu(this.loadContextMenuStrip, this.profilesToolStripMenuItem, this.LoadProfileHandler);
+            this.CloneMenu(this.macrosContextMenuStrip, this.macrosToolStripMenuItem, this.RunMacro);
+        }
+
+        /// <summary>
+        /// Find a menu by name.
+        /// </summary>
+        /// <param name="items">Items to search.</param>
+        /// <param name="name">Menu name.</param>
+        /// <returns>Menu item, or null.</returns>
+        private ToolStripMenuItem FindMenu(ToolStripItemCollection items, string name)
+        {
+            ToolStripMenuItem menuItem = null;
+            foreach (var suffix in new string[] { string.Empty, "1", "2" })
+            {
+                menuItem = items.Cast<ToolStripMenuItem>().Where(item => item.Name.Equals(name + suffix, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                if (menuItem != null)
+                {
+                    return menuItem;
+                }
+            }
+
+            foreach (var submenu in items.Cast<ToolStripMenuItem>())
+            {
+                menuItem = this.FindMenu(submenu.DropDownItems, name);
+                if (menuItem != null)
+                {
+                    return menuItem;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Update the context menu entries with key mappings.
+        /// </summary>
+        /// <param name="items">Drop-down items to search.</param>
+        /// <param name="name">Item name to find.</param>
+        /// <param name="action">Action to search for in the keymap.</param>
+        private void UpdateContextKeyMapping(ToolStripItemCollection items, string name, string action)
+        {
+            var menuItem = this.FindMenu((ToolStripItemCollection)items, name);
+            if (menuItem != null)
+            {
+                const string separator = "       ";
+                var space = menuItem.Text.IndexOf(separator);
+                var keymaps = this.FindKeymaps(action);
+                if (keymaps.Count() != 0)
+                {
+                    var keymap = KeyMap<KeyboardMap>.DecodeKeyName(keymaps.First().Key);
+                    if (space != -1)
+                    {
+                        menuItem.Text = menuItem.Text.Substring(0, space) + $"{separator}{keymap}";
+                    }
+                    else
+                    {
+                        menuItem.Text += $"{separator}{keymap}";
+                    }
+                }
+                else if (space != -1)
+                {
+                    // Remove the mapping.
+                    menuItem.Text = menuItem.Text.Substring(0, space);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Update the context menu entries with key mappings.
+        /// </summary>
+        private void UpdateMenuKeyMappings()
+        {
+            this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "fullScreenToolStripMenuItem", Constants.Action.FullScreen + "()");
+            this.UpdateContextKeyMapping(this.editToolStripMenuItem.DropDownItems, "copyToolStripMenuItem", Constants.Action.Copy + "()");
+            this.UpdateContextKeyMapping(this.editToolStripMenuItem.DropDownItems, "pasteToolStripMenuItem", Constants.Action.Paste + "()");
+            this.UpdateContextKeyMapping(this.editToolStripMenuItem.DropDownItems, "cutToolStripMenuItem", Constants.Action.Cut + "()");
+            this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "biggerToolStripMenuItem", Constants.Action.StepEfont + $"({Constants.Misc.Bigger})");
+            this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "smallerToolStripMenuItem", Constants.Action.StepEfont + $"({Constants.Misc.Smaller})");
+
+            this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "quitToolStripMenuItem", B3270.Action.Quit + "(-force)");
+            for (var i = 1; i <= 24; i++)
+            {
+                this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, $"pF{i}ToolStripMenuItem", B3270.Action.PF + $"({i})");
+                this.UpdateContextKeyMapping(this.keypadContextMenuStrip.Items, $"pF{i}ToolStripMenuItem", B3270.Action.PF + $"({i})");
+            }
+
+            for (var i = 1; i <= 2; i++)
+            {
+                this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, $"pA{i}ToolStripMenuItem", B3270.Action.PA + $"({i})");
+                this.UpdateContextKeyMapping(this.keypadContextMenuStrip.Items, $"pA{i}ToolStripMenuItem", B3270.Action.PA + $"({i})");
+            }
+
+            foreach (var action in new string[]
+                {
+                    B3270.Action.Up, B3270.Action.Down, B3270.Action.Left, B3270.Action.Right, B3270.Action.Home, B3270.Action.Tab, B3270.Action.BackTab, B3270.Action.Newline,
+                    B3270.Action.Reset, B3270.Action.Enter, B3270.Action.EraseInput, B3270.Action.CursorSelect, B3270.Action.Clear, B3270.Action.EraseEOF, B3270.Action.Dup,
+                    B3270.Action.FieldMark, B3270.Action.Attn, B3270.Action.SysReq, B3270.Action.Delete,
+                })
+            {
+                this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, action + "ToolStripMenuItem", action + "()");
+                this.UpdateContextKeyMapping(this.keypadContextMenuStrip.Items, action + "ToolStripMenuItem", action + "()");
+            }
+
+            this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "insertToolStripMenuItem", B3270.Action.Toggle + "(" + B3270.Setting.InsertMode + ")");
+            this.UpdateContextKeyMapping(this.keypadContextMenuStrip.Items, "insertToolStripMenuItem", B3270.Action.Toggle + "(" + B3270.Setting.InsertMode + ")");
+
+            this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "temporaryToolStripMenuItem", Constants.Action.MenuBar + "()");
         }
 
         /// <summary>
@@ -1279,6 +1671,25 @@ namespace Wx3270
 
             this.BackEnd.RunAction(action, Wx3270.BackEnd.Ignore());
             return PassthruResult.Success;
+        }
+
+        /// <summary>
+        /// Event handler for load profile menu clicks.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void LoadProfileHandler(object sender, EventArgs e)
+        {
+            var item = (ToolStripMenuItem)sender;
+            var p = (ProfileWatchNode)item.Tag;
+            if (this.App.ConnectionState != ConnectionState.NotConnected)
+            {
+                ProfileTree.NewWindow(this, this.components, p.PathName);
+            }
+            else if (ModifierKeys.HasFlag(Keys.Shift) || !this.ProfileManager.IsCurrentPathName(p.PathName))
+            {
+                this.profileTree.LoadWithAutoConnect(p.PathName, ModifierKeys.HasFlag(Keys.Shift));
+            }
         }
 
         /// <summary>
@@ -1352,20 +1763,9 @@ namespace Wx3270
                             return nonterminal;
                         case WatchNodeType.Profile:
                             var profile = node as ProfileWatchNode;
-                            stack.Peek().DropDownItems.Add(
-                                profile.Name,
-                                null,
-                                (sender, e) =>
-                                {
-                                    if (this.App.ConnectionState != ConnectionState.NotConnected)
-                                    {
-                                        ProfileTree.NewWindow(this, this.components, profile.PathName);
-                                    }
-                                    else if (ModifierKeys.HasFlag(Keys.Shift) || !this.ProfileManager.IsCurrentPathName(profile.PathName))
-                                    {
-                                        this.profileTree.LoadWithAutoConnect(profile.PathName, ModifierKeys.HasFlag(Keys.Shift));
-                                    }
-                                });
+                            var item = new ToolStripMenuItem() { Text = profile.Name, Tag = profile };
+                            item.Click += this.LoadProfileHandler;
+                            stack.Peek().DropDownItems.Add(item);
                             return null;
                         case WatchNodeType.Host:
                         default:
@@ -1475,20 +1875,26 @@ namespace Wx3270
         /// <param name="newFolderTree">New host tree.</param>
         private void ProfileTreeChanged(List<FolderWatchNode> newFolderTree)
         {
-            this.connectMenuItem.DropDownItems.Clear();
-            this.loadMenuItem.DropDownItems.Clear();
-
-            // Start with the current profile's hosts.
-            foreach (var host in this.ProfileManager.Current.Hosts)
+            void PopulateConnectMenu(ToolStripItemCollection items)
             {
-                var item = new ToolStripMenuItem(host.Name, null, this.ConnectToProfileHost);
-                if (!string.IsNullOrWhiteSpace(host.Description))
-                {
-                    item.ToolTipText = host.Description;
-                }
+                items.Clear();
 
-                this.connectMenuItem.DropDownItems.Add(item);
+                // Start with the current profile's hosts.
+                foreach (var host in this.ProfileManager.Current.Hosts)
+                {
+                    var item = new ToolStripMenuItem(host.Name, null, this.ConnectToProfileHost) { Tag = host };
+                    if (!string.IsNullOrWhiteSpace(host.Description))
+                    {
+                        item.ToolTipText = host.Description;
+                    }
+
+                    items.Add(item);
+                }
             }
+
+            this.loadMenuItem.DropDownItems.Clear();
+            PopulateConnectMenu(this.connectMenuItem.DropDownItems);
+            PopulateConnectMenu(((ToolStripMenuItem)this.connectToolStripMenuItem.DropDownItems[1]).DropDownItems); // A bit hacky, I know.
 
             // Next comes any folder that is under MyDocuments\wx3270 (ProfileManager.SeedProfileDirectory), with that prefix removed.
             var seedRoot = newFolderTree.Where(p => p.PathName == Wx3270.ProfileManager.SeedProfileDirectory).FirstOrDefault();
@@ -1502,6 +1908,13 @@ namespace Wx3270
             {
                 this.AddUniqueItems(root);
             }
+
+            // Re-clone the drop-downs.
+            var firstItem = this.profilesToolStripMenuItem.DropDownItems[0];
+            this.profilesToolStripMenuItem.DropDownItems.Clear();
+            this.profilesToolStripMenuItem.DropDownItems.Add(firstItem);
+            this.profilesToolStripMenuItem.DropDownItems[0].Click += this.ProfilePictureBox_Click;
+            this.CloneMenu(this.loadContextMenuStrip, this.profilesToolStripMenuItem, this.LoadProfileHandler);
         }
 
         /// <summary>
@@ -1512,9 +1925,10 @@ namespace Wx3270
         private void ConnectToProfileHost(object sender, EventArgs e)
         {
             var clickedMenuItem = sender as ToolStripMenuItem;
-            var hostEntry = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.Name.Equals(clickedMenuItem.Text));
+            var hostEntry = clickedMenuItem.Tag as HostEntry;
             if (hostEntry != null)
             {
+                // Connect to a particular host.
                 if (this.App.ConnectionState != ConnectionState.NotConnected)
                 {
                     ProfileTree.NewWindow(this, this.components, hostEntry.Profile.PathName, hostEntry.Name);
@@ -1522,6 +1936,19 @@ namespace Wx3270
                 else
                 {
                     this.Connect.ConnectToHost(hostEntry);
+                }
+            }
+            else if (clickedMenuItem.Tag is string tagString)
+            {
+                // Quick connect or disconnect.
+                switch (tagString)
+                {
+                    case "QuickConnect":
+                        this.profileTree.CreateHostDialog(this.ProfileManager.Current);
+                        break;
+                    case "Disconnect":
+                        this.Connect.Disconnect();
+                        break;
                 }
             }
         }
@@ -1579,14 +2006,27 @@ namespace Wx3270
         /// </summary>
         private void MacrosChanged()
         {
-            this.macrosContextMenuStrip.Items.Clear();
-            this.macrosContextMenuStrip.Items.AddRange(
-                this.macroEntries.Entries.Select(e => new ToolStripMenuItem(e.Name, null, this.RunMacro) { Tag = e }).ToArray());
-            this.macroRecordItem = new ToolStripMenuItem(
-                I18n.Get(this.MacroRecorder.Running ? MacroStopRecordingItemName : MacroRecordingItemName),
-                this.MacroRecorder.Running ? Properties.Resources.stop_recording : Properties.Resources.record1,
-                this.ToggleRecording);
-            this.macrosContextMenuStrip.Items.Add(this.macroRecordItem);
+            void RedoMenu(ToolStripItemCollection items, bool saveFirst = false)
+            {
+                var first = saveFirst ? items[0] : null;
+                items.Clear();
+                if (first != null)
+                {
+                    items.Add(first);
+                }
+
+                items.AddRange(
+                    this.macroEntries.Entries.Select(e => new ToolStripMenuItem(e.Name, null, this.RunMacro) { Tag = e }).ToArray());
+                this.macroRecordItem = new ToolStripMenuItem(
+                    I18n.Get(this.MacroRecorder.Running ? MacroStopRecordingItemName : MacroRecordingItemName),
+                    this.MacroRecorder.Running ? Properties.Resources.stop_recording : Properties.Resources.record1,
+                    this.RunMacro)
+                { Tag = "ToggleRecording" };
+                items.Add(this.macroRecordItem);
+            }
+
+            RedoMenu(this.macrosContextMenuStrip.Items);
+            RedoMenu(this.macrosToolStripMenuItem.DropDownItems, saveFirst: true);
         }
 
         /// <summary>
@@ -1597,8 +2037,14 @@ namespace Wx3270
         private void RunMacro(object sender, EventArgs e)
         {
             var clickedMenuItem = sender as ToolStripMenuItem;
-            var entry = (MacroEntry)clickedMenuItem.Tag;
-            this.BackEnd.RunActions(entry.Macro, ErrorBox.Completion(I18n.Get(Title.MacroError)));
+            if (clickedMenuItem.Tag is MacroEntry entry)
+            {
+                this.BackEnd.RunActions(entry.Macro, ErrorBox.Completion(I18n.Get(Title.MacroError)));
+            }
+            else if (clickedMenuItem.Tag is string tagString && tagString == "ToggleRecording")
+            {
+                this.ToggleRecording(sender, e);
+            }
         }
 
         /// <summary>
@@ -1829,6 +2275,36 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Set the 'Checked' property for a pair of menu items.
+        /// </summary>
+        /// <param name="mainItem">Menu item from main menu bar.</param>
+        /// <param name="isChecked">True to set Checked.</param>
+        private void SetPairedChecked(ToolStripMenuItem mainItem, bool isChecked)
+        {
+            mainItem.Checked = isChecked;
+            var contextItem = this.FindMenu(this.screenBoxContextMenuStrip.Items, mainItem.Name);
+            if (contextItem != null)
+            {
+                contextItem.Checked = isChecked;
+            }
+        }
+
+        /// <summary>
+        /// Set the 'Enabled' property for a pair of menu items.
+        /// </summary>
+        /// <param name="mainItem">Menu item from main menu bar.</param>
+        /// <param name="isEnabled">True to set Enabled.</param>
+        private void SetPairedEnabled(ToolStripMenuItem mainItem, bool isEnabled)
+        {
+            mainItem.Enabled = isEnabled;
+            var contextItem = this.FindMenu(this.screenBoxContextMenuStrip.Items, mainItem.Name);
+            if (contextItem != null)
+            {
+                contextItem.Enabled = isEnabled;
+            }
+        }
+
+        /// <summary>
         /// A setting changed.
         /// </summary>
         /// <param name="settingName">Setting name.</param>
@@ -1838,16 +2314,16 @@ namespace Wx3270
             switch (settingName)
             {
                 case B3270.Setting.Trace:
-                    this.tracingToolStripMenuItem.Checked = settingDictionary.TryGetValue(B3270.Setting.Trace, out bool trace) && trace;
+                    this.SetPairedChecked(this.tracingToolStripMenuItem, settingDictionary.TryGetValue(B3270.Setting.Trace, out bool trace) && trace);
                     break;
                 case B3270.Setting.ScreenTrace:
                     var screenTracing = settingDictionary.TryGetValue(B3270.Setting.ScreenTrace, out bool screenTrace) && screenTrace;
-                    this.screenTracingMenuItem.Checked = screenTracing;
-                    this.sendToPrinterToolStripMenuItem.Enabled = !screenTracing;
-                    this.saveToFileToolStripMenuItem.Enabled = !screenTracing;
+                    this.SetPairedChecked(this.screenTracingMenuItem, screenTracing);
+                    this.SetPairedEnabled(this.sendToPrinterToolStripMenuItem, !screenTracing);
+                    this.SetPairedEnabled(this.saveToFileToolStripMenuItem, !screenTracing);
                     break;
                 case B3270.Setting.VisibleControl:
-                    this.controlCharsMenuItem.Checked = settingDictionary.TryGetValue(B3270.Setting.VisibleControl, out bool visibleControl) && visibleControl;
+                    this.SetPairedChecked(this.controlCharsMenuItem, settingDictionary.TryGetValue(B3270.Setting.VisibleControl, out bool visibleControl) && visibleControl);
                     this.ScreenNeedsDrawing(this.App.ScreenImage, "visibleControl", true);
                     break;
                 case B3270.Setting.AplMode:
@@ -1965,6 +2441,11 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ScreenBox_MouseDown(object sender, MouseEventArgs e)
         {
+            if (this.overlayMenuBarDisplayed)
+            {
+                this.ToggleOverlayMenuBar();
+            }
+
             if (e.Button != MouseButtons.Left)
             {
                 return;
@@ -2101,6 +2582,7 @@ namespace Wx3270
 
                     if (!this.resizeBeginPending &&
                         this.ClientSize != this.mainScreenPanel.Size &&
+                        this.screenBox != null &&
                         this.screenBox.ResizeReady)
                     {
                         // Got a Resize on its own (outside of ResizeStart/ResizeEnd), which is more of a "Size" event.
@@ -2110,15 +2592,25 @@ namespace Wx3270
                         if (this.ProfileManager.PushAndSave(
                             (current) =>
                             {
-                                current.Font = new FontProfile(newFont);
+                                if (this.WindowState == FormWindowState.Normal && this.FormBorderStyle != FormBorderStyle.None)
+                                {
+                                    current.Font = new FontProfile(newFont);
+                                }
+
                                 if (this.Maximized)
                                 {
                                     current.Maximize = true;
+                                    current.FullScreen = this.fullScreen;
                                 }
                                 else
                                 {
-                                    current.Size = this.Size;
+                                    if (this.FormBorderStyle != FormBorderStyle.None)
+                                    {
+                                        current.Size = this.Size;
+                                    }
+
                                     current.Maximize = false;
+                                    current.FullScreen = false;
                                 }
                             }, I18n.Get(ResizeName)))
                         {
@@ -2297,26 +2789,6 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// The disconnect item in the connection context menu was clicked.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void DisconnectMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Connect.Disconnect();
-        }
-
-        /// <summary>
-        /// The quick connect item in the connection context menu was clicked.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void QuickConnectMenuItem_Click(object sender, EventArgs e)
-        {
-            this.profileTree.CreateHostDialog(this.ProfileManager.Current);
-        }
-
-        /// <summary>
         /// The main screen has been shown.
         /// </summary>
         /// <param name="sender">Event sender.</param>
@@ -2387,68 +2859,61 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// The Cancel Scripts context menu item was selected.
+        /// An actions context menu item was selected.
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
-        private void ActionsCancelScripts(object sender, EventArgs e)
+        private void ActionsClick(object sender, EventArgs e)
         {
-            this.ActionsDialog.CancelScripts();
-        }
-
-        /// <summary>
-        /// The prompt context menu item was selected.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void ActionsPromptClick(object sender, EventArgs e)
-        {
-            this.App.Prompt.Start();
-        }
-
-        /// <summary>
-        /// The tracing context menu item was selected.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void ActionsTracingClick(object sender, EventArgs e)
-        {
-            this.ActionsDialog.Tracing = !this.ActionsDialog.Tracing;
-        }
-
-        /// <summary>
-        /// The visible control characters menu item was selected.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void ActionsVisibleControlClick(object sender, EventArgs e)
-        {
-            this.ActionsDialog.VisibleControl = !this.ActionsDialog.VisibleControl;
-        }
-
-        /// <summary>
-        /// The Print Screen menu item was selected.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void PrintScreen_Click(object sender, EventArgs e)
-        {
-            this.ActionsDialog.PrintTextButton_Click(sender, e);
-        }
-
-        /// <summary>
-        /// The screen tracing menu item was selected.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void ScreenTracing_Click(object sender, EventArgs e)
-        {
-            if (!(sender is ToolStripMenuItem item))
+            string tagString;
+            if (sender is Control control)
+            {
+                tagString = control.Tag as string;
+            }
+            else if (sender is ToolStripMenuItem menuItem)
+            {
+                tagString = menuItem.Tag as string;
+            }
+            else
             {
                 return;
             }
 
-            this.ActionsDialog.ToggleScreenTracing((string)item.Tag);
+            switch (tagString)
+            {
+                case "Prompt":
+                    this.App.Prompt.Start();
+                    break;
+                case "Tracing":
+                    this.ActionsDialog.Tracing = !this.ActionsDialog.Tracing;
+                    break;
+                case "FileTransfer":
+                    this.ActionsDialog.FileTransfer();
+                    break;
+                case "Printer":
+                case "File":
+                case "Toggle":
+                    this.ActionsDialog.ToggleScreenTracing(tagString);
+                    break;
+                case "VisibleControl":
+                    this.ActionsDialog.VisibleControl = !this.ActionsDialog.VisibleControl;
+                    break;
+                case "CancelScripts":
+                    this.ActionsDialog.CancelScripts();
+                    break;
+                case "ReEnableKeyboard":
+                    this.ActionsDialog.ReenableKeyboard();
+                    break;
+                case "PrintScreen":
+                    this.ActionsDialog.PrintTextButton_Click(sender, e);
+                    break;
+                case "DisplayKeymap":
+                    this.ActionsDialog.DisplayKeymap();
+                    break;
+                case "Exit":
+                    this.BackEnd.Stop();
+                    break;
+            }
         }
 
         /// <summary>
@@ -2459,26 +2924,6 @@ namespace Wx3270
         private void Help_Click(object sender, EventArgs e)
         {
             Wx3270App.GetHelp("Main");
-        }
-
-        /// <summary>
-        /// The re-enable keyboard menu item was clicked.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void ReenableKeyboard_Click(object sender, EventArgs e)
-        {
-            this.ActionsDialog.ReenableKeyboard();
-        }
-
-        /// <summary>
-        /// The display keymap menu item was clicked.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void DisplayKeymap_Click(object sender, EventArgs e)
-        {
-            this.ActionsDialog.DisplayKeymap();
         }
 
         /// <summary>
@@ -2544,13 +2989,12 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// The keypad button was clicked.
+        /// Show the keypad.
         /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void KeypadBox_Click(object sender, EventArgs e)
+        /// <param name="apl">True to show the APL keypad.</param>
+        private void ShowKeypad(bool apl = false)
         {
-            var keypad = this.Mod.HasFlag(KeyboardModifier.Alt) ? this.aplKeypad : (Form)this.keypad;
+            var keypad = apl ? this.aplKeypad : (Form)this.keypad;
             if (!keypad.Visible)
             {
                 this.noFlashTimer.Start();
@@ -2577,6 +3021,16 @@ namespace Wx3270
                 this.noFlashTimer.Start();
                 keypad.Activate();
             }
+        }
+
+        /// <summary>
+        /// The keypad button was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void KeypadBox_Click(object sender, EventArgs e)
+        {
+            this.ShowKeypad(this.Mod.HasFlag(KeyboardModifier.Alt));
         }
 
         /// <summary>
@@ -2661,27 +3115,19 @@ namespace Wx3270
                         if (this.Maximized)
                         {
                             current.Maximize = true;
+                            current.FullScreen = this.fullScreen;
                         }
                         else
                         {
                             current.Size = this.Size;
                             current.Maximize = false;
+                            current.FullScreen = false;
                         }
                     }, I18n.Get(ResizeName)))
                 {
                     Trace.Line(Trace.Type.Window, " ==> resize pushed");
                 }
             }
-        }
-
-        /// <summary>
-        /// The File Transfer button was clicked.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void FileTransfer_Click(object sender, EventArgs e)
-        {
-            this.ActionsDialog.FileTransfer();
         }
 
         /// <summary>
@@ -2803,7 +3249,7 @@ namespace Wx3270
                 return false;
             }
 
-            var newSize = this.ScreenFont.Size + (bigger ? 1.0F : -1.0F);
+            var newSize = this.ScreenFont.SizeInPoints + (bigger ? 1.0F : -1.0F);
             if (newSize > 0.0)
             {
                 this.settings.PropagateNewFont(new Font(this.ScreenFont.FontFamily, newSize));
@@ -2845,6 +3291,346 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Sets full screen mode.
+        /// </summary>
+        /// <param name="withWarning">True to pop up the warning message.</param>
+        private void SetFullScreen(bool withWarning = true)
+        {
+            if (!this.menuBarDisabled)
+            {
+                // Turn off the menu bar for the duration of F11 full screen mode.
+                this.TopBar.RemoveFromParent();
+                this.TopLayoutPanel.RemoveFromParent();
+                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
+                this.overlayMenuBarDisplayed = false;
+                this.fixedHeight -= this.TopBar.Height + this.TopLayoutPanel.Height;
+                this.screenBox.SetFixed(this.fixedWidth, this.fixedHeight);
+            }
+
+            this.ControlBox = false;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.snapBox.Enabled = false;
+            this.fullScreen = true;
+            this.WindowState = FormWindowState.Maximized;
+            this.fullScreenToolStripMenuItem.Checked = this.fullScreen;
+
+            if (withWarning)
+            {
+                this.PopUpFullScreenWarning();
+            }
+        }
+
+        /// <summary>
+        /// Find keymaps containing a specific action.
+        /// </summary>
+        /// <param name="action">Action to search for.</param>
+        /// <returns>List of actions.</returns>
+        private IEnumerable<KeyValuePair<string, KeyboardMap>> FindKeymaps(string action)
+        {
+            return this.ProfileManager.Current.KeyboardMap
+                .Where(km => km.Value.Actions.Equals(action, StringComparison.OrdinalIgnoreCase) && !km.Key.Contains("Apl"))
+                .ToList();
+        }
+
+        /// <summary>
+        /// Pop up an information box about how to get out of full screen mode.
+        /// </summary>
+        private void PopUpFullScreenWarning()
+        {
+            NativeMethods.SHMessageBoxCheckW(
+                this.handle,
+                string.Format("{0}" + Environment.NewLine + "{1}", I18n.Get(ErrorMessage.FullScreenToggle), I18n.Get(ErrorMessage.MenuBarToggle)),
+                I18n.Get(Title.FullScreen),
+                NativeMethods.MessageBoxCheckFlags.MB_OK | NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
+                NativeMethods.MessageBoxReturnValue.IDOK,
+                "wx3270.FullScreen");
+        }
+
+        /// <summary>
+        /// Pop up an information box about how to get the menu bar back.
+        /// </summary>
+        private void PopUpMenuBarWarning()
+        {
+            NativeMethods.SHMessageBoxCheckW(
+                this.handle,
+                I18n.Get(ErrorMessage.MenuBarToggle),
+                I18n.Get(Title.FullScreen),
+                NativeMethods.MessageBoxCheckFlags.MB_OK | NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
+                NativeMethods.MessageBoxReturnValue.IDOK,
+                "wx3270.MenuBar");
+        }
+
+        /// <summary>
+        /// Toggle full screen mode.
+        /// </summary>
+        /// <param name="withWarning">True to pop up the warning.</param>
+        /// <returns>Pass-through result.</returns>
+        private PassthruResult DoFullScreen(bool withWarning = true)
+        {
+            if (this.App.NoBorder)
+            {
+                // No-op if borders are permanently disabled.
+                return PassthruResult.Success;
+            }
+
+            if (this.fullScreen)
+            {
+                // Turn off full screen.
+                if (!this.menuBarDisabled)
+                {
+                    if (this.overlayMenuBarDisplayed)
+                    {
+                        // Turn off the overlay menu bar.
+                        this.TopBar.RemoveFromParent();
+                        this.TopLayoutPanel.RemoveFromParent();
+                        this.overlayMenuBarDisplayed = false;
+                    }
+
+                    // Turn the integral menu bar back on.
+                    this.TopBar.Location = new Point(0, 0);
+                    this.MainTable.Controls.Add(this.TopBar, 0, 1);
+                    this.MainTable.Controls.Add(this.TopLayoutPanel, 0, 0);
+                    this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 2F);
+
+                    this.fixedHeight += this.TopBar.Height + this.TopLayoutPanel.Height;
+                    this.screenBox.SetFixed(this.fixedWidth, this.fixedHeight);
+                }
+
+                this.ControlBox = true;
+                this.FormBorderStyle = FormBorderStyle.Sizable;
+                this.snapBox.Enabled = true;
+                this.fullScreen = false;
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                // Turn on full screen.
+                this.SetFullScreen(withWarning);
+            }
+
+            this.fullScreenToolStripMenuItem.Checked = this.fullScreen;
+            this.temporaryToolStripMenuItem.Enabled = this.fullScreen | this.menuBarDisabled;
+            return PassthruResult.Success;
+        }
+
+        /// <summary>
+        /// The UI full screen (F11) action. Toggles Alt-F11 full screen mode.
+        /// </summary>
+        /// <param name="commandName">Command name.</param>
+        /// <param name="arguments">Command arguments.</param>
+        /// <param name="result">Returned result.</param>
+        /// <param name="tag">Tag for asynchronous completion.</param>
+        /// <returns>Pass-through result.</returns>
+        private PassthruResult UiFullScreen(string commandName, IEnumerable<string> arguments, out string result, string tag)
+        {
+            result = null;
+            if (arguments.Count() != 0)
+            {
+                result = Constants.Action.FullScreen + "() takes 0 arguments";
+                return PassthruResult.Failure;
+            }
+
+            return this.DoFullScreen();
+        }
+
+        /// <summary>
+        /// Hide the overlay menu bar.
+        /// </summary>
+        private void HideOverlayMenuBar()
+        {
+            this.overlayMenuBarStep = OverlayMenuBarSteps;
+            this.overlayMenuBarDirection = -1;
+            this.overlayMenuBarTimer.Start();
+        }
+
+        /// <summary>
+        /// Pop the overlay menu bar up or down.
+        /// </summary>
+        /// <returns>Pass-through result.</returns>
+        private PassthruResult ToggleOverlayMenuBar()
+        {
+            if (this.App.NoButtons || (!this.menuBarDisabled && !this.fullScreen))
+            {
+                // With the menu bar permanently disabled, or without the menu option or full-screen mode, this is a no-op.
+                return PassthruResult.Success;
+            }
+
+            if (!this.overlayMenuBarDisplayed)
+            {
+                // Put the menubar back.
+                this.TopLayoutPanel.Location = new Point(0, -this.TopLayoutPanel.Height);
+                this.ScreenBoxPanel.Controls.Add(this.TopLayoutPanel);
+                this.TopLayoutPanel.BringToFront();
+                this.TopBar.Location = new Point(0, -this.TopLayoutPanel.Height);
+                this.ScreenBoxPanel.Controls.Add(this.TopBar);
+                this.TopBar.BringToFront();
+                this.overlayMenuBarStep = -OverlayMenuBarSteps;
+                this.overlayMenuBarDirection = 1;
+                this.overlayMenuBarTimer.Start();
+            }
+            else
+            {
+                this.HideOverlayMenuBar();
+            }
+
+            return PassthruResult.Success;
+        }
+
+        /// <summary>
+        /// The UI menu bar action. Toggles the overlay menu bar on and off.
+        /// </summary>
+        /// <param name="commandName">Command name.</param>
+        /// <param name="arguments">Command arguments.</param>
+        /// <param name="result">Returned result.</param>
+        /// <param name="tag">Tag for asynchronous completion.</param>
+        /// <returns>Pass-through result.</returns>
+        private PassthruResult UiMenuBar(string commandName, IEnumerable<string> arguments, out string result, string tag)
+        {
+            result = null;
+            if (arguments.Count() != 0)
+            {
+                result = Constants.Action.MenuBar + "() takes 0 arguments";
+                return PassthruResult.Failure;
+            }
+
+            return this.ToggleOverlayMenuBar();
+        }
+
+        /// <summary>
+        /// The menu bar hide timer has expired.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void MenuBarHideTimer_Tick(object sender, EventArgs e)
+        {
+            // Hide the menu bar.
+            this.menuBarHideTimer.Stop();
+            if ((this.menuBarDisabled || this.fullScreen) && this.overlayMenuBarDisplayed)
+            {
+                this.HideOverlayMenuBar();
+            }
+        }
+
+        /// <summary>
+        /// Someone has clicked on the menu bar.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void TopLayoutPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!this.overlayMenuBarDisplayed)
+            {
+                return;
+            }
+
+            var control = (Control)sender;
+            if (control.Tag != null && control.Tag is string && (string)control.Tag == "Now")
+            {
+                // Remove the overlay menu bar immediately.
+                this.ToggleOverlayMenuBar();
+                return;
+            }
+
+            // Start a timer to make the menu bar disappear.
+            this.menuBarHideTimer.Start();
+        }
+
+        /// <summary>
+        /// Timer tick for the overlay menu bar (coming or going).
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OverlayMenuBarTimer_Tick(object sender, EventArgs e)
+        {
+            if (this.overlayMenuBarDirection < 0)
+            {
+                // Move the overlay menu bar up.
+                if (--this.overlayMenuBarStep <= 0)
+                {
+                    // Done.
+                    this.overlayMenuBarTimer.Stop();
+                    this.TopBar.RemoveFromParent();
+                    this.TopLayoutPanel.RemoveFromParent();
+                    this.overlayMenuBarDisplayed = false;
+                }
+                else
+                {
+                    this.TopLayoutPanel.Location = new Point(0, (this.TopLayoutPanel.Height * this.overlayMenuBarStep / OverlayMenuBarSteps) - this.TopLayoutPanel.Height);
+                    this.TopBar.Location = new Point(0, this.TopLayoutPanel.Location.Y + this.TopLayoutPanel.Height);
+                }
+            }
+            else if (this.overlayMenuBarDirection > 0)
+            {
+                // Move the overlay menu bar down.
+                this.TopLayoutPanel.Location = new Point(0, (this.TopLayoutPanel.Height * ++this.overlayMenuBarStep / OverlayMenuBarSteps) - this.TopLayoutPanel.Height);
+                this.TopBar.Location = new Point(0, this.TopLayoutPanel.Location.Y + this.TopLayoutPanel.Height);
+
+                if (this.overlayMenuBarStep >= OverlayMenuBarSteps)
+                {
+                    // Done.
+                    this.overlayMenuBarTimer.Stop();
+                    this.overlayMenuBarDisplayed = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// An item specific to the screen box context menu was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void ScreenBoxContextClick(object sender, EventArgs e)
+        {
+            var menuItem = (ToolStripMenuItem)sender;
+            switch ((string)menuItem.Tag)
+            {
+                case "FullScreen":
+                    this.DoFullScreen();
+                    break;
+                case "MenuBar":
+                    this.ToggleOverlayMenuBar();
+                    break;
+                case "Copy":
+                    this.App.SelectionManager.Copy(out _);
+                    break;
+                case "Paste":
+                    this.App.SelectionManager.Paste(out _);
+                    break;
+                case "Cut":
+                    this.App.SelectionManager.Cut(out _);
+                    break;
+                case "MenuBarOneTime":
+                    this.ToggleOverlayMenuBar();
+                    break;
+                case "MenuBarPermanent":
+                    if (!this.fullScreen && this.menuBarDisabled)
+                    {
+                        this.MenuBarSetEvent();
+                    }
+
+                    break;
+                case "Keypad":
+                    this.ShowKeypad();
+                    break;
+                case "AplKeypad":
+                    this.ShowKeypad(apl: true);
+                    break;
+                case "Bigger":
+                    this.StepEfont(Constants.Misc.Bigger, out _);
+                    break;
+                case "Smaller":
+                    this.StepEfont(Constants.Misc.Smaller, out _);
+                    break;
+                case "Snap":
+                    this.SnapBox_Click(sender, e);
+                    break;
+                case "Exit":
+                    this.BackEnd.Stop();
+                    break;
+            }
+        }
+
+        /// <summary>
         /// Message box titles.
         /// </summary>
         private static class Title
@@ -2863,6 +3649,21 @@ namespace Wx3270
             /// Keypad menu error.
             /// </summary>
             public static readonly string KeypadMenuError = I18n.Combine(TitleName, "keypadMenuError");
+
+            /// <summary>
+            /// Full screen one-time info.
+            /// </summary>
+            public static readonly string FullScreen = I18n.Combine(TitleName, "fullScreen");
+
+            /// <summary>
+            /// Menu bar disable one-time info.
+            /// </summary>
+            public static readonly string MenuBarDisabled = I18n.Combine(TitleName, "menuBarDisabled");
+
+            /// <summary>
+            /// Menu bar enabled.
+            /// </summary>
+            public static readonly string MenuBarEnabled = I18n.Combine(TitleName, "menuBarEnabled");
         }
 
         /// <summary>
@@ -2879,6 +3680,21 @@ namespace Wx3270
             /// Invalid prefixes in command-line host.
             /// </summary>
             public static readonly string InvalidPrefixes = I18n.Combine(MessageName, "invalidPrefixes");
+
+            /// <summary>
+            /// Informational pop-up about restoring the menu bar.
+            /// </summary>
+            public static readonly string MenuBarToggle = I18n.Combine(MessageName, "menuBarToggle");
+
+            /// <summary>
+            /// Informational pop-up about enabling the menu bar.
+            /// </summary>
+            public static readonly string MenuBarToggleNop = I18n.Combine(MessageName, "menuBarToggleNop");
+
+            /// <summary>
+            /// Informational pop-up about exiting full-screen mode.
+            /// </summary>
+            public static readonly string FullScreenToggle = I18n.Combine(MessageName, "fullScreenToggle");
         }
 
         /// <summary>

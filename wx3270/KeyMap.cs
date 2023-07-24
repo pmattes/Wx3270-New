@@ -110,6 +110,54 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Translated an encoded (dictionary key) key name to a friendly name.
+        /// </summary>
+        /// <param name="encodedKey">Encoded key name.</param>
+        /// <returns>Decoded name.</returns>
+        public static string DecodeKeyName(string encodedKey)
+        {
+            // Split out the chord.
+            if (encodedKey.Contains("|"))
+            {
+                var chordParts = encodedKey.Split('|');
+                return DecodeKeyName(chordParts[1].Trim()) + " + " + DecodeKeyName(chordParts[0].Trim());
+            }
+
+            // Separate the key name and modifiers.
+            var parts = encodedKey.Split(new char[] { ' ' }, 2);
+            var keyName = parts[0];
+            if (keyName.Length == 2 && keyName[0] == 'D' && "0123456789".Contains(keyName[1]))
+            {
+                keyName = keyName.Substring(1);
+            }
+
+            if (parts.Length == 1)
+            {
+                return keyName;
+            }
+
+            // Reformat the modifiers.
+            if (parts[1] == "None")
+            {
+                return keyName;
+            }
+
+            var modifiersList = parts[1].Replace(",", string.Empty).Split().ToList();
+            var modes = new List<string>();
+            foreach (var mod in new string[] { "Mode3270", "ModeNvt" })
+            {
+                if (modifiersList.Contains(mod))
+                {
+                    modifiersList.Remove(mod);
+                    modes.Add(" / " + mod.Replace("Mode", string.Empty).ToUpper());
+                }
+            }
+
+            modifiersList.Add(keyName);
+            return string.Join("-", modifiersList) + modes.FirstOrDefault();
+        }
+
+        /// <summary>
         /// Checks a set of actions for a chord match.
         /// </summary>
         /// <param name="actions">Set of actions.</param>

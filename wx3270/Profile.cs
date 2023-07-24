@@ -316,6 +316,12 @@ namespace Wx3270
         public bool Maximize { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the window should be in full-screen (Alt-F11) mode.
+        /// </summary>
+        [JsonProperty]
+        public bool FullScreen { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether type-ahead should be permitted.
         /// </summary>
         [JsonProperty]
@@ -474,6 +480,12 @@ namespace Wx3270
         /// </summary>
         [JsonProperty]
         public Dictionary<string, string> MiscSettings { get; set; } = new Dictionary<string, string>();
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the menu bar is displayed.
+        /// </summary>
+        [JsonProperty]
+        public bool MenuBar { get; set; } = true;
 
         /// <summary>
         /// Should-serialize method for the <see cref="Oversize"/> field.

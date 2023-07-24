@@ -9,6 +9,7 @@ namespace Wx3270
     using System.Diagnostics;
     using System.Drawing;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Text;
     using System.Windows.Forms;
 
@@ -186,6 +187,71 @@ namespace Wx3270
             I18n.LocalizeGlobal(Title.CursorMove, "Cursor Move");
             I18n.LocalizeGlobal(Title.Initialization, "Selection Manager Initialization");
             I18n.LocalizeGlobal(Title.UrlError, "URL Start Error");
+        }
+
+        /// <inheritdoc />
+        public PassthruResult Copy(out string result)
+        {
+            try
+            {
+                return this.UiCopyCut(Constants.Action.Copy, out _, out result);
+            }
+            finally
+            {
+                // Clear the selection. This would likely happen automatically because a keymap macro which called this action
+                // did not call uKeyboardSelect(), but it is also possible to call uCopy()from some other context.
+                this.app.UnselectAll();
+            }
+        }
+
+        /// <inheritdoc />
+        public PassthruResult Cut(out string result)
+        {
+            try
+            {
+                return this.UiCopyCut(Constants.Action.Cut, out _, out result);
+            }
+            finally
+            {
+                // Clear the selection. This would likely happen automatically because a keymap macro which called this action
+                // did not call uKeyboardSelect(), but it is also possible to call uCopy()from some other context.
+                this.app.UnselectAll();
+            }
+        }
+
+        /// <inheritdoc />
+        public PassthruResult Paste(out string result)
+        {
+            result = string.Empty;
+
+            // Get the selection.
+            IDataObject dataObject = null;
+            this.app.Invoke(new MethodInvoker(() => { dataObject = Clipboard.GetDataObject(); }));
+            if (dataObject == null)
+            {
+                Trace.Line(Trace.Type.Clipboard, "Nothing on clipboard");
+                return PassthruResult.Success;
+            }
+
+            string data;
+            if (dataObject.GetDataPresent(DataFormats.UnicodeText, true))
+            {
+                data = (string)dataObject.GetData(DataFormats.UnicodeText, true);
+            }
+            else if (dataObject.GetDataPresent(DataFormats.Text, true))
+            {
+                data = (string)dataObject.GetData(DataFormats.Text, true);
+            }
+            else
+            {
+                result = "No text on clipboard";
+                return PassthruResult.Failure;
+            }
+
+            Trace.Line(Trace.Type.Clipboard, "Paste: got {0}", data);
+            var action = new BackEndAction(B3270.Action.PasteString, "0x" + string.Join(string.Empty, Encoding.UTF8.GetBytes(data).Select(b => b.ToString("x2"))));
+            this.app.BackEnd.RunAction(action, ErrorBox.Completion(I18n.Get(Title.Paste)));
+            return PassthruResult.Success;
         }
 
         /// <inheritdoc />
@@ -676,22 +742,14 @@ namespace Wx3270
         /// <summary>
         /// Common 'copy' logic for the UI pass-through copy and cut actions.
         /// </summary>
-        /// <param name="arguments">Command arguments.</param>
         /// <param name="actionName">Name of the action, for error messages.</param>
         /// <param name="anySelected">Returned true if there is a selection.</param>
         /// <param name="result">Result string.</param>
         /// <returns>Pass-through result.</returns>
-        private PassthruResult UiCopyCut(IEnumerable<string> arguments, string actionName, out bool anySelected, out string result)
+        private PassthruResult UiCopyCut(string actionName, out bool anySelected, out string result)
         {
             result = string.Empty;
             anySelected = false;
-
-            // Validate the arguments.
-            if (arguments.Any())
-            {
-                result = actionName + " takes 0 arguments";
-                return PassthruResult.Failure;
-            }
 
             // Get the selection.
             var selection = new List<string>();
@@ -790,16 +848,14 @@ namespace Wx3270
         /// <returns>Pass-through result.</returns>
         private PassthruResult UiCopy(string commandName, IEnumerable<string> arguments, out string result, string tag)
         {
-            try
+            // Validate the arguments.
+            if (arguments.Any())
             {
-                return this.UiCopyCut(arguments, Constants.Action.Copy, out _, out result);
+                result = Constants.Action.Copy + " takes 0 arguments";
+                return PassthruResult.Failure;
             }
-            finally
-            {
-                // Clear the selection. This would likely happen automatically because a keymap macro which called this action
-                // did not call uKeyboardSelect(), but it is also possible to call uCopy()from some other context.
-                this.app.UnselectAll();
-            }
+
+            return this.Copy(out result);
         }
 
         /// <summary>
@@ -812,9 +868,16 @@ namespace Wx3270
         /// <returns>Pass-through result.</returns>
         private PassthruResult UiCut(string commandName, IEnumerable<string> arguments, out string result, string tag)
         {
+            // Validate the arguments.
+            if (arguments.Any())
+            {
+                result = Constants.Action.Cut + " takes 0 arguments";
+                return PassthruResult.Failure;
+            }
+
             // Do the 'copy' part, which might fail or produce nothing.
             PassthruResult copyResult;
-            if ((copyResult = this.UiCopyCut(arguments, Constants.Action.Cut, out bool anySelected, out result)) == PassthruResult.Failure || !anySelected)
+            if ((copyResult = this.UiCopyCut(Constants.Action.Cut, out bool anySelected, out result)) == PassthruResult.Failure || !anySelected)
             {
                 return copyResult;
             }
@@ -860,34 +923,7 @@ namespace Wx3270
                 return PassthruResult.Failure;
             }
 
-            // Get the selection.
-            IDataObject dataObject = null;
-            this.app.Invoke(new MethodInvoker(() => { dataObject = Clipboard.GetDataObject(); }));
-            if (dataObject == null)
-            {
-                Trace.Line(Trace.Type.Clipboard, "Nothing on clipboard");
-                return PassthruResult.Success;
-            }
-
-            string data;
-            if (dataObject.GetDataPresent(DataFormats.UnicodeText, true))
-            {
-                data = (string)dataObject.GetData(DataFormats.UnicodeText, true);
-            }
-            else if (dataObject.GetDataPresent(DataFormats.Text, true))
-            {
-                data = (string)dataObject.GetData(DataFormats.Text, true);
-            }
-            else
-            {
-                result = "No text on clipboard";
-                return PassthruResult.Failure;
-            }
-
-            Trace.Line(Trace.Type.Clipboard, "Paste: got {0}", data);
-            var action = new BackEndAction(B3270.Action.PasteString, "0x" + string.Join(string.Empty, Encoding.UTF8.GetBytes(data).Select(b => b.ToString("x2"))));
-            this.app.BackEnd.RunAction(action, ErrorBox.Completion(I18n.Get(Title.Paste)));
-            return PassthruResult.Success;
+            return this.Paste(out result);
         }
 
         /// <summary>

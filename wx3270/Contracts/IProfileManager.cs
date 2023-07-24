@@ -66,6 +66,13 @@ namespace Wx3270.Contracts
     public delegate void RefocusHandler(string profileDir, string profileName, string hostName);
 
     /// <summary>
+    /// Old version delegate.
+    /// </summary>
+    /// <param name="oldVersion">Old version.</param>
+    /// <param name="saved">Set to true if the profile was modified and saved.</param>
+    public delegate void OldVersionHandler(Profile.VersionClass oldVersion, ref bool saved);
+
+    /// <summary>
     /// Profile manager.
     /// </summary>
     public interface IProfileManager
@@ -119,6 +126,11 @@ namespace Wx3270.Contracts
         /// A profile is about to close.
         /// </summary>
         event ChangeHandler ProfileClosing;
+
+        /// <summary>
+        /// A profile with an older version was loaded.
+        /// </summary>
+        event OldVersionHandler OldVersion;
 
         /// <summary>
         /// Gets the current profile.

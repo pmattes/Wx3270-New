@@ -45,5 +45,26 @@ namespace Wx3270.Contracts
         /// Clear the selection.
         /// </summary>
         void Clear();
+
+        /// <summary>
+        /// Copy to clipboard.
+        /// </summary>
+        /// <param name="result">Returned result.</param>
+        /// <returns>Pass-through result.</returns>
+        PassthruResult Copy(out string result);
+
+        /// <summary>
+        /// Paste from clipboard.
+        /// </summary>
+        /// <param name="result">Returned result.</param>
+        /// <returns>Pass-through result.</returns>
+        PassthruResult Paste(out string result);
+
+        /// <summary>
+        /// Cut to clipboard.
+        /// </summary>
+        /// <param name="result">Returned result.</param>
+        /// <returns>Pass-through result.</returns>
+        PassthruResult Cut(out string result);
     }
 }
