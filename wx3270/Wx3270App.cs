@@ -10,6 +10,7 @@ namespace Wx3270
     using System.Drawing;
     using System.IO;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
@@ -46,6 +47,11 @@ namespace Wx3270
         private readonly IUpdate update;
 
         /// <summary>
+        /// The splash screen process.
+        /// </summary>
+        private readonly Process splash;
+
+        /// <summary>
         /// The terminal bell.
         /// </summary>
         private Bell bell;
@@ -70,10 +76,12 @@ namespace Wx3270
         /// </summary>
         /// <param name="control">Control to invoke UI activity on.</param>
         /// <param name="update">Screen update interface.</param>
-        public Wx3270App(Control control, IUpdate update)
+        /// <param name="splash">Splash screen process.</param>
+        public Wx3270App(Control control, IUpdate update, Process splash)
         {
             this.control = control;
             this.update = update;
+            this.splash = splash;
             this.IsWindows = Environment.OSVersion.Platform == PlatformID.Win32NT;
         }
 
@@ -460,7 +468,7 @@ namespace Wx3270
                     switch (args[i].ToLowerInvariant())
                     {
                         case Constants.Option.Allow:
-                            ParseAllowRestrict(Constants.Option.Allow, args[++i], ref allow);
+                            this.ParseAllowRestrict(Constants.Option.Allow, args[++i], ref allow);
                             restrictAllow |= RestrictAllow.Allow;
                             break;
                         case Constants.Option.Console:
@@ -488,7 +496,7 @@ namespace Wx3270
                             var m = r.Match(args[++i]);
                             if (!m.Success)
                             {
-                                Usage($"Invalid location '{args[i]}' -- must be X,Y");
+                                this.Usage($"Invalid location '{args[i]}' -- must be X,Y");
                             }
 
                             try
@@ -497,7 +505,7 @@ namespace Wx3270
                             }
                             catch (Exception e)
                             {
-                                Usage($"Invalid location '{args[i]}' -- {e.Message}");
+                                this.Usage($"Invalid location '{args[i]}' -- {e.Message}");
                             }
 
                             break;
@@ -537,7 +545,7 @@ namespace Wx3270
                             startupConfig.ScriptPortOnce = true;
                             break;
                         case Constants.Option.Restrict:
-                            ParseAllowRestrict(Constants.Option.Restrict, args[++i], ref restrict);
+                            this.ParseAllowRestrict(Constants.Option.Restrict, args[++i], ref restrict);
                             restrictAllow |= RestrictAllow.Restrict;
                             break;
                         case Constants.Option.Topmost:
@@ -550,7 +558,7 @@ namespace Wx3270
                         case Constants.Option.UiTrace:
                             if (!Enum.TryParse(args[++i], true, out Trace.Type traceFlags))
                             {
-                                Usage($"Unknown trace type '{args[i]}'");
+                                this.Usage($"Unknown trace type '{args[i]}'");
                             }
 
                             Trace.Flags = traceFlags;
@@ -563,6 +571,7 @@ namespace Wx3270
                         case Constants.Option.Utf8:
                             break;
                         case Constants.Option.V:
+                            this.splash?.Kill();
                             ErrorBox.Show(
                                 "wx3270 " + Profile.VersionClass.FullVersion + Environment.NewLine + Constants.Copyright,
                                 "wx3270 " + Profile.VersionClass.FullVersion,
@@ -570,13 +579,14 @@ namespace Wx3270
                             Environment.Exit(0);
                             break;
                         case Constants.Option.Vfile:
+                            this.splash?.Kill();
                             File.WriteAllText(args[++i], "wx3270 " + Profile.VersionClass.FullVersion, Encoding.UTF8);
                             Environment.Exit(0);
                             break;
                         default:
                             if (args[i].StartsWith("-"))
                             {
-                                Usage($"Unknown argument '{args[i]}'");
+                                this.Usage($"Unknown argument '{args[i]}'");
                             }
 
                             lastOpt = i;
@@ -586,7 +596,7 @@ namespace Wx3270
             }
             catch (IndexOutOfRangeException)
             {
-                Usage($"Missing parameter value for {args[i - 1]}");
+                this.Usage($"Missing parameter value for {args[i - 1]}");
             }
 
             if (lastOpt.HasValue)
@@ -595,40 +605,40 @@ namespace Wx3270
                 var dashed = positionalArgs.Where(a => a.StartsWith("-"));
                 if (dashed.Any())
                 {
-                    Usage($"Unknown or misformatted argument(s): {string.Join(" ", dashed)}");
+                    this.Usage($"Unknown or misformatted argument(s): {string.Join(" ", dashed)}");
                 }
 
                 if (positionalArgs.Count > 2)
                 {
-                    Usage("Extra arguments");
+                    this.Usage("Extra arguments");
                 }
 
                 if (this.HostConnection != null)
                 {
-                    Usage("Cannot specify " + Constants.Option.Host + " and a positional host name");
+                    this.Usage("Cannot specify " + Constants.Option.Host + " and a positional host name");
                 }
 
                 this.CommandLineHost = positionalArgs[0];
                 this.CommandLinePort = (positionalArgs.Count > 1) ? positionalArgs[1] : null;
                 if (!HostName.TryParse(this.CommandLineHost, out _, out _, out _, out string port, out _))
                 {
-                    Usage("Invalid host name");
+                    this.Usage("Invalid host name");
                 }
 
                 if (port != null && this.CommandLinePort != null)
                 {
-                    Usage("Port specified twice");
+                    this.Usage("Port specified twice");
                 }
             }
 
             if (this.EditMode && profile == null)
             {
-                Usage("Must specify " + Constants.Option.Profile + " with " + Constants.Option.Edit);
+                this.Usage("Must specify " + Constants.Option.Profile + " with " + Constants.Option.Edit);
             }
 
             if (!string.IsNullOrWhiteSpace(culture) && !string.IsNullOrWhiteSpace(this.DumpLocalization))
             {
-                Usage("Cannot specify " + Constants.Option.Culture + " with " + Constants.Option.DumpLocalization + " (en-US is implied)");
+                this.Usage("Cannot specify " + Constants.Option.Culture + " with " + Constants.Option.DumpLocalization + " (en-US is implied)");
             }
 
             switch (restrictAllow)
@@ -640,7 +650,7 @@ namespace Wx3270
                     this.Restrictions = restrict;
                     break;
                 case RestrictAllow.Both:
-                    Usage($"Cannot specify both {Constants.Option.Allow} and {Constants.Option.Restrict}");
+                    this.Usage($"Cannot specify both {Constants.Option.Allow} and {Constants.Option.Restrict}");
                     break;
             }
 
@@ -900,8 +910,9 @@ namespace Wx3270
         /// Display a usage pop-up and exit.
         /// </summary>
         /// <param name="reason">Reason for error.</param>
-        private static void Usage(string reason)
+        private void Usage(string reason)
         {
+            this.splash?.Kill();
             ErrorBox.Show(
                 "Invalid command line option(s):" + Environment.NewLine + reason,
                 "wx3270 Command Line Error");
@@ -914,12 +925,12 @@ namespace Wx3270
         /// <param name="option">Option name.</param>
         /// <param name="value">Parameter value.</param>
         /// <param name="res">Modified restrictions.</param>
-        private static void ParseAllowRestrict(string option, string value, ref Restrictions res)
+        private void ParseAllowRestrict(string option, string value, ref Restrictions res)
         {
             if (!Enum.TryParse(value, true, out Restrictions r))
             {
                 var modes = string.Join(", ", Enum.GetValues(typeof(Restrictions)).OfType<Restrictions>().Select(m => m.ToString()));
-                Usage($"Invalid {option} value '{value}'" + Environment.NewLine + "Options are {modes}");
+                this.Usage($"Invalid {option} value '{value}'" + Environment.NewLine + $"Options are {modes}");
             }
 
             if (r == Restrictions.None)

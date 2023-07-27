@@ -2495,7 +2495,7 @@ namespace Wx3270
             // Okay, we're loaded. Clear the splash screen.
             if (this.Splash != null)
             {
-                this.Splash.CloseMainWindow();
+                this.Splash.Kill();
                 this.Splash.Dispose();
                 this.Splash = null;
             }
@@ -2703,6 +2703,7 @@ namespace Wx3270
             }
             catch (Exception ex)
             {
+                this.Splash?.Kill();
                 ErrorBox.ShowCopy(this, ex.ToString(), I18n.Get(CloseName));
                 this.BackEnd.Exit(1);
             }

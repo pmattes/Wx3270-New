@@ -8,6 +8,7 @@ namespace Wx3270
     using System.Diagnostics;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.CompilerServices;
     using System.Windows.Forms;
 
     using I18nBase;
@@ -38,7 +39,7 @@ namespace Wx3270
                 var splash = args.Any(arg => arg.ToLowerInvariant() == Constants.Option.NoSplash) ? null : StartSplash();
                 var main = new MainScreen() { Splash = splash };
                 mainControl = main;
-                app = new Wx3270App(main, main);
+                app = new Wx3270App(main, main, splash);
                 app.Init(args);
                 main.Init(app);
 
