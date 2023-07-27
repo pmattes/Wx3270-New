@@ -285,11 +285,6 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Gets or sets the handle of the splash process.
-        /// </summary>
-        public System.Diagnostics.Process Splash { get; set; } = null;
-
-        /// <summary>
         /// Gets the live host color to drawing color map.
         /// </summary>
         public HostColors ColorMap => this.colors.HostColors;
@@ -2493,12 +2488,7 @@ namespace Wx3270
             }
 
             // Okay, we're loaded. Clear the splash screen.
-            if (this.Splash != null)
-            {
-                this.Splash.Kill();
-                this.Splash.Dispose();
-                this.Splash = null;
-            }
+            this.App.Splash.Stop();
         }
 
         /// <summary>
@@ -2703,7 +2693,7 @@ namespace Wx3270
             }
             catch (Exception ex)
             {
-                this.Splash?.Kill();
+                this.App.Splash.Stop();
                 ErrorBox.ShowCopy(this, ex.ToString(), I18n.Get(CloseName));
                 this.BackEnd.Exit(1);
             }

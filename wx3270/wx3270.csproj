@@ -141,6 +141,7 @@
     <Compile Include="NonModalMessageBox.Designer.cs">
       <DependentUpon>NonModalMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Splash.cs" />
     <Compile Include="StartButton.cs" />
     <Compile Include="Contracts\IBrush.cs" />
     <Compile Include="Contracts\INormalize.cs" />

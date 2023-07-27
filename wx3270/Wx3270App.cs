@@ -47,11 +47,6 @@ namespace Wx3270
         private readonly IUpdate update;
 
         /// <summary>
-        /// The splash screen process.
-        /// </summary>
-        private readonly Process splash;
-
-        /// <summary>
         /// The terminal bell.
         /// </summary>
         private Bell bell;
@@ -76,12 +71,12 @@ namespace Wx3270
         /// </summary>
         /// <param name="control">Control to invoke UI activity on.</param>
         /// <param name="update">Screen update interface.</param>
-        /// <param name="splash">Splash screen process.</param>
-        public Wx3270App(Control control, IUpdate update, Process splash)
+        /// <param name="splash">Splash screen.</param>
+        public Wx3270App(Control control, IUpdate update, Splash splash)
         {
             this.control = control;
             this.update = update;
-            this.splash = splash;
+            this.Splash = splash;
             this.IsWindows = Environment.OSVersion.Platform == PlatformID.Win32NT;
         }
 
@@ -351,6 +346,11 @@ namespace Wx3270
         public MacroRecorder MacroRecorder { get; } = new MacroRecorder();
 
         /// <summary>
+        /// Gets the splash screen.
+        /// </summary>
+        public Splash Splash { get; private set; }
+
+        /// <summary>
         /// Gets a value indicating whether the window should omit the border.
         /// </summary>
         public bool NoBorder { get; private set; }
@@ -571,7 +571,7 @@ namespace Wx3270
                         case Constants.Option.Utf8:
                             break;
                         case Constants.Option.V:
-                            this.splash?.Kill();
+                            this.Splash.Stop();
                             ErrorBox.Show(
                                 "wx3270 " + Profile.VersionClass.FullVersion + Environment.NewLine + Constants.Copyright,
                                 "wx3270 " + Profile.VersionClass.FullVersion,
@@ -579,7 +579,7 @@ namespace Wx3270
                             Environment.Exit(0);
                             break;
                         case Constants.Option.Vfile:
-                            this.splash?.Kill();
+                            this.Splash.Stop();
                             File.WriteAllText(args[++i], "wx3270 " + Profile.VersionClass.FullVersion, Encoding.UTF8);
                             Environment.Exit(0);
                             break;
@@ -912,7 +912,7 @@ namespace Wx3270
         /// <param name="reason">Reason for error.</param>
         private void Usage(string reason)
         {
-            this.splash?.Kill();
+            this.Splash.Stop();
             ErrorBox.Show(
                 "Invalid command line option(s):" + Environment.NewLine + reason,
                 "wx3270 Command Line Error");
