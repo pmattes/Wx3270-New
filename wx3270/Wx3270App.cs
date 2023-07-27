@@ -358,6 +358,11 @@ namespace Wx3270
         public bool NoButtons { get; private set; }
 
         /// <summary>
+        /// Gets a value indicating whether the splash screen should be suppressed.
+        /// </summary>
+        public bool NoSplash { get; private set; }
+
+        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]
@@ -507,6 +512,9 @@ namespace Wx3270
                             break;
                         case Constants.Option.NoScrollBar:
                             this.NoScrollBar = true;
+                            break;
+                        case Constants.Option.NoSplash:
+                            this.NoSplash = true;
                             break;
                         case Constants.Option.NoWatch:
                             this.NoWatchMode = true;

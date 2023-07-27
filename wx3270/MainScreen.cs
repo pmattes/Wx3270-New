@@ -285,6 +285,11 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Gets or sets the handle of the splash process.
+        /// </summary>
+        public System.Diagnostics.Process Splash { get; set; } = null;
+
+        /// <summary>
         /// Gets the live host color to drawing color map.
         /// </summary>
         public HostColors ColorMap => this.colors.HostColors;
@@ -1479,22 +1484,28 @@ namespace Wx3270
         {
             foreach (var item in from.Items)
             {
-                var fromItem = (ToolStripMenuItem)item;
-                var toItem = new ToolStripMenuItem()
+                if (item is ToolStripMenuItem fromItem)
                 {
-                    Name = fromItem.Name,
-                    Size = fromItem.Size,
-                    Tag = fromItem.Tag,
-                    Text = fromItem.Text,
-                    ForeColor = fromItem.ForeColor,
-                    Image = fromItem.Image,
-                    Enabled = fromItem.Enabled,
-                };
-                toItem.Click += new EventHandler(handler);
-                to.DropDownItems.Add(toItem);
-                if (fromItem.DropDownItems.Count > 0)
+                    var toItem = new ToolStripMenuItem()
+                    {
+                        Name = fromItem.Name,
+                        Size = fromItem.Size,
+                        Tag = fromItem.Tag,
+                        Text = fromItem.Text,
+                        ForeColor = fromItem.ForeColor,
+                        Image = fromItem.Image,
+                        Enabled = fromItem.Enabled,
+                    };
+                    toItem.Click += new EventHandler(handler);
+                    to.DropDownItems.Add(toItem);
+                    if (fromItem.DropDownItems.Count > 0)
+                    {
+                        this.CloneSubmenu(fromItem, toItem, handler);
+                    }
+                }
+                else if (item is ToolStripSeparator)
                 {
-                    this.CloneSubmenu(fromItem, toItem, handler);
+                    to.DropDownItems.Add(new ToolStripSeparator());
                 }
             }
         }
@@ -1531,14 +1542,14 @@ namespace Wx3270
             ToolStripMenuItem menuItem = null;
             foreach (var suffix in new string[] { string.Empty, "1", "2" })
             {
-                menuItem = items.Cast<ToolStripMenuItem>().Where(item => item.Name.Equals(name + suffix, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                menuItem = items.OfType<ToolStripMenuItem>().Where(item => item.Name.Equals(name + suffix, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
                 if (menuItem != null)
                 {
                     return menuItem;
                 }
             }
 
-            foreach (var submenu in items.Cast<ToolStripMenuItem>())
+            foreach (var submenu in items.OfType<ToolStripMenuItem>())
             {
                 menuItem = this.FindMenu(submenu.DropDownItems, name);
                 if (menuItem != null)
@@ -1558,29 +1569,11 @@ namespace Wx3270
         /// <param name="action">Action to search for in the keymap.</param>
         private void UpdateContextKeyMapping(ToolStripItemCollection items, string name, string action)
         {
-            var menuItem = this.FindMenu((ToolStripItemCollection)items, name);
+            var menuItem = this.FindMenu(items, name);
             if (menuItem != null)
             {
-                const string separator = "       ";
-                var space = menuItem.Text.IndexOf(separator);
                 var keymaps = this.FindKeymaps(action);
-                if (keymaps.Count() != 0)
-                {
-                    var keymap = KeyMap<KeyboardMap>.DecodeKeyName(keymaps.First().Key);
-                    if (space != -1)
-                    {
-                        menuItem.Text = menuItem.Text.Substring(0, space) + $"{separator}{keymap}";
-                    }
-                    else
-                    {
-                        menuItem.Text += $"{separator}{keymap}";
-                    }
-                }
-                else if (space != -1)
-                {
-                    // Remove the mapping.
-                    menuItem.Text = menuItem.Text.Substring(0, space);
-                }
+                menuItem.ShortcutKeyDisplayString = (keymaps.Count() != 0) ? KeyMap<KeyboardMap>.DecodeKeyName(keymaps.First().Key) : string.Empty;
             }
         }
 
@@ -1595,8 +1588,9 @@ namespace Wx3270
             this.UpdateContextKeyMapping(this.editToolStripMenuItem.DropDownItems, "cutToolStripMenuItem", Constants.Action.Cut + "()");
             this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "biggerToolStripMenuItem", Constants.Action.StepEfont + $"({Constants.Misc.Bigger})");
             this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "smallerToolStripMenuItem", Constants.Action.StepEfont + $"({Constants.Misc.Smaller})");
-
             this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "quitToolStripMenuItem", B3270.Action.Quit + "(-force)");
+            this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "exitWx3270ToolStripMenuItem", B3270.Action.Quit + "(-force)");
+            this.UpdateContextKeyMapping(this.actionsMenuStrip.Items, "exitWx3270ToolStripMenuItem", B3270.Action.Quit + "(-force)");
             for (var i = 1; i <= 24; i++)
             {
                 this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, $"pF{i}ToolStripMenuItem", B3270.Action.PF + $"({i})");
@@ -1704,12 +1698,100 @@ namespace Wx3270
             var p = (ProfileWatchNode)item.Tag;
             if (this.App.ConnectionState != ConnectionState.NotConnected)
             {
-                ProfileTree.NewWindow(this, this.components, p.PathName);
+                ProfileTree.NewWindow(this, this.components, p.PathName, this.App);
             }
             else if (ModifierKeys.HasFlag(Keys.Shift) || !this.ProfileManager.IsCurrentPathName(p.PathName))
             {
                 this.profileTree.LoadWithAutoConnect(p.PathName, ModifierKeys.HasFlag(Keys.Shift));
             }
+        }
+
+        /// <summary>
+        /// Add items to one of the Connect menus.
+        /// </summary>
+        /// <param name="tree">Tree of watch nodes.</param>
+        /// <param name="menuItems">Menu item collection to add to.</param>
+        private void AddToConnectMenu(WatchNode tree, ToolStripItemCollection menuItems)
+        {
+            // Add to the connect menu.
+            var hasSeparator = menuItems.OfType<ToolStripItem>().Any(item => item is ToolStripSeparator);
+            var connectStack = new Stack<ToolStripItemCollection>();
+            connectStack.Push(menuItems);
+            tree.ForEach(connectStack, (node, stack) =>
+            {
+                switch (node.Type)
+                {
+                    case WatchNodeType.Folder:
+                    case WatchNodeType.Profile:
+                        if (this.App.Restricted(Restrictions.SwitchProfile))
+                        {
+                            // We can only list the current profile in the current folder.
+                            if (node.Type == WatchNodeType.Folder)
+                            {
+                                if (!node.Any((n) =>
+                                {
+                                    if (n.Type == WatchNodeType.Profile)
+                                    {
+                                        return this.ProfileManager.IsCurrentPathName(((ProfileWatchNode)n).PathName);
+                                    }
+
+                                    return false;
+                                }))
+                                {
+                                    return null;
+                                }
+                            }
+                            else
+                            {
+                                if (!this.ProfileManager.IsCurrentPathName(((ProfileWatchNode)node).PathName))
+                                {
+                                    return null;
+                                }
+                            }
+                        }
+
+                        // If this is the seed profile directory, return its parent. (Why?)
+                        var folder = node as FolderWatchNode;
+                        if (folder != null && folder.PathName == Wx3270.ProfileManager.SeedProfileDirectory)
+                        {
+                            return stack.Peek();
+                        }
+
+                        // If this is the current profile, skip it.
+                        var p = node as ProfileWatchNode;
+                        if (p != null && this.ProfileManager.IsCurrentPathName(p.PathName))
+                        {
+                            return null;
+                        }
+
+                        var name = stack.Count == 1 ? ProfileTree.DirNodeName(folder.PathName) : node.Name;
+                        var nonterminal = new ToolStripMenuItem() { Text = name };
+                        nonterminal.DropDown = new ContextMenuStrip { ShowImageMargin = false, ShowCheckMargin = false };
+                        nonterminal.ToolTipText = (p != null && !string.IsNullOrWhiteSpace(p.Profile.Description)) ? p.Profile.Description : string.Empty;
+                        if (stack.Peek() == menuItems && !hasSeparator)
+                        {
+                            stack.Peek().Add(new ToolStripSeparator());
+                            hasSeparator = true;
+                        }
+
+                        stack.Peek().Add(nonterminal);
+                        return nonterminal.DropDownItems;
+                    case WatchNodeType.Host:
+                        var profile = (node.Parent as ProfileWatchNode).Profile;
+                        var host = node as HostWatchNode;
+                        var item = new ToolStripMenuItem(host.Name, null, this.ConnectToOtherHost);
+                        if (!string.IsNullOrWhiteSpace(host.HostEntry.Description))
+                        {
+                            item.ToolTipText = host.HostEntry.Description;
+                        }
+
+                        item.Tag = new Tuple<string, string>(profile.PathName, node.Name);
+                        stack.Peek().Add(item);
+                        return null;
+                    default:
+                        return null;
+                }
+            });
         }
 
         /// <summary>
@@ -1815,78 +1897,9 @@ namespace Wx3270
             {
             }
 
-            // Add to the connect menu.
-            var connectStack = new Stack<ToolStripMenuItem>();
-            connectStack.Push(this.connectMenuItem);
-            tree.ForEach(connectStack, (node, stack) =>
-            {
-                switch (node.Type)
-                {
-                    case WatchNodeType.Folder:
-                    case WatchNodeType.Profile:
-                        if (this.App.Restricted(Restrictions.SwitchProfile))
-                        {
-                            // We can only list the current profile in the current folder.
-                            if (node.Type == WatchNodeType.Folder)
-                            {
-                                if (!node.Any((n) =>
-                                {
-                                    if (n.Type == WatchNodeType.Profile)
-                                    {
-                                        return this.ProfileManager.IsCurrentPathName(((ProfileWatchNode)n).PathName);
-                                    }
-
-                                    return false;
-                                }))
-                                {
-                                    return null;
-                                }
-                            }
-                            else
-                            {
-                                if (!this.ProfileManager.IsCurrentPathName(((ProfileWatchNode)node).PathName))
-                                {
-                                    return null;
-                                }
-                            }
-                        }
-
-                        // If this is the seed profile directory, return its parent. (Why?)
-                        var folder = node as FolderWatchNode;
-                        if (folder != null && folder.PathName == Wx3270.ProfileManager.SeedProfileDirectory)
-                        {
-                            return stack.Peek();
-                        }
-
-                        // If this is the current profile, skip it.
-                        var p = node as ProfileWatchNode;
-                        if (p != null && this.ProfileManager.IsCurrentPathName(p.PathName))
-                        {
-                            return null;
-                        }
-
-                        var name = stack.Count == 1 ? ProfileTree.DirNodeName(folder.PathName) : node.Name;
-                        var nonterminal = new ToolStripMenuItem() { Text = name };
-                        nonterminal.DropDown = new ContextMenuStrip { ShowImageMargin = false, ShowCheckMargin = false };
-                        nonterminal.ToolTipText = (p != null && !string.IsNullOrWhiteSpace(p.Profile.Description)) ? p.Profile.Description : string.Empty;
-                        stack.Peek().DropDownItems.Add(nonterminal);
-                        return nonterminal;
-                    case WatchNodeType.Host:
-                        var profile = (node.Parent as ProfileWatchNode).Profile;
-                        var host = node as HostWatchNode;
-                        var item = new ToolStripMenuItem(host.Name, null, this.ConnectToOtherHost);
-                        if (!string.IsNullOrWhiteSpace(host.HostEntry.Description))
-                        {
-                            item.ToolTipText = host.HostEntry.Description;
-                        }
-
-                        item.Tag = new Tuple<string, string>(profile.PathName, node.Name);
-                        stack.Peek().DropDownItems.Add(item);
-                        return null;
-                    default:
-                        return null;
-                }
-            });
+            // Add to the connect menus.
+            this.AddToConnectMenu(tree, this.connectMenuStrip.Items);
+            this.AddToConnectMenu(tree, this.connectToolStripMenuItem.DropDownItems);
         }
 
         /// <summary>
@@ -1897,11 +1910,31 @@ namespace Wx3270
         {
             void PopulateConnectMenu(ToolStripItemCollection items)
             {
-                items.Clear();
+                // Remove all of the items except the fixed ones.
+                // The connect menu has fixed items, followed optionally by a separator and the defined connections.
+                var itemsList = items.OfType<ToolStripItem>().ToList();
+                var sawSeparator = false;
+                foreach (var item in itemsList)
+                {
+                    if (!sawSeparator)
+                    {
+                        sawSeparator = item is ToolStripSeparator;
+                    }
+                    else
+                    {
+                        items.Remove(item);
+                    }
+                }
 
                 // Start with the current profile's hosts.
                 foreach (var host in this.ProfileManager.Current.Hosts)
                 {
+                    if (!sawSeparator)
+                    {
+                        items.Add(new ToolStripSeparator());
+                        sawSeparator = true;
+                    }
+
                     var item = new ToolStripMenuItem(host.Name, null, this.ConnectToProfileHost) { Tag = host };
                     if (!string.IsNullOrWhiteSpace(host.Description))
                     {
@@ -1913,10 +1946,10 @@ namespace Wx3270
             }
 
             this.loadMenuItem.DropDownItems.Clear();
-            PopulateConnectMenu(this.connectMenuItem.DropDownItems);
+            PopulateConnectMenu(this.connectMenuStrip.Items);
             if (!this.App.NoButtons)
             {
-                PopulateConnectMenu(((ToolStripMenuItem)this.connectToolStripMenuItem.DropDownItems[1]).DropDownItems); // A bit hacky, I know.
+                PopulateConnectMenu(this.connectToolStripMenuItem.DropDownItems);
             }
 
             // Next comes any folder that is under MyDocuments\wx3270 (ProfileManager.SeedProfileDirectory), with that prefix removed.
@@ -1957,7 +1990,7 @@ namespace Wx3270
                 // Connect to a particular host.
                 if (this.App.ConnectionState != ConnectionState.NotConnected)
                 {
-                    ProfileTree.NewWindow(this, this.components, hostEntry.Profile.PathName, hostEntry.Name);
+                    ProfileTree.NewWindow(this, this.components, hostEntry.Profile.PathName, this.App, hostEntry.Name);
                 }
                 else
                 {
@@ -1991,7 +2024,7 @@ namespace Wx3270
 
             if (this.App.ConnectionState != ConnectionState.NotConnected)
             {
-                ProfileTree.NewWindow(this, this.components, hostNode.Item1, hostNode.Item2);
+                ProfileTree.NewWindow(this, this.components, hostNode.Item1, this.App, hostNode.Item2);
                 return;
             }
 
@@ -2457,6 +2490,14 @@ namespace Wx3270
             {
                 this.screenBox.Maximize(true, this.ClientSize);
                 this.screenBox.RecomputeFont(this.ClientSize, ResizeType.Dynamic); // XXX?
+            }
+
+            // Okay, we're loaded. Clear the splash screen.
+            if (this.Splash != null)
+            {
+                this.Splash.CloseMainWindow();
+                this.Splash.Dispose();
+                this.Splash = null;
             }
         }
 
@@ -3365,7 +3406,7 @@ namespace Wx3270
         {
             NativeMethods.SHMessageBoxCheckW(
                 this.handle,
-                string.Format("{0}" + Environment.NewLine + "{1}", I18n.Get(ErrorMessage.FullScreenToggle), I18n.Get(ErrorMessage.MenuBarToggle)),
+                string.Format("{0}" + Environment.NewLine + Environment.NewLine + "{1}", I18n.Get(ErrorMessage.FullScreenToggle), I18n.Get(ErrorMessage.MenuBarToggle)),
                 I18n.Get(Title.FullScreen),
                 NativeMethods.MessageBoxCheckFlags.MB_OK | NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
                 NativeMethods.MessageBoxReturnValue.IDOK,

@@ -11,6 +11,7 @@ namespace Wx3270
     using System.Drawing;
     using System.IO;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
     using I18nBase;
@@ -499,10 +500,11 @@ namespace Wx3270
         /// <param name="parentWindow">Parent window.</param>
         /// <param name="components">Parent form components.</param>
         /// <param name="profilePath">Profile path name.</param>
+        /// <param name="app">Application context.</param>
         /// <param name="host">Host name.</param>
         /// <param name="editMode">True to open in edit mode (suppress auto-connect, warn if read-only).</param>
         /// <param name="readWriteMode">True to open in read/write mode (allow auto-connect, warn if read-only).</param>
-        public static void NewWindow(Form parentWindow, IContainer components, string profilePath, string host = null, bool editMode = false, bool readWriteMode = false)
+        public static void NewWindow(Form parentWindow, IContainer components, string profilePath, Wx3270App app, string host = null, bool editMode = false, bool readWriteMode = false)
         {
             if (restrictions.HasFlag(Restrictions.NewWindow))
             {
@@ -543,6 +545,11 @@ namespace Wx3270
             }
 
             args.Add(Constants.Option.Topmost);
+
+            if (app.NoSplash)
+            {
+                args.Add(Constants.Option.NoSplash);
+            }
 
             p.StartInfo.Arguments = string.Join(" ", args);
 
@@ -652,7 +659,7 @@ namespace Wx3270
             if (isShift)
             {
                 // Open the profile in a new window, trying for read/write mode unless this is the current profile.
-                NewWindow(this, this.components, profilePathName);
+                NewWindow(this, this.components, profilePathName, this.app);
                 return true;
             }
 
@@ -1844,7 +1851,7 @@ namespace Wx3270
 
                     if (this.connected)
                     {
-                        NewWindow(this, this.components, selectedProfileNode.Profile.PathName, editMode: true);
+                        NewWindow(this, this.components, selectedProfileNode.Profile.PathName, this.app, editMode: true);
                     }
                     else
                     {
@@ -1924,7 +1931,7 @@ namespace Wx3270
                         if (this.connected)
                         {
                             // Open the profile in a new window with auto-connect, read/write.
-                            NewWindow(this, this.components, selectedProfileNode.Profile.PathName, editMode: true);
+                            NewWindow(this, this.components, selectedProfileNode.Profile.PathName, this.app, editMode: true);
                         }
                         else if (this.app.Allowed(Restrictions.SwitchProfile))
                         {
@@ -2009,7 +2016,7 @@ namespace Wx3270
 
                     if (this.connected)
                     {
-                        NewWindow(this, this.components, selectedHostNode.Profile.PathName, selectedHostNode.Text);
+                        NewWindow(this, this.components, selectedHostNode.Profile.PathName, this.app, selectedHostNode.Text);
                     }
                     else
                     {
@@ -2689,7 +2696,7 @@ namespace Wx3270
         {
             if (isShift)
             {
-                NewWindow(this, this.components, profile.PathName, hostName);
+                NewWindow(this, this.components, profile.PathName, this.app, hostName);
                 return;
             }
 
@@ -2817,7 +2824,7 @@ namespace Wx3270
                 case "SwitchTo":
                     if (this.connected)
                     {
-                        NewWindow(this, this.components, selectedProfileNode.Profile.PathName);
+                        NewWindow(this, this.components, selectedProfileNode.Profile.PathName, this.app);
                     }
                     else
                     {
@@ -2828,7 +2835,7 @@ namespace Wx3270
                 case "Edit":
                     if (this.connected)
                     {
-                        NewWindow(this, this.components, selectedProfileNode.Profile.PathName, editMode: true);
+                        NewWindow(this, this.components, selectedProfileNode.Profile.PathName, this.app, editMode: true);
                     }
                     else if (this.app.Allowed(Restrictions.SwitchProfile))
                     {
@@ -2902,7 +2909,7 @@ namespace Wx3270
                     // Connect to a host.
                     if (this.connected)
                     {
-                        NewWindow(this, this.components, selectedHostNode.Profile.PathName, selectedHostNode.Text);
+                        NewWindow(this, this.components, selectedHostNode.Profile.PathName, this.app, selectedHostNode.Text);
                     }
                     else
                     {
@@ -2972,7 +2979,7 @@ namespace Wx3270
                 if (this.connected)
                 {
                     // Open in new window.
-                    NewWindow(this, this.components, hostNode.Profile.PathName, hostNode.Text);
+                    NewWindow(this, this.components, hostNode.Profile.PathName, this.app, hostNode.Text);
                 }
                 else
                 {
@@ -2993,7 +3000,7 @@ namespace Wx3270
             if (isShift)
             {
                 // Open in a new window, in edit mode (no auto-connect, try for read/write).
-                NewWindow(this, this.components, profilePath, editMode: true);
+                NewWindow(this, this.components, profilePath, this.app, editMode: true);
             }
             else
             {

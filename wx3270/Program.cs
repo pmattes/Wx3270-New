@@ -6,6 +6,8 @@ namespace Wx3270
 {
     using System;
     using System.Diagnostics;
+    using System.Linq;
+    using System.Reflection;
     using System.Windows.Forms;
 
     using I18nBase;
@@ -32,7 +34,9 @@ namespace Wx3270
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                var main = new MainScreen();
+                // Proceed with initialization. */
+                var splash = args.Any(arg => arg.ToLowerInvariant() == Constants.Option.NoSplash) ? null : StartSplash();
+                var main = new MainScreen() { Splash = splash };
                 mainControl = main;
                 app = new Wx3270App(main, main);
                 app.Init(args);
@@ -70,6 +74,40 @@ namespace Wx3270
                 app?.BackEnd?.Exit(1);
                 Environment.Exit(1);
             }
+        }
+
+        /// <summary>
+        /// Start the splash screen.
+        /// </summary>
+        /// <returns>Splash screen process, or null.</returns>
+        public static Process StartSplash()
+        {
+            var splash = new Process();
+            splash.StartInfo.UseShellExecute = false;
+            splash.StartInfo.FileName = "splash";
+
+            // Get the version number and copyright from the assembly.
+            var assemblyVersion = typeof(Program).Assembly.GetName().Version;
+            var version = assemblyVersion.Major.ToString() + "." + assemblyVersion.Minor.ToString();
+            var splashArguments = $"-pid {Process.GetCurrentProcess().Id} -version {version}";
+            var assemblyAttributes = typeof(Program).Assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), true);
+            if (assemblyAttributes.Length > 0 && assemblyAttributes[0] is AssemblyCopyrightAttribute copyrightAttribute)
+            {
+                splashArguments += $" -copyright \"{copyrightAttribute.Copyright}\"";
+            }
+
+            splash.StartInfo.Arguments = splashArguments;
+            try
+            {
+                splash.Start();
+            }
+            catch (Exception)
+            {
+                splash.Dispose();
+                return null;
+            }
+
+            return splash;
         }
     }
 }

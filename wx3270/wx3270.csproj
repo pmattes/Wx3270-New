@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Wx3270</RootNamespace>
     <AssemblyName>wx3270</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
@@ -103,15 +103,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -634,6 +631,10 @@
     <ProjectReference Include="..\I18nBase\I18nBase.csproj">
       <Project>{9845ce4c-9168-4cc3-a278-d77c6ea94d67}</Project>
       <Name>I18nBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Splash\Splash.csproj">
+      <Project>{9bb788d6-9f04-4083-9956-012c3875bc09}</Project>
+      <Name>Splash</Name>
     </ProjectReference>
     <ProjectReference Include="..\TraceHelper\TraceHelper.csproj">
       <Project>{b36ab147-4a5e-4527-8a63-f3159756088e}</Project>

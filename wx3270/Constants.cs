@@ -180,6 +180,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
             public const string NoScrollBar = "-noscrollbar";
 
             /// <summary>
+            /// The no splash option.
+            /// </summary>
+            public const string NoSplash = "-nosplash";
+
+            /// <summary>
             /// The no watch option.
             /// </summary>
             public const string NoWatch = "-nowatch";
