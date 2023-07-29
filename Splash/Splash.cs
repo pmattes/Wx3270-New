@@ -38,7 +38,7 @@ namespace Splash
 
             if (version != null)
             {
-                this.NameLabel.Text = $"wx3270 {version}";
+                this.nameLabel.Text = $"wx3270 {version}";
             }
 
             if (copyright != null)
@@ -108,6 +108,16 @@ namespace Splash
             {
                 this.fadeTimer.Stop();
             }
+        }
+
+        /// <summary>
+        /// The window was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void Anywhere_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

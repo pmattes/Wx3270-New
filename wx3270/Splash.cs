@@ -54,7 +54,14 @@ namespace Wx3270
         /// </summary>
         public void Stop()
         {
-            this.process?.Kill();
+            try
+            {
+                this.process?.Kill();
+            }
+            catch (InvalidOperationException)
+            {
+            }
+
             this.process?.Dispose();
             this.process = null;
         }

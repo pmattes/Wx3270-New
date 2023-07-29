@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashForm));
-            this.NameLabel = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
             this.CopyrightLabel = new System.Windows.Forms.Label();
             this.outerTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.fadeInScreenPanel = new System.Windows.Forms.Panel();
@@ -52,29 +52,31 @@
             this.outermostTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // NameLabel
+            // nameLabel
             // 
-            this.NameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameLabel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.NameLabel.Location = new System.Drawing.Point(3, 0);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(159, 32);
-            this.NameLabel.TabIndex = 0;
-            this.NameLabel.Text = "wx3270 1.1";
+            this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("IBM 3270", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameLabel.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.nameLabel.Location = new System.Drawing.Point(3, 0);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(183, 30);
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.Text = "wx3270 1.1";
+            this.nameLabel.Click += new System.EventHandler(this.Anywhere_Click);
             // 
             // CopyrightLabel
             // 
             this.CopyrightLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CopyrightLabel.AutoSize = true;
             this.CopyrightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CopyrightLabel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.CopyrightLabel.Location = new System.Drawing.Point(3, 32);
+            this.CopyrightLabel.ForeColor = System.Drawing.Color.Beige;
+            this.CopyrightLabel.Location = new System.Drawing.Point(3, 30);
             this.CopyrightLabel.Name = "CopyrightLabel";
             this.CopyrightLabel.Size = new System.Drawing.Size(274, 20);
             this.CopyrightLabel.TabIndex = 2;
             this.CopyrightLabel.Text = "Copyright © 2016-2023 Paul Mattes";
+            this.CopyrightLabel.Click += new System.EventHandler(this.Anywhere_Click);
             // 
             // outerTableLayoutPanel
             // 
@@ -91,8 +93,9 @@
             this.outerTableLayoutPanel.Name = "outerTableLayoutPanel";
             this.outerTableLayoutPanel.RowCount = 1;
             this.outerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.outerTableLayoutPanel.Size = new System.Drawing.Size(350, 64);
+            this.outerTableLayoutPanel.Size = new System.Drawing.Size(344, 64);
             this.outerTableLayoutPanel.TabIndex = 3;
+            this.outerTableLayoutPanel.Click += new System.EventHandler(this.Anywhere_Click);
             // 
             // fadeInScreenPanel
             // 
@@ -106,6 +109,7 @@
             this.fadeInScreenPanel.Name = "fadeInScreenPanel";
             this.fadeInScreenPanel.Size = new System.Drawing.Size(64, 64);
             this.fadeInScreenPanel.TabIndex = 6;
+            this.fadeInScreenPanel.Click += new System.EventHandler(this.Anywhere_Click);
             // 
             // terminalPictureBox
             // 
@@ -118,6 +122,7 @@
             this.terminalPictureBox.TabIndex = 1;
             this.terminalPictureBox.TabStop = false;
             this.terminalPictureBox.Visible = false;
+            this.terminalPictureBox.Click += new System.EventHandler(this.Anywhere_Click);
             // 
             // halfOnPictureBox
             // 
@@ -130,6 +135,7 @@
             this.halfOnPictureBox.TabIndex = 3;
             this.halfOnPictureBox.TabStop = false;
             this.halfOnPictureBox.Visible = false;
+            this.halfOnPictureBox.Click += new System.EventHandler(this.Anywhere_Click);
             // 
             // offTerminalPictureBox
             // 
@@ -141,22 +147,26 @@
             this.offTerminalPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.offTerminalPictureBox.TabIndex = 2;
             this.offTerminalPictureBox.TabStop = false;
+            this.offTerminalPictureBox.Click += new System.EventHandler(this.Anywhere_Click);
             // 
             // innerTableLayoutPanel
             // 
             this.innerTableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.innerTableLayoutPanel.AutoSize = true;
+            this.innerTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.innerTableLayoutPanel.ColumnCount = 1;
             this.innerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.innerTableLayoutPanel.Controls.Add(this.NameLabel, 0, 0);
+            this.innerTableLayoutPanel.Controls.Add(this.nameLabel, 0, 0);
             this.innerTableLayoutPanel.Controls.Add(this.CopyrightLabel, 0, 1);
-            this.innerTableLayoutPanel.Location = new System.Drawing.Point(67, 9);
+            this.innerTableLayoutPanel.Location = new System.Drawing.Point(64, 14);
+            this.innerTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.innerTableLayoutPanel.Name = "innerTableLayoutPanel";
             this.innerTableLayoutPanel.RowCount = 2;
             this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.innerTableLayoutPanel.Size = new System.Drawing.Size(280, 52);
+            this.innerTableLayoutPanel.Size = new System.Drawing.Size(280, 50);
             this.innerTableLayoutPanel.TabIndex = 4;
+            this.innerTableLayoutPanel.Click += new System.EventHandler(this.Anywhere_Click);
             // 
             // pidTimer
             // 
@@ -176,8 +186,9 @@
             this.mainTableLayoutPanel.Name = "mainTableLayoutPanel";
             this.mainTableLayoutPanel.RowCount = 1;
             this.mainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.mainTableLayoutPanel.Size = new System.Drawing.Size(550, 264);
+            this.mainTableLayoutPanel.Size = new System.Drawing.Size(544, 264);
             this.mainTableLayoutPanel.TabIndex = 4;
+            this.mainTableLayoutPanel.Click += new System.EventHandler(this.Anywhere_Click);
             // 
             // outermostTableLayoutPanel
             // 
@@ -195,6 +206,7 @@
             this.outermostTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.outermostTableLayoutPanel.Size = new System.Drawing.Size(1678, 1131);
             this.outermostTableLayoutPanel.TabIndex = 5;
+            this.outermostTableLayoutPanel.Click += new System.EventHandler(this.Anywhere_Click);
             // 
             // fadeTimer
             // 
@@ -236,7 +248,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label NameLabel;
+        private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.PictureBox terminalPictureBox;
         private System.Windows.Forms.Label CopyrightLabel;
         private System.Windows.Forms.TableLayoutPanel outerTableLayoutPanel;
