@@ -734,18 +734,22 @@ namespace Wx3270
             if (!displayed)
             {
                 // Hide the menu bar.
+                this.MainTable.SuspendLayout();
                 this.TopBar.RemoveFromParent();
                 this.TopLayoutPanel.RemoveFromParent();
                 this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
+                this.MainTable.ResumeLayout();
                 this.fixedHeight -= this.TopBar.Height + this.TopLayoutPanel.Height;
             }
             else
             {
                 // Put the menu bar back.
+                this.MainTable.SuspendLayout();
                 this.TopBar.Location = new Point(0, 0);
                 this.MainTable.Controls.Add(this.TopBar, 0, 1);
                 this.MainTable.Controls.Add(this.TopLayoutPanel, 0, 0);
                 this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 2F);
+                this.MainTable.ResumeLayout();
                 this.fixedHeight += this.TopBar.Height + this.TopLayoutPanel.Height;
             }
 
@@ -3357,9 +3361,11 @@ namespace Wx3270
             if (!this.menuBarDisabled)
             {
                 // Turn off the menu bar for the duration of F11 full screen mode.
+                this.MainTable.SuspendLayout();
                 this.TopBar.RemoveFromParent();
                 this.TopLayoutPanel.RemoveFromParent();
                 this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
+                this.MainTable.ResumeLayout();
                 this.overlayMenuBarDisplayed = false;
                 this.fixedHeight -= this.TopBar.Height + this.TopLayoutPanel.Height;
                 this.screenBox.SetFixed(this.fixedWidth, this.fixedHeight);
@@ -3446,9 +3452,11 @@ namespace Wx3270
 
                     // Turn the integral menu bar back on.
                     this.TopBar.Location = new Point(0, 0);
+                    this.MainTable.SuspendLayout();
                     this.MainTable.Controls.Add(this.TopBar, 0, 1);
                     this.MainTable.Controls.Add(this.TopLayoutPanel, 0, 0);
                     this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 2F);
+                    this.MainTable.ResumeLayout();
 
                     this.fixedHeight += this.TopBar.Height + this.TopLayoutPanel.Height;
                     this.screenBox.SetFixed(this.fixedWidth, this.fixedHeight);
