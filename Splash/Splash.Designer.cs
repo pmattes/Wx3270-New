@@ -56,13 +56,13 @@
             // 
             this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Font = new System.Drawing.Font("IBM 3270", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameLabel.ForeColor = System.Drawing.Color.RoyalBlue;
             this.nameLabel.Location = new System.Drawing.Point(3, 0);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(183, 30);
+            this.nameLabel.Size = new System.Drawing.Size(180, 36);
             this.nameLabel.TabIndex = 0;
-            this.nameLabel.Text = "wx3270 1.1";
+            this.nameLabel.Text = "wx3270 1.2";
             this.nameLabel.Click += new System.EventHandler(this.Anywhere_Click);
             // 
             // CopyrightLabel
@@ -71,7 +71,7 @@
             this.CopyrightLabel.AutoSize = true;
             this.CopyrightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CopyrightLabel.ForeColor = System.Drawing.Color.Beige;
-            this.CopyrightLabel.Location = new System.Drawing.Point(3, 30);
+            this.CopyrightLabel.Location = new System.Drawing.Point(3, 36);
             this.CopyrightLabel.Name = "CopyrightLabel";
             this.CopyrightLabel.Size = new System.Drawing.Size(274, 20);
             this.CopyrightLabel.TabIndex = 2;
@@ -158,13 +158,13 @@
             this.innerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.innerTableLayoutPanel.Controls.Add(this.nameLabel, 0, 0);
             this.innerTableLayoutPanel.Controls.Add(this.CopyrightLabel, 0, 1);
-            this.innerTableLayoutPanel.Location = new System.Drawing.Point(64, 14);
+            this.innerTableLayoutPanel.Location = new System.Drawing.Point(64, 8);
             this.innerTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.innerTableLayoutPanel.Name = "innerTableLayoutPanel";
             this.innerTableLayoutPanel.RowCount = 2;
             this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.innerTableLayoutPanel.Size = new System.Drawing.Size(280, 50);
+            this.innerTableLayoutPanel.Size = new System.Drawing.Size(280, 56);
             this.innerTableLayoutPanel.TabIndex = 4;
             this.innerTableLayoutPanel.Click += new System.EventHandler(this.Anywhere_Click);
             // 
