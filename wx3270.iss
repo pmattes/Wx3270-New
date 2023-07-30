@@ -46,8 +46,6 @@ Source: "wx3270\bin\x64\Release\i18n-pg-US.dll"; DestDir: "{app}"; Flags: ignore
 Source: "wx3270\bin\x64\Release\i18n-ru-XX.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: Is64BitInstallMode
 Source: "wx3270\bin\x64\Release\i18nBase.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: Is64BitInstallMode
 Source: "wx3270\bin\x64\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: Is64BitInstallMode
-Source: "wx3270\bin\x64\Release\System.ValueTuple.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: Is64BitInstallMode
-Source: "wx3270\bin\x64\Release\System.ValueTuple.xml"; DestDir: "{app}"; Flags: ignoreversion; Check: Is64BitInstallMode
 
 ; x86 files
 Source: "wx3270\bin\x86\Release\wx3270.exe"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
@@ -62,8 +60,6 @@ Source: "wx3270\bin\x86\Release\i18n-pg-US.dll"; DestDir: "{app}"; Flags: ignore
 Source: "wx3270\bin\x86\Release\i18n-ru-XX.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
 Source: "wx3270\bin\x86\Release\i18nBase.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
 Source: "wx3270\bin\x86\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
-Source: "wx3270\bin\x86\Release\System.ValueTuple.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
-Source: "wx3270\bin\x86\Release\System.ValueTuple.xml"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
 
 ; Common files
 Source: "extern\x3270is\x3270is-setup.exe"; Destdir: {tmp}; Flags: ignoreversion; Components: x3270is
