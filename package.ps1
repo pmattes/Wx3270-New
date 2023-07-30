@@ -18,7 +18,7 @@ Write-Host -ForegroundColor Green 'Building x64'
 & msbuild wx3270\wx3270.sln /t:Rebuild "/p:Configuration=Release;Platform=x64" /nologo /v:q
 
 # Sign the binaries.
-$exclude = "Newtonsoft.Json.dll", "System.ValueTuple.dll"
+$exclude = "Newtonsoft.Json.dll"
 $files = `
    (Get-ChildItem -Path Wx3270\bin\x86\Release, Wx3270\bin\x64\Release -Recurse -Filter "*.exe").FullName `
  + (Get-ChildItem -Path Wx3270\bin\x86\Release, Wx3270\bin\x64\Release -Recurse -Filter "*.dll" -Exclude $exclude).FullName `
