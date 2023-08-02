@@ -1,4 +1,9 @@
-﻿# Set up constants.
+﻿param (
+    # Archive flag
+    [switch]$archive = $false
+)
+
+# Set up constants.
 $inno = 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
 $cert = 'C:\Users\pdm\Documents\Certs\Cert2022.pfx'
 $signtool = 'C:\Program Files (x86)\Windows Kits\10\App Certification Kit\signtool.exe'
@@ -47,3 +52,16 @@ Remove-Item tmp.iss
 $files = Get-Content noinstall-files.txt
 $files.ForEach({$_ -replace '^', 'wx3270\bin\x64\Release\'}) | Compress-Archive -Force -DestinationPath "wx3270-$version-noinstall64.zip"
 $files.ForEach({$_ -replace '^', 'wx3270\bin\x86\Release\'}) | Compress-Archive -Force -DestinationPath "wx3270-$version-noinstall32.zip"
+
+# Archive.
+if ($archive)
+{
+    Write-Host -ForegroundColor Green 'Archiving'
+    $env:PATH += ';C:\Windows\System32\OpenSSH'
+    $files = "wx3270-$version-setup.exe", "wx3270-$version-noinstall64.zip", "wx3270-$version-noinstall32.zip"
+    & scp $files 10.0.0.12:psrc/x3270/Release/
+    $verparts = $version -replace "[a-z]+.*", "" -split "\."
+    $bgpdir = "www/download/wx3270/{0:D2}.{1:D2}" -f [int]$verparts[0],[int]$verparts[1]
+    & ssh bgp.nu "mkdir -p $bgpdir"
+    & scp $files bgp.nu:$bgpdir/
+}
