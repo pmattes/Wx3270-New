@@ -316,12 +316,6 @@ namespace Wx3270
         public bool Maximize { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the window should be in full-screen (Alt-F11) mode.
-        /// </summary>
-        [JsonProperty]
-        public bool FullScreen { get; set; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether type-ahead should be permitted.
         /// </summary>
         [JsonProperty]
