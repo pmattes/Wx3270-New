@@ -944,7 +944,6 @@ namespace Wx3270
             this.ProfileManager.ChangeFinal += (profile, isNew) =>
             {
                 var maximize = profile.Maximize;
-                var fullScreen = profile.FullScreen;
                 Size? size = profile.Size.HasValue ? (Size?)new Size(profile.Size.Value.Width, profile.Size.Value.Height) : null;
                 if (maximize || size.HasValue)
                 {
@@ -960,14 +959,7 @@ namespace Wx3270
 
                         if (maximize)
                         {
-                            if (fullScreen)
-                            {
-                                this.SetFullScreen();
-                            }
-                            else
-                            {
-                                this.Maximize();
-                            }
+                            this.Maximize();
                         }
 
                         this.temporaryToolStripMenuItem.Enabled = this.menuBarDisabled || this.fullScreen;
@@ -2658,21 +2650,7 @@ namespace Wx3270
                                     current.Font = new FontProfile(newFont);
                                 }
 
-                                if (this.Maximized)
-                                {
-                                    current.Maximize = true;
-                                    current.FullScreen = this.fullScreen;
-                                }
-                                else
-                                {
-                                    if (this.FormBorderStyle != FormBorderStyle.None)
-                                    {
-                                        current.Size = this.Size;
-                                    }
-
-                                    current.Maximize = false;
-                                    current.FullScreen = false;
-                                }
+                                current.Maximize = this.Maximized && !this.fullScreen;
                             }, I18n.Get(ResizeName)))
                         {
                             Trace.Line(Trace.Type.Window, "  Resize pushed");
@@ -3169,25 +3147,21 @@ namespace Wx3270
                 Trace.Line(Trace.Type.Window, " ==> resize");
                 this.screenBox.Maximize(this.Maximized, this.ClientSize);
                 var newFont = this.screenBox.RecomputeFont(this.ClientSize, ResizeType.Dynamic);
-
-                if (this.ProfileManager.PushAndSave(
-                    (current) =>
-                    {
-                        current.Font = new FontProfile(newFont);
-                        if (this.Maximized)
-                        {
-                            current.Maximize = true;
-                            current.FullScreen = this.fullScreen;
-                        }
-                        else
-                        {
-                            current.Size = this.Size;
-                            current.Maximize = false;
-                            current.FullScreen = false;
-                        }
-                    }, I18n.Get(ResizeName)))
+                if (!this.fullScreen)
                 {
-                    Trace.Line(Trace.Type.Window, " ==> resize pushed");
+                    if (this.ProfileManager.PushAndSave(
+                        (current) =>
+                        {
+                            current.Font = new FontProfile(newFont);
+                            current.Maximize = this.Maximized;
+                            if (!this.Maximized)
+                            {
+                                current.Size = this.Size;
+                            }
+                        }, I18n.Get(ResizeName)))
+                    {
+                        Trace.Line(Trace.Type.Window, " ==> resize pushed");
+                    }
                 }
             }
         }
