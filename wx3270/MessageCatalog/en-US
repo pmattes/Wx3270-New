@@ -1364,6 +1364,8 @@
   "Settings.setting.printer.codepage": "printer code page",
   "Settings.setting.printer.name": "printer name",
   "Settings.setting.printer.options": "printer options",
+  "Settings.setting.PrinterSavePath": "printer save path",
+  "Settings.setting.PrinterType": "printer type",
   "Settings.setting.proxy": "proxy options",
   "Settings.setting.retry": "retry connection",
   "Settings.setting.ScrollBar": "scroll bar",
