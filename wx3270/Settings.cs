@@ -55,6 +55,8 @@ namespace Wx3270
             { ChangeKeyword.Description, "profile description" },
             { ChangeKeyword.WindowTitle, "window title" },
             { ChangeKeyword.ScrollBar, "scroll bar" },
+            { ChangeKeyword.PrinterType, "printer type" },
+            { ChangeKeyword.PrinterSavePath, "printer save path" },
             { ChangeKeyword.MenuBar, "hide menu bar" },
         };
 
