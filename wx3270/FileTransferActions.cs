@@ -264,6 +264,7 @@ namespace Wx3270
             this.fileTransferTsoAllocationType.Value = TsoAllocationType.Default;
             this.blockSizeTextBox.Text = string.Empty;
             this.bufferSizeTextBox.Text = string.Empty;
+            this.additionalOptionsTextBox.Text = string.Empty;
         }
 
         /// <summary>
@@ -425,6 +426,16 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Validation for the additional options text box.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void AdditionalOptionsTextBoxValidating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.additionalOptionsTextBox.Text = this.additionalOptionsTextBox.Text.Trim();
+        }
+
+        /// <summary>
         /// Construct the back-end action to perform the file transfer.
         /// </summary>
         /// <returns>File transfer action.</returns>
@@ -491,6 +502,11 @@ namespace Wx3270
             if (!string.IsNullOrEmpty(this.bufferSizeTextBox.Text))
             {
                 parms.Add("BufferSize={0}", this.bufferSizeTextBox.Text);
+            }
+
+            if (!string.IsNullOrEmpty(this.additionalOptionsTextBox.Text))
+            {
+                parms.Add("{0}", this.additionalOptionsTextBox.Text);
             }
 
             return new BackEndAction("Transfer", parms.Parms);

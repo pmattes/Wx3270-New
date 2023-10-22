@@ -497,6 +497,16 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Validation for the additional options text box.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void AdditionalOptionsTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.AdditionalOptionsTextBoxValidating(sender, e);
+        }
+
+        /// <summary>
         /// The transfer button was clicked.
         /// </summary>
         /// <param name="sender">Event sender.</param>
