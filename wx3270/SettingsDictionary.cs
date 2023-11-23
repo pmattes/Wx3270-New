@@ -5,6 +5,7 @@
 namespace Wx3270
 {
     using System.Collections.Concurrent;
+    using System.Collections.Generic;
 
     /// <summary>
     /// A dictionary of settings.
@@ -31,6 +32,11 @@ namespace Wx3270
         {
             this.rawDictionary = new ConcurrentDictionary<string, string>(other.rawDictionary);
         }
+
+        /// <summary>
+        /// Gets the dictionary keys.
+        /// </summary>
+        public IEnumerable<string> Keys => this.rawDictionary.Keys;
 
         /// <summary>
         /// Add an entry.

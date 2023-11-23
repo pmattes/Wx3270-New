@@ -6,13 +6,12 @@ namespace Wx3270
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Drawing;
+    using System.IO.Packaging;
     using System.Linq;
-    using System.Threading;
     using System.Windows.Forms;
-    using System.Windows.Input;
     using I18nBase;
-    using Microsoft.Win32;
     using Wx3270.Contracts;
 
     using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
@@ -141,6 +140,11 @@ namespace Wx3270
         private Settings settings;
 
         /// <summary>
+        /// The actions dialog.
+        /// </summary>
+        private Actions actionsDialog;
+
+        /// <summary>
         /// The macros dialog.
         /// </summary>
         private Macros macros;
@@ -216,6 +220,11 @@ namespace Wx3270
         private bool menuBarDisabled = false;
 
         /// <summary>
+        /// The crossbar.
+        /// </summary>
+        private Crossbar crossbar;
+
+        /// <summary>
         /// The window handle.
         /// </summary>
         private IntPtr handle;
@@ -237,11 +246,6 @@ namespace Wx3270
         /// Connection state change event.
         /// </summary>
         public event Action ConnectionStateEvent = () => { };
-
-        /// <summary>
-        /// Screen mode change event.
-        /// </summary>
-        public event Action ScreenModeEvent = () => { };
 
         /// <summary>
         /// SSL change event.
@@ -311,11 +315,6 @@ namespace Wx3270
         public HostType ConnectHostType { get; set; }
 
         /// <summary>
-        /// Gets the actions dialog.
-        /// </summary>
-        public Actions ActionsDialog { get; private set; }
-
-        /// <summary>
         /// Gets the connect machine.
         /// </summary>
         public Connect Connect { get; private set; }
@@ -359,6 +358,82 @@ namespace Wx3270
         /// Gets the macro recorder.
         /// </summary>
         private MacroRecorder MacroRecorder => this.App.MacroRecorder;
+
+        /// <summary>
+        /// Gets the actions dialog.
+        /// </summary>
+        private Actions ActionsDialog
+        {
+            get
+            {
+                if (this.actionsDialog == null)
+                {
+                    this.actionsDialog = new Actions(this.App, this);
+                }
+
+                return this.actionsDialog;
+            }
+        }
+
+        /// <summary>
+        /// Gets the keypad.
+        /// </summary>
+        private Keypad Keypad
+        {
+            get
+            {
+                this.keypad ??= new Keypad(this.App, this, this.crossbar.OptionsCrossbar);
+                return this.keypad;
+            }
+        }
+
+        /// <summary>
+        /// Gets the APL keypad.
+        /// </summary>
+        private AplKeypad AplKeypad
+        {
+            get
+            {
+                this.aplKeypad ??= new AplKeypad(this.App, this, this.crossbar.OptionsCrossbar);
+                return this.aplKeypad;
+            }
+        }
+
+        /// <summary>
+        /// Gets the settings dialog.
+        /// </summary>
+        private Settings SettingsDialog
+        {
+            get
+            {
+                this.settings ??= new Settings(this.App, this, this.Keypad, this.AplKeypad);
+                return this.settings;
+            }
+        }
+
+        /// <summary>
+        /// Gets the macros dialog.
+        /// </summary>
+        private Macros Macros
+        {
+            get
+            {
+                this.macros ??= new Macros(this.App, this, this.macroEntries);
+                return this.macros;
+            }
+        }
+
+        /// <summary>
+        /// Gets the profile tree dialog.
+        /// </summary>
+        private ProfileTree ProfileTree
+        {
+            get
+            {
+                this.profileTree ??= new ProfileTree(this.App, this, this.Connect);
+                return this.profileTree;
+            }
+        }
 
         /// <summary>
         /// Compute the location for a centered dialog window.
@@ -435,9 +510,16 @@ namespace Wx3270
         /// <param name="app">Application instance.</param>
         public void Init(Wx3270App app)
         {
+            var s = new Stopwatch();
+            s.Start();
+            Trace.Line(Trace.Type.Window, "MainScreen Init start");
+
             this.App = app;
             this.BaseInit(); // should do earlier?
             this.SecondaryInit();
+
+            s.Stop();
+            Trace.Line(Trace.Type.Window, $"MainScreen Init done in {s.ElapsedMilliseconds} ms");
         }
 
         /// <summary>
@@ -932,7 +1014,7 @@ namespace Wx3270
 
             // Register for profile-related events.
             this.App.ProfileTracker.ProfileTreeChanged += (tree) => this.Invoke(new MethodInvoker(() => this.ProfileTreeChanged(tree)));
-            this.ProfileManager.Change += (profile) => this.Invoke(new MethodInvoker(() => this.ProfileChanged(profile)));
+            this.ProfileManager.AddChangeTo(this.ProfileChanged);
             this.ProfileManager.NewProfileOpened += (profile) =>
             {
                 // Set the window location, if reasonable to do so.
@@ -941,36 +1023,54 @@ namespace Wx3270
                     this.Location = profile.Location.Value;
                 }
             };
-            this.ProfileManager.ChangeFinal += (profile, isNew) =>
+            this.ProfileManager.ChangeFinal += (oldProfile, newProfile, isNew, isInternal) =>
             {
-                var maximize = profile.Maximize;
-                Size? size = profile.Size.HasValue ? (Size?)new Size(profile.Size.Value.Width, profile.Size.Value.Height) : null;
-                if (maximize || size.HasValue)
+                // Process these last:
+                //  Scroll bar.
+                //  Menu bar.
+                //  Maximize.
+                //  Window size (even if we are going to maximize, so when we un-maximize, we get the right size)
+                var maximize = newProfile.Maximize;
+                Size? size = newProfile.Size.HasValue ? (Size?)new Size(newProfile.Size.Value.Width, newProfile.Size.Value.Height) : null;
+                if (maximize
+                    || (size.HasValue && !size.Value.Equals(this.Size))
+                    || oldProfile?.ScrollBar != newProfile.ScrollBar
+                    || oldProfile?.MenuBar != newProfile.MenuBar)
                 {
-                    // Run the following after any other back-end action, such as changing the model:
-                    //  Scroll bar.
-                    //  Menu bar.
-                    //  Maximize and FullScreen.
-                    // Set the size, even if we are going to maximize, so when we un-maximize, we get the right size.
-                    this.BackEnd.RunAction(new BackEndAction(B3270.Action.Query, B3270.Query.Model), (cookie, success, result, misc) =>
                     {
-                        this.ToggleScrollBarInternal(profile.ScrollBar);
-                        this.ToggleMenuBarInternal(profile.MenuBar);
+                        if (!newProfile.ScrollBar && this.scrollBarDisplayed)
+                        {
+                            Trace.Line(Trace.Type.Window, "MainScreen ChangeFinal Turning off scrollbar");
+                        }
+
+                        this.ToggleScrollBarInternal(newProfile.ScrollBar);
+
+                        if (!newProfile.MenuBar && !this.menuBarDisabled)
+                        {
+                            Trace.Line(Trace.Type.Window, "MainScreen ChangeFinal Turning off menu bar");
+                        }
+
+                        this.ToggleMenuBarInternal(newProfile.MenuBar);
 
                         if (maximize)
                         {
+                            if (!this.Maximized)
+                            {
+                                Trace.Line(Trace.Type.Window, "MainScreen ChangeFinal maximizing");
+                            }
+
                             this.Maximize();
                         }
 
                         this.temporaryToolStripMenuItem.Enabled = this.menuBarDisabled || this.fullScreen;
                         this.permanentToolStripMenuItem.Enabled = this.menuBarDisabled && !this.fullScreen;
 
-                        if (size.HasValue)
+                        if (size.HasValue && !size.Value.Equals(this.Size))
                         {
                             Trace.Line(Trace.Type.Window, $"MainScreen ChangeFinal setting size to {size.Value}");
                             this.Size = size.Value;
                         }
-                    });
+                    }
                 }
 
                 // Update key mappings.
@@ -983,16 +1083,18 @@ namespace Wx3270
             };
 
             // Set up other parts.
-            this.keypad = new Keypad(this.App, this);
-            this.aplKeypad = new AplKeypad(this.App, this);
-            this.settings = new Settings(this.App, this, this.keypad, this.aplKeypad);
-            this.ActionsDialog = new Actions(this.App, this);
             this.Connect = new Connect(this.App, this);
-            this.macros = new Macros(this.App, this, this.macroEntries);
-            this.profileTree = new ProfileTree(this.App, this, this.Connect);
+            this.crossbar = new Crossbar(this.App, this.ProfileManager);
+            this.crossbar.OptionsCrossbar.OpacityEvent += (percent) => this.Opacity = percent / 100.0;
 
-            // Glue keypad and opacity setting together.
-            this.keypad.RegisterOpacity(this.settings);
+            if (this.App.DumpLocalization != null)
+            {
+                // Create all of the dialogs now instead of on-demand, to capture their localizations.
+                var settings = this.SettingsDialog;
+                var actionsDialog = this.ActionsDialog;
+                var macros = this.Macros;
+                var profileTree = this.ProfileTree;
+            }
 
             // VS designer doesn't seem to know about this.
             this.MouseWheel += new MouseEventHandler(this.MouseWheel_Event);
@@ -1166,9 +1268,6 @@ namespace Wx3270
             // Set up undo/redo.
             this.ProfileManager.RegisterUndoRedo(this.undoToolStripMenuItem, this.redoToolStripMenuItem, this.toolTip1);
 
-            // Subscribe to profile changes.
-            this.ProfileManager.Change += this.ProfileChange;
-
             // Subscribe to connection changes.
             this.ConnectionStateEvent += () =>
             {
@@ -1179,7 +1278,7 @@ namespace Wx3270
 
             // Subscribe to toggle changes.
             this.App.SettingChange.Register(
-                (settingName, settingDictionary) => this.Invoke(new MethodInvoker(() => this.OnSettingEvent(settingName, settingDictionary))),
+                this.SettingChanged,
                 new[] { B3270.Setting.Trace, B3270.Setting.ScreenTrace, B3270.Setting.VisibleControl, B3270.Setting.AplMode });
 
             // Cascade secondary init to others.
@@ -1414,9 +1513,6 @@ namespace Wx3270
 
             // Set up the connect menu.
             this.ProfileTreeChanged(this.App.ProfileTracker.Tree);
-
-            // Set up keyboard map changes.
-            this.settings.KeyboardMapModified += this.UpdateMenuKeyMappings;
 
             // Handle the no-border option.
             if (this.App.NoBorder)
@@ -1693,7 +1789,7 @@ namespace Wx3270
             }
             else if (ModifierKeys.HasFlag(Keys.Shift) || !this.ProfileManager.IsCurrentPathName(p.PathName))
             {
-                this.profileTree.LoadWithAutoConnect(p.PathName, ModifierKeys.HasFlag(Keys.Shift));
+                this.ProfileTree.LoadWithAutoConnect(p.PathName, ModifierKeys.HasFlag(Keys.Shift));
             }
         }
 
@@ -1994,7 +2090,7 @@ namespace Wx3270
                 switch (tagString)
                 {
                     case "QuickConnect":
-                        this.profileTree.CreateHostDialog(this.ProfileManager.Current);
+                        this.ProfileTree.CreateHostDialog(this.ProfileManager.Current);
                         break;
                     case "Disconnect":
                         this.Connect.Disconnect();
@@ -2034,21 +2130,49 @@ namespace Wx3270
         /// <summary>
         /// The profile changed.
         /// </summary>
-        /// <param name="profile">New profile.</param>
-        private void ProfileChanged(Profile profile)
+        /// <param name="oldProfile">Old profile.</param>
+        /// <param name="newProfile">New profile.</param>
+        private void ProfileChanged(Profile oldProfile, Profile newProfile)
         {
             // Update the load menu.
             foreach (var item in this.loadMenuItem.DropDownItems.Cast<ToolStripMenuItem>())
             {
-                item.Enabled = !item.Text.Equals(profile.Name);
-                item.Checked = item.Text.Equals(profile.Name);
+                item.Enabled = !item.Text.Equals(newProfile.Name);
+                item.Checked = item.Text.Equals(newProfile.Name);
             }
 
             // Update the title.
-            this.Text = NewTitle(null, profile, null);
+            this.Text = NewTitle(null, newProfile, null);
 
             // Update the connect menu, a side-effect of profile tree processing.
             this.ProfileTreeChanged(this.App.ProfileTracker.Tree);
+
+            // Update the font.
+            if (oldProfile == null || !oldProfile.Font.Equals(newProfile.Font))
+            {
+                this.Refont(newProfile.Font.Font());
+            }
+
+            // Update menus that include keyboard mappings.
+            if (oldProfile == null || !oldProfile.KeyboardMap.Equals(newProfile.KeyboardMap))
+            {
+                this.UpdateMenuKeyMappings();
+            }
+
+            // For non-full profiles, no quick connect.
+            this.quickConnectMenuItem.Enabled = newProfile.ProfileType == ProfileType.Full;
+
+            // Redraw the main screen.
+            if (oldProfile == null || !oldProfile.Colors.Equals(newProfile.Colors) || oldProfile.ColorMode != newProfile.ColorMode)
+            {
+                this.Recolor(newProfile.Colors, newProfile.ColorMode);
+            }
+
+            // Force normal window if the profile says to, and this is not the initial load.
+            if (!newProfile.Maximize && oldProfile != null)
+            {
+                this.Restore();
+            }
         }
 
         /// <summary>
@@ -2152,7 +2276,7 @@ namespace Wx3270
         {
             if (!string.IsNullOrEmpty(text))
             {
-                this.macros.Record(text);
+                this.Macros.Record(text);
             }
         }
 
@@ -2206,7 +2330,7 @@ namespace Wx3270
                 case ScreenUpdateType.ScreenMode:
                     this.ChangeScreenMode(updateState.ScreenImage);
                     this.ScreenNeedsDrawing(updateState.ScreenImage, "mode", true);
-                    this.ScreenModeEvent();
+                    this.ModelBackEndToProfile();
                     break;
                 case ScreenUpdateType.Thumb:
                     this.ChangeThumb();
@@ -2312,19 +2436,6 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// The profile changed (was loaded).
-        /// </summary>
-        /// <param name="profile">New profile.</param>
-        private void ProfileChange(Profile profile)
-        {
-            // For non-full profiles, no quick connect.
-            this.quickConnectMenuItem.Enabled = profile.ProfileType == ProfileType.Full;
-
-            // Redraw the main screen.
-            this.Recolor(profile.Colors, profile.ColorMode);
-        }
-
-        /// <summary>
         /// Set the 'Checked' property for a pair of menu items.
         /// </summary>
         /// <param name="mainItem">Menu item from main menu bar.</param>
@@ -2359,7 +2470,7 @@ namespace Wx3270
         /// </summary>
         /// <param name="settingName">Setting name.</param>
         /// <param name="settingDictionary">Setting dictionary.</param>
-        private void OnSettingEvent(string settingName, SettingsDictionary settingDictionary)
+        private void SettingChanged(string settingName, SettingsDictionary settingDictionary)
         {
             switch (settingName)
             {
@@ -2622,7 +2733,7 @@ namespace Wx3270
                 case FormWindowState.Normal:
                 case FormWindowState.Maximized:
                     // Restored.
-                    foreach (var pad in this.Keypads)
+                    foreach (var pad in this.Keypads.Where(p => p != null))
                     {
                         if (this.keypadMinimized.Contains(pad))
                         {
@@ -2688,12 +2799,12 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void SettingsBox_Click(object sender, EventArgs e)
         {
-            if (!this.settings.Visible)
+            if (!this.SettingsDialog.Visible)
             {
-                this.settings.Show(this);
+                this.SettingsDialog.Show(this);
             }
 
-            this.settings.Activate();
+            this.SettingsDialog.Activate();
         }
 
         /// <summary>
@@ -2718,7 +2829,7 @@ namespace Wx3270
             this.App.SelectionManager.Activated();
 
             // Flash the keypad, so it can be identified.
-            foreach (var pad in this.Keypads)
+            foreach (var pad in this.Keypads.Where(p => p != null))
             {
                 if (pad.Visible && !this.noFlashTimer.Enabled)
                 {
@@ -2799,12 +2910,12 @@ namespace Wx3270
             // You can't restore the profile tree while a macro is being recorded.
             this.MacroRecorder.Abort();
 
-            if (!this.profileTree.Visible)
+            if (!this.ProfileTree.Visible)
             {
-                this.profileTree.Show(this);
+                this.ProfileTree.Show(this);
             }
 
-            this.profileTree.Activate();
+            this.ProfileTree.Activate();
         }
 
         /// <summary>
@@ -2820,12 +2931,12 @@ namespace Wx3270
                 return;
             }
 
-            if (!this.macros.Visible)
+            if (!this.Macros.Visible)
             {
-                this.macros.Show(this);
+                this.Macros.Show(this);
             }
 
-            this.macros.Activate();
+            this.Macros.Activate();
         }
 
         /// <summary>
@@ -3034,7 +3145,7 @@ namespace Wx3270
         /// <param name="apl">True to show the APL keypad.</param>
         private void ShowKeypad(bool apl = false)
         {
-            var keypad = apl ? this.aplKeypad : (Form)this.keypad;
+            var keypad = apl ? this.AplKeypad : (Form)this.Keypad;
             if (!keypad.Visible)
             {
                 this.noFlashTimer.Start();
@@ -3285,10 +3396,15 @@ namespace Wx3270
                 return false;
             }
 
-            var newSize = this.ScreenFont.SizeInPoints + (bigger ? 1.0F : -1.0F);
+            var newSize = this.ProfileManager.Current.Font.EmSize + (bigger ? 1.0F : -1.0F);
             if (newSize > 0.0)
             {
-                this.settings.PropagateNewFont(new Font(this.ScreenFont.FontFamily, newSize));
+                this.ProfileManager.PushAndSave(
+                (current) =>
+                {
+                    current.Font = new FontProfile(new Font(current.Font.Name, newSize));
+                },
+                Settings.ChangeName(Settings.ChangeKeyword.Font));
             }
 
             return true;

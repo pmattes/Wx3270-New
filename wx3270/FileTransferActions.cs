@@ -221,9 +221,7 @@ namespace Wx3270
             this.avblockTextBox.Validated += (sender, args) => this.EnableDisable();
 
             // Subscribe to setting changes.
-            this.app.SettingChange.Register(
-                (settingName, settingDictionary) => this.Invoke(new MethodInvoker(() => this.FtSettingChanged(settingName, settingDictionary))),
-                new[] { B3270.Setting.FtBufferSize });
+            this.app.SettingChange.Register(this.FtSettingChanged, new[] { B3270.Setting.FtBufferSize });
 
             // Reset the form.
             this.FileTransferClear();

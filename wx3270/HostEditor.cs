@@ -123,6 +123,11 @@ namespace Wx3270
         private readonly Wx3270App app;
 
         /// <summary>
+        /// True if we are copying the host to the nickname.
+        /// </summary>
+        private bool copyingHostToNickname;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="HostEditor"/> class.
         /// </summary>
         /// <param name="editingMode">Editing mode.</param>
@@ -243,6 +248,7 @@ namespace Wx3270
             if (editingMode == HostEditingMode.QuickConnect)
             {
                 this.ActiveControl = this.HostNameTextBox;
+                this.copyingHostToNickname = true;
             }
 
             if (editingMode == HostEditingMode.SaveHost)
@@ -463,6 +469,10 @@ namespace Wx3270
                 }
 
                 return;
+            }
+            else if (text != string.Empty)
+            {
+                this.copyingHostToNickname = false;
             }
         }
 
@@ -820,6 +830,29 @@ namespace Wx3270
         private void ConnectRecordButton_Click(object sender, EventArgs e)
         {
             this.ValidateDone(DialogResult.OK, HostEditingResult.Ok | HostEditingResult.Save | HostEditingResult.Connect | HostEditingResult.Record);
+        }
+
+        /// <summary>
+        /// The nickname text box got focus.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void NicknameTextBox_Enter(object sender, EventArgs e)
+        {
+            this.copyingHostToNickname = false;
+        }
+
+        /// <summary>
+        /// The text in the hostname text box changed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void HostNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (this.copyingHostToNickname)
+            {
+                this.NicknameTextBox.Text = this.HostNameTextBox.Text;
+            }
         }
 
         /// <summary>

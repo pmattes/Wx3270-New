@@ -168,6 +168,9 @@ namespace Wx3270
         /// </summary>
         public static bool DebugFlag { get; set; }
 
+        /// <inheritdoc/>
+        public bool Ready { get; private set; }
+
         /// <summary>
         /// Static localization.
         /// </summary>
@@ -305,6 +308,7 @@ namespace Wx3270
                 Wx3270.Trace.Line(Wx3270.Trace.Type.BackEnd, "Back-end initialization complete");
                 File.Delete(this.startupProfilePath);
                 this.startupProfilePath = null;
+                this.Ready = true;
                 this.OnReady();
             });
             this.RegisterStart(B3270.Indication.RunResult, this.StartRunResult);

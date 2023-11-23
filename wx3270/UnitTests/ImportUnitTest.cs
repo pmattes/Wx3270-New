@@ -4,6 +4,8 @@
 
 namespace Wx3270
 {
+    using System;
+    using System.Collections.Generic;
     using System.IO;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -21,7 +23,7 @@ namespace Wx3270
         [TestMethod]
         public void ParseSucceed()
         {
-            var import = new Wc3270Import(new FakeCodePageDb());
+            var import = new Wc3270Import(new FakeCodePageDb(), new FakeModelsDb());
             import.Parse("wc3270.foo: bar");
         }
 
@@ -32,7 +34,7 @@ namespace Wx3270
         [ExpectedException(typeof(InvalidDataException))]
         public void ParseFail()
         {
-            var import = new Wc3270Import(new FakeCodePageDb());
+            var import = new Wc3270Import(new FakeCodePageDb(), new FakeModelsDb());
             import.Parse("foo");
         }
 
@@ -42,7 +44,7 @@ namespace Wx3270
         [TestMethod]
         public void DigestTrivial()
         {
-            var import = new Wc3270Import(new FakeCodePageDb());
+            var import = new Wc3270Import(new FakeCodePageDb(), new FakeModelsDb());
             import.Parse("wc3270.model: 5");
             var profile = import.Digest();
             Assert.AreEqual(5, profile.Model);
@@ -55,7 +57,7 @@ namespace Wx3270
         [TestMethod]
         public void DigestLastValidate()
         {
-            var import = new Wc3270Import(new FakeCodePageDb());
+            var import = new Wc3270Import(new FakeCodePageDb(), new FakeModelsDb());
             import.Parse("wc3270.model: blatz");
             import.Parse("wc3270.model: 5");
             var profile = import.Digest();
@@ -69,7 +71,7 @@ namespace Wx3270
         [TestMethod]
         public void DigestLastConsume()
         {
-            var import = new Wc3270Import(new FakeCodePageDb());
+            var import = new Wc3270Import(new FakeCodePageDb(), new FakeModelsDb());
             import.Parse("wc3270.model: 2");
             import.Parse("wc3270.model: 5");
             import.Parse("wc3270.model: 3");
@@ -82,6 +84,15 @@ namespace Wx3270
         /// </summary>
         private class FakeCodePageDb : ICodePageDb
         {
+            /// <inheritdoc/>
+            public IEnumerable<string> All => throw new NotImplementedException();
+
+            /// <inheritdoc/>
+            public void AddDone(Action action)
+            {
+                throw new NotImplementedException();
+            }
+
             /// <summary>
             /// Gets the canonical name for a code page alias.
             /// </summary>
@@ -90,6 +101,38 @@ namespace Wx3270
             public string CanonicalName(string alias)
             {
                 return null;
+            }
+
+            public int Index(string codePage)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Fake model database class.
+        /// </summary>
+        private class FakeModelsDb : IModelsDb
+        {
+            /// <inheritdoc/>
+            public IReadOnlyDictionary<int, ModelDimensions> Models => throw new NotImplementedException();
+
+            /// <inheritdoc/>
+            public void AddDone(Action action)
+            {
+                throw new NotImplementedException();
+            }
+
+            /// <inheritdoc/>
+            public int? DefaultColumns(int model)
+            {
+                throw new NotImplementedException();
+            }
+
+            /// <inheritdoc/>
+            public int? DefaultRows(int model)
+            {
+                throw new NotImplementedException();
             }
         }
     }

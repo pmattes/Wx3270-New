@@ -75,10 +75,7 @@ namespace Wx3270
             this.macroEntries.AddListBox(this.macrosListBox);
 
             // Subscribe to profile change events.
-            this.ProfileManager.Change += (profile) => this.MacrosSet(profile);
-
-            // Set up merge handler.
-            this.ProfileManager.RegisterMerge(ImportType.MacrosMerge | ImportType.MacrosReplace, this.MergeHandler);
+            this.ProfileManager.AddChangeTo((oldProfile, newProfile) => this.MacrosSet(newProfile));
 
             // Set up the undo and redo buttons.
             this.ProfileManager.RegisterUndoRedo(this.undoButton, this.redoButton, this.toolTip1);
@@ -142,60 +139,6 @@ namespace Wx3270
         {
             this.Show();
             this.RecordingComplete(text, string.Empty);
-        }
-
-        /// <summary>
-        /// Merge in macros from another profile.
-        /// </summary>
-        /// <param name="toProfile">Current profile.</param>
-        /// <param name="fromProfile">Merge profile.</param>
-        /// <param name="importType">Import type.</param>
-        /// <returns>True if the list changed.</returns>
-        private bool MergeHandler(Profile toProfile, Profile fromProfile, ImportType importType)
-        {
-            if (importType.HasFlag(ImportType.MacrosReplace))
-            {
-                // Replace macros.
-                if (!toProfile.Macros.SequenceEqual(fromProfile.Macros))
-                {
-                    toProfile.Macros = fromProfile.Macros;
-                    return true;
-                }
-
-                return false;
-            }
-            else
-            {
-                // Merge macros.
-                var changed = false;
-                var newList = toProfile.Macros.ToList();
-                foreach (var macro in fromProfile.Macros)
-                {
-                    var existing = newList.FirstOrDefault(m => m.Name.Equals(macro.Name));
-                    if (existing == null)
-                    {
-                        // New name.
-                        newList.Add(macro);
-                        changed = true;
-                    }
-                    else
-                    {
-                        // Same name, maybe different value.
-                        if (!existing.Equals(macro))
-                        {
-                            existing.Macro = macro.Macro;
-                            changed = true;
-                        }
-                    }
-                }
-
-                if (changed)
-                {
-                    toProfile.Macros = newList;
-                }
-
-                return changed;
-            }
         }
 
         /// <summary>

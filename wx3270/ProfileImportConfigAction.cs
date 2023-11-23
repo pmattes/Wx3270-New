@@ -121,7 +121,7 @@ namespace Wx3270
                         else
                         {
                             // Import from wc3270.
-                            var import = new Wc3270Import(this.App.CodePageDb);
+                            var import = new Wc3270Import(this.App.CodePageDb, this.App.ModelsDb);
                             import.Read(op.ExternalPath);
                             this.ProfileManager.Save(localPath, import.Digest());
                         }

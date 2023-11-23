@@ -5,6 +5,8 @@
 namespace Wx3270
 {
     using System;
+    using System.Collections.Concurrent;
+    using System.Runtime.CompilerServices;
     using Wx3270.Contracts;
 
     /// <summary>
@@ -12,6 +14,16 @@ namespace Wx3270
     /// </summary>
     public static class Trace
     {
+        /// <summary>
+        /// The backlog of traces made before the back end was ready.
+        /// </summary>
+        private static readonly ConcurrentQueue<string> BackEndBacklog = new ConcurrentQueue<string>();
+
+        /// <summary>
+        /// Lock object for the backlog.
+        /// </summary>
+        private static readonly object BacklogSync = new object();
+
         /// <summary>
         /// Trace types.
         /// </summary>
@@ -84,15 +96,8 @@ namespace Wx3270
             if ((Flags & type) != 0)
             {
                 var expanded = Prefix(type) + " " + string.Format(format, arg);
-                try
-                {
-                    Console.WriteLine(expanded);
-                }
-                catch (Exception)
-                {
-                }
 
-                BackEnd?.Trace(expanded);
+                TraceOrStore(expanded);
             }
         }
 
@@ -106,15 +111,7 @@ namespace Wx3270
             if ((Flags & type) != 0)
             {
                 var expanded = Prefix(type) + " " + text;
-                try
-                {
-                    Console.WriteLine(expanded);
-                }
-                catch (Exception)
-                {
-                }
-
-                BackEnd?.Trace(expanded);
+                TraceOrStore(expanded);
             }
         }
 
@@ -127,15 +124,7 @@ namespace Wx3270
             if ((Flags & type) != 0)
             {
                 var expanded = Prefix(type);
-                try
-                {
-                    Console.WriteLine(expanded);
-                }
-                catch (Exception)
-                {
-                }
-
-                BackEnd?.Trace(expanded);
+                TraceOrStore(expanded);
             }
         }
 
@@ -147,7 +136,39 @@ namespace Wx3270
         private static string Prefix(Type type)
         {
             var now = DateTime.UtcNow;
-            return string.Format("[{0}] {1:D2}:{2:D2}.{3:D4}", type, now.Minute, now.Second, now.Millisecond);
+            return string.Format("[{0}] {1:D2}:{2:D2}.{3:D3}", type, now.Minute, now.Second, now.Millisecond);
+        }
+
+        /// <summary>
+        /// Trace an item, or store it in the backlog.
+        /// </summary>
+        /// <param name="text">Text to trace.</param>
+        private static void TraceOrStore(string text)
+        {
+            try
+            {
+                Console.WriteLine(text);
+            }
+            catch (Exception)
+            {
+            }
+
+            lock (BacklogSync)
+            {
+                if (BackEnd?.Ready == true)
+                {
+                    while (BackEndBacklog.TryDequeue(out string item))
+                    {
+                        BackEnd.Trace(item);
+                    }
+
+                    BackEnd.Trace(text);
+                }
+                else
+                {
+                    BackEndBacklog.Enqueue(text);
+                }
+            }
         }
     }
 }

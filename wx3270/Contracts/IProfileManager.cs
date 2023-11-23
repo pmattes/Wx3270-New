@@ -78,19 +78,9 @@ namespace Wx3270.Contracts
     public interface IProfileManager
     {
         /// <summary>
-        /// The change event.
-        /// </summary>
-        event ChangeHandler Change;
-
-        /// <summary>
-        /// The change-to event.
-        /// </summary>
-        event ChangeToHandler ChangeTo;
-
-        /// <summary>
         /// The final change event. Called after <see cref="Change"/>.
         /// </summary>
-        event Action<Profile, bool> ChangeFinal;
+        event Action<Profile, Profile, bool, bool> ChangeFinal;
 
         /// <summary>
         /// The list change event.
@@ -246,6 +236,12 @@ namespace Wx3270.Contracts
         bool PushAndSave(ChangeAction action, string what, Profile profileToChange = null, IRefocus refocus = null);
 
         /// <summary>
+        /// Register for ChangeTo events.
+        /// </summary>
+        /// <param name="action">Change handler.</param>
+        void AddChangeTo(ChangeToHandler action);
+
+        /// <summary>
         /// Register a merge handler.
         /// </summary>
         /// <param name="importType">Import type.</param>
@@ -317,19 +313,5 @@ namespace Wx3270.Contracts
         /// </summary>
         /// <param name="profile">Profile to close.</param>
         void Close(Profile profile = null);
-
-        /// <summary>
-        /// Returns the localized version of "change xyz".
-        /// </summary>
-        /// <param name="text">Attribute to format (already localized).</param>
-        /// <returns>Attribute localized with "change".</returns>
-        string ChangeName(string text);
-
-        /// <summary>
-        /// Returns the localized version of "disable xyz".
-        /// </summary>
-        /// <param name="text">Attribute to format (already localized).</param>
-        /// <returns>Attribute localized with "disable".</returns>
-        string DisableName(string text);
     }
 }

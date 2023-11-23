@@ -8,6 +8,7 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Text;
     using System.Threading;
     using System.Windows.Forms;
@@ -123,6 +124,19 @@ namespace Wx3270
         private FileStream currentFileStream;
 
         /// <summary>
+        /// List of change-to handlers.
+        /// </summary>
+        /// <remarks>
+        /// This can't be a simple event because the callbacks are filtered.
+        /// </remarks>
+        private List<ChangeToHandler> changeToHandlers = new List<ChangeToHandler>();
+
+        /// <summary>
+        /// True if static merge handlers have been registered.
+        /// </summary>
+        private bool staticMergeDone = false;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ProfileManager"/> class.
         /// </summary>
         /// <param name="app">Application context.</param>
@@ -155,13 +169,7 @@ namespace Wx3270
         }
 
         /// <inheritdoc />
-        public event ChangeHandler Change = (profile) => { };
-
-        /// <inheritdoc />
-        public event ChangeToHandler ChangeTo = (from, to) => { };
-
-        /// <inheritdoc />
-        public event Action<Profile, bool> ChangeFinal = (profile, isNew) => { };
+        public event Action<Profile, Profile, bool, bool> ChangeFinal = (oldProfile, newProfile, isNew, isInternal) => { };
 
         /// <inheritdoc />
         public event ListChangeHandler ListChange = (names) => { };
@@ -390,6 +398,26 @@ namespace Wx3270
             return profile;
         }
 
+        /// <summary>
+        /// Returns the localized name for 'changed xxx'.
+        /// </summary>
+        /// <param name="text">Name of the thing that changed.</param>
+        /// <returns>Localized string.</returns>
+        public static string ChangeName(string text)
+        {
+            return string.Format(I18n.Get(StringKey.Change), text);
+        }
+
+        /// <summary>
+        /// Returns the localized name for 'disabled xxx'.
+        /// </summary>
+        /// <param name="text">Name of the thing being disabled.</param>
+        /// <returns>Localized string.</returns>
+        public static string DisableName(string text)
+        {
+            return string.Format(I18n.Get(StringKey.Disable), text);
+        }
+
         /// <inheritdoc />
         public void SetProfileList(IProfileTracker profileTracker)
         {
@@ -446,6 +474,7 @@ namespace Wx3270
         /// <inheritdoc />
         public bool Merge(Profile destProfile, Profile mergeProfile, ImportType importType)
         {
+            this.RegisterStaticMergeMethods();
             var previous = this.Current.Clone();
             if (this.PushAndSave(
                 (current) =>
@@ -487,9 +516,12 @@ namespace Wx3270
             {
                 this.propagatingProfile = true;
                 this.NewProfileOpened(this.Current);
-                this.Change(this.Current);
-                this.ChangeTo(null, this.Current);
-                this.ChangeFinal(this.Current, true);
+                foreach (var handler in this.changeToHandlers)
+                {
+                    handler(null, this.Current);
+                }
+
+                this.ChangeFinal(null, this.Current, true, true);
             }
             finally
             {
@@ -638,14 +670,14 @@ namespace Wx3270
                     // Short-circuit bad behavior.
                     if (this.propagatingProfile)
                     {
-                        Trace.Line(Trace.Type.Profile, "Error: attempt to change profile while propagating profile");
+                        Trace.Line(Trace.Type.Profile, $"Error: attempt to change profile ({what}) while propagating profile");
                         return true;
                     }
 
                     // Short-circuit other bad behavior.
                     if (!this.pushedFirst)
                     {
-                        Trace.Line(Trace.Type.Profile, "Error: attempt to push a change before first profile is pushed out");
+                        Trace.Line(Trace.Type.Profile, $"Error: attempt to push a change ({what}) before first profile is pushed out");
                         return true;
                     }
                 }
@@ -655,7 +687,10 @@ namespace Wx3270
                 this.undoStack.Push(new ProfileChangeConfigAction(this, profile, what, refocus: refocus));
                 if (isCurrent)
                 {
+                    // Propagate the change to ourselves.
+                    var previous = this.Current;
                     this.Current = trial;
+                    this.PropagateExternalChange(previous, isInternal: true);
                 }
 
                 // No more redos.
@@ -678,6 +713,17 @@ namespace Wx3270
             }
 
             return false;
+        }
+
+        /// <inheritdoc/>
+        public void AddChangeTo(ChangeToHandler handler)
+        {
+            if (this.pushedFirst)
+            {
+                handler(null, this.Current);
+            }
+
+            this.changeToHandlers.Add(handler);
         }
 
         /// <inheritdoc />
@@ -814,18 +860,6 @@ namespace Wx3270
                 this.currentFileStream.Close();
                 this.currentFileStream = null;
             }
-        }
-
-        /// <inheritdoc />
-        public string ChangeName(string text)
-        {
-            return string.Format(I18n.Get(StringKey.Change), text);
-        }
-
-        /// <inheritdoc />
-        public string DisableName(string text)
-        {
-            return string.Format(I18n.Get(StringKey.Disable), text);
         }
 
         /// <summary>
@@ -1245,19 +1279,67 @@ namespace Wx3270
         /// </summary>
         /// <param name="previous">Previous profile.</param>
         /// <param name="isNew">True if the profile is new (false if re-reading).</param>
-        private void PropagateExternalChange(Profile previous, bool isNew = false)
+        /// <param name="isInternal">True if the update was internally generated.</param>
+        private void PropagateExternalChange(Profile previous, bool isNew = false, bool isInternal = false)
         {
             // Tell everyone about it.
             try
             {
                 this.propagatingProfile = true;
-                this.Change(this.Current);
-                this.ChangeTo(previous, this.Current);
-                this.ChangeFinal(this.Current, isNew);
+                foreach (var handler in this.changeToHandlers)
+                {
+                    handler(previous, this.Current);
+                }
+
+                this.ChangeFinal(previous, this.Current, isNew, isInternal);
             }
             finally
             {
                 this.propagatingProfile = false;
+            }
+        }
+
+        /// <summary>
+        /// Register static merge methods.
+        /// </summary>
+        private void RegisterStaticMergeMethods()
+        {
+            if (this.staticMergeDone)
+            {
+                return;
+            }
+
+            this.staticMergeDone = true;
+
+            // Call static initialization for merging.
+            foreach (var methodInfo in Assembly.GetCallingAssembly()
+                .GetTypes()
+                .Where(t => t.IsClass && t.Namespace == "Wx3270")
+                .SelectMany(t => t.GetMethods().Where(m => m.IsStatic)))
+            {
+                if (methodInfo.CustomAttributes.Any())
+                {
+                    // Shit -- I'm never seeing ColorCrossbar. Why?
+                }
+
+                foreach (var attributeData in methodInfo.CustomAttributes.Where(a => a.AttributeType == typeof(MergeAttribute)))
+                {
+                    var importType = ImportType.None;
+                    if (attributeData.ConstructorArguments.Count > 0)
+                    {
+                        foreach (var t in attributeData.ConstructorArguments.Where(a => a.ArgumentType == typeof(ImportType)).Select(a => a.Value))
+                        {
+                            importType |= (ImportType)t;
+                        }
+                    }
+
+                    this.RegisterMerge(
+                        importType,
+                        (toProfile, fromProfile, importType) =>
+                        {
+                            return (bool)methodInfo.Invoke(null, new object[] { toProfile, fromProfile, importType });
+                        });
+                }
             }
         }
 

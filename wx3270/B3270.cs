@@ -981,6 +981,11 @@ namespace Wx3270
             public const string InsertMode = "insertMode";
 
             /// <summary>
+            /// NVT line mode.
+            /// </summary>
+            public const string LineMode = "lineMode";
+
+            /// <summary>
             /// The model setting.
             /// </summary>
             public const string Model = "model";

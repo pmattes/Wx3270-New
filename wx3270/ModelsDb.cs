@@ -10,7 +10,7 @@ namespace Wx3270
     /// <summary>
     /// Handler for model indications from the back end.
     /// </summary>
-    public class ModelsDb : BackEndEvent
+    public class ModelsDb : BackEndEvent, IModelsDb
     {
         /// <summary>
         /// The dictionary of models.
@@ -21,6 +21,11 @@ namespace Wx3270
         /// True if we are inside a models block.
         /// </summary>
         private bool running;
+
+        /// <summary>
+        /// True if we are done procesing the block.
+        /// </summary>
+        private bool done;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelsDb"/> class.
@@ -35,14 +40,37 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Event that is signaled when the models list is ready.
+        /// Event called when the database is complete.
         /// </summary>
-        public event Action Done = () => { };
+        private event Action DoneEvent = () => { };
 
-        /// <summary>
-        /// Gets the dictionary of models.
-        /// </summary>
+        /// <inheritdoc/>
         public IReadOnlyDictionary<int, ModelDimensions> Models => this.models;
+
+        /// <inheritdoc/>
+        public void AddDone(Action action)
+        {
+            if (this.done)
+            {
+                action();
+            }
+            else
+            {
+                this.DoneEvent += action;
+            }
+        }
+
+        /// <inheritdoc/>
+        public int? DefaultRows(int model)
+        {
+            return this.DefaultDimensions(model)?.Rows;
+        }
+
+        /// <inheritdoc/>
+        public int? DefaultColumns(int model)
+        {
+            return this.DefaultDimensions(model)?.Columns;
+        }
 
         /// <summary>
         /// Processes a model indication.
@@ -78,7 +106,18 @@ namespace Wx3270
         private void EndModels(string name)
         {
             this.running = false;
-            this.Done();
+            this.done = true;
+            this.DoneEvent();
+        }
+
+        /// <summary>
+        /// Get the default dimensions for a model.
+        /// </summary>
+        /// <param name="model">Model number.</param>
+        /// <returns>Default dimensions.</returns>
+        private ModelDimensions DefaultDimensions(int model)
+        {
+            return this.Models.ContainsKey(model) ? this.Models[model] : null;
         }
     }
 }

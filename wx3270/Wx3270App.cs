@@ -283,6 +283,11 @@ namespace Wx3270
         public ISettingChange SettingChange { get; private set; }
 
         /// <summary>
+        /// Gets the terminal name handler.
+        /// </summary>
+        public ITerminalName TerminalName { get; private set; }
+
+        /// <summary>
         /// Gets the JSON localization dump file.
         /// </summary>
         public string DumpLocalization { get; private set; }
@@ -298,9 +303,24 @@ namespace Wx3270
         public CodePageDb CodePageDb { get; private set; }
 
         /// <summary>
+        /// Gets the models database.
+        /// </summary>
+        public ModelsDb ModelsDb { get; private set; }
+
+        /// <summary>
+        /// Gets the proxies database.
+        /// </summary>
+        public ProxiesDb ProxiesDb { get; private set; }
+
+        /// <summary>
         /// Gets the host prefixes.
         /// </summary>
         public IHostPrefix HostPrefix { get; private set; }
+
+        /// <summary>
+        /// Gets the known B3270 settings.
+        /// </summary>
+        public HashSet<string> KnownSettings { get; private set; } = new KnownSettings().Settings;
 
         /// <summary>
         /// Gets or sets a value indicating whether APL mode is set.
@@ -369,6 +389,11 @@ namespace Wx3270
         /// Gets a value indicating whether the splash screen should be suppressed.
         /// </summary>
         public bool NoSplash { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the pr3287 trace options.
+        /// </summary>
+        public string Pr3287TraceOptions { get; set; }
 
         /// <summary>
         /// Static localization.
@@ -452,6 +477,10 @@ namespace Wx3270
             var restrict = Restrictions.None;
             var allow = Restrictions.None;
             var restrictAllow = RestrictAllow.Neither;
+
+            var s = new Stopwatch();
+            s.Start();
+            Trace.Line(Trace.Type.Window, "Wx3270App Init start");
 
             // Parse command line arguments.
             int? lastOpt = null;
@@ -758,8 +787,13 @@ namespace Wx3270
             this.BackEnd.Register(this.ConnectAttempt = new ConnectAttempt());
             this.BackEnd.Register(this.WindowTitle = new WindowTitle());
             this.BackEnd.Register(this.CodePageDb = new CodePageDb());
+            this.BackEnd.Register(this.ModelsDb = new ModelsDb());
+            this.BackEnd.Register(this.ProxiesDb = new ProxiesDb());
             this.BackEnd.Register(this.HostPrefix = new HostPrefix());
+
+            // Register specialized/cacheing indication handlers.
             this.SettingChange = new SettingChange(this.BackEnd);
+            this.TerminalName = new TerminalName(this.BackEnd);
 
             // Register UI actions.
             this.BackEnd.RegisterPassthru(Constants.Action.QuitIfNotConnected, this.QuitIfNotConnected);
@@ -781,6 +815,9 @@ namespace Wx3270
             this.Cmd = new Cmd(this.BackEnd);
 
             this.bell = new Bell(this);
+
+            s.Stop();
+            Trace.Line(Trace.Type.Window, $"Wx3270App Init done in {s.ElapsedMilliseconds} ms");
         }
 
         /// <summary>

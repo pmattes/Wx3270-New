@@ -108,7 +108,7 @@ namespace Wx3270
             this.flashButton = flashButton;
 
             // Register for profile changes.
-            this.app.ProfileManager.Change += this.KeypadProfileChanged;
+            this.app.ProfileManager.AddChangeTo(this.KeypadProfileChanged);
 
             // Register for synthetic modifier changes.
             this.app.SyntheticModChange += (mod, mask) => this.ModChanged(mod, mask);
@@ -186,7 +186,7 @@ namespace Wx3270
             if ((mod & mask) != (this.Mod & mask))
             {
                 this.Mod = (this.Mod & ~mask) | (mod & mask);
-                this.KeypadProfileChanged(this.app.ProfileManager.Current);
+                this.KeypadProfileChanged(null, this.app.ProfileManager.Current); // This feels like a hack.
             }
         }
 
@@ -400,10 +400,11 @@ namespace Wx3270
         /// <summary>
         /// Handle a profile change.
         /// </summary>
-        /// <param name="profile">New profile.</param>
-        private void KeypadProfileChanged(Profile profile)
+        /// <param name="oldProfile">Old profile.</param>
+        /// <param name="newProfile">New profile.</param>
+        private void KeypadProfileChanged(Profile oldProfile, Profile newProfile)
         {
-            this.ApplyMaps(profile.KeypadMap);
+            this.ApplyMaps(newProfile.KeypadMap);
         }
 
         /// <summary>

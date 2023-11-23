@@ -225,11 +225,11 @@ namespace Wx3270
                 this.ChordIndex = 0;
                 if (app != null)
                 {
-                    app.ProfileManager.Change += (newProfile) =>
+                    app.ProfileManager.AddChangeTo((oldProfile, newProfile) =>
                     {
                         this.Map = newProfile.KeyboardMap;
                         this.ChordIndex = 0;
-                    };
+                    });
                 }
             }
             else

@@ -134,6 +134,19 @@
     <Compile Include="ActionSyntax.cs" />
     <Compile Include="AplMode.cs" />
     <Compile Include="Contracts\ICell.cs" />
+    <Compile Include="Contracts\IModelsDb.cs" />
+    <Compile Include="Contracts\ITerminalName.cs" />
+    <Compile Include="MiscMerge.cs" />
+    <Compile Include="MergeAttribute.cs" />
+    <Compile Include="MiscCrossbar.cs" />
+    <Compile Include="Crossbar.cs" />
+    <Compile Include="ModelChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProxyCrossbar.cs" />
+    <Compile Include="ListenCrossbar.cs" />
+    <Compile Include="OptionsCrossbar.cs" />
+    <Compile Include="KnownSettings.cs" />
     <Compile Include="Release.cs" />
     <Compile Include="NonModalMessageBox.cs">
       <SubType>Form</SubType>
@@ -141,6 +154,7 @@
     <Compile Include="NonModalMessageBox.Designer.cs">
       <DependentUpon>NonModalMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="TerminalName.cs" />
     <Compile Include="Splash.cs" />
     <Compile Include="StartButton.cs" />
     <Compile Include="Contracts\IBrush.cs" />
@@ -410,9 +424,6 @@
     <Compile Include="Keypad.Designer.cs">
       <DependentUpon>Keypad.cs</DependentUpon>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="EmulationSettings.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="NativeMethods.cs" />
     <Compile Include="ScreenBox.cs" />

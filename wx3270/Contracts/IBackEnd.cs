@@ -70,6 +70,11 @@ namespace Wx3270.Contracts
         event Action OnReady;
 
         /// <summary>
+        /// Gets a value indicating whether the back end is ready.
+        /// </summary>
+        bool Ready { get; }
+
+        /// <summary>
         /// Print a debug message.
         /// </summary>
         /// <param name="format">String format.</param>

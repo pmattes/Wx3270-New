@@ -90,18 +90,15 @@ namespace Wx3270
             this.fontScreenSample.Invalidate();
             this.fontPreviewStatusLineLabel.Font = newFont;
 
-            // Change the screen.
-            this.mainScreen.Refont(newFont);
-
             // Change the profile.
             var newFontProfile = new FontProfile(this.editedFont);
             this.ProfileManager.PushAndSave(
                 (current) =>
                 {
                     current.Font = newFontProfile;
-                    current.Size = this.mainScreen.Size;
+                    current.Size = null;
                 },
-                this.ChangeName(ChangeKeyword.Font));
+                ChangeName(ChangeKeyword.Font));
         }
 
         /// <summary>
@@ -111,7 +108,7 @@ namespace Wx3270
         /// <param name="colorMode">True if in 3279 mode.</param>
         public void RecolorFontTab(Colors colors, bool colorMode)
         {
-            // Nothing for now
+            this.fontScreenSample.Invalidate();
         }
 
         /// <summary>
@@ -130,10 +127,7 @@ namespace Wx3270
                 this.ColorMode);
 
             // Set up handler for profile changes.
-            this.ProfileManager.Change += this.FontProfileChanged;
-
-            // Register the merge handler.
-            this.ProfileManager.RegisterMerge(ImportType.FontReplace, this.MergeFont);
+            this.ProfileManager.AddChangeTo(this.FontProfileChanged);
 
             // Set up handler for edited color changes.
             this.EditedColorsChangedEvent += () => this.RecolorFontTab(this.editedColors, this.ColorButton.Checked);
@@ -146,33 +140,18 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Merge the font from a different profile.
-        /// </summary>
-        /// <param name="toProfile">Current profile.</param>
-        /// <param name="fromProfile">Profile to merge from.</param>
-        /// <param name="importType">Import type.</param>
-        /// <returns>True if the font changed.</returns>
-        private bool MergeFont(Profile toProfile, Profile fromProfile, ImportType importType)
-        {
-            if (!toProfile.Font.Equals(fromProfile.Font))
-            {
-                toProfile.Font = fromProfile.Font;
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
         /// The profile changed. Apply font settings.
         /// </summary>
-        /// <param name="profile">New profile.</param>
-        private void FontProfileChanged(Profile profile)
+        /// <param name="oldProfile">Old profile.</param>
+        /// <param name="newProfile">New profile.</param>
+        private void FontProfileChanged(Profile oldProfile, Profile newProfile)
         {
-            this.fontTab.Enabled = profile.ProfileType == ProfileType.Full;
-            var newFont = profile.Font.Font();
-            this.SetFont(newFont, profile.Colors, profile.ColorMode);
-            this.mainScreen.Refont(newFont);
+            this.fontTab.Enabled = newProfile.ProfileType == ProfileType.Full;
+            if (oldProfile == null || !oldProfile.Font.Equals(newProfile.Font))
+            {
+                var newFont = newProfile.Font.Font();
+                this.SetFont(newFont, newProfile.Colors, newProfile.ColorMode);
+            }
         }
 
         /// <summary>

@@ -16,6 +16,16 @@ namespace Wx3270
     public class SettingChange : ISettingChange
     {
         /// <summary>
+        /// The back end.
+        /// </summary>
+        private readonly IBackEnd backEnd;
+
+        /// <summary>
+        /// The known settings.
+        /// </summary>
+        private readonly HashSet<string> knownSettings;
+
+        /// <summary>
         /// The registered handlers.
         /// </summary>
         private readonly List<FilteredHandler> handlers = new List<FilteredHandler>();
@@ -26,11 +36,19 @@ namespace Wx3270
         /// <param name="backEnd">Back end.</param>
         public SettingChange(IBackEnd backEnd)
         {
+            this.backEnd = backEnd;
+            this.knownSettings = new KnownSettings().Settings;
             backEnd.RegisterStart(B3270.Indication.Setting, this.StartSetting);
         }
 
         /// <inheritdoc />
-        public SettingsDictionary SettingDictionary { get; private set; } = new SettingsDictionary();
+        public SettingsDictionary SettingsDictionary { get; private set; } = new SettingsDictionary();
+
+        /// <inheritdoc />
+        public SettingsDictionary DefaultsDictionary { get; private set; } = new SettingsDictionary();
+
+        /// <inheritdoc />
+        public HashSet<string> UnknownSettings { get; private set; } = new HashSet<string>();
 
         /// <inheritdoc />
         public void Register(SettingChangeHandler handler, ICollection<string> filter = null)
@@ -56,16 +74,25 @@ namespace Wx3270
                 cause = string.Empty;
             }
 
-            if (!this.SettingDictionary.TryGetValue(settingName, out string value) || value != settingValue)
+            if (!this.backEnd.Ready)
             {
-                this.SettingDictionary.Add(settingName, settingValue);
+                this.DefaultsDictionary.Add(settingName, settingValue);
+                if (!this.knownSettings.Contains(settingName))
+                {
+                    this.UnknownSettings.Add(settingName);
+                }
+            }
+
+            if (!this.SettingsDictionary.TryGetValue(settingName, out string value) || value != settingValue)
+            {
+                this.SettingsDictionary.Add(settingName, settingValue);
 
                 // Do not reflect UI-caused settings back to the UI.
                 if (!cause.Equals(B3270.Cause.Ui, StringComparison.InvariantCultureIgnoreCase))
                 {
                     foreach (var handler in this.handlers.Where(h => h.Filter == null || h.Filter.Contains(settingName, StringComparer.InvariantCultureIgnoreCase)))
                     {
-                        handler.Handler(settingName, this.SettingDictionary);
+                        handler.Handler(settingName, this.SettingsDictionary);
                     }
                 }
             }

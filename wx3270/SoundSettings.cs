@@ -32,38 +32,19 @@ namespace Wx3270
         /// </summary>
         public void SoundsTabInit()
         {
-            this.ProfileManager.Change += this.SoundsProfileChange;
-            this.ProfileManager.RegisterMerge(ImportType.OtherSettingsReplace, this.MergeSound);
+            this.ProfileManager.AddChangeTo(this.SoundsProfileChange);
         }
 
         /// <summary>
         /// The profile changed. Set up the sound settings options.
         /// </summary>
-        /// <param name="profile">New profile.</param>
-        private void SoundsProfileChange(Profile profile)
+        /// <param name="oldProfile">Old profile.</param>
+        /// <param name="newProfile">New profile.</param>
+        private void SoundsProfileChange(Profile oldProfile, Profile newProfile)
         {
-            this.soundsTab.Enabled = profile.ProfileType == ProfileType.Full;
-            this.keyboardClickCheckBox.Checked = profile.KeyClick;
-            this.audibleBellCheckBox.Checked = profile.AudibleBell;
-        }
-
-        /// <summary>
-        /// Merge the sound settings.
-        /// </summary>
-        /// <param name="toProfile">Profile to merge into.</param>
-        /// <param name="fromProfile">Profile to merge from.</param>
-        /// <param name="importType">Import type.</param>
-        /// <returns>True if a merge was needed.</returns>
-        private bool MergeSound(Profile toProfile, Profile fromProfile, ImportType importType)
-        {
-            if (toProfile.KeyClick == fromProfile.KeyClick && toProfile.AudibleBell == fromProfile.AudibleBell)
-            {
-                return false;
-            }
-
-            toProfile.KeyClick = fromProfile.KeyClick;
-            toProfile.AudibleBell = fromProfile.AudibleBell;
-            return true;
+            this.soundsTab.Enabled = newProfile.ProfileType == ProfileType.Full;
+            this.keyboardClickCheckBox.Checked = newProfile.KeyClick;
+            this.audibleBellCheckBox.Checked = newProfile.AudibleBell;
         }
 
         /// <summary>
@@ -95,7 +76,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void KeyboardClickClick(object sender, EventArgs e)
         {
-            this.ProfileManager.PushAndSave((current) => current.KeyClick = this.keyboardClickCheckBox.Checked, this.ChangeName(ChangeKeyword.KeyboardClick));
+            this.ProfileManager.PushAndSave((current) => current.KeyClick = this.keyboardClickCheckBox.Checked, ChangeName(ChangeKeyword.KeyboardClick));
         }
 
         /// <summary>
@@ -105,7 +86,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void AudibleBellClick(object sender, EventArgs e)
         {
-            this.ProfileManager.PushAndSave((current) => current.AudibleBell = this.audibleBellCheckBox.Checked, this.ChangeName(ChangeKeyword.AudibleBell));
+            this.ProfileManager.PushAndSave((current) => current.AudibleBell = this.audibleBellCheckBox.Checked, ChangeName(ChangeKeyword.AudibleBell));
         }
     }
 }

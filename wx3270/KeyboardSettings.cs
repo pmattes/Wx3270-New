@@ -97,11 +97,6 @@ namespace Wx3270
         private string stringName;
 
         /// <summary>
-        /// Modification event.
-        /// </summary>
-        public event Action KeyboardMapModified = () => { };
-
-        /// <summary>
         /// Gets the localized name of 'no chord'.
         /// </summary>
         public static string NoChord => I18n.Get(KeyboardString.NoChord);
@@ -207,10 +202,7 @@ namespace Wx3270
             this.scanCodeSelectedLabel.Text = string.Empty;
 
             // Subscribe to profile changes.
-            this.ProfileManager.Change += this.KeyboardProfileChange;
-
-            // Register for merges.
-            this.ProfileManager.RegisterMerge(ImportType.KeyboardMerge | ImportType.KeyboardReplace, this.KeyboardMergeHandler);
+            this.ProfileManager.AddChangeTo(this.KeyboardProfileChange);
 
             // Set up the chord.
             this.ChordComboBox.SelectedIndex = 0; // None
@@ -289,50 +281,27 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Merge in the keyboard definitions from another profile.
-        /// </summary>
-        /// <param name="toProfile">Current profile.</param>
-        /// <param name="fromProfile">Merge profile.</param>
-        /// <param name="importType">Import type.</param>
-        /// <returns>True if the list changed.</returns>
-        private bool KeyboardMergeHandler(Profile toProfile, Profile fromProfile, ImportType importType)
-        {
-            if (importType.HasFlag(ImportType.KeyboardReplace))
-            {
-                // Replace keyboard definitions.
-                if (!toProfile.KeyboardMap.Equals(fromProfile.KeyboardMap))
-                {
-                    toProfile.KeyboardMap = fromProfile.KeyboardMap;
-                    return true;
-                }
-
-                return false;
-            }
-            else
-            {
-                // Merge keyboard definitions.
-                return toProfile.KeyboardMap.Merge(fromProfile.KeyboardMap);
-            }
-        }
-
-        /// <summary>
         /// Profile change event handler.
         /// </summary>
-        /// <param name="profile">New profile.</param>
-        private void KeyboardProfileChange(Profile profile)
+        /// <param name="oldProfile">Old profile.</param>
+        /// <param name="newProfile">New profile.</param>
+        private void KeyboardProfileChange(Profile oldProfile, Profile newProfile)
         {
-            this.keyboardTab.Enabled = profile.ProfileType == ProfileType.Full || profile.ProfileType == ProfileType.KeyboardMapTemplate;
+            this.keyboardTab.Enabled = newProfile.ProfileType == ProfileType.Full || newProfile.ProfileType == ProfileType.KeyboardMapTemplate;
 
-            // Copy in the new keypad maps.
-            this.editedKeyboardMap = new KeyMap<KeyboardMap>(profile.KeyboardMap);
+            if (oldProfile == null || !oldProfile.KeyboardMap.Equals(newProfile.KeyboardMap))
+            {
+                // Copy in the new keypad maps.
+                this.editedKeyboardMap = new KeyMap<KeyboardMap>(newProfile.KeyboardMap);
 
-            // Re-do the chords.
-            this.ChordComboBox.Items.Clear();
-            this.ChordComboBox.Items.AddRange(profile.KeyboardMap.Chords().ToArray());
-            this.ChordComboBox.SelectedIndex = 0;
+                // Re-do the chords.
+                this.ChordComboBox.Items.Clear();
+                this.ChordComboBox.Items.AddRange(newProfile.KeyboardMap.Chords().ToArray());
+                this.ChordComboBox.SelectedIndex = 0;
 
-            // Repaint.
-            this.SelectKeyboard();
+                // Repaint.
+                this.SelectKeyboard();
+            }
         }
 
         /// <summary>
@@ -440,8 +409,8 @@ namespace Wx3270
 
                 toolTip = I18n.Get(KeyboardToolTip.ClickToAdd);
                 this.keyboardActionsAddKeyButton.Enabled = true;
-                this.keyboardActionsEditButton.Enabled = false;
-                this.keyboardActionsTextBox.Enabled = false;
+                this.keyboardActionsEditButton.Enabled = true;
+                this.keyboardActionsTextBox.Enabled = true;
                 this.keyboardActionsRemoveButton.Enabled = false;
                 this.matchKeyRadioButton.Enabled = true;
                 if (!this.forceMatchType.HasValue)
@@ -490,10 +459,8 @@ namespace Wx3270
 
             this.toolTip1.SetToolTip(this.keyboardActionsTextBox, toolTip);
 
-            if (this.ProfileManager.PushAndSave((current) => current.KeyboardMap = new KeyMap<KeyboardMap>(this.editedKeyboardMap), I18n.Get(KeyboardString.UndoKey)))
-            {
-                this.KeyboardMapModified();
-            }
+            // Push to the profile.
+            this.ProfileManager.PushAndSave((current) => current.KeyboardMap = new KeyMap<KeyboardMap>(this.editedKeyboardMap), I18n.Get(KeyboardString.UndoKey));
         }
 
         /// <summary>
@@ -938,7 +905,7 @@ namespace Wx3270
         /// <summary>
         /// Message box titles.
         /// </summary>
-        private static partial class Title
+        public static partial class Title
         {
             /// <summary>
             /// Old profile version detected.
@@ -949,7 +916,7 @@ namespace Wx3270
         /// <summary>
         /// Message box messages.
         /// </summary>
-        private static partial class Message
+        public static partial class Message
         {
             /// <summary>
             /// Old profile version detected.

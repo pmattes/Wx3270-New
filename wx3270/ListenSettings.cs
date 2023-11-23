@@ -8,7 +8,6 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
-    using System.Text.RegularExpressions;
     using System.Windows.Forms;
 
     /// <summary>
@@ -45,6 +44,9 @@ namespace Wx3270
             { B3270.Setting.Httpd, HttpdDefaultPort },
         };
 
+        /// <summary>
+        /// The display names for each listening port.
+        /// </summary>
         private readonly Dictionary<string, string> displayType = new Dictionary<string, string>
         {
             { B3270.Setting.ScriptPort, "s3270" },
@@ -71,25 +73,10 @@ namespace Wx3270
                 }
             }
 
-            this.ProfileManager.ChangeTo += this.ListenProfileChange;
-            this.ProfileManager.RegisterMerge(ImportType.OtherSettingsReplace, this.MergeListen);
-            this.app.SettingChange.Register(
-                (settingName, settingDictonary) => this.Invoke(new MethodInvoker(() => this.ListenSettingChanged(settingName, settingDictonary))),
-                this.PortNames.ToArray());
+            this.ProfileManager.AddChangeTo(this.ProfileChange);
 
             // Set up a dummy listener editor for localization.
             new ServerEditor(string.Empty, string.Empty, string.Empty, null).Dispose();
-        }
-
-        /// <summary>
-        /// Format a listen parameter for the back end.
-        /// </summary>
-        /// <param name="address">Listen address.</param>
-        /// <param name="port">Listen port.</param>
-        /// <returns>Formatter parameter.</returns>
-        private static string ListenParam(IPAddress address, ushort port)
-        {
-            return "[" + address + "]:" + port;
         }
 
         /// <summary>
@@ -113,22 +100,22 @@ namespace Wx3270
         /// <summary>
         /// The profile changed.
         /// </summary>
-        /// <param name="fromProfile">Old profile.</param>
-        /// <param name="profile">New profile.</param>
-        private void ListenProfileChange(Profile fromProfile, Profile profile)
+        /// <param name="oldProfile">Old profile.</param>
+        /// <param name="newProfile">New profile.</param>
+        private void ProfileChange(Profile oldProfile, Profile newProfile)
         {
-            this.serversTab.Enabled = profile.ProfileType == ProfileType.Full;
+            this.serversTab.Enabled = newProfile.ProfileType == ProfileType.Full;
             foreach (var portName in this.PortNames)
             {
                 if (!this.app.ListenLock[portName])
                 {
                     ListenPort oldListenPort = null;
-                    if (fromProfile != null && !fromProfile.ListenPort.TryGetValue(portName, out oldListenPort))
+                    if (oldProfile != null && !oldProfile.ListenPort.TryGetValue(portName, out oldListenPort))
                     {
                         oldListenPort = null;
                     }
 
-                    if (!profile.ListenPort.TryGetValue(portName, out ListenPort listenPort))
+                    if (!newProfile.ListenPort.TryGetValue(portName, out ListenPort listenPort))
                     {
                         listenPort = null;
                     }
@@ -139,99 +126,8 @@ namespace Wx3270
                     }
 
                     this.ListenPortProfileToUI(portName, listenPort);
-                    var toggleValue = listenPort != null ? ListenParam(listenPort.Address, listenPort.Port) : string.Empty;
-                    this.BackEnd.RunAction(
-                        new BackEndAction(B3270.Action.Set, portName, toggleValue),
-                        ErrorBox.Completion(I18n.Get(Title.Settings)));
                 }
             }
-        }
-
-        /// <summary>
-        /// Merge the listen settings.
-        /// </summary>
-        /// <param name="toProfile">Profile to merge into.</param>
-        /// <param name="fromProfile">Profile to merge from.</param>
-        /// <param name="importType">Import type.</param>
-        /// <returns>True if a merge was needed.</returns>
-        private bool MergeListen(Profile toProfile, Profile fromProfile, ImportType importType)
-        {
-            if (toProfile.ListenPort.SequenceEqual(fromProfile.ListenPort))
-            {
-                return false;
-            }
-
-            toProfile.ListenPort.Clear();
-            foreach (var kv in fromProfile.ListenPort)
-            {
-                toProfile.ListenPort[kv.Key] = (ListenPort)kv.Value.Clone();
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// A setting changed, perhaps it is a listen value.
-        /// </summary>
-        /// <param name="settingName">Setting name.</param>
-        /// <param name="settingDictionary">Setting values.</param>
-        private void ListenSettingChanged(string settingName, SettingsDictionary settingDictionary)
-        {
-            if (!this.PortNames.Contains(settingName) || !settingDictionary.TryGetValue(settingName, out string value))
-            {
-                // Not one of our settings, or for some reason, not there.
-                return;
-            }
-
-            ListenPort newListenPort = null;
-            if (!string.IsNullOrEmpty(value))
-            {
-                var regex = new Regex(@"\[(?<address>.*)\]:(?<port>.*)");
-                var match = regex.Match(value);
-                if (!match.Success)
-                {
-                    ErrorBox.Show(string.Format(I18n.Get(Message.CantParseListen), settingName, value), I18n.Get(Title.Settings));
-                    return;
-                }
-
-                newListenPort = new ListenPort { Address = IPAddress.Parse(match.Groups["address"].Value), Port = ushort.Parse(match.Groups["port"].Value) };
-            }
-
-            if (this.app.ListenLock[settingName])
-            {
-                // Profile is locked for this port. Just update the UI.
-                this.ListenPortProfileToUI(settingName, newListenPort);
-                return;
-            }
-
-            if (!this.ProfileManager.Current.ListenPort.TryGetValue(settingName, out ListenPort oldListenPort))
-            {
-                oldListenPort = null;
-            }
-
-            if (newListenPort == null)
-            {
-                if (oldListenPort != null)
-                {
-                    if (this.ready)
-                    {
-                        this.ProfileManager.PushAndSave(
-                            (profile) => profile.ListenPort.Remove(settingName),
-                            this.ProfileManager.DisableName(settingName + SettingPath(ChangeKeyword.ListeningPort) + " (" + this.ProfileManager.ExternalText + ")"));
-                    }
-                }
-            }
-            else
-            {
-                if (this.ready)
-                {
-                    this.ProfileManager.PushAndSave(
-                        (profile) => profile.ListenPort[settingName] = newListenPort,
-                        this.ProfileManager.ChangeName(settingName + SettingPath(ChangeKeyword.ListeningPort) + " (" + this.ProfileManager.ExternalText + ")"));
-                }
-            }
-
-            this.ListenPortProfileToUI(settingName, newListenPort);
         }
 
         /// <summary>
@@ -252,7 +148,7 @@ namespace Wx3270
             c.Controls.OfType<TextBox>().Where(b => (string)b.Tag == AddressTag).First().Text = checkBox.Checked ? address.ToString() : string.Empty;
             c.Controls.OfType<TextBox>().Where(b => (string)b.Tag == PortTag).First().Text = checkBox.Checked ? port.ToString() : string.Empty;
 
-            if (this.ProfileManager.PushAndSave(
+            this.ProfileManager.PushAndSave(
                 (profile) =>
                 {
                     if (checkBox.Checked)
@@ -264,13 +160,7 @@ namespace Wx3270
                         profile.ListenPort.Remove(portName);
                     }
                 },
-                this.ProfileManager.ChangeName(portName + " " + I18n.Get(SettingPath(ChangeKeyword.ListenMode)))))
-            {
-                var toggleValue = checkBox.Checked ? ListenParam(address, port) : string.Empty;
-                this.BackEnd.RunAction(
-                    new BackEndAction(B3270.Action.Set, portName, toggleValue),
-                    ErrorBox.Completion(I18n.Get(Title.Settings)));
-            }
+                Wx3270.ProfileManager.ChangeName(this.displayType[portName]));
         }
 
         /// <summary>
@@ -346,17 +236,12 @@ namespace Wx3270
                     var port = ushort.Parse(editor.Port);
 
                     // Push and save.
-                    if (this.ProfileManager.PushAndSave(
+                    this.ProfileManager.PushAndSave(
                         (profile) =>
                         {
                             profile.ListenPort[type] = new ListenPort { Address = address, Port = port };
                         },
-                        this.ProfileManager.ChangeName(this.displayType[type])))
-                    {
-                        this.BackEnd.RunAction(
-                            new BackEndAction(B3270.Action.Set, type, ListenParam(address, port)),
-                            ErrorBox.Completion(I18n.Get(Title.Settings)));
-                    }
+                        Wx3270.ProfileManager.ChangeName(this.displayType[type]));
                 }
             }
         }
