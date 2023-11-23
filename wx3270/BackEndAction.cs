@@ -47,7 +47,9 @@ namespace Wx3270
         /// <summary>
         /// Gets the b3270 encoding for the action.
         /// </summary>
-        public string Encoding => string.Format(
+        public string Encoding => this.ActionName == B3270.Action.Comment ?
+            this.ActionName :
+            string.Format(
             "{0}({1})",
             this.ActionName,
             string.Join(",", this.Parameters.Select(p => Quote(p))));

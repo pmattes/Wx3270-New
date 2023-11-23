@@ -30,11 +30,14 @@ namespace Wx3270
         /// </summary>
         /// <param name="app">Application instance.</param>
         /// <param name="flash">Flash interface.</param>
-        public Keypad(Wx3270App app, IFlash flash)
+        /// <param name="opacity">Opacity interface.</param>
+        public Keypad(Wx3270App app, IFlash flash, IOpacity opacity)
         {
             this.InitializeComponent();
             this.app = app;
             this.keypadCommon = new KeypadCommon(app, this, flash, new[] { this.newLeftPanel, this.newMiddlePanel, this.newRightPanel }, this.keypadOuterPanel, this.PF1button);
+            this.Opacity = app.ProfileManager.Current.OpacityPercent / 100.0;
+            opacity.OpacityEvent += (percent) => this.Opacity = percent / 100.0;
 
             // Localize.
             this.Text = I18n.Localize(this, "wx3270 Keypad");
@@ -44,15 +47,6 @@ namespace Wx3270
         /// Gets the current keyboard modifier state.
         /// </summary>
         public KeyboardModifier Mod => this.keypadCommon.Mod;
-
-        /// <summary>
-        /// Register an opacity event.
-        /// </summary>
-        /// <param name="opacity">Opacity interface.</param>
-        public void RegisterOpacity(IOpacity opacity)
-        {
-            opacity.OpacityEvent += (percent) => this.Opacity = percent / 100.0;
-        }
 
         /// <summary>
         /// The keyboard modifiers changed.

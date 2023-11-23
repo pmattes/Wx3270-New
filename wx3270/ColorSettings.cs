@@ -133,7 +133,8 @@ namespace Wx3270
         private Colors editedColors = new Colors(Profile.DefaultProfile.Colors);
 
         /// <summary>
-        /// Event called when any of the edited colors change.
+        /// Event called when any of the edited colors changes, within profile change processing.
+        /// Outside parties should use this one.
         /// </summary>
         private event Action EditedColorsChangedEvent = () => { };
 
@@ -212,13 +213,26 @@ namespace Wx3270
                 this.monoPreviewSeparatorPictureBox,
                 false);
 
+            // Set up event handlers for edited colors changes.
+            // This needs to happen before the AddChangeTo call below, because the callback may be called
+            // back immediately.
+            this.EditedColorsChangedEvent += this.RepaintColorTab;
+
             // Set up event handler for profile changes.
-            this.ProfileManager.Change += (profile) =>
+            this.ProfileManager.AddChangeTo((oldProfile, newProfile) =>
             {
-                this.ResetColorMap(profile.Colors);
-                this.colors3279Tab.Enabled = profile.ProfileType == ProfileType.Full && profile.ColorMode;
-                this.colors3278Tab.Enabled = profile.ProfileType == ProfileType.Full && !profile.ColorMode;
-            };
+                if (oldProfile == null || !oldProfile.Colors.Equals(newProfile.Colors))
+                {
+                    this.editedColors = new Colors(newProfile.Colors);
+
+                    // Propagate the new colors everwhere, except for the main screen (this is taken care of by
+                    // the ColorCrossbar) and back to the profile (which is illegal).
+                    this.EditedColorsChangedEvent();
+                }
+
+                this.colors3279Tab.Enabled = newProfile.ProfileType == ProfileType.Full && newProfile.ColorMode;
+                this.colors3278Tab.Enabled = newProfile.ProfileType == ProfileType.Full && !newProfile.ColorMode;
+            });
 
             // Set up the initial enables for the color tabs, and set up a handler for when the
             // mode changes.
@@ -229,13 +243,6 @@ namespace Wx3270
                 this.colors3279Tab.Enabled = color;
                 this.colors3278Tab.Enabled = !color;
             };
-
-            // Set up merge handlers.
-            this.ProfileManager.RegisterMerge(ImportType.ColorsReplace, this.MergeColors);
-
-            // Set up event handler for edited colors changes.
-            this.EditedColorsChangedEvent += this.RepaintColorTab;
-            this.EditedColorsChangedEvent += this.PushColors;
 
             // Set up the background list indices.
             this.BackgroundList.Items.AddRange(ColorBackground.Objects().Select(o => new ColorBackground
@@ -253,43 +260,11 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Merge colors from a different profile.
+        /// Push the current colors to the profile.
         /// </summary>
-        /// <param name="toProfile">Current profile.</param>
-        /// <param name="fromProfile">Merge profile.</param>
-        /// <param name="importType">Import type.</param>
-        /// <returns>True if profile changed.</returns>
-        private bool MergeColors(Profile toProfile, Profile fromProfile, ImportType importType)
+        private void PushColorsToProfile()
         {
-            if (!toProfile.Colors.Equals(fromProfile.Colors))
-            {
-                toProfile.Colors = fromProfile.Colors;
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Apply changed colors or color mode to the screen and profile.
-        /// </summary>
-        private void PushColors()
-        {
-            // Apply to the screen.
-            this.mainScreen.Recolor(this.editedColors, this.ColorMode);
-
-            // Apply to the profile.
-            this.ProfileManager.PushAndSave((current) => current.Colors = new Colors(this.editedColors), this.ChangeName(ChangeKeyword.Color));
-        }
-
-        /// <summary>
-        /// Reset the host color map.
-        /// </summary>
-        /// <param name="colors">New colors.</param>
-        private void ResetColorMap(Colors colors)
-        {
-            this.editedColors = new Colors(colors);
-            this.EditedColorsChangedEvent();
+            this.ProfileManager.PushAndSave((current) => current.Colors = new Colors(this.editedColors), ChangeName(ChangeKeyword.Color));
         }
 
         /// <summary>
@@ -426,7 +401,7 @@ namespace Wx3270
 
                 // Change the color map.
                 this.editedColors.HostColors[hostColor] = color;
-                this.EditedColorsChangedEvent();
+                this.PushColorsToProfile();
             }
         }
 
@@ -502,7 +477,7 @@ namespace Wx3270
             this.monoCustomButton.Checked = true;
 
             // Propagate the change.
-            this.EditedColorsChangedEvent();
+            this.PushColorsToProfile();
         }
 
         /// <summary>
@@ -514,7 +489,7 @@ namespace Wx3270
             if (this.ChangeColor(ref selectBackground))
             {
                 this.editedColors.SelectBackground = selectBackground;
-                this.EditedColorsChangedEvent();
+                this.PushColorsToProfile();
             }
         }
 
@@ -529,7 +504,7 @@ namespace Wx3270
             if (this.ChangeColor(ref crosshairColor))
             {
                 this.editedColors.CrosshairColor = crosshairColor;
-                this.EditedColorsChangedEvent();
+                this.PushColorsToProfile();
             }
         }
 
@@ -659,7 +634,7 @@ namespace Wx3270
 
             // Switch to the default color map.
             this.editedColors.HostColors = new HostColors(Profile.DefaultProfile.Colors.HostColors);
-            this.EditedColorsChangedEvent();
+            this.PushColorsToProfile();
         }
 
         /// <summary>
@@ -678,7 +653,7 @@ namespace Wx3270
 
             // Switch to the black-on-white color map.
             this.editedColors.HostColors = new HostColors(BlackOnWhiteScheme);
-            this.EditedColorsChangedEvent();
+            this.PushColorsToProfile();
         }
 
         /// <summary>
@@ -697,7 +672,7 @@ namespace Wx3270
 
             // Switch to the default monochrome color map.
             this.editedColors.MonoColors = new MonoColors(Profile.DefaultProfile.Colors.MonoColors);
-            this.EditedColorsChangedEvent();
+            this.PushColorsToProfile();
         }
 
         /// <summary>
@@ -716,7 +691,7 @@ namespace Wx3270
 
             // Switch to the default monochrome color map.
             this.editedColors.MonoColors = new MonoColors(this.greenOnWhiteScheme);
-            this.EditedColorsChangedEvent();
+            this.PushColorsToProfile();
         }
 
         /// <summary>

@@ -11,6 +11,7 @@ namespace Wx3270
     using System.Drawing;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
@@ -143,12 +144,12 @@ namespace Wx3270
             this.TreeChanged(this.app.ProfileTracker.Tree);
 
             // Subscribe to profile changes.
-            this.ProfileManager.ChangeTo += (previous, current) =>
-                this.TreeChanged(this.app.ProfileTracker.Tree, previous == null || !previous.Name.Equals(current.Name));
+            this.ProfileManager.AddChangeTo((previous, current) =>
+                this.TreeChanged(this.app.ProfileTracker.Tree, previous == null || !previous.Name.Equals(current.Name)));
 
-            this.ProfileManager.ChangeFinal += (profile, _) =>
+            this.ProfileManager.ChangeFinal += (oldProfile, profile, isNew, isInternal) =>
             {
-                if (this.doAutoConnect)
+                if (isNew && this.doAutoConnect)
                 {
                     var autoConnectHost = profile.Hosts.FirstOrDefault(h => h.AutoConnect == AutoConnect.Connect || h.AutoConnect == AutoConnect.Reconnect);
                     if (autoConnectHost != null)
@@ -164,9 +165,6 @@ namespace Wx3270
 
             // Subscribe to connection state events.
             mainScreen.ConnectionStateEvent += this.HostConnectionChange;
-
-            // Set up the merge handler. This really isn't specific to this dialog, and should probably be define
-            this.ProfileManager.RegisterMerge(ImportType.HostsMerge | ImportType.HostsReplace, MergeHandler);
 
             // Set up the undo and redo buttons.
             this.ProfileManager.RegisterUndoRedo(this.undoButton, this.redoButton, this.toolTip1);
@@ -713,59 +711,6 @@ namespace Wx3270
             }
 
             return newName;
-        }
-
-        /// <summary>
-        /// Merge in the host definitions from another profile.
-        /// </summary>
-        /// <param name="toProfile">Current profile.</param>
-        /// <param name="fromProfile">Merge profile.</param>
-        /// <param name="importType">Import type.</param>
-        /// <returns>True if the list changed.</returns>
-        private static bool MergeHandler(Profile toProfile, Profile fromProfile, ImportType importType)
-        {
-            if (importType.HasFlag(ImportType.HostsReplace))
-            {
-                // Replace host definitions.
-                if (!toProfile.Hosts.SequenceEqual(fromProfile.Hosts))
-                {
-                    toProfile.Hosts = fromProfile.Hosts.Select(host =>
-                    {
-                        var clone = host.Clone();
-                        clone.Profile = toProfile;
-                        return clone;
-                    });
-                    return true;
-                }
-
-                return false;
-            }
-            else
-            {
-                // Merge host definitions.
-                var changed = false;
-                var newHosts = toProfile.Hosts.ToDictionary(h => h.Name);
-                foreach (var mergeHost in fromProfile.Hosts)
-                {
-                    if (!newHosts.TryGetValue(mergeHost.Name, out HostEntry found) || !mergeHost.Equals(found))
-                    {
-                        newHosts[mergeHost.Name] = mergeHost;
-                        changed = true;
-                    }
-                }
-
-                if (changed)
-                {
-                    toProfile.Hosts = newHosts.Values.Select(host =>
-                    {
-                        var clone = host.Clone();
-                        clone.Profile = toProfile;
-                        return clone;
-                    });
-                }
-
-                return changed;
-            }
         }
 
         /// <summary>
@@ -2495,7 +2440,7 @@ namespace Wx3270
                 // Import of wc3270 profile.
                 try
                 {
-                    var import = new Wc3270Import(this.app.CodePageDb);
+                    var import = new Wc3270Import(this.app.CodePageDb, this.app.ModelsDb);
                     import.Read(importName);
                     this.ProfileManager.Save(destProfilePath, import.Digest());
                 }

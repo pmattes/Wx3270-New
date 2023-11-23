@@ -69,6 +69,11 @@ namespace Wx3270
         private readonly ICodePageDb codePageDb;
 
         /// <summary>
+        /// The models database.
+        /// </summary>
+        private readonly IModelsDb modelsDb;
+
+        /// <summary>
         /// The file name.
         /// </summary>
         private string fileName = "(none)";
@@ -77,9 +82,11 @@ namespace Wx3270
         /// Initializes a new instance of the <see cref="Wc3270Import"/> class.
         /// </summary>
         /// <param name="codePageDb">Code page database.</param>
-        public Wc3270Import(ICodePageDb codePageDb)
+        /// <param name="modelsDb">Models database.</param>
+        public Wc3270Import(ICodePageDb codePageDb, IModelsDb modelsDb)
         {
             this.codePageDb = codePageDb;
+            this.modelsDb = modelsDb;
         }
 
         /// <summary>
@@ -362,8 +369,8 @@ namespace Wx3270
             if (oversize != null)
             {
                 // Oversize might conflict with model.
-                if (profile.Oversize.Rows < Settings.DefaultRows(profile.Model)
-                    || profile.Oversize.Columns < Settings.DefaultColumns(profile.Model))
+                if (profile.Oversize.Rows < this.modelsDb.DefaultRows(profile.Model)
+                    || profile.Oversize.Columns < this.modelsDb.DefaultColumns(profile.Model))
                 {
                     throw this.FatalException(
                         $"{Wc3270.Resource.Oversize} '{this.Attributes["oversize"].Value}' conflicts with {Wc3270.Resource.Model} '{profile.Model}'",
@@ -374,8 +381,8 @@ namespace Wx3270
             }
             else
             {
-                profile.Oversize.Rows = Settings.DefaultRows(profile.Model);
-                profile.Oversize.Columns = Settings.DefaultColumns(profile.Model);
+                profile.Oversize.Rows = this.modelsDb.DefaultRows(profile.Model).Value;
+                profile.Oversize.Columns = this.modelsDb.DefaultColumns(profile.Model).Value;
             }
 
             if (alwaysInsert)

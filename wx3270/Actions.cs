@@ -737,6 +737,9 @@ namespace Wx3270
         [Associated("tracePr3287")]
         private void TracePr3287_Click(object sender, EventArgs e)
         {
+            // Record the state.
+            this.app.Pr3287TraceOptions = this.Pr3287TraceOptions;
+
             // Send the new pr3287 options.
             var options = this.Pr3287TraceOptions + this.ProfileManager.Current.PrinterOptions;
             if (this.app.Restricted(Restrictions.ExternalFiles))

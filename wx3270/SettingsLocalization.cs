@@ -37,13 +37,13 @@ namespace Wx3270
             I18n.LocalizeGlobal(Message.InvalidProxyPassword, "Invalid proxy password");
             I18n.LocalizeGlobal(Message.InvalidProxySetting, "Got invalid proxy setting from the back end");
 
-            I18n.LocalizeGlobal(I18n.Combine("settings", "opacity"), "Window opacity");
+            I18n.LocalizeGlobal(SettingPath("opacity"), "window opacity");
         }
 
         /// <summary>
         /// Message box titles.
         /// </summary>
-        private partial class Title
+        public partial class Title
         {
             /// <summary>
             /// Settings errors.
@@ -54,7 +54,7 @@ namespace Wx3270
         /// <summary>
         /// Message box messages.
         /// </summary>
-        private partial class Message
+        public partial class Message
         {
             /// <summary>
             /// Bad listen value.

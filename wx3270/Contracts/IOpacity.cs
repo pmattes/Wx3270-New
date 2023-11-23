@@ -7,7 +7,7 @@ namespace Wx3270.Contracts
     using System;
 
     /// <summary>
-    /// Interface that implements Clear.
+    /// Interface that implements an opacity event.
     /// </summary>
     public interface IOpacity
     {

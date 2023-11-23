@@ -423,55 +423,29 @@ namespace Wx3270
             this.editedButtonActionsTextBox.GotFocus += (sender, args) => this.editedButtonActionsTextBox.Select(this.editedButtonActionsTextBox.Text.Length, 0);
 
             // Subscribe to profile changes.
-            this.ProfileManager.Change += this.KeypadProfileChange;
-
-            // Register for merges.
-            this.ProfileManager.RegisterMerge(ImportType.KeypadMerge | ImportType.KeypadReplace, this.KeypadMergeHandler);
-        }
-
-        /// <summary>
-        /// Merge in the keypad definitions from another profile.
-        /// </summary>
-        /// <param name="toProfile">Current profile.</param>
-        /// <param name="fromProfile">Merge profile.</param>
-        /// <param name="importType">Import type.</param>
-        /// <returns>True if the list changed.</returns>
-        private bool KeypadMergeHandler(Profile toProfile, Profile fromProfile, ImportType importType)
-        {
-            if (importType.HasFlag(ImportType.KeypadReplace))
-            {
-                // Replace keypad definitions.
-                if (!toProfile.KeypadMap.Equals(fromProfile.KeypadMap))
-                {
-                    toProfile.KeypadMap = fromProfile.KeypadMap;
-                    return true;
-                }
-
-                return false;
-            }
-            else
-            {
-                // Merge keypad definitions.
-                return toProfile.KeypadMap.Merge(fromProfile.KeypadMap);
-            }
+            this.ProfileManager.AddChangeTo(this.KeypadProfileChange);
         }
 
         /// <summary>
         /// Profile change event handler.
         /// </summary>
-        /// <param name="profile">New profile.</param>
-        private void KeypadProfileChange(Profile profile)
+        /// <param name="oldProfile">Old profile.</param>
+        /// <param name="newProfile">New profile.</param>
+        private void KeypadProfileChange(Profile oldProfile, Profile newProfile)
         {
-            this.keypadTab.Enabled = profile.ProfileType == ProfileType.Full || profile.ProfileType == ProfileType.KeypadMapTemplate;
+            this.keypadTab.Enabled = newProfile.ProfileType == ProfileType.Full || newProfile.ProfileType == ProfileType.KeypadMapTemplate;
 
-            // Copy in the new keypad maps.
-            this.editedKeypadMaps = new KeyMap<KeypadMap>(profile.KeypadMap);
+            if (oldProfile == null || !oldProfile.KeypadMap.Equals(newProfile.KeypadMap))
+            {
+                // Copy in the new keypad maps.
+                this.editedKeypadMaps = new KeyMap<KeypadMap>(newProfile.KeypadMap);
 
-            // Repaint.
-            this.SelectKeymap();
+                // Repaint.
+                this.SelectKeymap();
+            }
 
             // Propagate the keypad position.
-            this.keypadPosition.Value = profile.KeypadPosition;
+            this.keypadPosition.Value = newProfile.KeypadPosition;
         }
 
         /// <summary>

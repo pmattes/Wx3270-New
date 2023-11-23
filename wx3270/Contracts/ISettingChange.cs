@@ -19,9 +19,19 @@ namespace Wx3270.Contracts
     public interface ISettingChange
     {
         /// <summary>
-        /// Gets the setting dictionary.
+        /// Gets the settings dictionary.
         /// </summary>
-        SettingsDictionary SettingDictionary { get; }
+        SettingsDictionary SettingsDictionary { get; }
+
+        /// <summary>
+        /// Gets the default settings dictionary.
+        /// </summary>
+        SettingsDictionary DefaultsDictionary { get; }
+
+        /// <summary>
+        /// Gets the set of unknown settings.
+        /// </summary>
+        HashSet<string> UnknownSettings { get; }
 
         /// <summary>
         /// Register a filtered setting handler.

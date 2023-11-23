@@ -32,6 +32,11 @@ namespace Wx3270
         private bool running;
 
         /// <summary>
+        /// True if the database is complete.
+        /// </summary>
+        private bool done;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="CodePageDb"/> class.
         /// </summary>
         public CodePageDb()
@@ -44,30 +49,33 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Event that is signaled when the code page list is ready.
+        /// Event called when the database is complete.
         /// </summary>
-        public event Action Done = () => { };
+        private event Action DoneEvent = () => { };
 
-        /// <summary>
-        /// Gets the set of all code pages canonical names and friendly names.
-        /// </summary>
+        /// <inheritdoc/>
         public IEnumerable<string> All => this.codePages.Keys.Concat(this.codePages.Values.SelectMany(v => v.FriendlyNames)).OrderBy(k => k, new CodePageComparer());
 
-        /// <summary>
-        /// Gets the index of a particular code page.
-        /// </summary>
-        /// <param name="codePage">Code page name.</param>
-        /// <returns>Index, or -1.</returns>
+        /// <inheritdoc/>
+        public void AddDone(Action action)
+        {
+            if (this.done)
+            {
+                action();
+            }
+            else
+            {
+                this.DoneEvent += action;
+            }
+        }
+
+        /// <inheritdoc/>
         public int Index(string codePage)
         {
             return Array.IndexOf(this.All.ToArray(), codePage);
         }
 
-        /// <summary>
-        /// Returns the canonical name for a (possible) code page alias.
-        /// </summary>
-        /// <param name="alias">Possible alias.</param>
-        /// <returns>Canonical name.</returns>
+        /// <inheritdoc/>
         public string CanonicalName(string alias)
         {
             if (this.codePages.ContainsKey(alias))
@@ -136,7 +144,8 @@ namespace Wx3270
         private void EndCodePages(string name)
         {
             this.running = false;
-            this.Done();
+            this.done = true;
+            this.DoneEvent();
         }
 
         /// <summary>

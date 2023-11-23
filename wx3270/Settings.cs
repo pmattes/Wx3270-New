@@ -27,6 +27,8 @@ namespace Wx3270
             { B3270.Setting.CursorBlink, "cursor blink" },
             { B3270.Setting.MonoCase, "monocase" },
             { B3270.Setting.NopSeconds, "TELNET NOP option" },
+            { B3270.Setting.PreferIpv4, "prefer IPv4 addresses" },
+            { B3270.Setting.PreferIpv6, "prefer IPv6 addresses" },
             { B3270.Setting.PrinterCodePage, "printer code page" },
             { B3270.Setting.PrinterName, "printer name" },
             { B3270.Setting.PrinterOptions, "printer options" },
@@ -71,6 +73,11 @@ namespace Wx3270
         private AplKeypad aplKeypad;
 
         /// <summary>
+        /// The set of controls being modified programmatically.
+        /// </summary>
+        private HashSet<Control> lockedControls = new HashSet<Control>();
+
+        /// <summary>
         /// True if the dialog has ever been activated.
         /// </summary>
         private bool everActivated;
@@ -113,6 +120,26 @@ namespace Wx3270
         /// Gets the emulator back end.
         /// </summary>
         private IBackEnd BackEnd => this.app.BackEnd;
+
+        /// <summary>
+        /// Returns the localized string for changing a setting.
+        /// </summary>
+        /// <param name="setting">Setting name.</param>
+        /// <returns>Localized string.</returns>
+        public static string ChangeName(string setting)
+        {
+            return Wx3270.ProfileManager.ChangeName(I18n.Get(SettingPath(setting)));
+        }
+
+        /// <summary>
+        /// Returns the global localization path for a setting.
+        /// </summary>
+        /// <param name="setting">Toggle to localize.</param>
+        /// <returns>Global path name.</returns>
+        public static string SettingPath(string setting)
+        {
+            return I18n.Combine(nameof(Settings), "setting", setting);
+        }
 
         /// <summary>
         /// Create the sample screen image.
@@ -200,8 +227,10 @@ namespace Wx3270
             this.keypad = keypad;
             this.aplKeypad = aplKeypad;
 
+#if false
             // Register for secondary init.
             mainScreen.SecondaryInitEvent += this.SecondaryInit;
+#endif
 
             // Register the undo/redo buttons.
             this.ProfileManager.RegisterUndoRedo(this.undoButton, this.redoButton, this.toolTip1);
@@ -220,16 +249,9 @@ namespace Wx3270
 
             // Substitute.
             VersionSpecific.Substitute(this);
-        }
 
-        /// <summary>
-        /// Returns the global localization path for a setting.
-        /// </summary>
-        /// <param name="setting">Toggle to localize.</param>
-        /// <returns>Global path name.</returns>
-        private static string SettingPath(string setting)
-        {
-            return I18n.Combine(nameof(Settings), "setting", setting);
+            // Do secondary init, now that we are called on demand.
+            this.SecondaryInit();
         }
 
         /// <summary>
@@ -249,16 +271,6 @@ namespace Wx3270
                 cell.Text = text[column];
                 cell.GraphicRendition = graphicRendition;
             }
-        }
-
-        /// <summary>
-        /// Returns the localized string for changing a setting.
-        /// </summary>
-        /// <param name="setting">Setting name.</param>
-        /// <returns>Localized string.</returns>
-        private string ChangeName(string setting)
-        {
-            return this.ProfileManager.ChangeName(I18n.Get(SettingPath(setting)));
         }
 
         /// <summary>
@@ -285,16 +297,33 @@ namespace Wx3270
             }
 
             // Set up the tabs.
-            this.EmulationTabInit();
+            this.OptionsTabInit();
             this.SoundsTabInit();
             this.FontTabInit();
             this.ColorTabInit();
-            this.OptionsTabInit();
             this.KeypadTabInit(this.keypad, this.aplKeypad);
             this.KeyboardTabInit();
             this.ListenTabInit();
             this.ProxyTabInit();
             this.MiscTabInit();
+        }
+
+        /// <summary>
+        /// Safely modify a control, without any side-effects.
+        /// </summary>
+        /// <param name="control">Check box to modify.</param>
+        /// <param name="action">Action to perform.</param>
+        private void SafeControlModify(Control control, Action action)
+        {
+            try
+            {
+                this.lockedControls.Add(control);
+                action();
+            }
+            finally
+            {
+                this.lockedControls.Remove(control);
+            }
         }
 
         /// <summary>
@@ -1051,74 +1080,9 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Context for a sample screen image.
-        /// </summary>
-        private class ScreenSample
-        {
-            /// <summary>
-            /// The settings form.
-            /// </summary>
-            private Settings settings;
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="ScreenSample"/> class.
-            /// </summary>
-            /// <param name="settings">Settings object.</param>
-            /// <param name="screenPictureBox">Picture box with screen image.</param>
-            /// <param name="tableLayoutPanel">Table layout panel encompassing screen and status line.</param>
-            /// <param name="statusLine">Status line.</param>
-            /// <param name="separator">Separator between screen and status line.</param>
-            /// <param name="colorMode">True if in 3279 mode.</param>
-            public ScreenSample(
-                Settings settings,
-                PictureBox screenPictureBox,
-                TableLayoutPanel tableLayoutPanel,
-                Label statusLine,
-                PictureBox separator,
-                bool colorMode)
-            {
-                this.settings = settings;
-                this.ScreenBox = new ScreenBox("Sample", screenPictureBox);
-                this.LayoutPanel = tableLayoutPanel;
-                this.StatusLine = statusLine;
-                this.Separator = separator;
-                this.ScreenBox.ScreenNewFont(statusLine.Font, settings.CreateSampleImage(colorMode));
-                this.ScreenBox.Activated(true);
-            }
-
-            /// <summary>
-            /// Gets the main screen image.
-            /// </summary>
-            public ScreenBox ScreenBox { get; private set; }
-
-            /// <summary>
-            /// Gets the background container.
-            /// </summary>
-            public TableLayoutPanel LayoutPanel { get; private set; }
-
-            /// <summary>
-            /// Gets the status line label.
-            /// </summary>
-            public Label StatusLine { get; private set; }
-
-            /// <summary>
-            /// Gets the separator line.
-            /// </summary>
-            public PictureBox Separator { get; private set; }
-
-            /// <summary>
-            /// Invalidate the screen so it gets redrawn.
-            /// </summary>
-            public void Invalidate()
-            {
-                this.ScreenBox.ScreenNeedsDrawing("settings sample", true, this.settings.CreateSampleImage(this.settings.ColorMode));
-            }
-        }
-
-        /// <summary>
         /// Names of settings that change without specific toggles.
         /// </summary>
-        private class ChangeKeyword
+        public class ChangeKeyword
         {
             /// <summary>
             /// Maximize the screen.
@@ -1229,6 +1193,71 @@ namespace Wx3270
             /// Menu bar.
             /// </summary>
             public const string MenuBar = "MenuBar";
+        }
+
+        /// <summary>
+        /// Context for a sample screen image.
+        /// </summary>
+        private class ScreenSample
+        {
+            /// <summary>
+            /// The settings form.
+            /// </summary>
+            private Settings settings;
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ScreenSample"/> class.
+            /// </summary>
+            /// <param name="settings">Settings object.</param>
+            /// <param name="screenPictureBox">Picture box with screen image.</param>
+            /// <param name="tableLayoutPanel">Table layout panel encompassing screen and status line.</param>
+            /// <param name="statusLine">Status line.</param>
+            /// <param name="separator">Separator between screen and status line.</param>
+            /// <param name="colorMode">True if in 3279 mode.</param>
+            public ScreenSample(
+                Settings settings,
+                PictureBox screenPictureBox,
+                TableLayoutPanel tableLayoutPanel,
+                Label statusLine,
+                PictureBox separator,
+                bool colorMode)
+            {
+                this.settings = settings;
+                this.ScreenBox = new ScreenBox("Sample", screenPictureBox);
+                this.LayoutPanel = tableLayoutPanel;
+                this.StatusLine = statusLine;
+                this.Separator = separator;
+                this.ScreenBox.ScreenNewFont(statusLine.Font, settings.CreateSampleImage(colorMode));
+                this.ScreenBox.Activated(true);
+            }
+
+            /// <summary>
+            /// Gets the main screen image.
+            /// </summary>
+            public ScreenBox ScreenBox { get; private set; }
+
+            /// <summary>
+            /// Gets the background container.
+            /// </summary>
+            public TableLayoutPanel LayoutPanel { get; private set; }
+
+            /// <summary>
+            /// Gets the status line label.
+            /// </summary>
+            public Label StatusLine { get; private set; }
+
+            /// <summary>
+            /// Gets the separator line.
+            /// </summary>
+            public PictureBox Separator { get; private set; }
+
+            /// <summary>
+            /// Invalidate the screen so it gets redrawn.
+            /// </summary>
+            public void Invalidate()
+            {
+                this.ScreenBox.ScreenNeedsDrawing("settings sample", true, this.settings.CreateSampleImage(this.settings.ColorMode));
+            }
         }
     }
 }

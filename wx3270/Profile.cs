@@ -576,7 +576,13 @@ namespace Wx3270
             }
 
             // Hard case. We do it very inefficiently, but no maintenance is required when this class changes.
+#if false
             return this.Serialized().SequenceEqual(other.Serialized());
+#else
+            var thisSerialized = this.Serialized();
+            var otherSerialized = other.Serialized();
+            return thisSerialized.SequenceEqual(otherSerialized);
+#endif
         }
 
         /// <summary>
