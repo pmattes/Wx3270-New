@@ -130,14 +130,29 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             public const string Edit = "-edit";
 
             /// <summary>
-            /// The HTTP daemon option.
+            /// Display command-line help, first form.
             /// </summary>
-            public const string Httpd = "-httpd";
+            public const string Help1 = "-help";
+
+            /// <summary>
+            /// Display command-line help, second form.
+            /// </summary>
+            public const string Help2 = "--help";
+
+            /// <summary>
+            /// Display command-line help, third form.
+            /// </summary>
+            public const string Help3 = "/?";
 
             /// <summary>
             /// The host option.
             /// </summary>
             public const string Host = "-host";
+
+            /// <summary>
+            /// The HTTP daemon option.
+            /// </summary>
+            public const string Httpd = "-httpd";
 
             /// <summary>
             /// The initial window location option.
