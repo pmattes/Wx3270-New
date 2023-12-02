@@ -10,7 +10,6 @@ namespace Wx3270
     using System.Drawing;
     using System.IO;
     using System.Linq;
-    using System.Runtime.CompilerServices;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
@@ -31,6 +30,63 @@ namespace Wx3270
     /// </summary>
     public class Wx3270App : IUpdate, IConnectionState
     {
+        /// <summary>
+        /// Command-line options.
+        /// </summary>
+        private const string CommandLineOptions = @"Usage: wx3270 [options] [hostname [port]]
+Options:
+ -allow operation[,operation...]
+    Allow the specified restricted operations
+-console
+    Attach a console at start-up (for debugging)
+ -culture culture-name
+    Override the system default culture for messages
+ -dumplocalization file-name
+    Dump the en-US localization database to a file
+ -edit
+    Open the profile in edit mode (do not auto-connect to a host)
+    Requires the -profile option
+ -help
+    Display command-line help
+ -host host-name
+    Connect to the named host
+ -httpd [address:]port
+    Start an HTTP server
+ -location x,y
+    Specify an initial location for the window
+ -noborder
+    Create the widow without a border
+ -nobuttons
+    Do not display the menu bar
+ -noprofile
+    Operate without a profile (use system default settings)
+ -noscrollbar
+    Do not display the scroll bar
+ -nosplash
+    Do not display the splash screen
+ -profile profile-name
+    Use the specified profile instead of Base
+ -readonly
+    Open the profile in read-only mode (do not save changed settings)
+ -readwrite
+    Open the profile in read/write mode and warn if it can't be opened
+ -restrict operation[,operation...]
+    Disable the specified restricted operations
+ -scriptport [address:]port
+    Start an s3270 scripting server
+ -scriptportonce
+    Exit wx3270 as soon as the first s3270 scripting session ends
+ -topmost
+    Make wx3270 the topmost window
+ -trace
+    Turn on back-end and all types of user interface tracing
+ -uitrace type[,type]
+    Turn on back-end and the specified types of user interface tracing
+ -v
+    Display a copyright message and exit
+ -v file-name
+    Write a copyright message to a file and exit";
+
         /// <summary>
         /// Title group name for localization.
         /// </summary>
@@ -513,6 +569,16 @@ namespace Wx3270
                             this.EditMode = true;
                             this.ReadWriteMode = true;
                             break;
+                        case Constants.Option.Help1:
+                        case Constants.Option.Help2:
+                        case Constants.Option.Help3:
+                            this.Splash.Stop();
+                            ErrorBox.Show(
+                                CommandLineOptions,
+                                "wx3270 " + Profile.VersionClass.FullVersion,
+                                MessageBoxIcon.Information);
+                            Environment.Exit(0);
+                            break;
                         case Constants.Option.Host:
                             this.HostConnection = args[++i];
                             break;
@@ -587,7 +653,9 @@ namespace Wx3270
                         case Constants.Option.UiTrace:
                             if (!Enum.TryParse(args[++i], true, out Trace.Type traceFlags))
                             {
-                                this.Usage($"Unknown trace type '{args[i]}'");
+                                this.Usage(
+                                    $"Unknown trace type '{args[i]}'" + Environment.NewLine +
+                                    "Types are: " + string.Join(", ", Enum.GetValues(typeof(Trace.Type)).OfType<Trace.Type>().Select(m => m.ToString())));
                             }
 
                             Trace.Flags = traceFlags;
@@ -951,7 +1019,7 @@ namespace Wx3270
         {
             this.Splash.Stop();
             ErrorBox.Show(
-                "Invalid command line option(s):" + Environment.NewLine + reason,
+                "Invalid command line option(s):" + Environment.NewLine + reason + Environment.NewLine + Environment.NewLine + "Use the -help option to get command-line help",
                 "wx3270 Command Line Error");
             Environment.Exit(1);
         }
