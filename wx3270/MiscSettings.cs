@@ -7,6 +7,7 @@ namespace Wx3270
     using System;
     using System.Collections.Generic;
     using System.Windows.Forms;
+    using I18nBase;
 
     /// <summary>
     /// Miscellaneous settings.
@@ -29,6 +30,38 @@ namespace Wx3270
         private bool initialTableDone;
 
         /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
+        public static void LocalizeMiscSettings()
+        {
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global instructions (1).
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(miscellaneousTab), 1), "Tour: Miscellaneous settings");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(miscellaneousTab), 1),
+@"Use this tab to modify miscellaneous back-end settings that wx3270 does not (yet) support through options on the other settings tabs.
+
+Documentation for these settings can be found in the x3270 Wiki.
+
+Modify them at your own risk.");
+
+            // Global instructions (2).
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(miscellaneousTab), 2), "Warnings");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(miscellaneousTab), 2),
+@"These settings may cause the emulator to behave in unexpected ways.
+
+For any setting listed here, subsequent versions of wx3270 may add explicit support under some other settings tab, or may prohibit changing its value altogether. If that happens, it will no longer be displayed here and any value saved in your profile(s) will be ignored.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
+        }
+
+        /// <summary>
         /// Initialize the Miscellaneous tab.
         /// </summary>
         public void MiscTabInit()
@@ -43,6 +76,14 @@ namespace Wx3270
             }
 
             this.ProfileManager.AddChangeTo(this.MiscProfileChanged);
+
+            // Register our tour.
+            var nodes = new[]
+            {
+                ((Control)this.miscellaneousTab, (int?)1, Orientation.Centered),
+                (this.miscellaneousTab, 2, Orientation.Centered),
+            };
+            this.RegisterTour(this.miscellaneousTab, nodes);
         }
 
         /// <summary>

@@ -6,7 +6,9 @@ namespace Wx3270
 {
     using System;
     using System.Drawing;
+    using System.Linq;
     using System.Windows.Forms;
+    using I18nBase;
 
     /// <summary>
     /// The Font tab in the settings dialog.
@@ -22,6 +24,38 @@ namespace Wx3270
         /// The screen sample.
         /// </summary>
         private ScreenSample fontScreenSample;
+
+        /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
+        public static void LocalizeFontSettings()
+        {
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global instructions.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(fontTab)), "Tour: Font settings");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(fontTab)),
+@"Modify the font used for the emulator display with this tab.");
+
+            // Preview screen.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(fontPreviewScreenPictureBox)), "Preview window");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(fontPreviewScreenPictureBox)),
+@"This window previews how the font will appear on the main window's emulator display.");
+
+            // Preview screen.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(fontChangeButton)), "Change button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(fontChangeButton)),
+@"Click to change the font.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
+        }
 
         /// <summary>
         /// Gets the friendly (display) name for a font.
@@ -68,13 +102,13 @@ namespace Wx3270
         public void ChangeFont()
         {
             // Pop up the font dialog.
-            this.ScreenFontDialog.Font = this.editedFont;
-            if (this.ScreenFontDialog.ShowDialog() == DialogResult.Cancel)
+            this.screenFontDialog.Font = this.editedFont;
+            if (this.screenFontDialog.ShowDialog() == DialogResult.Cancel)
             {
                 return;
             }
 
-            this.PropagateNewFont(this.ScreenFontDialog.Font);
+            this.PropagateNewFont(this.screenFontDialog.Font);
         }
 
         /// <summary>
@@ -84,7 +118,7 @@ namespace Wx3270
         public void PropagateNewFont(Font newFont)
         {
             // Propagate to the setting dialog.
-            this.SetFont(newFont, this.editedColors, this.ColorButton.Checked);
+            this.SetFont(newFont, this.editedColors, this.colorButton.Checked);
             this.fontLabel.Text = FriendlyName(newFont);
             this.fontScreenSample.ScreenBox.ScreenNewFont(newFont, this.CreateSampleImage(this.ColorMode));
             this.fontScreenSample.Invalidate();
@@ -130,13 +164,22 @@ namespace Wx3270
             this.ProfileManager.AddChangeTo(this.FontProfileChanged);
 
             // Set up handler for edited color changes.
-            this.EditedColorsChangedEvent += () => this.RecolorFontTab(this.editedColors, this.ColorButton.Checked);
+            this.EditedColorsChangedEvent += () => this.RecolorFontTab(this.editedColors, this.colorButton.Checked);
 
             // Set up handler for edited color mode changes.
             this.ColorModeChangedEvent += (color) => this.RecolorFontTab(this.editedColors, color);
 
             // Set up handler for dynamic font changes.
             this.mainScreen.DynamicFontEvent += this.DynamicFontChange;
+
+            // Register our tour.
+            var nodes = new[]
+            {
+                ((Control)this.fontTab, (int?)null, Orientation.Centered),
+                (this.fontPreviewScreenPictureBox, null, Orientation.UpperLeftTight),
+                (this.fontChangeButton, null, Orientation.UpperLeft),
+            };
+            this.RegisterTour(this.fontTab, nodes);
         }
 
         /// <summary>
@@ -182,7 +225,7 @@ namespace Wx3270
         private void DynamicFontChange(Font font)
         {
             // Propagate the results to the setting dialog.
-            this.SetFont(font, this.editedColors, this.ColorButton.Checked);
+            this.SetFont(font, this.editedColors, this.colorButton.Checked);
             this.fontLabel.Text = FriendlyName(font);
             this.fontScreenSample.ScreenBox.ScreenNewFont(font, this.CreateSampleImage(this.ColorMode));
             this.fontScreenSample.Invalidate();

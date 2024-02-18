@@ -9,6 +9,7 @@ namespace Wx3270
     using System.Windows.Forms;
 
     using I18nBase;
+    using static Wx3270.B3270;
 
     /// <summary>
     /// The proxy editor.
@@ -34,6 +35,11 @@ namespace Wx3270
         /// The control that receives the initial focus.
         /// </summary>
         private readonly Control initialFocus;
+
+        /// <summary>
+        /// True if the form has ever been activated.
+        /// </summary>
+        private bool everActivated = false;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProxyEditor"/> class.
@@ -91,6 +97,71 @@ namespace Wx3270
             I18n.LocalizeGlobal(Message.InvalidProxyUsername, "Invalid proxy username");
             I18n.LocalizeGlobal(Message.PasswordWithoutUsername, "Password specified without username");
             I18n.LocalizeGlobal(Message.InvalidProxyPassword, "Invalid proxy password");
+
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(ProxyEditor)), "Tour: Proxy editor");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(ProxyEditor)),
+@"Use this window to define or edit proxy settings.");
+
+            // Proxy type.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(ProxyEditor), nameof(proxyComboBox)), "Proxy type");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(ProxyEditor), nameof(proxyComboBox)),
+@"Select the type of proxy here.");
+
+            // Address.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(ProxyEditor), nameof(addressTextBox)), "Proxy server address");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(ProxyEditor), nameof(addressTextBox)),
+@"Enter the name or numeric address of the proxy server here.");
+
+            // Port.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(ProxyEditor), nameof(portTextBox)), "Proxy server port");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(ProxyEditor), nameof(portTextBox)),
+@"Enter the TCP port of the proxy server here.");
+
+            // Username.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(ProxyEditor), nameof(usernameTextBox)), "User name");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(ProxyEditor), nameof(usernameTextBox)),
+@"Enter your user name for the proxy server here.
+
+Not all proxy types allow user names, and not all servers that allow them require that you use one.");
+
+            // Password.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(ProxyEditor), nameof(passwordTextBox)), "Password");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(ProxyEditor), nameof(passwordTextBox)),
+@"Enter your password for the proxy server here.
+
+Not all proxy types allow passwords, and not all servers that allow them require that you use one.");
+
+            // Cancel button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(ProxyEditor), nameof(cancelButton)), "Cancel button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(ProxyEditor), nameof(cancelButton)),
+@"Click to abandon any changes you have made.");
+
+            // Save button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(ProxyEditor), nameof(okButton)), "Save button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(ProxyEditor), nameof(okButton)),
+@"Click to save your changes.");
+
+            // Help button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(ProxyEditor), nameof(helpPictureBox)), "Help button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(ProxyEditor), nameof(helpPictureBox)),
+@"Click to display context-sensitive help from the x3270 Wiki in your browser, or to start this tour again.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
         }
 
         /// <summary>
@@ -198,7 +269,13 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void HelpClick(object sender, EventArgs e)
         {
-            Wx3270App.GetHelp(Wx3270App.FormatHelpTag(nameof(ProxyEditor)));
+            var mouseEvent = (MouseEventArgs)e;
+            if (mouseEvent.Button == MouseButtons.Left)
+            {
+                this.helpContextMenuStrip.Show(this.helpPictureBox, mouseEvent.Location);
+            }
+
+            // Wx3270App.GetHelp(Wx3270App.FormatHelpTag(nameof(ProxyEditor)));
         }
 
         /// <summary>
@@ -303,9 +380,53 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ProxyEditor_Shown(object sender, EventArgs e)
         {
-            if (this.initialFocus != null)
+            this.initialFocus?.Focus();
+        }
+
+        /// <summary>
+        /// An item on the help menu was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void HelpMenuClick(object sender, EventArgs e)
+        {
+            Tour.HelpMenuClick(sender, e, Wx3270App.FormatHelpTag(nameof(ProxyEditor)), this.RunTour);
+        }
+
+        /// <summary>
+        /// Run the tour.
+        /// </summary>
+        private void RunTour()
+        {
+            var nodes = new[]
             {
-                this.initialFocus.Focus();
+                ((Control)this, (int?)null, Orientation.Centered),
+                (this.proxyComboBox, null, Orientation.UpperLeftTight),
+                (this.addressTextBox, null, Orientation.UpperLeftTight),
+                (this.portTextBox, null, Orientation.UpperLeftTight),
+                (this.usernameTextBox, null, Orientation.LowerLeftTight),
+                (this.passwordTextBox, null, Orientation.LowerLeftTight),
+                (this.cancelButton, null, Orientation.LowerRight),
+                (this.okButton, null, Orientation.LowerRight),
+                (this.helpPictureBox, null, Orientation.LowerRight),
+            };
+            Tour.Navigate(this, nodes);
+        }
+
+        /// <summary>
+        /// The window was activated.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void ProxyEditorActivated(object sender, EventArgs e)
+        {
+            if (!this.everActivated)
+            {
+                this.everActivated = true;
+                if (!Tour.IsComplete(this))
+                {
+                    this.RunTour();
+                }
             }
         }
 

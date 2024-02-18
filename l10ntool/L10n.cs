@@ -68,7 +68,7 @@ namespace L10ntool
                 t.WriteLine($"#Status,Message,US English,Translation");
 
                 // Dump out the translated messages.
-                foreach (var kv in msgcat.OrderBy(k => k.Key))
+                foreach (var kv in msgcat.OrderBy(k => k.Key, StringComparer.OrdinalIgnoreCase))
                 {
                     t.WriteLine("Untranslated," + CsvIfy(kv.Key) + "," + CsvIfy(kv.Value) + ",");
                 }
@@ -91,7 +91,7 @@ namespace L10ntool
 
             // Create a new dictionary that includes all of the new messages and all of the orphaned translated messages,
             // with the correct status in each.
-            var classified = new Dictionary<string, Tuple<EntryStatus, string, string>>();
+            var classified = new Dictionary<string, Tuple<EntryStatus, string, string>>(StringComparer.OrdinalIgnoreCase);
             foreach (var msg in newMsgcat)
             {
                 if (oldMsgcat.ContainsKey(msg.Key))
@@ -170,7 +170,7 @@ namespace L10ntool
         /// <param name="outMsgcat">New message catalog file.</param>
         public void CsvToMsgcat(string inCsv, string outMsgcat)
         {
-            var msgcat = new Dictionary<string, string>();
+            var msgcat = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
             // Read in the CSV file.
             using (StreamReader t = new StreamReader(inCsv, new UTF8Encoding()))
@@ -240,7 +240,7 @@ namespace L10ntool
             // Construct the rename mapping.
             var beforeKeys = beforeMsgcat.Keys.ToArray();
             var afterKeys = afterMsgcat.Keys.ToArray();
-            var rename = new Dictionary<string, string>();
+            var rename = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             for (var i = 0; i < beforeMsgcat.Count; i++)
             {
                 if (beforeKeys[i] != afterKeys[i])
@@ -300,17 +300,29 @@ namespace L10ntool
             var oldTranslatedMsgcat = ReadMessageCatalog(inOldTranslatedMsgcat);
 
             // Fill in the missing entries.
-            var newTranslatedMsgcat = new Dictionary<string, string>(oldTranslatedMsgcat);
+            var newTranslatedMsgcat = new Dictionary<string, string>(oldTranslatedMsgcat, StringComparer.OrdinalIgnoreCase);
             foreach (var kv in newMsgcat)
             {
                 if (!newTranslatedMsgcat.ContainsKey(kv.Key))
                 {
+                    // The translated message catalog does not have this key, case-insensitive.
                     newTranslatedMsgcat.Add(kv.Key, "[*] " + kv.Value);
+                }
+                else if (!newTranslatedMsgcat.Keys.Contains(kv.Key, StringComparer.Ordinal))
+                {
+                    // The translated message catalog has this key, case-insensitive. Change to the new case.
+                    // N.B.: The 'Contains' call above needs to specify StringComparer.Ordinal explicitly, because the Keys attribute of a
+                    // Dictionary is a KeyCollection, not an IEnumerable<TKey>, and it implicitly includes the OrdinalIgnoreCase property
+                    // of the Dictionary. Perhaps a bit too clever?
+                    var wrongKey = newTranslatedMsgcat.Keys.Where(k => k.Equals(kv.Key, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                    var value = newTranslatedMsgcat[wrongKey];
+                    newTranslatedMsgcat.Remove(wrongKey);
+                    newTranslatedMsgcat[kv.Key] = value;
                 }
             }
 
             // Dump out the new message catalog, sorted.
-            var sortedMsgcat = new Dictionary<string, string>();
+            var sortedMsgcat = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             foreach (var key in newTranslatedMsgcat.Keys.OrderBy(k => k))
             {
                 sortedMsgcat.Add(key, newTranslatedMsgcat[key]);
@@ -491,7 +503,14 @@ namespace L10ntool
                 {
                     try
                     {
-                        return serializer.Deserialize<Dictionary<string, string>>(reader);
+                        var dictCaseSensitive = serializer.Deserialize<Dictionary<string, string>>(reader);
+                        var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                        foreach (var kvp in dictCaseSensitive)
+                        {
+                            dict[kvp.Key] = kvp.Value;
+                        }
+
+                        return dict;
                     }
                     catch (Exception e)
                     {

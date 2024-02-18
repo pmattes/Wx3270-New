@@ -55,33 +55,33 @@
             this.savePathTextBox = new System.Windows.Forms.TextBox();
             this.printerOptionsTextBox = new System.Windows.Forms.TextBox();
             this.printerCodePageTextBox = new System.Windows.Forms.TextBox();
-            this.TerminalNameGroupBox = new System.Windows.Forms.GroupBox();
-            this.TerminalNameLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.ExtendedCheckBox = new System.Windows.Forms.CheckBox();
-            this.OverrideTextBox = new System.Windows.Forms.TextBox();
-            this.OverrideCheckBox = new System.Windows.Forms.CheckBox();
-            this.ModelGroupBox = new System.Windows.Forms.GroupBox();
-            this.OversizeLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.OversizeCheckBox = new System.Windows.Forms.CheckBox();
+            this.terminalNameGroupBox = new System.Windows.Forms.GroupBox();
+            this.terminalNameLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.extendedCheckBox = new System.Windows.Forms.CheckBox();
+            this.overrideTextBox = new System.Windows.Forms.TextBox();
+            this.overrideCheckBox = new System.Windows.Forms.CheckBox();
+            this.modelGroupBox = new System.Windows.Forms.GroupBox();
+            this.oversizeLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.oversizeCheckBox = new System.Windows.Forms.CheckBox();
             this.modelComboBox = new System.Windows.Forms.ComboBox();
-            this.OversizeRowsColsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.RowsLabel = new System.Windows.Forms.Label();
-            this.ColumnsLabel = new System.Windows.Forms.Label();
-            this.RowsUpDown = new System.Windows.Forms.NumericUpDown();
-            this.ColumnsUpDown = new System.Windows.Forms.NumericUpDown();
-            this.CodePageGroupBox = new System.Windows.Forms.GroupBox();
-            this.CodePageListBox = new System.Windows.Forms.ListBox();
-            this.DisplayGroupBox = new System.Windows.Forms.GroupBox();
-            this.ColorButton = new System.Windows.Forms.RadioButton();
-            this.MonoButton = new System.Windows.Forms.RadioButton();
+            this.oversizeRowsColsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.rowsLabel = new System.Windows.Forms.Label();
+            this.columnsLabel = new System.Windows.Forms.Label();
+            this.rowsUpDown = new System.Windows.Forms.NumericUpDown();
+            this.columnsUpDown = new System.Windows.Forms.NumericUpDown();
+            this.codePageGroupBox = new System.Windows.Forms.GroupBox();
+            this.codePageListBox = new System.Windows.Forms.ListBox();
+            this.displayGroupBox = new System.Windows.Forms.GroupBox();
+            this.colorButton = new System.Windows.Forms.RadioButton();
+            this.monoButton = new System.Windows.Forms.RadioButton();
             this.optionsSampleGroupBox = new System.Windows.Forms.GroupBox();
             this.optionsPreviewLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.optionsPreviewSeparatorPictureBox = new System.Windows.Forms.PictureBox();
             this.optionsPreviewStatusLineLabel = new System.Windows.Forms.Label();
             this.optionsPreviewScreenPictureBox = new System.Windows.Forms.PictureBox();
-            this.MiscGroupBox = new System.Windows.Forms.GroupBox();
+            this.miscGroupBox = new System.Windows.Forms.GroupBox();
             this.miscFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.MonoCaseCheckBox = new System.Windows.Forms.CheckBox();
+            this.monoCaseCheckBox = new System.Windows.Forms.CheckBox();
             this.typeaheadCheckBox = new System.Windows.Forms.CheckBox();
             this.nopCheckBox = new System.Windows.Forms.CheckBox();
             this.showTimingCheckBox = new System.Windows.Forms.CheckBox();
@@ -91,11 +91,11 @@
             this.preferIpv4CheckBox = new System.Windows.Forms.CheckBox();
             this.preferIpv6CheckBox = new System.Windows.Forms.CheckBox();
             this.menuBarCheckBox = new System.Windows.Forms.CheckBox();
-            this.CursorGroupBox = new System.Windows.Forms.GroupBox();
+            this.cursorGroupBox = new System.Windows.Forms.GroupBox();
             this.crosshairCursorCheckBox = new System.Windows.Forms.CheckBox();
-            this.UnderscoreCursorButton = new System.Windows.Forms.RadioButton();
+            this.underscoreCursorButton = new System.Windows.Forms.RadioButton();
             this.cursorBlinkCheckBox = new System.Windows.Forms.CheckBox();
-            this.BlockCursorButton = new System.Windows.Forms.RadioButton();
+            this.blockCursorButton = new System.Windows.Forms.RadioButton();
             this.keyboardTab = new System.Windows.Forms.TabPage();
             this.modifiersTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.exactMatchCheckBox = new System.Windows.Forms.CheckBox();
@@ -105,10 +105,10 @@
             this.modeNvtCheckBox = new System.Windows.Forms.CheckBox();
             this.keyboardAltCheckBox = new System.Windows.Forms.CheckBox();
             this.keyboardCtrlCheckBox = new System.Windows.Forms.CheckBox();
-            this.ChordComboBox = new System.Windows.Forms.ComboBox();
-            this.MatchTypeLabel = new System.Windows.Forms.Label();
+            this.chordComboBox = new System.Windows.Forms.ComboBox();
+            this.matchTypeLabel = new System.Windows.Forms.Label();
             this.selectedKeyGroupBox = new System.Windows.Forms.GroupBox();
-            this.SelectedKeyLabel = new System.Windows.Forms.Label();
+            this.selectedKeyLabel = new System.Windows.Forms.Label();
             this.keymapSelectedLabel = new System.Windows.Forms.Label();
             this.keyCharValuePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.editedKeyCharLabel = new System.Windows.Forms.Label();
@@ -122,20 +122,20 @@
             this.keyboardActionsRemoveButton = new Wx3270.NoSelectButton();
             this.keyboardActionsEditButton = new Wx3270.NoSelectButton();
             this.keyboardActionsAddKeyButton = new Wx3270.NoSelectButton();
-            this.BehaviorLabel = new System.Windows.Forms.Label();
+            this.behaviorLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.ActionsRadioButton = new System.Windows.Forms.RadioButton();
-            this.ChordRadioButton = new System.Windows.Forms.RadioButton();
+            this.actionsRadioButton = new System.Windows.Forms.RadioButton();
+            this.chordRadioButton = new System.Windows.Forms.RadioButton();
             this.matchFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.matchKeyRadioButton = new System.Windows.Forms.RadioButton();
             this.matchScanCodeRadioButton = new System.Windows.Forms.RadioButton();
             this.keyLabel = new System.Windows.Forms.Label();
-            this.ChordLabel = new System.Windows.Forms.Label();
+            this.chordLabel = new System.Windows.Forms.Label();
             this.matchTypeflowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.keyboardModifiersLabel = new System.Windows.Forms.Label();
             this.keyboardPictureButton = new Wx3270.NoSelectButton();
             this.keypadTab = new System.Windows.Forms.TabPage();
-            this.KeypadTypeFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.keypadTypeFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.keypadTypeLabel = new System.Windows.Forms.Label();
             this.type3270RadioButton = new System.Windows.Forms.RadioButton();
             this.typeAplRadioButton = new System.Windows.Forms.RadioButton();
@@ -189,7 +189,7 @@
             this.blackOnWhiteButton = new System.Windows.Forms.RadioButton();
             this.whiteOnBlackButton = new System.Windows.Forms.RadioButton();
             this.hostColorsBox = new System.Windows.Forms.GroupBox();
-            this.BackgroundList = new System.Windows.Forms.ListBox();
+            this.backgroundList = new System.Windows.Forms.ListBox();
             this.backgroundLabel = new System.Windows.Forms.Label();
             this.whiteSwatch = new System.Windows.Forms.PictureBox();
             this.graySwatch = new System.Windows.Forms.PictureBox();
@@ -222,7 +222,7 @@
             this.blackSample = new System.Windows.Forms.Label();
             this.redSample = new System.Windows.Forms.Label();
             this.blueSample = new System.Windows.Forms.Label();
-            this.NnutralBlackSample = new System.Windows.Forms.Label();
+            this.neutralBlackSample = new System.Windows.Forms.Label();
             this.whiteButton = new Wx3270.NoSelectButton();
             this.grayButton = new Wx3270.NoSelectButton();
             this.paleTurquoiseButton = new Wx3270.NoSelectButton();
@@ -251,7 +251,7 @@
             this.monoPreviewStatusLineLabel = new System.Windows.Forms.Label();
             this.monoPreviewScreenPictureBox = new System.Windows.Forms.PictureBox();
             this.monoColorsBox = new System.Windows.Forms.GroupBox();
-            this.MonoBackgroundList = new System.Windows.Forms.ListBox();
+            this.monoBackgroundList = new System.Windows.Forms.ListBox();
             this.monoBackgroundLabel = new System.Windows.Forms.Label();
             this.monoIntensifiedSwatch = new System.Windows.Forms.PictureBox();
             this.monoNormalSwatch = new System.Windows.Forms.PictureBox();
@@ -274,14 +274,14 @@
             this.fontPreviewScreenPictureBox = new System.Windows.Forms.PictureBox();
             this.sizeIgnoredLabel = new System.Windows.Forms.Label();
             this.fontLabel = new System.Windows.Forms.Label();
-            this.FontChangeButton = new Wx3270.NoSelectButton();
+            this.fontChangeButton = new Wx3270.NoSelectButton();
             this.soundsTab = new System.Windows.Forms.TabPage();
             this.soundsGroupBox = new System.Windows.Forms.GroupBox();
             this.soundLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.PlayAudibleBell = new Wx3270.NoSelectButton();
+            this.playAudibleBell = new Wx3270.NoSelectButton();
             this.keyboardClickCheckBox = new System.Windows.Forms.CheckBox();
             this.audibleBellCheckBox = new System.Windows.Forms.CheckBox();
-            this.PlayKeyboardClick = new Wx3270.NoSelectButton();
+            this.playKeyboardClick = new Wx3270.NoSelectButton();
             this.serversTab = new System.Windows.Forms.TabPage();
             this.httpdBox = new System.Windows.Forms.GroupBox();
             this.httpdNoConfigLabel = new System.Windows.Forms.Label();
@@ -316,15 +316,21 @@
             this.warningLabel = new System.Windows.Forms.Label();
             this.miscellaneousGroupBox = new System.Windows.Forms.GroupBox();
             this.miscellaneousTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonsLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonsLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.helpContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.displayHelpInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startTourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoButton = new Wx3270.NoSelectButton();
             this.undoButton = new Wx3270.NoSelectButton();
             this.setToDefaultsButton = new Wx3270.NoSelectButton();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.readOnlyFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.readOnlyLabel = new System.Windows.Forms.Label();
+            this.saveACopyButton = new Wx3270.NoSelectButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.HostColorDialog = new System.Windows.Forms.ColorDialog();
-            this.ScreenFontDialog = new System.Windows.Forms.FontDialog();
+            this.hostColorDialog = new System.Windows.Forms.ColorDialog();
+            this.screenFontDialog = new System.Windows.Forms.FontDialog();
             this.opacityTimer = new System.Windows.Forms.Timer(this.components);
             this.printerSaveFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.settingsTabs.SuspendLayout();
@@ -335,22 +341,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.opacityTrackBar)).BeginInit();
             this.printerSessionGroupBox.SuspendLayout();
             this.printerTableLayoutPanel.SuspendLayout();
-            this.TerminalNameGroupBox.SuspendLayout();
-            this.TerminalNameLayoutPanel.SuspendLayout();
-            this.ModelGroupBox.SuspendLayout();
-            this.OversizeLayoutPanel.SuspendLayout();
-            this.OversizeRowsColsLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RowsUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ColumnsUpDown)).BeginInit();
-            this.CodePageGroupBox.SuspendLayout();
-            this.DisplayGroupBox.SuspendLayout();
+            this.terminalNameGroupBox.SuspendLayout();
+            this.terminalNameLayoutPanel.SuspendLayout();
+            this.modelGroupBox.SuspendLayout();
+            this.oversizeLayoutPanel.SuspendLayout();
+            this.oversizeRowsColsLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rowsUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.columnsUpDown)).BeginInit();
+            this.codePageGroupBox.SuspendLayout();
+            this.displayGroupBox.SuspendLayout();
             this.optionsSampleGroupBox.SuspendLayout();
             this.optionsPreviewLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.optionsPreviewSeparatorPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.optionsPreviewScreenPictureBox)).BeginInit();
-            this.MiscGroupBox.SuspendLayout();
+            this.miscGroupBox.SuspendLayout();
             this.miscFlowLayoutPanel.SuspendLayout();
-            this.CursorGroupBox.SuspendLayout();
+            this.cursorGroupBox.SuspendLayout();
             this.keyboardTab.SuspendLayout();
             this.modifiersTableLayoutPanel.SuspendLayout();
             this.selectedKeyGroupBox.SuspendLayout();
@@ -360,7 +366,7 @@
             this.flowLayoutPanel1.SuspendLayout();
             this.matchFlowLayoutPanel.SuspendLayout();
             this.keypadTab.SuspendLayout();
-            this.KeypadTypeFlowLayoutPanel.SuspendLayout();
+            this.keypadTypeFlowLayoutPanel.SuspendLayout();
             this.keypadModifiersLayoutPanel.SuspendLayout();
             this.keypadPositionGroupBox.SuspendLayout();
             this.keypadMappingGroupBox.SuspendLayout();
@@ -427,9 +433,11 @@
             this.proxyTableLayoutPanel.SuspendLayout();
             this.miscellaneousTab.SuspendLayout();
             this.miscellaneousGroupBox.SuspendLayout();
-            this.ButtonsLayoutPanel.SuspendLayout();
+            this.buttonsLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
+            this.helpContextMenuStrip.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
+            this.readOnlyFlowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // settingsTabs
@@ -451,19 +459,20 @@
             this.settingsTabs.SelectedIndex = 0;
             this.settingsTabs.Size = new System.Drawing.Size(911, 772);
             this.settingsTabs.TabIndex = 0;
+            this.settingsTabs.SelectedIndexChanged += new System.EventHandler(this.TabSelectedChanged);
             // 
             // optionsTab
             // 
             this.optionsTab.Controls.Add(this.descriptionGroupBox);
             this.optionsTab.Controls.Add(this.opacityGroupBox);
             this.optionsTab.Controls.Add(this.printerSessionGroupBox);
-            this.optionsTab.Controls.Add(this.TerminalNameGroupBox);
-            this.optionsTab.Controls.Add(this.ModelGroupBox);
-            this.optionsTab.Controls.Add(this.CodePageGroupBox);
-            this.optionsTab.Controls.Add(this.DisplayGroupBox);
+            this.optionsTab.Controls.Add(this.terminalNameGroupBox);
+            this.optionsTab.Controls.Add(this.modelGroupBox);
+            this.optionsTab.Controls.Add(this.codePageGroupBox);
+            this.optionsTab.Controls.Add(this.displayGroupBox);
             this.optionsTab.Controls.Add(this.optionsSampleGroupBox);
-            this.optionsTab.Controls.Add(this.MiscGroupBox);
-            this.optionsTab.Controls.Add(this.CursorGroupBox);
+            this.optionsTab.Controls.Add(this.miscGroupBox);
+            this.optionsTab.Controls.Add(this.cursorGroupBox);
             this.optionsTab.Location = new System.Drawing.Point(4, 25);
             this.optionsTab.Margin = new System.Windows.Forms.Padding(4);
             this.optionsTab.Name = "optionsTab";
@@ -765,116 +774,116 @@
             this.printerCodePageTextBox.TabIndex = 7;
             this.printerCodePageTextBox.Validated += new System.EventHandler(this.PrinterCodePage_validated);
             // 
-            // TerminalNameGroupBox
+            // terminalNameGroupBox
             // 
-            this.TerminalNameGroupBox.Controls.Add(this.TerminalNameLayoutPanel);
-            this.TerminalNameGroupBox.Location = new System.Drawing.Point(25, 399);
-            this.TerminalNameGroupBox.Margin = new System.Windows.Forms.Padding(4);
-            this.TerminalNameGroupBox.Name = "TerminalNameGroupBox";
-            this.TerminalNameGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.TerminalNameGroupBox.Size = new System.Drawing.Size(439, 133);
-            this.TerminalNameGroupBox.TabIndex = 3;
-            this.TerminalNameGroupBox.TabStop = false;
-            this.TerminalNameGroupBox.Text = "Terminal name";
+            this.terminalNameGroupBox.Controls.Add(this.terminalNameLayoutPanel);
+            this.terminalNameGroupBox.Location = new System.Drawing.Point(25, 399);
+            this.terminalNameGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.terminalNameGroupBox.Name = "terminalNameGroupBox";
+            this.terminalNameGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.terminalNameGroupBox.Size = new System.Drawing.Size(439, 133);
+            this.terminalNameGroupBox.TabIndex = 3;
+            this.terminalNameGroupBox.TabStop = false;
+            this.terminalNameGroupBox.Text = "Terminal name";
             // 
-            // TerminalNameLayoutPanel
+            // terminalNameLayoutPanel
             // 
-            this.TerminalNameLayoutPanel.AutoSize = true;
-            this.TerminalNameLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.TerminalNameLayoutPanel.ColumnCount = 1;
-            this.TerminalNameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TerminalNameLayoutPanel.Controls.Add(this.ExtendedCheckBox, 0, 2);
-            this.TerminalNameLayoutPanel.Controls.Add(this.OverrideTextBox, 0, 1);
-            this.TerminalNameLayoutPanel.Controls.Add(this.OverrideCheckBox, 0, 0);
-            this.TerminalNameLayoutPanel.Location = new System.Drawing.Point(12, 25);
-            this.TerminalNameLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.TerminalNameLayoutPanel.Name = "TerminalNameLayoutPanel";
-            this.TerminalNameLayoutPanel.RowCount = 3;
-            this.TerminalNameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TerminalNameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TerminalNameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TerminalNameLayoutPanel.Size = new System.Drawing.Size(333, 86);
-            this.TerminalNameLayoutPanel.TabIndex = 0;
+            this.terminalNameLayoutPanel.AutoSize = true;
+            this.terminalNameLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.terminalNameLayoutPanel.ColumnCount = 1;
+            this.terminalNameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.terminalNameLayoutPanel.Controls.Add(this.extendedCheckBox, 0, 2);
+            this.terminalNameLayoutPanel.Controls.Add(this.overrideTextBox, 0, 1);
+            this.terminalNameLayoutPanel.Controls.Add(this.overrideCheckBox, 0, 0);
+            this.terminalNameLayoutPanel.Location = new System.Drawing.Point(12, 25);
+            this.terminalNameLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.terminalNameLayoutPanel.Name = "terminalNameLayoutPanel";
+            this.terminalNameLayoutPanel.RowCount = 3;
+            this.terminalNameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.terminalNameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.terminalNameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.terminalNameLayoutPanel.Size = new System.Drawing.Size(333, 86);
+            this.terminalNameLayoutPanel.TabIndex = 0;
             // 
-            // ExtendedCheckBox
+            // extendedCheckBox
             // 
-            this.ExtendedCheckBox.AutoSize = true;
-            this.ExtendedCheckBox.Checked = true;
-            this.ExtendedCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ExtendedCheckBox.Location = new System.Drawing.Point(4, 62);
-            this.ExtendedCheckBox.Margin = new System.Windows.Forms.Padding(4);
-            this.ExtendedCheckBox.Name = "ExtendedCheckBox";
-            this.ExtendedCheckBox.Size = new System.Drawing.Size(148, 20);
-            this.ExtendedCheckBox.TabIndex = 2;
-            this.ExtendedCheckBox.Text = "Extended mode (-E)";
-            this.ExtendedCheckBox.UseVisualStyleBackColor = true;
-            this.ExtendedCheckBox.Click += new System.EventHandler(this.ExtendedCheckBox_Click);
+            this.extendedCheckBox.AutoSize = true;
+            this.extendedCheckBox.Checked = true;
+            this.extendedCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.extendedCheckBox.Location = new System.Drawing.Point(4, 62);
+            this.extendedCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.extendedCheckBox.Name = "extendedCheckBox";
+            this.extendedCheckBox.Size = new System.Drawing.Size(148, 20);
+            this.extendedCheckBox.TabIndex = 2;
+            this.extendedCheckBox.Text = "Extended mode (-E)";
+            this.extendedCheckBox.UseVisualStyleBackColor = true;
+            this.extendedCheckBox.Click += new System.EventHandler(this.ExtendedCheckBox_Click);
             // 
-            // OverrideTextBox
+            // overrideTextBox
             // 
-            this.OverrideTextBox.Enabled = false;
-            this.OverrideTextBox.Location = new System.Drawing.Point(4, 32);
-            this.OverrideTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.OverrideTextBox.Name = "OverrideTextBox";
-            this.OverrideTextBox.Size = new System.Drawing.Size(325, 22);
-            this.OverrideTextBox.TabIndex = 1;
-            this.OverrideTextBox.Text = "IBM-3279-4-E";
-            this.OverrideTextBox.Validated += new System.EventHandler(this.OverrideTextBox_Validated);
+            this.overrideTextBox.Enabled = false;
+            this.overrideTextBox.Location = new System.Drawing.Point(4, 32);
+            this.overrideTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.overrideTextBox.Name = "overrideTextBox";
+            this.overrideTextBox.Size = new System.Drawing.Size(325, 22);
+            this.overrideTextBox.TabIndex = 1;
+            this.overrideTextBox.Text = "IBM-3279-4-E";
+            this.overrideTextBox.Validated += new System.EventHandler(this.OverrideTextBox_Validated);
             // 
-            // OverrideCheckBox
+            // overrideCheckBox
             // 
-            this.OverrideCheckBox.AutoSize = true;
-            this.OverrideCheckBox.Location = new System.Drawing.Point(4, 4);
-            this.OverrideCheckBox.Margin = new System.Windows.Forms.Padding(4);
-            this.OverrideCheckBox.Name = "OverrideCheckBox";
-            this.OverrideCheckBox.Size = new System.Drawing.Size(81, 20);
-            this.OverrideCheckBox.TabIndex = 0;
-            this.OverrideCheckBox.Text = "Override";
-            this.OverrideCheckBox.UseVisualStyleBackColor = true;
-            this.OverrideCheckBox.Click += new System.EventHandler(this.OverrideCheckBox_Click);
+            this.overrideCheckBox.AutoSize = true;
+            this.overrideCheckBox.Location = new System.Drawing.Point(4, 4);
+            this.overrideCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.overrideCheckBox.Name = "overrideCheckBox";
+            this.overrideCheckBox.Size = new System.Drawing.Size(81, 20);
+            this.overrideCheckBox.TabIndex = 0;
+            this.overrideCheckBox.Text = "Override";
+            this.overrideCheckBox.UseVisualStyleBackColor = true;
+            this.overrideCheckBox.Click += new System.EventHandler(this.OverrideCheckBox_Click);
             // 
-            // ModelGroupBox
+            // modelGroupBox
             // 
-            this.ModelGroupBox.Controls.Add(this.OversizeLayoutPanel);
-            this.ModelGroupBox.Location = new System.Drawing.Point(24, 207);
-            this.ModelGroupBox.Margin = new System.Windows.Forms.Padding(4);
-            this.ModelGroupBox.Name = "ModelGroupBox";
-            this.ModelGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.ModelGroupBox.Size = new System.Drawing.Size(439, 185);
-            this.ModelGroupBox.TabIndex = 2;
-            this.ModelGroupBox.TabStop = false;
-            this.ModelGroupBox.Text = "Screen size";
+            this.modelGroupBox.Controls.Add(this.oversizeLayoutPanel);
+            this.modelGroupBox.Location = new System.Drawing.Point(24, 207);
+            this.modelGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.modelGroupBox.Name = "modelGroupBox";
+            this.modelGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.modelGroupBox.Size = new System.Drawing.Size(439, 185);
+            this.modelGroupBox.TabIndex = 2;
+            this.modelGroupBox.TabStop = false;
+            this.modelGroupBox.Text = "Screen size";
             // 
-            // OversizeLayoutPanel
+            // oversizeLayoutPanel
             // 
-            this.OversizeLayoutPanel.AutoSize = true;
-            this.OversizeLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.OversizeLayoutPanel.ColumnCount = 1;
-            this.OversizeLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.OversizeLayoutPanel.Controls.Add(this.OversizeCheckBox, 0, 1);
-            this.OversizeLayoutPanel.Controls.Add(this.modelComboBox, 0, 0);
-            this.OversizeLayoutPanel.Controls.Add(this.OversizeRowsColsLayoutPanel, 0, 2);
-            this.OversizeLayoutPanel.Location = new System.Drawing.Point(13, 23);
-            this.OversizeLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.OversizeLayoutPanel.Name = "OversizeLayoutPanel";
-            this.OversizeLayoutPanel.RowCount = 3;
-            this.OversizeLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.OversizeLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.OversizeLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.OversizeLayoutPanel.Size = new System.Drawing.Size(333, 128);
-            this.OversizeLayoutPanel.TabIndex = 1;
+            this.oversizeLayoutPanel.AutoSize = true;
+            this.oversizeLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.oversizeLayoutPanel.ColumnCount = 1;
+            this.oversizeLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.oversizeLayoutPanel.Controls.Add(this.oversizeCheckBox, 0, 1);
+            this.oversizeLayoutPanel.Controls.Add(this.modelComboBox, 0, 0);
+            this.oversizeLayoutPanel.Controls.Add(this.oversizeRowsColsLayoutPanel, 0, 2);
+            this.oversizeLayoutPanel.Location = new System.Drawing.Point(13, 23);
+            this.oversizeLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.oversizeLayoutPanel.Name = "oversizeLayoutPanel";
+            this.oversizeLayoutPanel.RowCount = 3;
+            this.oversizeLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.oversizeLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.oversizeLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.oversizeLayoutPanel.Size = new System.Drawing.Size(333, 128);
+            this.oversizeLayoutPanel.TabIndex = 1;
             // 
-            // OversizeCheckBox
+            // oversizeCheckBox
             // 
-            this.OversizeCheckBox.AutoSize = true;
-            this.OversizeCheckBox.Location = new System.Drawing.Point(4, 36);
-            this.OversizeCheckBox.Margin = new System.Windows.Forms.Padding(4);
-            this.OversizeCheckBox.Name = "OversizeCheckBox";
-            this.OversizeCheckBox.Size = new System.Drawing.Size(82, 20);
-            this.OversizeCheckBox.TabIndex = 1;
-            this.OversizeCheckBox.Text = "Oversize";
-            this.OversizeCheckBox.UseVisualStyleBackColor = true;
-            this.OversizeCheckBox.Click += new System.EventHandler(this.OversizeCheckBox_Click);
+            this.oversizeCheckBox.AutoSize = true;
+            this.oversizeCheckBox.Location = new System.Drawing.Point(4, 36);
+            this.oversizeCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.oversizeCheckBox.Name = "oversizeCheckBox";
+            this.oversizeCheckBox.Size = new System.Drawing.Size(82, 20);
+            this.oversizeCheckBox.TabIndex = 1;
+            this.oversizeCheckBox.Text = "Oversize";
+            this.oversizeCheckBox.UseVisualStyleBackColor = true;
+            this.oversizeCheckBox.Click += new System.EventHandler(this.OversizeCheckBox_Click);
             // 
             // modelComboBox
             // 
@@ -888,161 +897,161 @@
             this.modelComboBox.Size = new System.Drawing.Size(325, 24);
             this.modelComboBox.TabIndex = 0;
             // 
-            // OversizeRowsColsLayoutPanel
+            // oversizeRowsColsLayoutPanel
             // 
-            this.OversizeRowsColsLayoutPanel.AutoSize = true;
-            this.OversizeRowsColsLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.OversizeRowsColsLayoutPanel.ColumnCount = 2;
-            this.OversizeRowsColsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.OversizeRowsColsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.OversizeRowsColsLayoutPanel.Controls.Add(this.RowsLabel, 0, 0);
-            this.OversizeRowsColsLayoutPanel.Controls.Add(this.ColumnsLabel, 0, 1);
-            this.OversizeRowsColsLayoutPanel.Controls.Add(this.RowsUpDown, 1, 0);
-            this.OversizeRowsColsLayoutPanel.Controls.Add(this.ColumnsUpDown, 1, 1);
-            this.OversizeRowsColsLayoutPanel.Location = new System.Drawing.Point(4, 64);
-            this.OversizeRowsColsLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.OversizeRowsColsLayoutPanel.Name = "OversizeRowsColsLayoutPanel";
-            this.OversizeRowsColsLayoutPanel.RowCount = 2;
-            this.OversizeRowsColsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.OversizeRowsColsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.OversizeRowsColsLayoutPanel.Size = new System.Drawing.Size(235, 60);
-            this.OversizeRowsColsLayoutPanel.TabIndex = 2;
+            this.oversizeRowsColsLayoutPanel.AutoSize = true;
+            this.oversizeRowsColsLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.oversizeRowsColsLayoutPanel.ColumnCount = 2;
+            this.oversizeRowsColsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.oversizeRowsColsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.oversizeRowsColsLayoutPanel.Controls.Add(this.rowsLabel, 0, 0);
+            this.oversizeRowsColsLayoutPanel.Controls.Add(this.columnsLabel, 0, 1);
+            this.oversizeRowsColsLayoutPanel.Controls.Add(this.rowsUpDown, 1, 0);
+            this.oversizeRowsColsLayoutPanel.Controls.Add(this.columnsUpDown, 1, 1);
+            this.oversizeRowsColsLayoutPanel.Location = new System.Drawing.Point(4, 64);
+            this.oversizeRowsColsLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.oversizeRowsColsLayoutPanel.Name = "oversizeRowsColsLayoutPanel";
+            this.oversizeRowsColsLayoutPanel.RowCount = 2;
+            this.oversizeRowsColsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.oversizeRowsColsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.oversizeRowsColsLayoutPanel.Size = new System.Drawing.Size(235, 60);
+            this.oversizeRowsColsLayoutPanel.TabIndex = 2;
             // 
-            // RowsLabel
+            // rowsLabel
             // 
-            this.RowsLabel.AutoSize = true;
-            this.RowsLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.RowsLabel.Location = new System.Drawing.Point(4, 0);
-            this.RowsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.RowsLabel.Name = "RowsLabel";
-            this.RowsLabel.Size = new System.Drawing.Size(41, 30);
-            this.RowsLabel.TabIndex = 3;
-            this.RowsLabel.Text = "Rows";
-            this.RowsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rowsLabel.AutoSize = true;
+            this.rowsLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rowsLabel.Location = new System.Drawing.Point(4, 0);
+            this.rowsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.rowsLabel.Name = "rowsLabel";
+            this.rowsLabel.Size = new System.Drawing.Size(41, 30);
+            this.rowsLabel.TabIndex = 3;
+            this.rowsLabel.Text = "Rows";
+            this.rowsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ColumnsLabel
+            // columnsLabel
             // 
-            this.ColumnsLabel.AutoSize = true;
-            this.ColumnsLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ColumnsLabel.Location = new System.Drawing.Point(4, 30);
-            this.ColumnsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ColumnsLabel.Name = "ColumnsLabel";
-            this.ColumnsLabel.Size = new System.Drawing.Size(59, 30);
-            this.ColumnsLabel.TabIndex = 4;
-            this.ColumnsLabel.Text = "Columns";
-            this.ColumnsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.columnsLabel.AutoSize = true;
+            this.columnsLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.columnsLabel.Location = new System.Drawing.Point(4, 30);
+            this.columnsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.columnsLabel.Name = "columnsLabel";
+            this.columnsLabel.Size = new System.Drawing.Size(59, 30);
+            this.columnsLabel.TabIndex = 4;
+            this.columnsLabel.Text = "Columns";
+            this.columnsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // RowsUpDown
+            // rowsUpDown
             // 
-            this.RowsUpDown.Enabled = false;
-            this.RowsUpDown.Location = new System.Drawing.Point(71, 4);
-            this.RowsUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.RowsUpDown.Maximum = new decimal(new int[] {
+            this.rowsUpDown.Enabled = false;
+            this.rowsUpDown.Location = new System.Drawing.Point(71, 4);
+            this.rowsUpDown.Margin = new System.Windows.Forms.Padding(4);
+            this.rowsUpDown.Maximum = new decimal(new int[] {
             256,
             0,
             0,
             0});
-            this.RowsUpDown.Minimum = new decimal(new int[] {
+            this.rowsUpDown.Minimum = new decimal(new int[] {
             24,
             0,
             0,
             0});
-            this.RowsUpDown.Name = "RowsUpDown";
-            this.RowsUpDown.Size = new System.Drawing.Size(160, 22);
-            this.RowsUpDown.TabIndex = 0;
-            this.RowsUpDown.Value = new decimal(new int[] {
+            this.rowsUpDown.Name = "rowsUpDown";
+            this.rowsUpDown.Size = new System.Drawing.Size(160, 22);
+            this.rowsUpDown.TabIndex = 0;
+            this.rowsUpDown.Value = new decimal(new int[] {
             43,
             0,
             0,
             0});
-            this.RowsUpDown.ValueChanged += new System.EventHandler(this.RowsUpDown_ValueChanged);
+            this.rowsUpDown.ValueChanged += new System.EventHandler(this.RowsUpDown_ValueChanged);
             // 
-            // ColumnsUpDown
+            // columnsUpDown
             // 
-            this.ColumnsUpDown.Enabled = false;
-            this.ColumnsUpDown.Location = new System.Drawing.Point(71, 34);
-            this.ColumnsUpDown.Margin = new System.Windows.Forms.Padding(4);
-            this.ColumnsUpDown.Maximum = new decimal(new int[] {
+            this.columnsUpDown.Enabled = false;
+            this.columnsUpDown.Location = new System.Drawing.Point(71, 34);
+            this.columnsUpDown.Margin = new System.Windows.Forms.Padding(4);
+            this.columnsUpDown.Maximum = new decimal(new int[] {
             256,
             0,
             0,
             0});
-            this.ColumnsUpDown.Minimum = new decimal(new int[] {
+            this.columnsUpDown.Minimum = new decimal(new int[] {
             80,
             0,
             0,
             0});
-            this.ColumnsUpDown.Name = "ColumnsUpDown";
-            this.ColumnsUpDown.Size = new System.Drawing.Size(160, 22);
-            this.ColumnsUpDown.TabIndex = 1;
-            this.ColumnsUpDown.Value = new decimal(new int[] {
+            this.columnsUpDown.Name = "columnsUpDown";
+            this.columnsUpDown.Size = new System.Drawing.Size(160, 22);
+            this.columnsUpDown.TabIndex = 1;
+            this.columnsUpDown.Value = new decimal(new int[] {
             80,
             0,
             0,
             0});
-            this.ColumnsUpDown.ValueChanged += new System.EventHandler(this.ColumnsUpDown_ValueChanged);
+            this.columnsUpDown.ValueChanged += new System.EventHandler(this.ColumnsUpDown_ValueChanged);
             // 
-            // CodePageGroupBox
+            // codePageGroupBox
             // 
-            this.CodePageGroupBox.Controls.Add(this.CodePageListBox);
-            this.CodePageGroupBox.Location = new System.Drawing.Point(484, 278);
-            this.CodePageGroupBox.Margin = new System.Windows.Forms.Padding(4);
-            this.CodePageGroupBox.Name = "CodePageGroupBox";
-            this.CodePageGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.CodePageGroupBox.Size = new System.Drawing.Size(392, 139);
-            this.CodePageGroupBox.TabIndex = 7;
-            this.CodePageGroupBox.TabStop = false;
-            this.CodePageGroupBox.Text = "Host code page";
+            this.codePageGroupBox.Controls.Add(this.codePageListBox);
+            this.codePageGroupBox.Location = new System.Drawing.Point(484, 278);
+            this.codePageGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.codePageGroupBox.Name = "codePageGroupBox";
+            this.codePageGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.codePageGroupBox.Size = new System.Drawing.Size(392, 139);
+            this.codePageGroupBox.TabIndex = 7;
+            this.codePageGroupBox.TabStop = false;
+            this.codePageGroupBox.Text = "Host code page";
             // 
-            // CodePageListBox
+            // codePageListBox
             // 
-            this.CodePageListBox.FormattingEnabled = true;
-            this.CodePageListBox.ItemHeight = 16;
-            this.CodePageListBox.Location = new System.Drawing.Point(8, 23);
-            this.CodePageListBox.Margin = new System.Windows.Forms.Padding(4);
-            this.CodePageListBox.Name = "CodePageListBox";
-            this.CodePageListBox.Size = new System.Drawing.Size(351, 100);
-            this.CodePageListBox.TabIndex = 1;
-            this.CodePageListBox.SelectedIndexChanged += new System.EventHandler(this.CodePageListBox_SelectedIndexChanged);
+            this.codePageListBox.FormattingEnabled = true;
+            this.codePageListBox.ItemHeight = 16;
+            this.codePageListBox.Location = new System.Drawing.Point(8, 23);
+            this.codePageListBox.Margin = new System.Windows.Forms.Padding(4);
+            this.codePageListBox.Name = "codePageListBox";
+            this.codePageListBox.Size = new System.Drawing.Size(351, 100);
+            this.codePageListBox.TabIndex = 1;
+            this.codePageListBox.SelectedIndexChanged += new System.EventHandler(this.CodePageListBox_SelectedIndexChanged);
             // 
-            // DisplayGroupBox
+            // displayGroupBox
             // 
-            this.DisplayGroupBox.Controls.Add(this.ColorButton);
-            this.DisplayGroupBox.Controls.Add(this.MonoButton);
-            this.DisplayGroupBox.Location = new System.Drawing.Point(25, 20);
-            this.DisplayGroupBox.Margin = new System.Windows.Forms.Padding(4);
-            this.DisplayGroupBox.Name = "DisplayGroupBox";
-            this.DisplayGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.DisplayGroupBox.Size = new System.Drawing.Size(437, 80);
-            this.DisplayGroupBox.TabIndex = 0;
-            this.DisplayGroupBox.TabStop = false;
-            this.DisplayGroupBox.Text = "Display";
+            this.displayGroupBox.Controls.Add(this.colorButton);
+            this.displayGroupBox.Controls.Add(this.monoButton);
+            this.displayGroupBox.Location = new System.Drawing.Point(25, 20);
+            this.displayGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.displayGroupBox.Name = "displayGroupBox";
+            this.displayGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.displayGroupBox.Size = new System.Drawing.Size(437, 80);
+            this.displayGroupBox.TabIndex = 0;
+            this.displayGroupBox.TabStop = false;
+            this.displayGroupBox.Text = "Display";
             // 
-            // ColorButton
+            // colorButton
             // 
-            this.ColorButton.AutoSize = true;
-            this.ColorButton.Checked = true;
-            this.ColorButton.Location = new System.Drawing.Point(17, 53);
-            this.ColorButton.Margin = new System.Windows.Forms.Padding(4);
-            this.ColorButton.Name = "ColorButton";
-            this.ColorButton.Size = new System.Drawing.Size(99, 20);
-            this.ColorButton.TabIndex = 1;
-            this.ColorButton.TabStop = true;
-            this.ColorButton.Tag = "3279";
-            this.ColorButton.Text = "3279 (Color)";
-            this.ColorButton.UseVisualStyleBackColor = true;
+            this.colorButton.AutoSize = true;
+            this.colorButton.Checked = true;
+            this.colorButton.Location = new System.Drawing.Point(17, 53);
+            this.colorButton.Margin = new System.Windows.Forms.Padding(4);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(99, 20);
+            this.colorButton.TabIndex = 1;
+            this.colorButton.TabStop = true;
+            this.colorButton.Tag = "3279";
+            this.colorButton.Text = "3279 (Color)";
+            this.colorButton.UseVisualStyleBackColor = true;
             // 
-            // MonoButton
+            // monoButton
             // 
-            this.MonoButton.AutoSize = true;
-            this.MonoButton.Location = new System.Drawing.Point(17, 23);
-            this.MonoButton.Margin = new System.Windows.Forms.Padding(4);
-            this.MonoButton.Name = "MonoButton";
-            this.MonoButton.Size = new System.Drawing.Size(146, 20);
-            this.MonoButton.TabIndex = 0;
-            this.MonoButton.Tag = "3278";
-            this.MonoButton.Text = "3278 (Monochrome)";
-            this.MonoButton.UseVisualStyleBackColor = true;
+            this.monoButton.AutoSize = true;
+            this.monoButton.Location = new System.Drawing.Point(17, 23);
+            this.monoButton.Margin = new System.Windows.Forms.Padding(4);
+            this.monoButton.Name = "monoButton";
+            this.monoButton.Size = new System.Drawing.Size(146, 20);
+            this.monoButton.TabIndex = 0;
+            this.monoButton.Tag = "3278";
+            this.monoButton.Text = "3278 (Monochrome)";
+            this.monoButton.UseVisualStyleBackColor = true;
             // 
             // optionsSampleGroupBox
             // 
@@ -1112,21 +1121,21 @@
             this.optionsPreviewScreenPictureBox.TabStop = false;
             this.optionsPreviewScreenPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ScreenPictureBox_Paint);
             // 
-            // MiscGroupBox
+            // miscGroupBox
             // 
-            this.MiscGroupBox.Controls.Add(this.miscFlowLayoutPanel);
-            this.MiscGroupBox.Location = new System.Drawing.Point(25, 539);
-            this.MiscGroupBox.Margin = new System.Windows.Forms.Padding(4);
-            this.MiscGroupBox.Name = "MiscGroupBox";
-            this.MiscGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.MiscGroupBox.Size = new System.Drawing.Size(439, 174);
-            this.MiscGroupBox.TabIndex = 4;
-            this.MiscGroupBox.TabStop = false;
-            this.MiscGroupBox.Text = "Miscellaneous";
+            this.miscGroupBox.Controls.Add(this.miscFlowLayoutPanel);
+            this.miscGroupBox.Location = new System.Drawing.Point(25, 539);
+            this.miscGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.miscGroupBox.Name = "miscGroupBox";
+            this.miscGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.miscGroupBox.Size = new System.Drawing.Size(439, 174);
+            this.miscGroupBox.TabIndex = 4;
+            this.miscGroupBox.TabStop = false;
+            this.miscGroupBox.Text = "Miscellaneous";
             // 
             // miscFlowLayoutPanel
             // 
-            this.miscFlowLayoutPanel.Controls.Add(this.MonoCaseCheckBox);
+            this.miscFlowLayoutPanel.Controls.Add(this.monoCaseCheckBox);
             this.miscFlowLayoutPanel.Controls.Add(this.typeaheadCheckBox);
             this.miscFlowLayoutPanel.Controls.Add(this.nopCheckBox);
             this.miscFlowLayoutPanel.Controls.Add(this.showTimingCheckBox);
@@ -1143,19 +1152,19 @@
             this.miscFlowLayoutPanel.Size = new System.Drawing.Size(419, 146);
             this.miscFlowLayoutPanel.TabIndex = 10;
             // 
-            // MonoCaseCheckBox
+            // monoCaseCheckBox
             // 
-            this.MonoCaseCheckBox.AutoSize = true;
-            this.MonoCaseCheckBox.Location = new System.Drawing.Point(4, 4);
-            this.MonoCaseCheckBox.Margin = new System.Windows.Forms.Padding(4);
-            this.MonoCaseCheckBox.Name = "MonoCaseCheckBox";
-            this.MonoCaseCheckBox.Size = new System.Drawing.Size(93, 20);
-            this.MonoCaseCheckBox.TabIndex = 0;
-            this.MonoCaseCheckBox.Tag = "monoCase";
-            this.MonoCaseCheckBox.Text = "Monocase";
-            this.toolTip1.SetToolTip(this.MonoCaseCheckBox, "Display uppercase letters only");
-            this.MonoCaseCheckBox.UseVisualStyleBackColor = true;
-            this.MonoCaseCheckBox.CheckedChanged += new System.EventHandler(this.MiscCheckBox_Changed);
+            this.monoCaseCheckBox.AutoSize = true;
+            this.monoCaseCheckBox.Location = new System.Drawing.Point(4, 4);
+            this.monoCaseCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.monoCaseCheckBox.Name = "monoCaseCheckBox";
+            this.monoCaseCheckBox.Size = new System.Drawing.Size(93, 20);
+            this.monoCaseCheckBox.TabIndex = 0;
+            this.monoCaseCheckBox.Tag = "monoCase";
+            this.monoCaseCheckBox.Text = "Monocase";
+            this.toolTip1.SetToolTip(this.monoCaseCheckBox, "Display uppercase letters only");
+            this.monoCaseCheckBox.UseVisualStyleBackColor = true;
+            this.monoCaseCheckBox.CheckedChanged += new System.EventHandler(this.MiscCheckBox_Changed);
             // 
             // typeaheadCheckBox
             // 
@@ -1281,20 +1290,20 @@
             this.menuBarCheckBox.UseVisualStyleBackColor = true;
             this.menuBarCheckBox.CheckedChanged += new System.EventHandler(this.MiscLocalCheckBox_Changed);
             // 
-            // CursorGroupBox
+            // cursorGroupBox
             // 
-            this.CursorGroupBox.Controls.Add(this.crosshairCursorCheckBox);
-            this.CursorGroupBox.Controls.Add(this.UnderscoreCursorButton);
-            this.CursorGroupBox.Controls.Add(this.cursorBlinkCheckBox);
-            this.CursorGroupBox.Controls.Add(this.BlockCursorButton);
-            this.CursorGroupBox.Location = new System.Drawing.Point(484, 188);
-            this.CursorGroupBox.Margin = new System.Windows.Forms.Padding(4);
-            this.CursorGroupBox.Name = "CursorGroupBox";
-            this.CursorGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.CursorGroupBox.Size = new System.Drawing.Size(392, 82);
-            this.CursorGroupBox.TabIndex = 6;
-            this.CursorGroupBox.TabStop = false;
-            this.CursorGroupBox.Text = "Cursor";
+            this.cursorGroupBox.Controls.Add(this.crosshairCursorCheckBox);
+            this.cursorGroupBox.Controls.Add(this.underscoreCursorButton);
+            this.cursorGroupBox.Controls.Add(this.cursorBlinkCheckBox);
+            this.cursorGroupBox.Controls.Add(this.blockCursorButton);
+            this.cursorGroupBox.Location = new System.Drawing.Point(484, 188);
+            this.cursorGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.cursorGroupBox.Name = "cursorGroupBox";
+            this.cursorGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.cursorGroupBox.Size = new System.Drawing.Size(392, 82);
+            this.cursorGroupBox.TabIndex = 6;
+            this.cursorGroupBox.TabStop = false;
+            this.cursorGroupBox.Text = "Cursor";
             // 
             // crosshairCursorCheckBox
             // 
@@ -1309,17 +1318,17 @@
             this.crosshairCursorCheckBox.UseVisualStyleBackColor = true;
             this.crosshairCursorCheckBox.CheckedChanged += new System.EventHandler(this.MiscCheckBox_Changed);
             // 
-            // UnderscoreCursorButton
+            // underscoreCursorButton
             // 
-            this.UnderscoreCursorButton.AutoSize = true;
-            this.UnderscoreCursorButton.Location = new System.Drawing.Point(11, 52);
-            this.UnderscoreCursorButton.Margin = new System.Windows.Forms.Padding(4);
-            this.UnderscoreCursorButton.Name = "UnderscoreCursorButton";
-            this.UnderscoreCursorButton.Size = new System.Drawing.Size(99, 20);
-            this.UnderscoreCursorButton.TabIndex = 1;
-            this.UnderscoreCursorButton.Tag = "Underscore";
-            this.UnderscoreCursorButton.Text = "Underscore";
-            this.UnderscoreCursorButton.UseVisualStyleBackColor = true;
+            this.underscoreCursorButton.AutoSize = true;
+            this.underscoreCursorButton.Location = new System.Drawing.Point(11, 52);
+            this.underscoreCursorButton.Margin = new System.Windows.Forms.Padding(4);
+            this.underscoreCursorButton.Name = "underscoreCursorButton";
+            this.underscoreCursorButton.Size = new System.Drawing.Size(99, 20);
+            this.underscoreCursorButton.TabIndex = 1;
+            this.underscoreCursorButton.Tag = "Underscore";
+            this.underscoreCursorButton.Text = "Underscore";
+            this.underscoreCursorButton.UseVisualStyleBackColor = true;
             // 
             // cursorBlinkCheckBox
             // 
@@ -1334,34 +1343,34 @@
             this.cursorBlinkCheckBox.UseVisualStyleBackColor = true;
             this.cursorBlinkCheckBox.CheckedChanged += new System.EventHandler(this.MiscCheckBox_Changed);
             // 
-            // BlockCursorButton
+            // blockCursorButton
             // 
-            this.BlockCursorButton.AutoSize = true;
-            this.BlockCursorButton.Checked = true;
-            this.BlockCursorButton.Location = new System.Drawing.Point(11, 23);
-            this.BlockCursorButton.Margin = new System.Windows.Forms.Padding(4);
-            this.BlockCursorButton.Name = "BlockCursorButton";
-            this.BlockCursorButton.Size = new System.Drawing.Size(62, 20);
-            this.BlockCursorButton.TabIndex = 0;
-            this.BlockCursorButton.TabStop = true;
-            this.BlockCursorButton.Tag = "Block";
-            this.BlockCursorButton.Text = "Block";
-            this.BlockCursorButton.UseVisualStyleBackColor = true;
+            this.blockCursorButton.AutoSize = true;
+            this.blockCursorButton.Checked = true;
+            this.blockCursorButton.Location = new System.Drawing.Point(11, 23);
+            this.blockCursorButton.Margin = new System.Windows.Forms.Padding(4);
+            this.blockCursorButton.Name = "blockCursorButton";
+            this.blockCursorButton.Size = new System.Drawing.Size(62, 20);
+            this.blockCursorButton.TabIndex = 0;
+            this.blockCursorButton.TabStop = true;
+            this.blockCursorButton.Tag = "Block";
+            this.blockCursorButton.Text = "Block";
+            this.blockCursorButton.UseVisualStyleBackColor = true;
             // 
             // keyboardTab
             // 
             this.keyboardTab.Controls.Add(this.modifiersTableLayoutPanel);
-            this.keyboardTab.Controls.Add(this.ChordComboBox);
-            this.keyboardTab.Controls.Add(this.MatchTypeLabel);
+            this.keyboardTab.Controls.Add(this.chordComboBox);
+            this.keyboardTab.Controls.Add(this.matchTypeLabel);
             this.keyboardTab.Controls.Add(this.selectedKeyGroupBox);
             this.keyboardTab.Controls.Add(this.defineActionsLabel);
             this.keyboardTab.Controls.Add(this.modeAllLayoutPanel);
             this.keyboardTab.Controls.Add(this.keyboardActionsFlowLayoutPanel);
-            this.keyboardTab.Controls.Add(this.BehaviorLabel);
+            this.keyboardTab.Controls.Add(this.behaviorLabel);
             this.keyboardTab.Controls.Add(this.flowLayoutPanel1);
             this.keyboardTab.Controls.Add(this.matchFlowLayoutPanel);
             this.keyboardTab.Controls.Add(this.keyLabel);
-            this.keyboardTab.Controls.Add(this.ChordLabel);
+            this.keyboardTab.Controls.Add(this.chordLabel);
             this.keyboardTab.Controls.Add(this.matchTypeflowLayoutPanel);
             this.keyboardTab.Controls.Add(this.keyboardModifiersLabel);
             this.keyboardTab.Controls.Add(this.keyboardPictureButton);
@@ -1490,33 +1499,33 @@
             this.keyboardCtrlCheckBox.UseVisualStyleBackColor = true;
             this.keyboardCtrlCheckBox.Click += new System.EventHandler(this.KeyboardModifier_Click);
             // 
-            // ChordComboBox
+            // chordComboBox
             // 
-            this.ChordComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ChordComboBox.FormattingEnabled = true;
-            this.ChordComboBox.Items.AddRange(new object[] {
+            this.chordComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.chordComboBox.FormattingEnabled = true;
+            this.chordComboBox.Items.AddRange(new object[] {
             "None"});
-            this.ChordComboBox.Location = new System.Drawing.Point(40, 55);
-            this.ChordComboBox.Margin = new System.Windows.Forms.Padding(4);
-            this.ChordComboBox.Name = "ChordComboBox";
-            this.ChordComboBox.Size = new System.Drawing.Size(299, 24);
-            this.ChordComboBox.TabIndex = 0;
-            this.ChordComboBox.SelectedIndexChanged += new System.EventHandler(this.ChordComboBox_IndexChanged);
+            this.chordComboBox.Location = new System.Drawing.Point(40, 55);
+            this.chordComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.chordComboBox.Name = "chordComboBox";
+            this.chordComboBox.Size = new System.Drawing.Size(299, 24);
+            this.chordComboBox.TabIndex = 0;
+            this.chordComboBox.SelectedIndexChanged += new System.EventHandler(this.ChordComboBox_IndexChanged);
             // 
-            // MatchTypeLabel
+            // matchTypeLabel
             // 
-            this.MatchTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.MatchTypeLabel.AutoSize = true;
-            this.MatchTypeLabel.Location = new System.Drawing.Point(39, 358);
-            this.MatchTypeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.MatchTypeLabel.Name = "MatchTypeLabel";
-            this.MatchTypeLabel.Size = new System.Drawing.Size(126, 16);
-            this.MatchTypeLabel.TabIndex = 147;
-            this.MatchTypeLabel.Text = "4. Select match type";
+            this.matchTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.matchTypeLabel.AutoSize = true;
+            this.matchTypeLabel.Location = new System.Drawing.Point(39, 358);
+            this.matchTypeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.matchTypeLabel.Name = "matchTypeLabel";
+            this.matchTypeLabel.Size = new System.Drawing.Size(126, 16);
+            this.matchTypeLabel.TabIndex = 147;
+            this.matchTypeLabel.Text = "4. Select match type";
             // 
             // selectedKeyGroupBox
             // 
-            this.selectedKeyGroupBox.Controls.Add(this.SelectedKeyLabel);
+            this.selectedKeyGroupBox.Controls.Add(this.selectedKeyLabel);
             this.selectedKeyGroupBox.Controls.Add(this.keymapSelectedLabel);
             this.selectedKeyGroupBox.Controls.Add(this.keyCharValuePanel);
             this.selectedKeyGroupBox.Controls.Add(this.scanCodeSelectedLabel);
@@ -1529,16 +1538,16 @@
             this.selectedKeyGroupBox.TabStop = false;
             this.selectedKeyGroupBox.Text = "Selected key";
             // 
-            // SelectedKeyLabel
+            // selectedKeyLabel
             // 
-            this.SelectedKeyLabel.AutoSize = true;
-            this.SelectedKeyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectedKeyLabel.Location = new System.Drawing.Point(8, 28);
-            this.SelectedKeyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.SelectedKeyLabel.Name = "SelectedKeyLabel";
-            this.SelectedKeyLabel.Size = new System.Drawing.Size(130, 17);
-            this.SelectedKeyLabel.TabIndex = 140;
-            this.SelectedKeyLabel.Text = "`No key selected";
+            this.selectedKeyLabel.AutoSize = true;
+            this.selectedKeyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectedKeyLabel.Location = new System.Drawing.Point(8, 28);
+            this.selectedKeyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.selectedKeyLabel.Name = "selectedKeyLabel";
+            this.selectedKeyLabel.Size = new System.Drawing.Size(130, 17);
+            this.selectedKeyLabel.TabIndex = 140;
+            this.selectedKeyLabel.Text = "`No key selected";
             // 
             // keymapSelectedLabel
             // 
@@ -1718,56 +1727,56 @@
             this.keyboardActionsAddKeyButton.UseVisualStyleBackColor = true;
             this.keyboardActionsAddKeyButton.Click += new System.EventHandler(this.KeyboardAction_Click);
             // 
-            // BehaviorLabel
+            // behaviorLabel
             // 
-            this.BehaviorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.BehaviorLabel.AutoSize = true;
-            this.BehaviorLabel.Location = new System.Drawing.Point(39, 426);
-            this.BehaviorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.BehaviorLabel.Name = "BehaviorLabel";
-            this.BehaviorLabel.Size = new System.Drawing.Size(114, 16);
-            this.BehaviorLabel.TabIndex = 144;
-            this.BehaviorLabel.Text = "5. Select behavior";
+            this.behaviorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.behaviorLabel.AutoSize = true;
+            this.behaviorLabel.Location = new System.Drawing.Point(39, 426);
+            this.behaviorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.behaviorLabel.Name = "behaviorLabel";
+            this.behaviorLabel.Size = new System.Drawing.Size(114, 16);
+            this.behaviorLabel.TabIndex = 144;
+            this.behaviorLabel.Text = "5. Select behavior";
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.Controls.Add(this.ActionsRadioButton);
-            this.flowLayoutPanel1.Controls.Add(this.ChordRadioButton);
+            this.flowLayoutPanel1.Controls.Add(this.actionsRadioButton);
+            this.flowLayoutPanel1.Controls.Add(this.chordRadioButton);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(39, 449);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(229, 28);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
-            // ActionsRadioButton
+            // actionsRadioButton
             // 
-            this.ActionsRadioButton.AutoSize = true;
-            this.ActionsRadioButton.Location = new System.Drawing.Point(4, 4);
-            this.ActionsRadioButton.Margin = new System.Windows.Forms.Padding(4);
-            this.ActionsRadioButton.Name = "ActionsRadioButton";
-            this.ActionsRadioButton.Size = new System.Drawing.Size(121, 20);
-            this.ActionsRadioButton.TabIndex = 0;
-            this.ActionsRadioButton.Tag = "Actions";
-            this.ActionsRadioButton.Text = "Perform actions";
-            this.toolTip1.SetToolTip(this.ActionsRadioButton, "Perform a set of actions");
-            this.ActionsRadioButton.UseVisualStyleBackColor = true;
-            this.ActionsRadioButton.Click += new System.EventHandler(this.Chord_Click);
+            this.actionsRadioButton.AutoSize = true;
+            this.actionsRadioButton.Location = new System.Drawing.Point(4, 4);
+            this.actionsRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.actionsRadioButton.Name = "actionsRadioButton";
+            this.actionsRadioButton.Size = new System.Drawing.Size(121, 20);
+            this.actionsRadioButton.TabIndex = 0;
+            this.actionsRadioButton.Tag = "Actions";
+            this.actionsRadioButton.Text = "Perform actions";
+            this.toolTip1.SetToolTip(this.actionsRadioButton, "Perform a set of actions");
+            this.actionsRadioButton.UseVisualStyleBackColor = true;
+            this.actionsRadioButton.Click += new System.EventHandler(this.Chord_Click);
             // 
-            // ChordRadioButton
+            // chordRadioButton
             // 
-            this.ChordRadioButton.AutoSize = true;
-            this.ChordRadioButton.Location = new System.Drawing.Point(133, 4);
-            this.ChordRadioButton.Margin = new System.Windows.Forms.Padding(4);
-            this.ChordRadioButton.Name = "ChordRadioButton";
-            this.ChordRadioButton.Size = new System.Drawing.Size(92, 20);
-            this.ChordRadioButton.TabIndex = 1;
-            this.ChordRadioButton.Tag = "Chord";
-            this.ChordRadioButton.Text = "Start chord";
-            this.toolTip1.SetToolTip(this.ChordRadioButton, "Wait for a second key");
-            this.ChordRadioButton.UseVisualStyleBackColor = true;
-            this.ChordRadioButton.Click += new System.EventHandler(this.Chord_Click);
+            this.chordRadioButton.AutoSize = true;
+            this.chordRadioButton.Location = new System.Drawing.Point(133, 4);
+            this.chordRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.chordRadioButton.Name = "chordRadioButton";
+            this.chordRadioButton.Size = new System.Drawing.Size(92, 20);
+            this.chordRadioButton.TabIndex = 1;
+            this.chordRadioButton.Tag = "Chord";
+            this.chordRadioButton.Text = "Start chord";
+            this.toolTip1.SetToolTip(this.chordRadioButton, "Wait for a second key");
+            this.chordRadioButton.UseVisualStyleBackColor = true;
+            this.chordRadioButton.Click += new System.EventHandler(this.Chord_Click);
             // 
             // matchFlowLayoutPanel
             // 
@@ -1819,15 +1828,15 @@
             this.keyLabel.TabIndex = 142;
             this.keyLabel.Text = "2. Select a key";
             // 
-            // ChordLabel
+            // chordLabel
             // 
-            this.ChordLabel.AutoSize = true;
-            this.ChordLabel.Location = new System.Drawing.Point(39, 27);
-            this.ChordLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ChordLabel.Name = "ChordLabel";
-            this.ChordLabel.Size = new System.Drawing.Size(106, 16);
-            this.ChordLabel.TabIndex = 141;
-            this.ChordLabel.Text = "1. Select a chord";
+            this.chordLabel.AutoSize = true;
+            this.chordLabel.Location = new System.Drawing.Point(39, 27);
+            this.chordLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.chordLabel.Name = "chordLabel";
+            this.chordLabel.Size = new System.Drawing.Size(160, 16);
+            this.chordLabel.TabIndex = 141;
+            this.chordLabel.Text = "1. Select a chord-start key";
             // 
             // matchTypeflowLayoutPanel
             // 
@@ -1866,7 +1875,7 @@
             // 
             // keypadTab
             // 
-            this.keypadTab.Controls.Add(this.KeypadTypeFlowLayoutPanel);
+            this.keypadTab.Controls.Add(this.keypadTypeFlowLayoutPanel);
             this.keypadTab.Controls.Add(this.keypadModifiersLayoutPanel);
             this.keypadTab.Controls.Add(this.keypadPositionGroupBox);
             this.keypadTab.Controls.Add(this.keypadMappingGroupBox);
@@ -1882,16 +1891,16 @@
             this.keypadTab.Text = "Keypad";
             this.keypadTab.UseVisualStyleBackColor = true;
             // 
-            // KeypadTypeFlowLayoutPanel
+            // keypadTypeFlowLayoutPanel
             // 
-            this.KeypadTypeFlowLayoutPanel.Controls.Add(this.keypadTypeLabel);
-            this.KeypadTypeFlowLayoutPanel.Controls.Add(this.type3270RadioButton);
-            this.KeypadTypeFlowLayoutPanel.Controls.Add(this.typeAplRadioButton);
-            this.KeypadTypeFlowLayoutPanel.Location = new System.Drawing.Point(21, 10);
-            this.KeypadTypeFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.KeypadTypeFlowLayoutPanel.Name = "KeypadTypeFlowLayoutPanel";
-            this.KeypadTypeFlowLayoutPanel.Size = new System.Drawing.Size(407, 25);
-            this.KeypadTypeFlowLayoutPanel.TabIndex = 35;
+            this.keypadTypeFlowLayoutPanel.Controls.Add(this.keypadTypeLabel);
+            this.keypadTypeFlowLayoutPanel.Controls.Add(this.type3270RadioButton);
+            this.keypadTypeFlowLayoutPanel.Controls.Add(this.typeAplRadioButton);
+            this.keypadTypeFlowLayoutPanel.Location = new System.Drawing.Point(21, 10);
+            this.keypadTypeFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.keypadTypeFlowLayoutPanel.Name = "keypadTypeFlowLayoutPanel";
+            this.keypadTypeFlowLayoutPanel.Size = new System.Drawing.Size(407, 25);
+            this.keypadTypeFlowLayoutPanel.TabIndex = 35;
             // 
             // keypadTypeLabel
             // 
@@ -2611,7 +2620,7 @@
             // 
             this.hostColorsBox.AutoSize = true;
             this.hostColorsBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.hostColorsBox.Controls.Add(this.BackgroundList);
+            this.hostColorsBox.Controls.Add(this.backgroundList);
             this.hostColorsBox.Controls.Add(this.backgroundLabel);
             this.hostColorsBox.Controls.Add(this.whiteSwatch);
             this.hostColorsBox.Controls.Add(this.graySwatch);
@@ -2644,7 +2653,7 @@
             this.hostColorsBox.Controls.Add(this.blackSample);
             this.hostColorsBox.Controls.Add(this.redSample);
             this.hostColorsBox.Controls.Add(this.blueSample);
-            this.hostColorsBox.Controls.Add(this.NnutralBlackSample);
+            this.hostColorsBox.Controls.Add(this.neutralBlackSample);
             this.hostColorsBox.Controls.Add(this.whiteButton);
             this.hostColorsBox.Controls.Add(this.grayButton);
             this.hostColorsBox.Controls.Add(this.paleTurquoiseButton);
@@ -2670,16 +2679,16 @@
             this.hostColorsBox.TabStop = false;
             this.hostColorsBox.Text = "Host colors";
             // 
-            // BackgroundList
+            // backgroundList
             // 
-            this.BackgroundList.FormattingEnabled = true;
-            this.BackgroundList.ItemHeight = 16;
-            this.BackgroundList.Location = new System.Drawing.Point(12, 364);
-            this.BackgroundList.Margin = new System.Windows.Forms.Padding(4);
-            this.BackgroundList.Name = "BackgroundList";
-            this.BackgroundList.Size = new System.Drawing.Size(328, 52);
-            this.BackgroundList.TabIndex = 16;
-            this.BackgroundList.SelectedIndexChanged += new System.EventHandler(this.BackgroundList_SelectedIndexChanged);
+            this.backgroundList.FormattingEnabled = true;
+            this.backgroundList.ItemHeight = 16;
+            this.backgroundList.Location = new System.Drawing.Point(12, 364);
+            this.backgroundList.Margin = new System.Windows.Forms.Padding(4);
+            this.backgroundList.Name = "backgroundList";
+            this.backgroundList.Size = new System.Drawing.Size(328, 52);
+            this.backgroundList.TabIndex = 16;
+            this.backgroundList.SelectedIndexChanged += new System.EventHandler(this.BackgroundList_SelectedIndexChanged);
             // 
             // backgroundLabel
             // 
@@ -3139,21 +3148,21 @@
             this.toolTip1.SetToolTip(this.blueSample, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
             this.blueSample.Click += new System.EventHandler(this.Color_Click);
             // 
-            // NnutralBlackSample
+            // neutralBlackSample
             // 
-            this.NnutralBlackSample.BackColor = System.Drawing.Color.White;
-            this.NnutralBlackSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NnutralBlackSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NnutralBlackSample.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.NnutralBlackSample.Location = new System.Drawing.Point(621, 26);
-            this.NnutralBlackSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.NnutralBlackSample.Name = "NnutralBlackSample";
-            this.NnutralBlackSample.Size = new System.Drawing.Size(186, 48);
-            this.NnutralBlackSample.TabIndex = 17;
-            this.NnutralBlackSample.Text = "Sample Text";
-            this.NnutralBlackSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.NnutralBlackSample, "Neutral Black\r\nHost color X\'F0\'\r\nScreen background color");
-            this.NnutralBlackSample.Click += new System.EventHandler(this.Color_Click);
+            this.neutralBlackSample.BackColor = System.Drawing.Color.White;
+            this.neutralBlackSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.neutralBlackSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.neutralBlackSample.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.neutralBlackSample.Location = new System.Drawing.Point(621, 26);
+            this.neutralBlackSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.neutralBlackSample.Name = "neutralBlackSample";
+            this.neutralBlackSample.Size = new System.Drawing.Size(186, 48);
+            this.neutralBlackSample.TabIndex = 17;
+            this.neutralBlackSample.Text = "Sample Text";
+            this.neutralBlackSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.neutralBlackSample, "Neutral Black\r\nHost color X\'F0\'\r\nScreen background color");
+            this.neutralBlackSample.Click += new System.EventHandler(this.Color_Click);
             // 
             // whiteButton
             // 
@@ -3574,7 +3583,7 @@
             // 
             this.monoColorsBox.AutoSize = true;
             this.monoColorsBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.monoColorsBox.Controls.Add(this.MonoBackgroundList);
+            this.monoColorsBox.Controls.Add(this.monoBackgroundList);
             this.monoColorsBox.Controls.Add(this.monoBackgroundLabel);
             this.monoColorsBox.Controls.Add(this.monoIntensifiedSwatch);
             this.monoColorsBox.Controls.Add(this.monoNormalSwatch);
@@ -3593,16 +3602,16 @@
             this.monoColorsBox.TabStop = false;
             this.monoColorsBox.Text = "Host colors";
             // 
-            // MonoBackgroundList
+            // monoBackgroundList
             // 
-            this.MonoBackgroundList.FormattingEnabled = true;
-            this.MonoBackgroundList.ItemHeight = 16;
-            this.MonoBackgroundList.Location = new System.Drawing.Point(12, 127);
-            this.MonoBackgroundList.Margin = new System.Windows.Forms.Padding(4);
-            this.MonoBackgroundList.Name = "MonoBackgroundList";
-            this.MonoBackgroundList.Size = new System.Drawing.Size(381, 52);
-            this.MonoBackgroundList.TabIndex = 16;
-            this.MonoBackgroundList.SelectedIndexChanged += new System.EventHandler(this.MonoBackgroundList_SelectedIndexChanged);
+            this.monoBackgroundList.FormattingEnabled = true;
+            this.monoBackgroundList.ItemHeight = 16;
+            this.monoBackgroundList.Location = new System.Drawing.Point(12, 127);
+            this.monoBackgroundList.Margin = new System.Windows.Forms.Padding(4);
+            this.monoBackgroundList.Name = "monoBackgroundList";
+            this.monoBackgroundList.Size = new System.Drawing.Size(381, 52);
+            this.monoBackgroundList.TabIndex = 16;
+            this.monoBackgroundList.SelectedIndexChanged += new System.EventHandler(this.MonoBackgroundList_SelectedIndexChanged);
             // 
             // monoBackgroundLabel
             // 
@@ -3802,7 +3811,7 @@
             this.fontGroupBox.Controls.Add(this.fontPreviewGroupBox);
             this.fontGroupBox.Controls.Add(this.sizeIgnoredLabel);
             this.fontGroupBox.Controls.Add(this.fontLabel);
-            this.fontGroupBox.Controls.Add(this.FontChangeButton);
+            this.fontGroupBox.Controls.Add(this.fontChangeButton);
             this.fontGroupBox.Location = new System.Drawing.Point(29, 28);
             this.fontGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.fontGroupBox.Name = "fontGroupBox";
@@ -3902,19 +3911,19 @@
             this.fontLabel.TabIndex = 1;
             this.fontLabel.Text = "Consolas, 10pt";
             // 
-            // FontChangeButton
+            // fontChangeButton
             // 
-            this.FontChangeButton.AutoSize = true;
-            this.FontChangeButton.Location = new System.Drawing.Point(8, 52);
-            this.FontChangeButton.Margin = new System.Windows.Forms.Padding(4);
-            this.FontChangeButton.Name = "FontChangeButton";
-            this.FontChangeButton.Size = new System.Drawing.Size(100, 32);
-            this.FontChangeButton.TabIndex = 2;
-            this.FontChangeButton.TabStop = false;
-            this.FontChangeButton.Text = "Change";
-            this.toolTip1.SetToolTip(this.FontChangeButton, "Change the font");
-            this.FontChangeButton.UseVisualStyleBackColor = true;
-            this.FontChangeButton.Click += new System.EventHandler(this.FontChangeButton_Click);
+            this.fontChangeButton.AutoSize = true;
+            this.fontChangeButton.Location = new System.Drawing.Point(8, 52);
+            this.fontChangeButton.Margin = new System.Windows.Forms.Padding(4);
+            this.fontChangeButton.Name = "fontChangeButton";
+            this.fontChangeButton.Size = new System.Drawing.Size(100, 32);
+            this.fontChangeButton.TabIndex = 2;
+            this.fontChangeButton.TabStop = false;
+            this.fontChangeButton.Text = "Change";
+            this.toolTip1.SetToolTip(this.fontChangeButton, "Change the font");
+            this.fontChangeButton.UseVisualStyleBackColor = true;
+            this.fontChangeButton.Click += new System.EventHandler(this.FontChangeButton_Click);
             // 
             // soundsTab
             // 
@@ -3946,10 +3955,10 @@
             this.soundLayoutPanel.ColumnCount = 2;
             this.soundLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.soundLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.soundLayoutPanel.Controls.Add(this.PlayAudibleBell, 1, 1);
+            this.soundLayoutPanel.Controls.Add(this.playAudibleBell, 1, 1);
             this.soundLayoutPanel.Controls.Add(this.keyboardClickCheckBox, 0, 0);
             this.soundLayoutPanel.Controls.Add(this.audibleBellCheckBox, 0, 1);
-            this.soundLayoutPanel.Controls.Add(this.PlayKeyboardClick, 1, 0);
+            this.soundLayoutPanel.Controls.Add(this.playKeyboardClick, 1, 0);
             this.soundLayoutPanel.Location = new System.Drawing.Point(17, 28);
             this.soundLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.soundLayoutPanel.Name = "soundLayoutPanel";
@@ -3959,20 +3968,20 @@
             this.soundLayoutPanel.Size = new System.Drawing.Size(165, 72);
             this.soundLayoutPanel.TabIndex = 11;
             // 
-            // PlayAudibleBell
+            // playAudibleBell
             // 
-            this.PlayAudibleBell.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PlayAudibleBell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlayAudibleBell.Location = new System.Drawing.Point(132, 40);
-            this.PlayAudibleBell.Margin = new System.Windows.Forms.Padding(4);
-            this.PlayAudibleBell.Name = "PlayAudibleBell";
-            this.PlayAudibleBell.Size = new System.Drawing.Size(29, 28);
-            this.PlayAudibleBell.TabIndex = 9;
-            this.PlayAudibleBell.Tag = "`";
-            this.PlayAudibleBell.Text = "▶";
-            this.toolTip1.SetToolTip(this.PlayAudibleBell, "Play the sound");
-            this.PlayAudibleBell.UseVisualStyleBackColor = true;
-            this.PlayAudibleBell.Click += new System.EventHandler(this.ConsoleBellPlayButton_Click);
+            this.playAudibleBell.Dock = System.Windows.Forms.DockStyle.Left;
+            this.playAudibleBell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playAudibleBell.Location = new System.Drawing.Point(132, 40);
+            this.playAudibleBell.Margin = new System.Windows.Forms.Padding(4);
+            this.playAudibleBell.Name = "playAudibleBell";
+            this.playAudibleBell.Size = new System.Drawing.Size(29, 28);
+            this.playAudibleBell.TabIndex = 9;
+            this.playAudibleBell.Tag = "`";
+            this.playAudibleBell.Text = "▶";
+            this.toolTip1.SetToolTip(this.playAudibleBell, "Play the sound");
+            this.playAudibleBell.UseVisualStyleBackColor = true;
+            this.playAudibleBell.Click += new System.EventHandler(this.ConsoleBellPlayButton_Click);
             // 
             // keyboardClickCheckBox
             // 
@@ -4002,20 +4011,20 @@
             this.audibleBellCheckBox.UseVisualStyleBackColor = true;
             this.audibleBellCheckBox.Click += new System.EventHandler(this.AudibleBell_Click);
             // 
-            // PlayKeyboardClick
+            // playKeyboardClick
             // 
-            this.PlayKeyboardClick.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PlayKeyboardClick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlayKeyboardClick.Location = new System.Drawing.Point(132, 4);
-            this.PlayKeyboardClick.Margin = new System.Windows.Forms.Padding(4);
-            this.PlayKeyboardClick.Name = "PlayKeyboardClick";
-            this.PlayKeyboardClick.Size = new System.Drawing.Size(29, 28);
-            this.PlayKeyboardClick.TabIndex = 8;
-            this.PlayKeyboardClick.Tag = "`";
-            this.PlayKeyboardClick.Text = "▶";
-            this.toolTip1.SetToolTip(this.PlayKeyboardClick, "Play the sound");
-            this.PlayKeyboardClick.UseVisualStyleBackColor = true;
-            this.PlayKeyboardClick.Click += new System.EventHandler(this.KeyClickPlayButton_Click);
+            this.playKeyboardClick.Dock = System.Windows.Forms.DockStyle.Left;
+            this.playKeyboardClick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playKeyboardClick.Location = new System.Drawing.Point(132, 4);
+            this.playKeyboardClick.Margin = new System.Windows.Forms.Padding(4);
+            this.playKeyboardClick.Name = "playKeyboardClick";
+            this.playKeyboardClick.Size = new System.Drawing.Size(29, 28);
+            this.playKeyboardClick.TabIndex = 8;
+            this.playKeyboardClick.Tag = "`";
+            this.playKeyboardClick.Text = "▶";
+            this.toolTip1.SetToolTip(this.playKeyboardClick, "Play the sound");
+            this.playKeyboardClick.UseVisualStyleBackColor = true;
+            this.playKeyboardClick.Click += new System.EventHandler(this.KeyClickPlayButton_Click);
             // 
             // serversTab
             // 
@@ -4439,7 +4448,7 @@
             this.warningLabel.Location = new System.Drawing.Point(21, 20);
             this.warningLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.warningLabel.Name = "warningLabel";
-            this.warningLabel.Size = new System.Drawing.Size(538, 64);
+            this.warningLabel.Size = new System.Drawing.Size(542, 64);
             this.warningLabel.TabIndex = 1;
             this.warningLabel.Text = resources.GetString("warningLabel.Text");
             // 
@@ -4500,24 +4509,26 @@
             this.miscellaneousTableLayoutPanel.Size = new System.Drawing.Size(0, 0);
             this.miscellaneousTableLayoutPanel.TabIndex = 0;
             // 
-            // ButtonsLayoutPanel
+            // buttonsLayoutPanel
             // 
-            this.ButtonsLayoutPanel.Controls.Add(this.helpPictureBox);
-            this.ButtonsLayoutPanel.Controls.Add(this.redoButton);
-            this.ButtonsLayoutPanel.Controls.Add(this.undoButton);
-            this.ButtonsLayoutPanel.Controls.Add(this.setToDefaultsButton);
-            this.ButtonsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonsLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.ButtonsLayoutPanel.Location = new System.Drawing.Point(204, 784);
-            this.ButtonsLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.ButtonsLayoutPanel.Name = "ButtonsLayoutPanel";
-            this.ButtonsLayoutPanel.Size = new System.Drawing.Size(711, 37);
-            this.ButtonsLayoutPanel.TabIndex = 0;
+            this.buttonsLayoutPanel.AutoSize = true;
+            this.buttonsLayoutPanel.Controls.Add(this.helpPictureBox);
+            this.buttonsLayoutPanel.Controls.Add(this.redoButton);
+            this.buttonsLayoutPanel.Controls.Add(this.undoButton);
+            this.buttonsLayoutPanel.Controls.Add(this.setToDefaultsButton);
+            this.buttonsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonsLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.buttonsLayoutPanel.Location = new System.Drawing.Point(604, 785);
+            this.buttonsLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonsLayoutPanel.Name = "buttonsLayoutPanel";
+            this.buttonsLayoutPanel.Size = new System.Drawing.Size(311, 36);
+            this.buttonsLayoutPanel.TabIndex = 0;
             // 
             // helpPictureBox
             // 
+            this.helpPictureBox.ContextMenuStrip = this.helpContextMenuStrip;
             this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(680, 4);
+            this.helpPictureBox.Location = new System.Drawing.Point(280, 4);
             this.helpPictureBox.Margin = new System.Windows.Forms.Padding(8, 4, 0, 4);
             this.helpPictureBox.Name = "helpPictureBox";
             this.helpPictureBox.Size = new System.Drawing.Size(31, 28);
@@ -4527,10 +4538,35 @@
             this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
             this.helpPictureBox.Click += new System.EventHandler(this.Help_Click);
             // 
+            // helpContextMenuStrip
+            // 
+            this.helpContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.helpContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.displayHelpInBrowserToolStripMenuItem,
+            this.startTourToolStripMenuItem});
+            this.helpContextMenuStrip.Name = "helpContextMenuStrip";
+            this.helpContextMenuStrip.Size = new System.Drawing.Size(234, 52);
+            // 
+            // displayHelpInBrowserToolStripMenuItem
+            // 
+            this.displayHelpInBrowserToolStripMenuItem.Name = "displayHelpInBrowserToolStripMenuItem";
+            this.displayHelpInBrowserToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.displayHelpInBrowserToolStripMenuItem.Tag = "Help";
+            this.displayHelpInBrowserToolStripMenuItem.Text = "Display help in browser";
+            this.displayHelpInBrowserToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
+            // 
+            // startTourToolStripMenuItem
+            // 
+            this.startTourToolStripMenuItem.Name = "startTourToolStripMenuItem";
+            this.startTourToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.startTourToolStripMenuItem.Tag = "Tour";
+            this.startTourToolStripMenuItem.Text = "Start tour";
+            this.startTourToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
+            // 
             // redoButton
             // 
             this.redoButton.Enabled = false;
-            this.redoButton.Location = new System.Drawing.Point(625, 4);
+            this.redoButton.Location = new System.Drawing.Point(225, 4);
             this.redoButton.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
             this.redoButton.Name = "redoButton";
             this.redoButton.Size = new System.Drawing.Size(47, 28);
@@ -4544,7 +4580,7 @@
             // undoButton
             // 
             this.undoButton.Enabled = false;
-            this.undoButton.Location = new System.Drawing.Point(570, 4);
+            this.undoButton.Location = new System.Drawing.Point(170, 4);
             this.undoButton.Margin = new System.Windows.Forms.Padding(4);
             this.undoButton.Name = "undoButton";
             this.undoButton.Size = new System.Drawing.Size(47, 28);
@@ -4557,7 +4593,7 @@
             // 
             // setToDefaultsButton
             // 
-            this.setToDefaultsButton.Location = new System.Drawing.Point(439, 4);
+            this.setToDefaultsButton.Location = new System.Drawing.Point(39, 4);
             this.setToDefaultsButton.Margin = new System.Windows.Forms.Padding(4);
             this.setToDefaultsButton.Name = "setToDefaultsButton";
             this.setToDefaultsButton.Size = new System.Drawing.Size(123, 28);
@@ -4572,10 +4608,11 @@
             // 
             this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel.ColumnCount = 2;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 600F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel.Controls.Add(this.ButtonsLayoutPanel, 1, 1);
+            this.tableLayoutPanel.Controls.Add(this.buttonsLayoutPanel, 1, 1);
             this.tableLayoutPanel.Controls.Add(this.settingsTabs, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.readOnlyFlowLayoutPanel, 0, 1);
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
@@ -4585,17 +4622,53 @@
             this.tableLayoutPanel.Size = new System.Drawing.Size(917, 825);
             this.tableLayoutPanel.TabIndex = 2;
             // 
-            // HostColorDialog
+            // readOnlyFlowLayoutPanel
             // 
-            this.HostColorDialog.AnyColor = true;
+            this.readOnlyFlowLayoutPanel.AutoSize = true;
+            this.readOnlyFlowLayoutPanel.Controls.Add(this.readOnlyLabel);
+            this.readOnlyFlowLayoutPanel.Controls.Add(this.saveACopyButton);
+            this.readOnlyFlowLayoutPanel.Location = new System.Drawing.Point(3, 784);
+            this.readOnlyFlowLayoutPanel.Name = "readOnlyFlowLayoutPanel";
+            this.readOnlyFlowLayoutPanel.Size = new System.Drawing.Size(397, 36);
+            this.readOnlyFlowLayoutPanel.TabIndex = 1;
             // 
-            // ScreenFontDialog
+            // readOnlyLabel
             // 
-            this.ScreenFontDialog.AllowVerticalFonts = false;
-            this.ScreenFontDialog.FixedPitchOnly = true;
-            this.ScreenFontDialog.FontMustExist = true;
-            this.ScreenFontDialog.MinSize = 1;
-            this.ScreenFontDialog.ShowEffects = false;
+            this.readOnlyLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.readOnlyLabel.AutoSize = true;
+            this.readOnlyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.readOnlyLabel.Location = new System.Drawing.Point(4, 9);
+            this.readOnlyLabel.Margin = new System.Windows.Forms.Padding(4);
+            this.readOnlyLabel.Name = "readOnlyLabel";
+            this.readOnlyLabel.Size = new System.Drawing.Size(288, 17);
+            this.readOnlyLabel.TabIndex = 0;
+            this.readOnlyLabel.Text = "Read-only mode: Changes will not be saved.";
+            // 
+            // saveACopyButton
+            // 
+            this.saveACopyButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.saveACopyButton.AutoSize = true;
+            this.saveACopyButton.Location = new System.Drawing.Point(300, 4);
+            this.saveACopyButton.Margin = new System.Windows.Forms.Padding(4);
+            this.saveACopyButton.Name = "saveACopyButton";
+            this.saveACopyButton.Size = new System.Drawing.Size(93, 28);
+            this.saveACopyButton.TabIndex = 1;
+            this.saveACopyButton.Text = "Save a copy";
+            this.toolTip1.SetToolTip(this.saveACopyButton, "Save a copy of this profile and switch to it");
+            this.saveACopyButton.UseVisualStyleBackColor = true;
+            this.saveACopyButton.Click += new System.EventHandler(this.SaveACopyButtonClick);
+            // 
+            // hostColorDialog
+            // 
+            this.hostColorDialog.AnyColor = true;
+            // 
+            // screenFontDialog
+            // 
+            this.screenFontDialog.AllowVerticalFonts = false;
+            this.screenFontDialog.FixedPitchOnly = true;
+            this.screenFontDialog.FontMustExist = true;
+            this.screenFontDialog.MinSize = 1;
+            this.screenFontDialog.ShowEffects = false;
             // 
             // opacityTimer
             // 
@@ -4634,32 +4707,32 @@
             this.printerSessionGroupBox.PerformLayout();
             this.printerTableLayoutPanel.ResumeLayout(false);
             this.printerTableLayoutPanel.PerformLayout();
-            this.TerminalNameGroupBox.ResumeLayout(false);
-            this.TerminalNameGroupBox.PerformLayout();
-            this.TerminalNameLayoutPanel.ResumeLayout(false);
-            this.TerminalNameLayoutPanel.PerformLayout();
-            this.ModelGroupBox.ResumeLayout(false);
-            this.ModelGroupBox.PerformLayout();
-            this.OversizeLayoutPanel.ResumeLayout(false);
-            this.OversizeLayoutPanel.PerformLayout();
-            this.OversizeRowsColsLayoutPanel.ResumeLayout(false);
-            this.OversizeRowsColsLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RowsUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ColumnsUpDown)).EndInit();
-            this.CodePageGroupBox.ResumeLayout(false);
-            this.DisplayGroupBox.ResumeLayout(false);
-            this.DisplayGroupBox.PerformLayout();
+            this.terminalNameGroupBox.ResumeLayout(false);
+            this.terminalNameGroupBox.PerformLayout();
+            this.terminalNameLayoutPanel.ResumeLayout(false);
+            this.terminalNameLayoutPanel.PerformLayout();
+            this.modelGroupBox.ResumeLayout(false);
+            this.modelGroupBox.PerformLayout();
+            this.oversizeLayoutPanel.ResumeLayout(false);
+            this.oversizeLayoutPanel.PerformLayout();
+            this.oversizeRowsColsLayoutPanel.ResumeLayout(false);
+            this.oversizeRowsColsLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rowsUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.columnsUpDown)).EndInit();
+            this.codePageGroupBox.ResumeLayout(false);
+            this.displayGroupBox.ResumeLayout(false);
+            this.displayGroupBox.PerformLayout();
             this.optionsSampleGroupBox.ResumeLayout(false);
             this.optionsSampleGroupBox.PerformLayout();
             this.optionsPreviewLayoutPanel.ResumeLayout(false);
             this.optionsPreviewLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.optionsPreviewSeparatorPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.optionsPreviewScreenPictureBox)).EndInit();
-            this.MiscGroupBox.ResumeLayout(false);
+            this.miscGroupBox.ResumeLayout(false);
             this.miscFlowLayoutPanel.ResumeLayout(false);
             this.miscFlowLayoutPanel.PerformLayout();
-            this.CursorGroupBox.ResumeLayout(false);
-            this.CursorGroupBox.PerformLayout();
+            this.cursorGroupBox.ResumeLayout(false);
+            this.cursorGroupBox.PerformLayout();
             this.keyboardTab.ResumeLayout(false);
             this.keyboardTab.PerformLayout();
             this.modifiersTableLayoutPanel.ResumeLayout(false);
@@ -4678,8 +4751,8 @@
             this.matchFlowLayoutPanel.PerformLayout();
             this.keypadTab.ResumeLayout(false);
             this.keypadTab.PerformLayout();
-            this.KeypadTypeFlowLayoutPanel.ResumeLayout(false);
-            this.KeypadTypeFlowLayoutPanel.PerformLayout();
+            this.keypadTypeFlowLayoutPanel.ResumeLayout(false);
+            this.keypadTypeFlowLayoutPanel.PerformLayout();
             this.keypadModifiersLayoutPanel.ResumeLayout(false);
             this.keypadModifiersLayoutPanel.PerformLayout();
             this.keypadPositionGroupBox.ResumeLayout(false);
@@ -4776,9 +4849,13 @@
             this.miscellaneousTab.PerformLayout();
             this.miscellaneousGroupBox.ResumeLayout(false);
             this.miscellaneousGroupBox.PerformLayout();
-            this.ButtonsLayoutPanel.ResumeLayout(false);
+            this.buttonsLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.helpContextMenuStrip.ResumeLayout(false);
             this.tableLayoutPanel.ResumeLayout(false);
+            this.tableLayoutPanel.PerformLayout();
+            this.readOnlyFlowLayoutPanel.ResumeLayout(false);
+            this.readOnlyFlowLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4787,12 +4864,12 @@
 
         private System.Windows.Forms.TabControl settingsTabs;
         private System.Windows.Forms.TabPage optionsTab;
-        private System.Windows.Forms.FlowLayoutPanel ButtonsLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel buttonsLayoutPanel;
         private System.Windows.Forms.TabPage keyboardTab;
         private System.Windows.Forms.TabPage colors3279Tab;
         private System.Windows.Forms.TabPage soundsTab;
-        private Wx3270.NoSelectButton PlayAudibleBell;
-        private Wx3270.NoSelectButton PlayKeyboardClick;
+        private Wx3270.NoSelectButton playAudibleBell;
+        private Wx3270.NoSelectButton playKeyboardClick;
         private System.Windows.Forms.CheckBox audibleBellCheckBox;
         private System.Windows.Forms.CheckBox keyboardClickCheckBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
@@ -4814,7 +4891,7 @@
         private Wx3270.NoSelectButton paleTurquoiseButton;
         private Wx3270.NoSelectButton paleGreenButton;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ColorDialog HostColorDialog;
+        private System.Windows.Forms.ColorDialog hostColorDialog;
         private System.Windows.Forms.Label greenSample;
         private System.Windows.Forms.Label yellowSample;
         private System.Windows.Forms.Label paleTurquoiseSample;
@@ -4829,7 +4906,7 @@
         private System.Windows.Forms.Label blackSample;
         private System.Windows.Forms.Label redSample;
         private System.Windows.Forms.Label blueSample;
-        private System.Windows.Forms.Label NnutralBlackSample;
+        private System.Windows.Forms.Label neutralBlackSample;
         private System.Windows.Forms.Label neutralWhiteSample;
         private System.Windows.Forms.PictureBox whiteSwatch;
         private System.Windows.Forms.PictureBox graySwatch;
@@ -4848,29 +4925,29 @@
         private System.Windows.Forms.PictureBox neutralWhiteSwatch;
         private System.Windows.Forms.PictureBox neutralBlackSwatch;
         private System.Windows.Forms.Label backgroundLabel;
-        private System.Windows.Forms.ListBox BackgroundList;
+        private System.Windows.Forms.ListBox backgroundList;
         private System.Windows.Forms.GroupBox schemeBox;
         private System.Windows.Forms.RadioButton customButton;
         private System.Windows.Forms.RadioButton blackOnWhiteButton;
         private System.Windows.Forms.RadioButton whiteOnBlackButton;
         private System.Windows.Forms.TabPage fontTab;
-        private Wx3270.NoSelectButton FontChangeButton;
+        private Wx3270.NoSelectButton fontChangeButton;
         private System.Windows.Forms.Label fontLabel;
-        private System.Windows.Forms.FontDialog ScreenFontDialog;
-        private System.Windows.Forms.GroupBox CursorGroupBox;
-        private System.Windows.Forms.RadioButton UnderscoreCursorButton;
-        private System.Windows.Forms.RadioButton BlockCursorButton;
+        private System.Windows.Forms.FontDialog screenFontDialog;
+        private System.Windows.Forms.GroupBox cursorGroupBox;
+        private System.Windows.Forms.RadioButton underscoreCursorButton;
+        private System.Windows.Forms.RadioButton blockCursorButton;
         private System.Windows.Forms.CheckBox cursorBlinkCheckBox;
         private System.Windows.Forms.GroupBox fontGroupBox;
         private System.Windows.Forms.GroupBox soundsGroupBox;
         private System.Windows.Forms.GroupBox colorMiscGroupBox;
         private Wx3270.NoSelectButton selectedButton;
         private System.Windows.Forms.PictureBox selectionSwatch;
-        private System.Windows.Forms.GroupBox MiscGroupBox;
-        private System.Windows.Forms.CheckBox MonoCaseCheckBox;
+        private System.Windows.Forms.GroupBox miscGroupBox;
+        private System.Windows.Forms.CheckBox monoCaseCheckBox;
         private System.Windows.Forms.TabPage colors3278Tab;
         private System.Windows.Forms.GroupBox monoColorsBox;
-        private System.Windows.Forms.ListBox MonoBackgroundList;
+        private System.Windows.Forms.ListBox monoBackgroundList;
         private System.Windows.Forms.Label monoBackgroundLabel;
         private System.Windows.Forms.Label monoSelectBackgroundSwatch;
         private System.Windows.Forms.Label monoBackgroundSwatch;
@@ -4905,24 +4982,24 @@
         private System.Windows.Forms.PictureBox fontPreviewSeparatorPictureBox;
         private System.Windows.Forms.Label fontPreviewStatusLineLabel;
         private System.Windows.Forms.PictureBox fontPreviewScreenPictureBox;
-        private System.Windows.Forms.GroupBox DisplayGroupBox;
-        private System.Windows.Forms.RadioButton ColorButton;
-        private System.Windows.Forms.RadioButton MonoButton;
-        private System.Windows.Forms.GroupBox CodePageGroupBox;
-        private System.Windows.Forms.ListBox CodePageListBox;
-        private System.Windows.Forms.GroupBox TerminalNameGroupBox;
-        private System.Windows.Forms.TableLayoutPanel TerminalNameLayoutPanel;
-        private System.Windows.Forms.CheckBox ExtendedCheckBox;
-        private System.Windows.Forms.TextBox OverrideTextBox;
-        private System.Windows.Forms.CheckBox OverrideCheckBox;
-        private System.Windows.Forms.GroupBox ModelGroupBox;
-        private System.Windows.Forms.TableLayoutPanel OversizeLayoutPanel;
-        private System.Windows.Forms.CheckBox OversizeCheckBox;
-        private System.Windows.Forms.TableLayoutPanel OversizeRowsColsLayoutPanel;
-        private System.Windows.Forms.Label RowsLabel;
-        private System.Windows.Forms.Label ColumnsLabel;
-        private System.Windows.Forms.NumericUpDown RowsUpDown;
-        private System.Windows.Forms.NumericUpDown ColumnsUpDown;
+        private System.Windows.Forms.GroupBox displayGroupBox;
+        private System.Windows.Forms.RadioButton colorButton;
+        private System.Windows.Forms.RadioButton monoButton;
+        private System.Windows.Forms.GroupBox codePageGroupBox;
+        private System.Windows.Forms.ListBox codePageListBox;
+        private System.Windows.Forms.GroupBox terminalNameGroupBox;
+        private System.Windows.Forms.TableLayoutPanel terminalNameLayoutPanel;
+        private System.Windows.Forms.CheckBox extendedCheckBox;
+        private System.Windows.Forms.TextBox overrideTextBox;
+        private System.Windows.Forms.CheckBox overrideCheckBox;
+        private System.Windows.Forms.GroupBox modelGroupBox;
+        private System.Windows.Forms.TableLayoutPanel oversizeLayoutPanel;
+        private System.Windows.Forms.CheckBox oversizeCheckBox;
+        private System.Windows.Forms.TableLayoutPanel oversizeRowsColsLayoutPanel;
+        private System.Windows.Forms.Label rowsLabel;
+        private System.Windows.Forms.Label columnsLabel;
+        private System.Windows.Forms.NumericUpDown rowsUpDown;
+        private System.Windows.Forms.NumericUpDown columnsUpDown;
         private System.Windows.Forms.PictureBox crosshairSwatch;
         private Wx3270.NoSelectButton crosshairColorButton;
         private System.Windows.Forms.Label monoCrosshairSample;
@@ -5021,16 +5098,16 @@
         private System.Windows.Forms.CheckBox nvtCheckBox;
         private System.Windows.Forms.CheckBox only3270CheckBox;
         private System.Windows.Forms.Label keyLabel;
-        private System.Windows.Forms.Label ChordLabel;
+        private System.Windows.Forms.Label chordLabel;
         private System.Windows.Forms.GroupBox selectedKeyGroupBox;
         private System.Windows.Forms.Label defineActionsLabel;
-        private System.Windows.Forms.Label BehaviorLabel;
+        private System.Windows.Forms.Label behaviorLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.RadioButton ActionsRadioButton;
-        private System.Windows.Forms.RadioButton ChordRadioButton;
-        private System.Windows.Forms.Label MatchTypeLabel;
-        private System.Windows.Forms.ComboBox ChordComboBox;
-        private System.Windows.Forms.Label SelectedKeyLabel;
+        private System.Windows.Forms.RadioButton actionsRadioButton;
+        private System.Windows.Forms.RadioButton chordRadioButton;
+        private System.Windows.Forms.Label matchTypeLabel;
+        private System.Windows.Forms.ComboBox chordComboBox;
+        private System.Windows.Forms.Label selectedKeyLabel;
         private NoSelectButton setToDefaultsButton;
         private System.Windows.Forms.CheckBox alwaysInsertCheckBox;
         private System.Windows.Forms.CheckBox showTimingCheckBox;
@@ -5059,7 +5136,7 @@
         private System.Windows.Forms.TableLayoutPanel miscellaneousTableLayoutPanel;
         private System.Windows.Forms.Label warningLabel;
         private System.Windows.Forms.Label keypadTypeLabel;
-        private System.Windows.Forms.FlowLayoutPanel KeypadTypeFlowLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel keypadTypeFlowLayoutPanel;
         private System.Windows.Forms.RadioButton type3270RadioButton;
         private System.Windows.Forms.RadioButton typeAplRadioButton;
         private System.Windows.Forms.GroupBox descriptionGroupBox;
@@ -5082,5 +5159,11 @@
         private System.Windows.Forms.TextBox savePathTextBox;
         private System.Windows.Forms.FolderBrowserDialog printerSaveFolderBrowserDialog;
         private System.Windows.Forms.CheckBox menuBarCheckBox;
+        private System.Windows.Forms.FlowLayoutPanel readOnlyFlowLayoutPanel;
+        private System.Windows.Forms.Label readOnlyLabel;
+        private NoSelectButton saveACopyButton;
+        private System.Windows.Forms.ContextMenuStrip helpContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem displayHelpInBrowserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startTourToolStripMenuItem;
     }
 }

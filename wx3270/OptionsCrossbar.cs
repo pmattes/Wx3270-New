@@ -220,7 +220,7 @@ namespace Wx3270
 
             if (oldProfile == null || oldProfile.CursorType != newProfile.CursorType)
             {
-                newSettings.AddRange(new[] { B3270.Setting.CursorBlink, newProfile.CursorType == CursorType.Underscore ? B3270.Value.True : B3270.Value.False });
+                newSettings.AddRange(new[] { B3270.Setting.AltCursor, newProfile.CursorType == CursorType.Underscore ? B3270.Value.True : B3270.Value.False });
             }
 
             if (oldProfile == null || oldProfile.HostCodePage != newProfile.HostCodePage)

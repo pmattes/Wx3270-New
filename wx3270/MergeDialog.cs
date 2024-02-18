@@ -5,9 +5,9 @@
 namespace Wx3270
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Forms;
+    using I18nBase;
 
     /// <summary>
     /// What kind of configuration information to merge.
@@ -92,6 +92,11 @@ namespace Wx3270
         private readonly Form profileDialog;
 
         /// <summary>
+        /// True if the form has been activated.
+        /// </summary>
+        private bool everActivated;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MergeDialog"/> class.
         /// </summary>
         /// <param name="app">Application context.</param>
@@ -133,13 +138,69 @@ namespace Wx3270
             }
 
             // Localize.
-            I18n.Localize(this);
+            I18n.Localize(this, this.toolTip1);
         }
 
         /// <summary>
         /// Gets the imports.
         /// </summary>
         public ImportType Imports { get; private set; }
+
+        /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
+        public static void Localize()
+        {
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Start.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MergeDialog)), "Tour: Merge Window");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MergeDialog)),
+@"This window provides options for merging the contents of one profile into another.");
+
+            // Profile names.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MergeDialog), nameof(sourceProfileLabel)), "Source and destination profiles");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MergeDialog), nameof(sourceProfileLabel)),
+@"The source profile is the profile that settings will be read from.
+
+The destination profile is the profile that will be modified.");
+
+            // Category checkboxes.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MergeDialog), nameof(keyboardCheckBox)), "Category check boxes");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MergeDialog), nameof(keyboardCheckBox)),
+@"Use these check boxes to select the categories of settings to copy over.");
+
+            // Replace button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MergeDialog), nameof(keyboardReplaceRadioButton)), "Replace/Merge option");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MergeDialog), nameof(keyboardReplaceRadioButton)),
+@"For each selected category, select whether to replace the settings or (for most categories) merge them.
+
+The 'Replace' option means that all of the settings in the destination profile will be replaced by the settings in the source profile.
+
+The 'Merge' option means that settings which overlap existing settings will be overwritten, and settings that are not yet in the destination profile will be added, but other existing settings will be kept.");
+
+            // Merge button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MergeDialog), nameof(mergeButton)), "Merge button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MergeDialog), nameof(mergeButton)),
+@"Click to perform the merge operation.");
+
+            // Help button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MergeDialog), nameof(helpPictureBox)), "Help button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MergeDialog), nameof(helpPictureBox)),
+@"Click to display context-dependent help from the wx3270 Wiki in your browser, or to restart this tour.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
+        }
 
         /// <summary>
         /// Form localization.
@@ -268,7 +329,7 @@ namespace Wx3270
                 any |= childPanel.Controls.OfType<CheckBox>().Any(c => c.Checked);
             }
 
-            this.importButton.Enabled = any;
+            this.mergeButton.Enabled = any;
         }
 
         /// <summary>
@@ -298,6 +359,25 @@ namespace Wx3270
         private void MergeDialog_Activated(object sender, EventArgs e)
         {
             this.Location = MainScreen.CenteredOn(this.profileDialog, this);
+
+            if (!this.everActivated)
+            {
+                this.everActivated = true;
+                if (!Tour.IsComplete(this))
+                {
+                    this.RunTour();
+                }
+            }
+        }
+
+        /// <summary>
+        /// One of the help menu items was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void HelpMenuClick(object sender, EventArgs e)
+        {
+            Tour.HelpMenuClick(sender, e, "Merge", this.RunTour);
         }
 
         /// <summary>
@@ -307,7 +387,28 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void HelpClick(object sender, EventArgs e)
         {
-            Wx3270App.GetHelp("Merge");
+            var mouseEvent = (MouseEventArgs)e;
+            if (mouseEvent.Button == MouseButtons.Left)
+            {
+                this.helpContextMenuStrip.Show(this.helpPictureBox, mouseEvent.Location);
+            }
+        }
+
+        /// <summary>
+        /// Run the tour.
+        /// </summary>
+        private void RunTour()
+        {
+            var nodes = new[]
+            {
+                ((Control)this, (int?)null, Orientation.Centered),
+                (this.sourceProfileLabel, null, Orientation.UpperLeft),
+                (this.keyboardCheckBox, null, Orientation.UpperLeft),
+                (this.keyboardReplaceRadioButton, null, Orientation.UpperLeft),
+                (this.mergeButton, null, Orientation.LowerLeft),
+                (this.helpPictureBox, null, Orientation.LowerRight),
+            };
+            Tour.Navigate(this, nodes);
         }
 
         /// <summary>

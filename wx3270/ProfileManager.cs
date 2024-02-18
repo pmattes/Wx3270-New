@@ -84,9 +84,9 @@ namespace Wx3270
         private readonly Stack<ConfigAction> redoStack = new Stack<ConfigAction>();
 
         /// <summary>
-        /// Suppressed errors.
+        /// Suppressed errors and infos.
         /// </summary>
-        private readonly List<string> errors = new List<string>();
+        private readonly List<(string message, bool isError)> errorsAndInfos = new List<(string, bool)>();
 
         /// <summary>
         /// The set of Undo controls.
@@ -150,14 +150,14 @@ namespace Wx3270
             if (defaultProfilePath == null)
             {
                 // Use the default, and save it, in case they pick a different language later.
-                defaultProfilePath = SeedProfilePath;
+                defaultProfilePath = SafeGetFullPath(SeedProfilePath);
                 key.SetValue(DefaultProfileRegistryValue, defaultProfilePath);
             }
 
             key.Close();
 
             // Set the static values everything else depends on.
-            DefaultProfilePath = defaultProfilePath;
+            DefaultProfilePath = SafeGetFullPath(defaultProfilePath);
             DefaultProfileName = Path.GetFileNameWithoutExtension(defaultProfilePath);
             ProfileDirectory = Path.GetDirectoryName(defaultProfilePath);
 
@@ -278,7 +278,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(StringKey.ChangeDefaultProfile, "change default profile to '{0}':");
             I18n.LocalizeGlobal(StringKey.DefaultValuesName, "Default Values");
             I18n.LocalizeGlobal(StringKey.NoProfile, "No Profile");
-            I18n.LocalizeGlobal(StringKey.ReadOnly, "Read-Only");
+            I18n.LocalizeGlobal(StringKey.ReadOnly, "RO");
             I18n.LocalizeGlobal(StringKey.Disable, "disable {0}");
 
             I18n.LocalizeGlobal(Title.DefaultProfileChange, "Default Profile Change");
@@ -296,6 +296,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(Message.CannotChangeProfile, "Profile cannot be changed");
             I18n.LocalizeGlobal(Message.CannotDeserializeProfile, "Cannot deserialize profile");
             I18n.LocalizeGlobal(Message.ProfileVersionMismatch, "Profile version ({0}) is newer than wx3270 version ({1})" + Environment.NewLine + "Unknown settings will be ignored");
+            I18n.LocalizeGlobal(Message.CreatedProfile, "Created profile '{0}'");
         }
 
         /// <summary>
@@ -418,6 +419,85 @@ namespace Wx3270
             return string.Format(I18n.Get(StringKey.Disable), text);
         }
 
+        /// <summary>
+        /// Gets the normalized full path for a pathname, tolerating invalid paths.
+        /// </summary>
+        /// <param name="pathName">Path name.</param>
+        /// <returns>Normalized full path.</returns>
+        public static string SafeGetFullPath(string pathName)
+        {
+            string ret = pathName;
+            try
+            {
+                ret = Path.GetFullPath(pathName);
+            }
+            catch (Exception)
+            {
+                // GetFullPath didn't like it. Return the input as is.
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the directory name for a pathname, tolerating invalid paths.
+        /// </summary>
+        /// <param name="pathName">Path name.</param>
+        /// <returns>Normalized full path.</returns>
+        public static string SafeGetDirectoryName(string pathName)
+        {
+            string ret = pathName;
+            try
+            {
+                ret = Path.GetDirectoryName(pathName);
+            }
+            catch (Exception)
+            {
+                // GetDirectoryName didn't like it. Return the input as is.
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Normalizes a profile path.
+        /// </summary>
+        /// <param name="profilePath">Profile path.</param>
+        /// <param name="error">Error message, or null.</param>
+        /// <returns>Normalized path, null if invalid.</returns>
+        public static string NormalizedPath(string profilePath, out string error)
+        {
+            error = null;
+
+            if (string.IsNullOrEmpty(profilePath))
+            {
+                // Default to the path of the base profile.
+                profilePath = DefaultProfilePath;
+            }
+
+            if (!profilePath.EndsWith(Suffix, StringComparison.OrdinalIgnoreCase))
+            {
+                // Add the suffix.
+                profilePath += Suffix;
+            }
+
+            // Validate and expand.
+            try
+            {
+                if (!Path.IsPathRooted(profilePath))
+                {
+                    profilePath = Path.Combine(ProfileDirectory, profilePath);
+                }
+
+                return Path.GetFullPath(profilePath);
+            }
+            catch (Exception e)
+            {
+                error = e.Message;
+                return null;
+            }
+        }
+
         /// <inheritdoc />
         public void SetProfileList(IProfileTracker profileTracker)
         {
@@ -439,15 +519,62 @@ namespace Wx3270
         }
 
         /// <inheritdoc />
-        public bool Load(string profilePath, out string outProfilePath, bool readOnly = false, bool doErrorPopups = true)
+        public bool Load(string profilePath, out string outProfilePath, bool readOnly = false, bool doErrorPopups = true, bool propagate = true)
         {
-            return this.LoadInternal(profilePath, out outProfilePath, readOnly, doErrorPopups);
+            return this.LoadInternal(profilePath, out outProfilePath, readOnly, doErrorPopups, propagate, out _);
         }
 
         /// <inheritdoc />
         public bool Load(string profilePath, bool readOnly = false, bool doErrorPopups = true)
         {
-            return this.LoadInternal(profilePath, out _, readOnly, doErrorPopups);
+            return this.LoadInternal(profilePath, out _, readOnly, doErrorPopups, true, out _);
+        }
+
+        /// <inheritdoc />
+        public bool LoadCreate(string profileName, bool readOnly, out string profilePath)
+        {
+            // Sanitize it.
+            if (profileName != null)
+            {
+                string error = null;
+                try
+                {
+                    var fullPath = Path.GetFullPath(profileName);
+                }
+                catch (Exception e)
+                {
+                    error = e.Message;
+                }
+
+                if (error != null)
+                {
+                    this.ProfileError(error);
+                    profilePath = null;
+                    return false;
+                }
+            }
+
+            // Try loading it.
+            if (this.LoadInternal(profileName, out profilePath, readOnly: readOnly, doErrorPopups: false, propagate: false, out bool notFound))
+            {
+                return true;
+            }
+
+            if (!readOnly && profileName != null && notFound)
+            {
+                // No matching profile. Try creating it.
+                if (this.Save(FullProfilePath(profileName), this.CopyDefaultProfile()))
+                {
+                    this.ProfileInfo(string.Format(I18n.Get(Message.CreatedProfile), Path.GetFileNameWithoutExtension(profileName)));
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            // This second attempt will either succeed or pop up an error message.
+            return this.LoadInternal(profileName, out profilePath, readOnly: readOnly, doErrorPopups: true, propagate: false, out _);
         }
 
         /// <inheritdoc />
@@ -630,11 +757,23 @@ namespace Wx3270
         }
 
         /// <inheritdoc />
+        public Profile CopyDefaultProfile()
+        {
+            var profile = Read(DefaultProfilePath, out _, out _, out _, out _);
+            if (profile != null)
+            {
+                profile.Hosts = new List<HostEntry>();
+            }
+
+            return profile ?? Profile.DefaultProfile;
+        }
+
+        /// <inheritdoc />
         public void ProfileError(string message)
         {
             if (this.suppressErrors)
             {
-                this.errors.Add(message);
+                this.errorsAndInfos.Add((message, true));
             }
             else
             {
@@ -642,14 +781,41 @@ namespace Wx3270
             }
         }
 
+        /// <summary>
+        /// Displays a profile-related Info message.
+        /// </summary>
+        /// <param name="message">Message text.</param>
+        public void ProfileInfo(string message)
+        {
+            if (this.suppressErrors)
+            {
+                this.errorsAndInfos.Add((message, false));
+            }
+            else
+            {
+                ErrorBox.Show(message, I18n.Get(Title.ProfileOpen), MessageBoxIcon.Information);
+            }
+        }
+
         /// <inheritdoc />
         public void DumpErrors()
         {
             this.suppressErrors = false;
-            if (this.errors.Any())
+            if (this.errorsAndInfos.Any())
             {
-                ErrorBox.Show(string.Join(Environment.NewLine, this.errors), I18n.Get(Title.ProfileError));
-                this.errors.Clear();
+                foreach (var (message, isError) in this.errorsAndInfos)
+                {
+                    if (isError)
+                    {
+                        ErrorBox.Show(message, I18n.Get(Title.ProfileError));
+                    }
+                    else
+                    {
+                        ErrorBox.Show(message, I18n.Get(Title.ProfileOpen), MessageBoxIcon.Information);
+                    }
+                }
+
+                this.errorsAndInfos.Clear();
             }
         }
 
@@ -791,10 +957,7 @@ namespace Wx3270
         }
 
         /// <inheritdoc />
-        public bool IsCurrentPathName(string profilePathName)
-        {
-            return profilePathName.Equals(this.Current.PathName, StringComparison.InvariantCultureIgnoreCase);
-        }
+        public bool IsCurrentPathName(string profilePathName) => !string.IsNullOrEmpty(this.Current?.PathName) && HPathUtil.ArePathsEqual(SafeGetFullPath(profilePathName), this.Current.PathName);
 
         /// <inheritdoc />
         public bool IsDefaultPathName(string profilePathName)
@@ -802,7 +965,7 @@ namespace Wx3270
             var key = Registry.CurrentUser.CreateSubKey(Constants.Misc.RegistryKey);
             var defaultProfile = (string)key.GetValue(DefaultProfileRegistryValue);
             key.Close();
-            return defaultProfile != null && defaultProfile.Equals(profilePathName, StringComparison.InvariantCultureIgnoreCase);
+            return defaultProfile != null && SafeGetFullPath(defaultProfile) == profilePathName;
         }
 
         /// <inheritdoc />
@@ -960,7 +1123,7 @@ namespace Wx3270
 
             if (profile == null)
             {
-                error = I18n.Get(Message.CannotDeserializeProfile);
+                error = profilePath + ":" + Environment.NewLine + I18n.Get(Message.CannotDeserializeProfile);
                 stream.Close();
                 return null;
             }
@@ -1053,39 +1216,77 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Transforms a partial profile pathname to a full profile pathname.
+        /// </summary>
+        /// <param name="partialPath">Partial pathname.</param>
+        /// <returns>Full pathname.</returns>
+        private static string FullProfilePath(string partialPath)
+        {
+            var path = partialPath;
+            if (!path.EndsWith(Suffix, StringComparison.OrdinalIgnoreCase))
+            {
+                path += Suffix;
+            }
+
+            if (!Path.IsPathRooted(path))
+            {
+                path = Path.Combine(ProfileDirectory, path);
+            }
+
+            return Path.GetFullPath(path);
+        }
+
+        /// <summary>
         /// Load a profile, i.e., make some profile current.
         /// </summary>
         /// <param name="profilePath">Full profile pathname.</param>
         /// <param name="outProfilePath">Returned full profile path.</param>
         /// <param name="readOnly">If true, open read-only.</param>
         /// <param name="doErrorPopups">If true, do pop-ups for errors.</param>
+        /// <param name="propagate">If true, propagate settings.</param>
+        /// <param name="notFound">Returned true if profile not found.</param>
         /// <returns>True if load was successful.</returns>
-        private bool LoadInternal(string profilePath, out string outProfilePath, bool readOnly, bool doErrorPopups)
+        private bool LoadInternal(string profilePath, out string outProfilePath, bool readOnly, bool doErrorPopups, bool propagate, out bool notFound)
         {
-            // Allow the profile to be under-specified.
-            if (profilePath != null)
+            notFound = false;
+
+            // Normalize the path, which could fail if it uses invalid characters.
+            var normalizedPath = NormalizedPath(profilePath, out string e);
+            if (normalizedPath == null)
             {
-                if (!profilePath.EndsWith(Suffix, StringComparison.OrdinalIgnoreCase))
+                if (doErrorPopups)
                 {
-                    profilePath += Suffix;
+                    ErrorBox.Show(profilePath + ": " + e, I18n.Get(Title.ProfileOpen));
                 }
 
-                if (!Path.IsPathRooted(profilePath))
-                {
-                    if (File.Exists(Path.Combine(SeedProfileDirectory, profilePath)))
-                    {
-                        profilePath = Path.Combine(SeedProfileDirectory, profilePath);
-                    }
-                    else
-                    {
-                        profilePath = Path.GetFullPath(profilePath);
-                    }
-                }
+                outProfilePath = profilePath;
+                return false;
             }
 
-            outProfilePath = profilePath;
+            outProfilePath = normalizedPath;
+            if (!File.Exists(normalizedPath))
+            {
+                if (doErrorPopups)
+                {
+                    // I need the localized Windows error message.
+                    var errorMessage = $"Cannot open profile '{normalizedPath}'";
+                    try
+                    {
+                        new FileStream(normalizedPath, FileMode.Open).Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                    }
 
-            if (profilePath != null && this.IsCurrentPathName(profilePath))
+                    ErrorBox.Show(errorMessage, I18n.Get(Title.ProfileOpen));
+                }
+
+                notFound = true;
+                return false;
+            }
+
+            if (this.IsCurrentPathName(normalizedPath))
             {
                 // Re-loading the current profile is a successful no-op.
                 return true;
@@ -1094,29 +1295,22 @@ namespace Wx3270
             // Remember the previous profile, whatever it is.
             var previous = this.Current?.Clone();
 
-            if (profilePath == null)
-            {
-                profilePath = DefaultProfilePath;
-            }
-
-            var isDefault = profilePath.Equals(DefaultProfilePath, StringComparison.InvariantCultureIgnoreCase);
-
-            var profileName = Path.GetFileNameWithoutExtension(profilePath);
+            var isDefault = HPathUtil.ArePathsEqual(normalizedPath, DefaultProfilePath);
+            var profileName = Path.GetFileNameWithoutExtension(normalizedPath);
 
             string error;
             string warning;
             FileStream stream = null;
             bool busy;
-            bool notFound;
             Profile.VersionClass oldVersion = null;
             Profile profile;
             if (readOnly)
             {
-                profile = Read(profilePath, out error, out warning, out busy, out notFound);
+                profile = Read(normalizedPath, out error, out warning, out busy, out notFound);
             }
             else
             {
-                profile = Read(profilePath, out error, out warning, locked: true, out stream, out busy, out notFound, out oldVersion);
+                profile = Read(normalizedPath, out error, out warning, locked: true, out stream, out busy, out notFound, out oldVersion);
             }
 
             if (profile != null)
@@ -1129,7 +1323,7 @@ namespace Wx3270
                 if (busy)
                 {
                     // Open read-only.
-                    profile = Read(profilePath, out error, out warning, out busy, out notFound);
+                    profile = Read(normalizedPath, out error, out warning, out busy, out notFound);
                     if (profile == null)
                     {
                         if (doErrorPopups)
@@ -1187,7 +1381,10 @@ namespace Wx3270
             this.NewProfileOpened(this.Current);
 
             // Tell everyone else about it.
-            this.PropagateExternalChange(previous, isNew: true);
+            if (propagate)
+            {
+                this.PropagateExternalChange(previous, isNew: true);
+            }
 
             // Switch to the new one.
             this.currentFileStream = stream;
@@ -1740,6 +1937,11 @@ namespace Wx3270
             /// Profile version mismatch.
             /// </summary>
             public static readonly string ProfileVersionMismatch = I18n.Combine(MessageName, "profileVersionMismatch");
+
+            /// <summary>
+            /// Automatically created profile.
+            /// </summary>
+            public static readonly string CreatedProfile = I18n.Combine(MessageName, "createdProfile");
         }
     }
 }

@@ -9,6 +9,7 @@ namespace en
     /// <summary>
     /// Translations for non-US English.
     /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
     public static class en
     {
         /// <summary>
@@ -27,8 +28,8 @@ namespace en
         /// <summary>
         /// Localize a word.
         /// </summary>
-        /// <param name="s">Value in US English</param>
-        /// <returns>Localized string</returns>
+        /// <param name="s">Value in US English.</param>
+        /// <returns>Localized string.</returns>
         public static string LocalizeWord(string s)
         {
             var ret = s;

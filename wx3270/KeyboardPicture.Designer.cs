@@ -158,6 +158,7 @@
             this.key56 = new System.Windows.Forms.Label();
             this.nativeNameLabel = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.aplLegendPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.aplShiftLabel = new System.Windows.Forms.Label();
             this.aplCtrlShiftLabel = new System.Windows.Forms.Label();
@@ -170,19 +171,22 @@
             this.chordBox = new System.Windows.Forms.GroupBox();
             this.chordComboBox = new System.Windows.Forms.ComboBox();
             this.bottomTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.helpContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.displayHelpInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startTourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayGroupBox.SuspendLayout();
             this.displayTable.SuspendLayout();
             this.modifiersGroupBox.SuspendLayout();
             this.modifiersTable.SuspendLayout();
             this.modeGroupBox.SuspendLayout();
             this.modeTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.aplLegendPanel.SuspendLayout();
             this.keysPanel.SuspendLayout();
             this.modeFlowLayoutPanel.SuspendLayout();
             this.chordBox.SuspendLayout();
             this.bottomTableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
+            this.helpContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // escapeKey
@@ -1782,7 +1786,7 @@
             this.labelsRadioButton.Checked = true;
             this.labelsRadioButton.Location = new System.Drawing.Point(3, 3);
             this.labelsRadioButton.Name = "labelsRadioButton";
-            this.labelsRadioButton.Size = new System.Drawing.Size(56, 17);
+            this.labelsRadioButton.Size = new System.Drawing.Size(65, 19);
             this.labelsRadioButton.TabIndex = 104;
             this.labelsRadioButton.TabStop = true;
             this.labelsRadioButton.Tag = "Labels";
@@ -1794,9 +1798,9 @@
             // keyNamesRadioButton
             // 
             this.keyNamesRadioButton.AutoSize = true;
-            this.keyNamesRadioButton.Location = new System.Drawing.Point(91, 3);
+            this.keyNamesRadioButton.Location = new System.Drawing.Point(101, 3);
             this.keyNamesRadioButton.Name = "keyNamesRadioButton";
-            this.keyNamesRadioButton.Size = new System.Drawing.Size(75, 17);
+            this.keyNamesRadioButton.Size = new System.Drawing.Size(84, 19);
             this.keyNamesRadioButton.TabIndex = 105;
             this.keyNamesRadioButton.Tag = "Names";
             this.keyNamesRadioButton.Text = "Key codes";
@@ -1807,9 +1811,9 @@
             // definitionsRadioButton
             // 
             this.definitionsRadioButton.AutoSize = true;
-            this.definitionsRadioButton.Location = new System.Drawing.Point(91, 26);
+            this.definitionsRadioButton.Location = new System.Drawing.Point(101, 28);
             this.definitionsRadioButton.Name = "definitionsRadioButton";
-            this.definitionsRadioButton.Size = new System.Drawing.Size(107, 17);
+            this.definitionsRadioButton.Size = new System.Drawing.Size(124, 19);
             this.definitionsRadioButton.TabIndex = 106;
             this.definitionsRadioButton.Tag = "Definitions";
             this.definitionsRadioButton.Text = "wx3270 definition";
@@ -1821,9 +1825,9 @@
             // 
             this.numLockCheckBox.AutoSize = true;
             this.modifiersTable.SetColumnSpan(this.numLockCheckBox, 2);
-            this.numLockCheckBox.Location = new System.Drawing.Point(3, 26);
+            this.numLockCheckBox.Location = new System.Drawing.Point(3, 28);
             this.numLockCheckBox.Name = "numLockCheckBox";
-            this.numLockCheckBox.Size = new System.Drawing.Size(75, 17);
+            this.numLockCheckBox.Size = new System.Drawing.Size(85, 19);
             this.numLockCheckBox.TabIndex = 107;
             this.numLockCheckBox.TabStop = false;
             this.numLockCheckBox.Text = "Num Lock";
@@ -1836,7 +1840,7 @@
             this.shiftCheckBox.AutoSize = true;
             this.shiftCheckBox.Location = new System.Drawing.Point(3, 3);
             this.shiftCheckBox.Name = "shiftCheckBox";
-            this.shiftCheckBox.Size = new System.Drawing.Size(47, 17);
+            this.shiftCheckBox.Size = new System.Drawing.Size(53, 19);
             this.shiftCheckBox.TabIndex = 108;
             this.shiftCheckBox.TabStop = false;
             this.shiftCheckBox.Tag = "Shift";
@@ -1848,9 +1852,9 @@
             // ctrlCheckBox
             // 
             this.ctrlCheckBox.AutoSize = true;
-            this.ctrlCheckBox.Location = new System.Drawing.Point(56, 3);
+            this.ctrlCheckBox.Location = new System.Drawing.Point(62, 3);
             this.ctrlCheckBox.Name = "ctrlCheckBox";
-            this.ctrlCheckBox.Size = new System.Drawing.Size(41, 17);
+            this.ctrlCheckBox.Size = new System.Drawing.Size(47, 19);
             this.ctrlCheckBox.TabIndex = 109;
             this.ctrlCheckBox.TabStop = false;
             this.ctrlCheckBox.Tag = "Ctrl";
@@ -1862,9 +1866,9 @@
             // altCheckBox
             // 
             this.altCheckBox.AutoSize = true;
-            this.altCheckBox.Location = new System.Drawing.Point(103, 3);
+            this.altCheckBox.Location = new System.Drawing.Point(115, 3);
             this.altCheckBox.Name = "altCheckBox";
-            this.altCheckBox.Size = new System.Drawing.Size(38, 17);
+            this.altCheckBox.Size = new System.Drawing.Size(42, 19);
             this.altCheckBox.TabIndex = 110;
             this.altCheckBox.TabStop = false;
             this.altCheckBox.Tag = "Alt";
@@ -1880,11 +1884,11 @@
             this.displayGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.displayGroupBox.Controls.Add(this.displayLayoutPanel);
             this.displayGroupBox.Controls.Add(this.displayTable);
-            this.displayGroupBox.Location = new System.Drawing.Point(469, 3);
+            this.displayGroupBox.Location = new System.Drawing.Point(418, 3);
             this.displayGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.displayGroupBox.Name = "displayGroupBox";
             this.displayGroupBox.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.displayGroupBox.Size = new System.Drawing.Size(217, 81);
+            this.displayGroupBox.Size = new System.Drawing.Size(244, 85);
             this.displayGroupBox.TabIndex = 111;
             this.displayGroupBox.TabStop = false;
             this.displayGroupBox.Text = "Display";
@@ -1915,15 +1919,15 @@
             this.displayTable.RowCount = 2;
             this.displayTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.displayTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.displayTable.Size = new System.Drawing.Size(201, 46);
+            this.displayTable.Size = new System.Drawing.Size(228, 50);
             this.displayTable.TabIndex = 116;
             // 
             // scanCodesRadioButton
             // 
             this.scanCodesRadioButton.AutoSize = true;
-            this.scanCodesRadioButton.Location = new System.Drawing.Point(3, 26);
+            this.scanCodesRadioButton.Location = new System.Drawing.Point(3, 28);
             this.scanCodesRadioButton.Name = "scanCodesRadioButton";
-            this.scanCodesRadioButton.Size = new System.Drawing.Size(82, 17);
+            this.scanCodesRadioButton.Size = new System.Drawing.Size(92, 19);
             this.scanCodesRadioButton.TabIndex = 107;
             this.scanCodesRadioButton.TabStop = true;
             this.scanCodesRadioButton.Tag = "ScanCodes";
@@ -1938,11 +1942,11 @@
             this.modifiersGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.modifiersGroupBox.Controls.Add(this.modifiersLayoutPanel);
             this.modifiersGroupBox.Controls.Add(this.modifiersTable);
-            this.modifiersGroupBox.Location = new System.Drawing.Point(706, 3);
+            this.modifiersGroupBox.Location = new System.Drawing.Point(682, 3);
             this.modifiersGroupBox.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.modifiersGroupBox.Name = "modifiersGroupBox";
             this.modifiersGroupBox.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.modifiersGroupBox.Size = new System.Drawing.Size(175, 80);
+            this.modifiersGroupBox.Size = new System.Drawing.Size(192, 84);
             this.modifiersGroupBox.TabIndex = 112;
             this.modifiersGroupBox.TabStop = false;
             this.modifiersGroupBox.Tag = "";
@@ -1976,15 +1980,15 @@
             this.modifiersTable.RowCount = 2;
             this.modifiersTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.modifiersTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.modifiersTable.Size = new System.Drawing.Size(152, 46);
+            this.modifiersTable.Size = new System.Drawing.Size(169, 50);
             this.modifiersTable.TabIndex = 116;
             // 
             // scrollLockCheckBox
             // 
             this.scrollLockCheckBox.AutoSize = true;
-            this.scrollLockCheckBox.Location = new System.Drawing.Point(103, 26);
+            this.scrollLockCheckBox.Location = new System.Drawing.Point(115, 28);
             this.scrollLockCheckBox.Name = "scrollLockCheckBox";
-            this.scrollLockCheckBox.Size = new System.Drawing.Size(46, 17);
+            this.scrollLockCheckBox.Size = new System.Drawing.Size(51, 19);
             this.scrollLockCheckBox.TabIndex = 111;
             this.scrollLockCheckBox.Tag = "Apl";
             this.scrollLockCheckBox.Text = "APL";
@@ -2012,7 +2016,7 @@
             this.noteLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.noteLabel.Location = new System.Drawing.Point(1015, 44);
             this.noteLabel.Name = "noteLabel";
-            this.noteLabel.Size = new System.Drawing.Size(163, 26);
+            this.noteLabel.Size = new System.Drawing.Size(217, 34);
             this.noteLabel.TabIndex = 114;
             this.noteLabel.Text = "Note: This is a generic keyboard.\r\nYour keyboard layout may differ.";
             // 
@@ -2023,11 +2027,11 @@
             this.modeGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.modeGroupBox.Controls.Add(this.modeLayoutPanel);
             this.modeGroupBox.Controls.Add(this.modeTable);
-            this.modeGroupBox.Location = new System.Drawing.Point(901, 4);
+            this.modeGroupBox.Location = new System.Drawing.Point(894, 4);
             this.modeGroupBox.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.modeGroupBox.Name = "modeGroupBox";
             this.modeGroupBox.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.modeGroupBox.Size = new System.Drawing.Size(73, 78);
+            this.modeGroupBox.Size = new System.Drawing.Size(80, 82);
             this.modeGroupBox.TabIndex = 115;
             this.modeGroupBox.TabStop = false;
             this.modeGroupBox.Text = "Mode";
@@ -2055,15 +2059,15 @@
             this.modeTable.RowCount = 2;
             this.modeTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.modeTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.modeTable.Size = new System.Drawing.Size(56, 46);
+            this.modeTable.Size = new System.Drawing.Size(63, 50);
             this.modeTable.TabIndex = 116;
             // 
             // mode3270CheckBox
             // 
             this.mode3270CheckBox.AutoSize = true;
-            this.mode3270CheckBox.Location = new System.Drawing.Point(3, 26);
+            this.mode3270CheckBox.Location = new System.Drawing.Point(3, 28);
             this.mode3270CheckBox.Name = "mode3270CheckBox";
-            this.mode3270CheckBox.Size = new System.Drawing.Size(50, 17);
+            this.mode3270CheckBox.Size = new System.Drawing.Size(57, 19);
             this.mode3270CheckBox.TabIndex = 117;
             this.mode3270CheckBox.Tag = "Mode3270";
             this.mode3270CheckBox.Text = "3270";
@@ -2075,7 +2079,7 @@
             this.nvtModeCheckBox.AutoSize = true;
             this.nvtModeCheckBox.Location = new System.Drawing.Point(3, 3);
             this.nvtModeCheckBox.Name = "nvtModeCheckBox";
-            this.nvtModeCheckBox.Size = new System.Drawing.Size(48, 17);
+            this.nvtModeCheckBox.Size = new System.Drawing.Size(52, 19);
             this.nvtModeCheckBox.TabIndex = 116;
             this.nvtModeCheckBox.Tag = "ModeNvt";
             this.nvtModeCheckBox.Text = "NVT";
@@ -2102,9 +2106,21 @@
             this.nativeNameLabel.AutoSize = true;
             this.nativeNameLabel.Location = new System.Drawing.Point(1015, 11);
             this.nativeNameLabel.Name = "nativeNameLabel";
-            this.nativeNameLabel.Size = new System.Drawing.Size(72, 13);
+            this.nativeNameLabel.Size = new System.Drawing.Size(82, 15);
             this.nativeNameLabel.TabIndex = 117;
             this.nativeNameLabel.Text = "`Native Name";
+            // 
+            // helpPictureBox
+            // 
+            this.helpPictureBox.ContextMenuStrip = this.helpContextMenuStrip;
+            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
+            this.helpPictureBox.Location = new System.Drawing.Point(22, 423);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(24, 24);
+            this.helpPictureBox.TabIndex = 123;
+            this.helpPictureBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
+            this.helpPictureBox.Click += new System.EventHandler(this.HelpClick);
             // 
             // aplLegendPanel
             // 
@@ -2165,7 +2181,7 @@
             this.aplLegendLabel.AutoSize = true;
             this.aplLegendLabel.Location = new System.Drawing.Point(56, 422);
             this.aplLegendLabel.Name = "aplLegendLabel";
-            this.aplLegendLabel.Size = new System.Drawing.Size(43, 26);
+            this.aplLegendLabel.Size = new System.Drawing.Size(49, 30);
             this.aplLegendLabel.TabIndex = 119;
             this.aplLegendLabel.Text = "APL\r\nLegend";
             this.aplLegendLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2292,7 +2308,7 @@
             this.layoutLabel.AutoSize = true;
             this.layoutLabel.Location = new System.Drawing.Point(1015, 27);
             this.layoutLabel.Name = "layoutLabel";
-            this.layoutLabel.Size = new System.Drawing.Size(42, 13);
+            this.layoutLabel.Size = new System.Drawing.Size(47, 15);
             this.layoutLabel.TabIndex = 118;
             this.layoutLabel.Text = "`Layout";
             // 
@@ -2313,7 +2329,7 @@
             // chordBox
             // 
             this.chordBox.Controls.Add(this.chordComboBox);
-            this.chordBox.Location = new System.Drawing.Point(213, 3);
+            this.chordBox.Location = new System.Drawing.Point(162, 3);
             this.chordBox.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.chordBox.Name = "chordBox";
             this.chordBox.Size = new System.Drawing.Size(243, 81);
@@ -2345,16 +2361,30 @@
             this.bottomTableLayoutPanel.Size = new System.Drawing.Size(983, 96);
             this.bottomTableLayoutPanel.TabIndex = 122;
             // 
-            // helpPictureBox
+            // helpContextMenuStrip
             // 
-            this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(22, 423);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(24, 24);
-            this.helpPictureBox.TabIndex = 123;
-            this.helpPictureBox.TabStop = false;
-            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
-            this.helpPictureBox.Click += new System.EventHandler(this.HelpClick);
+            this.helpContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.helpContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.displayHelpInBrowserToolStripMenuItem,
+            this.startTourToolStripMenuItem});
+            this.helpContextMenuStrip.Name = "helpContextMenuStrip";
+            this.helpContextMenuStrip.Size = new System.Drawing.Size(234, 80);
+            // 
+            // displayHelpInBrowserToolStripMenuItem
+            // 
+            this.displayHelpInBrowserToolStripMenuItem.Name = "displayHelpInBrowserToolStripMenuItem";
+            this.displayHelpInBrowserToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.displayHelpInBrowserToolStripMenuItem.Tag = "Help";
+            this.displayHelpInBrowserToolStripMenuItem.Text = "Display help in browser";
+            this.displayHelpInBrowserToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
+            // 
+            // startTourToolStripMenuItem
+            // 
+            this.startTourToolStripMenuItem.Name = "startTourToolStripMenuItem";
+            this.startTourToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.startTourToolStripMenuItem.Tag = "Tour";
+            this.startTourToolStripMenuItem.Text = "Start tour";
+            this.startTourToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
             // 
             // KeyboardPicture
             // 
@@ -2392,6 +2422,7 @@
             this.modeGroupBox.PerformLayout();
             this.modeTable.ResumeLayout(false);
             this.modeTable.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.aplLegendPanel.ResumeLayout(false);
             this.keysPanel.ResumeLayout(false);
             this.keysPanel.PerformLayout();
@@ -2399,7 +2430,7 @@
             this.modeFlowLayoutPanel.PerformLayout();
             this.chordBox.ResumeLayout(false);
             this.bottomTableLayoutPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.helpContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2548,5 +2579,8 @@
         private System.Windows.Forms.ComboBox chordComboBox;
         private System.Windows.Forms.Label layoutLabel;
         private System.Windows.Forms.PictureBox helpPictureBox;
+        private System.Windows.Forms.ContextMenuStrip helpContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem displayHelpInBrowserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startTourToolStripMenuItem;
     }
 }

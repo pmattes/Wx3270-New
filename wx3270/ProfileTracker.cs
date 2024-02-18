@@ -186,7 +186,7 @@ namespace Wx3270
                 return false;
             }
 
-            var path = Path.GetFullPath(directory);
+            var path = ProfileManager.SafeGetFullPath(directory);
             foreach (var root in this.roots)
             {
                 if (root.Any((node) => node != root && node is FolderWatchNode folderNode && folderNode.PathName.Equals(path, StringComparison.InvariantCultureIgnoreCase)))

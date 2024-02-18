@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MergeDialog));
             this.whitePanel = new System.Windows.Forms.Panel();
             this.categoriesGroupBox = new System.Windows.Forms.GroupBox();
@@ -39,7 +40,7 @@
             this.otherSettingsCheckBox = new System.Windows.Forms.CheckBox();
             this.keyboardMapPanel = new System.Windows.Forms.Panel();
             this.keyboardReplaceRadioButton = new System.Windows.Forms.RadioButton();
-            this.keyboardMergeradioButton = new System.Windows.Forms.RadioButton();
+            this.keyboardMergeRadioButton = new System.Windows.Forms.RadioButton();
             this.keyboardCheckBox = new System.Windows.Forms.CheckBox();
             this.keypadMapPanel = new System.Windows.Forms.Panel();
             this.keypadReplaceRadioButton = new System.Windows.Forms.RadioButton();
@@ -62,8 +63,12 @@
             this.sourceProfileLabel = new System.Windows.Forms.Label();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
-            this.importButton = new System.Windows.Forms.Button();
+            this.helpContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.displayHelpInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startTourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mergeButton = new System.Windows.Forms.Button();
             this.purplePanel = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.whitePanel.SuspendLayout();
             this.categoriesGroupBox.SuspendLayout();
             this.categoriesLayoutPanel.SuspendLayout();
@@ -77,6 +82,7 @@
             this.colorsPanel.SuspendLayout();
             this.buttonPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
+            this.helpContextMenuStrip.SuspendLayout();
             this.purplePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,7 +95,7 @@
             this.whitePanel.Location = new System.Drawing.Point(15, 15);
             this.whitePanel.Margin = new System.Windows.Forms.Padding(0);
             this.whitePanel.Name = "whitePanel";
-            this.whitePanel.Size = new System.Drawing.Size(435, 433);
+            this.whitePanel.Size = new System.Drawing.Size(572, 462);
             this.whitePanel.TabIndex = 0;
             // 
             // categoriesGroupBox
@@ -100,7 +106,7 @@
             this.categoriesGroupBox.Location = new System.Drawing.Point(15, 15);
             this.categoriesGroupBox.Margin = new System.Windows.Forms.Padding(15);
             this.categoriesGroupBox.Name = "categoriesGroupBox";
-            this.categoriesGroupBox.Size = new System.Drawing.Size(405, 403);
+            this.categoriesGroupBox.Size = new System.Drawing.Size(542, 432);
             this.categoriesGroupBox.TabIndex = 32;
             this.categoriesGroupBox.TabStop = false;
             this.categoriesGroupBox.Text = "Select Categories";
@@ -116,22 +122,23 @@
             this.categoriesLayoutPanel.Controls.Add(this.sourceProfileLabel, 0, 0);
             this.categoriesLayoutPanel.Controls.Add(this.buttonPanel, 0, 3);
             this.categoriesLayoutPanel.Location = new System.Drawing.Point(21, 29);
+            this.categoriesLayoutPanel.Margin = new System.Windows.Forms.Padding(20);
             this.categoriesLayoutPanel.Name = "categoriesLayoutPanel";
             this.categoriesLayoutPanel.RowCount = 4;
             this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.categoriesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.categoriesLayoutPanel.Size = new System.Drawing.Size(378, 355);
+            this.categoriesLayoutPanel.Size = new System.Drawing.Size(498, 367);
             this.categoriesLayoutPanel.TabIndex = 31;
             // 
             // legendLabel
             // 
             this.legendLabel.AutoSize = true;
             this.legendLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.legendLabel.Location = new System.Drawing.Point(3, 49);
+            this.legendLabel.Location = new System.Drawing.Point(3, 55);
             this.legendLabel.Name = "legendLabel";
-            this.legendLabel.Size = new System.Drawing.Size(369, 24);
+            this.legendLabel.Size = new System.Drawing.Size(492, 30);
             this.legendLabel.TabIndex = 29;
             this.legendLabel.Text = "Replace: The entire category will be replaced by the contents of the source profi" +
     "le\r\nMerge: Items with new names will be added; items with the same names will be" +
@@ -150,7 +157,7 @@
             this.categoriesTableLayoutPanel.Controls.Add(this.fontPanel, 0, 5);
             this.categoriesTableLayoutPanel.Controls.Add(this.hostListPanel, 0, 2);
             this.categoriesTableLayoutPanel.Controls.Add(this.colorsPanel, 0, 4);
-            this.categoriesTableLayoutPanel.Location = new System.Drawing.Point(3, 76);
+            this.categoriesTableLayoutPanel.Location = new System.Drawing.Point(3, 88);
             this.categoriesTableLayoutPanel.Name = "categoriesTableLayoutPanel";
             this.categoriesTableLayoutPanel.RowCount = 7;
             this.categoriesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -179,7 +186,7 @@
             this.otherReplaceRadioButton.Enabled = false;
             this.otherReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
             this.otherReplaceRadioButton.Name = "otherReplaceRadioButton";
-            this.otherReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.otherReplaceRadioButton.Size = new System.Drawing.Size(74, 19);
             this.otherReplaceRadioButton.TabIndex = 4;
             this.otherReplaceRadioButton.TabStop = true;
             this.otherReplaceRadioButton.Tag = "OtherSettingsReplace";
@@ -191,7 +198,7 @@
             this.otherSettingsCheckBox.AutoSize = true;
             this.otherSettingsCheckBox.Location = new System.Drawing.Point(4, 5);
             this.otherSettingsCheckBox.Name = "otherSettingsCheckBox";
-            this.otherSettingsCheckBox.Size = new System.Drawing.Size(91, 17);
+            this.otherSettingsCheckBox.Size = new System.Drawing.Size(104, 19);
             this.otherSettingsCheckBox.TabIndex = 1;
             this.otherSettingsCheckBox.Tag = "OtherSettingsReplace";
             this.otherSettingsCheckBox.Text = "Other settings";
@@ -201,7 +208,7 @@
             // keyboardMapPanel
             // 
             this.keyboardMapPanel.Controls.Add(this.keyboardReplaceRadioButton);
-            this.keyboardMapPanel.Controls.Add(this.keyboardMergeradioButton);
+            this.keyboardMapPanel.Controls.Add(this.keyboardMergeRadioButton);
             this.keyboardMapPanel.Controls.Add(this.keyboardCheckBox);
             this.keyboardMapPanel.Location = new System.Drawing.Point(3, 3);
             this.keyboardMapPanel.Name = "keyboardMapPanel";
@@ -215,31 +222,31 @@
             this.keyboardReplaceRadioButton.Enabled = false;
             this.keyboardReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
             this.keyboardReplaceRadioButton.Name = "keyboardReplaceRadioButton";
-            this.keyboardReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.keyboardReplaceRadioButton.Size = new System.Drawing.Size(74, 19);
             this.keyboardReplaceRadioButton.TabIndex = 3;
             this.keyboardReplaceRadioButton.TabStop = true;
             this.keyboardReplaceRadioButton.Tag = "KeyboardReplace";
             this.keyboardReplaceRadioButton.Text = "Replace";
             this.keyboardReplaceRadioButton.UseVisualStyleBackColor = true;
             // 
-            // keyboardMergeradioButton
+            // keyboardMergeRadioButton
             // 
-            this.keyboardMergeradioButton.AutoSize = true;
-            this.keyboardMergeradioButton.Enabled = false;
-            this.keyboardMergeradioButton.Location = new System.Drawing.Point(267, 5);
-            this.keyboardMergeradioButton.Name = "keyboardMergeradioButton";
-            this.keyboardMergeradioButton.Size = new System.Drawing.Size(55, 17);
-            this.keyboardMergeradioButton.TabIndex = 2;
-            this.keyboardMergeradioButton.Tag = "KeyboardMerge";
-            this.keyboardMergeradioButton.Text = "Merge";
-            this.keyboardMergeradioButton.UseVisualStyleBackColor = true;
+            this.keyboardMergeRadioButton.AutoSize = true;
+            this.keyboardMergeRadioButton.Enabled = false;
+            this.keyboardMergeRadioButton.Location = new System.Drawing.Point(267, 5);
+            this.keyboardMergeRadioButton.Name = "keyboardMergeRadioButton";
+            this.keyboardMergeRadioButton.Size = new System.Drawing.Size(64, 19);
+            this.keyboardMergeRadioButton.TabIndex = 2;
+            this.keyboardMergeRadioButton.Tag = "KeyboardMerge";
+            this.keyboardMergeRadioButton.Text = "Merge";
+            this.keyboardMergeRadioButton.UseVisualStyleBackColor = true;
             // 
             // keyboardCheckBox
             // 
             this.keyboardCheckBox.AutoSize = true;
             this.keyboardCheckBox.Location = new System.Drawing.Point(4, 5);
             this.keyboardCheckBox.Name = "keyboardCheckBox";
-            this.keyboardCheckBox.Size = new System.Drawing.Size(94, 17);
+            this.keyboardCheckBox.Size = new System.Drawing.Size(109, 19);
             this.keyboardCheckBox.TabIndex = 1;
             this.keyboardCheckBox.Tag = "";
             this.keyboardCheckBox.Text = "Keyboard map";
@@ -263,7 +270,7 @@
             this.keypadReplaceRadioButton.Enabled = false;
             this.keypadReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
             this.keypadReplaceRadioButton.Name = "keypadReplaceRadioButton";
-            this.keypadReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.keypadReplaceRadioButton.Size = new System.Drawing.Size(74, 19);
             this.keypadReplaceRadioButton.TabIndex = 3;
             this.keypadReplaceRadioButton.TabStop = true;
             this.keypadReplaceRadioButton.Tag = "KeypadReplace";
@@ -276,7 +283,7 @@
             this.keypadMergeRadioButton.Enabled = false;
             this.keypadMergeRadioButton.Location = new System.Drawing.Point(267, 4);
             this.keypadMergeRadioButton.Name = "keypadMergeRadioButton";
-            this.keypadMergeRadioButton.Size = new System.Drawing.Size(55, 17);
+            this.keypadMergeRadioButton.Size = new System.Drawing.Size(64, 19);
             this.keypadMergeRadioButton.TabIndex = 2;
             this.keypadMergeRadioButton.Tag = "KeypadMerge";
             this.keypadMergeRadioButton.Text = "Merge";
@@ -287,7 +294,7 @@
             this.keypadCheckBox.AutoSize = true;
             this.keypadCheckBox.Location = new System.Drawing.Point(4, 5);
             this.keypadCheckBox.Name = "keypadCheckBox";
-            this.keypadCheckBox.Size = new System.Drawing.Size(85, 17);
+            this.keypadCheckBox.Size = new System.Drawing.Size(98, 19);
             this.keypadCheckBox.TabIndex = 1;
             this.keypadCheckBox.Tag = "";
             this.keypadCheckBox.Text = "Keypad map";
@@ -311,7 +318,7 @@
             this.macrosReplaceRadioButton.Enabled = false;
             this.macrosReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
             this.macrosReplaceRadioButton.Name = "macrosReplaceRadioButton";
-            this.macrosReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.macrosReplaceRadioButton.Size = new System.Drawing.Size(74, 19);
             this.macrosReplaceRadioButton.TabIndex = 3;
             this.macrosReplaceRadioButton.TabStop = true;
             this.macrosReplaceRadioButton.Tag = "MacrosReplace";
@@ -324,7 +331,7 @@
             this.macrosMergeRadioButton.Enabled = false;
             this.macrosMergeRadioButton.Location = new System.Drawing.Point(267, 4);
             this.macrosMergeRadioButton.Name = "macrosMergeRadioButton";
-            this.macrosMergeRadioButton.Size = new System.Drawing.Size(55, 17);
+            this.macrosMergeRadioButton.Size = new System.Drawing.Size(64, 19);
             this.macrosMergeRadioButton.TabIndex = 2;
             this.macrosMergeRadioButton.Tag = "MacrosMerge";
             this.macrosMergeRadioButton.Text = "Merge";
@@ -335,7 +342,7 @@
             this.macrosCheckBox.AutoSize = true;
             this.macrosCheckBox.Location = new System.Drawing.Point(4, 5);
             this.macrosCheckBox.Name = "macrosCheckBox";
-            this.macrosCheckBox.Size = new System.Drawing.Size(61, 17);
+            this.macrosCheckBox.Size = new System.Drawing.Size(70, 19);
             this.macrosCheckBox.TabIndex = 1;
             this.macrosCheckBox.Tag = "";
             this.macrosCheckBox.Text = "Macros";
@@ -358,7 +365,7 @@
             this.fontReplaceRadioButton.Enabled = false;
             this.fontReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
             this.fontReplaceRadioButton.Name = "fontReplaceRadioButton";
-            this.fontReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.fontReplaceRadioButton.Size = new System.Drawing.Size(74, 19);
             this.fontReplaceRadioButton.TabIndex = 4;
             this.fontReplaceRadioButton.TabStop = true;
             this.fontReplaceRadioButton.Tag = "FontReplace";
@@ -370,7 +377,7 @@
             this.fontCheckBox.AutoSize = true;
             this.fontCheckBox.Location = new System.Drawing.Point(4, 5);
             this.fontCheckBox.Name = "fontCheckBox";
-            this.fontCheckBox.Size = new System.Drawing.Size(47, 17);
+            this.fontCheckBox.Size = new System.Drawing.Size(53, 19);
             this.fontCheckBox.TabIndex = 1;
             this.fontCheckBox.Tag = "FontReplace";
             this.fontCheckBox.Text = "Font";
@@ -394,7 +401,7 @@
             this.hostsReplaceRadioButton.Enabled = false;
             this.hostsReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
             this.hostsReplaceRadioButton.Name = "hostsReplaceRadioButton";
-            this.hostsReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.hostsReplaceRadioButton.Size = new System.Drawing.Size(74, 19);
             this.hostsReplaceRadioButton.TabIndex = 3;
             this.hostsReplaceRadioButton.TabStop = true;
             this.hostsReplaceRadioButton.Tag = "HostsReplace";
@@ -407,7 +414,7 @@
             this.hostsMergeRadioButton.Enabled = false;
             this.hostsMergeRadioButton.Location = new System.Drawing.Point(267, 4);
             this.hostsMergeRadioButton.Name = "hostsMergeRadioButton";
-            this.hostsMergeRadioButton.Size = new System.Drawing.Size(55, 17);
+            this.hostsMergeRadioButton.Size = new System.Drawing.Size(64, 19);
             this.hostsMergeRadioButton.TabIndex = 2;
             this.hostsMergeRadioButton.Tag = "HostsMerge";
             this.hostsMergeRadioButton.Text = "Merge";
@@ -418,7 +425,7 @@
             this.hostsCheckBox.AutoSize = true;
             this.hostsCheckBox.Location = new System.Drawing.Point(4, 5);
             this.hostsCheckBox.Name = "hostsCheckBox";
-            this.hostsCheckBox.Size = new System.Drawing.Size(85, 17);
+            this.hostsCheckBox.Size = new System.Drawing.Size(97, 19);
             this.hostsCheckBox.TabIndex = 1;
             this.hostsCheckBox.Tag = "";
             this.hostsCheckBox.Text = "Connections";
@@ -441,7 +448,7 @@
             this.colorsReplaceRadioButton.Enabled = false;
             this.colorsReplaceRadioButton.Location = new System.Drawing.Point(157, 4);
             this.colorsReplaceRadioButton.Name = "colorsReplaceRadioButton";
-            this.colorsReplaceRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.colorsReplaceRadioButton.Size = new System.Drawing.Size(74, 19);
             this.colorsReplaceRadioButton.TabIndex = 4;
             this.colorsReplaceRadioButton.TabStop = true;
             this.colorsReplaceRadioButton.Tag = "ColorsReplace";
@@ -453,7 +460,7 @@
             this.colorsCheckBox.AutoSize = true;
             this.colorsCheckBox.Location = new System.Drawing.Point(4, 5);
             this.colorsCheckBox.Name = "colorsCheckBox";
-            this.colorsCheckBox.Size = new System.Drawing.Size(55, 17);
+            this.colorsCheckBox.Size = new System.Drawing.Size(64, 19);
             this.colorsCheckBox.TabIndex = 1;
             this.colorsCheckBox.Tag = "ColorsReplace";
             this.colorsCheckBox.Text = "Colors";
@@ -466,42 +473,72 @@
             this.sourceProfileLabel.Location = new System.Drawing.Point(3, 0);
             this.sourceProfileLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
             this.sourceProfileLabel.Name = "sourceProfileLabel";
-            this.sourceProfileLabel.Size = new System.Drawing.Size(114, 39);
+            this.sourceProfileLabel.Size = new System.Drawing.Size(132, 45);
             this.sourceProfileLabel.TabIndex = 31;
             this.sourceProfileLabel.Tag = "`";
             this.sourceProfileLabel.Text = "`Source Profile: Foo\r\n\r\nDestination Profile: Bar";
             // 
             // buttonPanel
             // 
+            this.buttonPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonPanel.Controls.Add(this.helpPictureBox);
-            this.buttonPanel.Controls.Add(this.importButton);
-            this.buttonPanel.Location = new System.Drawing.Point(3, 327);
+            this.buttonPanel.Controls.Add(this.mergeButton);
+            this.buttonPanel.Location = new System.Drawing.Point(3, 339);
             this.buttonPanel.Name = "buttonPanel";
-            this.buttonPanel.Size = new System.Drawing.Size(372, 25);
+            this.buttonPanel.Size = new System.Drawing.Size(492, 25);
             this.buttonPanel.TabIndex = 32;
             // 
             // helpPictureBox
             // 
+            this.helpPictureBox.ContextMenuStrip = this.helpContextMenuStrip;
             this.helpPictureBox.Dock = System.Windows.Forms.DockStyle.Right;
             this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(348, 0);
+            this.helpPictureBox.Location = new System.Drawing.Point(468, 0);
             this.helpPictureBox.Name = "helpPictureBox";
             this.helpPictureBox.Size = new System.Drawing.Size(24, 25);
             this.helpPictureBox.TabIndex = 28;
             this.helpPictureBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
             this.helpPictureBox.Click += new System.EventHandler(this.HelpClick);
             // 
-            // importButton
+            // helpContextMenuStrip
             // 
-            this.importButton.AutoSize = true;
-            this.importButton.Enabled = false;
-            this.importButton.Location = new System.Drawing.Point(0, 0);
-            this.importButton.Name = "importButton";
-            this.importButton.Size = new System.Drawing.Size(110, 23);
-            this.importButton.TabIndex = 27;
-            this.importButton.Text = "Merge";
-            this.importButton.UseVisualStyleBackColor = true;
-            this.importButton.Click += new System.EventHandler(this.ImportButton_Click);
+            this.helpContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.helpContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.displayHelpInBrowserToolStripMenuItem,
+            this.startTourToolStripMenuItem});
+            this.helpContextMenuStrip.Name = "helpContextMenuStrip";
+            this.helpContextMenuStrip.Size = new System.Drawing.Size(234, 52);
+            // 
+            // displayHelpInBrowserToolStripMenuItem
+            // 
+            this.displayHelpInBrowserToolStripMenuItem.Name = "displayHelpInBrowserToolStripMenuItem";
+            this.displayHelpInBrowserToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.displayHelpInBrowserToolStripMenuItem.Tag = "Help";
+            this.displayHelpInBrowserToolStripMenuItem.Text = "Display help in browser";
+            this.displayHelpInBrowserToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
+            // 
+            // startTourToolStripMenuItem
+            // 
+            this.startTourToolStripMenuItem.Name = "startTourToolStripMenuItem";
+            this.startTourToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.startTourToolStripMenuItem.Tag = "Tour";
+            this.startTourToolStripMenuItem.Text = "Start tour";
+            this.startTourToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
+            // 
+            // mergeButton
+            // 
+            this.mergeButton.AutoSize = true;
+            this.mergeButton.Enabled = false;
+            this.mergeButton.Location = new System.Drawing.Point(0, 0);
+            this.mergeButton.Name = "mergeButton";
+            this.mergeButton.Size = new System.Drawing.Size(110, 25);
+            this.mergeButton.TabIndex = 27;
+            this.mergeButton.Text = "Merge";
+            this.toolTip1.SetToolTip(this.mergeButton, "Perform the merge");
+            this.mergeButton.UseVisualStyleBackColor = true;
+            this.mergeButton.Click += new System.EventHandler(this.ImportButton_Click);
             // 
             // purplePanel
             // 
@@ -511,7 +548,7 @@
             this.purplePanel.Location = new System.Drawing.Point(0, 0);
             this.purplePanel.Name = "purplePanel";
             this.purplePanel.Padding = new System.Windows.Forms.Padding(15);
-            this.purplePanel.Size = new System.Drawing.Size(465, 463);
+            this.purplePanel.Size = new System.Drawing.Size(602, 492);
             this.purplePanel.TabIndex = 1;
             // 
             // MergeDialog
@@ -521,7 +558,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(58)))), ((int)(((byte)(132)))));
-            this.ClientSize = new System.Drawing.Size(702, 631);
+            this.ClientSize = new System.Drawing.Size(930, 736);
             this.Controls.Add(this.purplePanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -554,6 +591,7 @@
             this.buttonPanel.ResumeLayout(false);
             this.buttonPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.helpContextMenuStrip.ResumeLayout(false);
             this.purplePanel.ResumeLayout(false);
             this.purplePanel.PerformLayout();
             this.ResumeLayout(false);
@@ -566,11 +604,11 @@
         private System.Windows.Forms.Panel whitePanel;
         private System.Windows.Forms.TableLayoutPanel categoriesLayoutPanel;
         private System.Windows.Forms.Label legendLabel;
-        private System.Windows.Forms.Button importButton;
+        private System.Windows.Forms.Button mergeButton;
         private System.Windows.Forms.TableLayoutPanel categoriesTableLayoutPanel;
         private System.Windows.Forms.Panel keyboardMapPanel;
         private System.Windows.Forms.RadioButton keyboardReplaceRadioButton;
-        private System.Windows.Forms.RadioButton keyboardMergeradioButton;
+        private System.Windows.Forms.RadioButton keyboardMergeRadioButton;
         private System.Windows.Forms.CheckBox keyboardCheckBox;
         private System.Windows.Forms.Panel keypadMapPanel;
         private System.Windows.Forms.RadioButton keypadReplaceRadioButton;
@@ -598,5 +636,9 @@
         private System.Windows.Forms.CheckBox otherSettingsCheckBox;
         private System.Windows.Forms.Panel buttonPanel;
         private System.Windows.Forms.PictureBox helpPictureBox;
+        private System.Windows.Forms.ContextMenuStrip helpContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem displayHelpInBrowserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startTourToolStripMenuItem;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

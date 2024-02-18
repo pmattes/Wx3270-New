@@ -75,7 +75,7 @@
             this.CopyrightLabel.Name = "CopyrightLabel";
             this.CopyrightLabel.Size = new System.Drawing.Size(274, 20);
             this.CopyrightLabel.TabIndex = 2;
-            this.CopyrightLabel.Text = "Copyright © 2016-2023 Paul Mattes";
+            this.CopyrightLabel.Text = "Copyright © 2016-2024 Paul Mattes";
             this.CopyrightLabel.Click += new System.EventHandler(this.Anywhere_Click);
             // 
             // outerTableLayoutPanel

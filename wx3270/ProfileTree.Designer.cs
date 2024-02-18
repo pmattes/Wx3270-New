@@ -38,12 +38,12 @@
             this.lowerTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.folderGroupBox = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.folderIconPictureBox = new System.Windows.Forms.PictureBox();
             this.folderNewButton = new System.Windows.Forms.Button();
             this.folderUnwatchButton = new System.Windows.Forms.Button();
             this.profileGroupBox = new System.Windows.Forms.GroupBox();
             this.profileFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.profileIconPictureBox = new System.Windows.Forms.PictureBox();
             this.profileNewButton = new System.Windows.Forms.Button();
             this.newProfileContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +56,7 @@
             this.profileDefaultButton = new System.Windows.Forms.Button();
             this.commonGroupBox = new System.Windows.Forms.GroupBox();
             this.commonFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.commonIconPictureBox = new System.Windows.Forms.PictureBox();
             this.commonEditButton = new System.Windows.Forms.Button();
             this.commonDuplicateButton = new System.Windows.Forms.Button();
             this.commonRenameButton = new System.Windows.Forms.Button();
@@ -64,13 +64,16 @@
             this.commonDeleteButton = new System.Windows.Forms.Button();
             this.connectionGroupBox = new System.Windows.Forms.GroupBox();
             this.connectionFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.connectionIconPictureBox = new System.Windows.Forms.PictureBox();
             this.connectionNewButton = new System.Windows.Forms.Button();
             this.connectionConnectButton = new System.Windows.Forms.Button();
             this.useShiftLabel = new System.Windows.Forms.Label();
             this.treeView = new System.Windows.Forms.TreeView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.helpContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.displayHelpInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startTourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoButton = new System.Windows.Forms.Button();
             this.undoButton = new System.Windows.Forms.Button();
             this.topFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -114,19 +117,20 @@
             this.lowerTableLayoutPanel.SuspendLayout();
             this.folderGroupBox.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.folderIconPictureBox)).BeginInit();
             this.profileGroupBox.SuspendLayout();
             this.profileFlowLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profileIconPictureBox)).BeginInit();
             this.newProfileContextMenuStrip.SuspendLayout();
             this.commonGroupBox.SuspendLayout();
             this.commonFlowLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commonIconPictureBox)).BeginInit();
             this.connectionGroupBox.SuspendLayout();
             this.connectionFlowLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.connectionIconPictureBox)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
+            this.helpContextMenuStrip.SuspendLayout();
             this.topFlowLayoutPanel.SuspendLayout();
             this.profileContextMenuStrip.SuspendLayout();
             this.brokenProfileContextMenuStrip.SuspendLayout();
@@ -160,8 +164,8 @@
             this.purplePanel.Location = new System.Drawing.Point(0, 0);
             this.purplePanel.Margin = new System.Windows.Forms.Padding(0);
             this.purplePanel.Name = "purplePanel";
-            this.purplePanel.Padding = new System.Windows.Forms.Padding(15);
-            this.purplePanel.Size = new System.Drawing.Size(743, 662);
+            this.purplePanel.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+            this.purplePanel.Size = new System.Drawing.Size(744, 687);
             this.purplePanel.TabIndex = 0;
             // 
             // notPurplePanel
@@ -171,7 +175,7 @@
             this.notPurplePanel.Controls.Add(this.innerTableLayoutPanel);
             this.notPurplePanel.Location = new System.Drawing.Point(16, 42);
             this.notPurplePanel.Name = "notPurplePanel";
-            this.notPurplePanel.Size = new System.Drawing.Size(709, 602);
+            this.notPurplePanel.Size = new System.Drawing.Size(710, 627);
             this.notPurplePanel.TabIndex = 6;
             // 
             // innerTableLayoutPanel
@@ -186,7 +190,7 @@
             this.innerTableLayoutPanel.RowCount = 2;
             this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.innerTableLayoutPanel.Size = new System.Drawing.Size(706, 599);
+            this.innerTableLayoutPanel.Size = new System.Drawing.Size(707, 624);
             this.innerTableLayoutPanel.TabIndex = 0;
             // 
             // lowerPanel
@@ -195,9 +199,9 @@
             this.lowerPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lowerPanel.Controls.Add(this.lowerTableLayoutPanel);
             this.lowerPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lowerPanel.Location = new System.Drawing.Point(3, 367);
+            this.lowerPanel.Location = new System.Drawing.Point(3, 379);
             this.lowerPanel.Name = "lowerPanel";
-            this.lowerPanel.Size = new System.Drawing.Size(700, 229);
+            this.lowerPanel.Size = new System.Drawing.Size(701, 242);
             this.lowerPanel.TabIndex = 6;
             // 
             // lowerTableLayoutPanel
@@ -220,7 +224,7 @@
             this.lowerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.lowerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.lowerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.lowerTableLayoutPanel.Size = new System.Drawing.Size(700, 229);
+            this.lowerTableLayoutPanel.Size = new System.Drawing.Size(701, 242);
             this.lowerTableLayoutPanel.TabIndex = 1;
             // 
             // folderGroupBox
@@ -229,9 +233,9 @@
             this.folderGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.folderGroupBox.Controls.Add(this.flowLayoutPanel4);
             this.folderGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.folderGroupBox.Location = new System.Drawing.Point(3, 165);
+            this.folderGroupBox.Location = new System.Drawing.Point(3, 171);
             this.folderGroupBox.Name = "folderGroupBox";
-            this.folderGroupBox.Size = new System.Drawing.Size(694, 48);
+            this.folderGroupBox.Size = new System.Drawing.Size(695, 51);
             this.folderGroupBox.TabIndex = 4;
             this.folderGroupBox.TabStop = false;
             this.folderGroupBox.Text = "Folder";
@@ -240,24 +244,24 @@
             // 
             this.flowLayoutPanel4.AutoSize = true;
             this.flowLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel4.Controls.Add(this.pictureBox3);
+            this.flowLayoutPanel4.Controls.Add(this.folderIconPictureBox);
             this.flowLayoutPanel4.Controls.Add(this.folderNewButton);
             this.flowLayoutPanel4.Controls.Add(this.folderUnwatchButton);
             this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 16);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(688, 29);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(689, 32);
             this.flowLayoutPanel4.TabIndex = 6;
             // 
-            // pictureBox3
+            // folderIconPictureBox
             // 
-            this.pictureBox3.Image = global::Wx3270.Properties.Resources.FolderGreen;
-            this.pictureBox3.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 2;
-            this.pictureBox3.TabStop = false;
+            this.folderIconPictureBox.Image = global::Wx3270.Properties.Resources.FolderGreen;
+            this.folderIconPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.folderIconPictureBox.Name = "folderIconPictureBox";
+            this.folderIconPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.folderIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.folderIconPictureBox.TabIndex = 2;
+            this.folderIconPictureBox.TabStop = false;
             // 
             // folderNewButton
             // 
@@ -265,7 +269,7 @@
             this.folderNewButton.ForeColor = System.Drawing.Color.Green;
             this.folderNewButton.Location = new System.Drawing.Point(32, 3);
             this.folderNewButton.Name = "folderNewButton";
-            this.folderNewButton.Size = new System.Drawing.Size(90, 23);
+            this.folderNewButton.Size = new System.Drawing.Size(90, 26);
             this.folderNewButton.TabIndex = 3;
             this.folderNewButton.Tag = "WatchNew";
             this.folderNewButton.Text = "➕ New";
@@ -279,7 +283,7 @@
             this.folderUnwatchButton.ForeColor = System.Drawing.Color.Red;
             this.folderUnwatchButton.Location = new System.Drawing.Point(128, 3);
             this.folderUnwatchButton.Name = "folderUnwatchButton";
-            this.folderUnwatchButton.Size = new System.Drawing.Size(90, 23);
+            this.folderUnwatchButton.Size = new System.Drawing.Size(104, 26);
             this.folderUnwatchButton.TabIndex = 1;
             this.folderUnwatchButton.Tag = "StopWatching";
             this.folderUnwatchButton.Text = "Stop Watching";
@@ -293,9 +297,9 @@
             this.profileGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.profileGroupBox.Controls.Add(this.profileFlowLayoutPanel);
             this.profileGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.profileGroupBox.Location = new System.Drawing.Point(3, 111);
+            this.profileGroupBox.Location = new System.Drawing.Point(3, 114);
             this.profileGroupBox.Name = "profileGroupBox";
-            this.profileGroupBox.Size = new System.Drawing.Size(694, 48);
+            this.profileGroupBox.Size = new System.Drawing.Size(695, 51);
             this.profileGroupBox.TabIndex = 3;
             this.profileGroupBox.TabStop = false;
             this.profileGroupBox.Text = "Profile";
@@ -304,7 +308,7 @@
             // 
             this.profileFlowLayoutPanel.AutoSize = true;
             this.profileFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.profileFlowLayoutPanel.Controls.Add(this.pictureBox2);
+            this.profileFlowLayoutPanel.Controls.Add(this.profileIconPictureBox);
             this.profileFlowLayoutPanel.Controls.Add(this.profileNewButton);
             this.profileFlowLayoutPanel.Controls.Add(this.profileSwitchToButton);
             this.profileFlowLayoutPanel.Controls.Add(this.profileMergeFromButton);
@@ -314,18 +318,18 @@
             this.profileFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.profileFlowLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.profileFlowLayoutPanel.Name = "profileFlowLayoutPanel";
-            this.profileFlowLayoutPanel.Size = new System.Drawing.Size(688, 29);
+            this.profileFlowLayoutPanel.Size = new System.Drawing.Size(689, 32);
             this.profileFlowLayoutPanel.TabIndex = 6;
             // 
-            // pictureBox2
+            // profileIconPictureBox
             // 
-            this.pictureBox2.Image = global::Wx3270.Properties.Resources.Folder;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
+            this.profileIconPictureBox.Image = global::Wx3270.Properties.Resources.Folder;
+            this.profileIconPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.profileIconPictureBox.Name = "profileIconPictureBox";
+            this.profileIconPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.profileIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.profileIconPictureBox.TabIndex = 6;
+            this.profileIconPictureBox.TabStop = false;
             // 
             // profileNewButton
             // 
@@ -334,7 +338,7 @@
             this.profileNewButton.ForeColor = System.Drawing.Color.Green;
             this.profileNewButton.Location = new System.Drawing.Point(32, 3);
             this.profileNewButton.Name = "profileNewButton";
-            this.profileNewButton.Size = new System.Drawing.Size(90, 23);
+            this.profileNewButton.Size = new System.Drawing.Size(90, 26);
             this.profileNewButton.TabIndex = 0;
             this.profileNewButton.Tag = "New";
             this.profileNewButton.Text = "➕ New";
@@ -344,17 +348,18 @@
             // 
             // newProfileContextMenuStrip
             // 
+            this.newProfileContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.newProfileContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.profileToolStripMenuItem,
             this.keymapTemplateToolStripMenuItem,
             this.keypadTemplateToolStripMenuItem});
             this.newProfileContextMenuStrip.Name = "newProfileContextMenuStrip";
-            this.newProfileContextMenuStrip.Size = new System.Drawing.Size(228, 70);
+            this.newProfileContextMenuStrip.Size = new System.Drawing.Size(273, 76);
             // 
             // profileToolStripMenuItem
             // 
             this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            this.profileToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.profileToolStripMenuItem.Size = new System.Drawing.Size(272, 24);
             this.profileToolStripMenuItem.Tag = "Full";
             this.profileToolStripMenuItem.Text = "New Profile";
             this.profileToolStripMenuItem.Click += new System.EventHandler(this.NewProfileContextMenuClick);
@@ -362,7 +367,7 @@
             // keymapTemplateToolStripMenuItem
             // 
             this.keymapTemplateToolStripMenuItem.Name = "keymapTemplateToolStripMenuItem";
-            this.keymapTemplateToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.keymapTemplateToolStripMenuItem.Size = new System.Drawing.Size(272, 24);
             this.keymapTemplateToolStripMenuItem.Tag = "KeyboardMapTemplate";
             this.keymapTemplateToolStripMenuItem.Text = "New keyboard map template";
             this.keymapTemplateToolStripMenuItem.Click += new System.EventHandler(this.NewProfileContextMenuClick);
@@ -370,7 +375,7 @@
             // keypadTemplateToolStripMenuItem
             // 
             this.keypadTemplateToolStripMenuItem.Name = "keypadTemplateToolStripMenuItem";
-            this.keypadTemplateToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.keypadTemplateToolStripMenuItem.Size = new System.Drawing.Size(272, 24);
             this.keypadTemplateToolStripMenuItem.Tag = "KeypadMapTemplate";
             this.keypadTemplateToolStripMenuItem.Text = "New keypad map template";
             this.keypadTemplateToolStripMenuItem.Click += new System.EventHandler(this.NewProfileContextMenuClick);
@@ -380,7 +385,7 @@
             this.profileSwitchToButton.AutoSize = true;
             this.profileSwitchToButton.Location = new System.Drawing.Point(128, 3);
             this.profileSwitchToButton.Name = "profileSwitchToButton";
-            this.profileSwitchToButton.Size = new System.Drawing.Size(90, 23);
+            this.profileSwitchToButton.Size = new System.Drawing.Size(91, 26);
             this.profileSwitchToButton.TabIndex = 1;
             this.profileSwitchToButton.Tag = "SwitchTo";
             this.profileSwitchToButton.Text = "→ Switch To";
@@ -391,9 +396,9 @@
             // profileMergeFromButton
             // 
             this.profileMergeFromButton.AutoSize = true;
-            this.profileMergeFromButton.Location = new System.Drawing.Point(224, 3);
+            this.profileMergeFromButton.Location = new System.Drawing.Point(225, 3);
             this.profileMergeFromButton.Name = "profileMergeFromButton";
-            this.profileMergeFromButton.Size = new System.Drawing.Size(90, 23);
+            this.profileMergeFromButton.Size = new System.Drawing.Size(106, 26);
             this.profileMergeFromButton.TabIndex = 2;
             this.profileMergeFromButton.Tag = "MergeFrom";
             this.profileMergeFromButton.Text = "← Merge From";
@@ -404,9 +409,9 @@
             // profileImportButton
             // 
             this.profileImportButton.AutoSize = true;
-            this.profileImportButton.Location = new System.Drawing.Point(320, 3);
+            this.profileImportButton.Location = new System.Drawing.Point(337, 3);
             this.profileImportButton.Name = "profileImportButton";
-            this.profileImportButton.Size = new System.Drawing.Size(90, 23);
+            this.profileImportButton.Size = new System.Drawing.Size(90, 26);
             this.profileImportButton.TabIndex = 3;
             this.profileImportButton.Tag = "Import";
             this.profileImportButton.Text = "↓ Import";
@@ -418,9 +423,9 @@
             // profileExportButton
             // 
             this.profileExportButton.AutoSize = true;
-            this.profileExportButton.Location = new System.Drawing.Point(416, 3);
+            this.profileExportButton.Location = new System.Drawing.Point(433, 3);
             this.profileExportButton.Name = "profileExportButton";
-            this.profileExportButton.Size = new System.Drawing.Size(90, 23);
+            this.profileExportButton.Size = new System.Drawing.Size(90, 26);
             this.profileExportButton.TabIndex = 4;
             this.profileExportButton.Tag = "Export";
             this.profileExportButton.Text = "↑ Export";
@@ -431,9 +436,9 @@
             // profileDefaultButton
             // 
             this.profileDefaultButton.AutoSize = true;
-            this.profileDefaultButton.Location = new System.Drawing.Point(512, 3);
+            this.profileDefaultButton.Location = new System.Drawing.Point(529, 3);
             this.profileDefaultButton.Name = "profileDefaultButton";
-            this.profileDefaultButton.Size = new System.Drawing.Size(90, 23);
+            this.profileDefaultButton.Size = new System.Drawing.Size(100, 26);
             this.profileDefaultButton.TabIndex = 5;
             this.profileDefaultButton.Tag = "Default";
             this.profileDefaultButton.Text = "Set as Default";
@@ -449,7 +454,7 @@
             this.commonGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commonGroupBox.Location = new System.Drawing.Point(3, 3);
             this.commonGroupBox.Name = "commonGroupBox";
-            this.commonGroupBox.Size = new System.Drawing.Size(694, 48);
+            this.commonGroupBox.Size = new System.Drawing.Size(695, 51);
             this.commonGroupBox.TabIndex = 0;
             this.commonGroupBox.TabStop = false;
             this.commonGroupBox.Text = "Common";
@@ -458,7 +463,7 @@
             // 
             this.commonFlowLayoutPanel.AutoSize = true;
             this.commonFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.commonFlowLayoutPanel.Controls.Add(this.pictureBox4);
+            this.commonFlowLayoutPanel.Controls.Add(this.commonIconPictureBox);
             this.commonFlowLayoutPanel.Controls.Add(this.commonEditButton);
             this.commonFlowLayoutPanel.Controls.Add(this.commonDuplicateButton);
             this.commonFlowLayoutPanel.Controls.Add(this.commonRenameButton);
@@ -467,25 +472,25 @@
             this.commonFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commonFlowLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.commonFlowLayoutPanel.Name = "commonFlowLayoutPanel";
-            this.commonFlowLayoutPanel.Size = new System.Drawing.Size(688, 29);
+            this.commonFlowLayoutPanel.Size = new System.Drawing.Size(689, 32);
             this.commonFlowLayoutPanel.TabIndex = 7;
             // 
-            // pictureBox4
+            // commonIconPictureBox
             // 
-            this.pictureBox4.Image = global::Wx3270.Properties.Resources.wx3270;
-            this.pictureBox4.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 5;
-            this.pictureBox4.TabStop = false;
+            this.commonIconPictureBox.Image = global::Wx3270.Properties.Resources.wx3270;
+            this.commonIconPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.commonIconPictureBox.Name = "commonIconPictureBox";
+            this.commonIconPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.commonIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.commonIconPictureBox.TabIndex = 5;
+            this.commonIconPictureBox.TabStop = false;
             // 
             // commonEditButton
             // 
             this.commonEditButton.AutoSize = true;
             this.commonEditButton.Location = new System.Drawing.Point(32, 3);
             this.commonEditButton.Name = "commonEditButton";
-            this.commonEditButton.Size = new System.Drawing.Size(90, 23);
+            this.commonEditButton.Size = new System.Drawing.Size(90, 26);
             this.commonEditButton.TabIndex = 0;
             this.commonEditButton.Tag = "Edit";
             this.commonEditButton.Text = "✎ Edit";
@@ -498,7 +503,7 @@
             this.commonDuplicateButton.AutoSize = true;
             this.commonDuplicateButton.Location = new System.Drawing.Point(128, 3);
             this.commonDuplicateButton.Name = "commonDuplicateButton";
-            this.commonDuplicateButton.Size = new System.Drawing.Size(90, 23);
+            this.commonDuplicateButton.Size = new System.Drawing.Size(90, 26);
             this.commonDuplicateButton.TabIndex = 1;
             this.commonDuplicateButton.Tag = "Duplicate";
             this.commonDuplicateButton.Text = "Duplicate";
@@ -511,7 +516,7 @@
             this.commonRenameButton.AutoSize = true;
             this.commonRenameButton.Location = new System.Drawing.Point(224, 3);
             this.commonRenameButton.Name = "commonRenameButton";
-            this.commonRenameButton.Size = new System.Drawing.Size(90, 23);
+            this.commonRenameButton.Size = new System.Drawing.Size(90, 26);
             this.commonRenameButton.TabIndex = 2;
             this.commonRenameButton.Tag = "Rename";
             this.commonRenameButton.Text = "Rename";
@@ -524,7 +529,7 @@
             this.commonShortcutButton.AutoSize = true;
             this.commonShortcutButton.Location = new System.Drawing.Point(320, 3);
             this.commonShortcutButton.Name = "commonShortcutButton";
-            this.commonShortcutButton.Size = new System.Drawing.Size(90, 23);
+            this.commonShortcutButton.Size = new System.Drawing.Size(90, 26);
             this.commonShortcutButton.TabIndex = 4;
             this.commonShortcutButton.Tag = "Shortcut";
             this.commonShortcutButton.Text = "Shortcut";
@@ -538,7 +543,7 @@
             this.commonDeleteButton.ForeColor = System.Drawing.Color.Red;
             this.commonDeleteButton.Location = new System.Drawing.Point(416, 3);
             this.commonDeleteButton.Name = "commonDeleteButton";
-            this.commonDeleteButton.Size = new System.Drawing.Size(90, 23);
+            this.commonDeleteButton.Size = new System.Drawing.Size(90, 26);
             this.commonDeleteButton.TabIndex = 3;
             this.commonDeleteButton.Tag = "Delete";
             this.commonDeleteButton.Text = "❌ Delete";
@@ -551,9 +556,9 @@
             this.connectionGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.connectionGroupBox.Controls.Add(this.connectionFlowLayoutPanel);
             this.connectionGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.connectionGroupBox.Location = new System.Drawing.Point(3, 57);
+            this.connectionGroupBox.Location = new System.Drawing.Point(3, 60);
             this.connectionGroupBox.Name = "connectionGroupBox";
-            this.connectionGroupBox.Size = new System.Drawing.Size(694, 48);
+            this.connectionGroupBox.Size = new System.Drawing.Size(695, 48);
             this.connectionGroupBox.TabIndex = 2;
             this.connectionGroupBox.TabStop = false;
             this.connectionGroupBox.Text = "Connection";
@@ -562,24 +567,24 @@
             // 
             this.connectionFlowLayoutPanel.AutoSize = true;
             this.connectionFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.connectionFlowLayoutPanel.Controls.Add(this.pictureBox1);
+            this.connectionFlowLayoutPanel.Controls.Add(this.connectionIconPictureBox);
             this.connectionFlowLayoutPanel.Controls.Add(this.connectionNewButton);
             this.connectionFlowLayoutPanel.Controls.Add(this.connectionConnectButton);
             this.connectionFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.connectionFlowLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.connectionFlowLayoutPanel.Name = "connectionFlowLayoutPanel";
-            this.connectionFlowLayoutPanel.Size = new System.Drawing.Size(688, 29);
+            this.connectionFlowLayoutPanel.Size = new System.Drawing.Size(689, 29);
             this.connectionFlowLayoutPanel.TabIndex = 7;
             // 
-            // pictureBox1
+            // connectionIconPictureBox
             // 
-            this.pictureBox1.Image = global::Wx3270.Properties.Resources.PowerPlug32;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.connectionIconPictureBox.Image = global::Wx3270.Properties.Resources.PowerPlug32;
+            this.connectionIconPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.connectionIconPictureBox.Name = "connectionIconPictureBox";
+            this.connectionIconPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.connectionIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.connectionIconPictureBox.TabIndex = 2;
+            this.connectionIconPictureBox.TabStop = false;
             // 
             // connectionNewButton
             // 
@@ -587,7 +592,7 @@
             this.connectionNewButton.ForeColor = System.Drawing.Color.Green;
             this.connectionNewButton.Location = new System.Drawing.Point(32, 3);
             this.connectionNewButton.Name = "connectionNewButton";
-            this.connectionNewButton.Size = new System.Drawing.Size(90, 23);
+            this.connectionNewButton.Size = new System.Drawing.Size(90, 26);
             this.connectionNewButton.TabIndex = 0;
             this.connectionNewButton.Tag = "New";
             this.connectionNewButton.Text = "➕ New";
@@ -600,7 +605,7 @@
             this.connectionConnectButton.AutoSize = true;
             this.connectionConnectButton.Location = new System.Drawing.Point(128, 3);
             this.connectionConnectButton.Name = "connectionConnectButton";
-            this.connectionConnectButton.Size = new System.Drawing.Size(90, 23);
+            this.connectionConnectButton.Size = new System.Drawing.Size(90, 26);
             this.connectionConnectButton.TabIndex = 1;
             this.connectionConnectButton.Tag = "Connect";
             this.connectionConnectButton.Text = "🗲 Connect";
@@ -613,9 +618,9 @@
             this.useShiftLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.useShiftLabel.AutoSize = true;
             this.useShiftLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.useShiftLabel.Location = new System.Drawing.Point(3, 216);
+            this.useShiftLabel.Location = new System.Drawing.Point(3, 225);
             this.useShiftLabel.Name = "useShiftLabel";
-            this.useShiftLabel.Size = new System.Drawing.Size(318, 13);
+            this.useShiftLabel.Size = new System.Drawing.Size(419, 17);
             this.useShiftLabel.TabIndex = 5;
             this.useShiftLabel.Text = "Use the Shift key to open profiles or connections in a new window";
             // 
@@ -632,7 +637,7 @@
             this.treeView.PathSeparator = "*";
             this.treeView.SelectedImageIndex = 0;
             this.treeView.ShowNodeToolTips = true;
-            this.treeView.Size = new System.Drawing.Size(700, 358);
+            this.treeView.Size = new System.Drawing.Size(701, 370);
             this.treeView.TabIndex = 1;
             this.treeView.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.TreeView_BeforeLabelEdit);
             this.treeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.TreeView_AfterLabelEdit);
@@ -652,7 +657,7 @@
             this.flowLayoutPanel1.Controls.Add(this.redoButton);
             this.flowLayoutPanel1.Controls.Add(this.undoButton);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(614, 10);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(615, 10);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(111, 29);
@@ -660,6 +665,7 @@
             // 
             // helpPictureBox
             // 
+            this.helpPictureBox.ContextMenuStrip = this.helpContextMenuStrip;
             this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
             this.helpPictureBox.Location = new System.Drawing.Point(88, 3);
             this.helpPictureBox.Margin = new System.Windows.Forms.Padding(6, 3, 0, 3);
@@ -671,6 +677,31 @@
             this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
             this.helpPictureBox.Click += new System.EventHandler(this.Help_Clicked);
             // 
+            // helpContextMenuStrip
+            // 
+            this.helpContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.helpContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.displayHelpInBrowserToolStripMenuItem,
+            this.startTourToolStripMenuItem});
+            this.helpContextMenuStrip.Name = "helpContextMenuStrip";
+            this.helpContextMenuStrip.Size = new System.Drawing.Size(234, 52);
+            // 
+            // displayHelpInBrowserToolStripMenuItem
+            // 
+            this.displayHelpInBrowserToolStripMenuItem.Name = "displayHelpInBrowserToolStripMenuItem";
+            this.displayHelpInBrowserToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.displayHelpInBrowserToolStripMenuItem.Tag = "Help";
+            this.displayHelpInBrowserToolStripMenuItem.Text = "Display help in browser";
+            this.displayHelpInBrowserToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
+            // 
+            // startTourToolStripMenuItem
+            // 
+            this.startTourToolStripMenuItem.Name = "startTourToolStripMenuItem";
+            this.startTourToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.startTourToolStripMenuItem.Tag = "Tour";
+            this.startTourToolStripMenuItem.Text = "Start tour";
+            this.startTourToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
+            // 
             // redoButton
             // 
             this.redoButton.AutoSize = true;
@@ -678,7 +709,7 @@
             this.redoButton.Location = new System.Drawing.Point(47, 3);
             this.redoButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.redoButton.Name = "redoButton";
-            this.redoButton.Size = new System.Drawing.Size(35, 23);
+            this.redoButton.Size = new System.Drawing.Size(35, 25);
             this.redoButton.TabIndex = 1;
             this.redoButton.Tag = "`";
             this.redoButton.Text = "↷";
@@ -690,7 +721,7 @@
             this.undoButton.Enabled = false;
             this.undoButton.Location = new System.Drawing.Point(6, 3);
             this.undoButton.Name = "undoButton";
-            this.undoButton.Size = new System.Drawing.Size(35, 23);
+            this.undoButton.Size = new System.Drawing.Size(35, 27);
             this.undoButton.TabIndex = 0;
             this.undoButton.Tag = "`";
             this.undoButton.Text = "↶";
@@ -706,7 +737,7 @@
             this.topFlowLayoutPanel.Location = new System.Drawing.Point(12, 10);
             this.topFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.topFlowLayoutPanel.Name = "topFlowLayoutPanel";
-            this.topFlowLayoutPanel.Size = new System.Drawing.Size(264, 29);
+            this.topFlowLayoutPanel.Size = new System.Drawing.Size(274, 33);
             this.topFlowLayoutPanel.TabIndex = 0;
             // 
             // topNewConnectionButton
@@ -716,7 +747,7 @@
             this.topNewConnectionButton.ForeColor = System.Drawing.Color.Green;
             this.topNewConnectionButton.Location = new System.Drawing.Point(3, 3);
             this.topNewConnectionButton.Name = "topNewConnectionButton";
-            this.topNewConnectionButton.Size = new System.Drawing.Size(126, 23);
+            this.topNewConnectionButton.Size = new System.Drawing.Size(136, 27);
             this.topNewConnectionButton.TabIndex = 1;
             this.topNewConnectionButton.Tag = "NewConnection";
             this.topNewConnectionButton.Text = "🗲 New Connection";
@@ -729,9 +760,9 @@
             this.topDisconnectButton.Enabled = false;
             this.topDisconnectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.topDisconnectButton.ForeColor = System.Drawing.Color.Red;
-            this.topDisconnectButton.Location = new System.Drawing.Point(135, 3);
+            this.topDisconnectButton.Location = new System.Drawing.Point(145, 3);
             this.topDisconnectButton.Name = "topDisconnectButton";
-            this.topDisconnectButton.Size = new System.Drawing.Size(126, 23);
+            this.topDisconnectButton.Size = new System.Drawing.Size(126, 27);
             this.topDisconnectButton.TabIndex = 1;
             this.topDisconnectButton.Tag = "Disconnect";
             this.topDisconnectButton.Text = "🗲 Disconnect";
@@ -741,6 +772,7 @@
             // 
             // profileContextMenuStrip
             // 
+            this.profileContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.profileContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.profileSwitchToToolStripMenuItem,
             this.profileEditToolStripMenuItem,
@@ -752,12 +784,12 @@
             this.profileSetAsDefaultToolStripMenuItem,
             this.profileDeleteToolStripMenuItem});
             this.profileContextMenuStrip.Name = "profileContextMenuStrip";
-            this.profileContextMenuStrip.Size = new System.Drawing.Size(153, 202);
+            this.profileContextMenuStrip.Size = new System.Drawing.Size(177, 220);
             // 
             // profileSwitchToToolStripMenuItem
             // 
             this.profileSwitchToToolStripMenuItem.Name = "profileSwitchToToolStripMenuItem";
-            this.profileSwitchToToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.profileSwitchToToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.profileSwitchToToolStripMenuItem.Tag = "SwitchTo";
             this.profileSwitchToToolStripMenuItem.Text = "→ Switch To";
             this.profileSwitchToToolStripMenuItem.ToolTipText = "Switch to profile with auto-connect";
@@ -766,7 +798,7 @@
             // profileEditToolStripMenuItem
             // 
             this.profileEditToolStripMenuItem.Name = "profileEditToolStripMenuItem";
-            this.profileEditToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.profileEditToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.profileEditToolStripMenuItem.Tag = "Edit";
             this.profileEditToolStripMenuItem.Text = "✎ Edit";
             this.profileEditToolStripMenuItem.ToolTipText = "Edit profile";
@@ -775,7 +807,7 @@
             // profileDuplicateToolStripMenuItem
             // 
             this.profileDuplicateToolStripMenuItem.Name = "profileDuplicateToolStripMenuItem";
-            this.profileDuplicateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.profileDuplicateToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.profileDuplicateToolStripMenuItem.Tag = "Duplicate";
             this.profileDuplicateToolStripMenuItem.Text = "Duplicate";
             this.profileDuplicateToolStripMenuItem.ToolTipText = "Duplicate profile";
@@ -784,7 +816,7 @@
             // profileRenameToolStripMenuItem
             // 
             this.profileRenameToolStripMenuItem.Name = "profileRenameToolStripMenuItem";
-            this.profileRenameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.profileRenameToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.profileRenameToolStripMenuItem.Tag = "Rename";
             this.profileRenameToolStripMenuItem.Text = "Rename";
             this.profileRenameToolStripMenuItem.ToolTipText = "Rename profile";
@@ -793,7 +825,7 @@
             // profileMergeFromToolStripMenuItem
             // 
             this.profileMergeFromToolStripMenuItem.Name = "profileMergeFromToolStripMenuItem";
-            this.profileMergeFromToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.profileMergeFromToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.profileMergeFromToolStripMenuItem.Tag = "MergeFrom";
             this.profileMergeFromToolStripMenuItem.Text = "← Merge From";
             this.profileMergeFromToolStripMenuItem.ToolTipText = "Merge selected items from profile into current profile";
@@ -802,7 +834,7 @@
             // profileExportToolStripMenuItem
             // 
             this.profileExportToolStripMenuItem.Name = "profileExportToolStripMenuItem";
-            this.profileExportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.profileExportToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.profileExportToolStripMenuItem.Tag = "Export";
             this.profileExportToolStripMenuItem.Text = "↑ Export";
             this.profileExportToolStripMenuItem.ToolTipText = "Export profile to external folder";
@@ -811,7 +843,7 @@
             // profileShortcutToolStripMenuItem
             // 
             this.profileShortcutToolStripMenuItem.Name = "profileShortcutToolStripMenuItem";
-            this.profileShortcutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.profileShortcutToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.profileShortcutToolStripMenuItem.Tag = "Shortcut";
             this.profileShortcutToolStripMenuItem.Text = "Shortcut";
             this.profileShortcutToolStripMenuItem.Click += new System.EventHandler(this.ProfileContextMenuClick);
@@ -819,7 +851,7 @@
             // profileSetAsDefaultToolStripMenuItem
             // 
             this.profileSetAsDefaultToolStripMenuItem.Name = "profileSetAsDefaultToolStripMenuItem";
-            this.profileSetAsDefaultToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.profileSetAsDefaultToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.profileSetAsDefaultToolStripMenuItem.Tag = "Default";
             this.profileSetAsDefaultToolStripMenuItem.Text = "Set as Default";
             this.profileSetAsDefaultToolStripMenuItem.Click += new System.EventHandler(this.ProfileContextMenuClick);
@@ -828,7 +860,7 @@
             // 
             this.profileDeleteToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.profileDeleteToolStripMenuItem.Name = "profileDeleteToolStripMenuItem";
-            this.profileDeleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.profileDeleteToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.profileDeleteToolStripMenuItem.Tag = "Delete";
             this.profileDeleteToolStripMenuItem.Text = "❌ Delete";
             this.profileDeleteToolStripMenuItem.ToolTipText = "Delete profile";
@@ -836,16 +868,17 @@
             // 
             // brokenProfileContextMenuStrip
             // 
+            this.brokenProfileContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.brokenProfileContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.brokenProfileDeleteToolStripMenuItem});
             this.brokenProfileContextMenuStrip.Name = "brokenProfileContextMenuStrip";
-            this.brokenProfileContextMenuStrip.Size = new System.Drawing.Size(123, 26);
+            this.brokenProfileContextMenuStrip.Size = new System.Drawing.Size(148, 28);
             // 
             // brokenProfileDeleteToolStripMenuItem
             // 
             this.brokenProfileDeleteToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.brokenProfileDeleteToolStripMenuItem.Name = "brokenProfileDeleteToolStripMenuItem";
-            this.brokenProfileDeleteToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.brokenProfileDeleteToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.brokenProfileDeleteToolStripMenuItem.Tag = "Delete";
             this.brokenProfileDeleteToolStripMenuItem.Text = "❌ Delete";
             this.brokenProfileDeleteToolStripMenuItem.ToolTipText = "Delete profile (no undo)";
@@ -853,6 +886,7 @@
             // 
             // hostContextMenuStrip
             // 
+            this.hostContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.hostContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hostConnectToolStripMenuItem,
             this.hostEditToolStripMenuItem,
@@ -861,12 +895,12 @@
             this.hostShortcutToolStripMenuItem,
             this.hostDeleteToolStripMenuItem});
             this.hostContextMenuStrip.Name = "hostContextMenuStrip";
-            this.hostContextMenuStrip.Size = new System.Drawing.Size(135, 136);
+            this.hostContextMenuStrip.Size = new System.Drawing.Size(152, 148);
             // 
             // hostConnectToolStripMenuItem
             // 
             this.hostConnectToolStripMenuItem.Name = "hostConnectToolStripMenuItem";
-            this.hostConnectToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.hostConnectToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
             this.hostConnectToolStripMenuItem.Tag = "Connect";
             this.hostConnectToolStripMenuItem.Text = "🗲 Connect";
             this.hostConnectToolStripMenuItem.ToolTipText = "Connect to host";
@@ -875,7 +909,7 @@
             // hostEditToolStripMenuItem
             // 
             this.hostEditToolStripMenuItem.Name = "hostEditToolStripMenuItem";
-            this.hostEditToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.hostEditToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
             this.hostEditToolStripMenuItem.Tag = "Edit";
             this.hostEditToolStripMenuItem.Text = "✎ Edit";
             this.hostEditToolStripMenuItem.ToolTipText = "Edit host definition";
@@ -884,7 +918,7 @@
             // hostDuplicateToolStripMenuItem
             // 
             this.hostDuplicateToolStripMenuItem.Name = "hostDuplicateToolStripMenuItem";
-            this.hostDuplicateToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.hostDuplicateToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
             this.hostDuplicateToolStripMenuItem.Tag = "Duplicate";
             this.hostDuplicateToolStripMenuItem.Text = "Duplicate";
             this.hostDuplicateToolStripMenuItem.ToolTipText = "Duplicate host";
@@ -893,7 +927,7 @@
             // hostRenameToolStripMenuItem
             // 
             this.hostRenameToolStripMenuItem.Name = "hostRenameToolStripMenuItem";
-            this.hostRenameToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.hostRenameToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
             this.hostRenameToolStripMenuItem.Tag = "Rename";
             this.hostRenameToolStripMenuItem.Text = "Rename";
             this.hostRenameToolStripMenuItem.ToolTipText = "Rename host";
@@ -902,7 +936,7 @@
             // hostShortcutToolStripMenuItem
             // 
             this.hostShortcutToolStripMenuItem.Name = "hostShortcutToolStripMenuItem";
-            this.hostShortcutToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.hostShortcutToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
             this.hostShortcutToolStripMenuItem.Tag = "Shortcut";
             this.hostShortcutToolStripMenuItem.Text = "Shortcut";
             this.hostShortcutToolStripMenuItem.ToolTipText = "Create desktop shortcut";
@@ -912,7 +946,7 @@
             // 
             this.hostDeleteToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.hostDeleteToolStripMenuItem.Name = "hostDeleteToolStripMenuItem";
-            this.hostDeleteToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.hostDeleteToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
             this.hostDeleteToolStripMenuItem.Tag = "Delete";
             this.hostDeleteToolStripMenuItem.Text = "❌ Delete";
             this.hostDeleteToolStripMenuItem.ToolTipText = "Delete host";
@@ -920,15 +954,16 @@
             // 
             // defaultsContextMenuStrip
             // 
+            this.defaultsContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.defaultsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.defaultsDuplicateToolStripMenuItem});
             this.defaultsContextMenuStrip.Name = "defaultsContextMenuStrip";
-            this.defaultsContextMenuStrip.Size = new System.Drawing.Size(125, 26);
+            this.defaultsContextMenuStrip.Size = new System.Drawing.Size(143, 28);
             // 
             // defaultsDuplicateToolStripMenuItem
             // 
             this.defaultsDuplicateToolStripMenuItem.Name = "defaultsDuplicateToolStripMenuItem";
-            this.defaultsDuplicateToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.defaultsDuplicateToolStripMenuItem.Size = new System.Drawing.Size(142, 24);
             this.defaultsDuplicateToolStripMenuItem.Tag = "Duplicate";
             this.defaultsDuplicateToolStripMenuItem.Text = "Duplicate";
             this.defaultsDuplicateToolStripMenuItem.Click += new System.EventHandler(this.ProfileContextMenuClick);
@@ -953,19 +988,20 @@
             // 
             // folderContextMenuStrip
             // 
+            this.folderContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.folderContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.folderNewProfileToolStripMenuItem,
             this.folderImportToolStripMenuItem,
             this.folderStopWatchingToolStripMenuItem,
             this.folderDeleteToolStripMenuItem});
             this.folderContextMenuStrip.Name = "folderContextMenuStrip";
-            this.folderContextMenuStrip.Size = new System.Drawing.Size(185, 92);
+            this.folderContextMenuStrip.Size = new System.Drawing.Size(218, 100);
             // 
             // folderNewProfileToolStripMenuItem
             // 
             this.folderNewProfileToolStripMenuItem.ForeColor = System.Drawing.Color.Green;
             this.folderNewProfileToolStripMenuItem.Name = "folderNewProfileToolStripMenuItem";
-            this.folderNewProfileToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.folderNewProfileToolStripMenuItem.Size = new System.Drawing.Size(217, 24);
             this.folderNewProfileToolStripMenuItem.Tag = "New";
             this.folderNewProfileToolStripMenuItem.Text = "➕ New Profile Here";
             this.folderNewProfileToolStripMenuItem.Click += new System.EventHandler(this.FolderContextMenu_Click);
@@ -973,7 +1009,7 @@
             // folderImportToolStripMenuItem
             // 
             this.folderImportToolStripMenuItem.Name = "folderImportToolStripMenuItem";
-            this.folderImportToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.folderImportToolStripMenuItem.Size = new System.Drawing.Size(217, 24);
             this.folderImportToolStripMenuItem.Tag = "Import";
             this.folderImportToolStripMenuItem.Text = "↓ Import Profile Here";
             this.folderImportToolStripMenuItem.Click += new System.EventHandler(this.FolderContextMenu_Click);
@@ -982,7 +1018,7 @@
             // 
             this.folderStopWatchingToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.folderStopWatchingToolStripMenuItem.Name = "folderStopWatchingToolStripMenuItem";
-            this.folderStopWatchingToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.folderStopWatchingToolStripMenuItem.Size = new System.Drawing.Size(217, 24);
             this.folderStopWatchingToolStripMenuItem.Tag = "StopWatching";
             this.folderStopWatchingToolStripMenuItem.Text = "Stop Watching";
             this.folderStopWatchingToolStripMenuItem.ToolTipText = "Stop watching folder";
@@ -992,7 +1028,7 @@
             // 
             this.folderDeleteToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.folderDeleteToolStripMenuItem.Name = "folderDeleteToolStripMenuItem";
-            this.folderDeleteToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.folderDeleteToolStripMenuItem.Size = new System.Drawing.Size(217, 24);
             this.folderDeleteToolStripMenuItem.Tag = "Delete";
             this.folderDeleteToolStripMenuItem.Text = "❌ Delete";
             this.folderDeleteToolStripMenuItem.Click += new System.EventHandler(this.FolderContextMenu_Click);
@@ -1033,26 +1069,27 @@
             this.folderGroupBox.PerformLayout();
             this.flowLayoutPanel4.ResumeLayout(false);
             this.flowLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.folderIconPictureBox)).EndInit();
             this.profileGroupBox.ResumeLayout(false);
             this.profileGroupBox.PerformLayout();
             this.profileFlowLayoutPanel.ResumeLayout(false);
             this.profileFlowLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profileIconPictureBox)).EndInit();
             this.newProfileContextMenuStrip.ResumeLayout(false);
             this.commonGroupBox.ResumeLayout(false);
             this.commonGroupBox.PerformLayout();
             this.commonFlowLayoutPanel.ResumeLayout(false);
             this.commonFlowLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commonIconPictureBox)).EndInit();
             this.connectionGroupBox.ResumeLayout(false);
             this.connectionGroupBox.PerformLayout();
             this.connectionFlowLayoutPanel.ResumeLayout(false);
             this.connectionFlowLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.connectionIconPictureBox)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.helpContextMenuStrip.ResumeLayout(false);
             this.topFlowLayoutPanel.ResumeLayout(false);
             this.topFlowLayoutPanel.PerformLayout();
             this.profileContextMenuStrip.ResumeLayout(false);
@@ -1131,10 +1168,10 @@
         private System.Windows.Forms.ToolStripMenuItem folderImportToolStripMenuItem;
         private System.Windows.Forms.Button profileDefaultButton;
         private System.Windows.Forms.ToolStripMenuItem profileSetAsDefaultToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox folderIconPictureBox;
+        private System.Windows.Forms.PictureBox profileIconPictureBox;
+        private System.Windows.Forms.PictureBox connectionIconPictureBox;
+        private System.Windows.Forms.PictureBox commonIconPictureBox;
         private System.Windows.Forms.PictureBox helpPictureBox;
         private System.Windows.Forms.Label useShiftLabel;
         private System.Windows.Forms.Button folderNewButton;
@@ -1143,5 +1180,8 @@
         private System.Windows.Forms.ToolStripMenuItem profileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem keymapTemplateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem keypadTemplateToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip helpContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem displayHelpInBrowserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startTourToolStripMenuItem;
     }
 }

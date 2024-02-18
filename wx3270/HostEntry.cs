@@ -159,47 +159,25 @@ namespace Wx3270
         /// <summary>
         /// Initializes a new instance of the <see cref="HostEntry"/> class.
         /// </summary>
-        /// <param name="hostName">Host name.</param>
+        /// <param name="b3270HostName">B3270 host name.</param>
         /// <param name="port">TCP port.</param>
         /// <param name="legalPrefixes">Legal prefixes.</param>
-        public HostEntry(string hostName, string port, string legalPrefixes)
+        public HostEntry(B3270HostSpec b3270HostName, string legalPrefixes)
             : base()
         {
-            if (!HostName.TryParse(hostName, out List<char> prefixes, out List<string> lus, out string host, out string pport, out string accept))
-            {
-                throw new ArgumentException($"Invalid hostName {hostName}");
-            }
+            this.InitFromHostSpec(b3270HostName, legalPrefixes);
+        }
 
-            // Remove any invalid prefixes.
-            var matchingPrefixes = new List<char>();
-            var nonMatchingPrefixes = new List<char>();
-            if (prefixes != null)
-            {
-                foreach (var prefix in prefixes)
-                {
-                    var canonicalPrefix = char.ToUpperInvariant(prefix);
-                    if (legalPrefixes.Contains(canonicalPrefix))
-                    {
-                        matchingPrefixes.Add(canonicalPrefix);
-                    }
-                    else
-                    {
-                        nonMatchingPrefixes.Add(canonicalPrefix);
-                    }
-                }
-            }
-
-            if (nonMatchingPrefixes.Count > 0)
-            {
-                this.InvalidPrefixes = new string(nonMatchingPrefixes.ToArray());
-            }
-
-            this.Name = AutoName(hostName, port);
-            this.Host = host;
-            this.Port = pport ?? port ?? string.Empty;
-            this.LuNames = (lus != null) ? string.Join(Environment.NewLine, lus) : string.Empty;
-            this.AcceptHostName = accept ?? string.Empty;
-            this.Prefixes = (matchingPrefixes.Count > 0) ? new string(matchingPrefixes.ToArray()) : string.Empty;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HostEntry"/> class.
+        /// </summary>
+        /// <param name="host">Existing host entry.</param>
+        /// <param name="b3270HostName">B3270 host name.</param>
+        /// <param name="legalPrefixes">Legal prefixes.</param>
+        public HostEntry(HostEntry host, B3270HostSpec b3270HostName, string legalPrefixes)
+            : this(host)
+        {
+            this.InitFromHostSpec(b3270HostName, legalPrefixes);
         }
 
         /// <summary>
@@ -249,7 +227,7 @@ namespace Wx3270
         /// <summary>
         /// Gets or sets a value indicating whether to accept the TELNET STARTTLS option.
         /// </summary>
-        public bool AllowStartTls { get; set; }
+        public bool AllowStartTls { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the host prefixes.
@@ -327,14 +305,13 @@ namespace Wx3270
         public string InvalidPrefixes { get; private set; }
 
         /// <summary>
-        /// Map a host name and port onto an automatically-generated host entry name.
+        /// Maps a b3270 host spec onto an automatically-generated host entry name.
         /// </summary>
-        /// <param name="hostName">Host name.</param>
-        /// <param name="port">TCP port.</param>
+        /// <param name="hostSpec">B3270 host spec.</param>
         /// <returns>Mapped name.</returns>
-        public static string AutoName(string hostName, string port)
+        public static string AutoName(B3270HostSpec hostSpec)
         {
-            return hostName + ((port != null) ? (" " + port) : string.Empty);
+            return hostSpec.Host + ((hostSpec.Port != null) ? (" " + hostSpec.Port) : string.Empty);
         }
 
         /// <summary>
@@ -592,6 +569,45 @@ namespace Wx3270
             }
 
             return EntryConflict.None;
+        }
+
+        /// <summary>
+        /// Initializes a <see cref="HostEntry"/> from a b3270 host spec.
+        /// </summary>
+        /// <param name="hostSpec">b3270 host spec.</param>
+        /// <param name="legalPrefixes">Legal prefixes.</param>
+        private void InitFromHostSpec(B3270HostSpec hostSpec, string legalPrefixes)
+        {
+            // Remove any invalid prefixes.
+            var matchingPrefixes = new List<char>();
+            var nonMatchingPrefixes = new List<char>();
+            if (hostSpec.Prefixes != null)
+            {
+                foreach (var prefix in hostSpec.Prefixes)
+                {
+                    var canonicalPrefix = char.ToUpperInvariant(prefix);
+                    if (legalPrefixes.Contains(canonicalPrefix))
+                    {
+                        matchingPrefixes.Add(canonicalPrefix);
+                    }
+                    else
+                    {
+                        nonMatchingPrefixes.Add(canonicalPrefix);
+                    }
+                }
+            }
+
+            if (nonMatchingPrefixes.Count > 0)
+            {
+                this.InvalidPrefixes = new string(nonMatchingPrefixes.ToArray());
+            }
+
+            this.Name = AutoName(hostSpec);
+            this.Host = hostSpec.Host;
+            this.Port = hostSpec.Port ?? string.Empty;
+            this.LuNames = (hostSpec.Lus != null) ? string.Join(Environment.NewLine, hostSpec.Lus) : string.Empty;
+            this.AcceptHostName = hostSpec.Accept ?? string.Empty;
+            this.Prefixes = (matchingPrefixes.Count > 0) ? new string(matchingPrefixes.ToArray()) : string.Empty;
         }
     }
 }

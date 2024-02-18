@@ -51,7 +51,7 @@ namespace Wx3270
         /// <summary>
         /// The current keypad key.
         /// </summary>
-        private Wx3270.NoSelectButton currentKeypadButton;
+        private NoSelectButton currentKeypadButton;
 
         /// <summary>
         /// The keypad maps being edited.
@@ -128,6 +128,77 @@ namespace Wx3270
                     I18n.LocalizeGlobal(I18n.Combine(KeypadString.ModifierName, modifier.ToString()), modifier.ToString());
                 }
             }
+
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global instructions.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(keypadTab)), "Tour: Keypad settings");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(keypadTab)),
+@"Use this tab to modify the pop-up keypad.");
+
+            // Keypad type.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(keypadTypeFlowLayoutPanel)), "Keypad type");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(keypadTypeFlowLayoutPanel)),
+@"Select whether to modify the 3270 keypad or the APL keypad.");
+
+            // Key selection.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), "keypadPanel"), "Key selection");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), "keypadPanel"),
+@"Select a key to modify.");
+
+            // Modifiers.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(keypadModifiersLayoutPanel)), "Modifiers");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(keypadModifiersLayoutPanel)),
+@"Select the modifiers.
+
+A key can have a different label and perform different actions when modifier keys are pressed on the keyboard, and depending on what mode wx3270 is in. For example, the PF1 key on the left changes to PF13 when the Shift key is pressed.
+
+The Shift, Ctrl and Alt modifiers refer to modifier keys on the keyboard. The APL, 'NVT only' or '3270 only' modifiers refer to wx3270 modes.");
+
+            // Key label.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(editedButtonTextTextBox)), "Key label");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(editedButtonTextTextBox)),
+@"Enter the text displayed on the key here.");
+
+            // Label text size.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(keypadTextSize)), "Key label");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(keypadTextSize)),
+@"Change the size of the font used to display the key label here.");
+
+            // Background.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(backgroundGroupBox)), "Background");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(backgroundGroupBox)),
+@"Select the background image for the key.");
+
+            // Actions.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(editedButtonActionsTextBox)), "Actions");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(editedButtonActionsTextBox)),
+@"Click to define the actions to perform when the key is pressed, using the Macro Editor.");
+
+            // Remove button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(keypadRemoveButton)), "Delete button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(keypadRemoveButton)),
+@"Click to remove the definition of the selected key.");
+
+            // Keypad position.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(keypadPositionGroupBox)), "Global setting: keypad position");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(keypadPositionGroupBox)),
+@"Choose the initial position of the keypad, relative to the wx3270 main window.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
         }
 
         /// <summary>
@@ -281,6 +352,7 @@ namespace Wx3270
                 RowCount = 1,
                 ColumnCount = 5,
                 Parent = this.fakeKeypadPanel,
+                Name = "keypadPanel",
             };
             keypadPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             keypadPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
@@ -357,6 +429,7 @@ namespace Wx3270
                 Size = keypadPanel.Size,
                 Margin = new Padding(0),
                 Visible = false,
+                Name = "aplKeypadPanel",
             };
             var innerAplKeypadPanel = new Panel
             {
@@ -408,7 +481,7 @@ namespace Wx3270
             }
 
             // Set up the keypad type group box.
-            this.keypadType = new RadioEnum<KeypadType>(this.KeypadTypeFlowLayoutPanel);
+            this.keypadType = new RadioEnum<KeypadType>(this.keypadTypeFlowLayoutPanel);
             this.keypadType.Changed += (sender, args) =>
             {
                 keypadPanel.Visible = this.keypadType.Value == KeypadType.Type3270;
@@ -424,6 +497,22 @@ namespace Wx3270
 
             // Subscribe to profile changes.
             this.ProfileManager.AddChangeTo(this.KeypadProfileChange);
+
+            // Register our tour.
+            var nodes = new[]
+            {
+                ((Control)this.keypadTab, (int?)null, Orientation.Centered),
+                (this.keypadTypeFlowLayoutPanel, null, Orientation.UpperLeft),
+                (keypadPanel, null, Orientation.UpperLeftTight),
+                (this.keypadModifiersLayoutPanel, null, Orientation.UpperRight),
+                (this.editedButtonTextTextBox, null, Orientation.LowerLeft),
+                (this.keypadTextSize, null, Orientation.LowerLeft),
+                (this.backgroundGroupBox, null, Orientation.LowerRight),
+                (this.editedButtonActionsTextBox, null, Orientation.LowerLeft),
+                (this.keypadRemoveButton, null, Orientation.LowerRight),
+                (this.keypadPositionGroupBox, null, Orientation.LowerLeft),
+            };
+            this.RegisterTour(this.keypadTab, nodes);
         }
 
         /// <summary>
@@ -612,6 +701,9 @@ namespace Wx3270
 
             // Repaint, enable and disable.
             this.SelectKeymap();
+
+            // Light up the actions box.
+            this.editedButtonActionsTextBox.BackColor = Color.White;
         }
 
         /// <summary>
@@ -697,9 +789,10 @@ namespace Wx3270
         /// <summary>
         /// Start recording a keypad entry.
         /// </summary>
-        private void StartRecordingKeypad()
+        /// <param name="state">Macro editor state.</param>
+        private void StartRecordingKeypad(MacroEditor.EditorState state)
         {
-            this.app.MacroRecorder.Start(this.KeypadRecordingComplete);
+            this.app.MacroRecorder.Start(this.KeypadRecordingComplete, state);
             this.Hide();
             this.mainScreen.Focus();
         }
@@ -708,9 +801,10 @@ namespace Wx3270
         /// Edit the actions for an existing keypad map.
         /// </summary>
         /// <param name="text">Macro text.</param>
-        private void EditKeypadActions(string text)
+        /// <param name="state">Macro editor state.</param>
+        private void EditKeypadActions(string text, MacroEditor.EditorState state = null)
         {
-            using var editor = new MacroEditor(text, I18n.Get(KeypadString.KeypadActions), false, this.app);
+            using var editor = new MacroEditor(text, I18n.Get(KeypadString.KeypadActions), false, this.app, state);
             var result = editor.ShowDialog(this);
             if (result == DialogResult.OK)
             {
@@ -732,7 +826,7 @@ namespace Wx3270
             else if (result == DialogResult.Retry)
             {
                 // Restart macro recorder.
-                this.StartRecordingKeypad();
+                this.StartRecordingKeypad(editor.State);
             }
         }
 
@@ -744,12 +838,13 @@ namespace Wx3270
         private void KeypadRecordingComplete(string text, object context)
         {
             this.Show();
-            if (string.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text) || context == null)
             {
                 return;
             }
 
-            this.EditKeypadActions(text);
+            var state = (MacroEditor.EditorState)context;
+            this.EditKeypadActions(text, state);
         }
 
         /// <summary>

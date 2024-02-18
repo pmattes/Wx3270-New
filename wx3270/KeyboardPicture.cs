@@ -12,7 +12,7 @@ namespace Wx3270
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
-
+    using I18nBase;
     using Microsoft.Win32;
 
     /// <summary>
@@ -172,6 +172,11 @@ namespace Wx3270
         /// Key capture state machine.
         /// </summary>
         private readonly KeyCapture keyCapture = new KeyCapture();
+
+        /// <summary>
+        /// True if the window has ever been activated.
+        /// </summary>
+        private bool everActivated;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyboardPicture"/> class.
@@ -379,6 +384,126 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
+        public static void Localize()
+        {
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Start in select mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), (int)PictureMode.Select), "Tour: Keyboard Map (select mode)");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), (int)PictureMode.Select),
+@"This window allows you to select a key from the keyboard.
+
+Fast path: Press the key and modifiers you want to select on your keyboard, or click on the picture of the key here.");
+
+            // Start in display mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), (int)PictureMode.Display), "Tour: Keyboard Map (display mode)");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), (int)PictureMode.Display),
+@"This window displays the current keyboard map.");
+
+            // Modifiers in select mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), nameof(modifiersGroupBox), (int)PictureMode.Select), "Modifiers");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), nameof(modifiersGroupBox), (int)PictureMode.Select),
+@"Use these radio buttons to choose modifier buttons which must also be pressed, or keyboard modes which must be active, for your selection to apply.");
+
+            // 3270/NVT select mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), nameof(modeGroupBox), (int)PictureMode.Select), "3270/NVT mode");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), nameof(modeGroupBox), (int)PictureMode.Select),
+@"Select one of these check boxes if you want your selection to apply only in 3270 mode or only in NVT mode.");
+
+            // Chord.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), nameof(chordComboBox), (int)PictureMode.Select), "Chord selection");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), nameof(chordComboBox), (int)PictureMode.Select),
+@"If you want the selection to be the second key of a two-key combination, select the first key (the chord start key) here.");
+
+            // Data key, select mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), nameof(key2C), (int)PictureMode.Select), "Key selection");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), nameof(key2C), (int)PictureMode.Select),
+@"Click on the picture of any key to select it.
+
+You can also press the key on your keyboard.");
+
+            // Display mode in select mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), nameof(displayGroupBox), (int)PictureMode.Select), "Display mode");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), nameof(displayGroupBox), (int)PictureMode.Select),
+@"Before selecting a key, you can use these radio buttons to change the display.
+
+'Labels' displays the label printed on the key itself.
+
+'Key codes' displays the current Windows key code for the key. (Key codes vary depending on the current keyboard layout.)
+
+'Scan codes' displays the Windows scan code for the key. (Scan codes represent fixed physical locations.)
+
+'wx3270 definition' displays the action wx3270 currently performs when the key is pressed, given the selected modifiers and modes.");
+
+            // Display mode in display mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), nameof(displayGroupBox), (int)PictureMode.Display), "Display mode");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), nameof(displayGroupBox), (int)PictureMode.Display),
+@"Select the display mode here.
+
+'wx3270 definition' displays the action wx3270 currently performs when the key is pressed, given the selected modifiers and modes.
+
+'Labels' displays the label printed on the key itself.
+
+'Key codes' displays the current Windows key code for the key. (Key codes vary depending on the current keyboard layout.)
+
+'Scan codes' displays the Windows scan code for the key. (Scan codes represent fixed physical locations.)");
+
+            // Modifiers in display mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), nameof(modifiersGroupBox), (int)PictureMode.Display), "Modifiers");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), nameof(modifiersGroupBox), (int)PictureMode.Display),
+@"Use these radio buttons to display actions that apply only when specific modifier buttons are also pressed, or when certain keyboard modes are active.
+
+These selections apply only when the display mode is 'wx3270 actions'.");
+
+            // 3270/NVT select mode in display mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), nameof(modeGroupBox), (int)PictureMode.Display), "3270/NVT mode");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), nameof(modeGroupBox), (int)PictureMode.Display),
+@"Select one of these check boxes to show actions that apply only in 3270 mode or only in NVT mode.
+
+These selections apply only when the display mode is 'wx3270 actions'.");
+
+            // Chord in display mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), nameof(chordComboBox), (int)PictureMode.Display), "Chord selection");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), nameof(chordComboBox), (int)PictureMode.Display),
+@"wx3270 also allows two-key combinarions (chords) to be defined.
+
+To display the actions performed when the second key of a two-key combination is pressed, select the first key (the chord start key) here.
+
+This selection applies only when the display mode is 'wx3270 actions'.");
+
+            // Data key, display mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), nameof(key2C), (int)PictureMode.Display), "Note");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), nameof(key2C), (int)PictureMode.Display),
+@"If a key is displayed as a single character, that's shorthand for the corresponding Key() action.");
+
+            // Help button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(KeyboardPicture), nameof(helpPictureBox)), "Help button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(KeyboardPicture), nameof(helpPictureBox)),
+@"Click to display context-dependent help from the wx3270 Wiki in your browser, or to restart this tour.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
+        }
+
+        /// <summary>
         /// Form localizations.
         /// </summary>
         [I18nFormInit]
@@ -425,6 +550,11 @@ namespace Wx3270
         /// <param name="modifiers">Set of modifiers.</param>
         private void OnKeyEvent(Keys keyCode, Keys modifiers)
         {
+            if (keyCode == Keys.None)
+            {
+                return;
+            }
+
             switch (this.PictureMode)
             {
                 case PictureMode.Select:
@@ -1167,6 +1297,15 @@ namespace Wx3270
             {
                 button.TabStop = false;
             }
+
+            if (!this.everActivated)
+            {
+                this.everActivated = true;
+                if (!Tour.IsComplete(this, this.PictureMode.ToString()))
+                {
+                    this.RunTour();
+                }
+            }
         }
 
         /// <summary>
@@ -1217,7 +1356,60 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void HelpClick(object sender, EventArgs e)
         {
-            Wx3270App.GetHelp("Keymap" + this.PictureMode.ToString());
+            var mouseEvent = (MouseEventArgs)e;
+            if (mouseEvent.Button == MouseButtons.Left)
+            {
+                this.helpContextMenuStrip.Show(this.helpPictureBox, mouseEvent.Location);
+            }
+        }
+
+        /// <summary>
+        /// One of the help menu items was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void HelpMenuClick(object sender, EventArgs e)
+        {
+            Tour.HelpMenuClick(sender, e, "Keymap" + this.PictureMode.ToString(), this.RunTour);
+        }
+
+        /// <summary>
+        /// Run the tour.
+        /// </summary>
+        private void RunTour()
+        {
+            (Control, int?, Orientation)[] nodes;
+            switch (this.PictureMode)
+            {
+                case PictureMode.Select:
+                    nodes = new[]
+                    {
+                        ((Control)this, (int?)this.PictureMode, Orientation.Centered),
+                        (this.modifiersGroupBox, (int?)this.PictureMode, Orientation.LowerRight),
+                        (this.modeGroupBox, (int?)this.PictureMode, Orientation.LowerRight),
+                        (this.chordComboBox, (int?)this.PictureMode, Orientation.LowerLeft),
+                        (this.key2C, (int?)this.PictureMode, Orientation.LowerLeft),
+                        (this.displayGroupBox,  (int?)this.PictureMode, Orientation.LowerRight),
+                        (this.helpPictureBox, null, Orientation.LowerLeft),
+                    };
+                    break;
+                case PictureMode.Display:
+                    nodes = new[]
+                    {
+                        ((Control)this, (int?)this.PictureMode, Orientation.Centered),
+                        (this.displayGroupBox,  (int?)this.PictureMode, Orientation.LowerRight),
+                        (this.modifiersGroupBox, (int?)this.PictureMode, Orientation.LowerRight),
+                        (this.modeGroupBox, (int?)this.PictureMode, Orientation.LowerRight),
+                        (this.chordComboBox, (int?)this.PictureMode, Orientation.LowerLeft),
+                        (this.key2C, (int?)this.PictureMode, Orientation.LowerLeft),
+                        (this.helpPictureBox, null, Orientation.LowerLeft),
+                    };
+                    break;
+                default:
+                    return;
+            }
+
+            Tour.Navigate(this, nodes, this.PictureMode.ToString());
         }
 
         /// <summary>

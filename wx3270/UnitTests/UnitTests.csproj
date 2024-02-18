@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UnitTests</RootNamespace>
     <AssemblyName>UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -74,6 +74,7 @@
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -83,6 +84,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HostNameUnitTest.cs" />
+    <Compile Include="HostSpecUnitTest.cs" />
+    <Compile Include="ModelNameUnitTest.cs" />
+    <Compile Include="InsertNicelyUnitTest.cs" />
+    <Compile Include="OversizeUnitTest.cs" />
     <Compile Include="ProxyParserUnitTest.cs" />
     <Compile Include="LimitedStackUnitTest.cs" />
     <Compile Include="ActionSyntaxUnitTest.cs" />

@@ -5,6 +5,8 @@
 namespace Wx3270
 {
     using System;
+    using System.Windows.Forms;
+    using I18nBase;
 
     /// <summary>
     /// Settings for sound effects.
@@ -28,11 +30,52 @@ namespace Wx3270
         public bool BellValue => this.currentBell;
 
         /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
+        public static void LocalizeSoundSettings()
+        {
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global instructions.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(soundsTab)), "Tour: Sound settings");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(soundsTab)),
+@"Use this tab to change the sounds that wx3270 makes.");
+
+            // Enable/disable.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(keyboardClickCheckBox)), "Enable/disable");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(keyboardClickCheckBox)),
+@"Click to enable or disable the sound.");
+
+            // Preview.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(playKeyboardClick)), "Sound preview");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(playKeyboardClick)),
+@"Click to listen to the sound.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
+        }
+
+        /// <summary>
         /// Initialize the Sounds tab.
         /// </summary>
         public void SoundsTabInit()
         {
             this.ProfileManager.AddChangeTo(this.SoundsProfileChange);
+
+            // Register our tour.
+            var nodes = new[]
+            {
+                ((Control)this.soundsTab, (int?)null, Orientation.Centered),
+                (this.keyboardClickCheckBox, null, Orientation.UpperLeft),
+                (this.playKeyboardClick, null, Orientation.UpperLeft),
+            };
+            this.RegisterTour(this.soundsTab, nodes);
         }
 
         /// <summary>
