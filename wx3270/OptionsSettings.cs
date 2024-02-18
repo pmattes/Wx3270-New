@@ -10,6 +10,7 @@ namespace Wx3270
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
+    using I18nBase;
     using Wx3270.Contracts;
 
     /// <summary>
@@ -46,6 +47,11 @@ namespace Wx3270
         /// True if there is a host connection.
         /// </summary>
         private bool connected = false;
+
+        /// <summary>
+        /// True if this is a full profile.
+        /// </summary>
+        private bool isFullProfile = true;
 
         /// <summary>
         /// The color mode radio buttons and UI state.
@@ -112,7 +118,7 @@ namespace Wx3270
         /// <summary>
         /// Gets a value indicating whether oversize mode is enabled.
         /// </summary>
-        private bool UiIsOversize => OversizeCheck(this.UiModelDimensions, (int)this.RowsUpDown.Value, (int)this.ColumnsUpDown.Value);
+        private bool UiIsOversize => OversizeCheck(this.UiModelDimensions, (int)this.rowsUpDown.Value, (int)this.columnsUpDown.Value);
 
         /// <summary>
         /// Gets the model, according to the UI.
@@ -127,12 +133,114 @@ namespace Wx3270
         /// <summary>
         /// Gets the oversize rows, according to the UI.
         /// </summary>
-        private int UiOversizeRows => this.OversizeCheckBox.Checked ? (int)this.RowsUpDown.Value : 0;
+        private int UiOversizeRows => this.oversizeCheckBox.Checked ? (int)this.rowsUpDown.Value : 0;
 
         /// <summary>
         /// Gets the oversize columns, according to the UI.
         /// </summary>
-        private int UiOversizeColumns => this.OversizeCheckBox.Checked ? (int)this.ColumnsUpDown.Value : 0;
+        private int UiOversizeColumns => this.oversizeCheckBox.Checked ? (int)this.columnsUpDown.Value : 0;
+
+        /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
+        public static void LocalizeOptionSettings()
+        {
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global instructions.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(optionsTab)), "Tour: Option settings");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(optionsTab)),
+@"Use this tab to change terminal emulation and display settings.");
+
+            // Preview box.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(optionsSampleGroupBox)), "Preview display");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(optionsSampleGroupBox)),
+@"This miniature emulator widow displays the effect of the current set of options.");
+
+            // Display box.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(displayGroupBox)), "Color emulation");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(displayGroupBox)),
+@"Choose between a 3278 (monochrome) and 3279 (color) display here.
+
+This option cannot be changed while connected.");
+
+            // Opacity box.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(opacityGroupBox)), "Opacity");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(opacityGroupBox)),
+@"Use the slider to change the opacity of the wx3270 screen and keypad windows.");
+
+            // Display box.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(modelGroupBox)), "Screen size");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(modelGroupBox)),
+@"Choose the 3270 model here, which defines the basic screen dimensions (number of rows and columns).
+
+Some hosts also allow an 'oversize' option, with a larger number of rows and columns than the basic size.
+
+This option cannot be changed while connected.");
+
+            // Terminal name box.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(terminalNameGroupBox)), "Terminal name");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(terminalNameGroupBox)),
+@"As part of negotiation between the host and the 3270 emulator, the emulator tells the host what kind of terminal it is.
+
+Normally this is constructed from the 3270 model, color option and oversize settings, but if necessary, you can override it here.
+
+This option cannot be changed while connected.");
+
+            // Miscellaneous settings box.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(miscGroupBox)), "Miscellaneous options");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(miscGroupBox)),
+@"This is an grab-bag of miscellaneous options. The x3270 Wiki is the best place to find the specific definitions of each.");
+
+            // Cursor box.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(cursorGroupBox)), "Cursor settings");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(cursorGroupBox)),
+@"Change cursor settings here: Block versus underscore cursor, blinking cursor, and crosshair cursor.
+
+The preview display above will show the effect of your choices.");
+
+            // Code page box.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(codePageGroupBox)), "Host code page");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(codePageGroupBox)),
+@"Define the EBCDIC code page used by the host here.
+
+The code page defines the mappings between EBCDIC code points and displayed glyphs. The host does not tell the emulator which code page it is using, so it needs to be defined here.
+
+The default of 'bracket' is a minor variation of the U.S. code page (cp037).");
+
+            // Printer options.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(printerSessionGroupBox)), "Attached printer");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(printerSessionGroupBox)),
+@"wx3270 can also emulate an IBM 3287 printer attached to the 3270 terminal, using the included pr3287 utility. Set up the general options here.
+
+pr3287 can send output to a real printer connected to your workstation, or it can save the printer output as text files in a directory you specify. The latter is helpful because pr3287 generally doesn't support PDF printers, such as Microsoft's Print to PDF.
+
+Also note that these are general pr3287 settings. Details about how pr3287 connects to the host are defined per connection, in the Connection Editor.");
+
+            // Printer options.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(descriptionGroupBox)), "Description and window title");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(descriptionGroupBox)),
+@"Set up a profile description here, which is the text that is displayed when you hover the mouse over this profile in the Profiles and Connections window.
+
+You can also define the window title here. This is a per-profile setting; you can also define the window title for each connection in the Connection Editor.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
+        }
 
         /// <summary>
         /// Check for oversize.
@@ -186,17 +294,17 @@ namespace Wx3270
 
             this.app.CodePageDb.AddDone(() =>
             {
-                this.SafeControlModify(this.CodePageListBox, () =>
+                this.SafeControlModify(this.codePageListBox, () =>
                 {
-                    this.CodePageListBox.Items.Clear();
-                    this.CodePageListBox.Items.AddRange(this.app.CodePageDb.All.ToArray());
+                    this.codePageListBox.Items.Clear();
+                    this.codePageListBox.Items.AddRange(this.app.CodePageDb.All.ToArray());
                 });
             });
 
             // Set up the radio button enumerations.
-            this.cursorType = new RadioEnum<CursorType>(this.CursorGroupBox);
+            this.cursorType = new RadioEnum<CursorType>(this.cursorGroupBox);
             this.cursorType.Changed += this.CursorCheckedChanged;
-            this.colorMode = new RadioEnum<ColorModeEnum>(this.DisplayGroupBox);
+            this.colorMode = new RadioEnum<ColorModeEnum>(this.displayGroupBox);
             this.colorMode.Changed += this.ColorModeChanged;
             this.printerType = new RadioEnum<PrinterType>(this.printerSessionGroupBox);
             this.printerType.Changed += this.PrinterTypeChanged;
@@ -249,6 +357,23 @@ namespace Wx3270
 
             // Localize an error message.
             I18n.LocalizeGlobal(UnknownCodePageError, "Unknown host code page");
+
+            // Register our tour.
+            var nodes = new[]
+            {
+                ((Control)this.optionsTab, (int?)null, Orientation.Centered),
+                (this.optionsSampleGroupBox, null, Orientation.UpperRight),
+                (this.displayGroupBox, null, Orientation.UpperLeft),
+                (this.opacityGroupBox, null, Orientation.UpperLeft),
+                (this.modelGroupBox, null, Orientation.UpperLeft),
+                (this.terminalNameGroupBox, null, Orientation.LowerLeft),
+                (this.miscGroupBox, null, Orientation.LowerLeft),
+                (this.cursorGroupBox, null, Orientation.UpperRight),
+                (this.codePageGroupBox, null, Orientation.UpperRight),
+                (this.printerSessionGroupBox, null, Orientation.LowerRight),
+                (this.descriptionGroupBox, null, Orientation.LowerRight),
+            };
+            this.RegisterTour(this.optionsTab, nodes);
         }
 
         /// <summary>
@@ -257,9 +382,16 @@ namespace Wx3270
         private void OptionsConnectionChange()
         {
             this.connected = this.app.ConnectionState != ConnectionState.NotConnected;
-            this.ModelGroupBox.Enabled = !this.connected;
-            this.DisplayGroupBox.Enabled = !this.connected;
-            this.TerminalNameGroupBox.Enabled = !this.connected;
+            this.modelGroupBox.Enabled = this.isFullProfile && !this.connected;
+            this.displayGroupBox.Enabled = this.isFullProfile && !this.connected;
+            this.terminalNameGroupBox.Enabled = this.isFullProfile && !this.connected;
+
+            string GroupBoxText(string groupBoxName) => I18n.Get(I18n.Combine(nameof(Settings), I18n.FormName, groupBoxName));
+            string DynamicText(string groupBoxText) => this.connected ? groupBoxText + " - " + I18n.Get(Message.LockedWhileConnected) : groupBoxText;
+
+            this.modelGroupBox.Text = DynamicText(GroupBoxText(nameof(this.modelGroupBox)));
+            this.displayGroupBox.Text = DynamicText(GroupBoxText(nameof(this.displayGroupBox)));
+            this.terminalNameGroupBox.Text = DynamicText(GroupBoxText(nameof(this.terminalNameGroupBox)));
         }
 
         /// <summary>
@@ -283,23 +415,23 @@ namespace Wx3270
             this.SafeControlModify(this.modelComboBox, () => this.modelComboBox.SelectedItem = modelDimensions);
 
             // Set oversize.
-            this.OversizeCheckBox.Checked = oversize;
-            this.OversizeCheckBox.Enabled = !this.connected && extended;
-            this.RowsUpDown.Enabled = this.OversizeCheckBox.Enabled && this.OversizeCheckBox.Checked;
-            this.RowsUpDown.Minimum = modelDimensions.Rows;
-            this.SafeControlModify(this.RowsUpDown, () => this.RowsUpDown.Value = oversize ? oversizeRows : modelDimensions.Rows);
-            this.ColumnsUpDown.Enabled = this.OversizeCheckBox.Enabled && this.OversizeCheckBox.Checked;
-            this.ColumnsUpDown.Minimum = modelDimensions.Columns;
-            this.SafeControlModify(this.ColumnsUpDown, () => this.ColumnsUpDown.Value = oversize ? oversizeColumns : modelDimensions.Columns);
+            this.oversizeCheckBox.Checked = oversize;
+            this.oversizeCheckBox.Enabled = !this.connected && extended;
+            this.rowsUpDown.Enabled = this.oversizeCheckBox.Enabled && this.oversizeCheckBox.Checked;
+            this.rowsUpDown.Minimum = modelDimensions.Rows;
+            this.SafeControlModify(this.rowsUpDown, () => this.rowsUpDown.Value = oversize ? oversizeRows : modelDimensions.Rows);
+            this.columnsUpDown.Enabled = this.oversizeCheckBox.Enabled && this.oversizeCheckBox.Checked;
+            this.columnsUpDown.Minimum = modelDimensions.Columns;
+            this.SafeControlModify(this.columnsUpDown, () => this.columnsUpDown.Value = oversize ? oversizeColumns : modelDimensions.Columns);
 
             // Set color mode.
             this.colorMode.Value = color ? ColorModeEnum.Color : ColorModeEnum.Monochrome;
 
             // Only change the Extended check box if override is in effect.
             this.extendedMode = extended;
-            if (!this.OverrideCheckBox.Checked)
+            if (!this.overrideCheckBox.Checked)
             {
-                this.ExtendedCheckBox.Checked = extended;
+                this.extendedCheckBox.Checked = extended;
             }
         }
 
@@ -310,13 +442,13 @@ namespace Wx3270
         private void EmulationSet(Profile profile)
         {
             // Handle the profile type.
-            var isFull = profile.ProfileType == ProfileType.Full;
-            this.DisplayGroupBox.Enabled = isFull;
-            this.opacityGroupBox.Enabled = isFull;
-            this.ModelGroupBox.Enabled = isFull;
-            this.TerminalNameGroupBox.Enabled = isFull;
-            this.MiscGroupBox.Enabled = isFull;
-            this.CodePageGroupBox.Enabled = isFull;
+            this.isFullProfile = profile.ProfileType == ProfileType.Full;
+            this.displayGroupBox.Enabled = this.isFullProfile && !this.connected;
+            this.opacityGroupBox.Enabled = this.isFullProfile;
+            this.modelGroupBox.Enabled = this.isFullProfile && !this.connected;
+            this.terminalNameGroupBox.Enabled = this.isFullProfile && !this.connected;
+            this.miscGroupBox.Enabled = this.isFullProfile;
+            this.codePageGroupBox.Enabled = this.isFullProfile;
 
             // Set the code page.
             var index = this.app.CodePageDb.Index(profile.HostCodePage);
@@ -326,11 +458,11 @@ namespace Wx3270
                 index = this.app.CodePageDb.Index(Profile.DefaultProfile.HostCodePage);
             }
 
-            if (this.CodePageListBox.SelectedIndex != index)
+            if (this.codePageListBox.SelectedIndex != index)
             {
-                this.SafeControlModify(this.CodePageListBox, () =>
+                this.SafeControlModify(this.codePageListBox, () =>
                 {
-                    this.CodePageListBox.SelectedIndex = index;
+                    this.codePageListBox.SelectedIndex = index;
                 });
             }
 
@@ -348,18 +480,18 @@ namespace Wx3270
                 profile.ExtendedMode);
 
             // Set terminal override.
-            this.OverrideCheckBox.Checked = !string.IsNullOrEmpty(profile.TerminalNameOverride);
-            this.OverrideTextBox.Enabled = !this.connected && this.OverrideCheckBox.Checked;
-            this.ExtendedCheckBox.Enabled = !this.connected && !this.OverrideCheckBox.Checked;
-            if (this.OverrideCheckBox.Checked)
+            this.overrideCheckBox.Checked = !string.IsNullOrEmpty(profile.TerminalNameOverride);
+            this.overrideTextBox.Enabled = !this.connected && this.overrideCheckBox.Checked;
+            this.extendedCheckBox.Enabled = !this.connected && !this.overrideCheckBox.Checked;
+            if (this.overrideCheckBox.Checked)
             {
-                this.OverrideTextBox.Text = profile.TerminalNameOverride;
+                this.overrideTextBox.Text = profile.TerminalNameOverride;
             }
 
             this.cursorBlinkCheckBox.Checked = profile.CursorBlink;
             this.cursorType.Value = profile.CursorType;
             this.crosshairCursorCheckBox.Checked = profile.CrosshairCursor;
-            this.MonoCaseCheckBox.Checked = profile.Monocase;
+            this.monoCaseCheckBox.Checked = profile.Monocase;
         }
 
         /// <summary>
@@ -369,7 +501,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void OverrideTextBoxValidated(object sender, EventArgs e)
         {
-            this.ProfileManager.PushAndSave((current) => current.TerminalNameOverride = this.OverrideTextBox.Text, ChangeName(B3270.Setting.TermName));
+            this.ProfileManager.PushAndSave((current) => current.TerminalNameOverride = this.overrideTextBox.Text, ChangeName(B3270.Setting.TermName));
         }
 
         /// <summary>
@@ -395,26 +527,35 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Updates the rows and columns in the profile.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        private void UpdateRowsCols(object sender)
+        {
+            if (!this.lockedControls.Contains(sender))
+            {
+                var newOversize = new Profile.OversizeClass { Rows = (int)this.rowsUpDown.Value, Columns = (int)this.columnsUpDown.Value };
+                var dimensions = this.modelComboBox.SelectedItem as ModelDimensions;
+                if (newOversize.Rows == dimensions.Rows && newOversize.Columns == dimensions.Columns)
+                {
+                    newOversize = new Profile.OversizeClass { Rows = 0, Columns = 0 };
+                }
+
+                this.ProfileManager.PushAndSave(
+                    (current) => current.Oversize = newOversize,
+                    ChangeName(ChangeKeyword.Model));
+            }
+        }
+
+        /// <summary>
         /// The value of the oversize rows changed.
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
         private void RowsUpDownValueChanged(object sender, EventArgs e)
         {
-            this.ColumnsUpDown.Maximum = OversizeMax / this.RowsUpDown.Value;
-            if (!this.lockedControls.Contains(sender))
-            {
-                this.ProfileManager.PushAndSave(
-                    (current) =>
-                    {
-                        current.Oversize = new Profile.OversizeClass
-                        {
-                            Rows = (int)this.RowsUpDown.Value,
-                            Columns = (int)this.ColumnsUpDown.Value,
-                        };
-                    },
-                    ChangeName(ChangeKeyword.Model));
-            }
+            this.columnsUpDown.Maximum = OversizeMax / this.rowsUpDown.Value;
+            this.UpdateRowsCols(sender);
         }
 
         /// <summary>
@@ -424,20 +565,8 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ColumnsUpDownValueChanged(object sender, EventArgs e)
         {
-            this.RowsUpDown.Maximum = OversizeMax / this.ColumnsUpDown.Value;
-            if (!this.lockedControls.Contains(sender))
-            {
-                this.ProfileManager.PushAndSave(
-                    (current) =>
-                    {
-                        current.Oversize = new Profile.OversizeClass
-                        {
-                            Rows = (int)this.RowsUpDown.Value,
-                            Columns = (int)this.ColumnsUpDown.Value,
-                        };
-                    },
-                    ChangeName(ChangeKeyword.Model));
-            }
+            this.rowsUpDown.Maximum = OversizeMax / this.columnsUpDown.Value;
+            this.UpdateRowsCols(sender);
         }
 
         /// <summary>
@@ -447,17 +576,17 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void OversizeCheckBoxClick(object sender, EventArgs e)
         {
-            this.RowsUpDown.Enabled = this.OversizeCheckBox.Checked;
-            this.ColumnsUpDown.Enabled = this.OversizeCheckBox.Checked;
-            this.RowsUpDown.Minimum = this.UiModelDimensions.Rows;
-            this.ColumnsUpDown.Minimum = this.UiModelDimensions.Columns;
-            this.SafeControlModify(this.RowsUpDown, () => this.RowsUpDown.Value = this.UiModelDimensions.Rows);
-            this.SafeControlModify(this.ColumnsUpDown, () => this.ColumnsUpDown.Value = this.UiModelDimensions.Columns);
+            this.rowsUpDown.Enabled = this.oversizeCheckBox.Checked;
+            this.columnsUpDown.Enabled = this.oversizeCheckBox.Checked;
+            this.rowsUpDown.Minimum = this.UiModelDimensions.Rows;
+            this.columnsUpDown.Minimum = this.UiModelDimensions.Columns;
+            this.SafeControlModify(this.rowsUpDown, () => this.rowsUpDown.Value = this.UiModelDimensions.Rows);
+            this.SafeControlModify(this.columnsUpDown, () => this.columnsUpDown.Value = this.UiModelDimensions.Columns);
 
             this.ProfileManager.PushAndSave(
                 (current) =>
                 {
-                    if (this.OversizeCheckBox.Checked)
+                    if (this.oversizeCheckBox.Checked)
                     {
                         current.Oversize = new Profile.OversizeClass
                         {
@@ -480,18 +609,18 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void OverrideCheckBoxClick(object sender, EventArgs e)
         {
-            if (this.OverrideCheckBox.Checked)
+            if (this.overrideCheckBox.Checked)
             {
                 // Override on.
-                this.OverrideTextBox.Enabled = true;
-                this.ExtendedCheckBox.Enabled = false;
+                this.overrideTextBox.Enabled = true;
+                this.extendedCheckBox.Enabled = false;
             }
             else
             {
                 // Override off.
-                this.OverrideTextBox.Enabled = false;
-                this.ExtendedCheckBox.Enabled = true;
-                this.ExtendedCheckBox.Checked = this.extendedMode;
+                this.overrideTextBox.Enabled = false;
+                this.extendedCheckBox.Enabled = true;
+                this.extendedCheckBox.Checked = this.extendedMode;
 
                 this.ProfileManager.PushAndSave((current) => current.TerminalNameOverride = string.Empty, ChangeName(B3270.Setting.TermName));
             }
@@ -504,7 +633,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ExtendedCheckBoxClick(object sender, EventArgs e)
         {
-            this.extendedMode = this.ExtendedCheckBox.Checked;
+            this.extendedMode = this.extendedCheckBox.Checked;
             this.ProfileManager.PushAndSave((current) => current.ExtendedMode = this.extendedMode, ChangeName(ChangeKeyword.Model));
         }
 
@@ -514,8 +643,8 @@ namespace Wx3270
         /// <param name="nameAndOverride">Terminal name and override.</param>
         private void BackEndChangedTerminalName((string, bool) nameAndOverride)
         {
-            this.OverrideTextBox.Text = nameAndOverride.Item1;      // name
-            this.OverrideCheckBox.Checked = nameAndOverride.Item2;  // override
+            this.overrideTextBox.Text = nameAndOverride.Item1;      // name
+            this.overrideCheckBox.Checked = nameAndOverride.Item2;  // override
         }
 
         /// <summary>
@@ -539,12 +668,12 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void CodePageChanged(object sender, EventArgs e)
         {
-            if (!(this.CodePageListBox.SelectedItem is string codePage))
+            if (!(this.codePageListBox.SelectedItem is string codePage))
             {
                 return;
             }
 
-            if (this.lockedControls.Contains(this.CodePageListBox))
+            if (this.lockedControls.Contains(this.codePageListBox))
             {
                 return;
             }
@@ -552,7 +681,7 @@ namespace Wx3270
             var canonicalName = this.app.CodePageDb.CanonicalName(codePage);
             if (canonicalName != codePage)
             {
-                this.CodePageListBox.SelectedIndex = this.app.CodePageDb.Index(canonicalName);
+                this.codePageListBox.SelectedIndex = this.app.CodePageDb.Index(canonicalName);
             }
 
             this.ProfileManager.PushAndSave((current) => current.HostCodePage = canonicalName, ChangeName(B3270.Setting.CodePage));
@@ -641,7 +770,7 @@ namespace Wx3270
             // Handle the profile type.
             var isFull = profile.ProfileType == ProfileType.Full;
             this.optionsSampleGroupBox.Enabled = isFull;
-            this.CursorGroupBox.Enabled = isFull;
+            this.cursorGroupBox.Enabled = isFull;
             this.printerSessionGroupBox.Enabled = isFull;
             this.windowTitleLabel.Enabled = isFull;
             this.titleTextBox.Enabled = isFull;
@@ -654,7 +783,7 @@ namespace Wx3270
             {
                 (this.crosshairCursorCheckBox, profile.CrosshairCursor),
                 (this.cursorBlinkCheckBox, profile.CursorBlink),
-                (this.MonoCaseCheckBox, profile.Monocase),
+                (this.monoCaseCheckBox, profile.Monocase),
                 (this.typeaheadCheckBox, profile.Typeahead),
                 (this.showTimingCheckBox, profile.ShowTiming),
                 (this.alwaysInsertCheckBox, profile.AlwaysInsert),

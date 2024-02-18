@@ -75,10 +75,13 @@ namespace Wx3270
 
             // Register for asynchronous connect error pop-ups.
             this.app.Popup.ConnectErrorEvent += this.ConnectErrorEvent;
+
+            // Subscribe to profile change events.
+            this.app.ProfileManager.AddChangeTo(this.ProfileChanged);
         }
 
         /// <summary>
-        /// Gets the host we are connecting to.
+        /// Gets the host we are connecting/connected to.
         /// </summary>
         public HostEntry ConnectHostEntry { get; private set; }
 
@@ -315,6 +318,32 @@ namespace Wx3270
 
             // Not supported, or no value to set.
             return !required || string.IsNullOrEmpty(value);
+        }
+
+        /// <summary>
+        /// The profile changed.
+        /// </summary>
+        /// <param name="oldProfile">Old profile.</param>
+        /// <param name="newProfile">Mew profile.</param>
+        private void ProfileChanged(Profile oldProfile,  Profile newProfile)
+        {
+            // If the window title changed in the current host entry, update the main window title.
+            // This can't be done in the main screen's ChangeTo handler, because it depends on this object's
+            // ConnectHostEntry, which is updated here, and we don't (and don't want to) arbitrarily control
+            // the order that ChangeTo handlers are called.
+            var oldHost = this.ConnectHostEntry;
+            if (oldHost != null)
+            {
+                var h = newProfile.Hosts.FirstOrDefault(host => host.Name.Equals(oldHost.Name, StringComparison.CurrentCultureIgnoreCase));
+                if (h != null)
+                {
+                    this.ConnectHostEntry = h;
+                    if (this.ConnectHostEntry.WindowTitle != oldHost.WindowTitle)
+                    {
+                        this.mainScreen.Retitle();
+                    }
+                }
+            }
         }
 
         /// <summary>

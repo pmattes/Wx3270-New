@@ -159,8 +159,18 @@ namespace Wx3270.Contracts
         /// <param name="outProfilePath">Returned full profile path.</param>
         /// <param name="readOnly">If true, open read-only.</param>
         /// <param name="doErrorPopups">If true, do pop-ups for errors.</param>
+        /// <param name="propagate">If true, propagate the settings.</param>
         /// <returns>True if load was successful.</returns>
-        bool Load(string profilePath, out string outProfilePath, bool readOnly = false, bool doErrorPopups = true);
+        bool Load(string profilePath, out string outProfilePath, bool readOnly = false, bool doErrorPopups = true, bool propagate = true);
+
+        /// <summary>
+        /// Load a profile, creating it if necessary.
+        /// </summary>
+        /// <param name="profile">Profile name.</param>
+        /// <param name="readOnly"><see cref="true"/> to open the profile read-only (and not create)</param>
+        /// <param name="profilePath">Returned full profile path.</param>
+        /// <returns><see cref="true"/>if profile loaded successfully.</returns>
+        bool LoadCreate(string profile, bool readOnly, out string profilePath);
 
         /// <summary>
         /// Merge data from another profile.
@@ -210,6 +220,12 @@ namespace Wx3270.Contracts
         /// <param name="stream">Returned open file stream.</param>
         /// <returns>True if save succeeded.</returns>
         bool SaveDefault(out FileStream stream);
+
+        /// <summary>
+        /// Gets a copy of the default profile, without any hosts.
+        /// </summary>
+        /// <returns>Default profile.</returns>
+        Profile CopyDefaultProfile();
 
         /// <summary>
         /// Handle a profile error.

@@ -63,6 +63,22 @@ namespace Wx3270
     }
 
     /// <summary>
+    /// Create a new profile, or add to an existing one.
+    /// </summary>
+    public enum CreateAdd
+    {
+        /// <summary>
+        /// Create a new one.
+        /// </summary>
+        CreateNewProfile,
+
+        /// <summary>
+        /// Add to existing.
+        /// </summary>
+        AddToExistingProfile,
+    }
+
+    /// <summary>
     /// The host editor.
     /// </summary>
     public partial class HostEditor : Form
@@ -86,6 +102,11 @@ namespace Wx3270
         /// The editing mode.
         /// </summary>
         private readonly HostEditingMode editingMode;
+
+        /// <summary>
+        /// Create/add radio buttons.
+        /// </summary>
+        private readonly RadioEnum<CreateAdd> createAdd;
 
         /// <summary>
         /// Auto-connect radio buttons.
@@ -123,9 +144,9 @@ namespace Wx3270
         private readonly Wx3270App app;
 
         /// <summary>
-        /// True if we are copying the host to the nickname.
+        /// True if this window has been activated.
         /// </summary>
-        private bool copyingHostToNickname;
+        private bool everActivated;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HostEditor"/> class.
@@ -134,12 +155,14 @@ namespace Wx3270
         /// <param name="hostEntry">Optional existing host entry.</param>
         /// <param name="profile">Profile to associate with new or modified entry.</param>
         /// <param name="app">Application context.</param>
-        public HostEditor(HostEditingMode editingMode, HostEntry hostEntry, Profile profile, Wx3270App app)
+        /// <param name="spec">Profile creation spec.</param>
+        public HostEditor(HostEditingMode editingMode, HostEntry hostEntry, Profile profile, Wx3270App app, ProfileSpec spec = null)
         {
             this.InitializeComponent();
 
             this.editingMode = editingMode;
             this.profile = profile;
+            this.createAdd = new RadioEnum<CreateAdd>(this.profileTableLayoutPanel);
             this.autoConnect = new RadioEnum<AutoConnect>(this.loadTableLayoutPanel);
             this.hostType = new RadioEnum<HostType>(this.hostTypeTableLayoutPanel);
             this.printerSessionType = new RadioEnum<PrinterSessionType>(this.printerSessionTableLayoutPanel);
@@ -206,7 +229,7 @@ namespace Wx3270
             if (hostEntry != null)
             {
                 this.connectionType.Value = hostEntry.ConnectionType;
-                this.NicknameTextBox.Text = hostEntry.Name;
+                this.connectionNameTextBox.Text = hostEntry.Name;
                 this.HostNameTextBox.Text = hostEntry.Host;
                 this.PortTextBox.Text = hostEntry.Port;
                 this.LuNamesTextBox.Text = hostEntry.LuNames;
@@ -248,7 +271,6 @@ namespace Wx3270
             if (editingMode == HostEditingMode.QuickConnect)
             {
                 this.ActiveControl = this.HostNameTextBox;
-                this.copyingHostToNickname = true;
             }
 
             if (editingMode == HostEditingMode.SaveHost)
@@ -306,6 +328,47 @@ namespace Wx3270
 
             // Set the profile name label, which we do not want localized.
             this.profileNameLabel.Text = hostEntry != null ? hostEntry.Profile.Name : profile.Name;
+
+            // Populate profile-related fields.
+            if (hostEntry == null || spec != null)
+            {
+                // This is an add of a new connection, or a continuation of an add after macro recording.
+                // Set up the info about the profile we're adding to.
+                this.addToProfileNameLabel.Text = profile.Name;
+                this.addToProfileModelLabel.Text = profile.Model.ToString();
+                if (this.app != null)
+                {
+                    this.addToProfileRowsLabel.Text = this.app.ModelsDb.Models[profile.Model].Rows.ToString();
+                    this.addToProfileColumnsLabel.Text = this.app.ModelsDb.Models[profile.Model].Columns.ToString();
+                }
+
+                // Set up the fields for creating a new profile.
+                this.newProfileNameTextBox.Width = this.connectionNameTextBox.Width;
+                if (this.app != null)
+                {
+                    var modelNames = this.app.ModelsDb.Models.Keys.Cast<object>().ToArray();
+                    this.modelComboBox.Items.AddRange(modelNames);
+                    if (spec != null)
+                    {
+                        this.NewProfileSpec = spec;
+                    }
+                }
+
+                this.createAdd.Changed += this.CreateAddChanged;
+                this.createAdd.Value = spec != null ? CreateAdd.CreateNewProfile : CreateAdd.AddToExistingProfile;
+
+                // No need for redundant display of the profile name.
+                this.profileLabel.Visible = false;
+                this.profileNameLabel.Visible = false;
+            }
+            else
+            {
+                // This is an edit, get rid of the add-related fields.
+                this.profileGroupBox.RemoveFromParent();
+
+                // We still don't want Save validating the profile name.
+                this.createAdd.Value = CreateAdd.AddToExistingProfile;
+            }
         }
 
         /// <summary>
@@ -318,7 +381,7 @@ namespace Wx3270
                 return new HostEntry
                 {
                     Profile = this.profile,
-                    Name = this.NicknameTextBox.Text,
+                    Name = this.connectionNameTextBox.Text,
                     ConnectionType = this.connectionType.Value,
                     Host = this.HostNameTextBox.Text,
                     Port = this.PortTextBox.Text,
@@ -351,6 +414,49 @@ namespace Wx3270
         public HostEditingResult Result { get; private set; } = HostEditingResult.Cancel;
 
         /// <summary>
+        /// Gets the new profile to create, if the user selected that.
+        /// </summary>
+        public ProfileSpec NewProfileSpec
+        {
+            get
+            {
+                if (this.createAdd.Value == CreateAdd.AddToExistingProfile)
+                {
+                    return null;
+                }
+
+                var db = this.app.ModelsDb.Models[(int)this.modelComboBox.SelectedItem];
+                var oversize = (int)this.rowsUpDown.Value != db.Rows || (int)this.columnsUpDown.Value != db.Columns;
+                return new ProfileSpec(
+                    this.newProfileNameTextBox.Text,
+                    (int)this.modelComboBox.SelectedItem,
+                    oversize ? (int)this.rowsUpDown.Value : 0,
+                    oversize ? (int)this.columnsUpDown.Value : 0);
+            }
+
+            private set
+            {
+                this.newProfileNameTextBox.Text = value.ProfileName;
+                this.modelComboBox.SelectedItem = value.Model;
+                if (value.Rows != 0 || value.Columns != 0)
+                {
+                    this.rowsUpDown.Value = value.Rows;
+                    this.columnsUpDown.Value = value.Columns;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the macro editor state.
+        /// </summary>
+        public MacroEditor.EditorState MacroEditorState { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the recorded text to insert into the login macro.
+        /// </summary>
+        public (string insertText, MacroEditor.EditorState)? LoginMacroInsert { get; set; }
+
+        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]
@@ -366,14 +472,250 @@ namespace Wx3270
 
             I18n.LocalizeGlobal(Message.HostNameCharacter, "Host name cannot contain a space or any of these characters");
             I18n.LocalizeGlobal(Message.InvalidIpv6, "Invalid IPv6 address");
+            I18n.LocalizeGlobal(Message.InvalidProfileName, "Invalid profile name");
+            I18n.LocalizeGlobal(Message.ProfileAlreadyExists, "Profile already exists");
             I18n.LocalizeGlobal(Message.PortCharacter, "Port can only contain alphanumeric, dash or underscore characters");
             I18n.LocalizeGlobal(Message.LuNameCharacter, "LU names can only contain alphanumeric, dash or underscore characters");
+            I18n.LocalizeGlobal(Message.MustSpecifyProfile, "Must specify a profile name");
             I18n.LocalizeGlobal(Message.MustSpecifyHost, "Must specify a host name");
             I18n.LocalizeGlobal(Message.MustSpecifyCommand, "Must specify a command");
             I18n.LocalizeGlobal(Message.AcceptHostCharacter, "Accept host name cannot contain a space or any of these characters");
             I18n.LocalizeGlobal(Message.MustSpecifyLu, "Must specify an LU name");
             I18n.LocalizeGlobal(Message.TranslatedPrefix, "Translating host prefix to option");
             I18n.LocalizeGlobal(Message.HostPrefix, "host prefix");
+
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global step 1.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), 1), "Tour: Connection Editor (new connection mode)");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), 1),
+@"Use the Connection Editor to define or change a connection to a host.
+
+A connection has basic parameters like the host name/address and TCP port.
+
+If there is a setting you want to change but you do not see here, such as colors or keyboard mappings, those are per-profile parameters and are changed from the Settings window.");
+
+            // Global step 1, editing mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), 10), "Tour: Connection Editor (editing mode)");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), 10),
+@"Use the Connection Editor to change a connection to a host.
+
+A connection has basic parameters like the host name/address and TCP port.
+
+If there is a setting you want to change but you do not see here, such as colors or keyboard mappings, those are per-profile parameters and are changed from the Settings window.");
+
+            // Host name.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(HostNameTextBox)), "Basics, Step 1 of 4: Host name");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(HostNameTextBox)),
+@"Enter the host's name or numeric address here.");
+
+            // Port.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(PortTextBox)), "Basics, Step 2 of 4: TCP port");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(PortTextBox)),
+@"Enter the TCP port to use to connect to the host here.");
+
+            // TLS tunnel.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(tlsTunnelCheckBox)), "Basics, Step 3 of 4: TLS tunnel");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(tlsTunnelCheckBox)),
+@"Check this box if you need wx3270 to create a TLS tunnel to the host.");
+
+            // Connect.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(connectButton)), "Basics, Step 4 of 4: Connect button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(connectButton)),
+@"Click to connect to the host.");
+
+            // Profile selection.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), 2), "More options: New profile");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), 2),
+@"By default, the Connection Editor will add this connection to the current profile (or to the profile currently selected in the Profiles and Connections window). You can also choose to create a new profile and add this connection to it.
+
+A common reason for doing this is to have different screen dimensions.
+
+The new profile will be a copy of the default profile, containing only this connection.
+
+Do this before clicking on the Connect button.");
+
+            // New profile.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(newProfileRadioButton)), "New profile, Step 1 of 4");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(newProfileRadioButton)),
+@"Select Create new profile.");
+
+            // New profile name.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(newProfileNameTextBox)), "New profile, Step 2 of 4: Profile name");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(newProfileNameTextBox)),
+@"Enter the name of the new profile.");
+
+            // New profile model.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(modelComboBox)), "New profile, Step 3 of 4: Model number");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(modelComboBox)),
+@"Select the 3270 model number, which gives the minimum rows and columns.");
+
+            // New profile oversize.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(rowsUpDown)), "New profile, Step 4 of 4: Oversize rows and columns");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(rowsUpDown)),
+@"Optionally, you can choose larger dimensions than the minimum for the model here.");
+
+            // Connection to something other than a host.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), 3), "Additional options");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), 3),
+@"Here are some miscellaneous options that can be set.");
+
+            // Connection name.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(connectionNameTextBox)), "Additional options: Connection name");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(connectionNameTextBox)),
+@"You can give this connection a name with this field. Otherwise the name will be constructed from the hostname and port.");
+
+            // LU names.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(LuNamesTextBox)), "Additional options: LU names");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(LuNamesTextBox)),
+@"If you need to connect to a specific Logical Unit (LU), enter its name or a list of LU names here.");
+
+            // Login macro.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(LoginMacroTextBox)), "Additional options: Login macro");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(LoginMacroTextBox)),
+@"A login macro is a series of actions that will be performed as soon as the connection is fully established.
+
+Click here to create or edit the login macro with the Macro Editor.");
+
+            // Description.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(descriptionTextBox)), "Additional options: Connection description");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(descriptionTextBox)),
+@"Enter the connection descrition here, which will be displayed when the mouse is hovered over this connection in the Profiles and Connections window.");
+
+            // Window title.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(titleTextBox)), "Additional options: Window title");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(titleTextBox)),
+@"If you want a specific window title for this connection, enter it here.
+
+This will override the wx3270 default of profile name and connection name, and will also override any per-profile window title defined in the Settings window.");
+
+            // Load options.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(loadGroupBox)), "Additional options: Automatic connection");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(loadGroupBox)),
+@"Use these radio buttons to choose whether to automatically make this connection when the profile that contains it is loaded.
+
+The connection can be automatically made, and it can also be automatically reconnected if it disconnects.
+
+Note that only one connection per profile can be designated this way.");
+
+            // Host type for file transfers.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(hostTypeGroupBox)), "Additional options: Host type");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(hostTypeGroupBox)),
+@"Use these radio buttons to define what kind of host this is. This setting is optional.
+
+It is used to set up the options for IND$FILE file transfers.");
+
+            // Printer session.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(printerSessionGroupBox)), "Additional options: Printer session");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(printerSessionGroupBox)),
+@"wx3270 can also emulate an attached printer. Use these fields to set up an attached printer.");
+
+            // TLS parameters.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), 4), "TLS options");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), 4),
+@"Here are some additional options that are specific to Transport Layer Security (TLS).");
+
+            // Accept hostname.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(acceptTextBox)), "TLS options: Accept hostname");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(acceptTextBox)),
+@"If you are connecting to a host using TLS, and the name in the host's certificate is something other than the hostname/address you specified to connect to it, you can enter that name here.
+
+This will allow TLS to successfully validate the host's certificate.");
+
+            // Client certificate name.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(clientCertTextBox)), "TLS options: Client certificate name");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(clientCertTextBox)),
+@"If you are connecting to a host using TLS, and the host requires that you provide a certificate, enter the name of the certificate here.
+
+wx3270 will look for the certifcate in the current user's Personal store.");
+
+            // Verify cert checkbox.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(verifyCertCheckBox)), "TLS options: Verify host certificate");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(verifyCertCheckBox)),
+@"If you are connecting to a host using TLS, and the connection keeps failing because host certificate validation fails, you can work around this issue by un-checking this option, which will turn off host certificate validation.");
+
+            // Connection to something other than a host.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), 5), "Connect to a local process");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), 5),
+@"wx3270 can also connect to a local process, rather than to a host. Examples of local processes would be cmd.exe or Powershell.");
+
+            // Local process selection.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(localProcessRadioButton)), "Local process, Step 1 of 3");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(localProcessRadioButton)),
+@"Select Local process here.");
+
+            // Command.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(commandTextBox)), "Local process, Step 2 of 3: Command");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(commandTextBox)),
+@"Click here to specify the program to execute.");
+
+            // Command-line options.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(commandLineOptionsTextBox)), "Local process, Step 3 of 3: Command-line options");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(commandLineOptionsTextBox)),
+@"Use this field to enter any command-line options to provide to the program.");
+
+            // Connect+Record button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(connectRecordButton)), "Connect+Record button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(connectRecordButton)),
+@"Click to start the connection and begin recording a login macro with the macro recorder.");
+
+            // Cancel button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(cancelButton)), "Cancel button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(cancelButton)),
+@"Click to abandon your changes.");
+
+            // Save button, new-session variant.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(okButton)), "Save button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(okButton)),
+@"Click to save the connection definition without starting the connection.");
+
+            // Save button, edit variant.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(okButton), 1), "Basics, 4 of 4: Save button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(okButton), 1),
+@"Click to save the connection definition.");
+
+            // Help button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(HostEditor), nameof(helpPictureBox)), "Help button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(HostEditor), nameof(helpPictureBox)),
+@"Click to display context-dependent help from the wx3270 Wiki in your browser, or to restart this tour.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
         }
 
         /// <summary>
@@ -383,6 +725,36 @@ namespace Wx3270
         public static void FormLocalize()
         {
             new HostEditor(HostEditingMode.SaveHost, null, Profile.DefaultProfile, null).Dispose();
+        }
+
+        /// <summary>
+        /// Adjusts the form to a changed create/add type.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void CreateAddChanged(object sender, EventArgs e)
+        {
+            var creating = this.createAdd.Value == CreateAdd.CreateNewProfile;
+            this.newProfileNameTextBox.Enabled = creating;
+            this.modelComboBox.Enabled = creating;
+            this.rowsUpDown.Enabled = creating;
+            this.columnsUpDown.Enabled = creating;
+            this.addToProfileNameLabel.Enabled = !creating;
+            this.addToProfileModelLabel.Enabled = !creating;
+            this.addToProfileRowsLabel.Enabled = !creating;
+            this.addToProfileColumnsLabel.Enabled = !creating;
+
+            if (!creating)
+            {
+                // Revert to defaults.
+                this.newProfileNameTextBox.Text = string.Empty;
+                if (this.app != null)
+                {
+                    var sourceProfile = this.app.ProfileManager.CopyDefaultProfile();
+                    this.modelComboBox.SelectedItem = sourceProfile.Model;
+                    this.RowsColsDefaults(sourceProfile.Model);
+                }
+            }
         }
 
         /// <summary>
@@ -397,10 +769,10 @@ namespace Wx3270
             this.PortTextBox.Enabled = isHost;
             this.luNamesLabel.Enabled = isHost;
             this.LuNamesTextBox.Enabled = isHost;
-            this.acceptLabel.Enabled = isHost;
-            this.acceptTextBox.Enabled = isHost;
-            this.clientCertificateLabel.Enabled = isHost;
-            this.clientCertTextBox.Enabled = isHost;
+            this.acceptLabel.Enabled = isHost && (this.tlsTunnelCheckBox.Checked || this.starttlsCheckBox.Checked);
+            this.acceptTextBox.Enabled = isHost && (this.tlsTunnelCheckBox.Checked || this.starttlsCheckBox.Checked);
+            this.clientCertificateLabel.Enabled = isHost && (this.tlsTunnelCheckBox.Checked || this.starttlsCheckBox.Checked);
+            this.clientCertTextBox.Enabled = isHost && (this.tlsTunnelCheckBox.Checked || this.starttlsCheckBox.Checked);
             this.optionsGroupBox.Enabled = isHost;
             this.hostTypeGroupBox.Enabled = isHost;
             this.printerSessionGroupBox.Enabled = isHost;
@@ -470,10 +842,6 @@ namespace Wx3270
 
                 return;
             }
-            else if (text != string.Empty)
-            {
-                this.copyingHostToNickname = false;
-            }
         }
 
         /// <summary>
@@ -534,17 +902,32 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void LoginMacroEditButton_Click(object sender, EventArgs e)
         {
+            this.StartMacroEditor();
+        }
+
+        /// <summary>
+        /// Starts the macro editor for the login macro.
+        /// </summary>
+        /// <param name="ins">Login macro insert spec.</param>
+        /// <returns>True if window was closed.</returns>
+        private bool StartMacroEditor((string insertText, MacroEditor.EditorState state)? ins = null)
+        {
             var title = I18n.Get(Title.LoginMacro);
-            if (!string.IsNullOrEmpty(this.NicknameTextBox.Text))
+            if (!string.IsNullOrEmpty(this.connectionNameTextBox.Text))
             {
-                title = this.NicknameTextBox.Text + " " + title;
+                title = this.connectionNameTextBox.Text + " " + title;
             }
             else if (!string.IsNullOrEmpty(this.HostNameTextBox.Text))
             {
                 title = this.HostNameTextBox.Text + " " + title;
             }
 
-            using var editor = new MacroEditor(this.HostEntry.LoginMacro, title, false, this.app);
+            using var editor = new MacroEditor(
+                ins?.insertText ?? this.HostEntry.LoginMacro,
+                title,
+                false,
+                this.app,
+                ins?.state);
             var result = editor.ShowDialog(this);
             if (result == DialogResult.OK)
             {
@@ -552,18 +935,22 @@ namespace Wx3270
             }
             else if (result == DialogResult.Retry)
             {
-                this.StartRecordingLoginMacro(title);
+                this.StartRecordingLoginMacro(editor.State);
+                return true;
             }
+
+            return false;
         }
 
         /// <summary>
         /// Start recording a login macro.
         /// </summary>
-        /// <param name="title">Macro title.</param>
-        private void StartRecordingLoginMacro(string title)
+        /// <param name="editorState">Macro editor state.</param>
+        private void StartRecordingLoginMacro(MacroEditor.EditorState editorState)
         {
             // Don't save it yet -- we're just recording.
             this.Result = HostEditingResult.Ok | HostEditingResult.Record;
+            this.MacroEditorState = editorState;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -597,17 +984,28 @@ namespace Wx3270
         /// <param name="editingResult">Editing result to return, if successful.</param>
         private void ValidateDone(DialogResult result, HostEditingResult editingResult)
         {
+            if (this.createAdd.Value == CreateAdd.CreateNewProfile)
+            {
+                if (string.IsNullOrEmpty(this.newProfileNameTextBox.Text))
+                {
+                    ErrorBox.Show(I18n.Get(Message.MustSpecifyProfile), I18n.Get(Title.ConnectionEditor));
+                    this.newProfileNameTextBox.Focus();
+                    return;
+                }
+            }
+
             if (this.connectionType.Value == ConnectionType.Host)
             {
                 if (string.IsNullOrEmpty(this.HostNameTextBox.Text))
                 {
                     ErrorBox.Show(I18n.Get(Message.MustSpecifyHost), I18n.Get(Title.ConnectionEditor));
+                    this.HostNameTextBox.Focus();
+                    return;
                 }
 
-                // XXX: There should be a way to make this unique, instead of failing the edit/add later.
-                if (string.IsNullOrEmpty(this.NicknameTextBox.Text))
+                if (string.IsNullOrEmpty(this.connectionNameTextBox.Text))
                 {
-                    this.NicknameTextBox.Text = this.HostNameTextBox.Text;
+                    this.connectionNameTextBox.Text = this.HostNameTextBox.Text + " " + this.PortTextBox.Text;
                 }
             }
 
@@ -616,11 +1014,13 @@ namespace Wx3270
                 if (string.IsNullOrEmpty(this.commandTextBox.Text))
                 {
                     ErrorBox.Show(I18n.Get(Message.MustSpecifyCommand), I18n.Get(Title.ConnectionEditor));
+                    this.commandTextBox.Focus();
+                    return;
                 }
 
-                if (string.IsNullOrEmpty(this.NicknameTextBox.Text))
+                if (string.IsNullOrEmpty(this.connectionNameTextBox.Text))
                 {
-                    this.NicknameTextBox.Text = Path.GetFileNameWithoutExtension(this.commandTextBox.Text);
+                    this.connectionNameTextBox.Text = Path.GetFileNameWithoutExtension(this.commandTextBox.Text);
                 }
             }
 
@@ -657,16 +1057,7 @@ namespace Wx3270
         private void NicknameTextBox_Validating(object sender, CancelEventArgs e)
         {
             // Strip white space.
-            this.NicknameTextBox.Text = this.NicknameTextBox.Text.Trim(' ');
-        }
-
-        /// <summary>
-        /// Checked change event handler for the TLS checkbox.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void TlsCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
+            this.connectionNameTextBox.Text = this.connectionNameTextBox.Text.Trim(' ');
         }
 
         /// <summary>
@@ -726,7 +1117,11 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void Help_Click(object sender, EventArgs e)
         {
-            Wx3270App.GetHelp("ConnectionEditor");
+            var mouseEvent = (MouseEventArgs)e;
+            if (mouseEvent.Button == MouseButtons.Left)
+            {
+                this.helpContextMenuStrip.Show(this.helpPictureBox, mouseEvent.Location);
+            }
         }
 
         /// <summary>
@@ -833,26 +1228,276 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// The nickname text box got focus.
+        /// The index of the model number combo box changed.
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
-        private void NicknameTextBox_Enter(object sender, EventArgs e)
+        private void ModelIndexChanged(object sender, EventArgs e)
         {
-            this.copyingHostToNickname = false;
+            // The selected model changed. Take the up/downs back to defaults.
+            var model = (int)this.modelComboBox.SelectedItem;
+            this.RowsColsDefaults(model);
         }
 
         /// <summary>
-        /// The text in the hostname text box changed.
+        /// Set the rows and columns selectors to default valued.
+        /// </summary>
+        /// <param name="model">Model number.</param>
+        private void RowsColsDefaults(int model)
+        {
+            var db = this.app.ModelsDb.Models[model];
+            this.rowsUpDown.Minimum = db.Rows;
+            this.rowsUpDown.Maximum = Settings.OversizeMax / db.Columns;
+            this.rowsUpDown.Value = db.Rows;
+            this.columnsUpDown.Minimum = db.Columns;
+            this.columnsUpDown.Maximum = Settings.OversizeMax / db.Rows;
+            this.columnsUpDown.Value = db.Columns;
+        }
+
+        /// <summary>
+        /// One of the rows/columns selectors changed.
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event arguments.</param>
-        private void HostNameTextBox_TextChanged(object sender, EventArgs e)
+        private void RowsColsValueChanged(object sender, EventArgs e)
         {
-            if (this.copyingHostToNickname)
+            if (!(sender is NumericUpDown numericUpDown))
             {
-                this.NicknameTextBox.Text = this.HostNameTextBox.Text;
+                return;
             }
+
+            var value = (int)numericUpDown.Value;
+            switch ((string)numericUpDown.Tag)
+            {
+                case "Rows":
+                    this.columnsUpDown.Maximum = Settings.OversizeMax / value;
+                    if (this.columnsUpDown.Value > this.columnsUpDown.Maximum)
+                    {
+                        this.columnsUpDown.Value = this.columnsUpDown.Maximum;
+                    }
+
+                    break;
+                case "Columns":
+                    this.rowsUpDown.Maximum = Settings.OversizeMax / value;
+                    if (this.rowsUpDown.Value > this.rowsUpDown.Maximum)
+                    {
+                        this.rowsUpDown.Value = this.rowsUpDown.Maximum;
+                    }
+
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// The new profile name is validating.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void NewProfileValidating(object sender, CancelEventArgs e)
+        {
+            var text = this.newProfileNameTextBox.Text;
+            if (string.IsNullOrEmpty(text))
+            {
+                return;
+            }
+
+            if (Path.GetInvalidFileNameChars().Any((c) => text.Contains(c)))
+            {
+                ErrorBox.Show(I18n.Get(Message.InvalidProfileName), I18n.Get(Title.ConnectionEditor));
+                e.Cancel = true;
+                return;
+            }
+
+            var normalizedPath = ProfileManager.NormalizedPath(text, out string error);
+            if (normalizedPath == null)
+            {
+                ErrorBox.Show(error, I18n.Get(Title.ConnectionEditor));
+                e.Cancel = true;
+                return;
+            }
+
+            if (File.Exists(normalizedPath))
+            {
+                ErrorBox.Show(I18n.Get(Message.ProfileAlreadyExists), I18n.Get(Title.ConnectionEditor));
+                e.Cancel = true;
+                return;
+            }
+        }
+
+        /// <summary>
+        /// The checked state of the TLS Tunnel or STARTTLS check box changed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void TlsCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            var starttlsChecked = this.starttlsCheckBox.Checked;
+            var tlsTunnelChecked = this.tlsTunnelCheckBox.Checked;
+
+            this.acceptLabel.Enabled = starttlsChecked || tlsTunnelChecked;
+            this.acceptTextBox.Enabled = starttlsChecked || tlsTunnelChecked;
+            this.clientCertificateLabel.Enabled = starttlsChecked || tlsTunnelChecked;
+            this.clientCertTextBox.Enabled = starttlsChecked || tlsTunnelChecked;
+            this.verifyCertCheckBox.Enabled = starttlsChecked || tlsTunnelChecked;
+            if (!starttlsChecked && !tlsTunnelChecked)
+            {
+                this.verifyCertCheckBox.Checked = false;
+            }
+        }
+
+        /// <summary>
+        /// Runs the tour.
+        /// </summary>
+        private void RunTour()
+        {
+            if (this.editingMode == HostEditingMode.QuickConnect)
+            {
+                var nodes = new[]
+                {
+                    (this, 1, Orientation.Centered),
+                    ((Control)this.HostNameTextBox, (int?)null, Orientation.UpperLeft),
+                    (this.PortTextBox, null, Orientation.UpperLeft),
+                    (this.tlsTunnelCheckBox, null, Orientation.UpperRight),
+                    (this.connectButton, null, Orientation.LowerRight),
+                    (this, 2, Orientation.Centered),
+                    (this.newProfileRadioButton, null, Orientation.UpperLeft),
+                    (this.newProfileNameTextBox, null, Orientation.UpperLeft),
+                    (this.modelComboBox, null, Orientation.UpperLeft),
+                    (this.rowsUpDown, null, Orientation.UpperRight),
+                    (this, 3, Orientation.Centered),
+                    (this.connectionNameTextBox, null, Orientation.UpperLeft),
+                    (this.LuNamesTextBox, null, Orientation.UpperLeft),
+                    (this.LoginMacroTextBox, null, Orientation.LowerLeft),
+                    (this.descriptionTextBox, null, Orientation.LowerLeft),
+                    (this.titleTextBox, null, Orientation.LowerLeft),
+                    (this.loadGroupBox, null, Orientation.UpperRight),
+                    (this.hostTypeGroupBox, null, Orientation.LowerRight),
+                    (this.printerSessionGroupBox, null, Orientation.LowerRight),
+                    (this, 4, Orientation.Centered),
+                    (this.acceptTextBox, null, Orientation.UpperLeft),
+                    (this.clientCertTextBox, null, Orientation.UpperLeft),
+                    (this.verifyCertCheckBox, null, Orientation.UpperRight),
+                    (this, 5, Orientation.Centered),
+                    (this.localProcessRadioButton, null, Orientation.UpperLeft),
+                    (this.commandTextBox, null, Orientation.LowerLeft),
+                    (this.commandLineOptionsTextBox, null, Orientation.LowerLeft),
+                    (this.connectRecordButton, null, Orientation.LowerRight),
+                    (this.cancelButton, null, Orientation.LowerRight),
+                    (this.okButton, null, Orientation.LowerRight),
+                    (this.helpPictureBox, null, Orientation.LowerRight),
+                };
+                Tour.Navigate(this, nodes);
+            }
+            else
+            {
+                var nodes = new[]
+                {
+                    (this, 10, Orientation.Centered),
+                    ((Control)this.HostNameTextBox, (int?)null, Orientation.UpperLeft),
+                    (this.PortTextBox, null, Orientation.UpperLeft),
+                    (this.tlsTunnelCheckBox, null, Orientation.UpperRight),
+                    (this.okButton, 1, Orientation.LowerRight),
+                    (this, 3, Orientation.Centered),
+                    (this.connectionNameTextBox, null, Orientation.UpperLeft),
+                    (this.LuNamesTextBox, null, Orientation.UpperLeft),
+                    (this.LoginMacroTextBox, null, Orientation.LowerLeft),
+                    (this.descriptionTextBox, null, Orientation.LowerLeft),
+                    (this.titleTextBox, null, Orientation.LowerLeft),
+                    (this.loadGroupBox, null, Orientation.UpperRight),
+                    (this.hostTypeGroupBox, null, Orientation.LowerRight),
+                    (this.printerSessionGroupBox, null, Orientation.LowerRight),
+                    (this, 4, Orientation.Centered),
+                    (this.acceptTextBox, null, Orientation.UpperLeft),
+                    (this.clientCertTextBox, null, Orientation.UpperLeft),
+                    (this.verifyCertCheckBox, null, Orientation.UpperRight),
+                    (this, 5, Orientation.Centered),
+                    (this.localProcessRadioButton, null, Orientation.UpperLeft),
+                    (this.commandTextBox, null, Orientation.LowerLeft),
+                    (this.commandLineOptionsTextBox, null, Orientation.LowerLeft),
+                    (this.cancelButton, null, Orientation.LowerRight),
+                    (this.helpPictureBox, null, Orientation.LowerRight),
+                };
+                Tour.Navigate(this, nodes);
+            }
+        }
+
+        /// <summary>
+        /// An item on the help menu was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void HelpMenuClick(object sender, EventArgs e)
+        {
+            Tour.HelpMenuClick(sender, e, "ConnectionEditor", this.RunTour);
+        }
+
+        /// <summary>
+        /// The connection editor was activated.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void ConnectionEditorActivated(object sender, EventArgs e)
+        {
+            if (!this.everActivated)
+            {
+                this.everActivated = true;
+
+                if (this.LoginMacroInsert != null)
+                {
+                    var ins = this.LoginMacroInsert;
+                    this.LoginMacroInsert = null;
+                    if (this.StartMacroEditor(ins))
+                    {
+                        return;
+                    }
+                }
+
+                if (!Tour.IsComplete(this))
+                {
+                    this.RunTour();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Profile creation state.
+        /// </summary>
+        public class ProfileSpec
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ProfileSpec"/> class.
+            /// </summary>
+            /// <param name="name">Profile name.</param>
+            /// <param name="model">Model number.</param>
+            /// <param name="rows">Desired number of rows.</param>
+            /// <param name="columns">Desired number of columns.</param>
+            public ProfileSpec(string name, int model, int rows, int columns)
+            {
+                this.ProfileName = name;
+                this.Model = model;
+                this.Rows = rows;
+                this.Columns = columns;
+            }
+
+            /// <summary>
+            /// Gets or sets the profile name.
+            /// </summary>
+            public string ProfileName { get; set; }
+
+            /// <summary>
+            /// Gets or sets the model number.
+            /// </summary>
+            public int Model { get; set; }
+
+            /// <summary>
+            /// Gets or sets the rows.
+            /// </summary>
+            public int Rows { get; set; }
+
+            /// <summary>
+            /// Gets or sets the columns.
+            /// </summary>
+            public int Columns { get; set; }
         }
 
         /// <summary>
@@ -933,6 +1578,16 @@ namespace Wx3270
             public static readonly string InvalidIpv6 = I18n.Combine(MessageName, "invalidIpv6");
 
             /// <summary>
+            /// Bad profile name.
+            /// </summary>
+            public static readonly string InvalidProfileName = I18n.Combine(MessageName, "invalidProfileName");
+
+            /// <summary>
+            /// Bad profile name.
+            /// </summary>
+            public static readonly string ProfileAlreadyExists = I18n.Combine(MessageName, "profileAlreadyExists");
+
+            /// <summary>
             /// Bad port character.
             /// </summary>
             public static readonly string PortCharacter = I18n.Combine(MessageName, "portCharacter");
@@ -941,6 +1596,11 @@ namespace Wx3270
             /// Bad LU name character.
             /// </summary>
             public static readonly string LuNameCharacter = I18n.Combine(MessageName, "luNameCharacter");
+
+            /// <summary>
+            /// Must specify a host name.
+            /// </summary>
+            public static readonly string MustSpecifyProfile = I18n.Combine(MessageName, "mustSpecifyProfile");
 
             /// <summary>
             /// Must specify a host name.

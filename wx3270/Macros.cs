@@ -25,6 +25,11 @@ namespace Wx3270
         private static readonly string TitleName = I18n.PopUpTitleName(nameof(Macros));
 
         /// <summary>
+        /// Message group for localization.
+        /// </summary>
+        private static readonly string MessageName = I18n.MessageName(nameof(Macros));
+
+        /// <summary>
         /// Application instance.
         /// </summary>
         private readonly Wx3270App app;
@@ -74,7 +79,8 @@ namespace Wx3270
             // Link the listbox to the macro entries.
             this.macroEntries.AddListBox(this.macrosListBox);
 
-            // Subscribe to profile change events.
+            // Re-process the macros from the profile and subscribe to profile change events.
+            this.macroEntries.Entries = this.ProfileManager.Current.Macros;
             this.ProfileManager.AddChangeTo((oldProfile, newProfile) => this.MacrosSet(newProfile));
 
             // Set up the undo and redo buttons.
@@ -129,6 +135,70 @@ namespace Wx3270
         {
             I18n.LocalizeGlobal(Title.MacroOutput, "Macro Output");
             I18n.LocalizeGlobal(Title.MacroError, "Macro");
+
+            I18n.LocalizeGlobal(Message.AddOrEditMacro, "add/edit macro");
+            I18n.LocalizeGlobal(Message.RemoveMacro, "remove macro");
+            I18n.LocalizeGlobal(Message.ReorderMacros, "re-order macros");
+
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Macros list.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Macros), nameof(macrosListBox)), "Tour: Macros window");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Macros), nameof(macrosListBox)),
+@"A list of macros is displayed here.
+
+Double-click on an entry to run it.
+
+Right-click on an entry to get a menu of options.
+
+Drag and drop to re-order the list, which will also change the order the macros appear on the main window.");
+
+            // Add button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Macros), nameof(macroAddButton)), "Add button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Macros), nameof(macroAddButton)), @"Click to create a new macro with the macro editor.");
+
+            // Record button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Macros), nameof(recordButton)), "Record button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Macros), nameof(recordButton)), @"Click to create a new macro from the keyboard with the macro recorder.");
+
+            // Delete button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Macros), nameof(macroRemoveButton)), "Delete button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Macros), nameof(macroRemoveButton)), @"Click to delete the selected macro.");
+
+            // Edit button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Macros), nameof(macroEditButton)), "Edit button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Macros), nameof(macroEditButton)), @"Click to edit the selected macro with the macro editor.");
+
+            // Run button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Macros), nameof(macroTestButton)), "Run button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Macros), nameof(macroTestButton)), @"Click to execute the selected macro.");
+
+            // Undo/redo buttons.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Macros), nameof(undoButton)), "Undo and Redo buttons");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Macros), nameof(undoButton)),
+@"Click the '↶' (Undo) button to undo the last operation.
+
+Click the '↷' (Redo) button to redo the last operation that was rolled back with the Undo button.
+
+The button labels include a count of how many Undo and Redo operations are saved.");
+
+            // Help button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Macros), nameof(helpPictureBox)), "Help button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Macros), nameof(helpPictureBox)),
+@"Click to display context-sensitive help from the wx3270 Wiki in your browser, or to start this tour again.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
         }
 
         /// <summary>
@@ -147,7 +217,6 @@ namespace Wx3270
         /// <param name="profile">New profile.</param>
         private void MacrosSet(Profile profile)
         {
-            this.macroEntries.Entries = profile.Macros;
             this.MacrosListBox_SelectedIndexChanged(null, new EventArgs()); // Why manually?
         }
 
@@ -167,12 +236,12 @@ namespace Wx3270
                 if (result == DialogResult.OK)
                 {
                     this.macroEntries[index] = new MacroEntry { Name = editor.MacroName, Macro = editor.MacroText };
-                    this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, "add/edit macro");
+                    this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, I18n.Get(Message.AddOrEditMacro));
                 }
                 else if (result == DialogResult.Retry)
                 {
                     // Start macro recorder.
-                    this.StartRecording(editor.MacroName);
+                    this.StartRecording(editor.MacroName, editor.State);
                 }
             }
         }
@@ -220,12 +289,12 @@ namespace Wx3270
             if (result == DialogResult.OK)
             {
                 this.macroEntries.Add(new MacroEntry { Name = editor.MacroName, Macro = editor.MacroText });
-                this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, "add/edit macro");
+                this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, I18n.Get(Message.AddOrEditMacro));
             }
             else if (result == DialogResult.Retry)
             {
                 // Start macro recorder.
-                this.StartRecording(editor.MacroName);
+                this.StartRecording(editor.MacroName, editor.State);
             }
         }
 
@@ -233,35 +302,38 @@ namespace Wx3270
         /// Macro recording is complete.
         /// </summary>
         /// <param name="text">Macro text.</param>
-        /// <param name="name">Macro name.</param>
-        private void RecordingComplete(string text, object name)
+        /// <param name="context">Macro recording context.</param>
+        private void RecordingComplete(string text, object context)
         {
             this.Show();
-            if (string.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text) || context == null)
             {
                 return;
             }
 
-            using var editor = new MacroEditor(text, (string)name, true, this.app);
+            (string name, MacroEditor.EditorState state) = (((string, MacroEditor.EditorState)?)context).Value;
+            using var editor = new MacroEditor(text, name, canChangeName: true, this.app, state);
             var result = editor.ShowDialog(this);
             if (result == DialogResult.OK)
             {
                 this.macroEntries.Add(new MacroEntry { Name = editor.MacroName, Macro = editor.MacroText });
-                this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, "add/edit macro");
+                this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, I18n.Get(Message.AddOrEditMacro));
             }
             else if (result == DialogResult.Retry)
             {
                 // Retart macro recorder.
-                this.StartRecording(editor.MacroName);
+                this.StartRecording(editor.MacroName, editor.State);
             }
         }
 
         /// <summary>
         /// Start recording a macro.
         /// </summary>
-        private void StartRecording(string macroName)
+        /// <param name="macroName">Macro name.</param>
+        /// <param name="state">Macro editor state.</param>
+        private void StartRecording(string macroName, MacroEditor.EditorState state = null)
         {
-            this.app.MacroRecorder.Start(this.RecordingComplete, macroName);
+            this.app.MacroRecorder.Start(this.RecordingComplete, (macroName, state));
             this.Hide();
             this.mainScreen.Focus();
         }
@@ -274,7 +346,7 @@ namespace Wx3270
         private void MacroRemoveButton_Click(object sender, EventArgs e)
         {
             this.macroEntries.Delete(this.macrosListBox);
-            this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, "remove macro");
+            this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, I18n.Get(Message.RemoveMacro));
         }
 
         /// <summary>
@@ -311,10 +383,7 @@ namespace Wx3270
         {
             e.Cancel = true;
             this.Hide();
-            if (this.Owner != null)
-            {
-                this.Owner.BringToFront();
-            }
+            this.Owner?.BringToFront();
         }
 
         /// <summary>
@@ -325,7 +394,7 @@ namespace Wx3270
         private void MacrosListBox_DragDrop(object sender, DragEventArgs e)
         {
             this.dragDrop.DragDrop(sender, e);
-            this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, "re-order macros");
+            this.ProfileManager.PushAndSave((current) => { current.Macros = this.macroEntries.Entries; }, I18n.Get(Message.ReorderMacros));
         }
 
         /// <summary>
@@ -384,6 +453,10 @@ namespace Wx3270
             {
                 this.everActivated = true;
                 this.Location = MainScreen.CenteredOn(this.mainScreen, this);
+                if (!Tour.IsComplete(this))
+                {
+                    this.RunTour();
+                }
             }
         }
 
@@ -414,14 +487,12 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ContextMenu_Click(object sender, EventArgs e)
         {
-            var item = sender as ToolStripMenuItem;
-            if (item == null)
+            if (!(sender is ToolStripMenuItem item))
             {
                 return;
             }
 
-            var tag = item.Tag as string;
-            if (tag == null)
+            if (!(item.Tag is string tag))
             {
                 return;
             }
@@ -462,7 +533,40 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void Help_Click(object sender, EventArgs e)
         {
-            Wx3270App.GetHelp("Macros");
+            var mouseEvent = (MouseEventArgs)e;
+            if (mouseEvent.Button == MouseButtons.Left)
+            {
+                this.helpContextMenuStrip.Show(this.helpPictureBox, mouseEvent.Location);
+            }
+        }
+
+        /// <summary>
+        /// One of the help menu items was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void HelpMenuClick(object sender, EventArgs e)
+        {
+            Tour.HelpMenuClick(sender, e, "Macros", this.RunTour);
+        }
+
+        /// <summary>
+        /// Runs the tour.
+        /// </summary>
+        private void RunTour()
+        {
+            var nodes = new[]
+            {
+                ((Control)this.macrosListBox, (int?)null, Orientation.UpperLeftTight),
+                (this.macroAddButton, null, Orientation.LowerLeft),
+                (this.recordButton, null, Orientation.LowerLeft),
+                (this.macroRemoveButton, null, Orientation.LowerLeft),
+                (this.macroEditButton, null, Orientation.LowerRight),
+                (this.macroTestButton, null, Orientation.LowerRight),
+                (this.undoButton, null, Orientation.LowerRight),
+                (this.helpPictureBox, null, Orientation.LowerRight),
+            };
+            Tour.Navigate(this, nodes);
         }
 
         /// <summary>
@@ -524,6 +628,27 @@ namespace Wx3270
             /// Macro error.
             /// </summary>
             public static readonly string MacroError = I18n.Combine(TitleName, "macroError");
+        }
+
+        /// <summary>
+        /// Messages.
+        /// </summary>
+        private class Message
+        {
+            /// <summary>
+            /// Add or edit a macro.
+            /// </summary>
+            public static readonly string AddOrEditMacro = I18n.Combine(MessageName, "addOrEditMacro");
+
+            /// <summary>
+            /// Remove a macro.
+            /// </summary>
+            public static readonly string RemoveMacro = I18n.Combine(MessageName, "removeMacro");
+
+            /// <summary>
+            /// Re-order macros.
+            /// </summary>
+            public static readonly string ReorderMacros = I18n.Combine(MessageName, "re-order macros");
         }
     }
 }

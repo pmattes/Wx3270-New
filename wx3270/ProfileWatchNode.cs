@@ -70,7 +70,8 @@ namespace Wx3270
 
             return this.PathName.Equals(other.PathName)
                 && this.Broken == other.Broken
-                && this.Profile.Equals(other.Profile);
+                && this.PathName.Equals(other.PathName)
+                && this.Profile?.Equals(other.Profile) != false;
         }
 
         /// <summary>

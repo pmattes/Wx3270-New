@@ -6,12 +6,38 @@ namespace Wx3270
 {
     using System;
     using System.Windows.Forms;
+    using I18nBase;
 
     /// <summary>
     /// Settings for proxy.
     /// </summary>
     public partial class Settings
     {
+        /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
+        public static void LocalizeProxySettings()
+        {
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global instructions.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(proxyTab)), "Tour: Proxy settings");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(proxyTab)),
+@"Use this tab to define a proxy, which is an external service used to connect to hosts indirectly. wx3270 connects to the proxy, then tells the proxy which host it wants to connect to.");
+
+            // Proxy type.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(proxyTypeTextBox)), "Proxy type");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(proxyTypeTextBox)),
+@"Click to open the Proxy Editor, which will let you define or change any of the proxy parameters.");
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
+        }
+
         /// <summary>
         /// Initialize the Proxy tab.
         /// </summary>
@@ -22,6 +48,14 @@ namespace Wx3270
 
             // Create a dummy proxy editor, to get it localized.
             new ProxyEditor(Profile.DefaultProfile.Proxy, this.app.ProxiesDb, null).Dispose();
+
+            // Register our tour.
+            var nodes = new[]
+            {
+                ((Control)this.proxyTab, (int?)null, Orientation.Centered),
+                (this.proxyTypeTextBox, null, Orientation.UpperLeft),
+            };
+            this.RegisterTour(this.proxyTab, nodes);
         }
 
         /// <summary>

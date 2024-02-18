@@ -2,6 +2,10 @@
 //     Copyright (c) Paul Mattes. All rights reserved.
 // </copyright>
 
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("UnitTests")]
+
 namespace Wx3270
 {
     using System;
@@ -40,24 +44,39 @@ namespace Wx3270
         private readonly Wx3270App app;
 
         /// <summary>
+        /// True if the form has ever been activated.
+        /// </summary>
+        private bool everActivated;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MacroEditor"/> class.
         /// </summary>
-        /// <param name="macroText">Macro text.</param>
+        /// <param name="macroText">Macro text or insert text.</param>
         /// <param name="name">Macro name.</param>
         /// <param name="canChangeName">True if it is legal to change the macro name.</param>
         /// <param name="app">Application context.</param>
-        public MacroEditor(string macroText, string name, bool canChangeName, Wx3270App app)
+        /// <param name="previousState">Previous state.</param>
+        public MacroEditor(string macroText, string name, bool canChangeName, Wx3270App app, EditorState previousState = null)
         {
             this.InitializeComponent();
 
             this.canChangeName = canChangeName;
-            this.MacroBox.Text = macroText;
+            this.MacroBox.Text = InsertNicely(macroText, previousState, out int newCursor);
             if (!string.IsNullOrEmpty(this.MacroBox.Text) && !this.MacroBox.Text.EndsWith(Environment.NewLine))
             {
                 this.MacroBox.Text += Environment.NewLine;
             }
 
+            if (this.MacroBox.Text == Environment.NewLine)
+            {
+                this.MacroBox.Text = string.Empty;
+            }
+
             this.MacroBox.Select(this.MacroBox.Text.Length, 0);
+            if (newCursor >= 0)
+            {
+                this.MacroBox.SelectionStart = newCursor;
+            }
 
             this.nameTextBox.Enabled = canChangeName;
 
@@ -68,12 +87,7 @@ namespace Wx3270
                 this.nameTextBox.Text = name;
             }
 
-            if (this.app != null && this.app.MacroRecorder.Running)
-            {
-                this.recordButton.Enabled = false;
-            }
-
-            if (this.app != null && this.app.Restricted(Restrictions.GetHelp))
+            if (this.app?.Restricted(Restrictions.GetHelp) == true)
             {
                 this.helpPictureBox.RemoveFromParent();
             }
@@ -110,6 +124,21 @@ namespace Wx3270
         public string MacroText => this.MacroBox.Text.TrimEnd(Environment.NewLine.ToCharArray());
 
         /// <summary>
+        /// Gets the location of the cursor in the macro editor.
+        /// </summary>
+        public int MacroCursor => this.MacroBox.SelectionStart;
+
+        /// <summary>
+        /// Gets the current state, used to resume after a recording completes.
+        /// </summary>
+        public EditorState State => new EditorState
+        {
+            Text = this.MacroBox.Text,
+            SelectionStart = this.MacroBox.SelectionStart,
+            SelectionLength = this.MacroBox.SelectionLength,
+        };
+
+        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]
@@ -126,6 +155,87 @@ namespace Wx3270
             I18n.LocalizeGlobal(Message.UnrecognizedScriptType, "Unrecognized script type");
             I18n.LocalizeGlobal(Message.MissingFileName, "Missing file name");
             I18n.LocalizeGlobal(Message.NoEdit, "No " + B3270.Action.Script + "() or " + B3270.Action.Source + "() action under the cursor");
+
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global step 1.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MacroEditor), 1), "Tour: Macro Editor");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MacroEditor), 1),
+@"A macro is a sequence of wx3270 actions to perform.
+
+Use the Macro Editor to define or change a macro.");
+
+            // Macro name.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MacroEditor), nameof(nameTextBox)), "Macro name");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MacroEditor), nameof(nameTextBox)),
+@"Enter a unique name for the macro here.");
+
+            // Macros.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MacroEditor), nameof(MacroBox)), "Macro text");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MacroEditor), nameof(MacroBox)),
+@"Enter the actions here, one per line.
+
+wx3270 will perform the actions in sequence until the end is reached, or one of them fails.
+
+You can enter text directly from the keyboard, or you can click on one of the snippet buttons below to insert a snippet at the current cursor position.
+
+You can put a comment in the macro by starting a line with '#'.");
+
+            // Snippets.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MacroEditor), nameof(BackTabButton)), "Snippets");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MacroEditor), nameof(BackTabButton)),
+@"Click on one of these buttons to insert a snippet into the macro at the current cursor position.
+
+The snippets are not an exhaustive list of wx3270 actions, just some common ones.");
+
+            // Script button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MacroEditor), nameof(scriptButton)), "Script button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MacroEditor), nameof(scriptButton)),
+@"The Script button is special. It lets you create scripts using Python, PowerShell, VBScript, JScript, or the scripting language of your choice.
+
+For the first four, wx3270 will generate a template for you, which illustrates how to initialize communication between your script and wx3270, send wx3270 a command, and get information from wx3270.");
+
+            // Edit@ button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MacroEditor), nameof(editScriptButton)), "Edit@ button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MacroEditor), nameof(editScriptButton)),
+@"To edit an existing script, place the cursor in the 'Macro text' box on a line containing a Script() action and click this button.");
+
+            // Record button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MacroEditor), nameof(recordButton)), "Record button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MacroEditor), nameof(recordButton)),
+@"To record actions from the keyboard with the macro recorder, click this button.
+
+The recorded actions will replace the entire contents of the 'Macro text' box.");
+
+            // Save button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MacroEditor), nameof(saveButton)), "Save button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MacroEditor), nameof(saveButton)),
+@"Click to save the macro.");
+
+            // Cancel button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MacroEditor), nameof(editorCancelButton)), "Save button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MacroEditor), nameof(editorCancelButton)),
+@"Click to abandon your edits.");
+
+            // Help button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MacroEditor), nameof(helpPictureBox)), "Help button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MacroEditor), nameof(helpPictureBox)),
+@"Click to display context-dependent help from the wx3270 Wiki in your browser, or to restart this tour.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
         }
 
         /// <summary>
@@ -135,6 +245,90 @@ namespace Wx3270
         public static void LocalizeForm()
         {
             new MacroEditor(string.Empty, "dummy", false, null).Dispose();
+        }
+
+        /// <summary>
+        /// Insert new macro text into existing text, nicely.
+        /// </summary>
+        /// <param name="insertText">Text to insert.</param>
+        /// <param name="oldState">Existing macro state.</param>
+        /// <param name="newCursor">Returned new cursor location.</param>
+        /// <returns>Combined string.</returns>
+        internal static string InsertNicely(string insertText, EditorState oldState, out int newCursor)
+        {
+            newCursor = -1;
+
+            // Make sure the inserted text does not end with a newline.
+            insertText = insertText.TrimEnd(Environment.NewLine.ToArray());
+
+            if (oldState == null || oldState.Text.Length == 0)
+            {
+                // No existing text.
+                return insertText + Environment.NewLine;
+            }
+
+            var text = oldState.Text;
+            var cursor = oldState.SelectionStart;
+            if (oldState.SelectionLength > 0)
+            {
+                // If there was text selected, remove it first -- this is effectively a paste action.
+                text = text.Remove(cursor, oldState.SelectionLength);
+
+                // We don't want to replace part of a line. The user might do that with an explicit paste, but we won't.
+                // Remove text backwards until we hit the beginning of the string or a newline. Point past the newline.
+                while (cursor > 0 && text[cursor - 1] != Environment.NewLine[Environment.NewLine.Length - 1])
+                {
+                    text = text.Remove(--cursor, 1);
+                }
+
+                // Remove text forward until we hit (and remove) a newline or hit the end of the string.
+                while (text.Length > cursor)
+                {
+                    if (text.Substring(cursor).StartsWith(Environment.NewLine))
+                    {
+                        text = text.Remove(cursor, Environment.NewLine.Length);
+                        break;
+                    }
+
+                    text = text.Remove(cursor, 1);
+                }
+            }
+
+            // Local function to append a newline to a string if it is non-empty.
+            static string WithSeparator(string t) => t + (t.Length > 0 ? Environment.NewLine : string.Empty);
+
+            // Trim away any trailing newlines in the existing text. We will put one back at the end.
+            text = text.TrimEnd(Environment.NewLine.ToArray());
+
+            if (cursor >= text.Length)
+            {
+                // Append.
+                return WithSeparator(text) + insertText + Environment.NewLine;
+            }
+
+            // We don't want to insert in the middle of a line. So if the insertion point is not at the beginning of a line, back up until it is.
+            while (cursor > 0 && !text.Substring(cursor).StartsWith(Environment.NewLine))
+            {
+                cursor--;
+            }
+
+            if (cursor == 0)
+            {
+                // Backed up to (or already at) the beginning of the string. Prepend.
+                newCursor = insertText.Length;
+                return insertText + Environment.NewLine + WithSeparator(text);
+            }
+
+            if (text.Substring(cursor).StartsWith(Environment.NewLine))
+            {
+                // Backed up, but not to the beginning of the string. 'cursor' is now pointing at the newline separating the previous line from
+                // the line where the cursor was. Jump back to the beginning of the original cursor line.
+                cursor += Environment.NewLine.Length;
+            }
+
+            // 'cursor' is now at the insertion point, after a newline, and there is text before and after it.
+            newCursor = cursor + insertText.Length;
+            return text.Substring(0, cursor) + insertText + Environment.NewLine + text.Substring(cursor) + Environment.NewLine;
         }
 
         /// <summary>
@@ -196,8 +390,7 @@ namespace Wx3270
         private void Macro_Click(object sender, EventArgs e)
         {
             var button = (Button)sender;
-            var text = button.Tag as string;
-            if (text != null)
+            if (button.Tag is string text)
             {
                 this.InsertText(text);
             }
@@ -258,10 +451,15 @@ namespace Wx3270
         /// <param name="text">Text to insert.</param>
         private void InsertText(string text)
         {
-            int selectionStart = this.MacroBox.SelectionStart;
-            var newText = this.MacroBox.Text.Insert(selectionStart, text + Environment.NewLine);
+            var newText = InsertNicely(text, this.State, out int newCursor);
+            if (!newText.EndsWith(Environment.NewLine))
+            {
+                newText += Environment.NewLine;
+            }
+
+            // XXX: Ideally, we could pay attention to the user's selection, and replace it. For now, we ignore it, except for its start position.
             this.MacroBox.Text = newText;
-            this.MacroBox.SelectionStart = selectionStart + text.Length + Environment.NewLine.Length;
+            this.MacroBox.SelectionStart = (newCursor >= 0) ? newCursor : newText.Length;
 
             this.ValidateChildren();
         }
@@ -545,7 +743,11 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void Help_Click(object sender, EventArgs e)
         {
-            Wx3270App.GetHelp("MacroEditor");
+            var mouseEvent = (MouseEventArgs)e;
+            if (mouseEvent.Button == MouseButtons.Left)
+            {
+                this.helpContextMenuStrip.Show(this.helpPictureBox, mouseEvent.Location);
+            }
         }
 
         /// <summary>
@@ -569,13 +771,13 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void FixedContextMenuClick(object sender, EventArgs e)
         {
-            var item = sender as ToolStripMenuItem;
-            if (item == null)
+            if (!(sender is ToolStripMenuItem item))
             {
                 return;
             }
 
             this.InsertText((string)item.Tag);
+            this.MacroBox.Focus();
         }
 
         /// <summary>
@@ -822,6 +1024,15 @@ namespace Wx3270
             {
                 this.nameTextBox.Focus();
             }
+
+            if (!this.everActivated)
+            {
+                this.everActivated = true;
+                if (!Tour.IsComplete(this))
+                {
+                    this.RunTour();
+                }
+            }
         }
 
         /// <summary>
@@ -833,6 +1044,58 @@ namespace Wx3270
         {
             this.DialogResult = DialogResult.Retry;
             this.Close();
+        }
+
+        /// <summary>
+        /// One of the help menu items was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void HelpMenuClick(object sender, EventArgs e)
+        {
+            Tour.HelpMenuClick(sender, e, "MacroEditor", this.RunTour);
+        }
+
+        /// <summary>
+        /// Run the tour.
+        /// </summary>
+        private void RunTour()
+        {
+            var nodes = new List<(Control control, int? index, Orientation orientation)>
+            {
+                (this, 1, Orientation.Centered),
+                (this.nameTextBox, null, Orientation.UpperLeft),
+                (this.MacroBox, null, Orientation.UpperLeftTight),
+                (this.BackTabButton, null, Orientation.LowerLeft),
+                (this.scriptButton, null, Orientation.LowerRight),
+                (this.editScriptButton, null, Orientation.LowerLeft),
+                (this.recordButton, null, Orientation.LowerLeft),
+                (this.saveButton, null, Orientation.LowerRight),
+                (this.editorCancelButton, null, Orientation.LowerRight),
+                (this.helpPictureBox, null, Orientation.LowerRight),
+            }.Where(n => this.canChangeName || n.control != this.nameTextBox).ToList();
+            Tour.Navigate(this, nodes);
+        }
+
+        /// <summary>
+        /// The state of the macro text box.
+        /// </summary>
+        public class EditorState
+        {
+            /// <summary>
+            /// Gets or sets the text.
+            /// </summary>
+            public string Text { get; set; }
+
+            /// <summary>
+            /// Gets or sets the index of the start of the selection.
+            /// </summary>
+            public int SelectionStart { get; set; }
+
+            /// <summary>
+            /// Gets or sets the length of the selection.
+            /// </summary>
+            public int SelectionLength { get; set; }
         }
 
         /// <summary>

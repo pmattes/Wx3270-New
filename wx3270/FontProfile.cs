@@ -34,7 +34,7 @@ namespace Wx3270
         /// <summary>
         /// The default font size.
         /// </summary>
-        public const int DefaultEmSize = 10;
+        public const int DefaultEmSize = 14;
 
         /// <summary>
         /// The fallback font name.

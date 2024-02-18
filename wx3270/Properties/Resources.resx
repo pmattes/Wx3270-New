@@ -121,20 +121,23 @@
   <data name="StartClearerMiddle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StartClearerMiddle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="StartBlankMiddleWide" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\StartBlankMiddleWide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="x3270if" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\x3270if.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ToggleDown3wide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ToggleDown3wide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="stop_recording" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stop_recording.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="record" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\record.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Blank48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Blank48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="printout-small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\printout-small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Transparent1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Transparent1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StartClearer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StartClearer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="stop2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stop2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,14 +151,20 @@
   <data name="Folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="KeypadSmallHollow3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KeypadSmallHollow3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Tape4_flash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tape4_flash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ErrorIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ErrorIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrowslr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrowslr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="record1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\record1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PF1cropped" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PF1cropped.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ToggleDown4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ToggleDown4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,14 +175,8 @@
   <data name="TapePair1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TapePair1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ToggleUp4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ToggleUp4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="StartBlankRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StartBlankRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="StartClearer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\StartClearer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Floppy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Floppy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,8 +193,8 @@
   <data name="catf" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\catf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="KeypadSmallHollow3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\KeypadSmallHollow3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrowslr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrowslr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StartClearerRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StartClearerRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,8 +202,8 @@
   <data name="Question23c" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Question23c.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BlankPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BlankPreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="printout-small" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\printout-small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TapePair31" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TapePair31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,17 +211,26 @@
   <data name="FolderGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FolderGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="combolock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\combolock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Insert48-2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Insert48-2.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BlankVert" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BlankVert.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PF1cropped" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PF1cropped.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Transparent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StartBlankMiddleWide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StartBlankMiddleWide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tape4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tape4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BlankPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlankPreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeletePreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeletePreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,9 +244,6 @@
   <data name="BlankWide48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BlankWide48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="InsertPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\InsertPreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Delete48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete48.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -247,16 +256,25 @@
   <data name="VisibleControl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\VisibleControl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="combolock" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\combolock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="InsertPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InsertPreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="x3270if" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\x3270if.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="record" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\record.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="record1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\record1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ToggleUp4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ToggleUp4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ToggleDown3wide" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ToggleDown3wide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow-left-up2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-left-up2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_left_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-left-down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_right_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-right-down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_right_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-right-up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

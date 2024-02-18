@@ -9,7 +9,7 @@ namespace Wx3270
     using System.Drawing;
     using System.IO;
     using System.Linq;
-
+    using System.Runtime.Serialization;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
@@ -183,8 +183,8 @@ namespace Wx3270
 
             set
             {
-                this.pathName = value;
-                this.DisplayFolder = ProfileTree.DirNodeName(Path.GetDirectoryName(value));
+                this.pathName = ProfileManager.SafeGetFullPath(value);
+                this.DisplayFolder = ProfileTree.DirNodeName(ProfileManager.SafeGetDirectoryName(value));
             }
         }
 
@@ -310,12 +310,6 @@ namespace Wx3270
         public bool Monocase { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the window should be maximized.
-        /// </summary>
-        [JsonProperty]
-        public bool Maximize { get; set; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether type-ahead should be permitted.
         /// </summary>
         [JsonProperty]
@@ -429,17 +423,6 @@ namespace Wx3270
         public int NopInterval { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the Location property is valid.
-        /// </summary>
-        public bool HasLocation { get; set; }
-
-        /// <summary>
-        /// Gets or sets the main window location.
-        /// </summary>
-        [JsonProperty]
-        public Point? Location { get; set; }
-
-        /// <summary>
         /// Gets or sets the main window size.
         /// </summary>
         [JsonProperty]
@@ -516,7 +499,7 @@ namespace Wx3270
             ret.Colors = new Colors(this.Colors);
             ret.Oversize = this.Oversize.Clone();
             ret.Macros = this.Macros.Select(m => new MacroEntry(m)).ToList();
-            ret.Hosts = this.Hosts.Select(h => new HostEntry(h)).ToList();
+            ret.Hosts = this.Hosts.Select(h => new HostEntry(h) { Profile = this }).ToList();
             ret.KeypadMap = new KeyMap<KeypadMap>(this.KeypadMap);
             ret.KeyboardMap = new KeyMap<KeyboardMap>(this.KeyboardMap);
             ret.ListenPort = new Dictionary<string, ListenPort>();
@@ -583,6 +566,28 @@ namespace Wx3270
             var otherSerialized = other.Serialized();
             return thisSerialized.SequenceEqual(otherSerialized);
 #endif
+        }
+
+        /// <summary>
+        /// Converts to a string.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        public override string ToString()
+        {
+            return $"{this.Name} model {this.Model} {this.PathName}";
+        }
+
+        /// <summary>
+        /// Corrects internal references after deserialization.
+        /// </summary>
+        /// <param name="context">Streaming context.</param>
+        [OnDeserialized]
+        public void OnDeserialized(StreamingContext context)
+        {
+            foreach (var host in this.Hosts)
+            {
+                host.Profile = this;
+            }
         }
 
         /// <summary>

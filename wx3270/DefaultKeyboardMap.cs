@@ -26,6 +26,8 @@ namespace Wx3270
                     { KeyMap<KeyboardMap>.Key(Keys.Oemplus, KeyboardModifier.Ctrl), new KeyboardMap { Actions = Constants.Action.StepEfont + "(" + Constants.Misc.Bigger + ")" } },
                     { KeyMap<KeyboardMap>.Key(Keys.OemMinus, KeyboardModifier.Ctrl), new KeyboardMap { Actions = Constants.Action.StepEfont + "(" + Constants.Misc.Smaller + ")" } },
                     { KeyMap<KeyboardMap>.Key(Keys.N, KeyboardModifier.Alt), new KeyboardMap { Actions = Constants.Action.MenuBar + "()", Exact = true } },
+                    { KeyMap<KeyboardMap>.Key(Keys.Return, KeyboardModifier.None), new KeyboardMap { Actions = B3270.Action.Enter + "()" } },
+                    { KeyMap<KeyboardMap>.Key(KeyboardUtil.NumPadReturn, KeyboardModifier.None), new KeyboardMap { Actions = B3270.Action.Enter + "()" } },
                 }
             },
         };
@@ -35,8 +37,8 @@ namespace Wx3270
         /// </summary>
         private static readonly KeyMap<KeyboardMap> DefaultKeyboardMap = new KeyMap<KeyboardMap>
         {
-            { KeyMap<KeyboardMap>.Key(Keys.Return, KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Enter + "()" } },
-            { KeyMap<KeyboardMap>.Key(KeyboardUtil.NumPadReturn, KeyboardModifier.None | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Enter + "()" } },
+            { KeyMap<KeyboardMap>.Key(Keys.Return, KeyboardModifier.None), new KeyboardMap { Actions = B3270.Action.Enter + "()" } },
+            { KeyMap<KeyboardMap>.Key(KeyboardUtil.NumPadReturn, KeyboardModifier.None), new KeyboardMap { Actions = B3270.Action.Enter + "()" } },
             { KeyMap<KeyboardMap>.Key(Keys.Return, KeyboardModifier.Shift | KeyboardModifier.Mode3270), new KeyboardMap { Actions = B3270.Action.Newline + "()" } },
             { KeyMap<KeyboardMap>.Key(Keys.Back, KeyboardModifier.None), new KeyboardMap { Actions = B3270.Action.Erase + "()" } },
             { KeyMap<KeyboardMap>.Key(Keys.Delete, KeyboardModifier.None), new KeyboardMap { Actions = B3270.Action.Delete + "()" } },

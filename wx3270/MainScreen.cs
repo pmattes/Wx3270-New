@@ -8,8 +8,9 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
-    using System.IO.Packaging;
     using System.Linq;
+    using System.Linq.Expressions;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
     using I18nBase;
     using Wx3270.Contracts;
@@ -110,6 +111,11 @@ namespace Wx3270
         private readonly StartButton startButton = new StartButton();
 
         /// <summary>
+        /// The macro record menu items.
+        /// </summary>
+        private readonly List<ToolStripMenuItem> macroRecordItems = new List<ToolStripMenuItem>();
+
+        /// <summary>
         /// True if the window is activated.
         /// </summary>
         private bool isActivated;
@@ -175,11 +181,6 @@ namespace Wx3270
         private bool colorMode = true;
 
         /// <summary>
-        /// The macro record menu item.
-        /// </summary>
-        private ToolStripMenuItem macroRecordItem;
-
-        /// <summary>
         /// The width of the fixed screen elements.
         /// </summary>
         private int fixedWidth;
@@ -223,6 +224,11 @@ namespace Wx3270
         /// The crossbar.
         /// </summary>
         private Crossbar crossbar;
+
+        /// <summary>
+        /// True if the tour is complete.
+        /// </summary>
+        private bool toured = false;
 
         /// <summary>
         /// The window handle.
@@ -462,30 +468,24 @@ namespace Wx3270
         /// <returns>New title string.</returns>
         public static string NewTitle(HostEntry hostEntry, Profile profile, string host)
         {
+            var readOnlyPrefix = profile.ReadOnly ? "[" + Wx3270.ProfileManager.ReadOnlyName + "] " : string.Empty;
             if (hostEntry != null && !string.IsNullOrWhiteSpace(hostEntry.WindowTitle))
             {
-                return hostEntry.WindowTitle;
+                return readOnlyPrefix + hostEntry.WindowTitle;
             }
 
             if (!string.IsNullOrWhiteSpace(profile.WindowTitle))
             {
-                return profile.WindowTitle;
+                return readOnlyPrefix + profile.WindowTitle;
             }
 
-            var profileNameDisplay = profile.Name;
-            if (profile.ReadOnly)
-            {
-                profileNameDisplay += "(" + Wx3270.ProfileManager.ReadOnlyName + ")";
-            }
-
+            var profileNameDisplay = readOnlyPrefix + profile.Name;
             if (host != null)
             {
-                return $"{profileNameDisplay} / {host} - wx3270";
+                profileNameDisplay += " / " + host;
             }
-            else
-            {
-                return $"{profileNameDisplay} - wx3270";
-            }
+
+            return profileNameDisplay + " - wx3270";
         }
 
         /// <summary>
@@ -502,6 +502,128 @@ namespace Wx3270
             I18n.LocalizeGlobal(MacroStopRecordingItemName, "Stop recording");
             I18n.LocalizeGlobal(StartButtonName, "START", true);
             I18n.LocalizeGlobal(CloseName, "Fatal close error");
+
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global step 1.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), 1), "Tour: wx3270 main window");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), 1),
+@"This is a quick tour of the wx3270 main window. It will show you the basic features and provide some helpful tips to get started.");
+
+            // Connect button (Start Here)
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), nameof(connectPictureBox)), "Start Here: Connect button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), nameof(connectPictureBox)),
+@"Click and select Quick Connect to make your first connection to a host.");
+
+            // Start button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), nameof(actionsBox)), "Start button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), nameof(actionsBox)),
+@"Click to open the Start window, which allows you to:
+• Start IND$FILE file transfers 
+• Save a screen snapshot or trace screen contents to a file or the printer
+• See session statistics
+• Turn on debug tracing
+• Open the wx3270> prompt
+
+Right-click for a menu to perform each of these actions individually.");
+
+            // Keypad button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), nameof(keypadBox)), "Keypad button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), nameof(keypadBox)),
+@"Click to open the Keypad window, which gives you easy access to 3270-specific keys and functions.
+
+Press Alt and click to open the APL Keypad window, which lets you enter APL characters.
+
+Right-click to get a menu for the 3270-specific keys.");
+
+            // Connect button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), nameof(connectPictureBox), 1), "Connect button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), nameof(connectPictureBox), 1),
+@"Click to create a new host connection, connect to a host you have already defined, or disconnect the current host session.");
+
+            // Profiles and connections button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), nameof(profilePictureBox)), "Profiles and connections button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), nameof(profilePictureBox)),
+@"This button lets you navigate between different profiles (common settings for a set of hosts) and connections (settings for an individual host).
+
+Click to open a window that lets you create, edit, delete, copy, rename, and merge profiles and connections, and to switch between them.
+
+Right-click to switch quickly between profiles.");
+
+            // Macros button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), nameof(macrosPictureBox)), "Macros button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), nameof(macrosPictureBox)),
+@"Click to open the Macros window, which lets you define, edit and run macros.
+
+Right-click to pick a macro to run, or to record a new one from the keyboard.
+
+If this button is flashing, there is a macro recording in progress. Click to finish the recording.");
+
+            // Snap button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), nameof(snapBox)), "Snap button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), nameof(snapBox)),
+@"Click to shrink the screen to the minimum size needed to contain the current font. This is usually used after resizing the screen with the mouse, which will increase or decrease the font size, but may also leave blank margins at the edges of the display.
+
+It is usually simpler to adjust the font size with the Ctrl-+ and Ctrl-- keys.");
+
+            // Help button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), nameof(helpPictureBox)), "Help button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), nameof(helpPictureBox)),
+@"Click to display context-sensitive help from the x3270 Wiki in your browser, or to start this tour again.");
+
+            // Settings button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), nameof(settingsBox)), "Settings button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), nameof(settingsBox)),
+@"Click to open the Settings window, which allows various settings to be changed, such as the 3270 model number, cursor type, font, colors and sounds.
+
+Right-click to undo or redo the last change.");
+
+            // OiaLock indicator
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), nameof(oiaLock)), "OIA lock field");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), nameof(oiaLock)),
+@"This field indicates the overall state of the emulator.
+
+If it starts with an 'X', the keyboard is locked, with the rest of the field indicating why. For example, if it shows a jagged horizontal line, then there is no active connection. If it shows '[TCP]', then the emulator is waiting for the host to accept the TCP connection. If it shows a a stick figure surrounded by arrows, you have tried to enter input in a protected field, and should press Alt-R to reset.");
+
+            // Global step 2.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), 2), "Mouse tips");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), 2),
+@"Hover the mouse over a button to see what it does, and whether there are left- and right-click variants.
+
+Hover over an input field to see what it is used for.
+
+Hover over an indication in the OIA to get further details.
+
+Right-click on the emulator display for a menu that lets you perform any action on the menu bar.");
+
+            // Global step 3.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(MainScreen), 3), "Common keys");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(MainScreen), 3),
+@"Press Alt-F11 to switch in and out of full-screen mode.
+
+Press Shift-Esc to switch in and out of APL keyboard mode.
+
+Press Ctrl-+ to make the font bigger. Press Ctrl-- (Ctrl and the '-' key) to make it smaller. (These do not work when the screen is maximized.)
+
+Press Alt-F4 or Alt-Q to exit wx3270.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
         }
 
         /// <summary>
@@ -605,11 +727,11 @@ namespace Wx3270
 
             // Change the foreground color in the OIA.
             var fg = colorMode ? this.colors.HostColors[HostColor.Blue] : this.colors.MonoColors.Normal;
-            foreach (var oiaField in this.OiaLayoutPanel.Controls)
+            foreach (var oiaField in this.oiaLayoutPanel.Controls)
             {
-                if (colorMode && oiaField == (object)this.OiaLock)
+                if (colorMode && oiaField == (object)this.oiaLock)
                 {
-                    this.OiaLock.ForeColor = this.colors.HostColors[this.OiaLock.Tag != null ? HostColor.Red : HostColor.NeutralWhite];
+                    this.oiaLock.ForeColor = this.colors.HostColors[this.oiaLock.Tag != null ? HostColor.Red : HostColor.NeutralWhite];
                 }
                 else
                 {
@@ -621,8 +743,8 @@ namespace Wx3270
             this.ChangeOiaTls(this.App.OiaState);
 
             // Change the dividing bar color.
-            this.TopBar.BackColor = fg;
-            this.BottomBar.BackColor = fg;
+            this.topBar.BackColor = fg;
+            this.bottomBar.BackColor = fg;
 
             // Change the form background color.
             this.BackColor = colorMode ? this.colors.HostColors[HostColor.NeutralBlack] : this.colors.MonoColors.Background;
@@ -793,7 +915,7 @@ namespace Wx3270
             if (this.overlayMenuBarDisplayed)
             {
                 // Get rid of the overlay menu bar.
-                this.TopBar.RemoveFromParent();
+                this.topBar.RemoveFromParent();
                 this.TopLayoutPanel.RemoveFromParent();
                 this.overlayMenuBarDisplayed = false;
             }
@@ -816,23 +938,23 @@ namespace Wx3270
             if (!displayed)
             {
                 // Hide the menu bar.
-                this.MainTable.SuspendLayout();
-                this.TopBar.RemoveFromParent();
+                this.mainTable.SuspendLayout();
+                this.topBar.RemoveFromParent();
                 this.TopLayoutPanel.RemoveFromParent();
-                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
-                this.MainTable.ResumeLayout();
-                this.fixedHeight -= this.TopBar.Height + this.TopLayoutPanel.Height;
+                this.mainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
+                this.mainTable.ResumeLayout();
+                this.fixedHeight -= this.topBar.Height + this.TopLayoutPanel.Height;
             }
             else
             {
                 // Put the menu bar back.
-                this.MainTable.SuspendLayout();
-                this.TopBar.Location = new Point(0, 0);
-                this.MainTable.Controls.Add(this.TopBar, 0, 1);
-                this.MainTable.Controls.Add(this.TopLayoutPanel, 0, 0);
-                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 2F);
-                this.MainTable.ResumeLayout();
-                this.fixedHeight += this.TopBar.Height + this.TopLayoutPanel.Height;
+                this.mainTable.SuspendLayout();
+                this.topBar.Location = new Point(0, 0);
+                this.mainTable.Controls.Add(this.topBar, 0, 1);
+                this.mainTable.Controls.Add(this.TopLayoutPanel, 0, 0);
+                this.mainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 2F);
+                this.mainTable.ResumeLayout();
+                this.fixedHeight += this.topBar.Height + this.TopLayoutPanel.Height;
             }
 
             this.menuBarDisabled = !displayed;
@@ -869,6 +991,14 @@ namespace Wx3270
             }
 
             return size;
+        }
+
+        /// <summary>
+        /// Duplicates the current profile.
+        /// </summary>
+        public void DuplicateProfile()
+        {
+            this.ProfileTree.DuplicateProfile(this.ProfileManager.Current);
         }
 
         /// <summary>
@@ -955,19 +1085,19 @@ namespace Wx3270
             if (!displayed)
             {
                 // Hide the menu bar.
-                this.TopBar.RemoveFromParent();
+                this.topBar.RemoveFromParent();
                 this.TopLayoutPanel.RemoveFromParent();
-                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
-                this.fixedHeight -= this.TopBar.Height + this.TopLayoutPanel.Height;
+                this.mainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
+                this.fixedHeight -= this.topBar.Height + this.TopLayoutPanel.Height;
             }
             else
             {
                 // Put the menu bar back.
-                this.TopBar.Location = new Point(0, 0);
-                this.MainTable.Controls.Add(this.TopBar, 0, 1);
-                this.MainTable.Controls.Add(this.TopLayoutPanel, 0, 0);
-                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 2F);
-                this.fixedHeight += this.TopBar.Height + this.TopLayoutPanel.Height;
+                this.topBar.Location = new Point(0, 0);
+                this.mainTable.Controls.Add(this.topBar, 0, 1);
+                this.mainTable.Controls.Add(this.TopLayoutPanel, 0, 0);
+                this.mainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 2F);
+                this.fixedHeight += this.topBar.Height + this.TopLayoutPanel.Height;
             }
 
             this.menuBarDisabled = !displayed;
@@ -1009,77 +1139,46 @@ namespace Wx3270
             // Force the window handle to be created, so early callbacks don't fail.
             this.handle = this.Handle;
 
-            // Register for profile hosts change events.
-            this.macroEntries.ChangeEvent += this.MacrosChanged;
-
             // Register for profile-related events.
             this.App.ProfileTracker.ProfileTreeChanged += (tree) => this.Invoke(new MethodInvoker(() => this.ProfileTreeChanged(tree)));
             this.ProfileManager.AddChangeTo(this.ProfileChanged);
-            this.ProfileManager.NewProfileOpened += (profile) =>
-            {
-                // Set the window location, if reasonable to do so.
-                if (!this.App.Location.HasValue && profile.Location.HasValue && this.IsVisible(profile.Location.Value))
-                {
-                    this.Location = profile.Location.Value;
-                }
-            };
             this.ProfileManager.ChangeFinal += (oldProfile, newProfile, isNew, isInternal) =>
             {
                 // Process these last:
                 //  Scroll bar.
                 //  Menu bar.
-                //  Maximize.
-                //  Window size (even if we are going to maximize, so when we un-maximize, we get the right size)
-                var maximize = newProfile.Maximize;
+                //  Window size.
                 Size? size = newProfile.Size.HasValue ? (Size?)new Size(newProfile.Size.Value.Width, newProfile.Size.Value.Height) : null;
-                if (maximize
-                    || (size.HasValue && !size.Value.Equals(this.Size))
+                if ((size.HasValue && !size.Value.Equals(this.Size))
                     || oldProfile?.ScrollBar != newProfile.ScrollBar
                     || oldProfile?.MenuBar != newProfile.MenuBar)
                 {
+                    if (!newProfile.ScrollBar && this.scrollBarDisplayed)
                     {
-                        if (!newProfile.ScrollBar && this.scrollBarDisplayed)
-                        {
-                            Trace.Line(Trace.Type.Window, "MainScreen ChangeFinal Turning off scrollbar");
-                        }
+                        Trace.Line(Trace.Type.Window, "MainScreen ChangeFinal Turning off scrollbar");
+                    }
 
-                        this.ToggleScrollBarInternal(newProfile.ScrollBar);
+                    this.ToggleScrollBarInternal(newProfile.ScrollBar);
 
-                        if (!newProfile.MenuBar && !this.menuBarDisabled)
-                        {
-                            Trace.Line(Trace.Type.Window, "MainScreen ChangeFinal Turning off menu bar");
-                        }
+                    if (!newProfile.MenuBar && !this.menuBarDisabled)
+                    {
+                        Trace.Line(Trace.Type.Window, "MainScreen ChangeFinal Turning off menu bar");
+                    }
 
-                        this.ToggleMenuBarInternal(newProfile.MenuBar);
+                    this.ToggleMenuBarInternal(newProfile.MenuBar);
 
-                        if (maximize)
-                        {
-                            if (!this.Maximized)
-                            {
-                                Trace.Line(Trace.Type.Window, "MainScreen ChangeFinal maximizing");
-                            }
+                    this.temporaryToolStripMenuItem.Enabled = this.menuBarDisabled || this.fullScreen;
+                    this.permanentToolStripMenuItem.Enabled = this.menuBarDisabled && !this.fullScreen;
 
-                            this.Maximize();
-                        }
-
-                        this.temporaryToolStripMenuItem.Enabled = this.menuBarDisabled || this.fullScreen;
-                        this.permanentToolStripMenuItem.Enabled = this.menuBarDisabled && !this.fullScreen;
-
-                        if (size.HasValue && !size.Value.Equals(this.Size))
-                        {
-                            Trace.Line(Trace.Type.Window, $"MainScreen ChangeFinal setting size to {size.Value}");
-                            this.Size = size.Value;
-                        }
+                    if (size.HasValue && !size.Value.Equals(this.Size))
+                    {
+                        Trace.Line(Trace.Type.Window, $"MainScreen ChangeFinal setting size to {size.Value}");
+                        this.Size = size.Value;
                     }
                 }
 
                 // Update key mappings.
                 this.UpdateMenuKeyMappings();
-            };
-            this.ProfileManager.ProfileClosing += (profile) =>
-            {
-                // When a profile is closed, save the window location.
-                profile.Location = this.Location;
             };
 
             // Set up other parts.
@@ -1087,7 +1186,7 @@ namespace Wx3270
             this.crossbar = new Crossbar(this.App, this.ProfileManager);
             this.crossbar.OptionsCrossbar.OpacityEvent += (percent) => this.Opacity = percent / 100.0;
 
-            if (this.App.DumpLocalization != null)
+            if (this.App.DumpLocalization != null || !I18nBase.UsingMessageCatalog)
             {
                 // Create all of the dialogs now instead of on-demand, to capture their localizations.
                 var settings = this.SettingsDialog;
@@ -1095,6 +1194,10 @@ namespace Wx3270
                 var macros = this.Macros;
                 var profileTree = this.ProfileTree;
             }
+
+            // Register for macro change events.
+            // This is done after creating the dialogs, so the macros update doesn't propagate too early.
+            this.macroEntries.ChangeEvent += this.MacrosChanged;
 
             // VS designer doesn't seem to know about this.
             this.MouseWheel += new MouseEventHandler(this.MouseWheel_Event);
@@ -1191,10 +1294,10 @@ namespace Wx3270
             {
                 // Reconfigure the components of the screen.
                 this.TopLayoutPanel.Width = this.innerScreenTableLayoutPanel.Width;
-                this.TopBar.Width = this.innerScreenTableLayoutPanel.Width;
-                this.BottomBar.Width = this.innerScreenTableLayoutPanel.Width;
-                this.OiaLayoutPanel.Width = this.innerScreenTableLayoutPanel.Width;
-                this.OiaLayoutPanel.Height = cellSizeHeight + 4;
+                this.topBar.Width = this.innerScreenTableLayoutPanel.Width;
+                this.bottomBar.Width = this.innerScreenTableLayoutPanel.Width;
+                this.oiaLayoutPanel.Width = this.innerScreenTableLayoutPanel.Width;
+                this.oiaLayoutPanel.Height = cellSizeHeight + 4;
             };
             this.screenBox.FontChanged += (font, dynamic) =>
             {
@@ -1225,9 +1328,9 @@ namespace Wx3270
             // Remove the menu bar.
             if (this.App.NoButtons)
             {
-                this.TopBar.RemoveFromParent();
+                this.topBar.RemoveFromParent();
                 this.TopLayoutPanel.RemoveFromParent();
-                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
+                this.mainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
             }
 
             // Measure the overhead: the size of the fixed parts of the main screen.
@@ -1243,7 +1346,7 @@ namespace Wx3270
             int hh;
             using (Graphics g = this.screenPictureBox.CreateGraphics())
             {
-                hh = ScreenBox.ComputeCellSize(g, this.OiaLock.Font).Height;
+                hh = ScreenBox.ComputeCellSize(g, this.oiaLock.Font).Height;
             }
 
             this.fixedWidth = this.mainScreenPanel.Width - this.screenPictureBox.Parent.Width;
@@ -1285,75 +1388,10 @@ namespace Wx3270
             this.SecondaryInitEvent();
 
             // Dump errors from the first profile load, on a separate thread.
-            this.ProfileErrorTimer.Enabled = true;
+            this.profileErrorTimer.Enabled = true;
 
-            // When the emulator is ready, push out the initial profile and show the window.
-            this.App.BackEnd.OnReady += () =>
-            {
-                var autoConnect = false;
-
-                // Push out the initial profile.
-                this.ProfileManager.PushFirst();
-
-                // Display the main screen window.
-                this.Show();
-
-                // Set up command-line auto-connect.
-                if (!this.App.EditMode)
-                {
-                    HostEntry autoConnectHost = null;
-                    if (this.App.HostConnection != null)
-                    {
-                        autoConnectHost = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.Name.Equals(this.App.HostConnection, StringComparison.InvariantCultureIgnoreCase));
-                        if (autoConnectHost == null)
-                        {
-                            ErrorBox.Show(string.Format("{0}: {1}", I18n.Get(ErrorMessage.NoSuchHost), this.App.HostConnection), I18n.Get(Title.HostConnect), MessageBoxIcon.Warning);
-                        }
-                    }
-                    else
-                    {
-                        autoConnectHost = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.AutoConnect == AutoConnect.Connect || h.AutoConnect == AutoConnect.Reconnect);
-                    }
-
-                    if (autoConnectHost != null)
-                    {
-                        autoConnect = true;
-                        this.Connect.ConnectToHost(autoConnectHost);
-                    }
-                }
-
-                // Set up command-line host connection.
-                if (!autoConnect && this.App.CommandLineHost != null)
-                {
-                    var autoName = HostEntry.AutoName(this.App.CommandLineHost, this.App.CommandLinePort);
-                    var hostEntry = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.Name.Equals(autoName, StringComparison.InvariantCultureIgnoreCase));
-                    if (hostEntry == null)
-                    {
-                        hostEntry = new HostEntry(this.App.CommandLineHost, this.App.CommandLinePort, this.App.HostPrefix.Prefixes)
-                        {
-                            Profile = this.ProfileManager.Current,
-                        };
-
-                        if (hostEntry.InvalidPrefixes != null)
-                        {
-                            var invalidPrefixes = string.Join(", ", hostEntry.InvalidPrefixes.Select(c => new string(new[] { c, ':' })));
-                            ErrorBox.Show(
-                                string.Format("{0}: {1}", I18n.Get(ErrorMessage.InvalidPrefixes), invalidPrefixes),
-                                I18n.Get(Title.HostConnect),
-                                MessageBoxIcon.Warning);
-                        }
-
-                        this.ProfileManager.PushAndSave(
-                            current =>
-                            {
-                                current.Hosts = current.Hosts.Concat(new[] { hostEntry });
-                            },
-                            I18n.Get(SaveType.CommandLineHost));
-                    }
-
-                    this.Connect.ConnectToHost(hostEntry);
-                }
-            };
+            // When the emulator is ready, there is more iniitialization to do.
+            this.App.BackEnd.OnReady += this.WhenReadyInit;
 
             // Register the Chord action.
             this.BackEnd.RegisterPassthru(Constants.Action.Chord, this.Chord);
@@ -1495,18 +1533,36 @@ namespace Wx3270
             // Localize.
             I18n.Localize(this, this.toolTip1);
             this.InitOiaLocalization();
-            I18n.LocalizeGlobal(Title.HostConnect, "Host Connect");
+            I18n.LocalizeGlobal(Title.Connect, "Connect");
             I18n.LocalizeGlobal(Title.MacroError, "Macro Error");
             I18n.LocalizeGlobal(Title.KeypadMenuError, "Keypad Menu Error");
             I18n.LocalizeGlobal(Title.FullScreen, "Full Screen Mode");
             I18n.LocalizeGlobal(Title.MenuBarDisabled, "Menu Bar Disabled");
             I18n.LocalizeGlobal(Title.MenuBarEnabled, "Menu Bar Enabled");
-            I18n.LocalizeGlobal(ErrorMessage.NoSuchHost, "No such host connection");
+            I18n.LocalizeGlobal(ErrorMessage.NoSuchConnection, "No such connection");
             I18n.LocalizeGlobal(ErrorMessage.InvalidPrefixes, "Invalid prefix(es) in command-line host");
             I18n.LocalizeGlobal(ErrorMessage.MenuBarToggle, "To display the menu bar, right-click on the main screen and select 'Menu bar'.");
             I18n.LocalizeGlobal(ErrorMessage.MenuBarToggleNop, "The menu bar is not displayed in full screen mode. Right-click on the main screen for the context menu.");
             I18n.LocalizeGlobal(ErrorMessage.FullScreenToggle, "To exit full screen mode, right-click on the main screen and select 'Full screen'.");
+            I18n.LocalizeGlobal(ErrorMessage.RecordingDiscarded, "Pending macro recording discarded");
             I18n.LocalizeGlobal(SaveType.CommandLineHost, "Command-line host connection");
+
+            // Initialize the OIA fields.
+            var defState = Oia.DefaultOiaState;
+            this.ChangeOiaNetwork(defState);
+            this.ChangeOiaLock(defState);
+            this.oiaPrinter.Text = string.Empty;
+            this.oiaScreentrace.Text = string.Empty;
+            this.oiaScript.Text = string.Empty;
+            this.oiaTypeahead.Text = string.Empty;
+            this.oiaAltShift.Text = string.Empty;
+            this.oiaCx.Text = string.Empty;
+            this.oiaReverse.Text = string.Empty;
+            this.ChangeOiaInsert(defState);
+            this.ChangeOiaTls(defState);
+            this.ChangeOiaLu(defState);
+            this.ChangeOiaTiming(defState);
+            this.ChangeOiaCursor(defState);
 
             // Update the menu key mappings.
             this.UpdateMenuKeyMappings();
@@ -1528,6 +1584,164 @@ namespace Wx3270
                 // Toggling topmost on and off brings this window to the top, but does not force it to stay there.
                 this.TopMost = true;
                 this.TopMost = false;
+            }
+        }
+
+        /// <summary>
+        /// Initialization once the back end is ready.
+        /// </summary>
+        private void WhenReadyInit()
+        {
+            // If there is a command-line model change, update the profile directly and save it.
+            if (this.App.Model != null || this.App.Oversize != null)
+            {
+                if (this.App.Model != null)
+                {
+                    // current.Oversize = this.App.Oversize
+                    this.ProfileManager.Current.Model = this.App.Model.ModelNumber;
+                    this.ProfileManager.Current.ExtendedMode = this.App.Model.Extended;
+                    this.ProfileManager.Current.ColorMode = this.App.Model.Color;
+                }
+
+                if (this.App.Oversize != null)
+                {
+                    if (this.App.Oversize.Columns == 0 && this.App.Oversize.Rows == 0)
+                    {
+                        this.ProfileManager.Current.Oversize = new Profile.OversizeClass { Columns = 0, Rows = 0 };
+                    }
+                    else
+                    {
+                        var model = this.App.ModelsDb.Models[this.ProfileManager.Current.Model];
+                        void OversizeError(string message)
+                        {
+                            ErrorBox.Show(
+                                $"Ignoring invalid {Constants.Option.Oversize} '{this.App.Oversize}': {message}",
+                                "wx3270 Command Line Error",
+                                MessageBoxIcon.Warning);
+                        }
+
+                        if (this.App.Oversize.Columns < model.Columns || this.App.Oversize.Rows < model.Rows)
+                        {
+                            OversizeError($"smaller than model {this.ProfileManager.Current.Model} dimensions");
+                        }
+                        else if (!this.ProfileManager.Current.ExtendedMode)
+                        {
+                            OversizeError($"extended data stream mode disabled");
+                        }
+                        else
+                        {
+                            this.ProfileManager.Current.Oversize = new Profile.OversizeClass { Columns = this.App.Oversize.Columns, Rows = this.App.Oversize.Rows };
+                        }
+                    }
+                }
+
+                this.ProfileManager.Save();
+            }
+
+            // Push out the initial profile.
+            this.ProfileManager.PushFirst();
+
+            // Display the main screen window.
+            this.Show();
+
+            // Set up command-line host connection.
+            var alreadyConnecting = false;
+            if (this.App.CommandLineB3270HostSpec != null)
+            {
+                HostEntry hostEntry;
+                if (this.App.Connection != null)
+                {
+                    // They specified a connection name as well. Use that to locate the entry.
+                    hostEntry = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.Name.Equals(this.App.Connection, StringComparison.InvariantCultureIgnoreCase));
+                    if (hostEntry != null)
+                    {
+                        // Modify the entry with the host spec.
+                        hostEntry = new HostEntry(hostEntry, this.App.CommandLineB3270HostSpec, this.App.HostPrefix.Prefixes) { Name = this.App.Connection };
+                        this.ProfileManager.PushAndSave(
+                            current =>
+                            {
+                                current.Hosts = current.Hosts.Select(host => host.Name.Equals(this.App.Connection) ? hostEntry : host).ToList();
+                            },
+                            I18n.Get(SaveType.CommandLineHost));
+                    }
+                    else
+                    {
+                        // Create a new entry by that name, using the host spec.
+                        hostEntry = new HostEntry(this.App.CommandLineB3270HostSpec, this.App.HostPrefix.Prefixes) { Name = this.App.Connection, Profile = this.ProfileManager.Current };
+                        this.ProfileManager.PushAndSave(
+                            current =>
+                            {
+                                current.Hosts = current.Hosts.Concat(new[] { hostEntry });
+                            },
+                            I18n.Get(SaveType.CommandLineHost));
+                    }
+                }
+                else
+                {
+                    // No connection specified. Look for a match.
+                    hostEntry = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.Name == HostEntry.AutoName(this.App.CommandLineB3270HostSpec));
+                    if (hostEntry != null)
+                    {
+                        // Modify the entry with the host spec.
+                        hostEntry = new HostEntry(hostEntry, this.App.CommandLineB3270HostSpec, this.App.HostPrefix.Prefixes) { Name = hostEntry.Name };
+                        this.ProfileManager.PushAndSave(
+                            current =>
+                            {
+                                current.Hosts = current.Hosts.Select(host => host.Name.Equals(hostEntry.Name) ? hostEntry : host).ToList();
+                            },
+                            I18n.Get(SaveType.CommandLineHost));
+                    }
+                    else
+                    {
+                        // Create a new entry, using the host spec.
+                        hostEntry = new HostEntry(this.App.CommandLineB3270HostSpec, this.App.HostPrefix.Prefixes)
+                        {
+                            Name = HostEntry.AutoName(this.App.CommandLineB3270HostSpec),
+                            Profile = this.ProfileManager.Current,
+                        };
+                        this.ProfileManager.PushAndSave(
+                            current =>
+                            {
+                                current.Hosts = current.Hosts.Concat(new[] { hostEntry });
+                            },
+                            I18n.Get(SaveType.CommandLineHost));
+                    }
+                }
+
+                if (hostEntry.InvalidPrefixes != null)
+                {
+                    var invalidPrefixes = string.Join(", ", hostEntry.InvalidPrefixes.Select(c => new string(new[] { c, ':' })));
+                    ErrorBox.Show(
+                        string.Format("{0}: {1}", I18n.Get(ErrorMessage.InvalidPrefixes), invalidPrefixes),
+                        I18n.Get(Title.Connect),
+                        MessageBoxIcon.Warning);
+                }
+
+                this.Connect.ConnectToHost(hostEntry);
+                alreadyConnecting = true;
+            }
+
+            // Set up command-line auto-connect.
+            if (!this.App.EditMode && !alreadyConnecting)
+            {
+                HostEntry autoConnectHost = null;
+                if (this.App.Connection != null)
+                {
+                    autoConnectHost = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.Name.Equals(this.App.Connection, StringComparison.InvariantCultureIgnoreCase));
+                    if (autoConnectHost == null)
+                    {
+                        ErrorBox.Show(string.Format("{0}: {1}", I18n.Get(ErrorMessage.NoSuchConnection), this.App.Connection), I18n.Get(Title.Connect), MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    autoConnectHost = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.AutoConnect == AutoConnect.Connect || h.AutoConnect == AutoConnect.Reconnect);
+                }
+
+                if (autoConnectHost != null)
+                {
+                    this.Connect.ConnectToHost(autoConnectHost);
+                }
             }
         }
 
@@ -1713,7 +1927,7 @@ namespace Wx3270
         private void ChordReset()
         {
             this.chordTimer.Stop();
-            this.OiaCx.Text = string.Empty;
+            this.oiaCx.Text = string.Empty;
             this.App.ChordName = null;
         }
 
@@ -1735,7 +1949,7 @@ namespace Wx3270
             }
 
             this.App.ChordName = argList[0];
-            this.OiaCx.Text = "C…";
+            this.oiaCx.Text = "C…";
 
             // Clear the chord after 6 seconds.
             this.chordTimer.Start();
@@ -2071,8 +2285,7 @@ namespace Wx3270
         private void ConnectToProfileHost(object sender, EventArgs e)
         {
             var clickedMenuItem = sender as ToolStripMenuItem;
-            var hostEntry = clickedMenuItem.Tag as HostEntry;
-            if (hostEntry != null)
+            if (clickedMenuItem.Tag is HostEntry hostEntry)
             {
                 // Connect to a particular host.
                 if (this.App.ConnectionState != ConnectionState.NotConnected)
@@ -2090,7 +2303,7 @@ namespace Wx3270
                 switch (tagString)
                 {
                     case "QuickConnect":
-                        this.ProfileTree.CreateHostDialog(this.ProfileManager.Current);
+                        this.ProfileTree.CreateHostDialog(this.ProfileManager.Current, fromInside: false);
                         break;
                     case "Disconnect":
                         this.Connect.Disconnect();
@@ -2168,11 +2381,14 @@ namespace Wx3270
                 this.Recolor(newProfile.Colors, newProfile.ColorMode);
             }
 
-            // Force normal window if the profile says to, and this is not the initial load.
-            if (!newProfile.Maximize && oldProfile != null)
+            // Force a normal window if this is not the initial load.
+            if (oldProfile != null)
             {
                 this.Restore();
             }
+
+            // Update macros. It's not worth setting up a separate crossbar for this.
+            this.macroEntries.Entries = newProfile.Macros;
         }
 
         /// <summary>
@@ -2191,14 +2407,16 @@ namespace Wx3270
 
                 items.AddRange(
                     this.macroEntries.Entries.Select(e => new ToolStripMenuItem(e.Name, null, this.RunMacro) { Tag = e }).ToArray());
-                this.macroRecordItem = new ToolStripMenuItem(
+                var item = new ToolStripMenuItem(
                     I18n.Get(this.MacroRecorder.Running ? MacroStopRecordingItemName : MacroRecordingItemName),
                     this.MacroRecorder.Running ? Properties.Resources.stop_recording : Properties.Resources.record1,
                     this.RunMacro)
                 { Tag = "ToggleRecording" };
-                items.Add(this.macroRecordItem);
+                items.Add(item);
+                this.macroRecordItems.Add(item);
             }
 
+            this.macroRecordItems.Clear();
             RedoMenu(this.macrosContextMenuStrip.Items);
             RedoMenu(this.macrosToolStripMenuItem.DropDownItems, saveFirst: true);
         }
@@ -2225,19 +2443,20 @@ namespace Wx3270
         /// Process a macro recorder state change.
         /// </summary>
         /// <param name="running">True if recorder is running.</param>
-        private void OnMacroRecorderState(bool running)
+        /// <param name="abort">True if recording was aborted.</param>
+        private void OnMacroRecorderState(bool running, bool abort)
         {
-            if (running)
+            foreach (var item in this.macroRecordItems)
             {
-                this.macroRecordItem.Text = I18n.Get(MacroStopRecordingItemName);
-                this.macroRecordItem.Image = Properties.Resources.stop_recording;
-                this.toolTip1.SetToolTip(this.macrosPictureBox, I18n.Get(MacroRecordingToolTipName));
+                item.Text = running ? I18n.Get(MacroStopRecordingItemName) : I18n.Get(MacroRecordingItemName);
+                item.Image = running ? Properties.Resources.stop_recording : Properties.Resources.record1;
             }
-            else
+
+            this.toolTip1.SetToolTip(this.macrosPictureBox, running ? I18n.Get(MacroRecordingToolTipName) : I18n.Get(MacrosToolTipName));
+
+            if (!running && abort)
             {
-                this.macroRecordItem.Text = I18n.Get(MacroRecordingItemName);
-                this.macroRecordItem.Image = Properties.Resources.record1;
-                this.toolTip1.SetToolTip(this.macrosPictureBox, I18n.Get(MacrosToolTipName));
+                ErrorBox.Show(I18n.Get(ErrorMessage.RecordingDiscarded), I18n.Get(Title.MacroError), MessageBoxIcon.Information);
             }
         }
 
@@ -2422,7 +2641,7 @@ namespace Wx3270
             }
 
             // Apply it to the OIA.
-            foreach (var oiaField in this.OiaLayoutPanel.Controls.OfType<Control>())
+            foreach (var oiaField in this.oiaLayoutPanel.Controls.OfType<Control>())
             {
                 if (oiaField.Tag != null && (string)oiaField.Tag == "Main")
                 {
@@ -2558,7 +2777,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void MainTable_SizeChanged(object sender, EventArgs e)
         {
-            this.vScrollBar1.Height = this.MainTable.Height;
+            this.vScrollBar1.Height = this.mainTable.Height;
         }
 
         /// <summary>
@@ -2568,24 +2787,16 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void X3270_Load(object sender, EventArgs e)
         {
-            // Initialize the OIA fields.
-            var defState = Oia.DefaultOiaState;
-            this.ChangeOiaNetwork(defState);
-            this.ChangeOiaLock(defState);
-            this.OiaPrinter.Text = string.Empty;
-            this.OiaScreentrace.Text = string.Empty;
-            this.OiaScript.Text = string.Empty;
-            this.OiaTypeahead.Text = string.Empty;
-            this.OiaAltShift.Text = string.Empty;
-            this.OiaCx.Text = string.Empty;
-            this.OiaReverse.Text = string.Empty;
-            this.ChangeOiaInsert(defState);
-            this.ChangeOiaTls(defState);
-            this.ChangeOiaLu(defState);
-            this.ChangeOiaTiming(defState);
-            this.ChangeOiaCursor(defState);
-
             Trace.Line(Trace.Type.Window, "MainWindow Load");
+
+            if (this.App.FullScreen)
+            {
+                this.SetFullScreen();
+            }
+            else if (this.App.Maximize)
+            {
+                this.Maximize();
+            }
 
             // We will not receive a message for initial maximized state, so it has to be checked here.
             if (this.Maximized)
@@ -2760,8 +2971,6 @@ namespace Wx3270
                                 {
                                     current.Font = new FontProfile(newFont);
                                 }
-
-                                current.Maximize = this.Maximized && !this.fullScreen;
                             }, I18n.Get(ResizeName)))
                         {
                             Trace.Line(Trace.Type.Window, "  Resize pushed");
@@ -2882,7 +3091,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ProfileErrorTimer_Tick(object sender, EventArgs e)
         {
-            this.ProfileErrorTimer.Enabled = false;
+            this.profileErrorTimer.Enabled = false;
             this.ProfileManager.DumpErrors();
         }
 
@@ -2907,9 +3116,6 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void ProfilePictureBox_Click(object sender, EventArgs e)
         {
-            // You can't restore the profile tree while a macro is being recorded.
-            this.MacroRecorder.Abort();
-
             if (!this.ProfileTree.Visible)
             {
                 this.ProfileTree.Show(this);
@@ -3074,7 +3280,11 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void Help_Click(object sender, EventArgs e)
         {
-            Wx3270App.GetHelp("Main");
+            var mouseEvent = (MouseEventArgs)e;
+            if (mouseEvent.Button == MouseButtons.Left)
+            {
+                this.helpContextMenuStrip.Show(this.helpPictureBox, mouseEvent.Location);
+            }
         }
 
         /// <summary>
@@ -3264,7 +3474,6 @@ namespace Wx3270
                         (current) =>
                         {
                             current.Font = new FontProfile(newFont);
-                            current.Maximize = this.Maximized;
                             if (!this.Maximized)
                             {
                                 current.Size = this.Size;
@@ -3285,6 +3494,37 @@ namespace Wx3270
         private void ActionsBox_paint(object sender, PaintEventArgs e)
         {
             this.startButton.Render((PictureBox)sender, e, I18n.Get(StartButtonName));
+
+            if (!this.toured && !Tour.IsComplete(this))
+            {
+                // The menu bar is now the correct size. Start the tour.
+                this.toured = true;
+                new TaskFactory().StartNew(() => this.Invoke(new MethodInvoker(() => this.RunTour())));
+            }
+        }
+
+        /// <summary>
+        /// Run the tour.
+        /// </summary>
+        private void RunTour()
+        {
+            var nodes = new[]
+            {
+                (this, 1, Orientation.Centered),
+                ((Control)this.connectPictureBox, (int?)null, Orientation.UpperLeft),
+                (this.actionsBox, null, Orientation.UpperLeft),
+                (this.keypadBox, null, Orientation.UpperLeft),
+                (this.connectPictureBox, 1, Orientation.UpperLeft),
+                (this.profilePictureBox, null, Orientation.UpperLeft),
+                (this.macrosPictureBox, null, Orientation.UpperLeft),
+                (this.snapBox, null, Orientation.UpperLeft),
+                (this.helpPictureBox, null, Orientation.UpperLeft),
+                (this.settingsBox, null, Orientation.UpperRight),
+                (this.oiaLock, null, Orientation.LowerLeftTight),
+                (this, 2, Orientation.Centered),
+                (this, 3, Orientation.Centered),
+            };
+            Tour.Navigate(this, nodes);
         }
 
         /// <summary>
@@ -3451,13 +3691,13 @@ namespace Wx3270
             if (!this.menuBarDisabled)
             {
                 // Turn off the menu bar for the duration of F11 full screen mode.
-                this.MainTable.SuspendLayout();
-                this.TopBar.RemoveFromParent();
+                this.mainTable.SuspendLayout();
+                this.topBar.RemoveFromParent();
                 this.TopLayoutPanel.RemoveFromParent();
-                this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
-                this.MainTable.ResumeLayout();
+                this.mainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 0F);
+                this.mainTable.ResumeLayout();
                 this.overlayMenuBarDisplayed = false;
-                this.fixedHeight -= this.TopBar.Height + this.TopLayoutPanel.Height;
+                this.fixedHeight -= this.topBar.Height + this.TopLayoutPanel.Height;
                 this.screenBox.SetFixed(this.fixedWidth, this.fixedHeight);
             }
 
@@ -3535,20 +3775,20 @@ namespace Wx3270
                     if (this.overlayMenuBarDisplayed)
                     {
                         // Turn off the overlay menu bar.
-                        this.TopBar.RemoveFromParent();
+                        this.topBar.RemoveFromParent();
                         this.TopLayoutPanel.RemoveFromParent();
                         this.overlayMenuBarDisplayed = false;
                     }
 
                     // Turn the integral menu bar back on.
-                    this.TopBar.Location = new Point(0, 0);
-                    this.MainTable.SuspendLayout();
-                    this.MainTable.Controls.Add(this.TopBar, 0, 1);
-                    this.MainTable.Controls.Add(this.TopLayoutPanel, 0, 0);
-                    this.MainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 2F);
-                    this.MainTable.ResumeLayout();
+                    this.topBar.Location = new Point(0, 0);
+                    this.mainTable.SuspendLayout();
+                    this.mainTable.Controls.Add(this.topBar, 0, 1);
+                    this.mainTable.Controls.Add(this.TopLayoutPanel, 0, 0);
+                    this.mainTable.RowStyles[1] = new RowStyle(SizeType.Absolute, 2F);
+                    this.mainTable.ResumeLayout();
 
-                    this.fixedHeight += this.TopBar.Height + this.TopLayoutPanel.Height;
+                    this.fixedHeight += this.topBar.Height + this.TopLayoutPanel.Height;
                     this.screenBox.SetFixed(this.fixedWidth, this.fixedHeight);
                 }
 
@@ -3615,11 +3855,11 @@ namespace Wx3270
             {
                 // Put the menubar back.
                 this.TopLayoutPanel.Location = new Point(0, -this.TopLayoutPanel.Height);
-                this.ScreenBoxPanel.Controls.Add(this.TopLayoutPanel);
+                this.screenBoxPanel.Controls.Add(this.TopLayoutPanel);
                 this.TopLayoutPanel.BringToFront();
-                this.TopBar.Location = new Point(0, -this.TopLayoutPanel.Height);
-                this.ScreenBoxPanel.Controls.Add(this.TopBar);
-                this.TopBar.BringToFront();
+                this.topBar.Location = new Point(0, -this.TopLayoutPanel.Height);
+                this.screenBoxPanel.Controls.Add(this.topBar);
+                this.topBar.BringToFront();
                 this.overlayMenuBarStep = -OverlayMenuBarSteps;
                 this.overlayMenuBarDirection = 1;
                 this.overlayMenuBarTimer.Start();
@@ -3705,21 +3945,21 @@ namespace Wx3270
                 {
                     // Done.
                     this.overlayMenuBarTimer.Stop();
-                    this.TopBar.RemoveFromParent();
+                    this.topBar.RemoveFromParent();
                     this.TopLayoutPanel.RemoveFromParent();
                     this.overlayMenuBarDisplayed = false;
                 }
                 else
                 {
                     this.TopLayoutPanel.Location = new Point(0, (this.TopLayoutPanel.Height * this.overlayMenuBarStep / OverlayMenuBarSteps) - this.TopLayoutPanel.Height);
-                    this.TopBar.Location = new Point(0, this.TopLayoutPanel.Location.Y + this.TopLayoutPanel.Height);
+                    this.topBar.Location = new Point(0, this.TopLayoutPanel.Location.Y + this.TopLayoutPanel.Height);
                 }
             }
             else if (this.overlayMenuBarDirection > 0)
             {
                 // Move the overlay menu bar down.
                 this.TopLayoutPanel.Location = new Point(0, (this.TopLayoutPanel.Height * ++this.overlayMenuBarStep / OverlayMenuBarSteps) - this.TopLayoutPanel.Height);
-                this.TopBar.Location = new Point(0, this.TopLayoutPanel.Location.Y + this.TopLayoutPanel.Height);
+                this.topBar.Location = new Point(0, this.TopLayoutPanel.Location.Y + this.TopLayoutPanel.Height);
 
                 if (this.overlayMenuBarStep >= OverlayMenuBarSteps)
                 {
@@ -3787,6 +4027,16 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// An item from the help button context menu was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void HelpClick(object sender, EventArgs e)
+        {
+            Tour.HelpMenuClick(sender, e, "Main", this.RunTour);
+        }
+
+        /// <summary>
         /// Message box titles.
         /// </summary>
         private static class Title
@@ -3794,7 +4044,7 @@ namespace Wx3270
             /// <summary>
             /// Host connect.
             /// </summary>
-            public static readonly string HostConnect = I18n.Combine(TitleName, "hostConnect");
+            public static readonly string Connect = I18n.Combine(TitleName, "connect");
 
             /// <summary>
             /// Macro error.
@@ -3830,7 +4080,7 @@ namespace Wx3270
             /// <summary>
             /// No such host.
             /// </summary>
-            public static readonly string NoSuchHost = I18n.Combine(MessageName, "noSuchHost");
+            public static readonly string NoSuchConnection = I18n.Combine(MessageName, "noSuchConnection");
 
             /// <summary>
             /// Invalid prefixes in command-line host.
@@ -3851,6 +4101,11 @@ namespace Wx3270
             /// Informational pop-up about exiting full-screen mode.
             /// </summary>
             public static readonly string FullScreenToggle = I18n.Combine(MessageName, "fullScreenToggle");
+
+            /// <summary>
+            /// Informational pop-up about discarding a pending macro recording.
+            /// </summary>
+            public static readonly string RecordingDiscarded = I18n.Combine(MessageName, "recordingDiscarded");
         }
 
         /// <summary>

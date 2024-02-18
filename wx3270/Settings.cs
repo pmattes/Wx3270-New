@@ -8,6 +8,7 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Windows.Forms;
+    using I18nBase;
 
     using Wx3270.Contracts;
 
@@ -61,6 +62,11 @@ namespace Wx3270
             { ChangeKeyword.PrinterSavePath, "printer save path" },
             { ChangeKeyword.MenuBar, "hide menu bar" },
         };
+
+        /// <summary>
+        /// Tour dictionary.
+        /// </summary>
+        private readonly Dictionary<TabPage, IEnumerable<(Control, int?, Orientation)>> tours = new Dictionary<TabPage, IEnumerable<(Control, int?, Orientation)>>();
 
         /// <summary>
         /// The keypad pop-up.
@@ -227,11 +233,6 @@ namespace Wx3270
             this.keypad = keypad;
             this.aplKeypad = aplKeypad;
 
-#if false
-            // Register for secondary init.
-            mainScreen.SecondaryInitEvent += this.SecondaryInit;
-#endif
-
             // Register the undo/redo buttons.
             this.ProfileManager.RegisterUndoRedo(this.undoButton, this.redoButton, this.toolTip1);
 
@@ -295,6 +296,9 @@ namespace Wx3270
             {
                 I18n.LocalizeGlobal(SettingPath(t.Key), t.Value);
             }
+
+            // Set up the read-only message and save-as button.
+            this.ProfileManager.AddChangeTo((oldProfile, newProfile) => this.readOnlyFlowLayoutPanel.Visible = newProfile.ReadOnly);
 
             // Set up the tabs.
             this.OptionsTabInit();
@@ -395,7 +399,7 @@ namespace Wx3270
             separator.BackColor = statusLine.ForeColor;
 
             var sampleImage = this.CreateSampleImage(color);
-            if (this.MonoCaseCheckBox.Checked)
+            if (this.monoCaseCheckBox.Checked)
             {
                 sampleImage.Settings.Add(B3270.Setting.MonoCase, true);
             }
@@ -826,7 +830,35 @@ namespace Wx3270
             {
                 this.everActivated = true;
                 this.Location = MainScreen.CenteredOn(this.mainScreen, this);
+                if (!Tour.IsComplete(this.settingsTabs.SelectedTab))
+                {
+                    this.RunTour(this.settingsTabs.SelectedTab);
+                }
             }
+        }
+
+        /// <summary>
+        /// Run the tour for a particular tab page.
+        /// </summary>
+        /// <param name="selectedTab">Selected tab.</param>
+        private void RunTour(TabPage selectedTab)
+        {
+            var nodes = new List<(Control, int?, Orientation)>();
+            if (this.tours.TryGetValue(selectedTab, out IEnumerable<(Control, int?, Orientation)> tabNodes))
+            {
+                nodes.AddRange(tabNodes);
+            }
+
+            var commonButtonNodes = new[]
+            {
+                ((Control)this, (int?)99, Orientation.Centered),
+                (this.readOnlyFlowLayoutPanel, null, Orientation.LowerLeftTight),
+                (this.setToDefaultsButton, null, Orientation.LowerRight),
+                (this.undoButton, null, Orientation.LowerRight),
+                (this.helpPictureBox, null, Orientation.LowerRight),
+            };
+            nodes.AddRange(commonButtonNodes);
+            Tour.Navigate(selectedTab, nodes);
         }
 
         /// <summary>
@@ -866,7 +898,11 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void Help_Click(object sender, EventArgs e)
         {
-            Wx3270App.GetHelp("Settings/" + Wx3270App.FormatHelpTag(this.settingsTabs.SelectedTab.Name));
+            var mouseEvent = (MouseEventArgs)e;
+            if (mouseEvent.Button == MouseButtons.Left)
+            {
+                this.helpContextMenuStrip.Show(this.helpPictureBox, mouseEvent.Location);
+            }
         }
 
         /// <summary>
@@ -1077,6 +1113,49 @@ namespace Wx3270
         private void SaveDirectory_Click(object sender, EventArgs e)
         {
             this.SaveDirectoryClick(sender, e);
+        }
+
+        /// <summary>
+        /// The 'Save a copy' button was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void SaveACopyButtonClick(object sender, EventArgs e)
+        {
+            this.mainScreen.DuplicateProfile();
+        }
+
+        /// <summary>
+        /// The selected tab changed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event options.</param>
+        private void TabSelectedChanged(object sender, EventArgs e)
+        {
+            if (!Tour.IsComplete(this.settingsTabs.SelectedTab))
+            {
+                this.RunTour(this.settingsTabs.SelectedTab);
+            }
+        }
+
+        /// <summary>
+        /// Registers a tour for a tab.
+        /// </summary>
+        /// <param name="tabPage">Tab page.</param>
+        /// <param name="nodes">Nodes for the tour.</param>
+        private void RegisterTour(TabPage tabPage, IEnumerable<(Control, int?, Orientation)> nodes)
+        {
+            this.tours[tabPage] = nodes;
+        }
+
+        /// <summary>
+        /// An entry in the help menu was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void HelpMenuClick(object sender, EventArgs e)
+        {
+            Tour.HelpMenuClick(sender, e, "Settings/" + Wx3270App.FormatHelpTag(this.settingsTabs.SelectedTab.Name), () => this.RunTour(this.settingsTabs.SelectedTab));
         }
 
         /// <summary>

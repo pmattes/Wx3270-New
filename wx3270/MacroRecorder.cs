@@ -6,9 +6,10 @@ namespace Wx3270
 {
     using System;
     using System.Collections.Generic;
-    using System.Drawing;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
     using System.Windows.Forms;
 
     /// <summary>
@@ -20,6 +21,26 @@ namespace Wx3270
         /// The flash interval.
         /// </summary>
         private const int FlashMs = 350;
+
+        /// <summary>
+        /// The regular expression for recognizing Key(U+nnnn) actions.
+        /// </summary>
+        private const string UnicodeRegexPattern = "(?i)^" + B3270.Action.Key + @"\(""?(U\+|0x)(?<hex>[0-9a-f]{1,8})""?\)$";
+
+        /// <summary>
+        /// The regular expression for recognizing Key(c) actions.
+        /// </summary>
+        private const string SingleCharRegexPattern = "(?i)^" + B3270.Action.Key + @"\(""?(?<char>[^,"")])""?\)$";
+
+        /// <summary>
+        /// The regular expression parser for Key(U+nnnn) actions.
+        /// </summary>
+        private static readonly Regex UnicodeRegex = new Regex(UnicodeRegexPattern);
+
+        /// <summary>
+        /// The regular expression parser for Key(c) actions.
+        /// </summary>
+        private static readonly Regex SingleCharRegex = new Regex(SingleCharRegexPattern);
 
         /// <summary>
         /// The flash timer.
@@ -63,7 +84,7 @@ namespace Wx3270
         /// <summary>
         /// Running / stop running event.
         /// </summary>
-        public event Action<bool> RunningEvent = (running) => { };
+        public event Action<bool, bool> RunningEvent = (running, aborted) => { };
 
         /// <summary>
         /// Flash event.
@@ -82,18 +103,20 @@ namespace Wx3270
         /// <param name="context">Context to pass to delegate.</param>
         public void Start(Action<string, object> completion, object context = null)
         {
-            if (!this.running)
+            if (this.running)
             {
-                this.completion = completion;
-                this.context = context;
-                this.running = true;
-                this.actions.Clear();
-                this.FlashEvent(true);
-                this.flashing = true;
-                this.flashTimer.Start();
-
-                this.RunningEvent(true);
+                this.Abort();
             }
+
+            this.completion = completion;
+            this.context = context;
+            this.running = true;
+            this.actions.Clear();
+            this.FlashEvent(true);
+            this.flashing = true;
+            this.flashTimer.Start();
+
+            this.RunningEvent(true, false);
         }
 
         /// <summary>
@@ -131,7 +154,86 @@ namespace Wx3270
         /// <returns>Unicode value.</returns>
         private static int KeyCode(string action)
         {
-            return int.Parse(action.Substring(B3270.Action.Key.Length + 3, 4), System.Globalization.NumberStyles.HexNumber);
+            var m = UnicodeRegex.Match(action);
+            if (m.Success)
+            {
+                return int.Parse(m.Groups["hex"].Value, System.Globalization.NumberStyles.HexNumber);
+            }
+
+            m = SingleCharRegex.Match(action);
+            if (m.Success)
+            {
+                return m.Groups["char"].Value[0];
+            }
+
+            return -1;
+        }
+
+        /// <summary>
+        /// Checks a key code for printability.
+        /// </summary>
+        /// <param name="keyCode">Key code.</param>
+        /// <returns>True if printable.</returns>
+        private static bool Printable(int keyCode)
+        {
+            if (keyCode < 0x20 || keyCode == '"' || keyCode == '\\')
+            {
+                return false;
+            }
+
+            try
+            {
+                switch (CharUnicodeInfo.GetUnicodeCategory((char)keyCode))
+                {
+                    case UnicodeCategory.Control:
+                    case UnicodeCategory.EnclosingMark:
+                    case UnicodeCategory.Format:
+                    case UnicodeCategory.ModifierLetter:
+                    case UnicodeCategory.ModifierSymbol:
+                    case UnicodeCategory.NonSpacingMark:
+                    case UnicodeCategory.PrivateUse:
+                    case UnicodeCategory.SpacingCombiningMark:
+                    case UnicodeCategory.Surrogate:
+                        return false;
+                    default:
+                        return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks a Key() action that we can decode.
+        /// </summary>
+        /// <param name="action">Action to check.</param>
+        /// <returns>True if the action is a Unicode key.</returns>
+        private static bool IsDecodableKeyAction(string action) => UnicodeRegex.IsMatch(action) || SingleCharRegex.IsMatch(action);
+
+        /// <summary>
+        /// Transforms a Key() action to something more readable, if possible.
+        /// </summary>
+        /// <param name="action">Action to parse.</param>
+        /// <returns>Traslated action.</returns>
+        private static string ReKey(string action)
+        {
+            var keyCode = KeyCode(action);
+            if (Printable(keyCode))
+            {
+                return B3270.Action.Key + "(\"" + (char)keyCode + "\")";
+            }
+            else if (keyCode == '"')
+            {
+                return B3270.Action.Key + "(" + B3270.CharacterName.Quot + ")";
+            }
+            else if (keyCode == '\\')
+            {
+                return B3270.Action.Key + "(" + B3270.CharacterName.Backslash + ")";
+            }
+
+            return action;
         }
 
         /// <summary>
@@ -146,7 +248,7 @@ namespace Wx3270
                 this.running = false;
                 this.FlashEvent(false);
                 this.flashing = false;
-                this.RunningEvent(false);
+                this.RunningEvent(false, isAbort);
 
                 if (!isAbort)
                 {
@@ -187,7 +289,7 @@ namespace Wx3270
                 {
                     if (keys.Count == 1)
                     {
-                        cooked.Add(keys[0]);
+                        cooked.Add(ReKey(keys[0]));
                     }
                     else
                     {
@@ -201,11 +303,19 @@ namespace Wx3270
 
             foreach (var action in splitActions)
             {
-                if (action.StartsWith(B3270.Action.Key + "(") &&
-                    KeyCode(action) >= 0x20 && KeyCode(action) != '"')
+                if (IsDecodableKeyAction(action))
                 {
-                    // Accumulate a Key() action.
-                    keys.Add(action);
+                    if (Printable(KeyCode(action)))
+                    {
+                        // Accumulate a Key() action.
+                        keys.Add(action);
+                    }
+                    else
+                    {
+                        // Translate.
+                        DumpKeys();
+                        cooked.Add(ReKey(action));
+                    }
                 }
                 else
                 {

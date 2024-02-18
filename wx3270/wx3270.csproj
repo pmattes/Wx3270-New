@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Wx3270</RootNamespace>
     <AssemblyName>wx3270</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
@@ -137,15 +137,24 @@
     </Compile>
     <Compile Include="ActionSyntax.cs" />
     <Compile Include="AplMode.cs" />
+    <Compile Include="B3270HostSpec.cs" />
     <Compile Include="Contracts\ICell.cs" />
     <Compile Include="Contracts\IModelsDb.cs" />
     <Compile Include="Contracts\ITerminalName.cs" />
+    <Compile Include="HPathUtil.cs" />
     <Compile Include="MiscMerge.cs" />
     <Compile Include="MergeAttribute.cs" />
     <Compile Include="MiscCrossbar.cs" />
     <Compile Include="Crossbar.cs" />
     <Compile Include="ModelChange.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelName.cs" />
+    <Compile Include="Oversize.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ProxyCrossbar.cs" />
     <Compile Include="ListenCrossbar.cs" />
@@ -180,6 +189,12 @@
     </Compile>
     <Compile Include="DefaultKeypadMap.cs" />
     <Compile Include="TlsState.cs" />
+    <Compile Include="Tour.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tour.Designer.cs">
+      <DependentUpon>Tour.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateState.cs" />
     <Compile Include="WatcherKey.cs" />
     <Compile Include="ServerEditor.cs">
@@ -253,11 +268,6 @@
     <Compile Include="ListenPort.cs" />
     <Compile Include="DefaultKeyboardMap.cs" />
     <Compile Include="LimitedStack.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="ProxySettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -546,6 +556,9 @@
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tour.resx">
+      <DependentUpon>Tour.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VisibleControls.resx">
       <DependentUpon>VisibleControls.cs</DependentUpon>
     </EmbeddedResource>
@@ -792,6 +805,13 @@
     <None Include="Resources\ErrorIcon.png" />
     <None Include="Resources\StartClearer.png" />
     <None Include="Resources\ToggleDown3wide.png" />
+    <None Include="Resources\Transparent.png" />
+    <None Include="Resources\Transparent1.png" />
+    <None Include="Resources\arrow-left-up2.png" />
+    <None Include="Resources\arrow-left-down.bmp" />
+    <Content Include="Resources\arrow-left-down.png" />
+    <Content Include="Resources\arrow-right-down.png" />
+    <Content Include="Resources\arrow-right-up.png" />
     <Content Include="wx3270.bmp" />
     <None Include="Resources\ToggleUp4.png" />
     <None Include="Resources\ToggleDown4.png" />

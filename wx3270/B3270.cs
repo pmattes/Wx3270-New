@@ -1563,5 +1563,21 @@ namespace Wx3270
             /// </summary>
             public const string ShareConsole = "-shareconsole";
         }
+
+        /// <summary>
+        /// Text character names recognized by the Key() action.
+        /// </summary>
+        public class CharacterName
+        {
+            /// <summary>
+            /// Double-quote character ('"').
+            /// </summary>
+            public const string Quot = "quot";
+
+            /// <summary>
+            /// Backslash character ('\\').
+            /// </summary>
+            public const string Backslash = "backslash";
+        }
     }
 }

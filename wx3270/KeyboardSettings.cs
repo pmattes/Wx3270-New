@@ -158,7 +158,7 @@ namespace Wx3270
         {
             get
             {
-                var selected = (string)this.ChordComboBox.Items[this.ChordComboBox.SelectedIndex];
+                var selected = (string)this.chordComboBox.Items[this.chordComboBox.SelectedIndex];
                 return selected == I18n.Get(KeyboardString.NoChord) ? null : selected;
             }
         }
@@ -189,6 +189,81 @@ namespace Wx3270
             I18n.LocalizeGlobal(KeyboardString.UndoKey, "key change");
             I18n.LocalizeGlobal(KeyboardString.UndoKeypadPosition, "keypad position");
             I18n.LocalizeGlobal(KeyboardString.UpdateKeymapVersion, "Update keyboard map for newer version");
+
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global instructions.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(keyboardTab)), "Tour: Keyboard settings");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(keyboardTab)),
+@"Use this tab to change keyboard mappings. This tour walks you through the steps.");
+
+            // Key selection.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(keyboardPictureButton)), "Key selection");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(keyboardPictureButton)),
+@"Click to open a window that allows you to select the key to map.");
+
+            // Selected key display.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(selectedKeyGroupBox)), "Selected key");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(selectedKeyGroupBox)),
+@"The name of the key you have selected will appear here, along with its scan code, and its default mapping if it is a data-entry key.");
+
+            // Modifiers.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(modifiersTableLayoutPanel)), "Modifier selection");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(modifiersTableLayoutPanel)),
+@"Select the modifiers to match.
+
+The Shift, Ctrl and Alt modifiers refer to the corresponding keys on the keyboard. The mapping will only apply if those keys are also pressed.
+
+If 'NVT only', '3270 only' or APL are selected, the mapping will only apply when wx3270 is in those modes.");
+
+            // Actions.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(keyboardActionsTextBox)), "Actions");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(keyboardActionsTextBox)),
+@"This box will display the current actions performed when the selected key is pressed.
+
+Click to change those actions, using the Macro Editor.");
+
+            // Delete button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(keyboardActionsRemoveButton)), "Delete button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(keyboardActionsRemoveButton)),
+@"Click to remove the mapping for this key, restoring its default behavior.");
+
+            // Chord intro.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(keyboardTab), 1), "Two-key mappings (Chords)");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(keyboardTab), 1),
+@"Wx3270 can also map 2-key sequences, called chords. This will walk you through defining a chord.
+
+Chords begin with a 'cord-start' key. Once you have defined a cord-start key, you can define other keys that complete the chord (are pressed in sequence after the chord-start key).");
+
+            // Define a chord, first key.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(flowLayoutPanel1)), "Chord: Define a chord-start key");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(flowLayoutPanel1)),
+@"Select a key and modifiers above, as usual. Then, select 'Start chord' here instead of 'Perform actions'.
+
+The key will now be defined as a chord-start key, and will not perform any actions until a second key is pressed.");
+
+            // Define a cord, second key.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(chordComboBox)), "Chord: Define the second key in a chord");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Settings), nameof(chordComboBox)),
+@"Once you have defined one or more cord-start keys, this drop-down will list them.
+
+Select the first key of the chord you want to define here (the chord-start key). Then select the key and modifiers as usual, and enter the actions to perform.
+
+The mapping for key and modifiers will only apply when that key is pressed in sequence after the chord-start key.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
         }
 
         /// <summary>
@@ -197,7 +272,7 @@ namespace Wx3270
         private void KeyboardTabInit()
         {
             // No key specified yet.
-            this.SelectedKeyLabel.Text = string.Empty;
+            this.selectedKeyLabel.Text = string.Empty;
             this.keymapSelectedLabel.Text = string.Empty;
             this.scanCodeSelectedLabel.Text = string.Empty;
 
@@ -205,7 +280,7 @@ namespace Wx3270
             this.ProfileManager.AddChangeTo(this.KeyboardProfileChange);
 
             // Set up the chord.
-            this.ChordComboBox.SelectedIndex = 0; // None
+            this.chordComboBox.SelectedIndex = 0; // None
 
             // Play with focus.
             this.keyboardActionsTextBox.GotFocus += (sender, args) => this.keyboardActionsEditButton.Focus();
@@ -278,6 +353,21 @@ namespace Wx3270
                 KeyboardToolTip.ClickToOverride,
                 "Actions inherited from less-specific definition" + Environment.NewLine + "Click to create specific definition");
             I18n.LocalizeGlobal(KeyboardToolTip.ClickToAdd, "Click to add definition");
+
+            // Register our tour.
+            var nodes = new[]
+            {
+                ((Control)this.keyboardTab, (int?)null, Orientation.Centered),
+                (this.keyboardPictureButton, null, Orientation.UpperLeft),
+                (this.selectedKeyGroupBox, null, Orientation.UpperRight),
+                (this.modifiersTableLayoutPanel, null, Orientation.UpperLeft),
+                (this.keyboardActionsTextBox, null, Orientation.LowerLeftTight),
+                (this.keyboardActionsRemoveButton, null, Orientation.LowerLeft),
+                (this.keyboardTab, 1, Orientation.Centered),
+                (this.flowLayoutPanel1, null, Orientation.LowerLeft),
+                (this.chordComboBox, null, Orientation.UpperLeft),
+            };
+            this.RegisterTour(this.keyboardTab, nodes);
         }
 
         /// <summary>
@@ -295,9 +385,9 @@ namespace Wx3270
                 this.editedKeyboardMap = new KeyMap<KeyboardMap>(newProfile.KeyboardMap);
 
                 // Re-do the chords.
-                this.ChordComboBox.Items.Clear();
-                this.ChordComboBox.Items.AddRange(newProfile.KeyboardMap.Chords().ToArray());
-                this.ChordComboBox.SelectedIndex = 0;
+                this.chordComboBox.Items.Clear();
+                this.chordComboBox.Items.AddRange(newProfile.KeyboardMap.Chords().ToArray());
+                this.chordComboBox.SelectedIndex = 0;
 
                 // Repaint.
                 this.SelectKeyboard();
@@ -313,6 +403,7 @@ namespace Wx3270
             {
                 this.keyboardActionsTextBox.Text = string.Empty;
                 this.keyboardActionsTextBox.Enabled = false;
+                this.keyboardActionsTextBox.BackColor = System.Drawing.SystemColors.Control;
                 this.keyboardActionsInheritedLabel.Visible = false;
                 return;
             }
@@ -320,16 +411,17 @@ namespace Wx3270
             // Re-evaluate the chord list.
             var newChords = this.editedKeyboardMap.Chords();
             var chordsNow = new List<string>();
-            chordsNow.AddRange(this.ChordComboBox.Items.Cast<string>());
+            chordsNow.AddRange(this.chordComboBox.Items.Cast<string>());
             if (!chordsNow.SequenceEqual(newChords))
             {
-                this.ChordComboBox.Items.Clear();
-                this.ChordComboBox.Items.AddRange(this.editedKeyboardMap.Chords().ToArray());
-                this.ChordComboBox.SelectedIndex = 0;
+                this.chordComboBox.Items.Clear();
+                this.chordComboBox.Items.AddRange(this.editedKeyboardMap.Chords().ToArray());
+                this.chordComboBox.SelectedIndex = 0;
             }
 
             var toolTip = string.Empty;
             this.keyboardActionsTextBox.Enabled = true;
+            this.keyboardActionsTextBox.BackColor = System.Drawing.Color.White;
             this.editedKeyIsChord = false;
             if (this.editedKeyboardMap.TryGetClosestMatch(
                 this.editedKey.ToStringExtended(),
@@ -348,6 +440,7 @@ namespace Wx3270
                     // Exact match.
                     this.keyboardActionsTextBox.Text = map.Actions;
                     this.keyboardActionsTextBox.Enabled = true;
+                    this.keyboardActionsTextBox.BackColor = System.Drawing.Color.White;
                     this.keyboardActionsInheritedLabel.Visible = false;
                     toolTip = I18n.Get(KeyboardToolTip.ClickToEdit);
                     this.keyboardActionsAddKeyButton.Enabled = false;
@@ -364,6 +457,7 @@ namespace Wx3270
                     // Inexact match.
                     this.keyboardActionsTextBox.Text = map.Actions;
                     this.keyboardActionsTextBox.Enabled = false;
+                    this.keyboardActionsTextBox.BackColor = System.Drawing.SystemColors.Control;
                     var inheritedName = new List<string>();
                     var modifier = matchedModifier == KeyboardModifier.None ? string.Empty : matchedModifier.ToString().Replace(",", string.Empty);
                     if (!string.IsNullOrEmpty(modifier))
@@ -411,6 +505,7 @@ namespace Wx3270
                 this.keyboardActionsAddKeyButton.Enabled = true;
                 this.keyboardActionsEditButton.Enabled = true;
                 this.keyboardActionsTextBox.Enabled = true;
+                this.keyboardActionsTextBox.BackColor = System.Drawing.Color.White;
                 this.keyboardActionsRemoveButton.Enabled = false;
                 this.matchKeyRadioButton.Enabled = true;
                 if (!this.forceMatchType.HasValue)
@@ -426,27 +521,28 @@ namespace Wx3270
             }
 
             // Set up the actions/chord radio buttons.
-            if (this.ChordComboBox.SelectedIndex == 0)
+            if (this.chordComboBox.SelectedIndex == 0)
             {
                 // No chord selected.
                 this.editedKeyIsChord = KeyMap<KeyboardMap>.IsChord(this.keyboardActionsTextBox.Text);
-                this.ActionsRadioButton.Enabled = true;
-                this.ActionsRadioButton.Checked = !this.editedKeyIsChord;
-                this.ChordRadioButton.Enabled = true;
-                this.ChordRadioButton.Checked = this.editedKeyIsChord;
+                this.actionsRadioButton.Enabled = true;
+                this.actionsRadioButton.Checked = !this.editedKeyIsChord;
+                this.chordRadioButton.Enabled = true;
+                this.chordRadioButton.Checked = this.editedKeyIsChord;
             }
             else
             {
                 // Chord selected.
-                this.ActionsRadioButton.Enabled = false;
-                this.ActionsRadioButton.Checked = true;
-                this.ChordRadioButton.Enabled = false;
-                this.ChordRadioButton.Checked = false;
+                this.actionsRadioButton.Enabled = false;
+                this.actionsRadioButton.Checked = true;
+                this.chordRadioButton.Enabled = false;
+                this.chordRadioButton.Checked = false;
             }
 
             if (this.editedKeyIsChord)
             {
                 this.keyboardActionsTextBox.Enabled = false;
+                this.keyboardActionsTextBox.BackColor = System.Drawing.SystemColors.Control;
                 this.keyboardActionsTextBox.Text = I18n.Get(KeyboardString.StartChord);
                 this.keyboardActionsAddKeyButton.Enabled = false;
                 this.keyboardActionsEditButton.Enabled = false;
@@ -471,7 +567,7 @@ namespace Wx3270
             if (this.editedKey == Keys.None)
             {
                 this.editedKeyName = string.Empty;
-                this.SelectedKeyLabel.Text = string.Empty;
+                this.selectedKeyLabel.Text = string.Empty;
                 this.keymapSelectedLabel.Text = string.Empty;
                 this.scanCodeSelectedLabel.Text = string.Empty;
                 this.editedKeyCharLabel.Text = string.Empty;
@@ -479,7 +575,7 @@ namespace Wx3270
                 return;
             }
 
-            this.SelectedKeyLabel.Text = this.FullKeyName;
+            this.selectedKeyLabel.Text = this.FullKeyName;
             this.editedKeyName = this.editedKey.ToStringExtended();
             this.keymapSelectedLabel.Text = I18n.Get(KeyboardString.KeyCode) + string.Format(": {0}", this.editedKeyName);
             this.scanCodeSelectedLabel.Text = I18n.Get(KeyboardString.ScanCode) + string.Format(": {0:X2}", this.editedScanCode);
@@ -529,6 +625,11 @@ namespace Wx3270
                     break;
                 case "Edit":
                     text = this.keyboardActionsTextBox.Text;
+                    if (text.Equals(I18n.Get(KeyboardString.Undefined)))
+                    {
+                        text = string.Empty;
+                    }
+
                     break;
                 case "Delete":
                     this.editedKeyboardMap.Remove(KeyMap<KeyboardMap>.Key(this.EditedKeyString, this.AllModifiers, KeyMap<KeyboardMap>.ProfileChord(this.ChordName)));
@@ -551,7 +652,7 @@ namespace Wx3270
             else if (result == DialogResult.Retry)
             {
                 // Record it.
-                this.StartRecordingKeymap(name);
+                this.StartRecordingKeymap(name, editor.State);
             }
             else
             {
@@ -564,9 +665,10 @@ namespace Wx3270
         /// Start recording a keymap entry.
         /// </summary>
         /// <param name="macroName">Macro name.</param>
-        private void StartRecordingKeymap(string macroName)
+        /// <param name="state">Macro editor state.</param>
+        private void StartRecordingKeymap(string macroName, MacroEditor.EditorState state)
         {
-            this.app.MacroRecorder.Start(this.KeymapRecordingComplete, macroName);
+            this.app.MacroRecorder.Start(this.KeymapRecordingComplete, (macroName, state));
             this.Hide();
             this.mainScreen.Focus();
         }
@@ -575,16 +677,17 @@ namespace Wx3270
         /// Macro recording is complete.
         /// </summary>
         /// <param name="text">Macro text.</param>
-        /// <param name="name">Macro name.</param>
-        private void KeymapRecordingComplete(string text, object name)
+        /// <param name="context">Completion context.</param>
+        private void KeymapRecordingComplete(string text, object context)
         {
             this.Show();
-            if (string.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text) || context == null)
             {
                 return;
             }
 
-            using var editor = new MacroEditor(text, (string)name, false, this.app);
+            (string macroName, MacroEditor.EditorState state) = (((string, MacroEditor.EditorState)?)context).Value;
+            using var editor = new MacroEditor(text, macroName, false, this.app, state);
             var result = editor.ShowDialog(this);
             if (result == DialogResult.OK)
             {
@@ -596,7 +699,7 @@ namespace Wx3270
             else if (result == DialogResult.Retry)
             {
                 // Restart macro recorder.
-                this.StartRecordingKeymap(editor.MacroName);
+                this.StartRecordingKeymap(editor.MacroName, editor.State);
             }
         }
 
@@ -626,7 +729,7 @@ namespace Wx3270
             }
             else if (result == DialogResult.Retry)
             {
-                this.StartRecordingKeymap(name);
+                this.StartRecordingKeymap(name, editor.State);
             }
         }
 
@@ -732,7 +835,7 @@ namespace Wx3270
                 this.keyboardPicture.Redisplay();
             }
 
-            this.keyboardPicture.ChordIndex = this.ChordComboBox.SelectedIndex;
+            this.keyboardPicture.ChordIndex = this.chordComboBox.SelectedIndex;
 
             // Deliberately exlude Ctrl, Shift, Alt, but preserve the other modifiers.
             this.keyboardPicture.KeyboardModifier = (this.currentKeyboardMod & KeyboardModifier.Apl) | this.CurrentMapModifier;
@@ -743,7 +846,7 @@ namespace Wx3270
                 this.editedKeyChar = this.keyboardPicture.KeyChar;
                 this.editedKeyDead = this.keyboardPicture.Dead;
                 this.editedScanCode = this.keyboardPicture.ScanCode;
-                this.ChordComboBox.SelectedIndex = this.keyboardPicture.ChordIndex;
+                this.chordComboBox.SelectedIndex = this.keyboardPicture.ChordIndex;
                 this.currentKeyboardMod =
                         ((this.keyboardPicture.SelectedModifiers.HasFlag(Keys.Shift) || this.keyboardPicture.KeyboardModifier.HasFlag(KeyboardModifier.Shift))
                             ? KeyboardModifier.Shift : KeyboardModifier.None)
@@ -842,13 +945,13 @@ namespace Wx3270
             var box = (ComboBox)sender;
             if (box.SelectedIndex == 0)
             {
-                this.ActionsRadioButton.Enabled = true;
-                this.ChordRadioButton.Enabled = true;
+                this.actionsRadioButton.Enabled = true;
+                this.chordRadioButton.Enabled = true;
             }
             else
             {
-                this.ActionsRadioButton.Enabled = false;
-                this.ChordRadioButton.Enabled = false;
+                this.actionsRadioButton.Enabled = false;
+                this.chordRadioButton.Enabled = false;
             }
 
             // Reselect.

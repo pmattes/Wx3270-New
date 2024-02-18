@@ -33,59 +33,37 @@ namespace Wx3270
         /// <summary>
         /// Command-line options.
         /// </summary>
-        private const string CommandLineOptions = @"Usage: wx3270 [options] [hostname [port]]
-Options:
- -allow operation[,operation...]
-    Allow the specified restricted operations
--console
-    Attach a console at start-up (for debugging)
- -culture culture-name
-    Override the system default culture for messages
- -dumplocalization file-name
-    Dump the en-US localization database to a file
- -edit
-    Open the profile in edit mode (do not auto-connect to a host)
-    Requires the -profile option
- -help
-    Display command-line help
- -host host-name
-    Connect to the named host
- -httpd [address:]port
-    Start an HTTP server
- -location x,y
-    Specify an initial location for the window
- -noborder
-    Create the widow without a border
- -nobuttons
-    Do not display the menu bar
- -noprofile
-    Operate without a profile (use system default settings)
- -noscrollbar
-    Do not display the scroll bar
- -nosplash
-    Do not display the splash screen
- -profile profile-name
-    Use the specified profile instead of Base
- -readonly
-    Open the profile in read-only mode (do not save changed settings)
- -readwrite
-    Open the profile in read/write mode and warn if it can't be opened
- -restrict operation[,operation...]
-    Disable the specified restricted operations
- -scriptport [address:]port
-    Start an s3270 scripting server
- -scriptportonce
-    Exit wx3270 as soon as the first s3270 scripting session ends
- -topmost
-    Make wx3270 the topmost window
- -trace
-    Turn on back-end and all types of user interface tracing
- -uitrace type[,type]
-    Turn on back-end and the specified types of user interface tracing
- -v
-    Display a copyright message and exit
- -v file-name
-    Write a copyright message to a file and exit";
+        private static readonly (string option, string args, string explanation)[] CommandLineOptions = new[]
+        {
+            (Constants.Option.Allow, "operation[,operation...]", "Allow the specified restricted operations"),
+            (Constants.Option.Connection, "connection-name", "Start a particular connection"),
+            (Constants.Option.Console, string.Empty, "Attach a console at start-up (for debugging)"),
+            (Constants.Option.Culture, "culture-name", "Override the system default culture for messages"),
+            (Constants.Option.DumpLocalization, "file-name", "Dump the en-US localization database to a file"),
+            (Constants.Option.Edit, string.Empty, "Open the profile in edit mode (do not auto-connect to a host)|Requires the " + Constants.Option.Profile + " option"),
+            (Constants.Option.FullScreen, string.Empty, "Enter full-screen mode at start-up"),
+            (Constants.Option.Help1, string.Empty, "Display command-line help"),
+            (Constants.Option.Httpd, "[address:]port", "Start an HTTP server"),
+            (Constants.Option.Location, "x,y", "Specify an initial location for the window"),
+            (Constants.Option.Maximize, string.Empty, "Create the window maximized"),
+            (Constants.Option.Model, "model-number", "Override the default 3270 model number"),
+            (Constants.Option.NoButtons, string.Empty, "Do not display the menu bar"),
+            (Constants.Option.NoBorder, string.Empty, "Create the widow without a border"),
+            (Constants.Option.NoProfile, string.Empty, "Operate without a profile (use system default settings)"),
+            (Constants.Option.NoScrollBar, string.Empty, "Do not display the scroll bar"),
+            (Constants.Option.NoSplash, string.Empty, "Do not display the splash screen"),
+            (Constants.Option.Oversize, "columnsxrows", "Override the default screen dimensions"),
+            (Constants.Option.Profile, "profile-name", "Use the specified profile instead of Base"),
+            (Constants.Option.ReadOnly, string.Empty, "Open the profile in read-only mode (do not save changed settings)"),
+            (Constants.Option.ReadWrite, string.Empty, "Open the profile in read/write mode and warn if it can't be opened"),
+            (Constants.Option.Restrict, "operation[,operation...]", "Disable the specified restricted operations"),
+            (Constants.Option.ScriptPort, "[address:]port", "Start an s3270 scripting server"),
+            (Constants.Option.ScriptPortOnce, string.Empty, "Exit wx3270 as soon as the first s3270 scripting session ends"),
+            (Constants.Option.Topmost, string.Empty, "Make wx3270 the topmost window"),
+            (Constants.Option.Trace, string.Empty, "Turn on back-end tracing and all types of user interface tracing"),
+            (Constants.Option.UiTrace, "type[,type]", "Turn on back-end tracing and the specified types of user interface tracing"),
+            (Constants.Option.V, "[file-name]", "Display a copyright message and exit|Optionally write message to file"),
+        };
 
         /// <summary>
         /// Title group name for localization.
@@ -214,9 +192,29 @@ Options:
         public bool NoWatchMode { get; private set; }
 
         /// <summary>
+        /// Gets a value indicating whether to maximize the window at start-up.
+        /// </summary>
+        public bool Maximize { get; private set; }
+
+        /// <summary>
+        /// Gets the 3270 model.
+        /// </summary>
+        public ModelName Model { get; private set; }
+
+        /// <summary>
+        /// Gets the oversize dimensions.
+        /// </summary>
+        public Oversize Oversize { get; private set; }
+
+        /// <summary>
+        /// Gets a value indicating whether to go to full screen at start-up.
+        /// </summary>
+        public bool FullScreen { get; private set; }
+
+        /// <summary>
         /// Gets the command-line host connection.
         /// </summary>
-        public string HostConnection { get; private set; }
+        public string Connection { get; private set; }
 
         /// <summary>
         /// Gets the security restrictions.
@@ -321,7 +319,7 @@ Options:
         /// <summary>
         /// Gets the command-line host name.
         /// </summary>
-        public string CommandLineHost { get; private set; }
+        public B3270HostSpec CommandLineB3270HostSpec { get; private set; }
 
         /// <summary>
         ///  Gets the command-line port.
@@ -466,6 +464,31 @@ Options:
         }
 
         /// <summary>
+        /// Gets the command-line help string.
+        /// </summary>
+        /// <returns>Command-line help text.</returns>
+        public static string GetCommandLineOptions()
+        {
+            var ret = @"Usage:
+    wx3270 [options] [hostname[:port]]
+    wx3270 [options] [profilename.wx3270]
+Hostname can use full wc3270 syntax
+Options:
+";
+            const string Indent = "     ";
+            foreach (var option in CommandLineOptions)
+            {
+                ret += " "
+                    + option.option
+                    + (string.IsNullOrEmpty(option.args) ? string.Empty : " ") + option.args
+                    + Environment.NewLine
+                    + Indent + option.explanation.Replace("|", Environment.NewLine + Indent) + Environment.NewLine;
+            }
+
+            return ret;
+        }
+
+        /// <summary>
         /// Map a connection state onto a modifier mode.
         /// </summary>
         /// <param name="state">Connection state.</param>
@@ -525,7 +548,7 @@ Options:
         public void Init(string[] args)
         {
             var attachConsole = false;
-            string profile = null;
+            string profileName = null;
             var startupConfig = new StartupConfig();
             this.ListenLock[B3270.Setting.ScriptPort] = false;
             this.ListenLock[B3270.Setting.Httpd] = false;
@@ -556,6 +579,10 @@ Options:
                             this.ParseAllowRestrict(Constants.Option.Allow, args[++i], ref allow);
                             restrictAllow |= RestrictAllow.Allow;
                             break;
+                        case Constants.Option.Connection:
+                        case Constants.Option.Host:
+                            this.Connection = args[++i];
+                            break;
                         case Constants.Option.Console:
                             attachConsole = true;
                             break;
@@ -569,18 +596,18 @@ Options:
                             this.EditMode = true;
                             this.ReadWriteMode = true;
                             break;
+                        case Constants.Option.FullScreen:
+                            this.FullScreen = true;
+                            break;
                         case Constants.Option.Help1:
                         case Constants.Option.Help2:
                         case Constants.Option.Help3:
                             this.Splash.Stop();
                             ErrorBox.Show(
-                                CommandLineOptions,
+                                GetCommandLineOptions(),
                                 "wx3270 " + Profile.VersionClass.FullVersion,
                                 MessageBoxIcon.Information);
                             Environment.Exit(0);
-                            break;
-                        case Constants.Option.Host:
-                            this.HostConnection = args[++i];
                             break;
                         case Constants.Option.Httpd:
                             startupConfig.Httpd = args[++i];
@@ -604,6 +631,17 @@ Options:
                             }
 
                             break;
+                        case Constants.Option.Maximize:
+                            this.Maximize = true;
+                            break;
+                        case Constants.Option.Model:
+                            if (!ModelName.TryParse(args[++i], out ModelName model))
+                            {
+                                this.Usage($"Invalid model '{args[i]}'");
+                            }
+
+                            this.Model = model;
+                            break;
                         case Constants.Option.NoBorder:
                             this.NoBorder = true;
                             break;
@@ -622,8 +660,25 @@ Options:
                         case Constants.Option.NoWatch:
                             this.NoWatchMode = true;
                             break;
+                        case Constants.Option.Oversize:
+                            var oversizeString = args[++i];
+                            if (!string.IsNullOrEmpty(oversizeString))
+                            {
+                                if (!Oversize.TryParse(oversizeString, out Oversize oversize))
+                                {
+                                    this.Usage($"Invalid oversize '{oversizeString}'");
+                                }
+
+                                this.Oversize = oversize;
+                            }
+                            else
+                            {
+                                this.Oversize = new Oversize { Columns = 0, Rows = 0 };
+                            }
+
+                            break;
                         case Constants.Option.Profile:
-                            profile = args[++i];
+                            profileName = args[++i];
                             break;
                         case Constants.Option.ReadOnly:
                         case Constants.Option.Ro:
@@ -710,25 +765,49 @@ Options:
                     this.Usage("Extra arguments");
                 }
 
-                if (this.HostConnection != null)
+                if (this.Connection != null)
                 {
-                    this.Usage("Cannot specify " + Constants.Option.Host + " and a positional host name");
+                    this.Usage("Cannot specify " + Constants.Option.Connection + " and a positional host name");
                 }
 
-                this.CommandLineHost = positionalArgs[0];
-                this.CommandLinePort = (positionalArgs.Count > 1) ? positionalArgs[1] : null;
-                if (!HostName.TryParse(this.CommandLineHost, out _, out _, out _, out string port, out _))
+                if (positionalArgs[0].EndsWith(Wx3270.ProfileManager.Suffix, StringComparison.OrdinalIgnoreCase))
                 {
-                    this.Usage("Invalid host name");
-                }
+                    // They specified a profile name as a host, like wc3270.
+                    if (positionalArgs.Count > 1)
+                    {
+                        this.Usage("Cannot specify a profile name and a positional port");
+                    }
 
-                if (port != null && this.CommandLinePort != null)
+                    if (profileName != null)
+                    {
+                        this.Usage("Cannot specify " + Constants.Option.Profile + " and a positional profile name");
+                    }
+
+                    profileName = positionalArgs[0];
+                }
+                else
                 {
-                    this.Usage("Port specified twice");
+                    // They specifed a b3270-style hostname and possibly a port.
+                    if (!B3270HostSpec.TryParse(positionalArgs[0], out B3270HostSpec hostSpec))
+                    {
+                        this.Usage("Invalid host name");
+                    }
+
+                    if (positionalArgs.Count > 1)
+                    {
+                        if (hostSpec.Port != null)
+                        {
+                            this.Usage("Port specified twice");
+                        }
+
+                        hostSpec.Port = positionalArgs[1];
+                    }
+
+                    this.CommandLineB3270HostSpec = hostSpec;
                 }
             }
 
-            if (this.EditMode && profile == null)
+            if (this.EditMode && profileName == null)
             {
                 this.Usage("Must specify " + Constants.Option.Profile + " with " + Constants.Option.Edit);
             }
@@ -803,32 +882,32 @@ Options:
                 ErrorBox.Show(e.Message, "wx3270 Localization", MessageBoxIcon.Information);
             }
 
+            // No profile means read-only and (I think) no-watch.
+            if (this.NoProfileMode)
+            {
+                this.ReadOnlyMode = true;
+                this.NoWatchMode = true;
+            }
+
             // Load the profile for the first time, so we can use its settings to create basic objects.
             this.ProfileManager = new ProfileManager(this);
             if (!this.NoProfileMode)
             {
-                if (!this.ProfileManager.Load(profile, out string fullProfile, this.ReadOnlyMode, doErrorPopups: true))
+                if (!this.ProfileManager.LoadCreate(profileName, readOnly: this.ReadOnlyMode, out string fullProfilePath))
                 {
-                    // No profile.
-                    if (profile != null)
-                    {
-                        Environment.Exit(1);
-                    }
+                    Environment.Exit(1);
                 }
 
-                if (profile != null)
-                {
-                    profile = fullProfile;
-                }
+                profileName = fullProfilePath;
             }
 
             // Start the profile tree.
             this.ProfileTracker = new ProfileTracker(this, Wx3270.ProfileManager.ProfileDirectory);
             this.ProfileTracker.Watch(Wx3270.ProfileManager.ProfileDirectory);
-            if (profile != null && !this.NoWatchMode)
+            if (profileName != null && !this.NoWatchMode)
             {
                 // Watch whatever directory the command-line profile is in, too.
-                this.ProfileTracker.Watch(Path.GetDirectoryName(Path.GetFullPath(profile)));
+                this.ProfileTracker.Watch(Path.GetDirectoryName(Wx3270.ProfileManager.SafeGetFullPath(profileName)));
             }
 
             // Watch other directories listed in the registry.

@@ -91,7 +91,7 @@ namespace Wx3270
         /// <summary>
         /// The copyright message.
         /// </summary>
-        public const string Copyright = @"Copyright © 2016-2023 Paul Mattes.
+        public const string Copyright = @"Copyright © 2016-2024 Paul Mattes.
 All rights reserved.
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -108,6 +108,11 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             /// Allow option (lock down all but certain operations).
             /// </summary>
             public const string Allow = "-allow";
+
+            /// <summary>
+            /// The connection option.
+            /// </summary>
+            public const string Connection = "-connection";
 
             /// <summary>
             /// The console option.
@@ -128,6 +133,11 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             /// The edit option. Suppresses auto-connect and implies read/write.
             /// </summary>
             public const string Edit = "-edit";
+
+            /// <summary>
+            /// The full-screen option.
+            /// </summary>
+            public const string FullScreen = "-fullscreen";
 
             /// <summary>
             /// Display command-line help, first form.
@@ -160,6 +170,16 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             public const string Location = "-location";
 
             /// <summary>
+            /// The maximize option.
+            /// </summary>
+            public const string Maximize = "-maximize";
+
+            /// <summary>
+            /// The 3270 model to emulate.
+            /// </summary>
+            public const string Model = "-model";
+
+            /// <summary>
             /// The no-border option.
             /// </summary>
             public const string NoBorder = "-noborder";
@@ -183,6 +203,11 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             /// The no splash option.
             /// </summary>
             public const string NoSplash = "-nosplash";
+
+            /// <summary>
+            /// The oversize option.
+            /// </summary>
+            public const string Oversize = "-oversize";
 
             /// <summary>
             /// The no watch option.
@@ -356,6 +381,11 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             /// Registry key for watched folders.
             /// </summary>
             public const string WatchKey = RegistryKey + @"\Watch";
+
+            /// <summary>
+            /// Registry key for completed tours.
+            /// </summary>
+            public const string TourCompleteKey = RegistryKey + @"\TourComplete";
 
             /// <summary>
             /// Registry value for watched directories.

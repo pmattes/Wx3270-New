@@ -41,29 +41,34 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.leftButtonFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.recordButton = new Wx3270.NoSelectButton();
+            this.rightButtonsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.redoButton = new Wx3270.NoSelectButton();
             this.undoButton = new Wx3270.NoSelectButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.bottomFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.rightButtonsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.leftButtonFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.helpContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.displayHelpInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startTourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.mainPanel.SuspendLayout();
+            this.leftButtonFlowLayoutPanel.SuspendLayout();
+            this.rightButtonsFlowLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             this.bottomFlowLayoutPanel.SuspendLayout();
-            this.rightButtonsFlowLayoutPanel.SuspendLayout();
-            this.leftButtonFlowLayoutPanel.SuspendLayout();
+            this.helpContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // macroEditButton
             // 
             this.macroEditButton.AutoSize = true;
             this.macroEditButton.Enabled = false;
-            this.macroEditButton.Location = new System.Drawing.Point(3, 3);
+            this.macroEditButton.Location = new System.Drawing.Point(4, 4);
+            this.macroEditButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.macroEditButton.Name = "macroEditButton";
-            this.macroEditButton.Size = new System.Drawing.Size(75, 23);
+            this.macroEditButton.Size = new System.Drawing.Size(100, 32);
             this.macroEditButton.TabIndex = 101;
             this.macroEditButton.TabStop = false;
             this.macroEditButton.Text = "Edit";
@@ -75,10 +80,10 @@
             // 
             this.macroAddButton.AutoSize = true;
             this.macroAddButton.ForeColor = System.Drawing.Color.Green;
-            this.macroAddButton.Location = new System.Drawing.Point(0, 3);
-            this.macroAddButton.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.macroAddButton.Location = new System.Drawing.Point(0, 4);
+            this.macroAddButton.Margin = new System.Windows.Forms.Padding(0, 4, 4, 4);
             this.macroAddButton.Name = "macroAddButton";
-            this.macroAddButton.Size = new System.Drawing.Size(75, 23);
+            this.macroAddButton.Size = new System.Drawing.Size(100, 32);
             this.macroAddButton.TabIndex = 104;
             this.macroAddButton.TabStop = false;
             this.macroAddButton.Text = "➕ New";
@@ -90,10 +95,10 @@
             // 
             this.macroTestButton.AutoSize = true;
             this.macroTestButton.Enabled = false;
-            this.macroTestButton.Location = new System.Drawing.Point(84, 3);
-            this.macroTestButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.macroTestButton.Location = new System.Drawing.Point(112, 4);
+            this.macroTestButton.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
             this.macroTestButton.Name = "macroTestButton";
-            this.macroTestButton.Size = new System.Drawing.Size(75, 23);
+            this.macroTestButton.Size = new System.Drawing.Size(100, 32);
             this.macroTestButton.TabIndex = 103;
             this.macroTestButton.TabStop = false;
             this.macroTestButton.Text = "Run";
@@ -107,9 +112,10 @@
             this.macroRemoveButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.macroRemoveButton.Enabled = false;
             this.macroRemoveButton.ForeColor = System.Drawing.Color.Red;
-            this.macroRemoveButton.Location = new System.Drawing.Point(162, 3);
+            this.macroRemoveButton.Location = new System.Drawing.Point(219, 4);
+            this.macroRemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.macroRemoveButton.Name = "macroRemoveButton";
-            this.macroRemoveButton.Size = new System.Drawing.Size(63, 23);
+            this.macroRemoveButton.Size = new System.Drawing.Size(72, 26);
             this.macroRemoveButton.TabIndex = 105;
             this.macroRemoveButton.TabStop = false;
             this.macroRemoveButton.Text = "❌ Delete";
@@ -120,9 +126,10 @@
             // macrosLabel
             // 
             this.macrosLabel.AutoSize = true;
-            this.macrosLabel.Location = new System.Drawing.Point(12, 9);
+            this.macrosLabel.Location = new System.Drawing.Point(16, 11);
+            this.macrosLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.macrosLabel.Name = "macrosLabel";
-            this.macrosLabel.Size = new System.Drawing.Size(42, 13);
+            this.macrosLabel.Size = new System.Drawing.Size(52, 16);
             this.macrosLabel.TabIndex = 102;
             this.macrosLabel.Text = "Macros";
             // 
@@ -131,9 +138,11 @@
             this.macrosListBox.AllowDrop = true;
             this.macrosListBox.ContextMenuStrip = this.contextMenuStrip1;
             this.macrosListBox.FormattingEnabled = true;
-            this.macrosListBox.Location = new System.Drawing.Point(12, 28);
+            this.macrosListBox.ItemHeight = 16;
+            this.macrosListBox.Location = new System.Drawing.Point(16, 34);
+            this.macrosListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.macrosListBox.Name = "macrosListBox";
-            this.macrosListBox.Size = new System.Drawing.Size(553, 459);
+            this.macrosListBox.Size = new System.Drawing.Size(736, 564);
             this.macrosListBox.TabIndex = 100;
             this.macrosListBox.SelectedIndexChanged += new System.EventHandler(this.MacrosListBox_SelectedIndexChanged);
             this.macrosListBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.MacrosListBox_DragDrop);
@@ -144,17 +153,18 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.runToolStripMenuItem,
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(148, 76);
             // 
             // runToolStripMenuItem
             // 
             this.runToolStripMenuItem.Name = "runToolStripMenuItem";
-            this.runToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.runToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.runToolStripMenuItem.Tag = "Run";
             this.runToolStripMenuItem.Text = "Run";
             this.runToolStripMenuItem.Click += new System.EventHandler(this.ContextMenu_Click);
@@ -162,7 +172,7 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.editToolStripMenuItem.Tag = "Edit";
             this.editToolStripMenuItem.Text = "🖉 Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.ContextMenu_Click);
@@ -171,7 +181,7 @@
             // 
             this.deleteToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.deleteToolStripMenuItem.Tag = "Delete";
             this.deleteToolStripMenuItem.Text = "❌ Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.ContextMenu_Click);
@@ -183,31 +193,60 @@
             this.mainPanel.Controls.Add(this.rightButtonsFlowLayoutPanel);
             this.mainPanel.Controls.Add(this.macrosListBox);
             this.mainPanel.Controls.Add(this.macrosLabel);
-            this.mainPanel.Location = new System.Drawing.Point(13, 13);
+            this.mainPanel.Location = new System.Drawing.Point(17, 16);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(584, 533);
+            this.mainPanel.Size = new System.Drawing.Size(779, 656);
             this.mainPanel.TabIndex = 108;
+            // 
+            // leftButtonFlowLayoutPanel
+            // 
+            this.leftButtonFlowLayoutPanel.AutoSize = true;
+            this.leftButtonFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.leftButtonFlowLayoutPanel.Controls.Add(this.macroAddButton);
+            this.leftButtonFlowLayoutPanel.Controls.Add(this.recordButton);
+            this.leftButtonFlowLayoutPanel.Controls.Add(this.macroRemoveButton);
+            this.leftButtonFlowLayoutPanel.Location = new System.Drawing.Point(16, 603);
+            this.leftButtonFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.leftButtonFlowLayoutPanel.Name = "leftButtonFlowLayoutPanel";
+            this.leftButtonFlowLayoutPanel.Size = new System.Drawing.Size(295, 40);
+            this.leftButtonFlowLayoutPanel.TabIndex = 108;
             // 
             // recordButton
             // 
             this.recordButton.AutoSize = true;
             this.recordButton.ForeColor = System.Drawing.Color.Green;
-            this.recordButton.Location = new System.Drawing.Point(81, 3);
+            this.recordButton.Location = new System.Drawing.Point(108, 4);
+            this.recordButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.recordButton.Name = "recordButton";
-            this.recordButton.Size = new System.Drawing.Size(75, 23);
+            this.recordButton.Size = new System.Drawing.Size(103, 32);
             this.recordButton.TabIndex = 106;
             this.recordButton.Text = "⏺ Record";
             this.toolTip1.SetToolTip(this.recordButton, "Create a new macro with the macro recorder");
             this.recordButton.UseVisualStyleBackColor = true;
             this.recordButton.Click += new System.EventHandler(this.RecordButton_Click);
             // 
+            // rightButtonsFlowLayoutPanel
+            // 
+            this.rightButtonsFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rightButtonsFlowLayoutPanel.AutoSize = true;
+            this.rightButtonsFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.rightButtonsFlowLayoutPanel.Controls.Add(this.macroTestButton);
+            this.rightButtonsFlowLayoutPanel.Controls.Add(this.macroEditButton);
+            this.rightButtonsFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.rightButtonsFlowLayoutPanel.Location = new System.Drawing.Point(541, 603);
+            this.rightButtonsFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.rightButtonsFlowLayoutPanel.Name = "rightButtonsFlowLayoutPanel";
+            this.rightButtonsFlowLayoutPanel.Size = new System.Drawing.Size(212, 40);
+            this.rightButtonsFlowLayoutPanel.TabIndex = 107;
+            // 
             // redoButton
             // 
             this.redoButton.Enabled = false;
-            this.redoButton.Location = new System.Drawing.Point(136, 3);
-            this.redoButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.redoButton.Location = new System.Drawing.Point(181, 4);
+            this.redoButton.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
             this.redoButton.Name = "redoButton";
-            this.redoButton.Size = new System.Drawing.Size(35, 23);
+            this.redoButton.Size = new System.Drawing.Size(47, 28);
             this.redoButton.TabIndex = 109;
             this.redoButton.TabStop = false;
             this.redoButton.Tag = "`";
@@ -218,9 +257,10 @@
             // undoButton
             // 
             this.undoButton.Enabled = false;
-            this.undoButton.Location = new System.Drawing.Point(95, 3);
+            this.undoButton.Location = new System.Drawing.Point(126, 4);
+            this.undoButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.undoButton.Name = "undoButton";
-            this.undoButton.Size = new System.Drawing.Size(35, 23);
+            this.undoButton.Size = new System.Drawing.Size(47, 28);
             this.undoButton.TabIndex = 110;
             this.undoButton.TabStop = false;
             this.undoButton.Tag = "`";
@@ -230,11 +270,12 @@
             // 
             // helpPictureBox
             // 
+            this.helpPictureBox.ContextMenuStrip = this.helpContextMenuStrip;
             this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(177, 3);
-            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(6, 3, 0, 3);
+            this.helpPictureBox.Location = new System.Drawing.Point(236, 4);
+            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(8, 4, 0, 4);
             this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox.Size = new System.Drawing.Size(31, 28);
             this.helpPictureBox.TabIndex = 111;
             this.helpPictureBox.TabStop = false;
             this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
@@ -247,48 +288,47 @@
             this.bottomFlowLayoutPanel.Controls.Add(this.redoButton);
             this.bottomFlowLayoutPanel.Controls.Add(this.undoButton);
             this.bottomFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.bottomFlowLayoutPanel.Location = new System.Drawing.Point(397, 552);
+            this.bottomFlowLayoutPanel.Location = new System.Drawing.Point(529, 679);
             this.bottomFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.bottomFlowLayoutPanel.Name = "bottomFlowLayoutPanel";
-            this.bottomFlowLayoutPanel.Size = new System.Drawing.Size(200, 34);
+            this.bottomFlowLayoutPanel.Size = new System.Drawing.Size(267, 42);
             this.bottomFlowLayoutPanel.TabIndex = 112;
             // 
-            // rightButtonsFlowLayoutPanel
+            // helpContextMenuStrip
             // 
-            this.rightButtonsFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rightButtonsFlowLayoutPanel.AutoSize = true;
-            this.rightButtonsFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.rightButtonsFlowLayoutPanel.Controls.Add(this.macroTestButton);
-            this.rightButtonsFlowLayoutPanel.Controls.Add(this.macroEditButton);
-            this.rightButtonsFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.rightButtonsFlowLayoutPanel.Location = new System.Drawing.Point(406, 490);
-            this.rightButtonsFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.rightButtonsFlowLayoutPanel.Name = "rightButtonsFlowLayoutPanel";
-            this.rightButtonsFlowLayoutPanel.Size = new System.Drawing.Size(159, 29);
-            this.rightButtonsFlowLayoutPanel.TabIndex = 107;
+            this.helpContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.helpContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.displayHelpInBrowserToolStripMenuItem,
+            this.startTourToolStripMenuItem});
+            this.helpContextMenuStrip.Name = "helpContextMenuStrip";
+            this.helpContextMenuStrip.Size = new System.Drawing.Size(234, 52);
             // 
-            // leftButtonFlowLayoutPanel
+            // displayHelpInBrowserToolStripMenuItem
             // 
-            this.leftButtonFlowLayoutPanel.AutoSize = true;
-            this.leftButtonFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.leftButtonFlowLayoutPanel.Controls.Add(this.macroAddButton);
-            this.leftButtonFlowLayoutPanel.Controls.Add(this.recordButton);
-            this.leftButtonFlowLayoutPanel.Controls.Add(this.macroRemoveButton);
-            this.leftButtonFlowLayoutPanel.Location = new System.Drawing.Point(12, 490);
-            this.leftButtonFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.leftButtonFlowLayoutPanel.Name = "leftButtonFlowLayoutPanel";
-            this.leftButtonFlowLayoutPanel.Size = new System.Drawing.Size(228, 29);
-            this.leftButtonFlowLayoutPanel.TabIndex = 108;
+            this.displayHelpInBrowserToolStripMenuItem.Name = "displayHelpInBrowserToolStripMenuItem";
+            this.displayHelpInBrowserToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.displayHelpInBrowserToolStripMenuItem.Tag = "Help";
+            this.displayHelpInBrowserToolStripMenuItem.Text = "Display help in browser";
+            this.displayHelpInBrowserToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
+            // 
+            // startTourToolStripMenuItem
+            // 
+            this.startTourToolStripMenuItem.Name = "startTourToolStripMenuItem";
+            this.startTourToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.startTourToolStripMenuItem.Tag = "Tour";
+            this.startTourToolStripMenuItem.Text = "Start tour";
+            this.startTourToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
             // 
             // Macros
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(115)))), ((int)(((byte)(191)))));
-            this.ClientSize = new System.Drawing.Size(610, 585);
+            this.ClientSize = new System.Drawing.Size(813, 720);
             this.Controls.Add(this.bottomFlowLayoutPanel);
             this.Controls.Add(this.mainPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Macros";
@@ -300,12 +340,13 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
-            this.bottomFlowLayoutPanel.ResumeLayout(false);
-            this.rightButtonsFlowLayoutPanel.ResumeLayout(false);
-            this.rightButtonsFlowLayoutPanel.PerformLayout();
             this.leftButtonFlowLayoutPanel.ResumeLayout(false);
             this.leftButtonFlowLayoutPanel.PerformLayout();
+            this.rightButtonsFlowLayoutPanel.ResumeLayout(false);
+            this.rightButtonsFlowLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.bottomFlowLayoutPanel.ResumeLayout(false);
+            this.helpContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -331,5 +372,8 @@
         private System.Windows.Forms.FlowLayoutPanel bottomFlowLayoutPanel;
         private System.Windows.Forms.FlowLayoutPanel leftButtonFlowLayoutPanel;
         private System.Windows.Forms.FlowLayoutPanel rightButtonsFlowLayoutPanel;
+        private System.Windows.Forms.ContextMenuStrip helpContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem displayHelpInBrowserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startTourToolStripMenuItem;
     }
 }
