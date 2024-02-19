@@ -69,13 +69,20 @@ namespace Wx3270
         public KeyboardModifier Mod => this.keypadCommon.Mod;
 
         /// <summary>
+        /// Static form localization.
+        /// </summary>
+        [I18nFormInit]
+        public static void FormLocalize()
+        {
+            new AplKeypad(null, null, null).Dispose();
+        }
+
+        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]
         public static void Localize()
         {
-            using var k = new AplKeypad(null, null, null);
-
             // Set up the tour.
 #pragma warning disable SA1118 // Parameter should not span multiple lines
 #pragma warning disable SA1137 // Elements should have the same indentation
