@@ -58,6 +58,12 @@ namespace Wx3270
                 opacity.OpacityEvent += (percent) => this.Opacity = percent / 100.0;
             }
 
+            // Process restrictions.
+            if (app?.Restricted(Restrictions.GetHelp) != true)
+            {
+                this.helpPictureBox.Visible = false;
+            }
+
             // Localize.
             this.Text = I18n.Localize(this, "wx3270 APL Keypad");
             I18n.Localize(this, this.toolTip1);

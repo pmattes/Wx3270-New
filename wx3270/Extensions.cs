@@ -50,10 +50,7 @@ namespace Wx3270
         /// <param name="control">Control to remove.</param>
         public static void RemoveFromParent(this Control control)
         {
-            if (control.Parent != null)
-            {
-                control.Parent.Controls.Remove(control);
-            }
+            control.Parent?.Controls.Remove(control);
         }
 
         /// <summary>
@@ -62,10 +59,7 @@ namespace Wx3270
         /// <param name="item">Item to remove.</param>
         public static void RemoveFromOwner(this ToolStripMenuItem item)
         {
-            if (item.Owner != null)
-            {
-                item.Owner.Items.Remove(item);
-            }
+            item.Owner?.Items.Remove(item);
         }
     }
 }

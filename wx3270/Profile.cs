@@ -423,6 +423,12 @@ namespace Wx3270
         public int NopInterval { get; set; }
 
         /// <summary>
+        /// Gets or sets the main window location.
+        /// </summary>
+        [JsonProperty]
+        public Point? Location { get; set; }
+
+        /// <summary>
         /// Gets or sets the main window size.
         /// </summary>
         [JsonProperty]

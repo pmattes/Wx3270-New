@@ -9,7 +9,6 @@ namespace Wx3270
     using System.Diagnostics;
     using System.Drawing;
     using System.Linq;
-    using System.Linq.Expressions;
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using I18nBase;
@@ -269,11 +268,6 @@ namespace Wx3270
         public event Action<Font> DynamicFontEvent = (f) => { };
 
         /// <summary>
-        /// Event signaled when the fixed menu bar is supposed to be set.
-        /// </summary>
-        public event Action MenuBarSetEvent = () => { };
-
-        /// <summary>
         /// The stages of flashing.
         /// </summary>
         private enum FlashState
@@ -440,6 +434,11 @@ namespace Wx3270
                 return this.profileTree;
             }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether the menu bar is visible.
+        /// </summary>
+        private bool MenuBarVisible => !(this.fullScreen || this.menuBarDisabled || (!this.ProfileManager.Current.MenuBar && !this.overlayMenuBarDisplayed));
 
         /// <summary>
         /// Compute the location for a centered dialog window.
@@ -901,6 +900,25 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         }
 
         /// <summary>
+        /// Switch the state of the fixed menu bar.
+        /// </summary>
+        /// <param name="displayed">True to display the fixed menu bar.</param>
+        public void FixedMenuBarSwitch(bool displayed)
+        {
+            var size = this.ToggleFixedMenuBar(displayed);
+            this.ProfileManager.PushAndSave(
+                (current) =>
+                {
+                    current.MenuBar = displayed;
+                    if (size != null)
+                    {
+                        current.Size = size.Value;
+                    }
+                },
+                Settings.ChangeName(Settings.ChangeKeyword.ScrollBar));
+        }
+
+        /// <summary>
         /// Change the state of the menu bar. Called when the option changes.
         /// </summary>
         /// <param name="displayed">True if the menu bar should be displayed.</param>
@@ -1141,6 +1159,14 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
 
             // Register for profile-related events.
             this.App.ProfileTracker.ProfileTreeChanged += (tree) => this.Invoke(new MethodInvoker(() => this.ProfileTreeChanged(tree)));
+            this.ProfileManager.NewProfileOpened += (profile) =>
+            {
+                // Set the window location, if reasonable to do so.
+                if (!this.App.Location.HasValue && profile.Location.HasValue && !profile.ReadOnly && this.IsVisible(profile.Location.Value))
+                {
+                    this.Location = profile.Location.Value;
+                }
+            };
             this.ProfileManager.AddChangeTo(this.ProfileChanged);
             this.ProfileManager.ChangeFinal += (oldProfile, newProfile, isNew, isInternal) =>
             {
@@ -1179,6 +1205,13 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
 
                 // Update key mappings.
                 this.UpdateMenuKeyMappings();
+            };
+            this.ProfileManager.ProfileClosing += (profile) =>
+            {
+                if (!profile.ReadOnly)
+                {
+                    profile.Location = this.Location;
+                }
             };
 
             // Set up other parts.
@@ -1423,7 +1456,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
 
             if (this.App.Restricted(Restrictions.ChangeSettings))
             {
-                this.settingsBox.RemoveFromParent();
+                this.settingsBox.Visible = false;
             }
 
             if (this.App.Restricted(Restrictions.Prompt))
@@ -1451,16 +1484,18 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             if (this.App.Restricted(Restrictions.ChangeSettings))
             {
                 this.controlCharsMenuItem.RemoveFromOwner();
+                this.permanentToolStripMenuItem.RemoveFromOwner();
             }
 
             if (this.App.Restricted(Restrictions.GetHelp))
             {
-                this.helpPictureBox.RemoveFromParent();
+                this.helpPictureBox.Visible = false;
+                this.helpToolStripMenuItem.RemoveFromOwner();
             }
 
             if (this.App.Restricted(Restrictions.ChangeSettings) && !this.ProfileManager.Current.Macros.Any())
             {
-                this.macrosPictureBox.RemoveFromParent();
+                this.macrosPictureBox.Visible = false;
             }
 
             if (this.App.Restricted(Restrictions.Disconnect))
@@ -1482,19 +1517,19 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 this.App.Restricted(Restrictions.Disconnect) &&
                 this.ProfileManager.Current.Hosts.Any(host => host.AutoConnect == AutoConnect.Reconnect))
             {
-                this.profilePictureBox.RemoveFromParent();
+                this.profilePictureBox.Visible = false;
             }
 
             // The connect menu may be moot at this point.
             if (this.App.Restricted(Restrictions.Disconnect) &&
                 this.ProfileManager.Current.Hosts.Any(host => host.AutoConnect == AutoConnect.Reconnect))
             {
-                this.connectPictureBox.RemoveFromParent();
+                this.connectPictureBox.Visible = false;
             }
 
             if (this.App.NoBorder)
             {
-                this.snapBox.RemoveFromParent();
+                this.snapBox.Visible = false;
             }
 
             // Set up the screen snap and step emulator font actions.
@@ -1575,7 +1610,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             {
                 this.ControlBox = false;
                 this.FormBorderStyle = FormBorderStyle.None;
-                this.snapBox.RemoveFromParent();
+                this.snapBox.Visible = false;
             }
 
             // Make this window topmost, if requested.
@@ -3049,6 +3084,13 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
 
             // Handle the activation.
             this.App.KeyHandler.Activate();
+
+            // Run the tour if the menu bar is not displayed.
+            if (!this.MenuBarVisible && !this.toured && !Tour.IsComplete(this))
+            {
+                this.toured = true;
+                new TaskFactory().StartNew(() => this.Invoke(new MethodInvoker(() => this.RunTour())));
+            }
         }
 
         /// <summary>
@@ -3508,22 +3550,34 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// </summary>
         private void RunTour()
         {
-            var nodes = new[]
+            var nodes = new List<(Control, int?, Orientation)>
             {
                 (this, 1, Orientation.Centered),
-                ((Control)this.connectPictureBox, (int?)null, Orientation.UpperLeft),
-                (this.actionsBox, null, Orientation.UpperLeft),
-                (this.keypadBox, null, Orientation.UpperLeft),
-                (this.connectPictureBox, 1, Orientation.UpperLeft),
-                (this.profilePictureBox, null, Orientation.UpperLeft),
-                (this.macrosPictureBox, null, Orientation.UpperLeft),
-                (this.snapBox, null, Orientation.UpperLeft),
-                (this.helpPictureBox, null, Orientation.UpperLeft),
-                (this.settingsBox, null, Orientation.UpperRight),
-                (this.oiaLock, null, Orientation.LowerLeftTight),
+            };
+            if (this.MenuBarVisible)
+            {
+                var stops = new[]
+                {
+                    ((Control)this.connectPictureBox, (int?)null, Orientation.UpperLeft),
+                    (this.actionsBox, null, Orientation.UpperLeft),
+                    (this.keypadBox, null, Orientation.UpperLeft),
+                    (this.connectPictureBox, 1, Orientation.UpperLeft),
+                    (this.profilePictureBox, null, Orientation.UpperLeft),
+                    (this.macrosPictureBox, null, Orientation.UpperLeft),
+                    (this.snapBox, null, Orientation.UpperLeft),
+                    (this.helpPictureBox, null, Orientation.UpperLeft),
+                    (this.settingsBox, null, Orientation.UpperRight),
+                };
+                nodes.AddRange(stops.Where(stop => stop.Item1.Visible));
+            }
+
+            nodes.AddRange(new[]
+            {
+                ((Control)this.oiaLock, (int?)null, Orientation.LowerLeftTight),
                 (this, 2, Orientation.Centered),
                 (this, 3, Orientation.Centered),
-            };
+            });
+
             Tour.Navigate(this, nodes);
         }
 
@@ -3748,7 +3802,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             NativeMethods.SHMessageBoxCheckW(
                 this.handle,
                 I18n.Get(ErrorMessage.MenuBarToggle),
-                I18n.Get(Title.FullScreen),
+                I18n.Get(Title.MenuBarDisabled),
                 NativeMethods.MessageBoxCheckFlags.MB_OK | NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
                 NativeMethods.MessageBoxReturnValue.IDOK,
                 "wx3270.MenuBar");
@@ -4001,7 +4055,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 case "MenuBarPermanent":
                     if (!this.fullScreen && this.menuBarDisabled)
                     {
-                        this.MenuBarSetEvent();
+                        this.FixedMenuBarSwitch(true);
                     }
 
                     break;
@@ -4033,6 +4087,11 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// <param name="e">Event arguments.</param>
         private void HelpClick(object sender, EventArgs e)
         {
+            if (this.overlayMenuBarDisplayed)
+            {
+                this.HideOverlayMenuBar();
+            }
+
             Tour.HelpMenuClick(sender, e, "Main", this.RunTour);
         }
 

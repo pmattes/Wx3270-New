@@ -29,7 +29,7 @@ $files = `
  + (Get-ChildItem -Path Wx3270\bin\x86\Release, Wx3270\bin\x64\Release -Recurse -Filter "*.dll" -Exclude $exclude).FullName `
  + (Get-ChildItem -Path Wx3270Restrict\bin\Release -Recurse -Filter "*.exe").FullName
 Write-Host -ForegroundColor Green 'Signing', $files.Count, 'binaries'
-& $signtool sign /f $cert /p $pass /td SHA256 /tr $timestamp $files
+& $signtool sign /f $cert /p $pass /td SHA256 /tr $timestamp /fd SHA256 $files
 
 # Figure out the version.
 $vfile = [System.IO.Path]::GetTempFileName()
@@ -44,7 +44,7 @@ Set-Content -Encoding UTF8 -Path tmp.iss -Value $iss
 
 # Run Inno Setup to create the installer.
 Write-Host -ForegroundColor Green 'Running Inno Setup'
-$signparm = '/smystandard="' + "$signtool sign /f `$q$cert`$q /p $pass /td SHA256 /tr $timestamp `$p" + '"'
+$signparm = '/smystandard="' + "$signtool sign /f `$q$cert`$q /p $pass /td SHA256 /tr $timestamp /fd SHA256 `$p" + '"'
 & $inno $signparm /Qp tmp.iss
 Remove-Item tmp.iss
 
