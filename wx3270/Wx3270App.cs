@@ -855,6 +855,11 @@ Options:
                 this.ReadOnlyMode = true;
             }
 
+            if (this.Restrictions.HasFlag(Restrictions.GetHelp))
+            {
+                Tour.SuppressAutoTours = true;
+            }
+
             // Attach a console, if they asked for one.
             if (attachConsole)
             {

@@ -233,6 +233,8 @@
             this.noFlashTimer = new System.Windows.Forms.Timer(this.components);
             this.menuBarHideTimer = new System.Windows.Forms.Timer(this.components);
             this.overlayMenuBarTimer = new System.Windows.Forms.Timer(this.components);
+            this.displayHelpInBrowserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.startTourToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.oiaLayoutPanel.SuspendLayout();
             this.resetContextMenuStrip.SuspendLayout();
             this.topLeftLayoutPanel.SuspendLayout();
@@ -1580,12 +1582,12 @@
             this.settingsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.screenBoxContextMenuStrip.Name = "contextMenuStrip";
-            this.screenBoxContextMenuStrip.Size = new System.Drawing.Size(161, 316);
+            this.screenBoxContextMenuStrip.Size = new System.Drawing.Size(215, 344);
             // 
             // fullScreenToolStripMenuItem
             // 
             this.fullScreenToolStripMenuItem.Name = "fullScreenToolStripMenuItem";
-            this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.fullScreenToolStripMenuItem.Tag = "FullScreen";
             this.fullScreenToolStripMenuItem.Text = "Full screen";
             this.fullScreenToolStripMenuItem.Click += new System.EventHandler(this.ScreenBoxContextClick);
@@ -1596,7 +1598,7 @@
             this.temporaryToolStripMenuItem,
             this.permanentToolStripMenuItem});
             this.menuBarToolStripMenuItem.Name = "menuBarToolStripMenuItem";
-            this.menuBarToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.menuBarToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.menuBarToolStripMenuItem.Text = "Menu bar";
             // 
             // temporaryToolStripMenuItem
@@ -1624,7 +1626,7 @@
             this.pasteToolStripMenuItem1,
             this.cutToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // copyToolStripMenuItem1
@@ -1657,7 +1659,7 @@
             this.openActionsWindowToolStripMenuItem});
             this.actionsToolStripMenuItem.Image = global::Wx3270.Properties.Resources.StartClearer;
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
-            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.actionsToolStripMenuItem.Text = "Actions";
             // 
             // openActionsWindowToolStripMenuItem
@@ -1671,7 +1673,7 @@
             // 
             this.connectToolStripMenuItem.Image = global::Wx3270.Properties.Resources.PowerPlug32;
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.connectToolStripMenuItem.Text = "Connect";
             // 
             // keypadToolStripMenuItem
@@ -1681,7 +1683,7 @@
             this.openAPLKeypadToolStripMenuItem});
             this.keypadToolStripMenuItem.Image = global::Wx3270.Properties.Resources.KeypadSmallHollow3;
             this.keypadToolStripMenuItem.Name = "keypadToolStripMenuItem";
-            this.keypadToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.keypadToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.keypadToolStripMenuItem.Text = "Keypad";
             // 
             // openKeypadToolStripMenuItem
@@ -1706,7 +1708,7 @@
             this.openProfilesWindowToolStripMenuItem});
             this.profilesToolStripMenuItem.Image = global::Wx3270.Properties.Resources.Folder;
             this.profilesToolStripMenuItem.Name = "profilesToolStripMenuItem";
-            this.profilesToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.profilesToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.profilesToolStripMenuItem.Text = "Profiles";
             // 
             // openProfilesWindowToolStripMenuItem
@@ -1721,7 +1723,7 @@
             this.openMacrosWindowToolStripMenuItem});
             this.macrosToolStripMenuItem.Image = global::Wx3270.Properties.Resources.Tape4;
             this.macrosToolStripMenuItem.Name = "macrosToolStripMenuItem";
-            this.macrosToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.macrosToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.macrosToolStripMenuItem.Text = "Macros";
             // 
             // openMacrosWindowToolStripMenuItem
@@ -1739,7 +1741,7 @@
             this.snapWindowSizeToolStripMenuItem});
             this.fontToolStripMenuItem.Image = global::Wx3270.Properties.Resources.ToggleDown3wide;
             this.fontToolStripMenuItem.Name = "fontToolStripMenuItem";
-            this.fontToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.fontToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.fontToolStripMenuItem.Text = "Font";
             // 
             // biggerToolStripMenuItem
@@ -1768,17 +1770,19 @@
             // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.displayHelpInBrowserToolStripMenuItem1,
+            this.startTourToolStripMenuItem1});
             this.helpToolStripMenuItem.Image = global::Wx3270.Properties.Resources.Question23c;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.helpToolStripMenuItem.Text = "Help";
-            this.helpToolStripMenuItem.Click += new System.EventHandler(this.Help_Click);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Image = global::Wx3270.Properties.Resources.KnobBlueCenter6;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsBox_Click);
             // 
@@ -1786,7 +1790,7 @@
             // 
             this.quitToolStripMenuItem.Image = global::Wx3270.Properties.Resources.ErrorIcon;
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.quitToolStripMenuItem.Tag = "Exit";
             this.quitToolStripMenuItem.Text = "Exit wx3270";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.ScreenBoxContextClick);
@@ -2193,6 +2197,22 @@
             this.overlayMenuBarTimer.Interval = 25;
             this.overlayMenuBarTimer.Tick += new System.EventHandler(this.OverlayMenuBarTimer_Tick);
             // 
+            // displayHelpInBrowserToolStripMenuItem1
+            // 
+            this.displayHelpInBrowserToolStripMenuItem1.Name = "displayHelpInBrowserToolStripMenuItem1";
+            this.displayHelpInBrowserToolStripMenuItem1.Size = new System.Drawing.Size(247, 26);
+            this.displayHelpInBrowserToolStripMenuItem1.Tag = "Help";
+            this.displayHelpInBrowserToolStripMenuItem1.Text = "Display help in browser";
+            this.displayHelpInBrowserToolStripMenuItem1.Click += new System.EventHandler(this.HelpClick);
+            // 
+            // startTourToolStripMenuItem1
+            // 
+            this.startTourToolStripMenuItem1.Name = "startTourToolStripMenuItem1";
+            this.startTourToolStripMenuItem1.Size = new System.Drawing.Size(247, 26);
+            this.startTourToolStripMenuItem1.Tag = "Tour";
+            this.startTourToolStripMenuItem1.Text = "Start tour";
+            this.startTourToolStripMenuItem1.Click += new System.EventHandler(this.HelpClick);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2463,6 +2483,8 @@
         private System.Windows.Forms.ContextMenuStrip helpContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem displayHelpInBrowserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startTourToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem displayHelpInBrowserToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem startTourToolStripMenuItem1;
     }
 }
 

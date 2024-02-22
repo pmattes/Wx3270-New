@@ -142,6 +142,11 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to suppress automatic tours.
+        /// </summary>
+        public static bool SuppressAutoTours { get; set; }
+
+        /// <summary>
         /// Static localization.
         /// </summary>
         [I18nInit]
@@ -214,6 +219,11 @@ namespace Wx3270
         /// <returns>True if the tour is complete.</returns>
         public static bool IsComplete(Control control, string suffix = null)
         {
+            if (SuppressAutoTours)
+            {
+                return true;
+            }
+
             using var key = Registry.CurrentUser.CreateSubKey(Constants.Misc.TourCompleteKey);
             return key.GetValue(TourCompleteValue(nameof(Tour))) != null || key.GetValue(TourCompleteValue(control, suffix)) != null;
         }

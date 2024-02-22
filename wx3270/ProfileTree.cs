@@ -739,11 +739,7 @@ The button labels include a count of how many Undo and Redo operations are saved
             }
 
             args.Add(Constants.Option.Topmost);
-
-            if (app.NoSplash)
-            {
-                args.Add(Constants.Option.NoSplash);
-            }
+            args.Add(Constants.Option.NoSplash);
 
             p.StartInfo.Arguments = string.Join(" ", args);
 

@@ -336,12 +336,6 @@ You can also define the window title here. This is a per-profile setting; you ca
             // Subscribe to color mode change events.
             this.ColorModeChangedEvent += (color) => this.optionsScreenSample.Invalidate();
 
-            // Subscribe to menu bar changes.
-            if (!this.app.NoButtons)
-            {
-                this.mainScreen.MenuBarSetEvent += () => this.menuBarCheckBox.Checked = true;
-            }
-
             // Subscribe to connection state events.
             this.OptionsConnectionChange();
             this.mainScreen.ConnectionStateEvent += this.OptionsConnectionChange;
@@ -982,17 +976,7 @@ You can also define the window title here. This is a per-profile setting; you ca
                 case ChangeKeyword.MenuBar:
                     if (!this.app.NoButtons)
                     {
-                        size = this.mainScreen.ToggleFixedMenuBar(checkBox.Checked);
-                        this.ProfileManager.PushAndSave(
-                            (current) =>
-                            {
-                                current.MenuBar = checkBox.Checked;
-                                if (size != null)
-                                {
-                                    current.Size = size.Value;
-                                }
-                            },
-                            ChangeName(settingName));
+                        this.mainScreen.FixedMenuBarSwitch(checkBox.Checked);
                     }
 
                     break;
