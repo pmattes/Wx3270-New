@@ -502,7 +502,11 @@ namespace Wx3270
         public void SetProfileList(IProfileTracker profileTracker)
         {
             this.profileTree = profileTracker.Tree;
-            profileTracker.ProfileTreeChanged += (nodes) => this.profileTree = nodes;
+            profileTracker.ProfileTreeChanged += (nodes) =>
+            {
+                this.profileTree = nodes;
+                this.ProfileTreeChanged(nodes);
+            };
         }
 
         /// <inheritdoc />
@@ -1234,6 +1238,43 @@ namespace Wx3270
             }
 
             return Path.GetFullPath(path);
+        }
+
+        /// <summary>
+        /// The profile tree changed.
+        /// </summary>
+        /// <param name="nodes">Updated list of watch nodes.</param>
+        private void ProfileTreeChanged(List<FolderWatchNode> nodes)
+        {
+            if (!this.Current.ReadOnly)
+            {
+                return;
+            }
+
+            ProfileWatchNode newProfileNode = null;
+            foreach (var node in nodes)
+            {
+                node.ForEach(n =>
+                {
+                    if (n is ProfileWatchNode profileWatchNode && profileWatchNode.PathName.Equals(this.Current.PathName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        newProfileNode = profileWatchNode;
+                    }
+                });
+            }
+
+            if (newProfileNode == null)
+            {
+                return;
+            }
+
+            var newProfile = newProfileNode.Profile;
+            newProfile.ReadOnly = true;
+            newProfile.Size = null; // this.Current.Size; // XXX: null?
+            var previous = this.Current;
+            this.Current = newProfile;
+            this.App.Invoke(new MethodInvoker(() => this.PropagateExternalChange(previous)));
+            this.FlushUndoRedo();
         }
 
         /// <summary>

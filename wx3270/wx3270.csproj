@@ -142,6 +142,7 @@
     <Compile Include="Contracts\IModelsDb.cs" />
     <Compile Include="Contracts\ITerminalName.cs" />
     <Compile Include="HPathUtil.cs" />
+    <Compile Include="FunctionLoader.cs" />
     <Compile Include="MiscMerge.cs" />
     <Compile Include="MergeAttribute.cs" />
     <Compile Include="MiscCrossbar.cs" />

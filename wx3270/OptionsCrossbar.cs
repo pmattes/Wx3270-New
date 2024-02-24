@@ -173,6 +173,7 @@ namespace Wx3270
             };
             return new[]
             {
+                B3270.Value.Defer,
                 B3270.Setting.Model, startupConfig.ModelParameter,
                 B3270.Setting.Oversize, startupConfig.OversizeParameter,
             };
@@ -194,12 +195,13 @@ namespace Wx3270
                 || oldProfile.Model != newProfile.Model
                 || !oldProfile.Oversize.Equals(newProfile.Oversize))
             {
-                newSettings.AddRange(ModelSettings(
+                var modelSettings = ModelSettings(
                     newProfile.ColorMode,
                     newProfile.Model,
                     newProfile.ExtendedMode,
                     newProfile.Oversize.Rows,
-                    newProfile.Oversize.Columns));
+                    newProfile.Oversize.Columns);
+                this.App.BackEnd.RunAction(new BackEndAction(B3270.Action.Set, modelSettings), ErrorBox.Completion(I18n.Get(Settings.Title.Settings)));
             }
 
             // Check for other changes.

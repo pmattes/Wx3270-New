@@ -1385,7 +1385,7 @@ The button labels include a count of how many Undo and Redo operations are saved
             var isHost = this.treeView.SelectedNode is HostTreeNode;
             var isProfile = (profileNode = this.treeView.SelectedNode as ProfileTreeNode) != null;
             this.profileSwitchToButton.Enabled = isProfile && !profileNode.IsBroken && !profileNode.IsDefaults;
-            this.profileMergeFromButton.Enabled = !connected && isProfile && !profileNode.IsBroken && !profileNode.IsCurrent;
+            this.profileMergeFromButton.Enabled = isProfile && !profileNode.IsBroken && !profileNode.IsCurrent;
             this.connectionNewButton.Enabled = !connected;
             this.commonEditButton.Enabled =
                 (isHost && this.app.Allowed(Restrictions.ModifyHost))
@@ -1424,7 +1424,7 @@ The button labels include a count of how many Undo and Redo operations are saved
                 // Set profile-specific buttons.
                 var profileNode = node as ProfileTreeNode;
                 this.profileSwitchToButton.Enabled = !this.connected && !profileNode.IsBroken && !profileNode.IsDefaults && !profileNode.IsCurrent;
-                this.profileMergeFromButton.Enabled = !this.connected && !profileNode.IsBroken && !profileNode.IsCurrent;
+                this.profileMergeFromButton.Enabled = !profileNode.IsBroken && !profileNode.IsCurrent;
                 this.profileExportButton.Enabled = !profileNode.IsBroken && !profileNode.IsDefaults;
                 this.profileDefaultButton.Enabled = !profileNode.IsBroken && !profileNode.IsDefaults;
 
@@ -1959,12 +1959,6 @@ The button labels include a count of how many Undo and Redo operations are saved
             if (destNode is ProfileTreeNode destProfileNode)
             {
                 // Merge a profile.
-                if (this.connected && this.ProfileManager.IsCurrentPathName(destProfileNode.Profile.PathName))
-                {
-                    // But not the current profile, if connected.
-                    return;
-                }
-
                 this.MergeFromProfile(destProfileNode.Profile, sourceNode.Profile);
             }
         }
