@@ -1132,6 +1132,16 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// The Follower button was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void Follower_Click(object sender, EventArgs e)
+        {
+            this.FollowerClick(sender, e);
+        }
+
+        /// <summary>
         /// Names of settings that change without specific toggles.
         /// </summary>
         public class ChangeKeyword

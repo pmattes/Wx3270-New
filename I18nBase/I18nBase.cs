@@ -192,6 +192,12 @@ namespace I18nBase
         /// <param name="fileName">File to save into.</param>
         public static void DumpMessages(string fileName = null)
         {
+            // Hack: If the file name is 'NUL:', do nothing.
+            if (!string.IsNullOrEmpty(fileName) && fileName.Equals("NUL:", StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
             TextWriter t;
             if (fileName != null)
             {

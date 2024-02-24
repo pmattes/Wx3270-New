@@ -330,6 +330,16 @@ You can also define the window title here. This is a per-profile setting; you ca
             this.scrollbarCheckBox.Enabled = !this.app.NoScrollBar;
             this.menuBarCheckBox.Enabled = !this.app.NoButtons;
 
+            // Set up the follower checkbox.
+            if (this.ProfileManager.Current.ReadOnly)
+            {
+                this.followerCheckBox.Checked = !this.app.Detached;
+            }
+            else
+            {
+                this.followerCheckBox.Visible = false;
+            }
+
             // Subscribe to profile change events.
             this.ProfileManager.AddChangeTo(this.ProfileOptionsChanged);
 
@@ -829,6 +839,16 @@ You can also define the window title here. This is a per-profile setting; you ca
 
             // Set menu bar.
             this.menuBarCheckBox.Checked = profile.MenuBar;
+
+            // Set up the follower checkbox.
+            if (profile.ReadOnly)
+            {
+                this.followerCheckBox.Checked = !this.app.Detached;
+            }
+            else
+            {
+                this.followerCheckBox.Visible = false;
+            }
         }
 
         /// <summary>
@@ -1069,6 +1089,16 @@ You can also define the window title here. This is a per-profile setting; you ca
         {
             var interval = this.nopCheckBox.Checked ? 30 : 0;
             this.ProfileManager.PushAndSave((current) => current.NopInterval = interval, ChangeName(B3270.Setting.NopSeconds));
+        }
+
+        /// <summary>
+        /// The Follower button was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FollowerClick(object sender, EventArgs e)
+        {
+            this.app.Detached = !this.followerCheckBox.Checked;
         }
     }
 }

@@ -133,6 +133,11 @@ namespace Wx3270.Contracts
         string ExternalText { get; }
 
         /// <summary>
+        /// Gets or sets the main window handle.
+        /// </summary>
+        IntPtr MainWindowHandle { get; set; }
+
+        /// <summary>
         /// Sets up the profile list.
         /// </summary>
         /// <param name="profileTracker">Profile tracker.</param>
