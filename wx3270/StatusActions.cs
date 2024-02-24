@@ -6,7 +6,7 @@ namespace Wx3270
 {
     using System;
     using System.Collections.Generic;
-
+    using System.Windows.Forms;
     using I18nBase;
     using Wx3270.Contracts;
 
@@ -60,6 +60,50 @@ namespace Wx3270
         /// Static localization.
         /// </summary>
         [I18nInit]
+        public static void LocalizeStatusActions()
+        {
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global instructions.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(statusTab)), "Tour: Status");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(statusTab)),
+@"Use this tab to display connection statistics and TLS session information.");
+
+            // Session statistics.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(statusLayoutPanel)), "Connection statistics");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(statusLayoutPanel)),
+@"Connection statistics are displayed here.");
+
+            // TLS session.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(tlsSessionTextBox)), "TLS session");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(tlsSessionTextBox)),
+@"Information about the TLS session (protocol level, ciphers, etc.) is displayed here.");
+
+            // Host certificate.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(hostCertificateTextBox)), "TLS host certificate");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(hostCertificateTextBox)),
+@"Information about the host's TLS server certificate is displayed here.");
+
+            // Help button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(helpPictureBox3)), "Help");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(helpPictureBox3)),
+@"Click to display context-sensitive help from the x3270 Wiki in your browser, or to start this tour again.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
+        }
+
+        /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
         public static void Localize()
         {
             foreach (var kv in UntranslatedConnectionNames)
@@ -97,6 +141,17 @@ namespace Wx3270
                     ConnectionNames[kv.Key] = I18n.Get(I18n.Combine(nameof(Actions), "ConnectionState", kv.Key.ToString()));
                 }
             }
+
+            // Register the tour.
+            var nodes = new[]
+            {
+                ((Control)this.statusTab, (int?)null, Orientation.Centered),
+                (this.statusLayoutPanel, null, Orientation.UpperLeftTight),
+                (this.tlsSessionTextBox, null, Orientation.LowerLeftTight),
+                (this.hostCertificateTextBox, null, Orientation.LowerLeftTight),
+                (this.helpPictureBox3, null, Orientation.LowerRight),
+            };
+            this.RegisterTour(this.statusTab, nodes);
         }
 
         /// <summary>

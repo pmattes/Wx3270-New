@@ -10,6 +10,7 @@ namespace Wx3270
     using System.Reflection;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
+    using I18nBase;
     using Wx3270.Contracts;
 
     /// <summary>
@@ -70,6 +71,11 @@ namespace Wx3270
         private readonly RadioEnum<ScreenTraceType> screenTraceType;
 
         /// <summary>
+        /// Tour dictionary.
+        /// </summary>
+        private readonly Dictionary<TabPage, IEnumerable<(Control, int?, Orientation)>> tours = new Dictionary<TabPage, IEnumerable<(Control, int?, Orientation)>>();
+
+        /// <summary>
         /// The visible control codes document.
         /// </summary>
         private VisibleControls visibleControls;
@@ -121,25 +127,25 @@ namespace Wx3270
 
             if (this.app.Restricted(Restrictions.Prompt))
             {
-                this.promptPictureBox.RemoveFromParent();
-                this.promptLabel.RemoveFromParent();
+                this.promptPictureBox.Visible = false;
+                this.promptLabel.Visible = false;
             }
 
             this.fileRadioButton.Enabled = app.Allowed(Restrictions.ExternalFiles);
 
             if (this.app.Restricted(Restrictions.ExternalFiles))
             {
-                this.tracePictureBox.RemoveFromParent();
-                this.traceCheckBox.RemoveFromParent();
-                this.tracePr3287FlowLayoutPanel.RemoveFromParent(); // How do we prevent pr3287 command line tracing?
-                this.uiTracePanel.RemoveFromParent();
+                this.tracePictureBox.Visible = false;
+                this.traceCheckBox.Visible = false;
+                this.tracePr3287FlowLayoutPanel.Visible = false; // How do we prevent pr3287 command line tracing?
+                this.uiTracePanel.Visible = false;
             }
 
             if (this.app.Restricted(Restrictions.ChangeSettings))
             {
                 // Ideally we would remove the row these controls are in, but the other rows are specific sizes
                 // and this makes a mess.
-                this.visibleControlFlowLayoutPanel.RemoveFromParent();
+                this.visibleControlFlowLayoutPanel.Visible = false;
             }
 
             if (this.app.Allowed(Restrictions.ExternalFiles))
@@ -158,31 +164,49 @@ namespace Wx3270
 
             if (this.app.Restricted(Restrictions.GetHelp))
             {
-                this.helpPictureBox.RemoveFromParent();
-                this.helpPictureBox2.RemoveFromParent();
-                this.helpPictureBox3.RemoveFromParent();
-                this.helpPictureBox4.RemoveFromParent();
+                this.helpPictureBox.Visible = false;
+                this.helpPictureBox2.Visible = false;
+                this.helpPictureBox3.Visible = false;
+                this.helpPictureBox4.Visible = false;
             }
 
             if (this.app.Restricted(Restrictions.Printing))
             {
-                this.printScreenPictureBox.RemoveFromParent();
-                this.printScreenLabel.RemoveFromParent();
+                this.printScreenPictureBox.Visible = false;
+                this.printScreenLabel.Visible = false;
                 this.printerRadioButton.Enabled = false;
             }
 
             // There might not be any screen tracing options left.
             if (!this.printerRadioButton.Enabled && !this.fileRadioButton.Enabled)
             {
-                this.screenTracingPictureBox.RemoveFromParent();
-                this.traceScreenCheckBox.RemoveFromParent();
-                this.screenTraceTableLayoutPanel.RemoveFromParent();
+                this.screenTracingPictureBox.Visible = false;
+                this.traceScreenCheckBox.Visible = false;
+                this.screenTraceTableLayoutPanel.Visible = false;
             }
 
             if (this.screenImagesTableLayoutPanel.Controls.Count == 0)
             {
-                this.screenImagesGroupBox.RemoveFromParent();
+                this.screenImagesGroupBox.Visible = false;
             }
+
+            // Register the tour.
+            var nodes = new[]
+            {
+                ((Control)this.actionsTab, (int?)null, Orientation.Centered),
+                (this.printScreenPictureBox, null, Orientation.UpperLeft),
+                (this.traceScreenCheckBox, null, Orientation.UpperLeftTight),
+                (this.visibleControlCheckBox, null, Orientation.UpperLeftTight),
+                (this.tracePr3287CheckBox, null, Orientation.LowerLeftTight),
+                (this.traceCheckBox, null, Orientation.LowerLeftTight),
+                (this.uiTraceCheckBox, null, Orientation.LowerLeftTight),
+                (this.promptPictureBox, null, Orientation.LowerLeft),
+                (this.keymapPictureBox, null, Orientation.LowerLeft),
+                (this.cancelActionsPictureBox, null, Orientation.LowerLeft),
+                (this.reenablePictureBox, null, Orientation.LowerLeft),
+                (this.helpPictureBox, null, Orientation.LowerRight),
+            };
+            this.RegisterTour(this.actionsTab, nodes.Where(node => node.Item1.Visible));
 
             // Localize.
             I18n.Localize(this, this.toolTip1);
@@ -250,6 +274,122 @@ namespace Wx3270
         /// Gets the profile manager.
         /// </summary>
         private IProfileManager ProfileManager => this.app.ProfileManager;
+
+        /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
+        public static void LocalizeActions()
+        {
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global instructions.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(actionsTab)), "Tour: Actions");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(actionsTab)),
+@"Use this tab to perform various utility and diagnostic actions.");
+
+            // Print screen.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(printScreenPictureBox)), "Print screen");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(printScreenPictureBox)),
+@"Click to send a snapshot of the screen to the printer.");
+
+            // Trace screen.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(traceScreenCheckBox)), "Trace screen");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(traceScreenCheckBox)),
+@"Click to enable or disable screen tracing.
+
+When screen tracing is enabled, a snapshot is sent to the printer or appended to a file whenever the screen changes.");
+
+            // Visible control characters.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(visibleControlCheckBox)), "Visible control characters");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(visibleControlCheckBox)),
+@"Click to enable or disable visible control characters.
+
+Normally, 3270 control characters are displayed as blanks. When this option is enabled, these characters are displayed as codes with special highlighting: underlines, plus a yellow background for Start Field characters.
+
+To the right is a button that brings up a decoder window.");
+
+            // pr3287 tracing.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(tracePr3287CheckBox)), "pr3287 tracing");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(tracePr3287CheckBox)),
+@"Click to enable or disable tracing in pr3287 (attached printer) sessions.
+
+The traces will be left in a file on your desktop.
+
+This option must be enabled before you start a connection.");
+
+            // b3270 tracing.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(traceCheckBox)), "Back-end tracing");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(traceCheckBox)),
+@"Click to enable or disable tracing back-end (b3270) events.
+
+These low-level traces show the data going between the emulator and the host or command process, and between the b3270 back end and wx3270, as well as the execution of actions.
+
+The traces will be left in a file on your desktop, and a window will open to view the traces as they are generated.
+
+Note that closing the trace window will not stop the traces from being generated.");
+
+            // wx3270 tracing.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(uiTraceCheckBox)), "User interface tracing");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(uiTraceCheckBox)),
+@"Click to enable or disable tracing user interface (wx3270) events.
+
+These low-level traces show the events processed by the user interface. They are added to the back-end trace file, and turning on user interface tracing implicitly turns on back-end tracing as well.
+
+The check boxes to the right allow selective tracing of different categories of events.");
+
+            // wx3270> prompt.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(promptPictureBox)), "wx3270> prompt");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(promptPictureBox)),
+@"Click to open a window with the wx3270> prompt.
+
+The wx3270> prompt allows you to enter wx3270 actions and display the results interactively.
+
+It is helpful for trying out actions you might want to use in keyboard maps or scripts, or to display the state of the emulator.
+
+Use with care.");
+
+            // Display keymap.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(keymapPictureBox)), "Display keymap");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(keymapPictureBox)),
+@"Click to display the current keyboard map.");
+
+            // Cancel scripts.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(cancelActionsPictureBox)), "Cancel pending actions");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(cancelActionsPictureBox)),
+@"Click to cancel all pending actions and scripts.
+
+This can get things unstuck when an action hangs.
+
+Use with care.");
+
+            // Re-enable keyboard.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(reenablePictureBox)), "Re-enable keyboard");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(reenablePictureBox)),
+@"Click to re-enable the keyboard when it has been disabled (and not re-enabled) by a script.");
+
+            // Help button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(helpPictureBox)), "Help");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(helpPictureBox)),
+@"Click to display context-sensitive help from the x3270 Wiki in your browser, or to start this tour again.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
+        }
 
         /// <summary>
         /// Cancel pending scripts.
@@ -590,6 +730,10 @@ namespace Wx3270
             {
                 this.everActivated = true;
                 this.Location = MainScreen.CenteredOn(this.mainScreen, this);
+                if (!Tour.IsComplete(this.actionsTabs.SelectedTab))
+                {
+                    this.RunTour(this.actionsTabs.SelectedTab);
+                }
             }
         }
 
@@ -686,12 +830,10 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void Help_Clicked(object sender, EventArgs e)
         {
-            if (sender is PictureBox box)
+            var mouseEvent = (MouseEventArgs)e;
+            if (mouseEvent.Button == MouseButtons.Left)
             {
-                if (box.Tag is string tag)
-                {
-                    Wx3270App.GetHelp("Actions/" + Wx3270App.FormatHelpTag(tag));
-                }
+                this.helpContextMenuStrip.Show(this.helpPictureBox, mouseEvent.Location);
             }
         }
 
@@ -933,6 +1075,51 @@ namespace Wx3270
             }
 
             click?.Invoke(this, new object[] { sender, e });
+        }
+
+        /// <summary>
+        /// One of the help menu options was selected.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void HelpClick(object sender, EventArgs e)
+        {
+            Tour.HelpMenuClick(sender, e, "Actions/" + Wx3270App.FormatHelpTag((string)this.actionsTabs.SelectedTab.Tag), () => this.RunTour(this.actionsTabs.SelectedTab));
+        }
+
+        /// <summary>
+        /// The selected tab changed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void TabSelectedChanged(object sender, EventArgs e)
+        {
+            if (!Tour.IsComplete(this.actionsTabs.SelectedTab))
+            {
+                this.RunTour(this.actionsTabs.SelectedTab);
+            }
+        }
+
+        /// <summary>
+        /// Run the tour for a particular tab page.
+        /// </summary>
+        /// <param name="selectedTab">Selected tab.</param>
+        private void RunTour(TabPage selectedTab)
+        {
+            if (this.tours.TryGetValue(selectedTab, out IEnumerable<(Control, int?, Orientation)> tabNodes))
+            {
+                Tour.Navigate(selectedTab, tabNodes);
+            }
+        }
+
+        /// <summary>
+        /// Registers a tour for a tab.
+        /// </summary>
+        /// <param name="tabPage">Tab page.</param>
+        /// <param name="nodes">Nodes for the tour.</param>
+        private void RegisterTour(TabPage tabPage, IEnumerable<(Control, int?, Orientation)> nodes)
+        {
+            this.tours[tabPage] = nodes;
         }
 
         /// <summary>
