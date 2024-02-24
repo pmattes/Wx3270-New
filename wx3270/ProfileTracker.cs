@@ -253,7 +253,7 @@ namespace Wx3270
             // Walk the profiles in this directory.
             foreach (var profilePath in Directory.EnumerateFiles(directory, "*" + ProfileManager.Suffix))
             {
-                if (profilePath.Equals(this.app.ProfileManager.Current.PathName))
+                if (!this.app.ProfileManager.Current.ReadOnly && profilePath.Equals(this.app.ProfileManager.Current.PathName))
                 {
                     // Get the local copy instead of reading it.
                     newFolder.Add(

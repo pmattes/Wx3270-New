@@ -640,6 +640,11 @@ namespace Wx3270
             public const string Cancel = "Cancel";
 
             /// <summary>
+            /// Defer option for Set().
+            /// </summary>
+            public const string Defer = "-defer";
+
+            /// <summary>
             /// Dialog option for the print text action.
             /// </summary>
             public const string Dialog = "dialog";

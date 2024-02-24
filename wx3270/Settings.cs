@@ -236,9 +236,6 @@ namespace Wx3270
             // Register the undo/redo buttons.
             this.ProfileManager.RegisterUndoRedo(this.undoButton, this.redoButton, this.toolTip1);
 
-            // Register the safety check.
-            this.ProfileManager.SafetyCheck += this.SafetyCheck;
-
             // Process restrictions.
             if (this.app.Restricted(Restrictions.GetHelp))
             {
@@ -348,30 +345,6 @@ namespace Wx3270
         private void RedoButtonClick(object sender, EventArgs e)
         {
             this.ProfileManager.Redo();
-        }
-
-        /// <summary>
-        /// Perform a safety check for a profile change.
-        /// </summary>
-        /// <param name="oldProfile">Old profile.</param>
-        /// <param name="newProfile">New profile.</param>
-        /// <param name="safe">Returned false if it is not safe.</param>
-        private void SafetyCheck(Profile oldProfile, Profile newProfile, ref bool safe)
-        {
-            if (!this.connected || !this.ProfileManager.IsCurrentPathName(oldProfile.PathName))
-            {
-                // It only matters when connected and about to change the current profile.
-                return;
-            }
-
-            // Check the things that are negotiated at connect time and can't change later.
-            if (oldProfile.Model != newProfile.Model
-                || !oldProfile.Oversize.Equals(newProfile.Oversize)
-                || oldProfile.TerminalNameOverride != newProfile.TerminalNameOverride
-                || oldProfile.ColorMode != newProfile.ColorMode)
-            {
-                safe = false;
-            }
         }
 
         /// <summary>

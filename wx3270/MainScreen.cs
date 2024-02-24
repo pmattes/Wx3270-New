@@ -230,6 +230,16 @@ namespace Wx3270
         private bool toured = false;
 
         /// <summary>
+        /// The resize count.
+        /// </summary>
+        private int resizeCount;
+
+        /// <summary>
+        /// True if a resize is in progress.
+        /// </summary>
+        private bool resizeLocked;
+
+        /// <summary>
         /// The window handle.
         /// </summary>
         private IntPtr handle;
@@ -241,6 +251,13 @@ namespace Wx3270
         {
             this.InitializeComponent();
         }
+
+        /// <summary>
+        /// Delegate for the Win32 IsWindowArranged function.
+        /// </summary>
+        /// <param name="handle">Window handle.</param>
+        /// <returns>True if the window is arranged.</returns>
+        public delegate bool IsWindowArrangedDelegate(IntPtr handle);
 
         /// <summary>
         /// Secondary initialization event.
@@ -677,10 +694,12 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// <summary>
         /// Force the main screen window to maximize.
         /// </summary>
-        public void Maximize()
+        /// <param name="why">Why we are maximizing.</param>
+        public void Maximize(string why)
         {
             if (!this.Maximized)
             {
+                Trace.Line(Trace.Type.Window, $"Maximizing ({why})");
                 this.WindowState = FormWindowState.Maximized;
             }
         }
@@ -688,10 +707,12 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// <summary>
         /// Force the main screen window to restore (not be maximized).
         /// </summary>
-        public void Restore()
+        /// <param name="why">Why we are restoring.</param>
+        public void Restore(string why)
         {
             if (this.Maximized)
             {
+                Trace.Line(Trace.Type.Window, $"Restoring ({why})");
                 this.WindowState = FormWindowState.Normal;
             }
         }
@@ -861,7 +882,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             var wasMaximized = false;
             if (this.Maximized)
             {
-                this.Restore();
+                this.Restore("scrollbar toggle start");
                 wasMaximized = true;
             }
 
@@ -893,7 +914,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             // Return to maximized if needed.
             if (wasMaximized)
             {
-                this.Maximize();
+                this.Maximize("scrollbar toggle end");
             }
 
             return size;
@@ -910,6 +931,25 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 (current) =>
                 {
                     current.MenuBar = displayed;
+                    if (size != null)
+                    {
+                        current.Size = size.Value;
+                    }
+                },
+                Settings.ChangeName(Settings.ChangeKeyword.MenuBar));
+        }
+
+        /// <summary>
+        /// Switch the state of the scrollbar.
+        /// </summary>
+        /// <param name="displayed">True to display the scrollbar.</param>
+        public void ScrollBarSwitch(bool displayed)
+        {
+            var size = this.ToggleScrollBar(displayed);
+            this.ProfileManager.PushAndSave(
+                (current) =>
+                {
+                    current.ScrollBar = displayed;
                     if (size != null)
                     {
                         current.Size = size.Value;
@@ -949,7 +989,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             var wasMaximized = false;
             if (this.Maximized)
             {
-                this.Restore();
+                this.Restore("menubar toggle start");
                 wasMaximized = true;
             }
 
@@ -987,7 +1027,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             // Return to maximized if needed.
             if (wasMaximized)
             {
-                this.Maximize();
+                this.Maximize("menubar toggle end");
             }
 
             if (wasFullScreen)
@@ -1047,6 +1087,21 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         }
 
         /// <summary>
+        /// Tests for a window being arranged (docked).
+        /// </summary>
+        /// <returns>True if window is arranged.</returns>
+        private bool IsWindowArranged()
+        {
+            var isWindowArranged = FunctionLoader.LoadFunction<IsWindowArrangedDelegate>("User32.dll", "IsWindowArranged");
+            if (isWindowArranged == default)
+            {
+                return false;
+            }
+
+            return isWindowArranged(this.handle);
+        }
+
+        /// <summary>
         /// Add or remove the scroll bar. Called when the profile changes.
         /// </summary>
         /// <param name="displayed">True if scroll bar should be displayed.</param>
@@ -1057,28 +1112,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 return;
             }
 
-            if (!displayed)
-            {
-                this.BackEnd.RunAction(
-                    new BackEndAction(
-                        B3270.Action.Scroll,
-                        "Set",
-                        "0"),
-                    Wx3270.BackEnd.Ignore());
-                this.vScrollBar1.RemoveFromParent();
-            }
-            else
-            {
-                this.ScrollBarLayoutPanel.SuspendLayout();
-                this.ScrollBarLayoutPanel.Controls.Add(this.vScrollBar1);
-                this.ScrollBarLayoutPanel.Controls.SetChildIndex(this.vScrollBar1, 0);
-                this.ScrollBarLayoutPanel.ResumeLayout();
-            }
-
-            this.scrollBarDisplayed = displayed;
-
-            // Reevaluate the sizes of the fixed elements.
-            this.AdjustFixedForScrollBar(displayed);
+            this.ScrollBarSwitch(displayed);
         }
 
         /// <summary>
@@ -2416,12 +2450,6 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 this.Recolor(newProfile.Colors, newProfile.ColorMode);
             }
 
-            // Force a normal window if this is not the initial load.
-            if (oldProfile != null)
-            {
-                this.Restore();
-            }
-
             // Update macros. It's not worth setting up a separate crossbar for this.
             this.macroEntries.Entries = newProfile.Macros;
         }
@@ -2830,7 +2858,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             }
             else if (this.App.Maximize)
             {
-                this.Maximize();
+                this.Maximize("command-line -maximize");
             }
 
             // We will not receive a message for initial maximized state, so it has to be checked here.
@@ -2959,7 +2987,15 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// <param name="e">Event arguments.</param>
         private void MainScreen_Resize(object sender, EventArgs e)
         {
-            Trace.Line(Trace.Type.Window, $"MainScreen Resize state {this.WindowState} Size {this.Size}  ClientSize {this.ClientSize} Location {this.Location}");
+            var resizeCount = this.resizeCount++;
+            Trace.Line(Trace.Type.Window, $"MainScreen Resize #{resizeCount} state {this.WindowState} Size {this.Size}  ClientSize {this.ClientSize} Location {this.Location}");
+            if (this.resizeLocked)
+            {
+                Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} locked, abandoning");
+                return;
+            }
+
+            this.resizeLocked = true;
 
             switch (this.WindowState)
             {
@@ -2996,24 +3032,32 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                         this.screenBox.ResizeReady)
                     {
                         // Got a Resize on its own (outside of ResizeStart/ResizeEnd), which is more of a "Size" event.
-                        Trace.Line(Trace.Type.Window, " ==> resize");
+                        var isWindowArranged = this.IsWindowArranged();
+                        var arrText = isWindowArranged ? "arranged" : string.Empty;
+                        Trace.Line(Trace.Type.Window, $" ==> resize {arrText}");
                         this.screenBox.Maximize(this.Maximized, this.ClientSize);
                         var newFont = this.screenBox.RecomputeFont(this.ClientSize, ResizeType.Dynamic);
-                        if (this.ProfileManager.PushAndSave(
-                            (current) =>
-                            {
-                                if (this.WindowState == FormWindowState.Normal && this.FormBorderStyle != FormBorderStyle.None)
-                                {
-                                    current.Font = new FontProfile(newFont);
-                                }
-                            }, I18n.Get(ResizeName)))
+                        var fontProfile = new FontProfile(newFont);
+                        Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} after RecomputeFont -> {fontProfile}");
+                        if (!isWindowArranged && this.WindowState == FormWindowState.Normal && this.FormBorderStyle != FormBorderStyle.None)
                         {
-                            Trace.Line(Trace.Type.Window, "  Resize pushed");
+                            if (this.ProfileManager.PushAndSave(
+                                (current) =>
+                                {
+                                    current.Font = fontProfile;
+                                },
+                                I18n.Get(ResizeName)))
+                            {
+                                Trace.Line(Trace.Type.Window, $"  Resize #{resizeCount} font change to '{fontProfile}' pushed");
+                            }
                         }
                     }
 
                     break;
             }
+
+            Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} done");
+            this.resizeLocked = false;
         }
 
         /// <summary>
@@ -3500,32 +3544,39 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// <param name="e">Event arguments.</param>
         private void MainScreen_ResizeEnd(object sender, EventArgs e)
         {
-            Trace.Line(Trace.Type.Window, $"MainWindow ResizeEnd WindowState {this.WindowState} Size {this.Size} ClientSize {this.ClientSize} Location {this.Location}");
+            var resizeCount = this.resizeCount++;
+            Trace.Line(Trace.Type.Window, $"MainWindow ResizeEnd #{resizeCount} WindowState {this.WindowState} Size {this.Size} ClientSize {this.ClientSize} Location {this.Location}");
 
             this.resizeBeginPending = false;
 
             // Recompute the font, only if the size has changed.
             if (this.ClientSize != this.mainScreenPanel.Size)
             {
-                Trace.Line(Trace.Type.Window, " ==> resize");
+                var isWindowArranged = this.IsWindowArranged();
+                var arrText = isWindowArranged ? "arranged" : string.Empty;
+                Trace.Line(Trace.Type.Window, $" ==> resize {arrText}");
                 this.screenBox.Maximize(this.Maximized, this.ClientSize);
                 var newFont = this.screenBox.RecomputeFont(this.ClientSize, ResizeType.Dynamic);
-                if (!this.fullScreen)
+                if (!this.fullScreen && !isWindowArranged && !this.Maximized /* last clause is new.. is this safe? */)
                 {
+                    var fontProfile = new FontProfile(newFont);
                     if (this.ProfileManager.PushAndSave(
                         (current) =>
                         {
-                            current.Font = new FontProfile(newFont);
+                            current.Font = fontProfile;
                             if (!this.Maximized)
                             {
                                 current.Size = this.Size;
                             }
-                        }, I18n.Get(ResizeName)))
+                        },
+                        I18n.Get(ResizeName)))
                     {
-                        Trace.Line(Trace.Type.Window, " ==> resize pushed");
+                        Trace.Line(Trace.Type.Window, $" ==> ResizeEnd #{resizeCount} resize to '{fontProfile}' pushed");
                     }
                 }
             }
+
+            Trace.Line(Trace.Type.Window, $"ResizeEnd #{resizeCount} done");
         }
 
         /// <summary>
@@ -3742,9 +3793,13 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// <param name="withWarning">True to pop up the warning message.</param>
         private void SetFullScreen(bool withWarning = true)
         {
+            this.resizeLocked = true;
+            this.Maximize("full screen");
+
             if (!this.menuBarDisabled)
             {
                 // Turn off the menu bar for the duration of F11 full screen mode.
+                Trace.Line(Trace.Type.Window, "SetFullScreen turning off menu bar");
                 this.mainTable.SuspendLayout();
                 this.topBar.RemoveFromParent();
                 this.TopLayoutPanel.RemoveFromParent();
@@ -3755,12 +3810,14 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 this.screenBox.SetFixed(this.fixedWidth, this.fixedHeight);
             }
 
+            Trace.Line(Trace.Type.Window, "SetFullScreen turning off window borders");
             this.ControlBox = false;
             this.FormBorderStyle = FormBorderStyle.None;
             this.snapBox.Enabled = false;
             this.fullScreen = true;
-            this.WindowState = FormWindowState.Maximized;
             this.fullScreenToolStripMenuItem.Checked = this.fullScreen;
+            Trace.Line(Trace.Type.Window, "SetFullScreen unlocking");
+            this.resizeLocked = false;
 
             if (withWarning)
             {
@@ -3824,6 +3881,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             if (this.fullScreen)
             {
                 // Turn off full screen.
+                this.resizeLocked = true;
                 if (!this.menuBarDisabled)
                 {
                     if (this.overlayMenuBarDisplayed)
@@ -3850,7 +3908,8 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 this.FormBorderStyle = FormBorderStyle.Sizable;
                 this.snapBox.Enabled = true;
                 this.fullScreen = false;
-                this.WindowState = FormWindowState.Normal;
+                this.resizeLocked = false;
+                this.Restore("fullscreen");
             }
             else
             {

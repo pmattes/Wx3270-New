@@ -376,12 +376,8 @@ You can also define the window title here. This is a per-profile setting; you ca
         private void OptionsConnectionChange()
         {
             this.connected = this.app.ConnectionState != ConnectionState.NotConnected;
-            this.modelGroupBox.Enabled = this.isFullProfile && !this.connected;
-            this.displayGroupBox.Enabled = this.isFullProfile && !this.connected;
-            this.terminalNameGroupBox.Enabled = this.isFullProfile && !this.connected;
-
             string GroupBoxText(string groupBoxName) => I18n.Get(I18n.Combine(nameof(Settings), I18n.FormName, groupBoxName));
-            string DynamicText(string groupBoxText) => this.connected ? groupBoxText + " - " + I18n.Get(Message.LockedWhileConnected) : groupBoxText;
+            string DynamicText(string groupBoxText) => this.connected ? groupBoxText + " - " + I18n.Get(Message.DeferredUntilDisconnected) : groupBoxText;
 
             this.modelGroupBox.Text = DynamicText(GroupBoxText(nameof(this.modelGroupBox)));
             this.displayGroupBox.Text = DynamicText(GroupBoxText(nameof(this.displayGroupBox)));
@@ -437,10 +433,10 @@ You can also define the window title here. This is a per-profile setting; you ca
         {
             // Handle the profile type.
             this.isFullProfile = profile.ProfileType == ProfileType.Full;
-            this.displayGroupBox.Enabled = this.isFullProfile && !this.connected;
+            this.displayGroupBox.Enabled = this.isFullProfile;
             this.opacityGroupBox.Enabled = this.isFullProfile;
-            this.modelGroupBox.Enabled = this.isFullProfile && !this.connected;
-            this.terminalNameGroupBox.Enabled = this.isFullProfile && !this.connected;
+            this.modelGroupBox.Enabled = this.isFullProfile;
+            this.terminalNameGroupBox.Enabled = this.isFullProfile;
             this.miscGroupBox.Enabled = this.isFullProfile;
             this.codePageGroupBox.Enabled = this.isFullProfile;
 
@@ -953,23 +949,12 @@ You can also define the window title here. This is a per-profile setting; you ca
             }
 
             var settingName = (string)checkBox.Tag;
-            System.Drawing.Size? size = null;
             switch (settingName)
             {
                 case ChangeKeyword.ScrollBar:
                     if (!this.app.NoScrollBar)
                     {
-                        size = this.mainScreen.ToggleScrollBar(checkBox.Checked);
-                        this.ProfileManager.PushAndSave(
-                            (current) =>
-                            {
-                                current.ScrollBar = checkBox.Checked;
-                                if (size != null)
-                                {
-                                    current.Size = size.Value;
-                                }
-                            },
-                            ChangeName(settingName));
+                        this.mainScreen.ScrollBarSwitch(checkBox.Checked);
                     }
 
                     break;

@@ -36,7 +36,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(Message.InvalidProxyUsername, "Invalid proxy username");
             I18n.LocalizeGlobal(Message.InvalidProxyPassword, "Invalid proxy password");
             I18n.LocalizeGlobal(Message.InvalidProxySetting, "Got invalid proxy setting from the back end");
-            I18n.LocalizeGlobal(Message.LockedWhileConnected, "locked while connected");
+            I18n.LocalizeGlobal(Message.DeferredUntilDisconnected, "changes deferred until disconnected");
 
             I18n.LocalizeGlobal(SettingPath("opacity"), "window opacity");
 
@@ -138,7 +138,7 @@ The button labels include a count of how many Undo and Redo operations are saved
             /// <summary>
             /// Setting is locked while connected.
             /// </summary>
-            public static readonly string LockedWhileConnected = I18n.Combine(MessageName, "lockedWhileConnected");
+            public static readonly string DeferredUntilDisconnected = I18n.Combine(MessageName, "deferredUntilDisconnected");
         }
     }
 }

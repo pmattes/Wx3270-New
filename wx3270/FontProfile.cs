@@ -156,5 +156,14 @@ namespace Wx3270
                 && this.EmSize == other.EmSize
                 && this.Style == other.Style;
         }
+
+        /// <summary>
+        /// String conversion.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        public override string ToString()
+        {
+            return $"{this.Name} {this.Style} {this.EmSize}";
+        }
     }
 }
