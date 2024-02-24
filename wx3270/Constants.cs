@@ -125,6 +125,11 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             public const string Culture = "-culture";
 
             /// <summary>
+            /// Do not pick up profile updates in read-only mode.
+            /// </summary>
+            public const string Detached = "-detached";
+
+            /// <summary>
             /// Dump the localization dictionary in JSON format.
             /// </summary>
             public const string DumpLocalization = "-dumplocalization";

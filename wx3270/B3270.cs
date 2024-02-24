@@ -1249,6 +1249,11 @@ namespace Wx3270
             public const string Dup = "Dup";
 
             /// <summary>
+            /// Echo action.
+            /// </summary>
+            public const string Echo = "Echo";
+
+            /// <summary>
             /// Enter action.
             /// </summary>
             public const string Enter = "Enter";

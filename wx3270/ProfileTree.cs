@@ -719,8 +719,19 @@ The button labels include a count of how many Undo and Redo operations are saved
                 args.Add("\"" + connection + "\"");
             }
 
-            args.Add(Constants.Option.Culture);
-            args.Add(I18nBase.EffectiveCulture);
+            // -dumplocalization is used during development to run with incomplete message files.
+            // If -dumplocatlization is used in this instance, pass it to the new instance, but
+            // send the output to the bit bucket.
+            if (!string.IsNullOrEmpty(app.DumpLocalization))
+            {
+                args.Add(Constants.Option.DumpLocalization);
+                args.Add("NUL:");
+            }
+            else
+            {
+                args.Add(Constants.Option.Culture);
+                args.Add(I18nBase.EffectiveCulture);
+            }
 
             if (editMode)
             {
@@ -740,6 +751,10 @@ The button labels include a count of how many Undo and Redo operations are saved
 
             args.Add(Constants.Option.Topmost);
             args.Add(Constants.Option.NoSplash);
+            if (app.Detached)
+            {
+                args.Add(Constants.Option.Detached);
+            }
 
             p.StartInfo.Arguments = string.Join(" ", args);
 

@@ -37,6 +37,8 @@ namespace Wx3270
             I18n.LocalizeGlobal(Message.InvalidProxyPassword, "Invalid proxy password");
             I18n.LocalizeGlobal(Message.InvalidProxySetting, "Got invalid proxy setting from the back end");
             I18n.LocalizeGlobal(Message.DeferredUntilDisconnected, "changes deferred until disconnected");
+            I18n.LocalizeGlobal(Message.DeferredUntilDisconnectedPopUp, "One or more settings have been deferred until the current connection is disconnected.");
+            I18n.LocalizeGlobal(Message.Follower, "This read-only window has copied new settings from the read/write window that is using the same wx3270 profile ({0}).\r\n\r\nTo stop this behavior, un-check the 'Read-only follower' option in the Settings window or use the {1} command-line option.");
 
             I18n.LocalizeGlobal(SettingPath("opacity"), "window opacity");
 
@@ -136,9 +138,19 @@ The button labels include a count of how many Undo and Redo operations are saved
             public static readonly string InvalidProxySetting = I18n.Combine(MessageName, "invalidProxySetting");
 
             /// <summary>
-            /// Setting is locked while connected.
+            /// Setting is deferred while connected (group box title).
             /// </summary>
             public static readonly string DeferredUntilDisconnected = I18n.Combine(MessageName, "deferredUntilDisconnected");
+
+            /// <summary>
+            /// Setting is deferred while connected (actually happened).
+            /// </summary>
+            public static readonly string DeferredUntilDisconnectedPopUp = I18n.Combine(MessageName, "deferredUntilDisconnectedPopUp");
+
+            /// <summary>
+            /// Settings were copied from outside.
+            /// </summary>
+            public static readonly string Follower = I18n.Combine(MessageName, "follower");
         }
     }
 }

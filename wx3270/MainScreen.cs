@@ -1247,13 +1247,15 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                     profile.Location = this.Location;
                 }
             };
+            this.ProfileManager.MainWindowHandle = this.Handle;
 
             // Set up other parts.
             this.Connect = new Connect(this.App, this);
             this.crossbar = new Crossbar(this.App, this.ProfileManager);
             this.crossbar.OptionsCrossbar.OpacityEvent += (percent) => this.Opacity = percent / 100.0;
+            this.crossbar.OptionsCrossbar.MainWindowHandle = this.Handle;
 
-            if (this.App.DumpLocalization != null || !I18nBase.UsingMessageCatalog)
+            if (!string.IsNullOrEmpty(this.App.DumpLocalization) || !I18nBase.UsingMessageCatalog)
             {
                 // Create all of the dialogs now instead of on-demand, to capture their localizations.
                 var settings = this.SettingsDialog;

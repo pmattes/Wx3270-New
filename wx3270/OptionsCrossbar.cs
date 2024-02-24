@@ -9,12 +9,18 @@ namespace Wx3270
     using System.Linq;
     using System.Text.RegularExpressions;
     using Wx3270.Contracts;
+    using static Wx3270.Settings;
 
     /// <summary>
     /// Crossbar between the back end and the profile for options settings.
     /// </summary>
     public class OptionsCrossbar : IOpacity
     {
+        /// <summary>
+        /// Mark between 'Set(-defer)' and 'Set(-defer,model,...)'.
+        /// </summary>
+        private const string Mark = "<mark>";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="OptionsCrossbar"/> class.
         /// </summary>
@@ -78,6 +84,11 @@ namespace Wx3270
         /// Event signaled when the opacity changes.
         /// </summary>
         public event Action<int> OpacityEvent = (percent) => { };
+
+        /// <summary>
+        /// Gets or sets the main window handle.
+        /// </summary>
+        public IntPtr MainWindowHandle { get; set; }
 
         /// <summary>
         /// Gets or sets the application context.
@@ -180,6 +191,55 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Completion method for model setting.
+        /// </summary>
+        /// <param name="cookie">Cookie (unused).</param>
+        /// <param name="success">True if Set() was successful.</param>
+        /// <param name="result">Result text.</param>
+        /// <param name="misc">Miscellaneous attributes (ingnored).</param>
+        private void ModelSetComplete(object cookie, bool success, string result, AttributeDict misc)
+        {
+            // Handle failures.
+            if (!success)
+            {
+                ErrorBox.Show(result, I18n.Get(Settings.Title.Settings));
+                return;
+            }
+
+            // Separate out the output before and after the mark.
+            var before = new List<string>();
+            var after = new List<string>();
+            var marked = false;
+            foreach (var line in result.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                if (line == Mark)
+                {
+                    marked = true;
+                }
+                else if (!marked)
+                {
+                    before.Add(line);
+                }
+                else
+                {
+                    after.Add(line);
+                }
+            }
+
+            if (after.Except(before).Any())
+            {
+                // Something new was deferred.
+                NativeMethods.SHMessageBoxCheckW(
+                    this.MainWindowHandle,
+                    I18n.Get(Message.DeferredUntilDisconnectedPopUp),
+                    I18n.Get(Title.Settings),
+                    NativeMethods.MessageBoxCheckFlags.MB_OK | NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
+                    NativeMethods.MessageBoxReturnValue.IDOK,
+                    "wx3270.Deferred");
+            }
+        }
+
+        /// <summary>
         /// The profile has changed. Update the back end.
         /// </summary>
         /// <param name="oldProfile">Old profile.</param>
@@ -201,7 +261,15 @@ namespace Wx3270
                     newProfile.ExtendedMode,
                     newProfile.Oversize.Rows,
                     newProfile.Oversize.Columns);
-                this.App.BackEnd.RunAction(new BackEndAction(B3270.Action.Set, modelSettings), ErrorBox.Completion(I18n.Get(Settings.Title.Settings)));
+                this.App.BackEnd.RunActions(
+                    new[]
+                    {
+                        new BackEndAction(B3270.Action.Set, B3270.Value.Defer),
+                        new BackEndAction(B3270.Action.Echo, Mark),
+                        new BackEndAction(B3270.Action.Set, modelSettings),
+                        new BackEndAction(B3270.Action.Set, B3270.Value.Defer),
+                    },
+                    this.ModelSetComplete);
             }
 
             // Check for other changes.

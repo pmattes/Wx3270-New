@@ -233,6 +233,9 @@ namespace Wx3270
         /// <inheritdoc />
         public string ExternalText => I18n.Get(StringKey.External);
 
+        /// <inheritdoc />
+        public IntPtr MainWindowHandle { get; set; }
+
         /// <summary>
         /// Gets the seed full pathname of the default default profile. The actual value comes from the registry.
         /// </summary>
@@ -1246,7 +1249,7 @@ namespace Wx3270
         /// <param name="nodes">Updated list of watch nodes.</param>
         private void ProfileTreeChanged(List<FolderWatchNode> nodes)
         {
-            if (!this.Current.ReadOnly)
+            if (!this.Current.ReadOnly || this.App.Detached)
             {
                 return;
             }
@@ -1270,11 +1273,19 @@ namespace Wx3270
 
             var newProfile = newProfileNode.Profile;
             newProfile.ReadOnly = true;
-            newProfile.Size = null; // this.Current.Size; // XXX: null?
+            newProfile.Size = null;
             var previous = this.Current;
             this.Current = newProfile;
             this.App.Invoke(new MethodInvoker(() => this.PropagateExternalChange(previous)));
             this.FlushUndoRedo();
+
+            NativeMethods.SHMessageBoxCheckW(
+                this.MainWindowHandle,
+                string.Format(I18n.Get(Settings.Message.Follower), this.Current.Name, Constants.Option.Detached),
+                I18n.Get(Settings.Title.Settings),
+                NativeMethods.MessageBoxCheckFlags.MB_OK | NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
+                NativeMethods.MessageBoxReturnValue.IDOK,
+                "wx3270.Follower");
         }
 
         /// <summary>

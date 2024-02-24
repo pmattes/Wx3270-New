@@ -10,6 +10,7 @@ namespace Wx3270
     using System.Drawing;
     using System.IO;
     using System.Linq;
+    using System.Security.RightsManagement;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
@@ -39,6 +40,7 @@ namespace Wx3270
             (Constants.Option.Connection, "connection-name", "Start a particular connection"),
             (Constants.Option.Console, string.Empty, "Attach a console at start-up (for debugging)"),
             (Constants.Option.Culture, "culture-name", "Override the system default culture for messages"),
+            (Constants.Option.Detached, string.Empty, "Do not synchronize profile changes in read-only mode"),
             (Constants.Option.DumpLocalization, "file-name", "Dump the en-US localization database to a file"),
             (Constants.Option.Edit, string.Empty, "Open the profile in edit mode (do not auto-connect to a host)|Requires the " + Constants.Option.Profile + " option"),
             (Constants.Option.FullScreen, string.Empty, "Enter full-screen mode at start-up"),
@@ -210,6 +212,11 @@ namespace Wx3270
         /// Gets a value indicating whether to go to full screen at start-up.
         /// </summary>
         public bool FullScreen { get; private set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to detach from profile updates in read-only mode.
+        /// </summary>
+        public bool Detached { get; set; }
 
         /// <summary>
         /// Gets the command-line host connection.
@@ -588,6 +595,9 @@ Options:
                             break;
                         case Constants.Option.Culture:
                             culture = args[++i];
+                            break;
+                        case Constants.Option.Detached:
+                            this.Detached = true;
                             break;
                         case Constants.Option.DumpLocalization:
                             this.DumpLocalization = args[++i];
