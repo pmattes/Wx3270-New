@@ -10,6 +10,7 @@ namespace Wx3270
     using System.Linq;
     using System.Text;
     using System.Windows.Forms;
+    using I18nBase;
 
     using Wx3270.Contracts;
 
@@ -159,6 +160,160 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Static localization.
+        /// </summary>
+        [I18nInit]
+        public static void LocalizeFileTransferActions()
+        {
+            // Set up the tour.
+#pragma warning disable SA1118 // Parameter should not span multiple lines
+#pragma warning disable SA1137 // Elements should have the same indentation
+
+            // Global instructions.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(fileTransferTab)), "Tour: File Transfer");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(fileTransferTab)),
+@"Use this tab to transfer files to or from the host using the IND$FILE program.");
+
+            // Direction.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(directionBox)), "Transfer direction");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(directionBox)),
+@"Use these buttons to select the direction of data transfer.");
+
+            // Local file.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(localFileTextBox)), "Local file");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(localFileTextBox)),
+@"Enter the name of the file on your workstation here.
+
+In send mode, this is the file that will be sent to the host.
+
+In receive mode, this is the file that will receive a copy of the file from the host.
+
+Click the Browse button to the right to select a file interactively.");
+
+            // Host file.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(hostFileTextBox)), "Host file");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(hostFileTextBox)),
+@"Enter the name of the file on the host here.
+
+In send mode, this is the file that will receive a copy of the file from your workstation.
+
+In receive mode, this is the file on the host that will be sent to your workstation.");
+
+            // Host type.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(hostTypeBox)), "Host type");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(hostTypeBox)),
+@"Use these buttons to select the host type. IND$FILE has specific syntax and options for each host type, so this is important to get right.
+
+The default setting for these buttons comes from the connection definition.");
+
+            // Exists options.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(existsBox)), "What if the destination file already exists?");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(existsBox)),
+@"Use these buttons to define what happens if the destination file already exists.
+
+'Keep it' means that the transfer will be aborted.
+
+'Replace it' means that the file will be overwritten.
+
+'Append to it' means that the transferred file will be appended to the end of the existing file.");
+
+            // Transfer mode.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(modeBox)), "Transfer mode");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(modeBox)),
+@"Use these buttons to define the transfer mode.
+
+A binary transfer leaves the contents of the file unchanged.
+
+An ASCII text transfer requires translation between EBCDIC and your workstation's code page.");
+
+            // Add/remove CRs.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(crCheckBox)), "Add/remove CRs");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(crCheckBox)),
+@"Check this box to enable automatically adding CR/LF characters at the ends of lines when receiving a text file from the host, and removing CR/LF characters when sending a text file to the host.");
+
+            // Map character set.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(remapCheckBox)), "Map character set");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(remapCheckBox)),
+@"The IND$FILE program has a built-in mapping between EBCDIC and ASCII that may not correspond to the code page on your workstation.
+
+Check this box to enable re-mapping the ASCII text between the IND$FILE code page and a specific Windows code page.
+
+Select the code page in the box below.");
+
+            // Host file record format.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(recfmBox)), "Host file record format");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(recfmBox)),
+@"When sending a file to the host, use these buttons to select the record format for the file.
+
+If applicable, you can also define the file's logical record length.");
+
+            // TSO file allocation.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(tsoAllocationBox)), "TSO file allocation");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(tsoAllocationBox)),
+@"When sending a file to a TSO host, use these options to control how the file will be allocated.");
+
+            // Block size.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(blockSizeTextBox)), "Block size");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(blockSizeTextBox)),
+@"Enter the block size used for the transfer here.");
+
+            // Buffer size.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(bufferSizeTextBox)), "Buffer size");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(bufferSizeTextBox)),
+@"For DFT-mode file transfers, enter the buffer size (the maximum size of each chunk of data transferred) here.
+
+Generally larger buffer sizes result in faster transfers, but some misconfigured hosts will crash the session if the buffer size is too large.");
+
+            // Additional options.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(additionalOptionsTextBox)), "Additional options");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(additionalOptionsTextBox)),
+@"Enter additional options for the IND$FILE program here.
+
+Use this option with care.");
+
+            // Reset Form button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(fileTransferClearFormButton)), "Reset Form button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(fileTransferClearFormButton)),
+@"Click to restore the form to its default state.");
+
+            // Copy Action button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(copyActionButton)), "Copy Action button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(copyActionButton)),
+@"Click to capture a copy of the Transfer() action on the Windows clipboard, so you can perform this same file transfer in a script or a keyboard/keypad map.");
+
+            // Transfer button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(transferButton)), "Transfer button");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(transferButton)),
+@"Click to start the transfer.");
+
+            // Help button.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Actions), nameof(helpPictureBox4)), "Help");
+            I18n.LocalizeGlobal(
+                Tour.BodyKey(nameof(Actions), nameof(helpPictureBox4)),
+@"Click to display context-sensitive help from the x3270 Wiki in your browser, or to start this tour again.");
+
+#pragma warning restore SA1137 // Elements should have the same indentation
+#pragma warning restore SA1118 // Parameter should not span multiple lines
+        }
+
+        /// <summary>
         /// Pop up the file transfer dialog.
         /// </summary>
         public void FileTransfer()
@@ -225,6 +380,30 @@ namespace Wx3270
 
             // Reset the form.
             this.FileTransferClear();
+
+            // Register the tour.
+            var nodes = new[]
+            {
+                ((Control)this.fileTransferTab, (int?)null, Orientation.Centered),
+                (this.directionBox, null, Orientation.UpperRight),
+                (this.localFileTextBox, null, Orientation.UpperLeft),
+                (this.hostFileTextBox, null, Orientation.UpperLeft),
+                (this.hostTypeBox, null, Orientation.UpperLeft),
+                (this.existsBox, null, Orientation.UpperLeft),
+                (this.modeBox, null, Orientation.UpperRight),
+                (this.crCheckBox, null, Orientation.UpperRight),
+                (this.remapCheckBox, null, Orientation.UpperRight),
+                (this.recfmBox, null, Orientation.UpperLeft),
+                (this.tsoAllocationBox, null, Orientation.UpperRight),
+                (this.blockSizeTextBox, null, Orientation.LowerLeft),
+                (this.bufferSizeTextBox, null, Orientation.LowerLeft),
+                (this.additionalOptionsTextBox, null, Orientation.LowerLeft),
+                (this.fileTransferClearFormButton, null, Orientation.LowerRight),
+                (this.copyActionButton, null, Orientation.LowerRight),
+                (this.transferButton, null, Orientation.LowerRight),
+                (this.helpPictureBox4, null, Orientation.LowerRight),
+            };
+            this.RegisterTour(this.fileTransferTab, nodes);
         }
 
         /// <summary>
