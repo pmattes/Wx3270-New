@@ -125,7 +125,11 @@ namespace Wx3270
                     // Set the window size.
                     // The back end settings arrive here via a screen mode update.
                     // The model change has likely caused the window size to change, so we store it here.
-                    current.Size = this.Size;
+                    // We don't want to do this when maximized or docked.
+                    if (!this.Maximized && !this.IsWindowArranged())
+                    {
+                        current.Size = this.Size;
+                    }
                 },
                 Wx3270.ProfileManager.ChangeName(string.Format("{0} ({1})", whatChanged, this.ProfileManager.ExternalText)));
         }

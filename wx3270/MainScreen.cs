@@ -230,6 +230,11 @@ namespace Wx3270
         private bool toured = false;
 
         /// <summary>
+        /// True if there is a read-only pop-up pending.
+        /// </summary>
+        private bool readOnlyPopUpPending = false;
+
+        /// <summary>
         /// The resize count.
         /// </summary>
         private int resizeCount;
@@ -782,7 +787,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             // Change the display font.
             this.ScreenNewFont(font);
             var newFont = font;
-            if (this.Maximized)
+            if (this.Maximized || this.IsWindowArranged())
             {
                 // Recompute the font size when maximized (ignore the selected size).
                 newFont = this.screenBox.RecomputeFont(this.ClientSize, ResizeType.Dynamic);
@@ -791,7 +796,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             // Change the OIA.
             this.RefontOia(newFont);
 
-            if (!this.Maximized)
+            if (!this.Maximized && !this.IsWindowArranged())
             {
                 // Do an implicit snap.
                 this.ClientSize = this.mainScreenPanel.Size;
@@ -803,9 +808,9 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// </summary>
         public void Snap()
         {
-            if (this.Maximized || this.Size == this.MinimumSize)
+            if (this.Maximized || this.Size == this.MinimumSize || this.IsWindowArranged())
             {
-                // No snapping when maximized or at the minimum.
+                // No snapping when maximized, at the minimum, or docked.
                 return;
             }
 
@@ -1230,7 +1235,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                     this.temporaryToolStripMenuItem.Enabled = this.menuBarDisabled || this.fullScreen;
                     this.permanentToolStripMenuItem.Enabled = this.menuBarDisabled && !this.fullScreen;
 
-                    if (size.HasValue && !size.Value.Equals(this.Size))
+                    if (size.HasValue && !size.Value.Equals(this.Size) && !this.Maximized && !this.IsWindowArranged())
                     {
                         Trace.Line(Trace.Type.Window, $"MainScreen ChangeFinal setting size to {size.Value}");
                         this.Size = size.Value;
@@ -1239,9 +1244,13 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
 
                 // Update key mappings.
                 this.UpdateMenuKeyMappings();
+
+                // Handle read-only profiles.
+                this.readOnlyPopUpPending |= newProfile.ReadOnlyForced;
             };
             this.ProfileManager.ProfileClosing += (profile) =>
             {
+                // XXX: and not maximized, and not docked?
                 if (!profile.ReadOnly)
                 {
                     profile.Location = this.Location;
@@ -1371,7 +1380,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             this.screenBox.FontChanged += (font, dynamic) =>
             {
                 this.RefontOia(font);
-                if (dynamic && this.WindowState == FormWindowState.Normal && this.FormBorderStyle != FormBorderStyle.None)
+                if (dynamic && this.WindowState == FormWindowState.Normal && !this.IsWindowArranged() && this.FormBorderStyle != FormBorderStyle.None)
                 {
                     this.DynamicFontEvent(font);
                 }
@@ -1612,7 +1621,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             I18n.LocalizeGlobal(Title.MenuBarEnabled, "Menu Bar Enabled");
             I18n.LocalizeGlobal(ErrorMessage.NoSuchConnection, "No such connection");
             I18n.LocalizeGlobal(ErrorMessage.InvalidPrefixes, "Invalid prefix(es) in command-line host");
-            I18n.LocalizeGlobal(ErrorMessage.MenuBarToggle, "To display the menu bar, right-click on the main screen and select 'Menu bar'.");
+            I18n.LocalizeGlobal(ErrorMessage.MenuBarToggle, "To display the menu bar again, right-click on the main screen and select 'Menu bar'.");
             I18n.LocalizeGlobal(ErrorMessage.MenuBarToggleNop, "The menu bar is not displayed in full screen mode. Right-click on the main screen for the context menu.");
             I18n.LocalizeGlobal(ErrorMessage.FullScreenToggle, "To exit full screen mode, right-click on the main screen and select 'Full screen'.");
             I18n.LocalizeGlobal(ErrorMessage.RecordingDiscarded, "Pending macro recording discarded");
@@ -2991,13 +3000,6 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         {
             var resizeCount = this.resizeCount++;
             Trace.Line(Trace.Type.Window, $"MainScreen Resize #{resizeCount} state {this.WindowState} Size {this.Size}  ClientSize {this.ClientSize} Location {this.Location}");
-            if (this.resizeLocked)
-            {
-                Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} locked, abandoning");
-                return;
-            }
-
-            this.resizeLocked = true;
 
             switch (this.WindowState)
             {
@@ -3017,6 +3019,13 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 case FormWindowState.Normal:
                 case FormWindowState.Maximized:
                     // Restored.
+                    if (this.resizeLocked)
+                    {
+                        Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} locked, abandoning");
+                        return;
+                    }
+
+                    this.resizeLocked = true;
                     foreach (var pad in this.Keypads.Where(p => p != null))
                     {
                         if (this.keypadMinimized.Contains(pad))
@@ -3034,32 +3043,42 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                         this.screenBox.ResizeReady)
                     {
                         // Got a Resize on its own (outside of ResizeStart/ResizeEnd), which is more of a "Size" event.
+                        // We respect the size and adapt the font size to accommodate it.
                         var isWindowArranged = this.IsWindowArranged();
                         var arrText = isWindowArranged ? "arranged" : string.Empty;
                         Trace.Line(Trace.Type.Window, $" ==> resize {arrText}");
-                        this.screenBox.Maximize(this.Maximized, this.ClientSize);
-                        var newFont = this.screenBox.RecomputeFont(this.ClientSize, ResizeType.Dynamic);
-                        var fontProfile = new FontProfile(newFont);
-                        Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} after RecomputeFont -> {fontProfile}");
-                        if (!isWindowArranged && this.WindowState == FormWindowState.Normal && this.FormBorderStyle != FormBorderStyle.None)
+                        this.screenBox.Maximize(this.Maximized || this.IsWindowArranged(), this.ClientSize);
+                        if (this.WindowState == FormWindowState.Normal && !this.IsWindowArranged())
                         {
-                            if (this.ProfileManager.PushAndSave(
-                                (current) =>
-                                {
-                                    current.Font = fontProfile;
-                                },
-                                I18n.Get(ResizeName)))
+                            // Not maximized, not docked. Restore the font stored in the profile, and snap.
+                            Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} un-maximized/undocked -> restore font and snap");
+                            this.Refont(this.ProfileManager.Current.Font.Font());
+                        }
+                        else
+                        {
+                            var newFont = this.screenBox.RecomputeFont(this.ClientSize, ResizeType.Dynamic);
+                            var fontProfile = new FontProfile(newFont);
+                            Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} after RecomputeFont -> {fontProfile}");
+                            if (!isWindowArranged && this.WindowState == FormWindowState.Normal && this.FormBorderStyle != FormBorderStyle.None)
                             {
-                                Trace.Line(Trace.Type.Window, $"  Resize #{resizeCount} font change to '{fontProfile}' pushed");
+                                if (this.ProfileManager.PushAndSave(
+                                    (current) =>
+                                    {
+                                        current.Font = fontProfile;
+                                    },
+                                    I18n.Get(ResizeName)))
+                                {
+                                    Trace.Line(Trace.Type.Window, $"  Resize #{resizeCount} font change to '{fontProfile}' pushed");
+                                }
                             }
                         }
                     }
 
+                    this.resizeLocked = false;
                     break;
             }
 
             Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} done");
-            this.resizeLocked = false;
         }
 
         /// <summary>
@@ -3240,7 +3259,16 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// <param name="e">Event arguments.</param>
         private void MainScreen_Shown(object sender, EventArgs e)
         {
-            // Nothing at the moment.
+            // Read-only pop-up.
+            if (this.readOnlyPopUpPending)
+            {
+                this.readOnlyPopUpPending = false;
+                ErrorBox.ShowWithStop(
+                    this.Handle,
+                    string.Format(I18n.Get(Settings.Message.ReadOnly), this.ProfileManager.Current.Name, Constants.Option.Detached),
+                    I18n.Get(Settings.Title.Settings),
+                    Constants.StopKey.ReadOnly);
+            }
         }
 
         /// <summary>
@@ -3397,7 +3425,10 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         private void MainScreen_ResizeBegin(object sender, EventArgs e)
         {
             Trace.Line(Trace.Type.Window, "MainWindow ResizeBegin");
-            this.resizeBeginPending = true;
+            if (!this.IsWindowArranged())
+            {
+                this.resizeBeginPending = true;
+            }
         }
 
         /// <summary>
@@ -3548,6 +3579,11 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         {
             var resizeCount = this.resizeCount++;
             Trace.Line(Trace.Type.Window, $"MainWindow ResizeEnd #{resizeCount} WindowState {this.WindowState} Size {this.Size} ClientSize {this.ClientSize} Location {this.Location}");
+            if (!this.resizeBeginPending)
+            {
+                Trace.Line(Trace.Type.Window, $"MainWindow ResizeEnd #{resizeCount} aborting, no ResizeBegin");
+                return;
+            }
 
             this.resizeBeginPending = false;
 
@@ -3557,9 +3593,9 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 var isWindowArranged = this.IsWindowArranged();
                 var arrText = isWindowArranged ? "arranged" : string.Empty;
                 Trace.Line(Trace.Type.Window, $" ==> resize {arrText}");
-                this.screenBox.Maximize(this.Maximized, this.ClientSize);
+                this.screenBox.Maximize(this.Maximized || this.IsWindowArranged(), this.ClientSize);
                 var newFont = this.screenBox.RecomputeFont(this.ClientSize, ResizeType.Dynamic);
-                if (!this.fullScreen && !isWindowArranged && !this.Maximized /* last clause is new.. is this safe? */)
+                if (!this.fullScreen && !isWindowArranged && !this.Maximized)
                 {
                     var fontProfile = new FontProfile(newFont);
                     if (this.ProfileManager.PushAndSave(
@@ -3727,7 +3763,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         private bool StepEfont(string keyword, out string errmsg)
         {
             errmsg = null;
-            if (this.WindowState == FormWindowState.Minimized)
+            if (this.WindowState == FormWindowState.Minimized || this.WindowState == FormWindowState.Maximized || this.IsWindowArranged())
             {
                 return false;
             }
@@ -3844,13 +3880,11 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// </summary>
         private void PopUpFullScreenWarning()
         {
-            NativeMethods.SHMessageBoxCheckW(
+            ErrorBox.ShowWithStop(
                 this.handle,
                 string.Format("{0}" + Environment.NewLine + Environment.NewLine + "{1}", I18n.Get(ErrorMessage.FullScreenToggle), I18n.Get(ErrorMessage.MenuBarToggle)),
                 I18n.Get(Title.FullScreen),
-                NativeMethods.MessageBoxCheckFlags.MB_OK | NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
-                NativeMethods.MessageBoxReturnValue.IDOK,
-                "wx3270.FullScreen");
+                Constants.StopKey.FullScreen);
         }
 
         /// <summary>
@@ -3858,13 +3892,11 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// </summary>
         private void PopUpMenuBarWarning()
         {
-            NativeMethods.SHMessageBoxCheckW(
+            ErrorBox.ShowWithStop(
                 this.handle,
                 I18n.Get(ErrorMessage.MenuBarToggle),
                 I18n.Get(Title.MenuBarDisabled),
-                NativeMethods.MessageBoxCheckFlags.MB_OK | NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
-                NativeMethods.MessageBoxReturnValue.IDOK,
-                "wx3270.MenuBar");
+                Constants.StopKey.MenuBar);
         }
 
         /// <summary>

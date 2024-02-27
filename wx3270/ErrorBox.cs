@@ -9,6 +9,7 @@ namespace Wx3270
 
     using I18nBase;
     using Wx3270.Contracts;
+    using static Wx3270.Settings;
 
     /// <summary>
     /// Pop-up error boxes.
@@ -81,6 +82,34 @@ namespace Wx3270
                     Clipboard.SetDataObject(dataObject, true);
                 }));
             }
+        }
+
+        /// <summary>
+        /// Pop up an info/error box with a checkbox to cancel further pop-ups.
+        /// </summary>
+        /// <param name="handle">Parent window hande.</param>
+        /// <param name="text">Message box text.</param>
+        /// <param name="title">Message box title.</param>
+        /// <param name="stopKey">Registry key for stop state.</param>
+        /// <param name="icon">Icon to display.</param>
+        public static void ShowWithStop(IntPtr handle, string text, string title, string stopKey, MessageBoxIcon icon = MessageBoxIcon.Information)
+        {
+            NativeMethods.MessageBoxCheckFlags iconFlags = icon switch
+            {
+                MessageBoxIcon.Information => NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
+                MessageBoxIcon.Error => NativeMethods.MessageBoxCheckFlags.MB_ICONEXCLAMATION,
+                MessageBoxIcon.Warning => NativeMethods.MessageBoxCheckFlags.MB_ICONEXCLAMATION,
+                MessageBoxIcon.Question => NativeMethods.MessageBoxCheckFlags.MB_ICONQUESTION,
+                MessageBoxIcon.None => 0U,
+                _ => 0U,
+            };
+            NativeMethods.SHMessageBoxCheckW(
+                handle,
+                text,
+                title,
+                NativeMethods.MessageBoxCheckFlags.MB_OK | iconFlags,
+                NativeMethods.MessageBoxReturnValue.IDOK,
+                "wx3270." + stopKey);
         }
 
         /// <summary>

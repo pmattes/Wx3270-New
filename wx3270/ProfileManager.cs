@@ -1278,14 +1278,6 @@ namespace Wx3270
             this.Current = newProfile;
             this.App.Invoke(new MethodInvoker(() => this.PropagateExternalChange(previous)));
             this.FlushUndoRedo();
-
-            NativeMethods.SHMessageBoxCheckW(
-                this.MainWindowHandle,
-                string.Format(I18n.Get(Settings.Message.Follower), this.Current.Name, Constants.Option.Detached),
-                I18n.Get(Settings.Title.Settings),
-                NativeMethods.MessageBoxCheckFlags.MB_OK | NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
-                NativeMethods.MessageBoxReturnValue.IDOK,
-                "wx3270.Follower");
         }
 
         /// <summary>
@@ -1387,6 +1379,7 @@ namespace Wx3270
                     }
 
                     profile.ReadOnly = true;
+                    profile.ReadOnlyForced = true;
                     this.Current = profile;
                 }
                 else if (isDefault && notFound)

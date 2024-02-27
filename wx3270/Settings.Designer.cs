@@ -91,6 +91,7 @@
             this.preferIpv4CheckBox = new System.Windows.Forms.CheckBox();
             this.preferIpv6CheckBox = new System.Windows.Forms.CheckBox();
             this.menuBarCheckBox = new System.Windows.Forms.CheckBox();
+            this.followerCheckBox = new System.Windows.Forms.CheckBox();
             this.cursorGroupBox = new System.Windows.Forms.GroupBox();
             this.crosshairCursorCheckBox = new System.Windows.Forms.CheckBox();
             this.underscoreCursorButton = new System.Windows.Forms.RadioButton();
@@ -333,7 +334,6 @@
             this.screenFontDialog = new System.Windows.Forms.FontDialog();
             this.opacityTimer = new System.Windows.Forms.Timer(this.components);
             this.printerSaveFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.followerCheckBox = new System.Windows.Forms.CheckBox();
             this.settingsTabs.SuspendLayout();
             this.optionsTab.SuspendLayout();
             this.descriptionGroupBox.SuspendLayout();
@@ -475,7 +475,7 @@
             this.optionsTab.Controls.Add(this.cursorGroupBox);
             this.optionsTab.Location = new System.Drawing.Point(4, 22);
             this.optionsTab.Name = "optionsTab";
-            this.optionsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.optionsTab.Padding = new System.Windows.Forms.Padding(3);
             this.optionsTab.Size = new System.Drawing.Size(675, 624);
             this.optionsTab.TabIndex = 0;
             this.optionsTab.Text = "Options";
@@ -1216,7 +1216,7 @@
             // 
             this.menuBarCheckBox.AutoSize = true;
             this.menuBarCheckBox.Location = new System.Drawing.Point(157, 77);
-            this.menuBarCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.menuBarCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.menuBarCheckBox.Name = "menuBarCheckBox";
             this.menuBarCheckBox.Size = new System.Drawing.Size(82, 19);
             this.menuBarCheckBox.TabIndex = 9;
@@ -1225,6 +1225,18 @@
             this.toolTip1.SetToolTip(this.menuBarCheckBox, "Display the menu bar at the top of the window");
             this.menuBarCheckBox.UseVisualStyleBackColor = true;
             this.menuBarCheckBox.CheckedChanged += new System.EventHandler(this.MiscLocalCheckBox_Changed);
+            // 
+            // followerCheckBox
+            // 
+            this.followerCheckBox.AutoSize = true;
+            this.followerCheckBox.Location = new System.Drawing.Point(158, 101);
+            this.followerCheckBox.Name = "followerCheckBox";
+            this.followerCheckBox.Size = new System.Drawing.Size(131, 19);
+            this.followerCheckBox.TabIndex = 10;
+            this.followerCheckBox.Text = "Read-only follower";
+            this.toolTip1.SetToolTip(this.followerCheckBox, "Synchronize changes from the read/write\r\ninstance using the same profile");
+            this.followerCheckBox.UseVisualStyleBackColor = true;
+            this.followerCheckBox.Click += new System.EventHandler(this.Follower_Click);
             // 
             // cursorGroupBox
             // 
@@ -2099,7 +2111,7 @@
             this.keypadRemoveButton.Enabled = false;
             this.keypadRemoveButton.ForeColor = System.Drawing.Color.Red;
             this.keypadRemoveButton.Location = new System.Drawing.Point(145, 46);
-            this.keypadRemoveButton.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.keypadRemoveButton.Margin = new System.Windows.Forms.Padding(10);
             this.keypadRemoveButton.Name = "keypadRemoveButton";
             this.keypadRemoveButton.Size = new System.Drawing.Size(76, 26);
             this.keypadRemoveButton.TabIndex = 43;
@@ -3213,7 +3225,7 @@
             this.colors3278Tab.Controls.Add(this.monoColorSchemeBox);
             this.colors3278Tab.Location = new System.Drawing.Point(4, 22);
             this.colors3278Tab.Name = "colors3278Tab";
-            this.colors3278Tab.Size = new System.Drawing.Size(675, 601);
+            this.colors3278Tab.Size = new System.Drawing.Size(675, 624);
             this.colors3278Tab.TabIndex = 6;
             this.colors3278Tab.Text = "3278 Colors";
             this.colors3278Tab.UseVisualStyleBackColor = true;
@@ -3558,7 +3570,7 @@
             this.fontTab.Controls.Add(this.fontGroupBox);
             this.fontTab.Location = new System.Drawing.Point(4, 22);
             this.fontTab.Name = "fontTab";
-            this.fontTab.Size = new System.Drawing.Size(675, 601);
+            this.fontTab.Size = new System.Drawing.Size(675, 624);
             this.fontTab.TabIndex = 5;
             this.fontTab.Text = "Font";
             this.fontTab.UseVisualStyleBackColor = true;
@@ -3648,9 +3660,9 @@
             this.sizeIgnoredLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sizeIgnoredLabel.Location = new System.Drawing.Point(7, 72);
             this.sizeIgnoredLabel.Name = "sizeIgnoredLabel";
-            this.sizeIgnoredLabel.Size = new System.Drawing.Size(294, 15);
+            this.sizeIgnoredLabel.Size = new System.Drawing.Size(376, 15);
             this.sizeIgnoredLabel.TabIndex = 4;
-            this.sizeIgnoredLabel.Text = "Note: Font size is ignored when screen is maximized";
+            this.sizeIgnoredLabel.Text = "Note: Font size is ignored when the window is maximized or docked";
             // 
             // fontLabel
             // 
@@ -3679,7 +3691,7 @@
             this.soundsTab.Controls.Add(this.soundsGroupBox);
             this.soundsTab.Location = new System.Drawing.Point(4, 22);
             this.soundsTab.Name = "soundsTab";
-            this.soundsTab.Size = new System.Drawing.Size(675, 601);
+            this.soundsTab.Size = new System.Drawing.Size(675, 624);
             this.soundsTab.TabIndex = 4;
             this.soundsTab.Text = "Sounds";
             this.soundsTab.UseVisualStyleBackColor = true;
@@ -3773,8 +3785,8 @@
             this.serversTab.Controls.Add(this.s3270Box);
             this.serversTab.Location = new System.Drawing.Point(4, 22);
             this.serversTab.Name = "serversTab";
-            this.serversTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.serversTab.Size = new System.Drawing.Size(675, 601);
+            this.serversTab.Padding = new System.Windows.Forms.Padding(3);
+            this.serversTab.Size = new System.Drawing.Size(675, 624);
             this.serversTab.TabIndex = 8;
             this.serversTab.Text = "Servers";
             this.serversTab.UseVisualStyleBackColor = true;
@@ -3986,8 +3998,8 @@
             this.proxyTab.Controls.Add(this.proxyGroupBox);
             this.proxyTab.Location = new System.Drawing.Point(4, 22);
             this.proxyTab.Name = "proxyTab";
-            this.proxyTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.proxyTab.Size = new System.Drawing.Size(675, 601);
+            this.proxyTab.Padding = new System.Windows.Forms.Padding(3);
+            this.proxyTab.Size = new System.Drawing.Size(675, 624);
             this.proxyTab.TabIndex = 9;
             this.proxyTab.Text = "Proxy";
             this.proxyTab.UseVisualStyleBackColor = true;
@@ -4143,8 +4155,8 @@
             this.miscellaneousTab.Controls.Add(this.miscellaneousGroupBox);
             this.miscellaneousTab.Location = new System.Drawing.Point(4, 22);
             this.miscellaneousTab.Name = "miscellaneousTab";
-            this.miscellaneousTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.miscellaneousTab.Size = new System.Drawing.Size(675, 601);
+            this.miscellaneousTab.Padding = new System.Windows.Forms.Padding(3);
+            this.miscellaneousTab.Size = new System.Drawing.Size(675, 624);
             this.miscellaneousTab.TabIndex = 10;
             this.miscellaneousTab.Text = "Misc";
             this.miscellaneousTab.UseVisualStyleBackColor = true;
@@ -4328,7 +4340,7 @@
             this.readOnlyFlowLayoutPanel.Controls.Add(this.readOnlyLabel);
             this.readOnlyFlowLayoutPanel.Controls.Add(this.saveACopyButton);
             this.readOnlyFlowLayoutPanel.Location = new System.Drawing.Point(2, 658);
-            this.readOnlyFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.readOnlyFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
             this.readOnlyFlowLayoutPanel.Name = "readOnlyFlowLayoutPanel";
             this.readOnlyFlowLayoutPanel.Size = new System.Drawing.Size(382, 31);
             this.readOnlyFlowLayoutPanel.TabIndex = 1;
@@ -4339,7 +4351,7 @@
             this.readOnlyLabel.AutoSize = true;
             this.readOnlyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.readOnlyLabel.Location = new System.Drawing.Point(3, 7);
-            this.readOnlyLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.readOnlyLabel.Margin = new System.Windows.Forms.Padding(3);
             this.readOnlyLabel.Name = "readOnlyLabel";
             this.readOnlyLabel.Size = new System.Drawing.Size(288, 17);
             this.readOnlyLabel.TabIndex = 0;
@@ -4374,18 +4386,6 @@
             // 
             this.opacityTimer.Interval = 2000;
             this.opacityTimer.Tick += new System.EventHandler(this.OpacityTimer_Tick);
-            // 
-            // followerCheckBox
-            // 
-            this.followerCheckBox.AutoSize = true;
-            this.followerCheckBox.Location = new System.Drawing.Point(158, 101);
-            this.followerCheckBox.Name = "followerCheckBox";
-            this.followerCheckBox.Size = new System.Drawing.Size(131, 19);
-            this.followerCheckBox.TabIndex = 10;
-            this.followerCheckBox.Text = "Read-only follower";
-            this.toolTip1.SetToolTip(this.followerCheckBox, "Synchronize changes from the read/write\r\ninstance using the same profile");
-            this.followerCheckBox.UseVisualStyleBackColor = true;
-            this.followerCheckBox.Click += new System.EventHandler(this.Follower_Click);
             // 
             // Settings
             // 
