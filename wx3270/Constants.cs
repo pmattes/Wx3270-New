@@ -368,6 +368,37 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
         }
 
         /// <summary>
+        /// Keys for stoppable messages.
+        /// </summary>
+        public class StopKey
+        {
+            /// <summary>
+            /// Model changes have been deferred.
+            /// </summary>
+            public const string Deferred = "Deferred";
+
+            /// <summary>
+            /// How to get back out of full screen mode.
+            /// </summary>
+            public const string FullScreen = "FullScreen";
+
+            /// <summary>
+            /// How to restore the menu bar.
+            /// </summary>
+            public const string MenuBar = "MenuBar";
+
+            /// <summary>
+            /// Profile opened read-only.
+            /// </summary>
+            public const string ReadOnly = "ReadOnly";
+
+            /// <summary>
+            /// How to restart a tour.
+            /// </summary>
+            public const string Tour = "Tour";
+        }
+
+        /// <summary>
         /// Miscellaneous constants.
         /// </summary>
         public class Misc

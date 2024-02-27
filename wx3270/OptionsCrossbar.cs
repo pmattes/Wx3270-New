@@ -229,13 +229,11 @@ namespace Wx3270
             if (after.Except(before).Any())
             {
                 // Something new was deferred.
-                NativeMethods.SHMessageBoxCheckW(
+                ErrorBox.ShowWithStop(
                     this.MainWindowHandle,
                     I18n.Get(Message.DeferredUntilDisconnectedPopUp),
                     I18n.Get(Title.Settings),
-                    NativeMethods.MessageBoxCheckFlags.MB_OK | NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
-                    NativeMethods.MessageBoxReturnValue.IDOK,
-                    "wx3270.Deferred");
+                    Constants.StopKey.Deferred);
             }
         }
 

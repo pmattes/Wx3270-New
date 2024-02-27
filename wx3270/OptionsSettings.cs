@@ -168,7 +168,7 @@ namespace Wx3270
                 Tour.BodyKey(nameof(Settings), nameof(displayGroupBox)),
 @"Choose between a 3278 (monochrome) and 3279 (color) display here.
 
-This option cannot be changed while connected.");
+If this setting is changed while connected, the change will not take effect until the connection is broken.");
 
             // Opacity box.
             I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(opacityGroupBox)), "Opacity");
@@ -184,7 +184,7 @@ This option cannot be changed while connected.");
 
 Some hosts also allow an 'oversize' option, with a larger number of rows and columns than the basic size.
 
-This option cannot be changed while connected.");
+If this setting is changed while connected, the change will not take effect until the connection is broken.");
 
             // Terminal name box.
             I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(terminalNameGroupBox)), "Terminal name");
@@ -194,7 +194,7 @@ This option cannot be changed while connected.");
 
 Normally this is constructed from the 3270 model, color option and oversize settings, but if necessary, you can override it here.
 
-This option cannot be changed while connected.");
+If this setting is changed while connected, the change will not take effect until the connection is broken.");
 
             // Miscellaneous settings box.
             I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(miscGroupBox)), "Miscellaneous options");

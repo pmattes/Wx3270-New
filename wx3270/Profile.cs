@@ -194,6 +194,11 @@ namespace Wx3270
         public bool ReadOnly { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the profile was forced to be read-only because it is locked by another window. (Not serialized.)
+        /// </summary>
+        public bool ReadOnlyForced { get; set; }
+
+        /// <summary>
         /// Gets or sets the display-friendly version of the folder name. (Not serialized.)
         /// </summary>
         public string DisplayFolder { get; set; }

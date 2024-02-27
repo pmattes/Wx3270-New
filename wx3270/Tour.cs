@@ -468,13 +468,11 @@ namespace Wx3270
             this.Close();
 
             // Remind them how to take the tour again.
-            NativeMethods.SHMessageBoxCheckW(
-            this.parent.Handle,
-            I18n.Get(TourReminderBody),
-            I18n.Get(TourReminderTitle),
-            NativeMethods.MessageBoxCheckFlags.MB_OK | NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
-            NativeMethods.MessageBoxReturnValue.IDOK,
-            "wx3270.Tour");
+            ErrorBox.ShowWithStop(
+                this.parent.Handle,
+                I18n.Get(TourReminderBody),
+                I18n.Get(TourReminderTitle),
+                Constants.StopKey.Tour);
         }
 
         /// <summary>

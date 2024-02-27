@@ -6,7 +6,6 @@ namespace Wx3270
 {
     using System;
     using System.Drawing;
-    using System.Linq;
     using System.Windows.Forms;
     using I18nBase;
 
@@ -112,7 +111,7 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Step the font (one size bigger or smaller).
+        /// Propagate the new font.
         /// </summary>
         /// <param name="newFont">New font.</param>
         public void PropagateNewFont(Font newFont)
