@@ -442,6 +442,11 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             /// Keyword for making the font smaller.
             /// </summary>
             public const string Smaller = "smaller";
+
+            /// <summary>
+            /// The Windows null device.
+            /// </summary>
+            public const string NullDevice = "NUL:";
         }
     }
 }

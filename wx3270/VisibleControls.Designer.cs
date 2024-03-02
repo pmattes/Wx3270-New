@@ -220,7 +220,7 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(454, 705);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(508, 705);
             this.tableLayoutPanel.TabIndex = 1;
             // 
             // sfLabelV
@@ -229,7 +229,7 @@
             this.sfLabelV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelV.Location = new System.Drawing.Point(33, 684);
             this.sfLabelV.Name = "sfLabelV";
-            this.sfLabelV.Size = new System.Drawing.Size(418, 21);
+            this.sfLabelV.Size = new System.Drawing.Size(472, 21);
             this.sfLabelV.TabIndex = 12;
             this.sfLabelV.Text = "Start Field, invisible, protected, numeric, modified";
             this.sfLabelV.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -240,7 +240,7 @@
             this.sfLabelU.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelU.Location = new System.Drawing.Point(33, 664);
             this.sfLabelU.Name = "sfLabelU";
-            this.sfLabelU.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelU.Size = new System.Drawing.Size(472, 20);
             this.sfLabelU.TabIndex = 12;
             this.sfLabelU.Text = "Start Field, invisible, protected, numeric";
             this.sfLabelU.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -251,7 +251,7 @@
             this.sfLabelT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelT.Location = new System.Drawing.Point(33, 644);
             this.sfLabelT.Name = "sfLabelT";
-            this.sfLabelT.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelT.Size = new System.Drawing.Size(472, 20);
             this.sfLabelT.TabIndex = 12;
             this.sfLabelT.Text = "Start Field, highlighted, selectable, protected, numeric, modified";
             this.sfLabelT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -262,7 +262,7 @@
             this.sfLabelS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelS.Location = new System.Drawing.Point(33, 624);
             this.sfLabelS.Name = "sfLabelS";
-            this.sfLabelS.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelS.Size = new System.Drawing.Size(472, 20);
             this.sfLabelS.TabIndex = 12;
             this.sfLabelS.Text = "Start Field, highlighted, selectable, protected, numeric";
             this.sfLabelS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -273,7 +273,7 @@
             this.sfLabelR.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelR.Location = new System.Drawing.Point(33, 604);
             this.sfLabelR.Name = "sfLabelR";
-            this.sfLabelR.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelR.Size = new System.Drawing.Size(472, 20);
             this.sfLabelR.TabIndex = 12;
             this.sfLabelR.Text = "Start Field, selectable, protected, numeric, modified";
             this.sfLabelR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -284,7 +284,7 @@
             this.sfLabelQ.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelQ.Location = new System.Drawing.Point(33, 584);
             this.sfLabelQ.Name = "sfLabelQ";
-            this.sfLabelQ.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelQ.Size = new System.Drawing.Size(472, 20);
             this.sfLabelQ.TabIndex = 12;
             this.sfLabelQ.Text = "Start Field, selectable, protected, numeric";
             this.sfLabelQ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -295,7 +295,7 @@
             this.sfLabelP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelP.Location = new System.Drawing.Point(33, 564);
             this.sfLabelP.Name = "sfLabelP";
-            this.sfLabelP.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelP.Size = new System.Drawing.Size(472, 20);
             this.sfLabelP.TabIndex = 12;
             this.sfLabelP.Text = "Start Field, protected, numeric, modified";
             this.sfLabelP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -306,7 +306,7 @@
             this.sfLabelO.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelO.Location = new System.Drawing.Point(33, 544);
             this.sfLabelO.Name = "sfLabelO";
-            this.sfLabelO.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelO.Size = new System.Drawing.Size(472, 20);
             this.sfLabelO.TabIndex = 12;
             this.sfLabelO.Text = "Start Field, protected, numeric";
             this.sfLabelO.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -317,7 +317,7 @@
             this.sfLabelN.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelN.Location = new System.Drawing.Point(33, 524);
             this.sfLabelN.Name = "sfLabelN";
-            this.sfLabelN.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelN.Size = new System.Drawing.Size(472, 20);
             this.sfLabelN.TabIndex = 12;
             this.sfLabelN.Text = "Start Field, invisible, protected, modified";
             this.sfLabelN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -328,7 +328,7 @@
             this.sfLabelM.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelM.Location = new System.Drawing.Point(33, 504);
             this.sfLabelM.Name = "sfLabelM";
-            this.sfLabelM.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelM.Size = new System.Drawing.Size(472, 20);
             this.sfLabelM.TabIndex = 12;
             this.sfLabelM.Text = "Start Field, invisible, protected";
             this.sfLabelM.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -339,7 +339,7 @@
             this.sfLabelL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelL.Location = new System.Drawing.Point(33, 484);
             this.sfLabelL.Name = "sfLabelL";
-            this.sfLabelL.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelL.Size = new System.Drawing.Size(472, 20);
             this.sfLabelL.TabIndex = 12;
             this.sfLabelL.Text = "Start Field, highlighted, selectable, protected, modified";
             this.sfLabelL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -350,7 +350,7 @@
             this.sfLabelK.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelK.Location = new System.Drawing.Point(33, 464);
             this.sfLabelK.Name = "sfLabelK";
-            this.sfLabelK.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelK.Size = new System.Drawing.Size(472, 20);
             this.sfLabelK.TabIndex = 12;
             this.sfLabelK.Text = "Start Field, highlighted, selectable, protected";
             this.sfLabelK.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -361,7 +361,7 @@
             this.sfLabelJ.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelJ.Location = new System.Drawing.Point(33, 444);
             this.sfLabelJ.Name = "sfLabelJ";
-            this.sfLabelJ.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelJ.Size = new System.Drawing.Size(472, 20);
             this.sfLabelJ.TabIndex = 12;
             this.sfLabelJ.Text = "Start Field, selectable, protected, modified";
             this.sfLabelJ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -372,7 +372,7 @@
             this.sfLabelI.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelI.Location = new System.Drawing.Point(33, 424);
             this.sfLabelI.Name = "sfLabelI";
-            this.sfLabelI.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelI.Size = new System.Drawing.Size(472, 20);
             this.sfLabelI.TabIndex = 12;
             this.sfLabelI.Text = "Start Field, selectable, protected";
             this.sfLabelI.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -383,7 +383,7 @@
             this.sfLabelH.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelH.Location = new System.Drawing.Point(33, 404);
             this.sfLabelH.Name = "sfLabelH";
-            this.sfLabelH.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelH.Size = new System.Drawing.Size(472, 20);
             this.sfLabelH.TabIndex = 12;
             this.sfLabelH.Text = "Start Field, protected, modified";
             this.sfLabelH.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -394,7 +394,7 @@
             this.sfLabelG.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelG.Location = new System.Drawing.Point(33, 384);
             this.sfLabelG.Name = "sfLabelG";
-            this.sfLabelG.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelG.Size = new System.Drawing.Size(472, 20);
             this.sfLabelG.TabIndex = 12;
             this.sfLabelG.Text = "Start Field, protected";
             this.sfLabelG.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -405,7 +405,7 @@
             this.sfLabelF.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelF.Location = new System.Drawing.Point(33, 364);
             this.sfLabelF.Name = "sfLabelF";
-            this.sfLabelF.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelF.Size = new System.Drawing.Size(472, 20);
             this.sfLabelF.TabIndex = 12;
             this.sfLabelF.Text = "Start Field, invisible, numeric, modified";
             this.sfLabelF.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -416,7 +416,7 @@
             this.sfLlabelE.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLlabelE.Location = new System.Drawing.Point(33, 344);
             this.sfLlabelE.Name = "sfLlabelE";
-            this.sfLlabelE.Size = new System.Drawing.Size(418, 20);
+            this.sfLlabelE.Size = new System.Drawing.Size(472, 20);
             this.sfLlabelE.TabIndex = 12;
             this.sfLlabelE.Text = "Start Field, invisible, numeric";
             this.sfLlabelE.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -427,7 +427,7 @@
             this.sfLabelD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelD.Location = new System.Drawing.Point(33, 324);
             this.sfLabelD.Name = "sfLabelD";
-            this.sfLabelD.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelD.Size = new System.Drawing.Size(472, 20);
             this.sfLabelD.TabIndex = 12;
             this.sfLabelD.Text = "Start Field, highlighted, selectable, numeric, modified";
             this.sfLabelD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -438,7 +438,7 @@
             this.sfLabelC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelC.Location = new System.Drawing.Point(33, 304);
             this.sfLabelC.Name = "sfLabelC";
-            this.sfLabelC.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelC.Size = new System.Drawing.Size(472, 20);
             this.sfLabelC.TabIndex = 12;
             this.sfLabelC.Text = "Start Field, highlighted, selectable, numeric";
             this.sfLabelC.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -449,7 +449,7 @@
             this.sfLabelB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelB.Location = new System.Drawing.Point(33, 284);
             this.sfLabelB.Name = "sfLabelB";
-            this.sfLabelB.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelB.Size = new System.Drawing.Size(472, 20);
             this.sfLabelB.TabIndex = 12;
             this.sfLabelB.Text = "Start Field, selectable, numeric, modified";
             this.sfLabelB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -460,7 +460,7 @@
             this.sfLabelA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabelA.Location = new System.Drawing.Point(33, 264);
             this.sfLabelA.Name = "sfLabelA";
-            this.sfLabelA.Size = new System.Drawing.Size(418, 20);
+            this.sfLabelA.Size = new System.Drawing.Size(472, 20);
             this.sfLabelA.TabIndex = 12;
             this.sfLabelA.Text = "Start Field, selectable, numeric";
             this.sfLabelA.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -471,7 +471,7 @@
             this.sfLabel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabel9.Location = new System.Drawing.Point(33, 244);
             this.sfLabel9.Name = "sfLabel9";
-            this.sfLabel9.Size = new System.Drawing.Size(418, 20);
+            this.sfLabel9.Size = new System.Drawing.Size(472, 20);
             this.sfLabel9.TabIndex = 12;
             this.sfLabel9.Text = "Start Field, numeric, modified";
             this.sfLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -482,7 +482,7 @@
             this.sfLabel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabel8.Location = new System.Drawing.Point(33, 224);
             this.sfLabel8.Name = "sfLabel8";
-            this.sfLabel8.Size = new System.Drawing.Size(418, 20);
+            this.sfLabel8.Size = new System.Drawing.Size(472, 20);
             this.sfLabel8.TabIndex = 12;
             this.sfLabel8.Text = "Start Field, numeric";
             this.sfLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -493,7 +493,7 @@
             this.sfLabel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabel7.Location = new System.Drawing.Point(33, 204);
             this.sfLabel7.Name = "sfLabel7";
-            this.sfLabel7.Size = new System.Drawing.Size(418, 20);
+            this.sfLabel7.Size = new System.Drawing.Size(472, 20);
             this.sfLabel7.TabIndex = 12;
             this.sfLabel7.Text = "Start Field, invisible, modified";
             this.sfLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -504,7 +504,7 @@
             this.sfLlabel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLlabel6.Location = new System.Drawing.Point(33, 184);
             this.sfLlabel6.Name = "sfLlabel6";
-            this.sfLlabel6.Size = new System.Drawing.Size(418, 20);
+            this.sfLlabel6.Size = new System.Drawing.Size(472, 20);
             this.sfLlabel6.TabIndex = 12;
             this.sfLlabel6.Text = "Start Field, invisible";
             this.sfLlabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -515,7 +515,7 @@
             this.slLabel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.slLabel5.Location = new System.Drawing.Point(33, 164);
             this.slLabel5.Name = "slLabel5";
-            this.slLabel5.Size = new System.Drawing.Size(418, 20);
+            this.slLabel5.Size = new System.Drawing.Size(472, 20);
             this.slLabel5.TabIndex = 12;
             this.slLabel5.Text = "Start Field, highlighted, selectable, modified";
             this.slLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -931,7 +931,7 @@
             this.sfLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabel4.Location = new System.Drawing.Point(33, 144);
             this.sfLabel4.Name = "sfLabel4";
-            this.sfLabel4.Size = new System.Drawing.Size(418, 20);
+            this.sfLabel4.Size = new System.Drawing.Size(472, 20);
             this.sfLabel4.TabIndex = 11;
             this.sfLabel4.Text = "Start Field, highlighted, selectable";
             this.sfLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -942,7 +942,7 @@
             this.sfLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabel3.Location = new System.Drawing.Point(33, 124);
             this.sfLabel3.Name = "sfLabel3";
-            this.sfLabel3.Size = new System.Drawing.Size(418, 20);
+            this.sfLabel3.Size = new System.Drawing.Size(472, 20);
             this.sfLabel3.TabIndex = 9;
             this.sfLabel3.Text = "Start Field, selectable, modified";
             this.sfLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -968,7 +968,7 @@
             this.sfLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabel2.Location = new System.Drawing.Point(33, 104);
             this.sfLabel2.Name = "sfLabel2";
-            this.sfLabel2.Size = new System.Drawing.Size(418, 20);
+            this.sfLabel2.Size = new System.Drawing.Size(472, 20);
             this.sfLabel2.TabIndex = 7;
             this.sfLabel2.Text = "Start Field, selectable";
             this.sfLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1009,7 +1009,7 @@
             this.sfLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabel1.Location = new System.Drawing.Point(33, 84);
             this.sfLabel1.Name = "sfLabel1";
-            this.sfLabel1.Size = new System.Drawing.Size(418, 20);
+            this.sfLabel1.Size = new System.Drawing.Size(472, 20);
             this.sfLabel1.TabIndex = 6;
             this.sfLabel1.Text = "Start Field, modified";
             this.sfLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1035,7 +1035,7 @@
             this.sfLabel0.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfLabel0.Location = new System.Drawing.Point(33, 64);
             this.sfLabel0.Name = "sfLabel0";
-            this.sfLabel0.Size = new System.Drawing.Size(418, 20);
+            this.sfLabel0.Size = new System.Drawing.Size(472, 20);
             this.sfLabel0.TabIndex = 5;
             this.sfLabel0.Text = "Start Field, default (visible; not protected, highlighted, selectable, numeric or" +
     " modified)";
@@ -1062,7 +1062,7 @@
             this.siLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.siLabel.Location = new System.Drawing.Point(33, 44);
             this.siLabel.Name = "siLabel";
-            this.siLabel.Size = new System.Drawing.Size(418, 20);
+            this.siLabel.Size = new System.Drawing.Size(472, 20);
             this.siLabel.TabIndex = 4;
             this.siLabel.Text = "SI (shift to SBCS), X\'0F\'";
             this.siLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1118,7 +1118,7 @@
             this.nulLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nulLabel.Location = new System.Drawing.Point(33, 4);
             this.nulLabel.Name = "nulLabel";
-            this.nulLabel.Size = new System.Drawing.Size(418, 20);
+            this.nulLabel.Size = new System.Drawing.Size(472, 20);
             this.nulLabel.TabIndex = 1;
             this.nulLabel.Text = "NUL, X\'00\'";
             this.nulLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1129,7 +1129,7 @@
             this.soLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.soLabel.Location = new System.Drawing.Point(33, 24);
             this.soLabel.Name = "soLabel";
-            this.soLabel.Size = new System.Drawing.Size(418, 20);
+            this.soLabel.Size = new System.Drawing.Size(472, 20);
             this.soLabel.TabIndex = 3;
             this.soLabel.Text = "SO (shift to DBCS), X\'0E\'";
             this.soLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1145,6 +1145,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "VisibleControls";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Visible Control Characters";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VisibleControls_FormClosing);

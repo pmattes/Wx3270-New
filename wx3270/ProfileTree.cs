@@ -8,9 +8,11 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics;
+    using System.Diagnostics.Contracts;
     using System.Drawing;
     using System.IO;
     using System.Linq;
+    using System.Runtime.InteropServices.WindowsRuntime;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
     using I18nBase;
@@ -107,11 +109,6 @@ namespace Wx3270
         /// Where the left mouse button was pressed for drag-drop.
         /// </summary>
         private Point? mouseDownPoint;
-
-        /// <summary>
-        /// True if the form has ever been activated.
-        /// </summary>
-        private bool everActivated;
 
         /// <summary>
         /// The window handle.
@@ -725,7 +722,7 @@ The button labels include a count of how many Undo and Redo operations are saved
             if (!string.IsNullOrEmpty(app.DumpLocalization))
             {
                 args.Add(Constants.Option.DumpLocalization);
-                args.Add("NUL:");
+                args.Add(Constants.Misc.NullDevice);
             }
             else
             {
@@ -798,9 +795,8 @@ The button labels include a count of how many Undo and Redo operations are saved
         {
             // Pop up the dialog.
             using var editor = new HostEditor(HostEditingMode.QuickConnect, existingHostEntry, profile, this.app, spec) { LoginMacroInsert = loginMacroIns };
-            editor.Location = MainScreen.CenteredOn(this.mainScreen, editor);
             HostEntry hostEntry = null;
-            var result = editor.ShowDialog(fromInside ? (Form)this : (Form)this.mainScreen);
+            var result = editor.ShowDialog(fromInside ? (Form)this : this.mainScreen);
             if (result == DialogResult.OK)
             {
                 if (editor.Result.HasFlag(HostEditingResult.Save))
@@ -1998,15 +1994,9 @@ The button labels include a count of how many Undo and Redo operations are saved
         /// <param name="e">Event arguments.</param>
         private void ConnectTree_Activated(object sender, EventArgs e)
         {
-            if (!this.everActivated)
+            if (!Tour.IsComplete(this))
             {
-                this.everActivated = true;
-                this.Location = MainScreen.CenteredOn(this.mainScreen, this);
-
-                if (!Tour.IsComplete(this))
-                {
-                    this.RunTour();
-                }
+                this.RunTour();
             }
 
             this.treeView.Focus();
@@ -2788,12 +2778,15 @@ The button labels include a count of how many Undo and Redo operations are saved
         {
             this.shortcutDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             this.shortcutDialog.FileName = (connection ?? profile.Name) + ".lnk";
-            switch (this.shortcutDialog.ShowDialog(this))
+            if (this.shortcutDialog.ShowDialog(this) != DialogResult.OK)
             {
-                case DialogResult.OK:
-                    break;
-                default:
-                    return;
+                return;
+            }
+
+            using var optionsDialog = new ShortcutDialog(this.app, this.shortcutDialog.FileName, this.mainScreen.Location, profile.Name, connection ?? string.Empty);
+            if (optionsDialog.ShowDialog(this) != DialogResult.OK)
+            {
+                return;
             }
 
             var args = new List<string>
@@ -2807,8 +2800,34 @@ The button labels include a count of how many Undo and Redo operations are saved
                 args.Add("\"" + connection + "\"");
             }
 
+            if (optionsDialog.Maximized)
+            {
+                args.Add(Constants.Option.Maximize);
+            }
+
+            if (optionsDialog.FullScreen)
+            {
+                args.Add(Constants.Option.FullScreen);
+            }
+
+            if (optionsDialog.StartLocation.HasValue)
+            {
+                args.Add(Constants.Option.Location);
+                args.Add($"{optionsDialog.StartLocation.Value.X},{optionsDialog.StartLocation.Value.Y}");
+            }
+
+            if (optionsDialog.ReadOnly)
+            {
+                args.Add(Constants.Option.ReadOnly);
+            }
+
+            if (optionsDialog.Detached)
+            {
+                args.Add(Constants.Option.Detached);
+            }
+
             var shell = new WshShell();
-            var shortcut = (IWshShortcut)shell.CreateShortcut(this.shortcutDialog.FileName);
+            var shortcut = (IWshShortcut)shell.CreateShortcut(optionsDialog.PathName);
             shortcut.Description = "wx3270 shortcut";
             shortcut.TargetPath = Application.ExecutablePath;
             shortcut.Arguments = string.Join(" ", args);
@@ -2987,7 +3006,6 @@ The button labels include a count of how many Undo and Redo operations are saved
 
             // Pop up the dialog.
             using var editor = new HostEditor(HostEditingMode.SaveHost, hostEntry, hostNode.Profile, this.app) { LoginMacroInsert = loginMacroIns };
-            editor.Location = MainScreen.CenteredOn(this.mainScreen, editor);
             var result = editor.ShowDialog(fromInside ? (Form)this : this.mainScreen);
             if (result == DialogResult.OK)
             {
@@ -3616,6 +3634,17 @@ The button labels include a count of how many Undo and Redo operations are saved
                 (this.helpPictureBox, null, Orientation.UpperRight),
             };
             Tour.Navigate(this, nodes);
+        }
+
+        /// <summary>
+        /// The form is being loaded.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void ProfileTreeLoad(object sender, EventArgs e)
+        {
+            // For some reason, this window will not center on its parent without doing this explicitly.
+            this.CenterToParent();
         }
 
         /// <summary>

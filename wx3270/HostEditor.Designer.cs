@@ -152,10 +152,9 @@
             // connectionNameTextBox
             // 
             this.connectionNameTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.connectionNameTextBox.Location = new System.Drawing.Point(165, 27);
-            this.connectionNameTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.connectionNameTextBox.Location = new System.Drawing.Point(124, 24);
             this.connectionNameTextBox.Name = "connectionNameTextBox";
-            this.connectionNameTextBox.Size = new System.Drawing.Size(307, 20);
+            this.connectionNameTextBox.Size = new System.Drawing.Size(230, 20);
             this.connectionNameTextBox.TabIndex = 3;
             this.connectionNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NicknameTextBox_Validating);
             // 
@@ -163,8 +162,7 @@
             // 
             this.sessionNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.sessionNameLabel.AutoSize = true;
-            this.sessionNameLabel.Location = new System.Drawing.Point(4, 29);
-            this.sessionNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.sessionNameLabel.Location = new System.Drawing.Point(3, 26);
             this.sessionNameLabel.Name = "sessionNameLabel";
             this.sessionNameLabel.Size = new System.Drawing.Size(104, 15);
             this.sessionNameLabel.TabIndex = 2;
@@ -174,32 +172,29 @@
             // 
             this.LuNamesTextBox.AcceptsReturn = true;
             this.LuNamesTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LuNamesTextBox.Location = new System.Drawing.Point(165, 111);
-            this.LuNamesTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.LuNamesTextBox.Location = new System.Drawing.Point(124, 102);
             this.LuNamesTextBox.Multiline = true;
             this.LuNamesTextBox.Name = "LuNamesTextBox";
             this.LuNamesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.LuNamesTextBox.Size = new System.Drawing.Size(307, 54);
+            this.LuNamesTextBox.Size = new System.Drawing.Size(230, 45);
             this.LuNamesTextBox.TabIndex = 9;
             this.LuNamesTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.LuNamesTextBox_Validating);
             // 
             // PortTextBox
             // 
             this.PortTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PortTextBox.Location = new System.Drawing.Point(165, 83);
-            this.PortTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.PortTextBox.Location = new System.Drawing.Point(124, 76);
             this.PortTextBox.Name = "PortTextBox";
-            this.PortTextBox.Size = new System.Drawing.Size(307, 20);
+            this.PortTextBox.Size = new System.Drawing.Size(230, 20);
             this.PortTextBox.TabIndex = 7;
             this.PortTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PortTextBox_Validating);
             // 
             // HostNameTextBox
             // 
             this.HostNameTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.HostNameTextBox.Location = new System.Drawing.Point(165, 55);
-            this.HostNameTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.HostNameTextBox.Location = new System.Drawing.Point(124, 50);
             this.HostNameTextBox.Name = "HostNameTextBox";
-            this.HostNameTextBox.Size = new System.Drawing.Size(307, 20);
+            this.HostNameTextBox.Size = new System.Drawing.Size(230, 20);
             this.HostNameTextBox.TabIndex = 5;
             this.HostNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.HostNameTextBox_Validating);
             // 
@@ -207,8 +202,7 @@
             // 
             this.luNamesLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.luNamesLabel.AutoSize = true;
-            this.luNamesLabel.Location = new System.Drawing.Point(4, 130);
-            this.luNamesLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.luNamesLabel.Location = new System.Drawing.Point(3, 117);
             this.luNamesLabel.Name = "luNamesLabel";
             this.luNamesLabel.Size = new System.Drawing.Size(64, 15);
             this.luNamesLabel.TabIndex = 8;
@@ -218,8 +212,7 @@
             // 
             this.portLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.portLabel.AutoSize = true;
-            this.portLabel.Location = new System.Drawing.Point(4, 85);
-            this.portLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.portLabel.Location = new System.Drawing.Point(3, 78);
             this.portLabel.Name = "portLabel";
             this.portLabel.Size = new System.Drawing.Size(29, 15);
             this.portLabel.TabIndex = 6;
@@ -229,8 +222,7 @@
             // 
             this.hostNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.hostNameLabel.AutoSize = true;
-            this.hostNameLabel.Location = new System.Drawing.Point(4, 57);
-            this.hostNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.hostNameLabel.Location = new System.Drawing.Point(3, 52);
             this.hostNameLabel.Name = "hostNameLabel";
             this.hostNameLabel.Size = new System.Drawing.Size(72, 15);
             this.hostNameLabel.TabIndex = 4;
@@ -240,8 +232,7 @@
             // 
             this.noLoadConnectButton.AutoSize = true;
             this.noLoadConnectButton.Checked = true;
-            this.noLoadConnectButton.Location = new System.Drawing.Point(4, 4);
-            this.noLoadConnectButton.Margin = new System.Windows.Forms.Padding(4);
+            this.noLoadConnectButton.Location = new System.Drawing.Point(3, 3);
             this.noLoadConnectButton.Name = "noLoadConnectButton";
             this.noLoadConnectButton.Size = new System.Drawing.Size(183, 19);
             this.noLoadConnectButton.TabIndex = 0;
@@ -253,8 +244,7 @@
             // loadConnectButton
             // 
             this.loadConnectButton.AutoSize = true;
-            this.loadConnectButton.Location = new System.Drawing.Point(4, 31);
-            this.loadConnectButton.Margin = new System.Windows.Forms.Padding(4);
+            this.loadConnectButton.Location = new System.Drawing.Point(3, 28);
             this.loadConnectButton.Name = "loadConnectButton";
             this.loadConnectButton.Size = new System.Drawing.Size(159, 19);
             this.loadConnectButton.TabIndex = 0;
@@ -269,11 +259,9 @@
             this.loadGroupBox.AutoSize = true;
             this.loadGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.loadGroupBox.Controls.Add(this.loadTableLayoutPanel);
-            this.loadGroupBox.Location = new System.Drawing.Point(4, 203);
-            this.loadGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.loadGroupBox.Location = new System.Drawing.Point(3, 166);
             this.loadGroupBox.Name = "loadGroupBox";
-            this.loadGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.loadGroupBox.Size = new System.Drawing.Size(484, 102);
+            this.loadGroupBox.Size = new System.Drawing.Size(363, 94);
             this.loadGroupBox.TabIndex = 1;
             this.loadGroupBox.TabStop = false;
             this.loadGroupBox.Text = "When profile is loaded";
@@ -288,21 +276,19 @@
             this.loadTableLayoutPanel.Controls.Add(this.loadConnectButton, 0, 1);
             this.loadTableLayoutPanel.Controls.Add(this.noLoadConnectButton, 0, 0);
             this.loadTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.loadTableLayoutPanel.Location = new System.Drawing.Point(4, 17);
-            this.loadTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.loadTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.loadTableLayoutPanel.Name = "loadTableLayoutPanel";
             this.loadTableLayoutPanel.RowCount = 3;
             this.loadTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.loadTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.loadTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.loadTableLayoutPanel.Size = new System.Drawing.Size(476, 81);
+            this.loadTableLayoutPanel.Size = new System.Drawing.Size(357, 75);
             this.loadTableLayoutPanel.TabIndex = 0;
             // 
             // loadReconnectButton
             // 
             this.loadReconnectButton.AutoSize = true;
-            this.loadReconnectButton.Location = new System.Drawing.Point(4, 58);
-            this.loadReconnectButton.Margin = new System.Windows.Forms.Padding(4);
+            this.loadReconnectButton.Location = new System.Drawing.Point(3, 53);
             this.loadReconnectButton.Name = "loadReconnectButton";
             this.loadReconnectButton.Size = new System.Drawing.Size(208, 19);
             this.loadReconnectButton.TabIndex = 1;
@@ -317,11 +303,9 @@
             this.hostTypeGroupBox.AutoSize = true;
             this.hostTypeGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.hostTypeGroupBox.Controls.Add(this.hostTypeTableLayoutPanel);
-            this.hostTypeGroupBox.Location = new System.Drawing.Point(4, 313);
-            this.hostTypeGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.hostTypeGroupBox.Location = new System.Drawing.Point(3, 266);
             this.hostTypeGroupBox.Name = "hostTypeGroupBox";
-            this.hostTypeGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.hostTypeGroupBox.Size = new System.Drawing.Size(484, 75);
+            this.hostTypeGroupBox.Size = new System.Drawing.Size(363, 69);
             this.hostTypeGroupBox.TabIndex = 2;
             this.hostTypeGroupBox.TabStop = false;
             this.hostTypeGroupBox.Text = "Host type for file transfers";
@@ -338,21 +322,19 @@
             this.hostTypeTableLayoutPanel.Controls.Add(this.vmRadioButton, 1, 0);
             this.hostTypeTableLayoutPanel.Controls.Add(this.tsoRadioButton, 0, 1);
             this.hostTypeTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.hostTypeTableLayoutPanel.Location = new System.Drawing.Point(4, 17);
-            this.hostTypeTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.hostTypeTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.hostTypeTableLayoutPanel.Name = "hostTypeTableLayoutPanel";
             this.hostTypeTableLayoutPanel.RowCount = 2;
             this.hostTypeTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.hostTypeTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.hostTypeTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.hostTypeTableLayoutPanel.Size = new System.Drawing.Size(476, 54);
+            this.hostTypeTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.hostTypeTableLayoutPanel.Size = new System.Drawing.Size(357, 50);
             this.hostTypeTableLayoutPanel.TabIndex = 0;
             // 
             // cicsRadioButton
             // 
             this.cicsRadioButton.AutoSize = true;
-            this.cicsRadioButton.Location = new System.Drawing.Point(242, 31);
-            this.cicsRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.cicsRadioButton.Location = new System.Drawing.Point(181, 28);
             this.cicsRadioButton.Name = "cicsRadioButton";
             this.cicsRadioButton.Size = new System.Drawing.Size(55, 19);
             this.cicsRadioButton.TabIndex = 3;
@@ -364,8 +346,7 @@
             // 
             this.unspecifiedRadioButton.AutoSize = true;
             this.unspecifiedRadioButton.Checked = true;
-            this.unspecifiedRadioButton.Location = new System.Drawing.Point(4, 4);
-            this.unspecifiedRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.unspecifiedRadioButton.Location = new System.Drawing.Point(3, 3);
             this.unspecifiedRadioButton.Name = "unspecifiedRadioButton";
             this.unspecifiedRadioButton.Size = new System.Drawing.Size(93, 19);
             this.unspecifiedRadioButton.TabIndex = 0;
@@ -377,8 +358,7 @@
             // vmRadioButton
             // 
             this.vmRadioButton.AutoSize = true;
-            this.vmRadioButton.Location = new System.Drawing.Point(242, 4);
-            this.vmRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.vmRadioButton.Location = new System.Drawing.Point(181, 3);
             this.vmRadioButton.Name = "vmRadioButton";
             this.vmRadioButton.Size = new System.Drawing.Size(76, 19);
             this.vmRadioButton.TabIndex = 2;
@@ -389,8 +369,7 @@
             // tsoRadioButton
             // 
             this.tsoRadioButton.AutoSize = true;
-            this.tsoRadioButton.Location = new System.Drawing.Point(4, 31);
-            this.tsoRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.tsoRadioButton.Location = new System.Drawing.Point(3, 28);
             this.tsoRadioButton.Name = "tsoRadioButton";
             this.tsoRadioButton.Size = new System.Drawing.Size(52, 19);
             this.tsoRadioButton.TabIndex = 1;
@@ -402,8 +381,7 @@
             // 
             this.acceptLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.acceptLabel.AutoSize = true;
-            this.acceptLabel.Location = new System.Drawing.Point(4, 175);
-            this.acceptLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.acceptLabel.Location = new System.Drawing.Point(3, 155);
             this.acceptLabel.Name = "acceptLabel";
             this.acceptLabel.Size = new System.Drawing.Size(101, 15);
             this.acceptLabel.TabIndex = 10;
@@ -412,10 +390,9 @@
             // acceptTextBox
             // 
             this.acceptTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.acceptTextBox.Location = new System.Drawing.Point(165, 173);
-            this.acceptTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.acceptTextBox.Location = new System.Drawing.Point(124, 153);
             this.acceptTextBox.Name = "acceptTextBox";
-            this.acceptTextBox.Size = new System.Drawing.Size(307, 20);
+            this.acceptTextBox.Size = new System.Drawing.Size(230, 20);
             this.acceptTextBox.TabIndex = 11;
             this.acceptTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.AcceptTextBox_Validating);
             // 
@@ -433,7 +410,7 @@
             this.rightTableLayoutPanel.Controls.Add(this.hostTypeGroupBox, 0, 2);
             this.rightTableLayoutPanel.Controls.Add(this.printerSessionGroupBox, 0, 3);
             this.rightTableLayoutPanel.Controls.Add(this.localProcessInputGroupBox, 0, 4);
-            this.rightTableLayoutPanel.Location = new System.Drawing.Point(492, 0);
+            this.rightTableLayoutPanel.Location = new System.Drawing.Point(369, 0);
             this.rightTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.rightTableLayoutPanel.Name = "rightTableLayoutPanel";
             this.rightTableLayoutPanel.RowCount = 6;
@@ -443,7 +420,7 @@
             this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.rightTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.rightTableLayoutPanel.Size = new System.Drawing.Size(492, 688);
+            this.rightTableLayoutPanel.Size = new System.Drawing.Size(369, 578);
             this.rightTableLayoutPanel.TabIndex = 1;
             // 
             // buttonsTableLayoutPanel
@@ -462,22 +439,20 @@
             this.buttonsTableLayoutPanel.Controls.Add(this.okButton, 3, 0);
             this.buttonsTableLayoutPanel.Controls.Add(this.helpPictureBox, 4, 0);
             this.buttonsTableLayoutPanel.Controls.Add(this.connectRecordButton, 1, 0);
-            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(4, 644);
-            this.buttonsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(3, 567);
             this.buttonsTableLayoutPanel.Name = "buttonsTableLayoutPanel";
             this.buttonsTableLayoutPanel.RowCount = 1;
             this.buttonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.buttonsTableLayoutPanel.Size = new System.Drawing.Size(484, 40);
+            this.buttonsTableLayoutPanel.Size = new System.Drawing.Size(363, 32);
             this.buttonsTableLayoutPanel.TabIndex = 5;
             // 
             // connectButton
             // 
             this.connectButton.AutoSize = true;
             this.connectButton.ForeColor = System.Drawing.Color.ForestGreen;
-            this.connectButton.Location = new System.Drawing.Point(4, 4);
-            this.connectButton.Margin = new System.Windows.Forms.Padding(4);
+            this.connectButton.Location = new System.Drawing.Point(3, 3);
             this.connectButton.Name = "connectButton";
-            this.connectButton.Size = new System.Drawing.Size(100, 32);
+            this.connectButton.Size = new System.Drawing.Size(75, 26);
             this.connectButton.TabIndex = 0;
             this.connectButton.Text = "Connect";
             this.toolTip1.SetToolTip(this.connectButton, "Save all changes and connect");
@@ -488,10 +463,9 @@
             // 
             this.cancelButton.AutoSize = true;
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(233, 4);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(4);
+            this.cancelButton.Location = new System.Drawing.Point(175, 3);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(100, 32);
+            this.cancelButton.Size = new System.Drawing.Size(75, 26);
             this.cancelButton.TabIndex = 2;
             this.cancelButton.Text = "Cancel";
             this.toolTip1.SetToolTip(this.cancelButton, "Discard all changes");
@@ -501,10 +475,9 @@
             // okButton
             // 
             this.okButton.AutoSize = true;
-            this.okButton.Location = new System.Drawing.Point(341, 4);
-            this.okButton.Margin = new System.Windows.Forms.Padding(4);
+            this.okButton.Location = new System.Drawing.Point(256, 3);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(100, 32);
+            this.okButton.Size = new System.Drawing.Size(75, 26);
             this.okButton.TabIndex = 3;
             this.okButton.Text = "Save";
             this.toolTip1.SetToolTip(this.okButton, "Save all changes");
@@ -515,10 +488,9 @@
             // 
             this.helpPictureBox.ContextMenuStrip = this.helpContextMenuStrip;
             this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(449, 4);
-            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.helpPictureBox.Location = new System.Drawing.Point(337, 3);
             this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(31, 28);
+            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
             this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.helpPictureBox.TabIndex = 132;
             this.helpPictureBox.TabStop = false;
@@ -554,10 +526,9 @@
             // 
             this.connectRecordButton.AutoSize = true;
             this.connectRecordButton.ForeColor = System.Drawing.Color.ForestGreen;
-            this.connectRecordButton.Location = new System.Drawing.Point(112, 4);
-            this.connectRecordButton.Margin = new System.Windows.Forms.Padding(4);
+            this.connectRecordButton.Location = new System.Drawing.Point(84, 3);
             this.connectRecordButton.Name = "connectRecordButton";
-            this.connectRecordButton.Size = new System.Drawing.Size(113, 32);
+            this.connectRecordButton.Size = new System.Drawing.Size(85, 26);
             this.connectRecordButton.TabIndex = 1;
             this.connectRecordButton.Text = "Connect+⏺";
             this.toolTip1.SetToolTip(this.connectRecordButton, "Connect and start recording a login macro");
@@ -571,11 +542,9 @@
             this.optionsGroupBox.AutoSize = true;
             this.optionsGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.optionsGroupBox.Controls.Add(this.optionsLayoutPanel);
-            this.optionsGroupBox.Location = new System.Drawing.Point(4, 4);
-            this.optionsGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.optionsGroupBox.Location = new System.Drawing.Point(3, 3);
             this.optionsGroupBox.Name = "optionsGroupBox";
-            this.optionsGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.optionsGroupBox.Size = new System.Drawing.Size(484, 191);
+            this.optionsGroupBox.Size = new System.Drawing.Size(363, 157);
             this.optionsGroupBox.TabIndex = 0;
             this.optionsGroupBox.TabStop = false;
             this.optionsGroupBox.Text = "Options";
@@ -593,8 +562,7 @@
             this.optionsLayoutPanel.Controls.Add(this.telnetCheckBox, 1, 0);
             this.optionsLayoutPanel.Controls.Add(this.loginScreenCheckBox, 0, 6);
             this.optionsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.optionsLayoutPanel.Location = new System.Drawing.Point(4, 17);
-            this.optionsLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.optionsLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.optionsLayoutPanel.Name = "optionsLayoutPanel";
             this.optionsLayoutPanel.RowCount = 7;
             this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -604,14 +572,13 @@
             this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.optionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.optionsLayoutPanel.Size = new System.Drawing.Size(476, 170);
+            this.optionsLayoutPanel.Size = new System.Drawing.Size(357, 138);
             this.optionsLayoutPanel.TabIndex = 0;
             // 
             // tlsTunnelCheckBox
             // 
             this.tlsTunnelCheckBox.AutoSize = true;
-            this.tlsTunnelCheckBox.Location = new System.Drawing.Point(4, 4);
-            this.tlsTunnelCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.tlsTunnelCheckBox.Location = new System.Drawing.Point(3, 3);
             this.tlsTunnelCheckBox.Name = "tlsTunnelCheckBox";
             this.tlsTunnelCheckBox.Size = new System.Drawing.Size(127, 19);
             this.tlsTunnelCheckBox.TabIndex = 0;
@@ -625,8 +592,7 @@
             this.starttlsCheckBox.AutoSize = true;
             this.starttlsCheckBox.Checked = true;
             this.starttlsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.starttlsCheckBox.Location = new System.Drawing.Point(4, 31);
-            this.starttlsCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.starttlsCheckBox.Location = new System.Drawing.Point(3, 28);
             this.starttlsCheckBox.Name = "starttlsCheckBox";
             this.starttlsCheckBox.Size = new System.Drawing.Size(128, 19);
             this.starttlsCheckBox.TabIndex = 1;
@@ -637,8 +603,7 @@
             // nvtCheckBox
             // 
             this.nvtCheckBox.AutoSize = true;
-            this.nvtCheckBox.Location = new System.Drawing.Point(4, 85);
-            this.nvtCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.nvtCheckBox.Location = new System.Drawing.Point(3, 78);
             this.nvtCheckBox.Name = "nvtCheckBox";
             this.nvtCheckBox.Size = new System.Drawing.Size(87, 19);
             this.nvtCheckBox.TabIndex = 3;
@@ -651,8 +616,7 @@
             this.verifyCertCheckBox.AutoSize = true;
             this.verifyCertCheckBox.Checked = true;
             this.verifyCertCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.verifyCertCheckBox.Location = new System.Drawing.Point(4, 58);
-            this.verifyCertCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.verifyCertCheckBox.Location = new System.Drawing.Point(3, 53);
             this.verifyCertCheckBox.Name = "verifyCertCheckBox";
             this.verifyCertCheckBox.Size = new System.Drawing.Size(139, 19);
             this.verifyCertCheckBox.TabIndex = 2;
@@ -666,8 +630,7 @@
             this.tn3270eCheckBox.AutoSize = true;
             this.tn3270eCheckBox.Checked = true;
             this.tn3270eCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tn3270eCheckBox.Location = new System.Drawing.Point(4, 112);
-            this.tn3270eCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.tn3270eCheckBox.Location = new System.Drawing.Point(3, 103);
             this.tn3270eCheckBox.Name = "tn3270eCheckBox";
             this.tn3270eCheckBox.Size = new System.Drawing.Size(120, 19);
             this.tn3270eCheckBox.TabIndex = 4;
@@ -680,8 +643,7 @@
             this.telnetCheckBox.AutoSize = true;
             this.telnetCheckBox.Checked = true;
             this.telnetCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.telnetCheckBox.Location = new System.Drawing.Point(242, 4);
-            this.telnetCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.telnetCheckBox.Location = new System.Drawing.Point(181, 3);
             this.telnetCheckBox.Name = "telnetCheckBox";
             this.telnetCheckBox.Size = new System.Drawing.Size(100, 19);
             this.telnetCheckBox.TabIndex = 6;
@@ -695,8 +657,7 @@
             this.loginScreenCheckBox.AutoSize = true;
             this.loginScreenCheckBox.Checked = true;
             this.loginScreenCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.loginScreenCheckBox.Location = new System.Drawing.Point(4, 139);
-            this.loginScreenCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.loginScreenCheckBox.Location = new System.Drawing.Point(3, 128);
             this.loginScreenCheckBox.Name = "loginScreenCheckBox";
             this.loginScreenCheckBox.Size = new System.Drawing.Size(140, 19);
             this.loginScreenCheckBox.TabIndex = 5;
@@ -711,11 +672,9 @@
             this.printerSessionGroupBox.AutoSize = true;
             this.printerSessionGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.printerSessionGroupBox.Controls.Add(this.printerSessionTableLayoutPanel);
-            this.printerSessionGroupBox.Location = new System.Drawing.Point(4, 396);
-            this.printerSessionGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.printerSessionGroupBox.Location = new System.Drawing.Point(3, 341);
             this.printerSessionGroupBox.Name = "printerSessionGroupBox";
-            this.printerSessionGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.printerSessionGroupBox.Size = new System.Drawing.Size(484, 130);
+            this.printerSessionGroupBox.Size = new System.Drawing.Size(363, 120);
             this.printerSessionGroupBox.TabIndex = 3;
             this.printerSessionGroupBox.TabStop = false;
             this.printerSessionGroupBox.Text = "3287 printer session";
@@ -732,32 +691,29 @@
             this.printerSessionTableLayoutPanel.Controls.Add(this.noPrinterRadioButton, 0, 0);
             this.printerSessionTableLayoutPanel.Controls.Add(this.specificLuRadioButton, 0, 2);
             this.printerSessionTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.printerSessionTableLayoutPanel.Location = new System.Drawing.Point(4, 17);
-            this.printerSessionTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.printerSessionTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.printerSessionTableLayoutPanel.Name = "printerSessionTableLayoutPanel";
             this.printerSessionTableLayoutPanel.RowCount = 4;
             this.printerSessionTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.printerSessionTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.printerSessionTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.printerSessionTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.printerSessionTableLayoutPanel.Size = new System.Drawing.Size(476, 109);
+            this.printerSessionTableLayoutPanel.Size = new System.Drawing.Size(357, 101);
             this.printerSessionTableLayoutPanel.TabIndex = 0;
             // 
             // specificLuTextBox
             // 
             this.specificLuTextBox.Enabled = false;
-            this.specificLuTextBox.Location = new System.Drawing.Point(4, 85);
-            this.specificLuTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.specificLuTextBox.Location = new System.Drawing.Point(3, 78);
             this.specificLuTextBox.Name = "specificLuTextBox";
-            this.specificLuTextBox.Size = new System.Drawing.Size(309, 20);
+            this.specificLuTextBox.Size = new System.Drawing.Size(233, 20);
             this.specificLuTextBox.TabIndex = 3;
             this.specificLuTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.SpecificLuTextBox_Validating);
             // 
             // associatePrinterRadioButton
             // 
             this.associatePrinterRadioButton.AutoSize = true;
-            this.associatePrinterRadioButton.Location = new System.Drawing.Point(4, 31);
-            this.associatePrinterRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.associatePrinterRadioButton.Location = new System.Drawing.Point(3, 28);
             this.associatePrinterRadioButton.Name = "associatePrinterRadioButton";
             this.associatePrinterRadioButton.Size = new System.Drawing.Size(208, 19);
             this.associatePrinterRadioButton.TabIndex = 1;
@@ -769,8 +725,7 @@
             // 
             this.noPrinterRadioButton.AutoSize = true;
             this.noPrinterRadioButton.Checked = true;
-            this.noPrinterRadioButton.Location = new System.Drawing.Point(4, 4);
-            this.noPrinterRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.noPrinterRadioButton.Location = new System.Drawing.Point(3, 3);
             this.noPrinterRadioButton.Name = "noPrinterRadioButton";
             this.noPrinterRadioButton.Size = new System.Drawing.Size(58, 19);
             this.noPrinterRadioButton.TabIndex = 0;
@@ -782,8 +737,7 @@
             // specificLuRadioButton
             // 
             this.specificLuRadioButton.AutoSize = true;
-            this.specificLuRadioButton.Location = new System.Drawing.Point(4, 58);
-            this.specificLuRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.specificLuRadioButton.Location = new System.Drawing.Point(3, 53);
             this.specificLuRadioButton.Name = "specificLuRadioButton";
             this.specificLuRadioButton.Size = new System.Drawing.Size(90, 19);
             this.specificLuRadioButton.TabIndex = 2;
@@ -799,11 +753,9 @@
             this.localProcessInputGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.localProcessInputGroupBox.Controls.Add(this.localProcessInputTableLayoutPanel);
             this.localProcessInputGroupBox.Enabled = false;
-            this.localProcessInputGroupBox.Location = new System.Drawing.Point(4, 534);
-            this.localProcessInputGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.localProcessInputGroupBox.Location = new System.Drawing.Point(3, 467);
             this.localProcessInputGroupBox.Name = "localProcessInputGroupBox";
-            this.localProcessInputGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.localProcessInputGroupBox.Size = new System.Drawing.Size(484, 102);
+            this.localProcessInputGroupBox.Size = new System.Drawing.Size(363, 94);
             this.localProcessInputGroupBox.TabIndex = 4;
             this.localProcessInputGroupBox.TabStop = false;
             this.localProcessInputGroupBox.Text = "No-TELNET input mode";
@@ -818,22 +770,20 @@
             this.localProcessInputTableLayoutPanel.Controls.Add(this.characterModeRadioButton, 0, 1);
             this.localProcessInputTableLayoutPanel.Controls.Add(this.characterModeCrLfRadioButton, 0, 2);
             this.localProcessInputTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.localProcessInputTableLayoutPanel.Location = new System.Drawing.Point(4, 17);
-            this.localProcessInputTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.localProcessInputTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.localProcessInputTableLayoutPanel.Name = "localProcessInputTableLayoutPanel";
             this.localProcessInputTableLayoutPanel.RowCount = 3;
             this.localProcessInputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.localProcessInputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.localProcessInputTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.localProcessInputTableLayoutPanel.Size = new System.Drawing.Size(476, 81);
+            this.localProcessInputTableLayoutPanel.Size = new System.Drawing.Size(357, 75);
             this.localProcessInputTableLayoutPanel.TabIndex = 0;
             // 
             // lineModeRadioButton
             // 
             this.lineModeRadioButton.AutoSize = true;
             this.lineModeRadioButton.Checked = true;
-            this.lineModeRadioButton.Location = new System.Drawing.Point(4, 4);
-            this.lineModeRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.lineModeRadioButton.Location = new System.Drawing.Point(3, 3);
             this.lineModeRadioButton.Name = "lineModeRadioButton";
             this.lineModeRadioButton.Size = new System.Drawing.Size(52, 19);
             this.lineModeRadioButton.TabIndex = 1;
@@ -845,8 +795,7 @@
             // characterModeRadioButton
             // 
             this.characterModeRadioButton.AutoSize = true;
-            this.characterModeRadioButton.Location = new System.Drawing.Point(4, 31);
-            this.characterModeRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.characterModeRadioButton.Location = new System.Drawing.Point(3, 28);
             this.characterModeRadioButton.Name = "characterModeRadioButton";
             this.characterModeRadioButton.Size = new System.Drawing.Size(81, 19);
             this.characterModeRadioButton.TabIndex = 2;
@@ -857,8 +806,7 @@
             // characterModeCrLfRadioButton
             // 
             this.characterModeCrLfRadioButton.AutoSize = true;
-            this.characterModeCrLfRadioButton.Location = new System.Drawing.Point(4, 58);
-            this.characterModeCrLfRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.characterModeCrLfRadioButton.Location = new System.Drawing.Point(3, 53);
             this.characterModeCrLfRadioButton.Name = "characterModeCrLfRadioButton";
             this.characterModeCrLfRadioButton.Size = new System.Drawing.Size(203, 19);
             this.characterModeCrLfRadioButton.TabIndex = 2;
@@ -870,8 +818,7 @@
             // 
             this.profileNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.profileNameLabel.AutoSize = true;
-            this.profileNameLabel.Location = new System.Drawing.Point(165, 4);
-            this.profileNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.profileNameLabel.Location = new System.Drawing.Point(124, 3);
             this.profileNameLabel.Name = "profileNameLabel";
             this.profileNameLabel.Size = new System.Drawing.Size(83, 15);
             this.profileNameLabel.TabIndex = 1;
@@ -881,8 +828,8 @@
             // 
             this.profileLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.profileLabel.AutoSize = true;
-            this.profileLabel.Location = new System.Drawing.Point(4, 4);
-            this.profileLabel.Margin = new System.Windows.Forms.Padding(4);
+            this.profileLabel.Location = new System.Drawing.Point(3, 3);
+            this.profileLabel.Margin = new System.Windows.Forms.Padding(3);
             this.profileLabel.Name = "profileLabel";
             this.profileLabel.Size = new System.Drawing.Size(42, 15);
             this.profileLabel.TabIndex = 0;
@@ -892,8 +839,7 @@
             // 
             this.loginMacroLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.loginMacroLabel.AutoSize = true;
-            this.loginMacroLabel.Location = new System.Drawing.Point(4, 354);
-            this.loginMacroLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.loginMacroLabel.Location = new System.Drawing.Point(3, 320);
             this.loginMacroLabel.Name = "loginMacroLabel";
             this.loginMacroLabel.Size = new System.Drawing.Size(76, 15);
             this.loginMacroLabel.TabIndex = 18;
@@ -903,13 +849,12 @@
             // 
             this.LoginMacroTextBox.AcceptsReturn = true;
             this.LoginMacroTextBox.BackColor = System.Drawing.Color.White;
-            this.LoginMacroTextBox.Location = new System.Drawing.Point(165, 285);
-            this.LoginMacroTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.LoginMacroTextBox.Location = new System.Drawing.Point(124, 265);
             this.LoginMacroTextBox.Multiline = true;
             this.LoginMacroTextBox.Name = "LoginMacroTextBox";
             this.LoginMacroTextBox.ReadOnly = true;
             this.LoginMacroTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.LoginMacroTextBox.Size = new System.Drawing.Size(307, 153);
+            this.LoginMacroTextBox.Size = new System.Drawing.Size(230, 125);
             this.LoginMacroTextBox.TabIndex = 19;
             this.LoginMacroTextBox.Click += new System.EventHandler(this.LoginMacroEditButton_Click);
             this.LoginMacroTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginMacroEditButton_Click);
@@ -918,28 +863,25 @@
             // 
             this.clientCertificateLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.clientCertificateLabel.AutoSize = true;
-            this.clientCertificateLabel.Location = new System.Drawing.Point(4, 203);
-            this.clientCertificateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.clientCertificateLabel.Location = new System.Drawing.Point(3, 176);
             this.clientCertificateLabel.Name = "clientCertificateLabel";
-            this.clientCertificateLabel.Size = new System.Drawing.Size(128, 15);
+            this.clientCertificateLabel.Size = new System.Drawing.Size(96, 30);
             this.clientCertificateLabel.TabIndex = 12;
             this.clientCertificateLabel.Text = "Client certificate name";
             // 
             // clientCertTextBox
             // 
             this.clientCertTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.clientCertTextBox.Location = new System.Drawing.Point(165, 201);
-            this.clientCertTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.clientCertTextBox.Location = new System.Drawing.Point(124, 179);
             this.clientCertTextBox.Name = "clientCertTextBox";
-            this.clientCertTextBox.Size = new System.Drawing.Size(307, 20);
+            this.clientCertTextBox.Size = new System.Drawing.Size(230, 20);
             this.clientCertTextBox.TabIndex = 13;
             // 
             // descriptionLabel
             // 
             this.descriptionLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(4, 448);
-            this.descriptionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.descriptionLabel.Location = new System.Drawing.Point(3, 398);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(69, 15);
             this.descriptionLabel.TabIndex = 20;
@@ -947,10 +889,9 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(165, 446);
-            this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.descriptionTextBox.Location = new System.Drawing.Point(124, 396);
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(307, 20);
+            this.descriptionTextBox.Size = new System.Drawing.Size(230, 20);
             this.descriptionTextBox.TabIndex = 21;
             this.toolTip1.SetToolTip(this.descriptionTextBox, "Description of this host\r\nShown in the Profiles and Connections window");
             // 
@@ -958,8 +899,7 @@
             // 
             this.windowTitleLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.windowTitleLabel.AutoSize = true;
-            this.windowTitleLabel.Location = new System.Drawing.Point(4, 476);
-            this.windowTitleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.windowTitleLabel.Location = new System.Drawing.Point(3, 424);
             this.windowTitleLabel.Name = "windowTitleLabel";
             this.windowTitleLabel.Size = new System.Drawing.Size(73, 15);
             this.windowTitleLabel.TabIndex = 22;
@@ -968,10 +908,9 @@
             // titleTextBox
             // 
             this.titleTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.titleTextBox.Location = new System.Drawing.Point(165, 474);
-            this.titleTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.titleTextBox.Location = new System.Drawing.Point(124, 422);
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new System.Drawing.Size(307, 20);
+            this.titleTextBox.Size = new System.Drawing.Size(230, 20);
             this.titleTextBox.TabIndex = 23;
             this.toolTip1.SetToolTip(this.titleTextBox, "Window title override");
             // 
@@ -979,11 +918,10 @@
             // 
             this.commandTextBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.commandTextBox.Enabled = false;
-            this.commandTextBox.Location = new System.Drawing.Point(165, 229);
-            this.commandTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.commandTextBox.Location = new System.Drawing.Point(124, 209);
             this.commandTextBox.Name = "commandTextBox";
             this.commandTextBox.ReadOnly = true;
-            this.commandTextBox.Size = new System.Drawing.Size(307, 20);
+            this.commandTextBox.Size = new System.Drawing.Size(230, 20);
             this.commandTextBox.TabIndex = 15;
             this.toolTip1.SetToolTip(this.commandTextBox, "Command to run");
             this.commandTextBox.Click += new System.EventHandler(this.CommandTextBox_Click);
@@ -993,10 +931,9 @@
             // 
             this.commandLineOptionsTextBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.commandLineOptionsTextBox.Enabled = false;
-            this.commandLineOptionsTextBox.Location = new System.Drawing.Point(165, 257);
-            this.commandLineOptionsTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.commandLineOptionsTextBox.Location = new System.Drawing.Point(124, 235);
             this.commandLineOptionsTextBox.Name = "commandLineOptionsTextBox";
-            this.commandLineOptionsTextBox.Size = new System.Drawing.Size(307, 20);
+            this.commandLineOptionsTextBox.Size = new System.Drawing.Size(230, 20);
             this.commandLineOptionsTextBox.TabIndex = 17;
             this.toolTip1.SetToolTip(this.commandLineOptionsTextBox, "Command-line options");
             // 
@@ -1007,11 +944,10 @@
             this.connectionTypeGroupBox.AutoSize = true;
             this.connectionTypeGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.connectionTypeGroupBox.Controls.Add(this.connectionTypeTableLayoutPanel);
-            this.connectionTypeGroupBox.Location = new System.Drawing.Point(4, 4);
-            this.connectionTypeGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 18);
+            this.connectionTypeGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.connectionTypeGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
             this.connectionTypeGroupBox.Name = "connectionTypeGroupBox";
-            this.connectionTypeGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.connectionTypeGroupBox.Size = new System.Drawing.Size(484, 75);
+            this.connectionTypeGroupBox.Size = new System.Drawing.Size(363, 69);
             this.connectionTypeGroupBox.TabIndex = 0;
             this.connectionTypeGroupBox.TabStop = false;
             this.connectionTypeGroupBox.Text = "Connection type";
@@ -1025,21 +961,19 @@
             this.connectionTypeTableLayoutPanel.Controls.Add(this.hostRadioButton, 0, 0);
             this.connectionTypeTableLayoutPanel.Controls.Add(this.localProcessRadioButton, 0, 1);
             this.connectionTypeTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.connectionTypeTableLayoutPanel.Location = new System.Drawing.Point(4, 17);
-            this.connectionTypeTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.connectionTypeTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.connectionTypeTableLayoutPanel.Name = "connectionTypeTableLayoutPanel";
             this.connectionTypeTableLayoutPanel.RowCount = 2;
             this.connectionTypeTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.connectionTypeTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.connectionTypeTableLayoutPanel.Size = new System.Drawing.Size(476, 54);
+            this.connectionTypeTableLayoutPanel.Size = new System.Drawing.Size(357, 50);
             this.connectionTypeTableLayoutPanel.TabIndex = 0;
             // 
             // hostRadioButton
             // 
             this.hostRadioButton.AutoSize = true;
             this.hostRadioButton.Checked = true;
-            this.hostRadioButton.Location = new System.Drawing.Point(4, 4);
-            this.hostRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.hostRadioButton.Location = new System.Drawing.Point(3, 3);
             this.hostRadioButton.Name = "hostRadioButton";
             this.hostRadioButton.Size = new System.Drawing.Size(53, 19);
             this.hostRadioButton.TabIndex = 0;
@@ -1051,8 +985,7 @@
             // localProcessRadioButton
             // 
             this.localProcessRadioButton.AutoSize = true;
-            this.localProcessRadioButton.Location = new System.Drawing.Point(4, 31);
-            this.localProcessRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.localProcessRadioButton.Location = new System.Drawing.Point(3, 28);
             this.localProcessRadioButton.Name = "localProcessRadioButton";
             this.localProcessRadioButton.Size = new System.Drawing.Size(104, 19);
             this.localProcessRadioButton.TabIndex = 1;
@@ -1067,12 +1000,11 @@
             this.overallTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.overallTableLayoutPanel.Controls.Add(this.rightTableLayoutPanel, 1, 0);
             this.overallTableLayoutPanel.Controls.Add(this.leftTableLayoutPanel, 0, 0);
-            this.overallTableLayoutPanel.Location = new System.Drawing.Point(4, 124);
-            this.overallTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.overallTableLayoutPanel.Location = new System.Drawing.Point(3, 100);
             this.overallTableLayoutPanel.Name = "overallTableLayoutPanel";
             this.overallTableLayoutPanel.RowCount = 1;
             this.overallTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.overallTableLayoutPanel.Size = new System.Drawing.Size(984, 711);
+            this.overallTableLayoutPanel.Size = new System.Drawing.Size(738, 578);
             this.overallTableLayoutPanel.TabIndex = 0;
             // 
             // leftTableLayoutPanel
@@ -1091,7 +1023,7 @@
             this.leftTableLayoutPanel.RowCount = 2;
             this.leftTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.leftTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftTableLayoutPanel.Size = new System.Drawing.Size(492, 624);
+            this.leftTableLayoutPanel.Size = new System.Drawing.Size(369, 549);
             this.leftTableLayoutPanel.TabIndex = 0;
             // 
             // basicParametersGroupBox
@@ -1101,11 +1033,9 @@
             this.basicParametersGroupBox.AutoSize = true;
             this.basicParametersGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.basicParametersGroupBox.Controls.Add(this.basicParametersTableLayoutPanel);
-            this.basicParametersGroupBox.Location = new System.Drawing.Point(4, 101);
-            this.basicParametersGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.basicParametersGroupBox.Location = new System.Drawing.Point(3, 90);
             this.basicParametersGroupBox.Name = "basicParametersGroupBox";
-            this.basicParametersGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.basicParametersGroupBox.Size = new System.Drawing.Size(484, 519);
+            this.basicParametersGroupBox.Size = new System.Drawing.Size(363, 456);
             this.basicParametersGroupBox.TabIndex = 1;
             this.basicParametersGroupBox.TabStop = false;
             this.basicParametersGroupBox.Text = "Basic parameters";
@@ -1142,8 +1072,7 @@
             this.basicParametersTableLayoutPanel.Controls.Add(this.loginMacroLabel, 0, 9);
             this.basicParametersTableLayoutPanel.Controls.Add(this.LoginMacroTextBox, 1, 9);
             this.basicParametersTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.basicParametersTableLayoutPanel.Location = new System.Drawing.Point(4, 17);
-            this.basicParametersTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.basicParametersTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.basicParametersTableLayoutPanel.Name = "basicParametersTableLayoutPanel";
             this.basicParametersTableLayoutPanel.RowCount = 12;
             this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1158,7 +1087,7 @@
             this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.basicParametersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.basicParametersTableLayoutPanel.Size = new System.Drawing.Size(476, 498);
+            this.basicParametersTableLayoutPanel.Size = new System.Drawing.Size(357, 445);
             this.basicParametersTableLayoutPanel.TabIndex = 0;
             // 
             // commandLineOptionsLabel
@@ -1166,10 +1095,9 @@
             this.commandLineOptionsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.commandLineOptionsLabel.AutoSize = true;
             this.commandLineOptionsLabel.Enabled = false;
-            this.commandLineOptionsLabel.Location = new System.Drawing.Point(4, 259);
-            this.commandLineOptionsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.commandLineOptionsLabel.Location = new System.Drawing.Point(3, 232);
             this.commandLineOptionsLabel.Name = "commandLineOptionsLabel";
-            this.commandLineOptionsLabel.Size = new System.Drawing.Size(132, 15);
+            this.commandLineOptionsLabel.Size = new System.Drawing.Size(92, 30);
             this.commandLineOptionsLabel.TabIndex = 16;
             this.commandLineOptionsLabel.Text = "Command-line options";
             // 
@@ -1178,8 +1106,7 @@
             this.commandLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.commandLabel.AutoSize = true;
             this.commandLabel.Enabled = false;
-            this.commandLabel.Location = new System.Drawing.Point(4, 231);
-            this.commandLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.commandLabel.Location = new System.Drawing.Point(3, 211);
             this.commandLabel.Name = "commandLabel";
             this.commandLabel.Size = new System.Drawing.Size(70, 15);
             this.commandLabel.TabIndex = 14;
@@ -1195,7 +1122,8 @@
             // 
             this.newProfileRadioButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.newProfileRadioButton.AutoSize = true;
-            this.newProfileRadioButton.Location = new System.Drawing.Point(3, 45);
+            this.newProfileRadioButton.Location = new System.Drawing.Point(2, 41);
+            this.newProfileRadioButton.Margin = new System.Windows.Forms.Padding(2);
             this.newProfileRadioButton.Name = "newProfileRadioButton";
             this.newProfileRadioButton.Size = new System.Drawing.Size(127, 19);
             this.newProfileRadioButton.TabIndex = 9;
@@ -1208,7 +1136,8 @@
             // 
             this.addToProfileRadioButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.addToProfileRadioButton.AutoSize = true;
-            this.addToProfileRadioButton.Location = new System.Drawing.Point(3, 18);
+            this.addToProfileRadioButton.Location = new System.Drawing.Point(2, 17);
+            this.addToProfileRadioButton.Margin = new System.Windows.Forms.Padding(2);
             this.addToProfileRadioButton.Name = "addToProfileRadioButton";
             this.addToProfileRadioButton.Size = new System.Drawing.Size(144, 19);
             this.addToProfileRadioButton.TabIndex = 4;
@@ -1241,21 +1170,23 @@
             this.profileTableLayoutPanel.Controls.Add(this.addToProfileModelLabel, 2, 1);
             this.profileTableLayoutPanel.Controls.Add(this.addToProfileRowsLabel, 3, 1);
             this.profileTableLayoutPanel.Controls.Add(this.addToProfileColumnsLabel, 4, 1);
-            this.profileTableLayoutPanel.Location = new System.Drawing.Point(6, 21);
+            this.profileTableLayoutPanel.Location = new System.Drawing.Point(4, 17);
+            this.profileTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
             this.profileTableLayoutPanel.Name = "profileTableLayoutPanel";
             this.profileTableLayoutPanel.RowCount = 3;
             this.profileTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.profileTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.profileTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.profileTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.profileTableLayoutPanel.Size = new System.Drawing.Size(662, 70);
+            this.profileTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.profileTableLayoutPanel.Size = new System.Drawing.Size(564, 63);
             this.profileTableLayoutPanel.TabIndex = 0;
             // 
             // modelLabel
             // 
             this.modelLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.modelLabel.AutoSize = true;
-            this.modelLabel.Location = new System.Drawing.Point(466, 0);
+            this.modelLabel.Location = new System.Drawing.Point(385, 0);
+            this.modelLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.modelLabel.Name = "modelLabel";
             this.modelLabel.Size = new System.Drawing.Size(73, 15);
             this.modelLabel.TabIndex = 1;
@@ -1265,7 +1196,8 @@
             // 
             this.rowsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.rowsLabel.AutoSize = true;
-            this.rowsLabel.Location = new System.Drawing.Point(545, 0);
+            this.rowsLabel.Location = new System.Drawing.Point(462, 0);
+            this.rowsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.rowsLabel.Name = "rowsLabel";
             this.rowsLabel.Size = new System.Drawing.Size(38, 15);
             this.rowsLabel.TabIndex = 2;
@@ -1275,7 +1207,8 @@
             // 
             this.columnsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.columnsLabel.AutoSize = true;
-            this.columnsLabel.Location = new System.Drawing.Point(601, 0);
+            this.columnsLabel.Location = new System.Drawing.Point(504, 0);
+            this.columnsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.columnsLabel.Name = "columnsLabel";
             this.columnsLabel.Size = new System.Drawing.Size(56, 15);
             this.columnsLabel.TabIndex = 3;
@@ -1285,7 +1218,8 @@
             // 
             this.profileNameHeaderLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.profileNameHeaderLabel.AutoSize = true;
-            this.profileNameHeaderLabel.Location = new System.Drawing.Point(153, 0);
+            this.profileNameHeaderLabel.Location = new System.Drawing.Point(150, 0);
+            this.profileNameHeaderLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.profileNameHeaderLabel.Name = "profileNameHeaderLabel";
             this.profileNameHeaderLabel.Size = new System.Drawing.Size(77, 15);
             this.profileNameHeaderLabel.TabIndex = 0;
@@ -1295,7 +1229,8 @@
             // 
             this.addToProfileNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.addToProfileNameLabel.AutoSize = true;
-            this.addToProfileNameLabel.Location = new System.Drawing.Point(153, 20);
+            this.addToProfileNameLabel.Location = new System.Drawing.Point(150, 19);
+            this.addToProfileNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.addToProfileNameLabel.Name = "addToProfileNameLabel";
             this.addToProfileNameLabel.Size = new System.Drawing.Size(80, 15);
             this.addToProfileNameLabel.TabIndex = 5;
@@ -1305,9 +1240,10 @@
             // 
             this.newProfileNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.newProfileNameTextBox.Enabled = false;
-            this.newProfileNameTextBox.Location = new System.Drawing.Point(153, 45);
+            this.newProfileNameTextBox.Location = new System.Drawing.Point(150, 40);
+            this.newProfileNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.newProfileNameTextBox.Name = "newProfileNameTextBox";
-            this.newProfileNameTextBox.Size = new System.Drawing.Size(307, 20);
+            this.newProfileNameTextBox.Size = new System.Drawing.Size(231, 20);
             this.newProfileNameTextBox.TabIndex = 10;
             this.newProfileNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NewProfileValidating);
             // 
@@ -1315,9 +1251,10 @@
             // 
             this.rowsUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.rowsUpDown.Enabled = false;
-            this.rowsUpDown.Location = new System.Drawing.Point(545, 45);
+            this.rowsUpDown.Location = new System.Drawing.Point(462, 40);
+            this.rowsUpDown.Margin = new System.Windows.Forms.Padding(2);
             this.rowsUpDown.Name = "rowsUpDown";
-            this.rowsUpDown.Size = new System.Drawing.Size(50, 20);
+            this.rowsUpDown.Size = new System.Drawing.Size(38, 20);
             this.rowsUpDown.TabIndex = 12;
             this.rowsUpDown.Tag = "Rows";
             this.rowsUpDown.Value = new decimal(new int[] {
@@ -1331,9 +1268,10 @@
             // 
             this.columnsUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.columnsUpDown.Enabled = false;
-            this.columnsUpDown.Location = new System.Drawing.Point(605, 45);
+            this.columnsUpDown.Location = new System.Drawing.Point(514, 40);
+            this.columnsUpDown.Margin = new System.Windows.Forms.Padding(2);
             this.columnsUpDown.Name = "columnsUpDown";
-            this.columnsUpDown.Size = new System.Drawing.Size(50, 20);
+            this.columnsUpDown.Size = new System.Drawing.Size(38, 20);
             this.columnsUpDown.TabIndex = 13;
             this.columnsUpDown.Tag = "Columns";
             this.columnsUpDown.Value = new decimal(new int[] {
@@ -1348,9 +1286,10 @@
             this.modelComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.modelComboBox.Enabled = false;
             this.modelComboBox.FormattingEnabled = true;
-            this.modelComboBox.Location = new System.Drawing.Point(466, 43);
+            this.modelComboBox.Location = new System.Drawing.Point(385, 40);
+            this.modelComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.modelComboBox.Name = "modelComboBox";
-            this.modelComboBox.Size = new System.Drawing.Size(50, 24);
+            this.modelComboBox.Size = new System.Drawing.Size(38, 21);
             this.modelComboBox.TabIndex = 11;
             this.modelComboBox.SelectedIndexChanged += new System.EventHandler(this.ModelIndexChanged);
             // 
@@ -1358,7 +1297,8 @@
             // 
             this.addToProfileModelLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.addToProfileModelLabel.AutoSize = true;
-            this.addToProfileModelLabel.Location = new System.Drawing.Point(466, 20);
+            this.addToProfileModelLabel.Location = new System.Drawing.Point(385, 19);
+            this.addToProfileModelLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.addToProfileModelLabel.Name = "addToProfileModelLabel";
             this.addToProfileModelLabel.Size = new System.Drawing.Size(46, 15);
             this.addToProfileModelLabel.TabIndex = 6;
@@ -1368,7 +1308,8 @@
             // 
             this.addToProfileRowsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.addToProfileRowsLabel.AutoSize = true;
-            this.addToProfileRowsLabel.Location = new System.Drawing.Point(545, 20);
+            this.addToProfileRowsLabel.Location = new System.Drawing.Point(462, 19);
+            this.addToProfileRowsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.addToProfileRowsLabel.Name = "addToProfileRowsLabel";
             this.addToProfileRowsLabel.Size = new System.Drawing.Size(37, 15);
             this.addToProfileRowsLabel.TabIndex = 7;
@@ -1378,7 +1319,8 @@
             // 
             this.addToProfileColumnsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.addToProfileColumnsLabel.AutoSize = true;
-            this.addToProfileColumnsLabel.Location = new System.Drawing.Point(601, 20);
+            this.addToProfileColumnsLabel.Location = new System.Drawing.Point(504, 19);
+            this.addToProfileColumnsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.addToProfileColumnsLabel.Name = "addToProfileColumnsLabel";
             this.addToProfileColumnsLabel.Size = new System.Drawing.Size(58, 15);
             this.addToProfileColumnsLabel.TabIndex = 8;
@@ -1387,9 +1329,11 @@
             // profileGroupBox
             // 
             this.profileGroupBox.Controls.Add(this.profileTableLayoutPanel);
-            this.profileGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.profileGroupBox.Location = new System.Drawing.Point(2, 2);
+            this.profileGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.profileGroupBox.Name = "profileGroupBox";
-            this.profileGroupBox.Size = new System.Drawing.Size(981, 114);
+            this.profileGroupBox.Padding = new System.Windows.Forms.Padding(2);
+            this.profileGroupBox.Size = new System.Drawing.Size(736, 93);
             this.profileGroupBox.TabIndex = 0;
             this.profileGroupBox.TabStop = false;
             this.profileGroupBox.Text = "Profile";
@@ -1402,29 +1346,30 @@
             this.outerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.outerTableLayoutPanel.Controls.Add(this.profileGroupBox, 0, 0);
             this.outerTableLayoutPanel.Controls.Add(this.overallTableLayoutPanel, 0, 1);
-            this.outerTableLayoutPanel.Location = new System.Drawing.Point(12, 12);
+            this.outerTableLayoutPanel.Location = new System.Drawing.Point(9, 10);
+            this.outerTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
             this.outerTableLayoutPanel.Name = "outerTableLayoutPanel";
             this.outerTableLayoutPanel.RowCount = 2;
             this.outerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.outerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.outerTableLayoutPanel.Size = new System.Drawing.Size(992, 839);
+            this.outerTableLayoutPanel.Size = new System.Drawing.Size(744, 681);
             this.outerTableLayoutPanel.TabIndex = 0;
             // 
             // HostEditor
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(2408, 1492);
+            this.ClientSize = new System.Drawing.Size(1806, 1212);
             this.Controls.Add(this.outerTableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "HostEditor";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Connection Editor";

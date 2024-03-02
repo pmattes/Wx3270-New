@@ -78,7 +78,7 @@
             this.outerTableLayoutPanel.RowCount = 2;
             this.outerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.outerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.outerTableLayoutPanel.Size = new System.Drawing.Size(466, 337);
+            this.outerTableLayoutPanel.Size = new System.Drawing.Size(360, 284);
             this.outerTableLayoutPanel.TabIndex = 2;
             // 
             // borderPanel
@@ -87,10 +87,11 @@
             this.borderPanel.BackColor = System.Drawing.Color.Maroon;
             this.borderPanel.Controls.Add(this.innerTableLayoutPanel);
             this.borderPanel.ForeColor = System.Drawing.Color.Maroon;
-            this.borderPanel.Location = new System.Drawing.Point(51, 51);
+            this.borderPanel.Location = new System.Drawing.Point(50, 50);
+            this.borderPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.borderPanel.Name = "borderPanel";
-            this.borderPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.borderPanel.Size = new System.Drawing.Size(412, 283);
+            this.borderPanel.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.borderPanel.Size = new System.Drawing.Size(308, 232);
             this.borderPanel.TabIndex = 3;
             // 
             // innerTableLayoutPanel
@@ -98,18 +99,18 @@
             this.innerTableLayoutPanel.AutoSize = true;
             this.innerTableLayoutPanel.BackColor = System.Drawing.Color.Linen;
             this.innerTableLayoutPanel.ColumnCount = 1;
-            this.innerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 406F));
+            this.innerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 304F));
             this.innerTableLayoutPanel.Controls.Add(this.topRowTableLayoutPanel, 0, 0);
             this.innerTableLayoutPanel.Controls.Add(this.bodyTextBox, 0, 1);
             this.innerTableLayoutPanel.Controls.Add(this.buttonsTableLayoutPanel, 0, 2);
-            this.innerTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.innerTableLayoutPanel.Location = new System.Drawing.Point(2, 2);
             this.innerTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.innerTableLayoutPanel.Name = "innerTableLayoutPanel";
             this.innerTableLayoutPanel.RowCount = 3;
-            this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 162F));
             this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.innerTableLayoutPanel.Size = new System.Drawing.Size(406, 277);
+            this.innerTableLayoutPanel.Size = new System.Drawing.Size(304, 228);
             this.innerTableLayoutPanel.TabIndex = 3;
             // 
             // topRowTableLayoutPanel
@@ -124,8 +125,8 @@
             this.topRowTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.topRowTableLayoutPanel.Name = "topRowTableLayoutPanel";
             this.topRowTableLayoutPanel.RowCount = 1;
-            this.topRowTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.topRowTableLayoutPanel.Size = new System.Drawing.Size(406, 45);
+            this.topRowTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.topRowTableLayoutPanel.Size = new System.Drawing.Size(304, 37);
             this.topRowTableLayoutPanel.TabIndex = 3;
             // 
             // closeButton
@@ -133,9 +134,10 @@
             this.closeButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.closeButton.AutoSize = true;
             this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeButton.Location = new System.Drawing.Point(378, 9);
+            this.closeButton.Location = new System.Drawing.Point(277, 6);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(25, 26);
+            this.closeButton.Size = new System.Drawing.Size(25, 25);
             this.closeButton.TabIndex = 3;
             this.closeButton.Text = "X";
             this.toolTip1.SetToolTip(this.closeButton, "Stop this tour");
@@ -147,7 +149,8 @@
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(80, 13);
+            this.titleLabel.Location = new System.Drawing.Point(30, 9);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(214, 18);
             this.titleLabel.TabIndex = 5;
@@ -160,12 +163,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bodyTextBox.BackColor = System.Drawing.Color.Linen;
             this.bodyTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.bodyTextBox.Location = new System.Drawing.Point(6, 48);
-            this.bodyTextBox.Margin = new System.Windows.Forms.Padding(6, 3, 3, 6);
+            this.bodyTextBox.Location = new System.Drawing.Point(4, 39);
+            this.bodyTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 2, 5);
             this.bodyTextBox.Multiline = true;
             this.bodyTextBox.Name = "bodyTextBox";
             this.bodyTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.bodyTextBox.Size = new System.Drawing.Size(397, 191);
+            this.bodyTextBox.Size = new System.Drawing.Size(298, 155);
             this.bodyTextBox.TabIndex = 3;
             this.bodyTextBox.Text = resources.GetString("bodyTextBox.Text");
             this.bodyTextBox.Enter += new System.EventHandler(this.TextBoxEnter);
@@ -177,17 +180,17 @@
             this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.buttonsTableLayoutPanel.Controls.Add(this.stopToursButton, 1, 0);
             this.buttonsTableLayoutPanel.Controls.Add(this.previousButton, 0, 0);
             this.buttonsTableLayoutPanel.Controls.Add(this.nextButton, 2, 0);
             this.buttonsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(0, 245);
+            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(0, 199);
             this.buttonsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.buttonsTableLayoutPanel.Name = "buttonsTableLayoutPanel";
             this.buttonsTableLayoutPanel.RowCount = 1;
             this.buttonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.buttonsTableLayoutPanel.Size = new System.Drawing.Size(406, 32);
+            this.buttonsTableLayoutPanel.Size = new System.Drawing.Size(304, 29);
             this.buttonsTableLayoutPanel.TabIndex = 3;
             // 
             // stopToursButton
@@ -195,9 +198,10 @@
             this.stopToursButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.stopToursButton.AutoSize = true;
             this.stopToursButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.stopToursButton.Location = new System.Drawing.Point(155, 3);
+            this.stopToursButton.Location = new System.Drawing.Point(107, 2);
+            this.stopToursButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.stopToursButton.Name = "stopToursButton";
-            this.stopToursButton.Size = new System.Drawing.Size(94, 26);
+            this.stopToursButton.Size = new System.Drawing.Size(88, 25);
             this.stopToursButton.TabIndex = 1;
             this.stopToursButton.Text = "Stop all tours";
             this.toolTip1.SetToolTip(this.stopToursButton, "Stop displaying tours automatically");
@@ -208,9 +212,10 @@
             // 
             this.previousButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.previousButton.AutoSize = true;
-            this.previousButton.Location = new System.Drawing.Point(3, 3);
+            this.previousButton.Location = new System.Drawing.Point(2, 2);
+            this.previousButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.previousButton.Name = "previousButton";
-            this.previousButton.Size = new System.Drawing.Size(86, 26);
+            this.previousButton.Size = new System.Drawing.Size(79, 25);
             this.previousButton.TabIndex = 0;
             this.previousButton.Text = "← Previous";
             this.toolTip1.SetToolTip(this.previousButton, "Move to the previous item on the tour");
@@ -221,9 +226,10 @@
             // 
             this.nextButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.nextButton.AutoSize = true;
-            this.nextButton.Location = new System.Drawing.Point(317, 3);
+            this.nextButton.Location = new System.Drawing.Point(238, 2);
+            this.nextButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(86, 26);
+            this.nextButton.Size = new System.Drawing.Size(64, 25);
             this.nextButton.TabIndex = 2;
             this.nextButton.Text = "Next →";
             this.toolTip1.SetToolTip(this.nextButton, "Move to the next item on the tour");
@@ -233,20 +239,22 @@
             // Tour
             // 
             this.AcceptButton = this.nextButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = global::Wx3270.Properties.Resources.Transparent1;
             this.CancelButton = this.closeButton;
-            this.ClientSize = new System.Drawing.Size(1077, 450);
+            this.ClientSize = new System.Drawing.Size(808, 366);
             this.ControlBox = false;
             this.Controls.Add(this.outerTableLayoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Tour";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Tour";

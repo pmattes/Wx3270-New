@@ -4400,11 +4400,13 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Settings";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
             this.Activated += new System.EventHandler(this.Settings_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Settings_FormClosing);
+            this.Load += new System.EventHandler(this.SettingsLoad);
             this.InputLanguageChanged += new System.Windows.Forms.InputLanguageChangedEventHandler(this.Keyboard_InputLanguageChanged);
             this.settingsTabs.ResumeLayout(false);
             this.optionsTab.ResumeLayout(false);

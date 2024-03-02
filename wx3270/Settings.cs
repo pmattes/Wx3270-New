@@ -84,11 +84,6 @@ namespace Wx3270
         private HashSet<Control> lockedControls = new HashSet<Control>();
 
         /// <summary>
-        /// True if the dialog has ever been activated.
-        /// </summary>
-        private bool everActivated;
-
-        /// <summary>
         /// The window handle.
         /// </summary>
         private IntPtr windowHandle;
@@ -799,14 +794,9 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void Settings_Activated(object sender, EventArgs e)
         {
-            if (!this.everActivated)
+            if (!Tour.IsComplete(this.settingsTabs.SelectedTab))
             {
-                this.everActivated = true;
-                this.Location = MainScreen.CenteredOn(this.mainScreen, this);
-                if (!Tour.IsComplete(this.settingsTabs.SelectedTab))
-                {
-                    this.RunTour(this.settingsTabs.SelectedTab);
-                }
+                this.RunTour(this.settingsTabs.SelectedTab);
             }
         }
 
@@ -1139,6 +1129,17 @@ namespace Wx3270
         private void Follower_Click(object sender, EventArgs e)
         {
             this.FollowerClick(sender, e);
+        }
+
+        /// <summary>
+        /// The settings window was loaded.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void SettingsLoad(object sender, EventArgs e)
+        {
+            // For some reason, this window will not center on its parent without doing this explicitly.
+            this.CenterToParent();
         }
 
         /// <summary>

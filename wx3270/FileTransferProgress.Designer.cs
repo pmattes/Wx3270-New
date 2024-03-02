@@ -56,7 +56,7 @@
             this.progressLabel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.progressLabel.Location = new System.Drawing.Point(23, 26);
             this.progressLabel.Name = "progressLabel";
-            this.progressLabel.Size = new System.Drawing.Size(118, 13);
+            this.progressLabel.Size = new System.Drawing.Size(139, 15);
             this.progressLabel.TabIndex = 1;
             this.progressLabel.Text = "`File transfer in progress";
             // 
@@ -65,7 +65,7 @@
             this.statusLabel.AutoSize = true;
             this.statusLabel.Location = new System.Drawing.Point(23, 47);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(93, 13);
+            this.statusLabel.Size = new System.Drawing.Size(102, 15);
             this.statusLabel.TabIndex = 2;
             this.statusLabel.Text = "`Status: Whatever";
             // 
@@ -74,7 +74,7 @@
             this.bytesLabel.AutoSize = true;
             this.bytesLabel.Location = new System.Drawing.Point(23, 69);
             this.bytesLabel.Name = "bytesLabel";
-            this.bytesLabel.Size = new System.Drawing.Size(113, 13);
+            this.bytesLabel.Size = new System.Drawing.Size(129, 15);
             this.bytesLabel.TabIndex = 3;
             this.bytesLabel.Text = "`Bytes transferred: 127";
             // 
@@ -119,10 +119,12 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FileTransferProgress";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "File Transfer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FileTransferProgress_FormClosing);
+            this.Load += new System.EventHandler(this.FileTransferProgressLoad);
             ((System.ComponentModel.ISupportInitialize)(this.tapePictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -92,11 +92,6 @@ namespace Wx3270
         private readonly Form profileDialog;
 
         /// <summary>
-        /// True if the form has been activated.
-        /// </summary>
-        private bool everActivated;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="MergeDialog"/> class.
         /// </summary>
         /// <param name="app">Application context.</param>
@@ -358,15 +353,9 @@ The 'Merge' option means that settings which overlap existing settings will be o
         /// <param name="e">Event arguments.</param>
         private void MergeDialog_Activated(object sender, EventArgs e)
         {
-            this.Location = MainScreen.CenteredOn(this.profileDialog, this);
-
-            if (!this.everActivated)
+            if (!Tour.IsComplete(this))
             {
-                this.everActivated = true;
-                if (!Tour.IsComplete(this))
-                {
-                    this.RunTour();
-                }
+                this.RunTour();
             }
         }
 

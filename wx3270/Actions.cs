@@ -81,11 +81,6 @@ namespace Wx3270
         private VisibleControls visibleControls;
 
         /// <summary>
-        /// True if the actions dialog was ever activated.
-        /// </summary>
-        private bool everActivated;
-
-        /// <summary>
         /// True if the UI trace check callback is running.
         /// </summary>
         private bool uiTraceCheckRunning;
@@ -726,14 +721,9 @@ Use with care.");
         /// <param name="e">Event arguments.</param>
         private void Actions_Activated(object sender, EventArgs e)
         {
-            if (!this.everActivated)
+            if (!Tour.IsComplete(this.actionsTabs.SelectedTab))
             {
-                this.everActivated = true;
-                this.Location = MainScreen.CenteredOn(this.mainScreen, this);
-                if (!Tour.IsComplete(this.actionsTabs.SelectedTab))
-                {
-                    this.RunTour(this.actionsTabs.SelectedTab);
-                }
+                this.RunTour(this.actionsTabs.SelectedTab);
             }
         }
 
@@ -1120,6 +1110,17 @@ Use with care.");
         private void RegisterTour(TabPage tabPage, IEnumerable<(Control, int?, Orientation)> nodes)
         {
             this.tours[tabPage] = nodes;
+        }
+
+        /// <summary>
+        /// The actions window is being loaded.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void ActionsLoad(object sender, EventArgs e)
+        {
+            // For some reason, this form does not center on its parent unless this is done explicitly here.
+            this.CenterToParent();
         }
 
         /// <summary>

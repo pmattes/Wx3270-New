@@ -101,9 +101,9 @@
             this.portRequiredLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.portRequiredLabel.AutoSize = true;
             this.portRequiredLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portRequiredLabel.Location = new System.Drawing.Point(258, 106);
+            this.portRequiredLabel.Location = new System.Drawing.Point(243, 106);
             this.portRequiredLabel.Name = "portRequiredLabel";
-            this.portRequiredLabel.Size = new System.Drawing.Size(38, 12);
+            this.portRequiredLabel.Size = new System.Drawing.Size(53, 15);
             this.portRequiredLabel.TabIndex = 122;
             this.portRequiredLabel.Text = "required";
             this.portRequiredLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -113,9 +113,9 @@
             this.addressRequiredLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addressRequiredLabel.AutoSize = true;
             this.addressRequiredLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addressRequiredLabel.Location = new System.Drawing.Point(258, 65);
+            this.addressRequiredLabel.Location = new System.Drawing.Point(243, 65);
             this.addressRequiredLabel.Name = "addressRequiredLabel";
-            this.addressRequiredLabel.Size = new System.Drawing.Size(38, 12);
+            this.addressRequiredLabel.Size = new System.Drawing.Size(53, 15);
             this.addressRequiredLabel.TabIndex = 122;
             this.addressRequiredLabel.Text = "required";
             this.addressRequiredLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -124,9 +124,9 @@
             // 
             this.portLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.portLabel.AutoSize = true;
-            this.portLabel.Location = new System.Drawing.Point(3, 86);
+            this.portLabel.Location = new System.Drawing.Point(3, 85);
             this.portLabel.Name = "portLabel";
-            this.portLabel.Size = new System.Drawing.Size(26, 13);
+            this.portLabel.Size = new System.Drawing.Size(29, 15);
             this.portLabel.TabIndex = 1;
             this.portLabel.Text = "Port";
             // 
@@ -134,9 +134,9 @@
             // 
             this.addressLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.addressLabel.AutoSize = true;
-            this.addressLabel.Location = new System.Drawing.Point(3, 45);
+            this.addressLabel.Location = new System.Drawing.Point(3, 44);
             this.addressLabel.Name = "addressLabel";
-            this.addressLabel.Size = new System.Drawing.Size(45, 13);
+            this.addressLabel.Size = new System.Drawing.Size(51, 15);
             this.addressLabel.TabIndex = 0;
             this.addressLabel.Text = "Address";
             // 
@@ -164,9 +164,9 @@
             // 
             this.serviceLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.serviceLabel.AutoSize = true;
-            this.serviceLabel.Location = new System.Drawing.Point(3, 5);
+            this.serviceLabel.Location = new System.Drawing.Point(3, 4);
             this.serviceLabel.Name = "serviceLabel";
-            this.serviceLabel.Size = new System.Drawing.Size(43, 13);
+            this.serviceLabel.Size = new System.Drawing.Size(47, 15);
             this.serviceLabel.TabIndex = 123;
             this.serviceLabel.Text = "Service";
             // 
@@ -174,9 +174,9 @@
             // 
             this.serviceValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.serviceValueLabel.AutoSize = true;
-            this.serviceValueLabel.Location = new System.Drawing.Point(103, 5);
+            this.serviceValueLabel.Location = new System.Drawing.Point(103, 4);
             this.serviceValueLabel.Name = "serviceValueLabel";
-            this.serviceValueLabel.Size = new System.Drawing.Size(37, 13);
+            this.serviceValueLabel.Size = new System.Drawing.Size(43, 15);
             this.serviceValueLabel.TabIndex = 124;
             this.serviceValueLabel.Tag = "`nolocal";
             this.serviceValueLabel.Text = "(none)";
@@ -243,6 +243,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ServerEditor";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Server Editor";
             this.Shown += new System.EventHandler(this.ListenerEditorShown);

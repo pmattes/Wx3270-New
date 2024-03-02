@@ -190,9 +190,9 @@
             this.KeypadPanel.BackColor = System.Drawing.SystemColors.Control;
             this.KeypadPanel.ColumnCount = 5;
             this.KeypadPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.KeypadPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.KeypadPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 13F));
             this.KeypadPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.KeypadPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.KeypadPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 13F));
             this.KeypadPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.KeypadPanel.Controls.Add(this.newLeftPanel, 0, 0);
             this.KeypadPanel.Controls.Add(this.newMiddlePanel, 2, 0);
@@ -202,7 +202,7 @@
             this.KeypadPanel.Name = "KeypadPanel";
             this.KeypadPanel.RowCount = 1;
             this.KeypadPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.KeypadPanel.Size = new System.Drawing.Size(476, 240);
+            this.KeypadPanel.Size = new System.Drawing.Size(634, 295);
             this.KeypadPanel.TabIndex = 36;
             // 
             // newLeftPanel
@@ -214,7 +214,7 @@
             this.newLeftPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.newLeftPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.newLeftPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.newLeftPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.newLeftPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.newLeftPanel.Controls.Add(this.ResetPanel, 2, 4);
             this.newLeftPanel.Controls.Add(this.pa2Panel, 1, 4);
             this.newLeftPanel.Controls.Add(this.pa1Panel, 0, 4);
@@ -239,17 +239,17 @@
             this.newLeftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.newLeftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.newLeftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.newLeftPanel.Size = new System.Drawing.Size(144, 240);
+            this.newLeftPanel.Size = new System.Drawing.Size(192, 295);
             this.newLeftPanel.TabIndex = 0;
             // 
             // ResetPanel
             // 
             this.ResetPanel.BackColor = System.Drawing.Color.Black;
             this.ResetPanel.Controls.Add(this.ResetButton);
-            this.ResetPanel.Location = new System.Drawing.Point(96, 192);
+            this.ResetPanel.Location = new System.Drawing.Point(128, 236);
             this.ResetPanel.Margin = new System.Windows.Forms.Padding(0);
             this.ResetPanel.Name = "ResetPanel";
-            this.ResetPanel.Size = new System.Drawing.Size(48, 48);
+            this.ResetPanel.Size = new System.Drawing.Size(64, 59);
             this.ResetPanel.TabIndex = 39;
             // 
             // ResetButton
@@ -262,7 +262,7 @@
             this.ResetButton.Location = new System.Drawing.Point(0, 0);
             this.ResetButton.Margin = new System.Windows.Forms.Padding(0);
             this.ResetButton.Name = "ResetButton";
-            this.ResetButton.Size = new System.Drawing.Size(48, 48);
+            this.ResetButton.Size = new System.Drawing.Size(64, 59);
             this.ResetButton.TabIndex = 34;
             this.ResetButton.TabStop = false;
             this.ResetButton.Tag = "";
@@ -275,10 +275,10 @@
             // 
             this.pa2Panel.BackColor = System.Drawing.Color.Black;
             this.pa2Panel.Controls.Add(this.PA2button);
-            this.pa2Panel.Location = new System.Drawing.Point(48, 192);
+            this.pa2Panel.Location = new System.Drawing.Point(64, 236);
             this.pa2Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pa2Panel.Name = "pa2Panel";
-            this.pa2Panel.Size = new System.Drawing.Size(48, 48);
+            this.pa2Panel.Size = new System.Drawing.Size(64, 59);
             this.pa2Panel.TabIndex = 39;
             // 
             // PA2button
@@ -291,7 +291,7 @@
             this.PA2button.Location = new System.Drawing.Point(0, 0);
             this.PA2button.Margin = new System.Windows.Forms.Padding(0);
             this.PA2button.Name = "PA2button";
-            this.PA2button.Size = new System.Drawing.Size(48, 48);
+            this.PA2button.Size = new System.Drawing.Size(64, 59);
             this.PA2button.TabIndex = 30;
             this.PA2button.TabStop = false;
             this.PA2button.Tag = "";
@@ -304,10 +304,10 @@
             // 
             this.pa1Panel.BackColor = System.Drawing.Color.Black;
             this.pa1Panel.Controls.Add(this.PA1button);
-            this.pa1Panel.Location = new System.Drawing.Point(0, 192);
+            this.pa1Panel.Location = new System.Drawing.Point(0, 236);
             this.pa1Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pa1Panel.Name = "pa1Panel";
-            this.pa1Panel.Size = new System.Drawing.Size(48, 48);
+            this.pa1Panel.Size = new System.Drawing.Size(64, 59);
             this.pa1Panel.TabIndex = 39;
             // 
             // PA1button
@@ -320,7 +320,7 @@
             this.PA1button.Location = new System.Drawing.Point(0, 0);
             this.PA1button.Margin = new System.Windows.Forms.Padding(0);
             this.PA1button.Name = "PA1button";
-            this.PA1button.Size = new System.Drawing.Size(48, 48);
+            this.PA1button.Size = new System.Drawing.Size(64, 59);
             this.PA1button.TabIndex = 29;
             this.PA1button.TabStop = false;
             this.PA1button.Tag = "";
@@ -333,10 +333,10 @@
             // 
             this.pf12Panel.BackColor = System.Drawing.Color.Black;
             this.pf12Panel.Controls.Add(this.PF12button);
-            this.pf12Panel.Location = new System.Drawing.Point(96, 144);
+            this.pf12Panel.Location = new System.Drawing.Point(128, 177);
             this.pf12Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pf12Panel.Name = "pf12Panel";
-            this.pf12Panel.Size = new System.Drawing.Size(48, 48);
+            this.pf12Panel.Size = new System.Drawing.Size(64, 59);
             this.pf12Panel.TabIndex = 39;
             // 
             // PF12button
@@ -349,7 +349,7 @@
             this.PF12button.Location = new System.Drawing.Point(0, 0);
             this.PF12button.Margin = new System.Windows.Forms.Padding(0);
             this.PF12button.Name = "PF12button";
-            this.PF12button.Size = new System.Drawing.Size(48, 48);
+            this.PF12button.Size = new System.Drawing.Size(64, 59);
             this.PF12button.TabIndex = 17;
             this.PF12button.TabStop = false;
             this.PF12button.Tag = "";
@@ -362,10 +362,10 @@
             // 
             this.pf11Panel.BackColor = System.Drawing.Color.Black;
             this.pf11Panel.Controls.Add(this.PF11button);
-            this.pf11Panel.Location = new System.Drawing.Point(48, 144);
+            this.pf11Panel.Location = new System.Drawing.Point(64, 177);
             this.pf11Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pf11Panel.Name = "pf11Panel";
-            this.pf11Panel.Size = new System.Drawing.Size(48, 48);
+            this.pf11Panel.Size = new System.Drawing.Size(64, 59);
             this.pf11Panel.TabIndex = 39;
             // 
             // PF11button
@@ -378,7 +378,7 @@
             this.PF11button.Location = new System.Drawing.Point(0, 0);
             this.PF11button.Margin = new System.Windows.Forms.Padding(0);
             this.PF11button.Name = "PF11button";
-            this.PF11button.Size = new System.Drawing.Size(48, 48);
+            this.PF11button.Size = new System.Drawing.Size(64, 59);
             this.PF11button.TabIndex = 16;
             this.PF11button.TabStop = false;
             this.PF11button.Tag = "";
@@ -391,10 +391,10 @@
             // 
             this.pa10Panel.BackColor = System.Drawing.Color.Black;
             this.pa10Panel.Controls.Add(this.PF10button);
-            this.pa10Panel.Location = new System.Drawing.Point(0, 144);
+            this.pa10Panel.Location = new System.Drawing.Point(0, 177);
             this.pa10Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pa10Panel.Name = "pa10Panel";
-            this.pa10Panel.Size = new System.Drawing.Size(48, 48);
+            this.pa10Panel.Size = new System.Drawing.Size(64, 59);
             this.pa10Panel.TabIndex = 39;
             // 
             // PF10button
@@ -407,7 +407,7 @@
             this.PF10button.Location = new System.Drawing.Point(0, 0);
             this.PF10button.Margin = new System.Windows.Forms.Padding(0);
             this.PF10button.Name = "PF10button";
-            this.PF10button.Size = new System.Drawing.Size(48, 48);
+            this.PF10button.Size = new System.Drawing.Size(64, 59);
             this.PF10button.TabIndex = 15;
             this.PF10button.TabStop = false;
             this.PF10button.Tag = "";
@@ -420,10 +420,10 @@
             // 
             this.pf9Panel.BackColor = System.Drawing.Color.Black;
             this.pf9Panel.Controls.Add(this.PF9button);
-            this.pf9Panel.Location = new System.Drawing.Point(96, 96);
+            this.pf9Panel.Location = new System.Drawing.Point(128, 118);
             this.pf9Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pf9Panel.Name = "pf9Panel";
-            this.pf9Panel.Size = new System.Drawing.Size(48, 48);
+            this.pf9Panel.Size = new System.Drawing.Size(64, 59);
             this.pf9Panel.TabIndex = 39;
             // 
             // PF9button
@@ -436,7 +436,7 @@
             this.PF9button.Location = new System.Drawing.Point(0, 0);
             this.PF9button.Margin = new System.Windows.Forms.Padding(0);
             this.PF9button.Name = "PF9button";
-            this.PF9button.Size = new System.Drawing.Size(48, 48);
+            this.PF9button.Size = new System.Drawing.Size(64, 59);
             this.PF9button.TabIndex = 22;
             this.PF9button.TabStop = false;
             this.PF9button.Tag = "";
@@ -449,10 +449,10 @@
             // 
             this.pf8Panel.BackColor = System.Drawing.Color.Black;
             this.pf8Panel.Controls.Add(this.PF8button);
-            this.pf8Panel.Location = new System.Drawing.Point(48, 96);
+            this.pf8Panel.Location = new System.Drawing.Point(64, 118);
             this.pf8Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pf8Panel.Name = "pf8Panel";
-            this.pf8Panel.Size = new System.Drawing.Size(48, 48);
+            this.pf8Panel.Size = new System.Drawing.Size(64, 59);
             this.pf8Panel.TabIndex = 39;
             // 
             // PF8button
@@ -465,7 +465,7 @@
             this.PF8button.Location = new System.Drawing.Point(0, 0);
             this.PF8button.Margin = new System.Windows.Forms.Padding(0);
             this.PF8button.Name = "PF8button";
-            this.PF8button.Size = new System.Drawing.Size(48, 48);
+            this.PF8button.Size = new System.Drawing.Size(64, 59);
             this.PF8button.TabIndex = 21;
             this.PF8button.TabStop = false;
             this.PF8button.Tag = "";
@@ -478,10 +478,10 @@
             // 
             this.pf7Panel.BackColor = System.Drawing.Color.Black;
             this.pf7Panel.Controls.Add(this.PF7button);
-            this.pf7Panel.Location = new System.Drawing.Point(0, 96);
+            this.pf7Panel.Location = new System.Drawing.Point(0, 118);
             this.pf7Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pf7Panel.Name = "pf7Panel";
-            this.pf7Panel.Size = new System.Drawing.Size(48, 48);
+            this.pf7Panel.Size = new System.Drawing.Size(64, 59);
             this.pf7Panel.TabIndex = 39;
             // 
             // PF7button
@@ -494,7 +494,7 @@
             this.PF7button.Location = new System.Drawing.Point(0, 0);
             this.PF7button.Margin = new System.Windows.Forms.Padding(0);
             this.PF7button.Name = "PF7button";
-            this.PF7button.Size = new System.Drawing.Size(48, 48);
+            this.PF7button.Size = new System.Drawing.Size(64, 59);
             this.PF7button.TabIndex = 20;
             this.PF7button.TabStop = false;
             this.PF7button.Tag = "";
@@ -507,10 +507,10 @@
             // 
             this.pf6Panel.BackColor = System.Drawing.Color.Black;
             this.pf6Panel.Controls.Add(this.PF6button);
-            this.pf6Panel.Location = new System.Drawing.Point(96, 48);
+            this.pf6Panel.Location = new System.Drawing.Point(128, 59);
             this.pf6Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pf6Panel.Name = "pf6Panel";
-            this.pf6Panel.Size = new System.Drawing.Size(48, 48);
+            this.pf6Panel.Size = new System.Drawing.Size(64, 59);
             this.pf6Panel.TabIndex = 39;
             // 
             // PF6button
@@ -523,7 +523,7 @@
             this.PF6button.Location = new System.Drawing.Point(0, 0);
             this.PF6button.Margin = new System.Windows.Forms.Padding(0);
             this.PF6button.Name = "PF6button";
-            this.PF6button.Size = new System.Drawing.Size(48, 48);
+            this.PF6button.Size = new System.Drawing.Size(64, 59);
             this.PF6button.TabIndex = 19;
             this.PF6button.TabStop = false;
             this.PF6button.Tag = "";
@@ -536,10 +536,10 @@
             // 
             this.pf5Panel.BackColor = System.Drawing.Color.Black;
             this.pf5Panel.Controls.Add(this.PF5button);
-            this.pf5Panel.Location = new System.Drawing.Point(48, 48);
+            this.pf5Panel.Location = new System.Drawing.Point(64, 59);
             this.pf5Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pf5Panel.Name = "pf5Panel";
-            this.pf5Panel.Size = new System.Drawing.Size(48, 48);
+            this.pf5Panel.Size = new System.Drawing.Size(64, 59);
             this.pf5Panel.TabIndex = 39;
             // 
             // PF5button
@@ -552,7 +552,7 @@
             this.PF5button.Location = new System.Drawing.Point(0, 0);
             this.PF5button.Margin = new System.Windows.Forms.Padding(0);
             this.PF5button.Name = "PF5button";
-            this.PF5button.Size = new System.Drawing.Size(48, 48);
+            this.PF5button.Size = new System.Drawing.Size(64, 59);
             this.PF5button.TabIndex = 18;
             this.PF5button.TabStop = false;
             this.PF5button.Tag = "";
@@ -565,10 +565,10 @@
             // 
             this.pf4Panel.BackColor = System.Drawing.Color.Black;
             this.pf4Panel.Controls.Add(this.PF4button);
-            this.pf4Panel.Location = new System.Drawing.Point(0, 48);
+            this.pf4Panel.Location = new System.Drawing.Point(0, 59);
             this.pf4Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pf4Panel.Name = "pf4Panel";
-            this.pf4Panel.Size = new System.Drawing.Size(48, 48);
+            this.pf4Panel.Size = new System.Drawing.Size(64, 59);
             this.pf4Panel.TabIndex = 39;
             // 
             // PF4button
@@ -581,7 +581,7 @@
             this.PF4button.Location = new System.Drawing.Point(0, 0);
             this.PF4button.Margin = new System.Windows.Forms.Padding(0);
             this.PF4button.Name = "PF4button";
-            this.PF4button.Size = new System.Drawing.Size(48, 48);
+            this.PF4button.Size = new System.Drawing.Size(64, 59);
             this.PF4button.TabIndex = 14;
             this.PF4button.TabStop = false;
             this.PF4button.Tag = "";
@@ -594,10 +594,10 @@
             // 
             this.pf3Panel.BackColor = System.Drawing.Color.Black;
             this.pf3Panel.Controls.Add(this.PF3button);
-            this.pf3Panel.Location = new System.Drawing.Point(96, 0);
+            this.pf3Panel.Location = new System.Drawing.Point(128, 0);
             this.pf3Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pf3Panel.Name = "pf3Panel";
-            this.pf3Panel.Size = new System.Drawing.Size(48, 48);
+            this.pf3Panel.Size = new System.Drawing.Size(64, 59);
             this.pf3Panel.TabIndex = 39;
             // 
             // PF3button
@@ -610,7 +610,7 @@
             this.PF3button.Location = new System.Drawing.Point(0, 0);
             this.PF3button.Margin = new System.Windows.Forms.Padding(0);
             this.PF3button.Name = "PF3button";
-            this.PF3button.Size = new System.Drawing.Size(48, 48);
+            this.PF3button.Size = new System.Drawing.Size(64, 59);
             this.PF3button.TabIndex = 13;
             this.PF3button.TabStop = false;
             this.PF3button.Tag = "";
@@ -626,7 +626,7 @@
             this.pf1Panel.Location = new System.Drawing.Point(0, 0);
             this.pf1Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pf1Panel.Name = "pf1Panel";
-            this.pf1Panel.Size = new System.Drawing.Size(48, 48);
+            this.pf1Panel.Size = new System.Drawing.Size(64, 59);
             this.pf1Panel.TabIndex = 37;
             // 
             // PF1button
@@ -642,7 +642,7 @@
             this.PF1button.Location = new System.Drawing.Point(0, 0);
             this.PF1button.Margin = new System.Windows.Forms.Padding(0);
             this.PF1button.Name = "PF1button";
-            this.PF1button.Size = new System.Drawing.Size(48, 48);
+            this.PF1button.Size = new System.Drawing.Size(64, 59);
             this.PF1button.TabIndex = 0;
             this.PF1button.TabStop = false;
             this.PF1button.Tag = "";
@@ -655,10 +655,10 @@
             // 
             this.pf2Panel.BackColor = System.Drawing.Color.Black;
             this.pf2Panel.Controls.Add(this.PF2button);
-            this.pf2Panel.Location = new System.Drawing.Point(48, 0);
+            this.pf2Panel.Location = new System.Drawing.Point(64, 0);
             this.pf2Panel.Margin = new System.Windows.Forms.Padding(0);
             this.pf2Panel.Name = "pf2Panel";
-            this.pf2Panel.Size = new System.Drawing.Size(48, 48);
+            this.pf2Panel.Size = new System.Drawing.Size(64, 59);
             this.pf2Panel.TabIndex = 37;
             // 
             // PF2button
@@ -671,7 +671,7 @@
             this.PF2button.Location = new System.Drawing.Point(0, 0);
             this.PF2button.Margin = new System.Windows.Forms.Padding(0);
             this.PF2button.Name = "PF2button";
-            this.PF2button.Size = new System.Drawing.Size(48, 48);
+            this.PF2button.Size = new System.Drawing.Size(64, 59);
             this.PF2button.TabIndex = 12;
             this.PF2button.TabStop = false;
             this.PF2button.Tag = "";
@@ -689,8 +689,8 @@
             this.newMiddlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.newMiddlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.newMiddlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.newMiddlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.newMiddlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.newMiddlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.newMiddlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.newMiddlePanel.Controls.Add(this.panel17, 2, 1);
             this.newMiddlePanel.Controls.Add(this.tabPanel, 2, 0);
             this.newMiddlePanel.Controls.Add(this.panel10, 1, 4);
@@ -705,7 +705,7 @@
             this.newMiddlePanel.Controls.Add(this.enterPanel, 2, 4);
             this.newMiddlePanel.Controls.Add(this.newlinePanel, 2, 2);
             this.newMiddlePanel.Controls.Add(this.panel7, 1, 1);
-            this.newMiddlePanel.Location = new System.Drawing.Point(154, 0);
+            this.newMiddlePanel.Location = new System.Drawing.Point(205, 0);
             this.newMiddlePanel.Margin = new System.Windows.Forms.Padding(0);
             this.newMiddlePanel.Name = "newMiddlePanel";
             this.newMiddlePanel.RowCount = 5;
@@ -714,17 +714,17 @@
             this.newMiddlePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.newMiddlePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.newMiddlePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.newMiddlePanel.Size = new System.Drawing.Size(168, 240);
+            this.newMiddlePanel.Size = new System.Drawing.Size(224, 295);
             this.newMiddlePanel.TabIndex = 1;
             // 
             // panel17
             // 
             this.panel17.BackColor = System.Drawing.Color.Black;
             this.panel17.Controls.Add(this.BackTabButton);
-            this.panel17.Location = new System.Drawing.Point(96, 48);
+            this.panel17.Location = new System.Drawing.Point(128, 59);
             this.panel17.Margin = new System.Windows.Forms.Padding(0);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(72, 48);
+            this.panel17.Size = new System.Drawing.Size(96, 59);
             this.panel17.TabIndex = 42;
             // 
             // BackTabButton
@@ -737,7 +737,7 @@
             this.BackTabButton.Location = new System.Drawing.Point(0, 0);
             this.BackTabButton.Margin = new System.Windows.Forms.Padding(0);
             this.BackTabButton.Name = "BackTabButton";
-            this.BackTabButton.Size = new System.Drawing.Size(72, 48);
+            this.BackTabButton.Size = new System.Drawing.Size(96, 59);
             this.BackTabButton.TabIndex = 7;
             this.BackTabButton.TabStop = false;
             this.BackTabButton.Tag = "";
@@ -750,10 +750,10 @@
             // 
             this.tabPanel.BackColor = System.Drawing.Color.Black;
             this.tabPanel.Controls.Add(this.TabButton);
-            this.tabPanel.Location = new System.Drawing.Point(96, 0);
+            this.tabPanel.Location = new System.Drawing.Point(128, 0);
             this.tabPanel.Margin = new System.Windows.Forms.Padding(0);
             this.tabPanel.Name = "tabPanel";
-            this.tabPanel.Size = new System.Drawing.Size(72, 48);
+            this.tabPanel.Size = new System.Drawing.Size(96, 59);
             this.tabPanel.TabIndex = 41;
             // 
             // TabButton
@@ -766,7 +766,7 @@
             this.TabButton.Location = new System.Drawing.Point(0, 0);
             this.TabButton.Margin = new System.Windows.Forms.Padding(0);
             this.TabButton.Name = "TabButton";
-            this.TabButton.Size = new System.Drawing.Size(72, 48);
+            this.TabButton.Size = new System.Drawing.Size(96, 59);
             this.TabButton.TabIndex = 8;
             this.TabButton.TabStop = false;
             this.TabButton.Tag = "";
@@ -779,10 +779,10 @@
             // 
             this.panel10.BackColor = System.Drawing.Color.Black;
             this.panel10.Controls.Add(this.BlankButton9);
-            this.panel10.Location = new System.Drawing.Point(48, 192);
+            this.panel10.Location = new System.Drawing.Point(64, 236);
             this.panel10.Margin = new System.Windows.Forms.Padding(0);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(48, 48);
+            this.panel10.Size = new System.Drawing.Size(64, 59);
             this.panel10.TabIndex = 38;
             // 
             // BlankButton9
@@ -798,7 +798,7 @@
             this.BlankButton9.Location = new System.Drawing.Point(0, 0);
             this.BlankButton9.Margin = new System.Windows.Forms.Padding(0);
             this.BlankButton9.Name = "BlankButton9";
-            this.BlankButton9.Size = new System.Drawing.Size(48, 48);
+            this.BlankButton9.Size = new System.Drawing.Size(64, 59);
             this.BlankButton9.TabIndex = 0;
             this.BlankButton9.TabStop = false;
             this.BlankButton9.Tag = "";
@@ -810,10 +810,10 @@
             // 
             this.panel9.BackColor = System.Drawing.Color.Black;
             this.panel9.Controls.Add(this.BlankButton7);
-            this.panel9.Location = new System.Drawing.Point(48, 144);
+            this.panel9.Location = new System.Drawing.Point(64, 177);
             this.panel9.Margin = new System.Windows.Forms.Padding(0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(48, 48);
+            this.panel9.Size = new System.Drawing.Size(64, 59);
             this.panel9.TabIndex = 38;
             // 
             // BlankButton7
@@ -829,7 +829,7 @@
             this.BlankButton7.Location = new System.Drawing.Point(0, 0);
             this.BlankButton7.Margin = new System.Windows.Forms.Padding(0);
             this.BlankButton7.Name = "BlankButton7";
-            this.BlankButton7.Size = new System.Drawing.Size(48, 48);
+            this.BlankButton7.Size = new System.Drawing.Size(64, 59);
             this.BlankButton7.TabIndex = 0;
             this.BlankButton7.TabStop = false;
             this.BlankButton7.Tag = "";
@@ -841,10 +841,10 @@
             // 
             this.panel8.BackColor = System.Drawing.Color.Black;
             this.panel8.Controls.Add(this.BlankButton5);
-            this.panel8.Location = new System.Drawing.Point(48, 96);
+            this.panel8.Location = new System.Drawing.Point(64, 118);
             this.panel8.Margin = new System.Windows.Forms.Padding(0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(48, 48);
+            this.panel8.Size = new System.Drawing.Size(64, 59);
             this.panel8.TabIndex = 38;
             // 
             // BlankButton5
@@ -860,7 +860,7 @@
             this.BlankButton5.Location = new System.Drawing.Point(0, 0);
             this.BlankButton5.Margin = new System.Windows.Forms.Padding(0);
             this.BlankButton5.Name = "BlankButton5";
-            this.BlankButton5.Size = new System.Drawing.Size(48, 48);
+            this.BlankButton5.Size = new System.Drawing.Size(64, 59);
             this.BlankButton5.TabIndex = 0;
             this.BlankButton5.TabStop = false;
             this.BlankButton5.Tag = "";
@@ -872,13 +872,13 @@
             // 
             this.panel6.BackColor = System.Drawing.Color.Black;
             this.panel6.Controls.Add(this.Blank1Buton);
-            this.panel6.Location = new System.Drawing.Point(48, 0);
+            this.panel6.Location = new System.Drawing.Point(64, 0);
             this.panel6.Margin = new System.Windows.Forms.Padding(0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(48, 48);
+            this.panel6.Size = new System.Drawing.Size(64, 59);
             this.panel6.TabIndex = 38;
             // 
-            // Blank1Button
+            // Blank1Buton
             // 
             this.Blank1Buton.BackgroundImage = global::Wx3270.Properties.Resources.Blank48;
             this.Blank1Buton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -891,7 +891,7 @@
             this.Blank1Buton.Location = new System.Drawing.Point(0, 0);
             this.Blank1Buton.Margin = new System.Windows.Forms.Padding(0);
             this.Blank1Buton.Name = "Blank1Buton";
-            this.Blank1Buton.Size = new System.Drawing.Size(48, 48);
+            this.Blank1Buton.Size = new System.Drawing.Size(64, 59);
             this.Blank1Buton.TabIndex = 0;
             this.Blank1Buton.TabStop = false;
             this.Blank1Buton.Tag = "";
@@ -903,10 +903,10 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.Black;
             this.panel5.Controls.Add(this.BlankButton8);
-            this.panel5.Location = new System.Drawing.Point(0, 192);
+            this.panel5.Location = new System.Drawing.Point(0, 236);
             this.panel5.Margin = new System.Windows.Forms.Padding(0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(48, 48);
+            this.panel5.Size = new System.Drawing.Size(64, 59);
             this.panel5.TabIndex = 38;
             // 
             // BlankButton8
@@ -922,7 +922,7 @@
             this.BlankButton8.Location = new System.Drawing.Point(0, 0);
             this.BlankButton8.Margin = new System.Windows.Forms.Padding(0);
             this.BlankButton8.Name = "BlankButton8";
-            this.BlankButton8.Size = new System.Drawing.Size(48, 48);
+            this.BlankButton8.Size = new System.Drawing.Size(64, 59);
             this.BlankButton8.TabIndex = 0;
             this.BlankButton8.TabStop = false;
             this.BlankButton8.Tag = "";
@@ -934,10 +934,10 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.Black;
             this.panel4.Controls.Add(this.BlankButton6);
-            this.panel4.Location = new System.Drawing.Point(0, 144);
+            this.panel4.Location = new System.Drawing.Point(0, 177);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(48, 48);
+            this.panel4.Size = new System.Drawing.Size(64, 59);
             this.panel4.TabIndex = 38;
             // 
             // BlankButton6
@@ -953,7 +953,7 @@
             this.BlankButton6.Location = new System.Drawing.Point(0, 0);
             this.BlankButton6.Margin = new System.Windows.Forms.Padding(0);
             this.BlankButton6.Name = "BlankButton6";
-            this.BlankButton6.Size = new System.Drawing.Size(48, 48);
+            this.BlankButton6.Size = new System.Drawing.Size(64, 59);
             this.BlankButton6.TabIndex = 0;
             this.BlankButton6.TabStop = false;
             this.BlankButton6.Tag = "";
@@ -965,10 +965,10 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.Black;
             this.panel3.Controls.Add(this.BlankButton4);
-            this.panel3.Location = new System.Drawing.Point(0, 96);
+            this.panel3.Location = new System.Drawing.Point(0, 118);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(48, 48);
+            this.panel3.Size = new System.Drawing.Size(64, 59);
             this.panel3.TabIndex = 38;
             // 
             // BlankButton4
@@ -984,7 +984,7 @@
             this.BlankButton4.Location = new System.Drawing.Point(0, 0);
             this.BlankButton4.Margin = new System.Windows.Forms.Padding(0);
             this.BlankButton4.Name = "BlankButton4";
-            this.BlankButton4.Size = new System.Drawing.Size(48, 48);
+            this.BlankButton4.Size = new System.Drawing.Size(64, 59);
             this.BlankButton4.TabIndex = 0;
             this.BlankButton4.TabStop = false;
             this.BlankButton4.Tag = "";
@@ -996,10 +996,10 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
             this.panel2.Controls.Add(this.Blank2Button);
-            this.panel2.Location = new System.Drawing.Point(0, 48);
+            this.panel2.Location = new System.Drawing.Point(0, 59);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(48, 48);
+            this.panel2.Size = new System.Drawing.Size(64, 59);
             this.panel2.TabIndex = 38;
             // 
             // Blank2Button
@@ -1015,7 +1015,7 @@
             this.Blank2Button.Location = new System.Drawing.Point(0, 0);
             this.Blank2Button.Margin = new System.Windows.Forms.Padding(0);
             this.Blank2Button.Name = "Blank2Button";
-            this.Blank2Button.Size = new System.Drawing.Size(48, 48);
+            this.Blank2Button.Size = new System.Drawing.Size(64, 59);
             this.Blank2Button.TabIndex = 0;
             this.Blank2Button.TabStop = false;
             this.Blank2Button.Tag = "";
@@ -1030,7 +1030,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(48, 48);
+            this.panel1.Size = new System.Drawing.Size(64, 59);
             this.panel1.TabIndex = 38;
             // 
             // NotButton
@@ -1046,7 +1046,7 @@
             this.NotButton.Location = new System.Drawing.Point(0, 0);
             this.NotButton.Margin = new System.Windows.Forms.Padding(0);
             this.NotButton.Name = "NotButton";
-            this.NotButton.Size = new System.Drawing.Size(48, 48);
+            this.NotButton.Size = new System.Drawing.Size(64, 59);
             this.NotButton.TabIndex = 0;
             this.NotButton.TabStop = false;
             this.NotButton.Tag = "";
@@ -1059,10 +1059,10 @@
             // 
             this.enterPanel.BackColor = System.Drawing.Color.Black;
             this.enterPanel.Controls.Add(this.EnterButton);
-            this.enterPanel.Location = new System.Drawing.Point(96, 192);
+            this.enterPanel.Location = new System.Drawing.Point(128, 236);
             this.enterPanel.Margin = new System.Windows.Forms.Padding(0);
             this.enterPanel.Name = "enterPanel";
-            this.enterPanel.Size = new System.Drawing.Size(72, 48);
+            this.enterPanel.Size = new System.Drawing.Size(96, 59);
             this.enterPanel.TabIndex = 39;
             // 
             // EnterButton
@@ -1075,7 +1075,7 @@
             this.EnterButton.Location = new System.Drawing.Point(0, 0);
             this.EnterButton.Margin = new System.Windows.Forms.Padding(0);
             this.EnterButton.Name = "EnterButton";
-            this.EnterButton.Size = new System.Drawing.Size(72, 48);
+            this.EnterButton.Size = new System.Drawing.Size(96, 59);
             this.EnterButton.TabIndex = 10;
             this.EnterButton.TabStop = false;
             this.EnterButton.Tag = "";
@@ -1088,11 +1088,11 @@
             // 
             this.newlinePanel.BackColor = System.Drawing.Color.Black;
             this.newlinePanel.Controls.Add(this.NewlineButton);
-            this.newlinePanel.Location = new System.Drawing.Point(96, 96);
+            this.newlinePanel.Location = new System.Drawing.Point(128, 118);
             this.newlinePanel.Margin = new System.Windows.Forms.Padding(0);
             this.newlinePanel.Name = "newlinePanel";
             this.newMiddlePanel.SetRowSpan(this.newlinePanel, 2);
-            this.newlinePanel.Size = new System.Drawing.Size(72, 96);
+            this.newlinePanel.Size = new System.Drawing.Size(96, 118);
             this.newlinePanel.TabIndex = 39;
             // 
             // NewlineButton
@@ -1105,7 +1105,7 @@
             this.NewlineButton.Location = new System.Drawing.Point(0, 0);
             this.NewlineButton.Margin = new System.Windows.Forms.Padding(0);
             this.NewlineButton.Name = "NewlineButton";
-            this.NewlineButton.Size = new System.Drawing.Size(72, 96);
+            this.NewlineButton.Size = new System.Drawing.Size(96, 118);
             this.NewlineButton.TabIndex = 11;
             this.NewlineButton.TabStop = false;
             this.NewlineButton.Tag = "";
@@ -1118,10 +1118,10 @@
             // 
             this.panel7.BackColor = System.Drawing.Color.Black;
             this.panel7.Controls.Add(this.BlankButton3);
-            this.panel7.Location = new System.Drawing.Point(48, 48);
+            this.panel7.Location = new System.Drawing.Point(64, 59);
             this.panel7.Margin = new System.Windows.Forms.Padding(0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(48, 48);
+            this.panel7.Size = new System.Drawing.Size(64, 59);
             this.panel7.TabIndex = 38;
             // 
             // BlankButton3
@@ -1137,7 +1137,7 @@
             this.BlankButton3.Location = new System.Drawing.Point(0, 0);
             this.BlankButton3.Margin = new System.Windows.Forms.Padding(0);
             this.BlankButton3.Name = "BlankButton3";
-            this.BlankButton3.Size = new System.Drawing.Size(48, 48);
+            this.BlankButton3.Size = new System.Drawing.Size(64, 59);
             this.BlankButton3.TabIndex = 0;
             this.BlankButton3.TabStop = false;
             this.BlankButton3.Tag = "";
@@ -1169,7 +1169,7 @@
             this.newRightPanel.Controls.Add(this.clearPanel, 2, 0);
             this.newRightPanel.Controls.Add(this.cursorSelectPanel, 1, 0);
             this.newRightPanel.Controls.Add(this.eraseInputPanel, 0, 0);
-            this.newRightPanel.Location = new System.Drawing.Point(332, 0);
+            this.newRightPanel.Location = new System.Drawing.Point(442, 0);
             this.newRightPanel.Margin = new System.Windows.Forms.Padding(0);
             this.newRightPanel.Name = "newRightPanel";
             this.newRightPanel.RowCount = 5;
@@ -1178,17 +1178,17 @@
             this.newRightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.newRightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.newRightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.newRightPanel.Size = new System.Drawing.Size(144, 240);
+            this.newRightPanel.Size = new System.Drawing.Size(192, 295);
             this.newRightPanel.TabIndex = 2;
             // 
             // rightPanel
             // 
             this.rightPanel.BackColor = System.Drawing.Color.Black;
             this.rightPanel.Controls.Add(this.RightButton);
-            this.rightPanel.Location = new System.Drawing.Point(96, 192);
+            this.rightPanel.Location = new System.Drawing.Point(128, 236);
             this.rightPanel.Margin = new System.Windows.Forms.Padding(0);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(48, 48);
+            this.rightPanel.Size = new System.Drawing.Size(64, 59);
             this.rightPanel.TabIndex = 38;
             // 
             // RightButton
@@ -1201,7 +1201,7 @@
             this.RightButton.Location = new System.Drawing.Point(0, 0);
             this.RightButton.Margin = new System.Windows.Forms.Padding(0);
             this.RightButton.Name = "RightButton";
-            this.RightButton.Size = new System.Drawing.Size(48, 48);
+            this.RightButton.Size = new System.Drawing.Size(64, 59);
             this.RightButton.TabIndex = 23;
             this.RightButton.TabStop = false;
             this.RightButton.Tag = "";
@@ -1214,10 +1214,10 @@
             // 
             this.downPanel.BackColor = System.Drawing.Color.Black;
             this.downPanel.Controls.Add(this.DownButton);
-            this.downPanel.Location = new System.Drawing.Point(48, 192);
+            this.downPanel.Location = new System.Drawing.Point(64, 236);
             this.downPanel.Margin = new System.Windows.Forms.Padding(0);
             this.downPanel.Name = "downPanel";
-            this.downPanel.Size = new System.Drawing.Size(48, 48);
+            this.downPanel.Size = new System.Drawing.Size(64, 59);
             this.downPanel.TabIndex = 39;
             // 
             // DownButton
@@ -1230,7 +1230,7 @@
             this.DownButton.Location = new System.Drawing.Point(0, 0);
             this.DownButton.Margin = new System.Windows.Forms.Padding(0);
             this.DownButton.Name = "DownButton";
-            this.DownButton.Size = new System.Drawing.Size(48, 48);
+            this.DownButton.Size = new System.Drawing.Size(64, 59);
             this.DownButton.TabIndex = 24;
             this.DownButton.TabStop = false;
             this.DownButton.Tag = "";
@@ -1243,10 +1243,10 @@
             // 
             this.leftPanel.BackColor = System.Drawing.Color.Black;
             this.leftPanel.Controls.Add(this.LeftButton);
-            this.leftPanel.Location = new System.Drawing.Point(0, 192);
+            this.leftPanel.Location = new System.Drawing.Point(0, 236);
             this.leftPanel.Margin = new System.Windows.Forms.Padding(0);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(48, 48);
+            this.leftPanel.Size = new System.Drawing.Size(64, 59);
             this.leftPanel.TabIndex = 39;
             // 
             // LeftButton
@@ -1259,7 +1259,7 @@
             this.LeftButton.Location = new System.Drawing.Point(0, 0);
             this.LeftButton.Margin = new System.Windows.Forms.Padding(0);
             this.LeftButton.Name = "LeftButton";
-            this.LeftButton.Size = new System.Drawing.Size(48, 48);
+            this.LeftButton.Size = new System.Drawing.Size(64, 59);
             this.LeftButton.TabIndex = 6;
             this.LeftButton.TabStop = false;
             this.LeftButton.Tag = "";
@@ -1272,10 +1272,10 @@
             // 
             this.deletePanel.BackColor = System.Drawing.Color.Black;
             this.deletePanel.Controls.Add(this.DeleteButton);
-            this.deletePanel.Location = new System.Drawing.Point(96, 144);
+            this.deletePanel.Location = new System.Drawing.Point(128, 177);
             this.deletePanel.Margin = new System.Windows.Forms.Padding(0);
             this.deletePanel.Name = "deletePanel";
-            this.deletePanel.Size = new System.Drawing.Size(48, 48);
+            this.deletePanel.Size = new System.Drawing.Size(64, 59);
             this.deletePanel.TabIndex = 39;
             // 
             // DeleteButton
@@ -1288,7 +1288,7 @@
             this.DeleteButton.Location = new System.Drawing.Point(0, 0);
             this.DeleteButton.Margin = new System.Windows.Forms.Padding(0);
             this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(48, 48);
+            this.DeleteButton.Size = new System.Drawing.Size(64, 59);
             this.DeleteButton.TabIndex = 26;
             this.DeleteButton.TabStop = false;
             this.DeleteButton.Tag = "";
@@ -1300,10 +1300,10 @@
             // 
             this.upPanel.BackColor = System.Drawing.Color.Black;
             this.upPanel.Controls.Add(this.UpButton);
-            this.upPanel.Location = new System.Drawing.Point(48, 144);
+            this.upPanel.Location = new System.Drawing.Point(64, 177);
             this.upPanel.Margin = new System.Windows.Forms.Padding(0);
             this.upPanel.Name = "upPanel";
-            this.upPanel.Size = new System.Drawing.Size(48, 48);
+            this.upPanel.Size = new System.Drawing.Size(64, 59);
             this.upPanel.TabIndex = 39;
             // 
             // UpButton
@@ -1316,7 +1316,7 @@
             this.UpButton.Location = new System.Drawing.Point(0, 0);
             this.UpButton.Margin = new System.Windows.Forms.Padding(0);
             this.UpButton.Name = "UpButton";
-            this.UpButton.Size = new System.Drawing.Size(48, 48);
+            this.UpButton.Size = new System.Drawing.Size(64, 59);
             this.UpButton.TabIndex = 5;
             this.UpButton.TabStop = false;
             this.UpButton.Tag = "";
@@ -1329,10 +1329,10 @@
             // 
             this.insertPanel.BackColor = System.Drawing.Color.Black;
             this.insertPanel.Controls.Add(this.InsertButton);
-            this.insertPanel.Location = new System.Drawing.Point(0, 144);
+            this.insertPanel.Location = new System.Drawing.Point(0, 177);
             this.insertPanel.Margin = new System.Windows.Forms.Padding(0);
             this.insertPanel.Name = "insertPanel";
-            this.insertPanel.Size = new System.Drawing.Size(48, 48);
+            this.insertPanel.Size = new System.Drawing.Size(64, 59);
             this.insertPanel.TabIndex = 39;
             // 
             // InsertButton
@@ -1345,7 +1345,7 @@
             this.InsertButton.Location = new System.Drawing.Point(0, 0);
             this.InsertButton.Margin = new System.Windows.Forms.Padding(0);
             this.InsertButton.Name = "InsertButton";
-            this.InsertButton.Size = new System.Drawing.Size(48, 48);
+            this.InsertButton.Size = new System.Drawing.Size(64, 59);
             this.InsertButton.TabIndex = 25;
             this.InsertButton.TabStop = false;
             this.InsertButton.Tag = "";
@@ -1357,10 +1357,10 @@
             // 
             this.sysReqPanel.BackColor = System.Drawing.Color.Black;
             this.sysReqPanel.Controls.Add(this.SysReqButton);
-            this.sysReqPanel.Location = new System.Drawing.Point(96, 96);
+            this.sysReqPanel.Location = new System.Drawing.Point(128, 118);
             this.sysReqPanel.Margin = new System.Windows.Forms.Padding(0);
             this.sysReqPanel.Name = "sysReqPanel";
-            this.sysReqPanel.Size = new System.Drawing.Size(48, 48);
+            this.sysReqPanel.Size = new System.Drawing.Size(64, 59);
             this.sysReqPanel.TabIndex = 39;
             // 
             // SysReqButton
@@ -1373,7 +1373,7 @@
             this.SysReqButton.Location = new System.Drawing.Point(0, 0);
             this.SysReqButton.Margin = new System.Windows.Forms.Padding(0);
             this.SysReqButton.Name = "SysReqButton";
-            this.SysReqButton.Size = new System.Drawing.Size(48, 48);
+            this.SysReqButton.Size = new System.Drawing.Size(64, 59);
             this.SysReqButton.TabIndex = 33;
             this.SysReqButton.TabStop = false;
             this.SysReqButton.Tag = "";
@@ -1386,10 +1386,10 @@
             // 
             this.cursorBlinkPanel.BackColor = System.Drawing.Color.Black;
             this.cursorBlinkPanel.Controls.Add(this.CursorBlinkButton);
-            this.cursorBlinkPanel.Location = new System.Drawing.Point(48, 96);
+            this.cursorBlinkPanel.Location = new System.Drawing.Point(64, 118);
             this.cursorBlinkPanel.Margin = new System.Windows.Forms.Padding(0);
             this.cursorBlinkPanel.Name = "cursorBlinkPanel";
-            this.cursorBlinkPanel.Size = new System.Drawing.Size(48, 48);
+            this.cursorBlinkPanel.Size = new System.Drawing.Size(64, 59);
             this.cursorBlinkPanel.TabIndex = 39;
             // 
             // CursorBlinkButton
@@ -1402,7 +1402,7 @@
             this.CursorBlinkButton.Location = new System.Drawing.Point(0, 0);
             this.CursorBlinkButton.Margin = new System.Windows.Forms.Padding(0);
             this.CursorBlinkButton.Name = "CursorBlinkButton";
-            this.CursorBlinkButton.Size = new System.Drawing.Size(48, 48);
+            this.CursorBlinkButton.Size = new System.Drawing.Size(64, 59);
             this.CursorBlinkButton.TabIndex = 32;
             this.CursorBlinkButton.TabStop = false;
             this.CursorBlinkButton.Tag = "";
@@ -1415,10 +1415,10 @@
             // 
             this.attnPanel.BackColor = System.Drawing.Color.Black;
             this.attnPanel.Controls.Add(this.AttnButton);
-            this.attnPanel.Location = new System.Drawing.Point(0, 96);
+            this.attnPanel.Location = new System.Drawing.Point(0, 118);
             this.attnPanel.Margin = new System.Windows.Forms.Padding(0);
             this.attnPanel.Name = "attnPanel";
-            this.attnPanel.Size = new System.Drawing.Size(48, 48);
+            this.attnPanel.Size = new System.Drawing.Size(64, 59);
             this.attnPanel.TabIndex = 39;
             // 
             // AttnButton
@@ -1431,7 +1431,7 @@
             this.AttnButton.Location = new System.Drawing.Point(0, 0);
             this.AttnButton.Margin = new System.Windows.Forms.Padding(0);
             this.AttnButton.Name = "AttnButton";
-            this.AttnButton.Size = new System.Drawing.Size(48, 48);
+            this.AttnButton.Size = new System.Drawing.Size(64, 59);
             this.AttnButton.TabIndex = 31;
             this.AttnButton.TabStop = false;
             this.AttnButton.Tag = "";
@@ -1444,10 +1444,10 @@
             // 
             this.fieldMarkPanel.BackColor = System.Drawing.Color.Black;
             this.fieldMarkPanel.Controls.Add(this.FieldMarkButton);
-            this.fieldMarkPanel.Location = new System.Drawing.Point(96, 48);
+            this.fieldMarkPanel.Location = new System.Drawing.Point(128, 59);
             this.fieldMarkPanel.Margin = new System.Windows.Forms.Padding(0);
             this.fieldMarkPanel.Name = "fieldMarkPanel";
-            this.fieldMarkPanel.Size = new System.Drawing.Size(48, 48);
+            this.fieldMarkPanel.Size = new System.Drawing.Size(64, 59);
             this.fieldMarkPanel.TabIndex = 39;
             // 
             // FieldMarkButton
@@ -1460,7 +1460,7 @@
             this.FieldMarkButton.Location = new System.Drawing.Point(0, 0);
             this.FieldMarkButton.Margin = new System.Windows.Forms.Padding(0);
             this.FieldMarkButton.Name = "FieldMarkButton";
-            this.FieldMarkButton.Size = new System.Drawing.Size(48, 48);
+            this.FieldMarkButton.Size = new System.Drawing.Size(64, 59);
             this.FieldMarkButton.TabIndex = 28;
             this.FieldMarkButton.TabStop = false;
             this.FieldMarkButton.Tag = "";
@@ -1473,10 +1473,10 @@
             // 
             this.dupPanel.BackColor = System.Drawing.Color.Black;
             this.dupPanel.Controls.Add(this.DupButton);
-            this.dupPanel.Location = new System.Drawing.Point(48, 48);
+            this.dupPanel.Location = new System.Drawing.Point(64, 59);
             this.dupPanel.Margin = new System.Windows.Forms.Padding(0);
             this.dupPanel.Name = "dupPanel";
-            this.dupPanel.Size = new System.Drawing.Size(48, 48);
+            this.dupPanel.Size = new System.Drawing.Size(64, 59);
             this.dupPanel.TabIndex = 39;
             // 
             // DupButton
@@ -1489,7 +1489,7 @@
             this.DupButton.Location = new System.Drawing.Point(0, 0);
             this.DupButton.Margin = new System.Windows.Forms.Padding(0);
             this.DupButton.Name = "DupButton";
-            this.DupButton.Size = new System.Drawing.Size(48, 48);
+            this.DupButton.Size = new System.Drawing.Size(64, 59);
             this.DupButton.TabIndex = 27;
             this.DupButton.TabStop = false;
             this.DupButton.Tag = "";
@@ -1502,10 +1502,10 @@
             // 
             this.eraseEofPanel.BackColor = System.Drawing.Color.Black;
             this.eraseEofPanel.Controls.Add(this.EraseEOFbutton);
-            this.eraseEofPanel.Location = new System.Drawing.Point(0, 48);
+            this.eraseEofPanel.Location = new System.Drawing.Point(0, 59);
             this.eraseEofPanel.Margin = new System.Windows.Forms.Padding(0);
             this.eraseEofPanel.Name = "eraseEofPanel";
-            this.eraseEofPanel.Size = new System.Drawing.Size(48, 48);
+            this.eraseEofPanel.Size = new System.Drawing.Size(64, 59);
             this.eraseEofPanel.TabIndex = 39;
             // 
             // EraseEOFbutton
@@ -1518,7 +1518,7 @@
             this.EraseEOFbutton.Location = new System.Drawing.Point(0, 0);
             this.EraseEOFbutton.Margin = new System.Windows.Forms.Padding(0);
             this.EraseEOFbutton.Name = "EraseEOFbutton";
-            this.EraseEOFbutton.Size = new System.Drawing.Size(48, 48);
+            this.EraseEOFbutton.Size = new System.Drawing.Size(64, 59);
             this.EraseEOFbutton.TabIndex = 1;
             this.EraseEOFbutton.TabStop = false;
             this.EraseEOFbutton.Tag = "";
@@ -1531,10 +1531,10 @@
             // 
             this.clearPanel.BackColor = System.Drawing.Color.Black;
             this.clearPanel.Controls.Add(this.ClearButton);
-            this.clearPanel.Location = new System.Drawing.Point(96, 0);
+            this.clearPanel.Location = new System.Drawing.Point(128, 0);
             this.clearPanel.Margin = new System.Windows.Forms.Padding(0);
             this.clearPanel.Name = "clearPanel";
-            this.clearPanel.Size = new System.Drawing.Size(48, 48);
+            this.clearPanel.Size = new System.Drawing.Size(64, 59);
             this.clearPanel.TabIndex = 39;
             // 
             // ClearButton
@@ -1547,7 +1547,7 @@
             this.ClearButton.Location = new System.Drawing.Point(0, 0);
             this.ClearButton.Margin = new System.Windows.Forms.Padding(0);
             this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(48, 48);
+            this.ClearButton.Size = new System.Drawing.Size(64, 59);
             this.ClearButton.TabIndex = 2;
             this.ClearButton.TabStop = false;
             this.ClearButton.Tag = "";
@@ -1560,10 +1560,10 @@
             // 
             this.cursorSelectPanel.BackColor = System.Drawing.Color.Black;
             this.cursorSelectPanel.Controls.Add(this.CursorSelectButton);
-            this.cursorSelectPanel.Location = new System.Drawing.Point(48, 0);
+            this.cursorSelectPanel.Location = new System.Drawing.Point(64, 0);
             this.cursorSelectPanel.Margin = new System.Windows.Forms.Padding(0);
             this.cursorSelectPanel.Name = "cursorSelectPanel";
-            this.cursorSelectPanel.Size = new System.Drawing.Size(48, 48);
+            this.cursorSelectPanel.Size = new System.Drawing.Size(64, 59);
             this.cursorSelectPanel.TabIndex = 39;
             // 
             // CursorSelectButton
@@ -1576,7 +1576,7 @@
             this.CursorSelectButton.Location = new System.Drawing.Point(0, 0);
             this.CursorSelectButton.Margin = new System.Windows.Forms.Padding(0);
             this.CursorSelectButton.Name = "CursorSelectButton";
-            this.CursorSelectButton.Size = new System.Drawing.Size(48, 48);
+            this.CursorSelectButton.Size = new System.Drawing.Size(64, 59);
             this.CursorSelectButton.TabIndex = 4;
             this.CursorSelectButton.TabStop = false;
             this.CursorSelectButton.Tag = "";
@@ -1592,7 +1592,7 @@
             this.eraseInputPanel.Location = new System.Drawing.Point(0, 0);
             this.eraseInputPanel.Margin = new System.Windows.Forms.Padding(0);
             this.eraseInputPanel.Name = "eraseInputPanel";
-            this.eraseInputPanel.Size = new System.Drawing.Size(48, 48);
+            this.eraseInputPanel.Size = new System.Drawing.Size(64, 59);
             this.eraseInputPanel.TabIndex = 39;
             // 
             // EraseInputButton
@@ -1605,7 +1605,7 @@
             this.EraseInputButton.Location = new System.Drawing.Point(0, 0);
             this.EraseInputButton.Margin = new System.Windows.Forms.Padding(0);
             this.EraseInputButton.Name = "EraseInputButton";
-            this.EraseInputButton.Size = new System.Drawing.Size(48, 48);
+            this.EraseInputButton.Size = new System.Drawing.Size(64, 59);
             this.EraseInputButton.TabIndex = 3;
             this.EraseInputButton.TabStop = false;
             this.EraseInputButton.Tag = "";
@@ -1622,7 +1622,7 @@
             this.keypadOuterPanel.Location = new System.Drawing.Point(0, 0);
             this.keypadOuterPanel.Margin = new System.Windows.Forms.Padding(0);
             this.keypadOuterPanel.Name = "keypadOuterPanel";
-            this.keypadOuterPanel.Size = new System.Drawing.Size(476, 240);
+            this.keypadOuterPanel.Size = new System.Drawing.Size(634, 295);
             this.keypadOuterPanel.TabIndex = 37;
             this.keypadOuterPanel.Tag = "<nowalk>";
             // 
@@ -1639,7 +1639,7 @@
             this.keypadTableLayoutPanel.RowCount = 2;
             this.keypadTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.keypadTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.keypadTableLayoutPanel.Size = new System.Drawing.Size(476, 261);
+            this.keypadTableLayoutPanel.Size = new System.Drawing.Size(635, 321);
             this.keypadTableLayoutPanel.TabIndex = 38;
             // 
             // helpPictureBox
@@ -1647,10 +1647,10 @@
             this.helpPictureBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.helpPictureBox.ContextMenuStrip = this.helpContextMenuStrip;
             this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(459, 242);
-            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.helpPictureBox.Location = new System.Drawing.Point(612, 298);
+            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(15, 16);
+            this.helpPictureBox.Size = new System.Drawing.Size(20, 20);
             this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.helpPictureBox.TabIndex = 38;
             this.helpPictureBox.TabStop = false;
@@ -1684,22 +1684,25 @@
             // 
             // Keypad
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(625, 397);
+            this.ClientSize = new System.Drawing.Size(833, 489);
             this.Controls.Add(this.keypadTableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Keypad";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "wx3270 Keypad";
             this.Activated += new System.EventHandler(this.Keypad_Activated);
             this.Deactivate += new System.EventHandler(this.Keypad_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Keypad_FormClosing);
+            this.Load += new System.EventHandler(this.KeypadLoad);
             this.Enter += new System.EventHandler(this.Keypad_Enter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Keypad_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Keypad_KeyPress);

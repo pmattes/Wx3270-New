@@ -164,7 +164,7 @@
             this.purplePanel.Location = new System.Drawing.Point(0, 0);
             this.purplePanel.Margin = new System.Windows.Forms.Padding(0);
             this.purplePanel.Name = "purplePanel";
-            this.purplePanel.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+            this.purplePanel.Padding = new System.Windows.Forms.Padding(15);
             this.purplePanel.Size = new System.Drawing.Size(744, 687);
             this.purplePanel.TabIndex = 0;
             // 
@@ -1050,11 +1050,14 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProfileTree";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Profiles and Connections";
             this.Activated += new System.EventHandler(this.ConnectTree_Activated);
             this.Deactivate += new System.EventHandler(this.ConnectTree_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConnectTree_FormClosing);
+            this.Load += new System.EventHandler(this.ProfileTreeLoad);
             this.purplePanel.ResumeLayout(false);
             this.purplePanel.PerformLayout();
             this.notPurplePanel.ResumeLayout(false);
