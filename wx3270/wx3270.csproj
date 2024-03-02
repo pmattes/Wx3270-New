@@ -139,8 +139,15 @@
     <Compile Include="AplMode.cs" />
     <Compile Include="B3270HostSpec.cs" />
     <Compile Include="Contracts\ICell.cs" />
+    <Compile Include="Contracts\IInitialLocation.cs" />
     <Compile Include="Contracts\IModelsDb.cs" />
     <Compile Include="Contracts\ITerminalName.cs" />
+    <Compile Include="ShortcutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShortcutDialog.Designer.cs">
+      <DependentUpon>ShortcutDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="HPathUtil.cs" />
     <Compile Include="FunctionLoader.cs" />
     <Compile Include="MiscMerge.cs" />
@@ -557,6 +564,9 @@
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ShortcutDialog.resx">
+      <DependentUpon>ShortcutDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tour.resx">
       <DependentUpon>Tour.cs</DependentUpon>
     </EmbeddedResource>
@@ -586,9 +596,15 @@
     <None Include="Local Processes.wx3270">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="MessageCatalog\en" />
-    <None Include="MessageCatalog\en-US" />
-    <None Include="MessageCatalog\fr" />
+    <None Include="MessageCatalog\en">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="MessageCatalog\en-US">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="MessageCatalog\fr">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -823,8 +839,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(SolutionDir)MessageCatalog" mkdir "$(SolutionDir)MessageCatalog"
-xcopy /S /I /Y "$(SolutionDir)MessageCatalog" "$(TargetDir)\MessageCatalog"</PostBuildEvent>
+    <PostBuildEvent>rem if not exist "$(SolutionDir)MessageCatalog" mkdir "$(SolutionDir)MessageCatalog"
+rem xcopy /S /I /Y "$(SolutionDir)MessageCatalog" "$(TargetDir)\MessageCatalog"</PostBuildEvent>
   </PropertyGroup>
   <!-- <Import Project="C:\Program Files (x86)\MSBuild\StyleCop\v5.0\StyleCop.Targets" /> -->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

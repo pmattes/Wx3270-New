@@ -159,6 +159,9 @@
             this.nativeNameLabel = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
+            this.helpContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.displayHelpInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startTourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aplLegendPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.aplShiftLabel = new System.Windows.Forms.Label();
             this.aplCtrlShiftLabel = new System.Windows.Forms.Label();
@@ -171,9 +174,6 @@
             this.chordBox = new System.Windows.Forms.GroupBox();
             this.chordComboBox = new System.Windows.Forms.ComboBox();
             this.bottomTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.helpContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.displayHelpInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startTourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayGroupBox.SuspendLayout();
             this.displayTable.SuspendLayout();
             this.modifiersGroupBox.SuspendLayout();
@@ -181,12 +181,12 @@
             this.modeGroupBox.SuspendLayout();
             this.modeTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
+            this.helpContextMenuStrip.SuspendLayout();
             this.aplLegendPanel.SuspendLayout();
             this.keysPanel.SuspendLayout();
             this.modeFlowLayoutPanel.SuspendLayout();
             this.chordBox.SuspendLayout();
             this.bottomTableLayoutPanel.SuspendLayout();
-            this.helpContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // escapeKey
@@ -2122,6 +2122,31 @@
             this.toolTip1.SetToolTip(this.helpPictureBox, "Get help");
             this.helpPictureBox.Click += new System.EventHandler(this.HelpClick);
             // 
+            // helpContextMenuStrip
+            // 
+            this.helpContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.helpContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.displayHelpInBrowserToolStripMenuItem,
+            this.startTourToolStripMenuItem});
+            this.helpContextMenuStrip.Name = "helpContextMenuStrip";
+            this.helpContextMenuStrip.Size = new System.Drawing.Size(234, 52);
+            // 
+            // displayHelpInBrowserToolStripMenuItem
+            // 
+            this.displayHelpInBrowserToolStripMenuItem.Name = "displayHelpInBrowserToolStripMenuItem";
+            this.displayHelpInBrowserToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.displayHelpInBrowserToolStripMenuItem.Tag = "Help";
+            this.displayHelpInBrowserToolStripMenuItem.Text = "Display help in browser";
+            this.displayHelpInBrowserToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
+            // 
+            // startTourToolStripMenuItem
+            // 
+            this.startTourToolStripMenuItem.Name = "startTourToolStripMenuItem";
+            this.startTourToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.startTourToolStripMenuItem.Tag = "Tour";
+            this.startTourToolStripMenuItem.Text = "Start tour";
+            this.startTourToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
+            // 
             // aplLegendPanel
             // 
             this.aplLegendPanel.AutoSize = true;
@@ -2361,31 +2386,6 @@
             this.bottomTableLayoutPanel.Size = new System.Drawing.Size(983, 96);
             this.bottomTableLayoutPanel.TabIndex = 122;
             // 
-            // helpContextMenuStrip
-            // 
-            this.helpContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.helpContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.displayHelpInBrowserToolStripMenuItem,
-            this.startTourToolStripMenuItem});
-            this.helpContextMenuStrip.Name = "helpContextMenuStrip";
-            this.helpContextMenuStrip.Size = new System.Drawing.Size(234, 80);
-            // 
-            // displayHelpInBrowserToolStripMenuItem
-            // 
-            this.displayHelpInBrowserToolStripMenuItem.Name = "displayHelpInBrowserToolStripMenuItem";
-            this.displayHelpInBrowserToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
-            this.displayHelpInBrowserToolStripMenuItem.Tag = "Help";
-            this.displayHelpInBrowserToolStripMenuItem.Text = "Display help in browser";
-            this.displayHelpInBrowserToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
-            // 
-            // startTourToolStripMenuItem
-            // 
-            this.startTourToolStripMenuItem.Name = "startTourToolStripMenuItem";
-            this.startTourToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
-            this.startTourToolStripMenuItem.Tag = "Tour";
-            this.startTourToolStripMenuItem.Text = "Start tour";
-            this.startTourToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
-            // 
             // KeyboardPicture
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2402,6 +2402,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "KeyboardPicture";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Keyboard Map";
@@ -2423,6 +2424,7 @@
             this.modeTable.ResumeLayout(false);
             this.modeTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
+            this.helpContextMenuStrip.ResumeLayout(false);
             this.aplLegendPanel.ResumeLayout(false);
             this.keysPanel.ResumeLayout(false);
             this.keysPanel.PerformLayout();
@@ -2430,7 +2432,6 @@
             this.modeFlowLayoutPanel.PerformLayout();
             this.chordBox.ResumeLayout(false);
             this.bottomTableLayoutPanel.ResumeLayout(false);
-            this.helpContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

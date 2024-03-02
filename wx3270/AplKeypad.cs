@@ -5,6 +5,7 @@
 namespace Wx3270
 {
     using System;
+    using System.Drawing;
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using I18nBase;
@@ -15,7 +16,7 @@ namespace Wx3270
     /// <summary>
     /// The APL pop-up keypad.
     /// </summary>
-    public partial class AplKeypad : Form, IShift, IFlash
+    public partial class AplKeypad : Form, IShift, IFlash, IInitialLocation
     {
         /// <summary>
         /// Application instance.
@@ -59,7 +60,7 @@ namespace Wx3270
             }
 
             // Process restrictions.
-            if (app?.Restricted(Restrictions.GetHelp) != true)
+            if (app?.Restricted(Restrictions.GetHelp) == true)
             {
                 this.helpPictureBox.Visible = false;
             }
@@ -73,6 +74,9 @@ namespace Wx3270
         /// Gets the current keyboard modifier state.
         /// </summary>
         public KeyboardModifier Mod => this.keypadCommon.Mod;
+
+        /// <inheritdoc/>
+        public Point? InitialLocation { private get; set; }
 
         /// <summary>
         /// Static form localization.
@@ -285,6 +289,23 @@ You may continue to type on the keyboard while the keypad window has focus.");
         private void HelpMenuClick(object sender, EventArgs e)
         {
             Tour.HelpMenuClick(sender, e, "APL keypad", this.RunTour);
+        }
+
+        /// <summary>
+        /// The keypad was loaded.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event location.</param>
+        private void KeypadLoad(object sender, EventArgs e)
+        {
+            if (this.InitialLocation.HasValue)
+            {
+                this.Location = this.InitialLocation.Value;
+            }
+            else
+            {
+                this.CenterToParent();
+            }
         }
     }
 }

@@ -58,6 +58,7 @@
             this.visibleControlFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.visibleControlPictureBox = new System.Windows.Forms.PictureBox();
             this.visibleControlCheckBox = new System.Windows.Forms.CheckBox();
+            this.controlCharDocButton = new Wx3270.NoSelectButton();
             this.tracePr3287FlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tracePr3287PictureBox = new System.Windows.Forms.PictureBox();
             this.tracePr3287CheckBox = new System.Windows.Forms.CheckBox();
@@ -119,6 +120,9 @@
             this.fileTransferTab = new System.Windows.Forms.TabPage();
             this.fileTransferButtonsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.helpPictureBox4 = new System.Windows.Forms.PictureBox();
+            this.transferButton = new Wx3270.NoSelectButton();
+            this.copyActionButton = new Wx3270.NoSelectButton();
+            this.fileTransferClearFormButton = new Wx3270.NoSelectButton();
             this.modeBox = new System.Windows.Forms.GroupBox();
             this.modeBinaryButton = new System.Windows.Forms.RadioButton();
             this.modeAsciiButton = new System.Windows.Forms.RadioButton();
@@ -169,6 +173,7 @@
             this.filesBox = new System.Windows.Forms.GroupBox();
             this.fileLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.hostFileTextBox = new System.Windows.Forms.TextBox();
+            this.fileTransferBrowseButton = new Wx3270.NoSelectButton();
             this.localFileLabel = new System.Windows.Forms.Label();
             this.localFileTextBox = new System.Windows.Forms.TextBox();
             this.hostFileLabel = new System.Windows.Forms.Label();
@@ -179,11 +184,6 @@
             this.screenTraceFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.localizationFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.ftPopdownTimer = new System.Windows.Forms.Timer(this.components);
-            this.controlCharDocButton = new Wx3270.NoSelectButton();
-            this.transferButton = new Wx3270.NoSelectButton();
-            this.copyActionButton = new Wx3270.NoSelectButton();
-            this.fileTransferClearFormButton = new Wx3270.NoSelectButton();
-            this.fileTransferBrowseButton = new Wx3270.NoSelectButton();
             this.actionsTabs.SuspendLayout();
             this.actionsTab.SuspendLayout();
             this.actionsTableLayoutPanel.SuspendLayout();
@@ -623,6 +623,20 @@
             this.visibleControlCheckBox.Text = "Make 3270 fields and control characters visible";
             this.visibleControlCheckBox.UseVisualStyleBackColor = true;
             this.visibleControlCheckBox.Click += new System.EventHandler(this.VisibleControlCheckBox_Clicked);
+            // 
+            // controlCharDocButton
+            // 
+            this.controlCharDocButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.controlCharDocButton.AutoSize = true;
+            this.controlCharDocButton.Location = new System.Drawing.Point(323, 3);
+            this.controlCharDocButton.Name = "controlCharDocButton";
+            this.controlCharDocButton.Size = new System.Drawing.Size(89, 26);
+            this.controlCharDocButton.TabIndex = 10;
+            this.controlCharDocButton.TabStop = false;
+            this.controlCharDocButton.Text = "View Codes";
+            this.toolTip1.SetToolTip(this.controlCharDocButton, "View codes used to display 3270 fields");
+            this.controlCharDocButton.UseVisualStyleBackColor = true;
+            this.controlCharDocButton.Click += new System.EventHandler(this.ControlCharDocButton_Click);
             // 
             // tracePr3287FlowLayoutPanel
             // 
@@ -1366,6 +1380,51 @@
             this.toolTip1.SetToolTip(this.helpPictureBox4, "Get help");
             this.helpPictureBox4.Click += new System.EventHandler(this.Help_Clicked);
             // 
+            // transferButton
+            // 
+            this.transferButton.AutoSize = true;
+            this.transferButton.Enabled = false;
+            this.transferButton.Location = new System.Drawing.Point(191, 0);
+            this.transferButton.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.transferButton.Name = "transferButton";
+            this.transferButton.Size = new System.Drawing.Size(75, 26);
+            this.transferButton.TabIndex = 9;
+            this.transferButton.TabStop = false;
+            this.transferButton.Text = "Transfer";
+            this.toolTip1.SetToolTip(this.transferButton, "Begin the transfer");
+            this.transferButton.UseVisualStyleBackColor = true;
+            this.transferButton.Click += new System.EventHandler(this.TransferButton_Click);
+            // 
+            // copyActionButton
+            // 
+            this.copyActionButton.AutoSize = true;
+            this.copyActionButton.Enabled = false;
+            this.copyActionButton.Location = new System.Drawing.Point(96, 0);
+            this.copyActionButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.copyActionButton.Name = "copyActionButton";
+            this.copyActionButton.Size = new System.Drawing.Size(89, 26);
+            this.copyActionButton.TabIndex = 128;
+            this.copyActionButton.TabStop = false;
+            this.copyActionButton.Text = "Copy Action";
+            this.toolTip1.SetToolTip(this.copyActionButton, "Copy Transfer() action to clipboard");
+            this.copyActionButton.UseVisualStyleBackColor = true;
+            this.copyActionButton.Click += new System.EventHandler(this.CopyActionButton_Click);
+            // 
+            // fileTransferClearFormButton
+            // 
+            this.fileTransferClearFormButton.AutoSize = true;
+            this.fileTransferClearFormButton.CausesValidation = false;
+            this.fileTransferClearFormButton.Location = new System.Drawing.Point(3, 0);
+            this.fileTransferClearFormButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.fileTransferClearFormButton.Name = "fileTransferClearFormButton";
+            this.fileTransferClearFormButton.Size = new System.Drawing.Size(87, 26);
+            this.fileTransferClearFormButton.TabIndex = 10;
+            this.fileTransferClearFormButton.TabStop = false;
+            this.fileTransferClearFormButton.Text = "Reset Form";
+            this.toolTip1.SetToolTip(this.fileTransferClearFormButton, "Reset form to default values");
+            this.fileTransferClearFormButton.UseVisualStyleBackColor = true;
+            this.fileTransferClearFormButton.Click += new System.EventHandler(this.FileTransferClearFormButton_Click);
+            // 
             // modeBox
             // 
             this.modeBox.Controls.Add(this.modeBinaryButton);
@@ -1966,6 +2025,18 @@
             this.hostFileTextBox.TextChanged += new System.EventHandler(this.FileTransferOptionChanged);
             this.hostFileTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.HostFileTextBox_Validating);
             // 
+            // fileTransferBrowseButton
+            // 
+            this.fileTransferBrowseButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.fileTransferBrowseButton.Location = new System.Drawing.Point(350, 3);
+            this.fileTransferBrowseButton.Name = "fileTransferBrowseButton";
+            this.fileTransferBrowseButton.Size = new System.Drawing.Size(75, 22);
+            this.fileTransferBrowseButton.TabIndex = 1;
+            this.fileTransferBrowseButton.TabStop = false;
+            this.fileTransferBrowseButton.Text = "Browse";
+            this.fileTransferBrowseButton.UseVisualStyleBackColor = true;
+            this.fileTransferBrowseButton.Click += new System.EventHandler(this.LocalFileTextBox_Click);
+            // 
             // localFileLabel
             // 
             this.localFileLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -2036,77 +2107,6 @@
             // 
             this.ftPopdownTimer.Interval = 5000;
             // 
-            // controlCharDocButton
-            // 
-            this.controlCharDocButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.controlCharDocButton.AutoSize = true;
-            this.controlCharDocButton.Location = new System.Drawing.Point(323, 3);
-            this.controlCharDocButton.Name = "controlCharDocButton";
-            this.controlCharDocButton.Size = new System.Drawing.Size(89, 26);
-            this.controlCharDocButton.TabIndex = 10;
-            this.controlCharDocButton.TabStop = false;
-            this.controlCharDocButton.Text = "View Codes";
-            this.toolTip1.SetToolTip(this.controlCharDocButton, "View codes used to display 3270 fields");
-            this.controlCharDocButton.UseVisualStyleBackColor = true;
-            this.controlCharDocButton.Click += new System.EventHandler(this.ControlCharDocButton_Click);
-            // 
-            // transferButton
-            // 
-            this.transferButton.AutoSize = true;
-            this.transferButton.Enabled = false;
-            this.transferButton.Location = new System.Drawing.Point(191, 0);
-            this.transferButton.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.transferButton.Name = "transferButton";
-            this.transferButton.Size = new System.Drawing.Size(75, 26);
-            this.transferButton.TabIndex = 9;
-            this.transferButton.TabStop = false;
-            this.transferButton.Text = "Transfer";
-            this.toolTip1.SetToolTip(this.transferButton, "Begin the transfer");
-            this.transferButton.UseVisualStyleBackColor = true;
-            this.transferButton.Click += new System.EventHandler(this.TransferButton_Click);
-            // 
-            // copyActionButton
-            // 
-            this.copyActionButton.AutoSize = true;
-            this.copyActionButton.Enabled = false;
-            this.copyActionButton.Location = new System.Drawing.Point(96, 0);
-            this.copyActionButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.copyActionButton.Name = "copyActionButton";
-            this.copyActionButton.Size = new System.Drawing.Size(89, 26);
-            this.copyActionButton.TabIndex = 128;
-            this.copyActionButton.TabStop = false;
-            this.copyActionButton.Text = "Copy Action";
-            this.toolTip1.SetToolTip(this.copyActionButton, "Copy Transfer() action to clipboard");
-            this.copyActionButton.UseVisualStyleBackColor = true;
-            this.copyActionButton.Click += new System.EventHandler(this.CopyActionButton_Click);
-            // 
-            // fileTransferClearFormButton
-            // 
-            this.fileTransferClearFormButton.AutoSize = true;
-            this.fileTransferClearFormButton.CausesValidation = false;
-            this.fileTransferClearFormButton.Location = new System.Drawing.Point(3, 0);
-            this.fileTransferClearFormButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.fileTransferClearFormButton.Name = "fileTransferClearFormButton";
-            this.fileTransferClearFormButton.Size = new System.Drawing.Size(87, 26);
-            this.fileTransferClearFormButton.TabIndex = 10;
-            this.fileTransferClearFormButton.TabStop = false;
-            this.fileTransferClearFormButton.Text = "Reset Form";
-            this.toolTip1.SetToolTip(this.fileTransferClearFormButton, "Reset form to default values");
-            this.fileTransferClearFormButton.UseVisualStyleBackColor = true;
-            this.fileTransferClearFormButton.Click += new System.EventHandler(this.FileTransferClearFormButton_Click);
-            // 
-            // fileTransferBrowseButton
-            // 
-            this.fileTransferBrowseButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.fileTransferBrowseButton.Location = new System.Drawing.Point(350, 3);
-            this.fileTransferBrowseButton.Name = "fileTransferBrowseButton";
-            this.fileTransferBrowseButton.Size = new System.Drawing.Size(75, 22);
-            this.fileTransferBrowseButton.TabIndex = 1;
-            this.fileTransferBrowseButton.TabStop = false;
-            this.fileTransferBrowseButton.Text = "Browse";
-            this.fileTransferBrowseButton.UseVisualStyleBackColor = true;
-            this.fileTransferBrowseButton.Click += new System.EventHandler(this.LocalFileTextBox_Click);
-            // 
             // Actions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2121,11 +2121,13 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Actions";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Actions";
             this.Activated += new System.EventHandler(this.Actions_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ActionsDialog_FormClosing);
+            this.Load += new System.EventHandler(this.ActionsLoad);
             this.actionsTabs.ResumeLayout(false);
             this.actionsTab.ResumeLayout(false);
             this.actionsTab.PerformLayout();

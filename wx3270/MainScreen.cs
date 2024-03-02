@@ -90,11 +90,6 @@ namespace Wx3270
         private readonly Timer chordTimer = new Timer { Interval = 3 * 1000, Enabled = true };
 
         /// <summary>
-        /// Set if the keypad has ever been displayed.
-        /// </summary>
-        private readonly HashSet<Form> keypadEverUp = new HashSet<Form>();
-
-        /// <summary>
         /// Set if the pop-up keypad is minimized.
         /// </summary>
         private readonly HashSet<Form> keypadMinimized = new HashSet<Form>();
@@ -245,6 +240,11 @@ namespace Wx3270
         private bool resizeLocked;
 
         /// <summary>
+        /// The last window location before a maximize or docking.
+        /// </summary>
+        private Point? lastLocation;
+
+        /// <summary>
         /// The window handle.
         /// </summary>
         private IntPtr handle;
@@ -369,12 +369,12 @@ namespace Wx3270
         /// <summary>
         /// Gets the set of keypads.
         /// </summary>
-        private Form[] Keypads => new Form[] { this.keypad, this.aplKeypad };
+        private List<Form> Keypads { get; } = new List<Form>();
 
         /// <summary>
         /// Gets the set of flashable keypads.
         /// </summary>
-        private IFlash[] FlashableKeypads => new IFlash[] { this.keypad, this.aplKeypad };
+        private List<IFlash> FlashableKeypads { get; } = new List<IFlash>();
 
         /// <summary>
         /// Gets the macro recorder.
@@ -404,7 +404,13 @@ namespace Wx3270
         {
             get
             {
-                this.keypad ??= new Keypad(this.App, this, this.crossbar.OptionsCrossbar);
+                if (this.keypad == null)
+                {
+                    this.keypad = new Keypad(this.App, this, this.crossbar.OptionsCrossbar);
+                    this.FlashableKeypads.Add(this.keypad);
+                    this.Keypads.Add(this.keypad);
+                }
+
                 return this.keypad;
             }
         }
@@ -416,7 +422,13 @@ namespace Wx3270
         {
             get
             {
-                this.aplKeypad ??= new AplKeypad(this.App, this, this.crossbar.OptionsCrossbar);
+                if (this.aplKeypad == null)
+                {
+                    this.aplKeypad = new AplKeypad(this.App, this, this.crossbar.OptionsCrossbar);
+                    this.FlashableKeypads.Add(this.aplKeypad);
+                    this.Keypads.Add(this.aplKeypad);
+                }
+
                 return this.aplKeypad;
             }
         }
@@ -461,24 +473,6 @@ namespace Wx3270
         /// Gets a value indicating whether the menu bar is visible.
         /// </summary>
         private bool MenuBarVisible => !(this.fullScreen || this.menuBarDisabled || (!this.ProfileManager.Current.MenuBar && !this.overlayMenuBarDisplayed));
-
-        /// <summary>
-        /// Compute the location for a centered dialog window.
-        /// </summary>
-        /// <param name="parent">Parent form.</param>
-        /// <param name="child">Child form.</param>
-        /// <returns>Location to draw child.</returns>
-        public static Point CenteredOn(Control parent, Control child)
-        {
-            var p = parent.Location;
-            p.X += (parent.Width / 2) - (child.Width / 2);
-            if (child.Height < parent.Height)
-            {
-                p.Y += (parent.Height / 2) - (child.Height / 2);
-            }
-
-            return p;
-        }
 
         /// <summary>
         /// Create a new window title string.
@@ -1246,14 +1240,22 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 this.UpdateMenuKeyMappings();
 
                 // Handle read-only profiles.
-                this.readOnlyPopUpPending |= newProfile.ReadOnlyForced;
+                this.readOnlyPopUpPending |= !this.App.ReadOnlyMode && newProfile.ReadOnlyForced;
             };
             this.ProfileManager.ProfileClosing += (profile) =>
             {
-                // XXX: and not maximized, and not docked?
                 if (!profile.ReadOnly)
                 {
-                    profile.Location = this.Location;
+                    // If not maximized or docked, save the current location in the profile.
+                    // Otherwise if we have a location prior to maximizing or docking, save that.
+                    if (!this.Maximized && !this.IsWindowArranged())
+                    {
+                        profile.Location = this.Location;
+                    }
+                    else if (this.lastLocation.HasValue)
+                    {
+                        profile.Location = this.lastLocation.Value;
+                    }
                 }
             };
             this.ProfileManager.MainWindowHandle = this.Handle;
@@ -3019,6 +3021,11 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 case FormWindowState.Normal:
                 case FormWindowState.Maximized:
                     // Restored.
+                    if (!this.Maximized && !this.IsWindowArranged())
+                    {
+                        this.lastLocation = this.Location;
+                    }
+
                     if (this.resizeLocked)
                     {
                         Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} locked, abandoning");
@@ -3032,7 +3039,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                         {
                             // Restore the keypad, too.
                             this.noFlashTimer.Start();
-                            pad.Show();
+                            pad.Show(this);
                             this.keypadMinimized.Remove(pad);
                         }
                     }
@@ -3138,7 +3145,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             this.App.SelectionManager.Activated();
 
             // Flash the keypad, so it can be identified.
-            foreach (var pad in this.Keypads.Where(p => p != null))
+            foreach (var pad in this.Keypads)
             {
                 if (pad.Visible && !this.noFlashTimer.Enabled)
                 {
@@ -3475,26 +3482,23 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         private void ShowKeypad(bool apl = false)
         {
             var keypad = apl ? this.AplKeypad : (Form)this.Keypad;
+            var keypadLocation = (IInitialLocation)keypad;
             if (!keypad.Visible)
             {
                 this.noFlashTimer.Start();
-                keypad.Show();
-                if (!this.keypadEverUp.Contains(keypad))
+                switch (this.ProfileManager.Current.KeypadPosition)
                 {
-                    this.keypadEverUp.Add(keypad);
-                    switch (this.ProfileManager.Current.KeypadPosition)
-                    {
-                        case KeypadPosition.Left:
-                            keypad.Location = new Point(this.Location.X - this.keypad.Width, this.Location.Y);
-                            break;
-                        case KeypadPosition.Centered:
-                            keypad.Location = CenteredOn(this, this.keypad);
-                            break;
-                        case KeypadPosition.Right:
-                            keypad.Location = new Point(this.Location.X + this.Width, this.Location.Y);
-                            break;
-                    }
+                    case KeypadPosition.Left:
+                        keypadLocation.InitialLocation = new Point(this.Location.X - this.keypad.Width, this.Location.Y);
+                        break;
+                    case KeypadPosition.Centered:
+                        break;
+                    case KeypadPosition.Right:
+                        keypadLocation.InitialLocation = new Point(this.Location.X + this.Width, this.Location.Y);
+                        break;
                 }
+
+                keypad.Show(this);
             }
             else
             {
@@ -3579,6 +3583,11 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         {
             var resizeCount = this.resizeCount++;
             Trace.Line(Trace.Type.Window, $"MainWindow ResizeEnd #{resizeCount} WindowState {this.WindowState} Size {this.Size} ClientSize {this.ClientSize} Location {this.Location}");
+            if (!this.Maximized && !this.IsWindowArranged())
+            {
+                this.lastLocation = this.Location;
+            }
+
             if (!this.resizeBeginPending)
             {
                 Trace.Line(Trace.Type.Window, $"MainWindow ResizeEnd #{resizeCount} aborting, no ResizeBegin");

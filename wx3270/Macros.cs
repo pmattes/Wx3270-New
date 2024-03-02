@@ -55,11 +55,6 @@ namespace Wx3270
         private readonly ConcurrentDictionary<string, bool> macrosInProgress = new ConcurrentDictionary<string, bool>();
 
         /// <summary>
-        /// True if the macros dialog has ever been activated.
-        /// </summary>
-        private bool everActivated;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Macros"/> class.
         /// </summary>
         /// <param name="app">Application instance.</param>
@@ -449,14 +444,9 @@ The button labels include a count of how many Undo and Redo operations are saved
         /// <param name="e">Event arguments.</param>
         private void Macros_Activated(object sender, EventArgs e)
         {
-            if (!this.everActivated)
+            if (!Tour.IsComplete(this))
             {
-                this.everActivated = true;
-                this.Location = MainScreen.CenteredOn(this.mainScreen, this);
-                if (!Tour.IsComplete(this))
-                {
-                    this.RunTour();
-                }
+                this.RunTour();
             }
         }
 
@@ -612,6 +602,17 @@ The button labels include a count of how many Undo and Redo operations are saved
 
             result = string.Empty;
             return PassthruResult.Pending;
+        }
+
+        /// <summary>
+        /// The macros window was loaded.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void MacrosLoad(object sender, EventArgs e)
+        {
+            // For some reason, this form will not center on its parent without doing this explicitly.
+            this.CenterToParent();
         }
 
         /// <summary>

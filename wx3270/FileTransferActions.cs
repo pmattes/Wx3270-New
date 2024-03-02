@@ -774,7 +774,6 @@ Use this option with care.");
             {
                 // Pop up the progress dialog.
                 this.transferProgress.Show(this.mainScreen);
-                this.transferProgress.Location = MainScreen.CenteredOn(this.mainScreen, this.transferProgress);
             }
 
             var state = attributes[B3270.Attribute.State];

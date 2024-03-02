@@ -564,7 +564,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MergeDialog";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Merge Options";
             this.Activated += new System.EventHandler(this.MergeDialog_Activated);
             this.whitePanel.ResumeLayout(false);

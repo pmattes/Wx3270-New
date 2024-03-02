@@ -53,7 +53,7 @@ namespace Wx3270
                     I18n.SetupForms();
                 }
 
-                if (!string.IsNullOrEmpty(app.DumpLocalization))
+                if (!string.IsNullOrEmpty(app.DumpLocalization) && !app.DumpLocalization.Equals(Constants.Misc.NullDevice, StringComparison.OrdinalIgnoreCase))
                 {
                     I18nBase.DumpMessages(app.DumpLocalization);
                 }

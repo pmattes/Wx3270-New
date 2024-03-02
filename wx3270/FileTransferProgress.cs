@@ -404,6 +404,16 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// The file transfer progress window is being loaded.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FileTransferProgressLoad(object sender, EventArgs e)
+        {
+            this.CenterToParent();
+        }
+
+        /// <summary>
         /// Progress message keywords.
         /// </summary>
         private class Progress
