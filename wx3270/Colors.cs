@@ -64,7 +64,8 @@ namespace Wx3270
 
             return this.HostColors.Equals(other.HostColors)
                 && this.MonoColors.Equals(other.MonoColors)
-                && this.SelectBackground.Equals(other.SelectBackground);
+                && this.SelectBackground.Equals(other.SelectBackground)
+                && this.CrosshairColor.Equals(other.CrosshairColor);
         }
     }
 }
