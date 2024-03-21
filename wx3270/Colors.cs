@@ -21,7 +21,7 @@ namespace Wx3270
         /// <summary>
         /// Initializes a new instance of the <see cref="Colors"/> class.
         /// </summary>
-        /// <param name="other">Existing colors</param>
+        /// <param name="other">Existing colors.</param>
         public Colors(Colors other)
         {
             this.HostColors = new HostColors(other.HostColors);
@@ -53,8 +53,8 @@ namespace Wx3270
         /// <summary>
         /// Equality comparer.
         /// </summary>
-        /// <param name="other">Other colors</param>
-        /// <returns>True if the colors are equal</returns>
+        /// <param name="other">Other colors.</param>
+        /// <returns>True if the colors are equal.</returns>
         public bool Equals(Colors other)
         {
             if (other == null)
