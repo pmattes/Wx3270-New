@@ -323,6 +323,31 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Safely modify a control, without any side-effects.
+        /// </summary>
+        /// <param name="controls">Controls to modify.</param>
+        /// <param name="action">Action to perform.</param>
+        private void SafeControlModify(IEnumerable<Control> controls, Action action)
+        {
+            try
+            {
+                foreach (var control in controls)
+                {
+                    this.lockedControls.Add(control);
+                }
+
+                action();
+            }
+            finally
+            {
+                foreach (var control in controls)
+                {
+                    this.lockedControls.Remove(control);
+                }
+            }
+        }
+
+        /// <summary>
         /// The Undo button was clicked.
         /// </summary>
         /// <param name="sender">Event sender.</param>
@@ -443,16 +468,6 @@ namespace Wx3270
         private void Color_Click(object sender, EventArgs e)
         {
             this.ColorClick(sender, e);
-        }
-
-        /// <summary>
-        /// Handler for the font change button.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void FontChangeButton_Click(object sender, EventArgs e)
-        {
-            this.FontChangeButtonClick(sender, e);
         }
 
         /// <summary>
@@ -1140,6 +1155,96 @@ namespace Wx3270
         {
             // For some reason, this window will not center on its parent without doing this explicitly.
             this.CenterToParent();
+        }
+
+        /// <summary>
+        /// The font family selection changed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FontFamily_Changed(object sender, EventArgs e)
+        {
+            this.FontFamilyChanged(sender, e);
+        }
+
+        /// <summary>
+        /// The font family is validating.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void Family_Validating(object sender, CancelEventArgs e)
+        {
+            this.FamilyValidating(sender, e);
+        }
+
+        /// <summary>
+        /// The font size changed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FontSize_Changed(object sender, EventArgs e)
+        {
+            this.FontSizeChanged(sender, e);
+        }
+
+        /// <summary>
+        /// The font size is validating.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FontSize_Validating(object sender, CancelEventArgs e)
+        {
+            this.FontSizeValidating(sender, e);
+        }
+
+        /// <summary>
+        /// The Bold button was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void Bold_Click(object sender, EventArgs e)
+        {
+            this.BoldClick(sender, e);
+        }
+
+        /// <summary>
+        /// The Italic button was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void Italic_Click(object sender, EventArgs e)
+        {
+            this.ItalicClick(sender, e);
+        }
+
+        /// <summary>
+        /// The familyComboBox needs to be drawn.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event agruments.</param>
+        private void FamilyComboBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            this.FamilyComboBoxDrawItem(sender, e);
+        }
+
+        /// <summary>
+        /// The family combo box drop down was opened.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FamilyComboBox_DropDown(object sender, EventArgs e)
+        {
+            this.FamilyComboBoxDropDown(sender, e);
+        }
+
+        /// <summary>
+        /// The family combo box drop down was closed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FamilyComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            this.FamilyComboBoxDropDownClosed(sender, e);
         }
 
         /// <summary>

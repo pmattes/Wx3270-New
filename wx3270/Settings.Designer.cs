@@ -120,9 +120,6 @@
             this.keyboardActionsInheritedLabel = new System.Windows.Forms.Label();
             this.keyboardActionsTextBox = new System.Windows.Forms.TextBox();
             this.keyboardActionsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.keyboardActionsRemoveButton = new Wx3270.NoSelectButton();
-            this.keyboardActionsEditButton = new Wx3270.NoSelectButton();
-            this.keyboardActionsAddKeyButton = new Wx3270.NoSelectButton();
             this.behaviorLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.actionsRadioButton = new System.Windows.Forms.RadioButton();
@@ -134,7 +131,6 @@
             this.chordLabel = new System.Windows.Forms.Label();
             this.matchTypeflowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.keyboardModifiersLabel = new System.Windows.Forms.Label();
-            this.keyboardPictureButton = new Wx3270.NoSelectButton();
             this.keypadTab = new System.Windows.Forms.TabPage();
             this.keypadTypeFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.keypadTypeLabel = new System.Windows.Forms.Label();
@@ -161,7 +157,6 @@
             this.insertRadioButton = new System.Windows.Forms.RadioButton();
             this.blankPictureBox = new System.Windows.Forms.PictureBox();
             this.deleteRadioButton = new System.Windows.Forms.RadioButton();
-            this.keypadRemoveButton = new Wx3270.NoSelectButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.editedButtonActionsTextBox = new System.Windows.Forms.TextBox();
             this.keypadActionsInheritedLabel = new System.Windows.Forms.Label();
@@ -182,9 +177,7 @@
             this.colorPreviewScreenPictureBox = new System.Windows.Forms.PictureBox();
             this.colorMiscGroupBox = new System.Windows.Forms.GroupBox();
             this.crosshairSwatch = new System.Windows.Forms.PictureBox();
-            this.crosshairColorButton = new Wx3270.NoSelectButton();
             this.selectionSwatch = new System.Windows.Forms.PictureBox();
-            this.selectedButton = new Wx3270.NoSelectButton();
             this.schemeBox = new System.Windows.Forms.GroupBox();
             this.customButton = new System.Windows.Forms.RadioButton();
             this.blackOnWhiteButton = new System.Windows.Forms.RadioButton();
@@ -224,28 +217,10 @@
             this.redSample = new System.Windows.Forms.Label();
             this.blueSample = new System.Windows.Forms.Label();
             this.neutralBlackSample = new System.Windows.Forms.Label();
-            this.whiteButton = new Wx3270.NoSelectButton();
-            this.grayButton = new Wx3270.NoSelectButton();
-            this.paleTurquoiseButton = new Wx3270.NoSelectButton();
-            this.paleGreenButton = new Wx3270.NoSelectButton();
-            this.purpleButton = new Wx3270.NoSelectButton();
-            this.orangeButton = new Wx3270.NoSelectButton();
-            this.deepBlueButton = new Wx3270.NoSelectButton();
-            this.blackButton = new Wx3270.NoSelectButton();
-            this.neutralWhiteButton = new Wx3270.NoSelectButton();
-            this.yellowButton = new Wx3270.NoSelectButton();
-            this.turquoiseButton = new Wx3270.NoSelectButton();
-            this.greenButton = new Wx3270.NoSelectButton();
-            this.pinkButton = new Wx3270.NoSelectButton();
-            this.redButton = new Wx3270.NoSelectButton();
-            this.blueButton = new Wx3270.NoSelectButton();
-            this.neutralBlackButton = new Wx3270.NoSelectButton();
             this.colors3278Tab = new System.Windows.Forms.TabPage();
             this.monoOtherGroupBox = new System.Windows.Forms.GroupBox();
             this.monoCrosshairSample = new System.Windows.Forms.Label();
             this.monoSelectBackgroundSwatch = new System.Windows.Forms.Label();
-            this.monoCrosshairButton = new Wx3270.NoSelectButton();
-            this.monoSelectBackground = new Wx3270.NoSelectButton();
             this.monoPreviewGroupBox = new System.Windows.Forms.GroupBox();
             this.monoPreviewTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.monoPreviewSeparatorPictureBox = new System.Windows.Forms.PictureBox();
@@ -259,30 +234,28 @@
             this.monoNormalSample = new System.Windows.Forms.Label();
             this.monoIntensifiedSample = new System.Windows.Forms.Label();
             this.monoBackgroundSwatch = new System.Windows.Forms.Label();
-            this.monoIntensifiedButton = new Wx3270.NoSelectButton();
-            this.monoNormalButton = new Wx3270.NoSelectButton();
-            this.monoBackgroundButton = new Wx3270.NoSelectButton();
             this.monoColorSchemeBox = new System.Windows.Forms.GroupBox();
             this.monoCustomButton = new System.Windows.Forms.RadioButton();
             this.greenOnWhiteButton = new System.Windows.Forms.RadioButton();
             this.greenOnBlackButton = new System.Windows.Forms.RadioButton();
             this.fontTab = new System.Windows.Forms.TabPage();
             this.fontGroupBox = new System.Windows.Forms.GroupBox();
+            this.fontFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.familyComboBox = new System.Windows.Forms.ComboBox();
+            this.fontSizeComboBox = new System.Windows.Forms.ComboBox();
+            this.boldButton = new System.Windows.Forms.Button();
+            this.italicButton = new System.Windows.Forms.Button();
             this.fontPreviewGroupBox = new System.Windows.Forms.GroupBox();
             this.fontPreviewTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.fontPreviewSeparatorPictureBox = new System.Windows.Forms.PictureBox();
             this.fontPreviewStatusLineLabel = new System.Windows.Forms.Label();
             this.fontPreviewScreenPictureBox = new System.Windows.Forms.PictureBox();
             this.sizeIgnoredLabel = new System.Windows.Forms.Label();
-            this.fontLabel = new System.Windows.Forms.Label();
-            this.fontChangeButton = new Wx3270.NoSelectButton();
             this.soundsTab = new System.Windows.Forms.TabPage();
             this.soundsGroupBox = new System.Windows.Forms.GroupBox();
             this.soundLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.playAudibleBell = new Wx3270.NoSelectButton();
             this.keyboardClickCheckBox = new System.Windows.Forms.CheckBox();
             this.audibleBellCheckBox = new System.Windows.Forms.CheckBox();
-            this.playKeyboardClick = new Wx3270.NoSelectButton();
             this.serversTab = new System.Windows.Forms.TabPage();
             this.httpdBox = new System.Windows.Forms.GroupBox();
             this.httpdNoConfigLabel = new System.Windows.Forms.Label();
@@ -322,18 +295,47 @@
             this.helpContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.displayHelpInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startTourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.redoButton = new Wx3270.NoSelectButton();
-            this.undoButton = new Wx3270.NoSelectButton();
-            this.setToDefaultsButton = new Wx3270.NoSelectButton();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.readOnlyFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.readOnlyLabel = new System.Windows.Forms.Label();
-            this.saveACopyButton = new Wx3270.NoSelectButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.hostColorDialog = new System.Windows.Forms.ColorDialog();
-            this.screenFontDialog = new System.Windows.Forms.FontDialog();
             this.opacityTimer = new System.Windows.Forms.Timer(this.components);
             this.printerSaveFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.keyboardActionsRemoveButton = new Wx3270.NoSelectButton();
+            this.keyboardActionsEditButton = new Wx3270.NoSelectButton();
+            this.keyboardActionsAddKeyButton = new Wx3270.NoSelectButton();
+            this.keyboardPictureButton = new Wx3270.NoSelectButton();
+            this.keypadRemoveButton = new Wx3270.NoSelectButton();
+            this.crosshairColorButton = new Wx3270.NoSelectButton();
+            this.selectedButton = new Wx3270.NoSelectButton();
+            this.whiteButton = new Wx3270.NoSelectButton();
+            this.grayButton = new Wx3270.NoSelectButton();
+            this.paleTurquoiseButton = new Wx3270.NoSelectButton();
+            this.paleGreenButton = new Wx3270.NoSelectButton();
+            this.purpleButton = new Wx3270.NoSelectButton();
+            this.orangeButton = new Wx3270.NoSelectButton();
+            this.deepBlueButton = new Wx3270.NoSelectButton();
+            this.blackButton = new Wx3270.NoSelectButton();
+            this.neutralWhiteButton = new Wx3270.NoSelectButton();
+            this.yellowButton = new Wx3270.NoSelectButton();
+            this.turquoiseButton = new Wx3270.NoSelectButton();
+            this.greenButton = new Wx3270.NoSelectButton();
+            this.pinkButton = new Wx3270.NoSelectButton();
+            this.redButton = new Wx3270.NoSelectButton();
+            this.blueButton = new Wx3270.NoSelectButton();
+            this.neutralBlackButton = new Wx3270.NoSelectButton();
+            this.monoCrosshairButton = new Wx3270.NoSelectButton();
+            this.monoSelectBackground = new Wx3270.NoSelectButton();
+            this.monoIntensifiedButton = new Wx3270.NoSelectButton();
+            this.monoNormalButton = new Wx3270.NoSelectButton();
+            this.monoBackgroundButton = new Wx3270.NoSelectButton();
+            this.playAudibleBell = new Wx3270.NoSelectButton();
+            this.playKeyboardClick = new Wx3270.NoSelectButton();
+            this.redoButton = new Wx3270.NoSelectButton();
+            this.undoButton = new Wx3270.NoSelectButton();
+            this.setToDefaultsButton = new Wx3270.NoSelectButton();
+            this.saveACopyButton = new Wx3270.NoSelectButton();
             this.settingsTabs.SuspendLayout();
             this.optionsTab.SuspendLayout();
             this.descriptionGroupBox.SuspendLayout();
@@ -417,6 +419,7 @@
             this.monoColorSchemeBox.SuspendLayout();
             this.fontTab.SuspendLayout();
             this.fontGroupBox.SuspendLayout();
+            this.fontFlowLayoutPanel.SuspendLayout();
             this.fontPreviewGroupBox.SuspendLayout();
             this.fontPreviewTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fontPreviewSeparatorPictureBox)).BeginInit();
@@ -454,10 +457,11 @@
             this.settingsTabs.Controls.Add(this.serversTab);
             this.settingsTabs.Controls.Add(this.proxyTab);
             this.settingsTabs.Controls.Add(this.miscellaneousTab);
-            this.settingsTabs.Location = new System.Drawing.Point(3, 3);
+            this.settingsTabs.Location = new System.Drawing.Point(4, 4);
+            this.settingsTabs.Margin = new System.Windows.Forms.Padding(4);
             this.settingsTabs.Name = "settingsTabs";
             this.settingsTabs.SelectedIndex = 0;
-            this.settingsTabs.Size = new System.Drawing.Size(683, 650);
+            this.settingsTabs.Size = new System.Drawing.Size(911, 800);
             this.settingsTabs.TabIndex = 0;
             this.settingsTabs.SelectedIndexChanged += new System.EventHandler(this.TabSelectedChanged);
             // 
@@ -473,10 +477,11 @@
             this.optionsTab.Controls.Add(this.optionsSampleGroupBox);
             this.optionsTab.Controls.Add(this.miscGroupBox);
             this.optionsTab.Controls.Add(this.cursorGroupBox);
-            this.optionsTab.Location = new System.Drawing.Point(4, 22);
+            this.optionsTab.Location = new System.Drawing.Point(4, 25);
+            this.optionsTab.Margin = new System.Windows.Forms.Padding(4);
             this.optionsTab.Name = "optionsTab";
-            this.optionsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.optionsTab.Size = new System.Drawing.Size(675, 624);
+            this.optionsTab.Padding = new System.Windows.Forms.Padding(4);
+            this.optionsTab.Size = new System.Drawing.Size(903, 771);
             this.optionsTab.TabIndex = 0;
             this.optionsTab.Text = "Options";
             this.toolTip1.SetToolTip(this.optionsTab, "Window opacity");
@@ -485,9 +490,11 @@
             // descriptionGroupBox
             // 
             this.descriptionGroupBox.Controls.Add(this.descriptionTableLayoutPanel);
-            this.descriptionGroupBox.Location = new System.Drawing.Point(363, 501);
+            this.descriptionGroupBox.Location = new System.Drawing.Point(484, 617);
+            this.descriptionGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.descriptionGroupBox.Name = "descriptionGroupBox";
-            this.descriptionGroupBox.Size = new System.Drawing.Size(294, 78);
+            this.descriptionGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.descriptionGroupBox.Size = new System.Drawing.Size(392, 96);
             this.descriptionGroupBox.TabIndex = 9;
             this.descriptionGroupBox.TabStop = false;
             this.descriptionGroupBox.Text = "Description and window title";
@@ -502,30 +509,33 @@
             this.descriptionTableLayoutPanel.Controls.Add(this.descriptionTextBox, 1, 0);
             this.descriptionTableLayoutPanel.Controls.Add(this.windowTitleLabel, 0, 1);
             this.descriptionTableLayoutPanel.Controls.Add(this.titleTextBox, 1, 1);
-            this.descriptionTableLayoutPanel.Location = new System.Drawing.Point(11, 17);
+            this.descriptionTableLayoutPanel.Location = new System.Drawing.Point(15, 21);
+            this.descriptionTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.descriptionTableLayoutPanel.Name = "descriptionTableLayoutPanel";
             this.descriptionTableLayoutPanel.RowCount = 2;
             this.descriptionTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.descriptionTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.descriptionTableLayoutPanel.Size = new System.Drawing.Size(259, 52);
+            this.descriptionTableLayoutPanel.Size = new System.Drawing.Size(345, 64);
             this.descriptionTableLayoutPanel.TabIndex = 1;
             // 
             // profileDescriptionLabel
             // 
             this.profileDescriptionLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.profileDescriptionLabel.AutoSize = true;
-            this.profileDescriptionLabel.Location = new System.Drawing.Point(3, 5);
+            this.profileDescriptionLabel.Location = new System.Drawing.Point(4, 7);
+            this.profileDescriptionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.profileDescriptionLabel.Name = "profileDescriptionLabel";
-            this.profileDescriptionLabel.Size = new System.Drawing.Size(105, 15);
+            this.profileDescriptionLabel.Size = new System.Drawing.Size(114, 16);
             this.profileDescriptionLabel.TabIndex = 0;
             this.profileDescriptionLabel.Text = "Profile description";
             // 
             // descriptionTextBox
             // 
             this.descriptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.descriptionTextBox.Location = new System.Drawing.Point(114, 3);
+            this.descriptionTextBox.Location = new System.Drawing.Point(126, 4);
+            this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(142, 20);
+            this.descriptionTextBox.Size = new System.Drawing.Size(215, 22);
             this.descriptionTextBox.TabIndex = 0;
             this.toolTip1.SetToolTip(this.descriptionTextBox, "Description of this profile\r\nshown in the Profiles and Connections window");
             this.descriptionTextBox.Validated += new System.EventHandler(this.DescriptionTextBox_Validated);
@@ -534,18 +544,20 @@
             // 
             this.windowTitleLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.windowTitleLabel.AutoSize = true;
-            this.windowTitleLabel.Location = new System.Drawing.Point(3, 31);
+            this.windowTitleLabel.Location = new System.Drawing.Point(4, 39);
+            this.windowTitleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.windowTitleLabel.Name = "windowTitleLabel";
-            this.windowTitleLabel.Size = new System.Drawing.Size(73, 15);
+            this.windowTitleLabel.Size = new System.Drawing.Size(78, 16);
             this.windowTitleLabel.TabIndex = 1;
             this.windowTitleLabel.Text = "Window title";
             // 
             // titleTextBox
             // 
             this.titleTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.titleTextBox.Location = new System.Drawing.Point(114, 29);
+            this.titleTextBox.Location = new System.Drawing.Point(126, 34);
+            this.titleTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new System.Drawing.Size(142, 20);
+            this.titleTextBox.Size = new System.Drawing.Size(215, 22);
             this.titleTextBox.TabIndex = 2;
             this.toolTip1.SetToolTip(this.titleTextBox, "Window title override");
             this.titleTextBox.Validated += new System.EventHandler(this.TitleTextBox_Validated);
@@ -556,9 +568,11 @@
             this.opacityGroupBox.Controls.Add(this.percent30Label);
             this.opacityGroupBox.Controls.Add(this.opacityLabel);
             this.opacityGroupBox.Controls.Add(this.opacityTrackBar);
-            this.opacityGroupBox.Location = new System.Drawing.Point(18, 88);
+            this.opacityGroupBox.Location = new System.Drawing.Point(24, 108);
+            this.opacityGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.opacityGroupBox.Name = "opacityGroupBox";
-            this.opacityGroupBox.Size = new System.Drawing.Size(329, 73);
+            this.opacityGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.opacityGroupBox.Size = new System.Drawing.Size(439, 90);
             this.opacityGroupBox.TabIndex = 1;
             this.opacityGroupBox.TabStop = false;
             this.opacityGroupBox.Text = "Opacity";
@@ -566,27 +580,30 @@
             // percent100Label
             // 
             this.percent100Label.AutoSize = true;
-            this.percent100Label.Location = new System.Drawing.Point(234, 20);
+            this.percent100Label.Location = new System.Drawing.Point(312, 25);
+            this.percent100Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.percent100Label.Name = "percent100Label";
-            this.percent100Label.Size = new System.Drawing.Size(39, 15);
+            this.percent100Label.Size = new System.Drawing.Size(40, 16);
             this.percent100Label.TabIndex = 5;
             this.percent100Label.Text = "100%";
             // 
             // percent30Label
             // 
             this.percent30Label.AutoSize = true;
-            this.percent30Label.Location = new System.Drawing.Point(10, 20);
+            this.percent30Label.Location = new System.Drawing.Point(13, 25);
+            this.percent30Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.percent30Label.Name = "percent30Label";
-            this.percent30Label.Size = new System.Drawing.Size(32, 15);
+            this.percent30Label.Size = new System.Drawing.Size(33, 16);
             this.percent30Label.TabIndex = 4;
             this.percent30Label.Text = "30%";
             // 
             // opacityLabel
             // 
             this.opacityLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.opacityLabel.Location = new System.Drawing.Point(150, 43);
+            this.opacityLabel.Location = new System.Drawing.Point(200, 53);
+            this.opacityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.opacityLabel.Name = "opacityLabel";
-            this.opacityLabel.Size = new System.Drawing.Size(34, 17);
+            this.opacityLabel.Size = new System.Drawing.Size(45, 21);
             this.opacityLabel.TabIndex = 3;
             this.opacityLabel.Text = "100";
             this.opacityLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -595,11 +612,12 @@
             // 
             this.opacityTrackBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.opacityTrackBar.LargeChange = 25;
-            this.opacityTrackBar.Location = new System.Drawing.Point(43, 18);
+            this.opacityTrackBar.Location = new System.Drawing.Point(57, 22);
+            this.opacityTrackBar.Margin = new System.Windows.Forms.Padding(4);
             this.opacityTrackBar.Maximum = 100;
             this.opacityTrackBar.Minimum = 30;
             this.opacityTrackBar.Name = "opacityTrackBar";
-            this.opacityTrackBar.Size = new System.Drawing.Size(185, 56);
+            this.opacityTrackBar.Size = new System.Drawing.Size(247, 56);
             this.opacityTrackBar.SmallChange = 10;
             this.opacityTrackBar.TabIndex = 2;
             this.opacityTrackBar.TickFrequency = 5;
@@ -612,9 +630,11 @@
             this.printerSessionGroupBox.Controls.Add(this.printToFileButton);
             this.printerSessionGroupBox.Controls.Add(this.printToPrinterButton);
             this.printerSessionGroupBox.Controls.Add(this.printerTableLayoutPanel);
-            this.printerSessionGroupBox.Location = new System.Drawing.Point(363, 345);
+            this.printerSessionGroupBox.Location = new System.Drawing.Point(484, 425);
+            this.printerSessionGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.printerSessionGroupBox.Name = "printerSessionGroupBox";
-            this.printerSessionGroupBox.Size = new System.Drawing.Size(294, 151);
+            this.printerSessionGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.printerSessionGroupBox.Size = new System.Drawing.Size(392, 186);
             this.printerSessionGroupBox.TabIndex = 8;
             this.printerSessionGroupBox.TabStop = false;
             this.printerSessionGroupBox.Text = "Printer";
@@ -622,9 +642,10 @@
             // printToFileButton
             // 
             this.printToFileButton.AutoSize = true;
-            this.printToFileButton.Location = new System.Drawing.Point(137, 16);
+            this.printToFileButton.Location = new System.Drawing.Point(183, 20);
+            this.printToFileButton.Margin = new System.Windows.Forms.Padding(4);
             this.printToFileButton.Name = "printToFileButton";
-            this.printToFileButton.Size = new System.Drawing.Size(93, 19);
+            this.printToFileButton.Size = new System.Drawing.Size(100, 20);
             this.printToFileButton.TabIndex = 1;
             this.printToFileButton.Tag = "File";
             this.printToFileButton.Text = "Save in files";
@@ -634,9 +655,10 @@
             // 
             this.printToPrinterButton.AutoSize = true;
             this.printToPrinterButton.Checked = true;
-            this.printToPrinterButton.Location = new System.Drawing.Point(17, 16);
+            this.printToPrinterButton.Location = new System.Drawing.Point(23, 20);
+            this.printToPrinterButton.Margin = new System.Windows.Forms.Padding(4);
             this.printToPrinterButton.Name = "printToPrinterButton";
-            this.printToPrinterButton.Size = new System.Drawing.Size(53, 19);
+            this.printToPrinterButton.Size = new System.Drawing.Size(54, 20);
             this.printToPrinterButton.TabIndex = 0;
             this.printToPrinterButton.TabStop = true;
             this.printToPrinterButton.Tag = "Printer";
@@ -656,23 +678,25 @@
             this.printerTableLayoutPanel.Controls.Add(this.savePathTextBox, 1, 1);
             this.printerTableLayoutPanel.Controls.Add(this.printerOptionsTextBox, 1, 2);
             this.printerTableLayoutPanel.Controls.Add(this.printerCodePageTextBox, 1, 3);
-            this.printerTableLayoutPanel.Location = new System.Drawing.Point(11, 39);
+            this.printerTableLayoutPanel.Location = new System.Drawing.Point(15, 48);
+            this.printerTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.printerTableLayoutPanel.Name = "printerTableLayoutPanel";
             this.printerTableLayoutPanel.RowCount = 4;
             this.printerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.printerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.printerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.printerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.printerTableLayoutPanel.Size = new System.Drawing.Size(259, 102);
+            this.printerTableLayoutPanel.Size = new System.Drawing.Size(345, 126);
             this.printerTableLayoutPanel.TabIndex = 0;
             // 
             // printerNameLabel
             // 
             this.printerNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.printerNameLabel.AutoSize = true;
-            this.printerNameLabel.Location = new System.Drawing.Point(3, 6);
+            this.printerNameLabel.Location = new System.Drawing.Point(4, 8);
+            this.printerNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.printerNameLabel.Name = "printerNameLabel";
-            this.printerNameLabel.Size = new System.Drawing.Size(78, 15);
+            this.printerNameLabel.Size = new System.Drawing.Size(82, 16);
             this.printerNameLabel.TabIndex = 0;
             this.printerNameLabel.Text = "Printer name";
             // 
@@ -681,9 +705,10 @@
             this.savePathLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.savePathLabel.AutoSize = true;
             this.savePathLabel.Enabled = false;
-            this.savePathLabel.Location = new System.Drawing.Point(3, 32);
+            this.savePathLabel.Location = new System.Drawing.Point(4, 39);
+            this.savePathLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.savePathLabel.Name = "savePathLabel";
-            this.savePathLabel.Size = new System.Drawing.Size(83, 15);
+            this.savePathLabel.Size = new System.Drawing.Size(94, 16);
             this.savePathLabel.TabIndex = 2;
             this.savePathLabel.Text = "Save directory";
             // 
@@ -691,9 +716,10 @@
             // 
             this.pr3287OptionsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pr3287OptionsLabel.AutoSize = true;
-            this.pr3287OptionsLabel.Location = new System.Drawing.Point(3, 58);
+            this.pr3287OptionsLabel.Location = new System.Drawing.Point(4, 69);
+            this.pr3287OptionsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.pr3287OptionsLabel.Name = "pr3287OptionsLabel";
-            this.pr3287OptionsLabel.Size = new System.Drawing.Size(89, 15);
+            this.pr3287OptionsLabel.Size = new System.Drawing.Size(94, 16);
             this.pr3287OptionsLabel.TabIndex = 4;
             this.pr3287OptionsLabel.Text = "pr3287 options";
             // 
@@ -701,9 +727,10 @@
             // 
             this.pr3287CodePageLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pr3287CodePageLabel.AutoSize = true;
-            this.pr3287CodePageLabel.Location = new System.Drawing.Point(3, 84);
+            this.pr3287CodePageLabel.Location = new System.Drawing.Point(4, 101);
+            this.pr3287CodePageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.pr3287CodePageLabel.Name = "pr3287CodePageLabel";
-            this.pr3287CodePageLabel.Size = new System.Drawing.Size(107, 15);
+            this.pr3287CodePageLabel.Size = new System.Drawing.Size(116, 16);
             this.pr3287CodePageLabel.TabIndex = 6;
             this.pr3287CodePageLabel.Text = "pr3287 code page";
             // 
@@ -712,9 +739,10 @@
             this.printerComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.printerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.printerComboBox.FormattingEnabled = true;
-            this.printerComboBox.Location = new System.Drawing.Point(116, 3);
+            this.printerComboBox.Location = new System.Drawing.Point(128, 4);
+            this.printerComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.printerComboBox.Name = "printerComboBox";
-            this.printerComboBox.Size = new System.Drawing.Size(131, 21);
+            this.printerComboBox.Size = new System.Drawing.Size(173, 24);
             this.printerComboBox.TabIndex = 1;
             this.printerComboBox.SelectionChangeCommitted += new System.EventHandler(this.PrinterComboBox_SelectionChangeCommitted);
             // 
@@ -722,37 +750,42 @@
             // 
             this.savePathTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.savePathTextBox.Enabled = false;
-            this.savePathTextBox.Location = new System.Drawing.Point(116, 30);
+            this.savePathTextBox.Location = new System.Drawing.Point(128, 36);
+            this.savePathTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.savePathTextBox.Name = "savePathTextBox";
             this.savePathTextBox.ReadOnly = true;
-            this.savePathTextBox.Size = new System.Drawing.Size(131, 20);
+            this.savePathTextBox.Size = new System.Drawing.Size(173, 22);
             this.savePathTextBox.TabIndex = 3;
             this.savePathTextBox.Click += new System.EventHandler(this.SaveDirectory_Click);
             // 
             // printerOptionsTextBox
             // 
             this.printerOptionsTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.printerOptionsTextBox.Location = new System.Drawing.Point(116, 56);
+            this.printerOptionsTextBox.Location = new System.Drawing.Point(128, 66);
+            this.printerOptionsTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.printerOptionsTextBox.Name = "printerOptionsTextBox";
-            this.printerOptionsTextBox.Size = new System.Drawing.Size(131, 20);
+            this.printerOptionsTextBox.Size = new System.Drawing.Size(173, 22);
             this.printerOptionsTextBox.TabIndex = 5;
             this.printerOptionsTextBox.Validated += new System.EventHandler(this.PrinterOptions_validated);
             // 
             // printerCodePageTextBox
             // 
             this.printerCodePageTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.printerCodePageTextBox.Location = new System.Drawing.Point(116, 82);
+            this.printerCodePageTextBox.Location = new System.Drawing.Point(128, 98);
+            this.printerCodePageTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.printerCodePageTextBox.Name = "printerCodePageTextBox";
-            this.printerCodePageTextBox.Size = new System.Drawing.Size(131, 20);
+            this.printerCodePageTextBox.Size = new System.Drawing.Size(173, 22);
             this.printerCodePageTextBox.TabIndex = 7;
             this.printerCodePageTextBox.Validated += new System.EventHandler(this.PrinterCodePage_validated);
             // 
             // terminalNameGroupBox
             // 
             this.terminalNameGroupBox.Controls.Add(this.terminalNameLayoutPanel);
-            this.terminalNameGroupBox.Location = new System.Drawing.Point(19, 324);
+            this.terminalNameGroupBox.Location = new System.Drawing.Point(25, 399);
+            this.terminalNameGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.terminalNameGroupBox.Name = "terminalNameGroupBox";
-            this.terminalNameGroupBox.Size = new System.Drawing.Size(329, 108);
+            this.terminalNameGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.terminalNameGroupBox.Size = new System.Drawing.Size(439, 133);
             this.terminalNameGroupBox.TabIndex = 3;
             this.terminalNameGroupBox.TabStop = false;
             this.terminalNameGroupBox.Text = "Terminal name";
@@ -766,13 +799,14 @@
             this.terminalNameLayoutPanel.Controls.Add(this.extendedCheckBox, 0, 2);
             this.terminalNameLayoutPanel.Controls.Add(this.overrideTextBox, 0, 1);
             this.terminalNameLayoutPanel.Controls.Add(this.overrideCheckBox, 0, 0);
-            this.terminalNameLayoutPanel.Location = new System.Drawing.Point(9, 20);
+            this.terminalNameLayoutPanel.Location = new System.Drawing.Point(12, 25);
+            this.terminalNameLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.terminalNameLayoutPanel.Name = "terminalNameLayoutPanel";
             this.terminalNameLayoutPanel.RowCount = 3;
             this.terminalNameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.terminalNameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.terminalNameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.terminalNameLayoutPanel.Size = new System.Drawing.Size(251, 76);
+            this.terminalNameLayoutPanel.Size = new System.Drawing.Size(333, 86);
             this.terminalNameLayoutPanel.TabIndex = 0;
             // 
             // extendedCheckBox
@@ -780,9 +814,10 @@
             this.extendedCheckBox.AutoSize = true;
             this.extendedCheckBox.Checked = true;
             this.extendedCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.extendedCheckBox.Location = new System.Drawing.Point(3, 54);
+            this.extendedCheckBox.Location = new System.Drawing.Point(4, 62);
+            this.extendedCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.extendedCheckBox.Name = "extendedCheckBox";
-            this.extendedCheckBox.Size = new System.Drawing.Size(139, 19);
+            this.extendedCheckBox.Size = new System.Drawing.Size(148, 20);
             this.extendedCheckBox.TabIndex = 2;
             this.extendedCheckBox.Text = "Extended mode (-E)";
             this.extendedCheckBox.UseVisualStyleBackColor = true;
@@ -791,9 +826,10 @@
             // overrideTextBox
             // 
             this.overrideTextBox.Enabled = false;
-            this.overrideTextBox.Location = new System.Drawing.Point(3, 28);
+            this.overrideTextBox.Location = new System.Drawing.Point(4, 32);
+            this.overrideTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.overrideTextBox.Name = "overrideTextBox";
-            this.overrideTextBox.Size = new System.Drawing.Size(245, 20);
+            this.overrideTextBox.Size = new System.Drawing.Size(325, 22);
             this.overrideTextBox.TabIndex = 1;
             this.overrideTextBox.Text = "IBM-3279-4-E";
             this.overrideTextBox.Validated += new System.EventHandler(this.OverrideTextBox_Validated);
@@ -801,9 +837,10 @@
             // overrideCheckBox
             // 
             this.overrideCheckBox.AutoSize = true;
-            this.overrideCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.overrideCheckBox.Location = new System.Drawing.Point(4, 4);
+            this.overrideCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.overrideCheckBox.Name = "overrideCheckBox";
-            this.overrideCheckBox.Size = new System.Drawing.Size(75, 19);
+            this.overrideCheckBox.Size = new System.Drawing.Size(81, 20);
             this.overrideCheckBox.TabIndex = 0;
             this.overrideCheckBox.Text = "Override";
             this.overrideCheckBox.UseVisualStyleBackColor = true;
@@ -812,9 +849,11 @@
             // modelGroupBox
             // 
             this.modelGroupBox.Controls.Add(this.oversizeLayoutPanel);
-            this.modelGroupBox.Location = new System.Drawing.Point(18, 168);
+            this.modelGroupBox.Location = new System.Drawing.Point(24, 207);
+            this.modelGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.modelGroupBox.Name = "modelGroupBox";
-            this.modelGroupBox.Size = new System.Drawing.Size(329, 150);
+            this.modelGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.modelGroupBox.Size = new System.Drawing.Size(439, 185);
             this.modelGroupBox.TabIndex = 2;
             this.modelGroupBox.TabStop = false;
             this.modelGroupBox.Text = "Screen size";
@@ -828,21 +867,23 @@
             this.oversizeLayoutPanel.Controls.Add(this.oversizeCheckBox, 0, 1);
             this.oversizeLayoutPanel.Controls.Add(this.modelComboBox, 0, 0);
             this.oversizeLayoutPanel.Controls.Add(this.oversizeRowsColsLayoutPanel, 0, 2);
-            this.oversizeLayoutPanel.Location = new System.Drawing.Point(10, 19);
+            this.oversizeLayoutPanel.Location = new System.Drawing.Point(13, 23);
+            this.oversizeLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.oversizeLayoutPanel.Name = "oversizeLayoutPanel";
             this.oversizeLayoutPanel.RowCount = 3;
             this.oversizeLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.oversizeLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.oversizeLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.oversizeLayoutPanel.Size = new System.Drawing.Size(251, 110);
+            this.oversizeLayoutPanel.Size = new System.Drawing.Size(333, 128);
             this.oversizeLayoutPanel.TabIndex = 1;
             // 
             // oversizeCheckBox
             // 
             this.oversizeCheckBox.AutoSize = true;
-            this.oversizeCheckBox.Location = new System.Drawing.Point(3, 30);
+            this.oversizeCheckBox.Location = new System.Drawing.Point(4, 36);
+            this.oversizeCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.oversizeCheckBox.Name = "oversizeCheckBox";
-            this.oversizeCheckBox.Size = new System.Drawing.Size(76, 19);
+            this.oversizeCheckBox.Size = new System.Drawing.Size(82, 20);
             this.oversizeCheckBox.TabIndex = 1;
             this.oversizeCheckBox.Text = "Oversize";
             this.oversizeCheckBox.UseVisualStyleBackColor = true;
@@ -854,9 +895,10 @@
             this.modelComboBox.FormattingEnabled = true;
             this.modelComboBox.Items.AddRange(new object[] {
             "(none)"});
-            this.modelComboBox.Location = new System.Drawing.Point(3, 3);
+            this.modelComboBox.Location = new System.Drawing.Point(4, 4);
+            this.modelComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.modelComboBox.Name = "modelComboBox";
-            this.modelComboBox.Size = new System.Drawing.Size(245, 21);
+            this.modelComboBox.Size = new System.Drawing.Size(325, 24);
             this.modelComboBox.TabIndex = 0;
             // 
             // oversizeRowsColsLayoutPanel
@@ -870,21 +912,23 @@
             this.oversizeRowsColsLayoutPanel.Controls.Add(this.columnsLabel, 0, 1);
             this.oversizeRowsColsLayoutPanel.Controls.Add(this.rowsUpDown, 1, 0);
             this.oversizeRowsColsLayoutPanel.Controls.Add(this.columnsUpDown, 1, 1);
-            this.oversizeRowsColsLayoutPanel.Location = new System.Drawing.Point(3, 55);
+            this.oversizeRowsColsLayoutPanel.Location = new System.Drawing.Point(4, 64);
+            this.oversizeRowsColsLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.oversizeRowsColsLayoutPanel.Name = "oversizeRowsColsLayoutPanel";
             this.oversizeRowsColsLayoutPanel.RowCount = 2;
             this.oversizeRowsColsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.oversizeRowsColsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.oversizeRowsColsLayoutPanel.Size = new System.Drawing.Size(188, 52);
+            this.oversizeRowsColsLayoutPanel.Size = new System.Drawing.Size(235, 60);
             this.oversizeRowsColsLayoutPanel.TabIndex = 2;
             // 
             // rowsLabel
             // 
             this.rowsLabel.AutoSize = true;
             this.rowsLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rowsLabel.Location = new System.Drawing.Point(3, 0);
+            this.rowsLabel.Location = new System.Drawing.Point(4, 0);
+            this.rowsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.rowsLabel.Name = "rowsLabel";
-            this.rowsLabel.Size = new System.Drawing.Size(38, 26);
+            this.rowsLabel.Size = new System.Drawing.Size(41, 30);
             this.rowsLabel.TabIndex = 3;
             this.rowsLabel.Text = "Rows";
             this.rowsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -893,9 +937,10 @@
             // 
             this.columnsLabel.AutoSize = true;
             this.columnsLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.columnsLabel.Location = new System.Drawing.Point(3, 26);
+            this.columnsLabel.Location = new System.Drawing.Point(4, 30);
+            this.columnsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.columnsLabel.Name = "columnsLabel";
-            this.columnsLabel.Size = new System.Drawing.Size(56, 26);
+            this.columnsLabel.Size = new System.Drawing.Size(59, 30);
             this.columnsLabel.TabIndex = 4;
             this.columnsLabel.Text = "Columns";
             this.columnsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -903,7 +948,8 @@
             // rowsUpDown
             // 
             this.rowsUpDown.Enabled = false;
-            this.rowsUpDown.Location = new System.Drawing.Point(65, 3);
+            this.rowsUpDown.Location = new System.Drawing.Point(71, 4);
+            this.rowsUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.rowsUpDown.Maximum = new decimal(new int[] {
             256,
             0,
@@ -915,7 +961,7 @@
             0,
             0});
             this.rowsUpDown.Name = "rowsUpDown";
-            this.rowsUpDown.Size = new System.Drawing.Size(120, 20);
+            this.rowsUpDown.Size = new System.Drawing.Size(160, 22);
             this.rowsUpDown.TabIndex = 0;
             this.rowsUpDown.Value = new decimal(new int[] {
             43,
@@ -927,7 +973,8 @@
             // columnsUpDown
             // 
             this.columnsUpDown.Enabled = false;
-            this.columnsUpDown.Location = new System.Drawing.Point(65, 29);
+            this.columnsUpDown.Location = new System.Drawing.Point(71, 34);
+            this.columnsUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.columnsUpDown.Maximum = new decimal(new int[] {
             256,
             0,
@@ -939,7 +986,7 @@
             0,
             0});
             this.columnsUpDown.Name = "columnsUpDown";
-            this.columnsUpDown.Size = new System.Drawing.Size(120, 20);
+            this.columnsUpDown.Size = new System.Drawing.Size(160, 22);
             this.columnsUpDown.TabIndex = 1;
             this.columnsUpDown.Value = new decimal(new int[] {
             80,
@@ -951,9 +998,11 @@
             // codePageGroupBox
             // 
             this.codePageGroupBox.Controls.Add(this.codePageListBox);
-            this.codePageGroupBox.Location = new System.Drawing.Point(363, 226);
+            this.codePageGroupBox.Location = new System.Drawing.Point(484, 278);
+            this.codePageGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.codePageGroupBox.Name = "codePageGroupBox";
-            this.codePageGroupBox.Size = new System.Drawing.Size(294, 113);
+            this.codePageGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.codePageGroupBox.Size = new System.Drawing.Size(392, 139);
             this.codePageGroupBox.TabIndex = 7;
             this.codePageGroupBox.TabStop = false;
             this.codePageGroupBox.Text = "Host code page";
@@ -961,9 +1010,11 @@
             // codePageListBox
             // 
             this.codePageListBox.FormattingEnabled = true;
-            this.codePageListBox.Location = new System.Drawing.Point(6, 19);
+            this.codePageListBox.ItemHeight = 16;
+            this.codePageListBox.Location = new System.Drawing.Point(8, 23);
+            this.codePageListBox.Margin = new System.Windows.Forms.Padding(4);
             this.codePageListBox.Name = "codePageListBox";
-            this.codePageListBox.Size = new System.Drawing.Size(264, 82);
+            this.codePageListBox.Size = new System.Drawing.Size(351, 100);
             this.codePageListBox.TabIndex = 1;
             this.codePageListBox.SelectedIndexChanged += new System.EventHandler(this.CodePageListBox_SelectedIndexChanged);
             // 
@@ -971,9 +1022,11 @@
             // 
             this.displayGroupBox.Controls.Add(this.colorButton);
             this.displayGroupBox.Controls.Add(this.monoButton);
-            this.displayGroupBox.Location = new System.Drawing.Point(19, 16);
+            this.displayGroupBox.Location = new System.Drawing.Point(25, 20);
+            this.displayGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.displayGroupBox.Name = "displayGroupBox";
-            this.displayGroupBox.Size = new System.Drawing.Size(328, 65);
+            this.displayGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.displayGroupBox.Size = new System.Drawing.Size(437, 80);
             this.displayGroupBox.TabIndex = 0;
             this.displayGroupBox.TabStop = false;
             this.displayGroupBox.Text = "Display";
@@ -982,9 +1035,10 @@
             // 
             this.colorButton.AutoSize = true;
             this.colorButton.Checked = true;
-            this.colorButton.Location = new System.Drawing.Point(13, 43);
+            this.colorButton.Location = new System.Drawing.Point(17, 53);
+            this.colorButton.Margin = new System.Windows.Forms.Padding(4);
             this.colorButton.Name = "colorButton";
-            this.colorButton.Size = new System.Drawing.Size(96, 19);
+            this.colorButton.Size = new System.Drawing.Size(99, 20);
             this.colorButton.TabIndex = 1;
             this.colorButton.TabStop = true;
             this.colorButton.Tag = "3279";
@@ -994,9 +1048,10 @@
             // monoButton
             // 
             this.monoButton.AutoSize = true;
-            this.monoButton.Location = new System.Drawing.Point(13, 19);
+            this.monoButton.Location = new System.Drawing.Point(17, 23);
+            this.monoButton.Margin = new System.Windows.Forms.Padding(4);
             this.monoButton.Name = "monoButton";
-            this.monoButton.Size = new System.Drawing.Size(141, 19);
+            this.monoButton.Size = new System.Drawing.Size(146, 20);
             this.monoButton.TabIndex = 0;
             this.monoButton.Tag = "3278";
             this.monoButton.Text = "3278 (Monochrome)";
@@ -1005,9 +1060,11 @@
             // optionsSampleGroupBox
             // 
             this.optionsSampleGroupBox.Controls.Add(this.optionsPreviewLayoutPanel);
-            this.optionsSampleGroupBox.Location = new System.Drawing.Point(363, 16);
+            this.optionsSampleGroupBox.Location = new System.Drawing.Point(484, 20);
+            this.optionsSampleGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.optionsSampleGroupBox.Name = "optionsSampleGroupBox";
-            this.optionsSampleGroupBox.Size = new System.Drawing.Size(294, 132);
+            this.optionsSampleGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.optionsSampleGroupBox.Size = new System.Drawing.Size(392, 162);
             this.optionsSampleGroupBox.TabIndex = 5;
             this.optionsSampleGroupBox.TabStop = false;
             this.optionsSampleGroupBox.Text = "Preview";
@@ -1022,23 +1079,24 @@
             this.optionsPreviewLayoutPanel.Controls.Add(this.optionsPreviewSeparatorPictureBox, 0, 1);
             this.optionsPreviewLayoutPanel.Controls.Add(this.optionsPreviewStatusLineLabel, 0, 2);
             this.optionsPreviewLayoutPanel.Controls.Add(this.optionsPreviewScreenPictureBox, 0, 0);
-            this.optionsPreviewLayoutPanel.Location = new System.Drawing.Point(8, 23);
+            this.optionsPreviewLayoutPanel.Location = new System.Drawing.Point(11, 28);
+            this.optionsPreviewLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.optionsPreviewLayoutPanel.Name = "optionsPreviewLayoutPanel";
             this.optionsPreviewLayoutPanel.RowCount = 3;
             this.optionsPreviewLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.optionsPreviewLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
             this.optionsPreviewLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.optionsPreviewLayoutPanel.Size = new System.Drawing.Size(207, 97);
+            this.optionsPreviewLayoutPanel.Size = new System.Drawing.Size(276, 114);
             this.optionsPreviewLayoutPanel.TabIndex = 0;
             // 
             // optionsPreviewSeparatorPictureBox
             // 
             this.optionsPreviewSeparatorPictureBox.BackColor = System.Drawing.Color.RoyalBlue;
             this.optionsPreviewSeparatorPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.optionsPreviewSeparatorPictureBox.Location = new System.Drawing.Point(0, 75);
+            this.optionsPreviewSeparatorPictureBox.Location = new System.Drawing.Point(0, 92);
             this.optionsPreviewSeparatorPictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.optionsPreviewSeparatorPictureBox.Name = "optionsPreviewSeparatorPictureBox";
-            this.optionsPreviewSeparatorPictureBox.Size = new System.Drawing.Size(207, 2);
+            this.optionsPreviewSeparatorPictureBox.Size = new System.Drawing.Size(276, 2);
             this.optionsPreviewSeparatorPictureBox.TabIndex = 0;
             this.optionsPreviewSeparatorPictureBox.TabStop = false;
             // 
@@ -1049,10 +1107,10 @@
             this.optionsPreviewStatusLineLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.optionsPreviewStatusLineLabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.optionsPreviewStatusLineLabel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.optionsPreviewStatusLineLabel.Location = new System.Drawing.Point(0, 77);
+            this.optionsPreviewStatusLineLabel.Location = new System.Drawing.Point(0, 94);
             this.optionsPreviewStatusLineLabel.Margin = new System.Windows.Forms.Padding(0);
             this.optionsPreviewStatusLineLabel.Name = "optionsPreviewStatusLineLabel";
-            this.optionsPreviewStatusLineLabel.Size = new System.Drawing.Size(207, 20);
+            this.optionsPreviewStatusLineLabel.Size = new System.Drawing.Size(276, 20);
             this.optionsPreviewStatusLineLabel.TabIndex = 1;
             this.optionsPreviewStatusLineLabel.Text = "Status Line";
             this.optionsPreviewStatusLineLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1062,7 +1120,7 @@
             this.optionsPreviewScreenPictureBox.Location = new System.Drawing.Point(0, 0);
             this.optionsPreviewScreenPictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.optionsPreviewScreenPictureBox.Name = "optionsPreviewScreenPictureBox";
-            this.optionsPreviewScreenPictureBox.Size = new System.Drawing.Size(207, 75);
+            this.optionsPreviewScreenPictureBox.Size = new System.Drawing.Size(276, 92);
             this.optionsPreviewScreenPictureBox.TabIndex = 2;
             this.optionsPreviewScreenPictureBox.TabStop = false;
             this.optionsPreviewScreenPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ScreenPictureBox_Paint);
@@ -1070,9 +1128,11 @@
             // miscGroupBox
             // 
             this.miscGroupBox.Controls.Add(this.miscFlowLayoutPanel);
-            this.miscGroupBox.Location = new System.Drawing.Point(19, 438);
+            this.miscGroupBox.Location = new System.Drawing.Point(25, 539);
+            this.miscGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.miscGroupBox.Name = "miscGroupBox";
-            this.miscGroupBox.Size = new System.Drawing.Size(329, 180);
+            this.miscGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.miscGroupBox.Size = new System.Drawing.Size(439, 222);
             this.miscGroupBox.TabIndex = 4;
             this.miscGroupBox.TabStop = false;
             this.miscGroupBox.Text = "Miscellaneous";
@@ -1091,17 +1151,19 @@
             this.miscFlowLayoutPanel.Controls.Add(this.menuBarCheckBox);
             this.miscFlowLayoutPanel.Controls.Add(this.followerCheckBox);
             this.miscFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.miscFlowLayoutPanel.Location = new System.Drawing.Point(9, 16);
+            this.miscFlowLayoutPanel.Location = new System.Drawing.Point(12, 20);
+            this.miscFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.miscFlowLayoutPanel.Name = "miscFlowLayoutPanel";
-            this.miscFlowLayoutPanel.Size = new System.Drawing.Size(314, 158);
+            this.miscFlowLayoutPanel.Size = new System.Drawing.Size(419, 194);
             this.miscFlowLayoutPanel.TabIndex = 10;
             // 
             // monoCaseCheckBox
             // 
             this.monoCaseCheckBox.AutoSize = true;
-            this.monoCaseCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.monoCaseCheckBox.Location = new System.Drawing.Point(4, 4);
+            this.monoCaseCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.monoCaseCheckBox.Name = "monoCaseCheckBox";
-            this.monoCaseCheckBox.Size = new System.Drawing.Size(87, 19);
+            this.monoCaseCheckBox.Size = new System.Drawing.Size(93, 20);
             this.monoCaseCheckBox.TabIndex = 0;
             this.monoCaseCheckBox.Tag = "monoCase";
             this.monoCaseCheckBox.Text = "Monocase";
@@ -1112,9 +1174,10 @@
             // typeaheadCheckBox
             // 
             this.typeaheadCheckBox.AutoSize = true;
-            this.typeaheadCheckBox.Location = new System.Drawing.Point(3, 28);
+            this.typeaheadCheckBox.Location = new System.Drawing.Point(4, 32);
+            this.typeaheadCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.typeaheadCheckBox.Name = "typeaheadCheckBox";
-            this.typeaheadCheckBox.Size = new System.Drawing.Size(90, 19);
+            this.typeaheadCheckBox.Size = new System.Drawing.Size(100, 20);
             this.typeaheadCheckBox.TabIndex = 1;
             this.typeaheadCheckBox.Tag = "typeahead";
             this.typeaheadCheckBox.Text = "Typeahead";
@@ -1125,9 +1188,10 @@
             // nopCheckBox
             // 
             this.nopCheckBox.AutoSize = true;
-            this.nopCheckBox.Location = new System.Drawing.Point(3, 53);
+            this.nopCheckBox.Location = new System.Drawing.Point(4, 60);
+            this.nopCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.nopCheckBox.Name = "nopCheckBox";
-            this.nopCheckBox.Size = new System.Drawing.Size(142, 19);
+            this.nopCheckBox.Size = new System.Drawing.Size(156, 20);
             this.nopCheckBox.TabIndex = 2;
             this.nopCheckBox.Text = "Send TELNET NOPs";
             this.toolTip1.SetToolTip(this.nopCheckBox, "Send a TELNET NOP every 30 seconds");
@@ -1137,9 +1201,10 @@
             // showTimingCheckBox
             // 
             this.showTimingCheckBox.AutoSize = true;
-            this.showTimingCheckBox.Location = new System.Drawing.Point(3, 78);
+            this.showTimingCheckBox.Location = new System.Drawing.Point(4, 88);
+            this.showTimingCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.showTimingCheckBox.Name = "showTimingCheckBox";
-            this.showTimingCheckBox.Size = new System.Drawing.Size(97, 19);
+            this.showTimingCheckBox.Size = new System.Drawing.Size(100, 20);
             this.showTimingCheckBox.TabIndex = 3;
             this.showTimingCheckBox.Tag = "showTiming";
             this.showTimingCheckBox.Text = "Show timing";
@@ -1150,9 +1215,10 @@
             // alwaysInsertCheckBox
             // 
             this.alwaysInsertCheckBox.AutoSize = true;
-            this.alwaysInsertCheckBox.Location = new System.Drawing.Point(3, 103);
+            this.alwaysInsertCheckBox.Location = new System.Drawing.Point(4, 116);
+            this.alwaysInsertCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.alwaysInsertCheckBox.Name = "alwaysInsertCheckBox";
-            this.alwaysInsertCheckBox.Size = new System.Drawing.Size(149, 19);
+            this.alwaysInsertCheckBox.Size = new System.Drawing.Size(158, 20);
             this.alwaysInsertCheckBox.TabIndex = 4;
             this.alwaysInsertCheckBox.Tag = "alwaysInsert";
             this.alwaysInsertCheckBox.Text = "Default to insert mode";
@@ -1163,9 +1229,10 @@
             // scrollbarCheckBox
             // 
             this.scrollbarCheckBox.AutoSize = true;
-            this.scrollbarCheckBox.Location = new System.Drawing.Point(3, 128);
+            this.scrollbarCheckBox.Location = new System.Drawing.Point(4, 144);
+            this.scrollbarCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.scrollbarCheckBox.Name = "scrollbarCheckBox";
-            this.scrollbarCheckBox.Size = new System.Drawing.Size(81, 19);
+            this.scrollbarCheckBox.Size = new System.Drawing.Size(86, 20);
             this.scrollbarCheckBox.TabIndex = 5;
             this.scrollbarCheckBox.Tag = "ScrollBar";
             this.scrollbarCheckBox.Text = "Scroll bar";
@@ -1176,9 +1243,10 @@
             // retryCheckBox
             // 
             this.retryCheckBox.AutoSize = true;
-            this.retryCheckBox.Location = new System.Drawing.Point(158, 3);
+            this.retryCheckBox.Location = new System.Drawing.Point(170, 4);
+            this.retryCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.retryCheckBox.Name = "retryCheckBox";
-            this.retryCheckBox.Size = new System.Drawing.Size(120, 19);
+            this.retryCheckBox.Size = new System.Drawing.Size(129, 20);
             this.retryCheckBox.TabIndex = 6;
             this.retryCheckBox.Tag = "retry";
             this.retryCheckBox.Text = "Retry connection";
@@ -1189,9 +1257,10 @@
             // preferIpv4CheckBox
             // 
             this.preferIpv4CheckBox.AutoSize = true;
-            this.preferIpv4CheckBox.Location = new System.Drawing.Point(158, 28);
+            this.preferIpv4CheckBox.Location = new System.Drawing.Point(170, 32);
+            this.preferIpv4CheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.preferIpv4CheckBox.Name = "preferIpv4CheckBox";
-            this.preferIpv4CheckBox.Size = new System.Drawing.Size(148, 19);
+            this.preferIpv4CheckBox.Size = new System.Drawing.Size(162, 20);
             this.preferIpv4CheckBox.TabIndex = 7;
             this.preferIpv4CheckBox.Tag = "preferIpv4";
             this.preferIpv4CheckBox.Text = "Prefer IPv4 addresses";
@@ -1202,9 +1271,10 @@
             // preferIpv6CheckBox
             // 
             this.preferIpv6CheckBox.AutoSize = true;
-            this.preferIpv6CheckBox.Location = new System.Drawing.Point(158, 53);
+            this.preferIpv6CheckBox.Location = new System.Drawing.Point(170, 60);
+            this.preferIpv6CheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.preferIpv6CheckBox.Name = "preferIpv6CheckBox";
-            this.preferIpv6CheckBox.Size = new System.Drawing.Size(148, 19);
+            this.preferIpv6CheckBox.Size = new System.Drawing.Size(162, 20);
             this.preferIpv6CheckBox.TabIndex = 8;
             this.preferIpv6CheckBox.Tag = "preferIpv6";
             this.preferIpv6CheckBox.Text = "Prefer IPv6 addresses";
@@ -1215,10 +1285,10 @@
             // menuBarCheckBox
             // 
             this.menuBarCheckBox.AutoSize = true;
-            this.menuBarCheckBox.Location = new System.Drawing.Point(157, 77);
-            this.menuBarCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.menuBarCheckBox.Location = new System.Drawing.Point(169, 86);
+            this.menuBarCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.menuBarCheckBox.Name = "menuBarCheckBox";
-            this.menuBarCheckBox.Size = new System.Drawing.Size(82, 19);
+            this.menuBarCheckBox.Size = new System.Drawing.Size(85, 20);
             this.menuBarCheckBox.TabIndex = 9;
             this.menuBarCheckBox.Tag = "MenuBar";
             this.menuBarCheckBox.Text = "Menu bar";
@@ -1229,9 +1299,10 @@
             // followerCheckBox
             // 
             this.followerCheckBox.AutoSize = true;
-            this.followerCheckBox.Location = new System.Drawing.Point(158, 101);
+            this.followerCheckBox.Location = new System.Drawing.Point(170, 112);
+            this.followerCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.followerCheckBox.Name = "followerCheckBox";
-            this.followerCheckBox.Size = new System.Drawing.Size(131, 19);
+            this.followerCheckBox.Size = new System.Drawing.Size(141, 20);
             this.followerCheckBox.TabIndex = 10;
             this.followerCheckBox.Text = "Read-only follower";
             this.toolTip1.SetToolTip(this.followerCheckBox, "Synchronize changes from the read/write\r\ninstance using the same profile");
@@ -1244,9 +1315,11 @@
             this.cursorGroupBox.Controls.Add(this.underscoreCursorButton);
             this.cursorGroupBox.Controls.Add(this.cursorBlinkCheckBox);
             this.cursorGroupBox.Controls.Add(this.blockCursorButton);
-            this.cursorGroupBox.Location = new System.Drawing.Point(363, 153);
+            this.cursorGroupBox.Location = new System.Drawing.Point(484, 188);
+            this.cursorGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.cursorGroupBox.Name = "cursorGroupBox";
-            this.cursorGroupBox.Size = new System.Drawing.Size(294, 67);
+            this.cursorGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.cursorGroupBox.Size = new System.Drawing.Size(392, 82);
             this.cursorGroupBox.TabIndex = 6;
             this.cursorGroupBox.TabStop = false;
             this.cursorGroupBox.Text = "Cursor";
@@ -1254,9 +1327,10 @@
             // crosshairCursorCheckBox
             // 
             this.crosshairCursorCheckBox.AutoSize = true;
-            this.crosshairCursorCheckBox.Location = new System.Drawing.Point(137, 19);
+            this.crosshairCursorCheckBox.Location = new System.Drawing.Point(183, 23);
+            this.crosshairCursorCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.crosshairCursorCheckBox.Name = "crosshairCursorCheckBox";
-            this.crosshairCursorCheckBox.Size = new System.Drawing.Size(81, 19);
+            this.crosshairCursorCheckBox.Size = new System.Drawing.Size(86, 20);
             this.crosshairCursorCheckBox.TabIndex = 2;
             this.crosshairCursorCheckBox.Tag = "crosshair";
             this.crosshairCursorCheckBox.Text = "Crosshair";
@@ -1266,9 +1340,10 @@
             // underscoreCursorButton
             // 
             this.underscoreCursorButton.AutoSize = true;
-            this.underscoreCursorButton.Location = new System.Drawing.Point(8, 42);
+            this.underscoreCursorButton.Location = new System.Drawing.Point(11, 52);
+            this.underscoreCursorButton.Margin = new System.Windows.Forms.Padding(4);
             this.underscoreCursorButton.Name = "underscoreCursorButton";
-            this.underscoreCursorButton.Size = new System.Drawing.Size(92, 19);
+            this.underscoreCursorButton.Size = new System.Drawing.Size(99, 20);
             this.underscoreCursorButton.TabIndex = 1;
             this.underscoreCursorButton.Tag = "Underscore";
             this.underscoreCursorButton.Text = "Underscore";
@@ -1277,9 +1352,10 @@
             // cursorBlinkCheckBox
             // 
             this.cursorBlinkCheckBox.AutoSize = true;
-            this.cursorBlinkCheckBox.Location = new System.Drawing.Point(137, 42);
+            this.cursorBlinkCheckBox.Location = new System.Drawing.Point(183, 52);
+            this.cursorBlinkCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.cursorBlinkCheckBox.Name = "cursorBlinkCheckBox";
-            this.cursorBlinkCheckBox.Size = new System.Drawing.Size(56, 19);
+            this.cursorBlinkCheckBox.Size = new System.Drawing.Size(58, 20);
             this.cursorBlinkCheckBox.TabIndex = 3;
             this.cursorBlinkCheckBox.Tag = "cursorBlink";
             this.cursorBlinkCheckBox.Text = "Blink";
@@ -1290,9 +1366,10 @@
             // 
             this.blockCursorButton.AutoSize = true;
             this.blockCursorButton.Checked = true;
-            this.blockCursorButton.Location = new System.Drawing.Point(8, 19);
+            this.blockCursorButton.Location = new System.Drawing.Point(11, 23);
+            this.blockCursorButton.Margin = new System.Windows.Forms.Padding(4);
             this.blockCursorButton.Name = "blockCursorButton";
-            this.blockCursorButton.Size = new System.Drawing.Size(58, 19);
+            this.blockCursorButton.Size = new System.Drawing.Size(62, 20);
             this.blockCursorButton.TabIndex = 0;
             this.blockCursorButton.TabStop = true;
             this.blockCursorButton.Tag = "Block";
@@ -1316,9 +1393,10 @@
             this.keyboardTab.Controls.Add(this.matchTypeflowLayoutPanel);
             this.keyboardTab.Controls.Add(this.keyboardModifiersLabel);
             this.keyboardTab.Controls.Add(this.keyboardPictureButton);
-            this.keyboardTab.Location = new System.Drawing.Point(4, 22);
+            this.keyboardTab.Location = new System.Drawing.Point(4, 25);
+            this.keyboardTab.Margin = new System.Windows.Forms.Padding(4);
             this.keyboardTab.Name = "keyboardTab";
-            this.keyboardTab.Size = new System.Drawing.Size(675, 624);
+            this.keyboardTab.Size = new System.Drawing.Size(903, 771);
             this.keyboardTab.TabIndex = 2;
             this.keyboardTab.Text = "Keyboard";
             this.keyboardTab.UseVisualStyleBackColor = true;
@@ -1338,13 +1416,14 @@
             this.modifiersTableLayoutPanel.Controls.Add(this.modeNvtCheckBox, 0, 1);
             this.modifiersTableLayoutPanel.Controls.Add(this.keyboardAltCheckBox, 2, 0);
             this.modifiersTableLayoutPanel.Controls.Add(this.keyboardCtrlCheckBox, 1, 0);
-            this.modifiersTableLayoutPanel.Location = new System.Drawing.Point(29, 206);
+            this.modifiersTableLayoutPanel.Location = new System.Drawing.Point(39, 254);
+            this.modifiersTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.modifiersTableLayoutPanel.Name = "modifiersTableLayoutPanel";
             this.modifiersTableLayoutPanel.RowCount = 3;
             this.modifiersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.modifiersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.modifiersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.modifiersTableLayoutPanel.Size = new System.Drawing.Size(228, 75);
+            this.modifiersTableLayoutPanel.Size = new System.Drawing.Size(248, 84);
             this.modifiersTableLayoutPanel.TabIndex = 148;
             // 
             // exactMatchCheckBox
@@ -1352,9 +1431,10 @@
             this.exactMatchCheckBox.AutoSize = true;
             this.modifiersTableLayoutPanel.SetColumnSpan(this.exactMatchCheckBox, 3);
             this.exactMatchCheckBox.Enabled = false;
-            this.exactMatchCheckBox.Location = new System.Drawing.Point(3, 53);
+            this.exactMatchCheckBox.Location = new System.Drawing.Point(4, 60);
+            this.exactMatchCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.exactMatchCheckBox.Name = "exactMatchCheckBox";
-            this.exactMatchCheckBox.Size = new System.Drawing.Size(206, 19);
+            this.exactMatchCheckBox.Size = new System.Drawing.Size(221, 20);
             this.exactMatchCheckBox.TabIndex = 148;
             this.exactMatchCheckBox.Text = "Require exact Shift/Ctrl/Alt match";
             this.exactMatchCheckBox.UseVisualStyleBackColor = true;
@@ -1363,9 +1443,10 @@
             // keyboardAplModeCheckBox
             // 
             this.keyboardAplModeCheckBox.AutoSize = true;
-            this.keyboardAplModeCheckBox.Location = new System.Drawing.Point(174, 28);
+            this.keyboardAplModeCheckBox.Location = new System.Drawing.Point(190, 32);
+            this.keyboardAplModeCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.keyboardAplModeCheckBox.Name = "keyboardAplModeCheckBox";
-            this.keyboardAplModeCheckBox.Size = new System.Drawing.Size(51, 19);
+            this.keyboardAplModeCheckBox.Size = new System.Drawing.Size(54, 20);
             this.keyboardAplModeCheckBox.TabIndex = 4;
             this.keyboardAplModeCheckBox.Tag = "Apl";
             this.keyboardAplModeCheckBox.Text = "APL";
@@ -1375,9 +1456,10 @@
             // keyboardShiftCheckBox
             // 
             this.keyboardShiftCheckBox.AutoSize = true;
-            this.keyboardShiftCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.keyboardShiftCheckBox.Location = new System.Drawing.Point(4, 4);
+            this.keyboardShiftCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.keyboardShiftCheckBox.Name = "keyboardShiftCheckBox";
-            this.keyboardShiftCheckBox.Size = new System.Drawing.Size(53, 19);
+            this.keyboardShiftCheckBox.Size = new System.Drawing.Size(54, 20);
             this.keyboardShiftCheckBox.TabIndex = 0;
             this.keyboardShiftCheckBox.Tag = "Shift";
             this.keyboardShiftCheckBox.Text = "Shift";
@@ -1387,9 +1469,10 @@
             // mode3270checkBox
             // 
             this.mode3270checkBox.AutoSize = true;
-            this.mode3270checkBox.Location = new System.Drawing.Point(86, 28);
+            this.mode3270checkBox.Location = new System.Drawing.Point(97, 32);
+            this.mode3270checkBox.Margin = new System.Windows.Forms.Padding(4);
             this.mode3270checkBox.Name = "mode3270checkBox";
-            this.mode3270checkBox.Size = new System.Drawing.Size(82, 19);
+            this.mode3270checkBox.Size = new System.Drawing.Size(85, 20);
             this.mode3270checkBox.TabIndex = 5;
             this.mode3270checkBox.Tag = "3270";
             this.mode3270checkBox.Text = "3270 only";
@@ -1399,9 +1482,10 @@
             // modeNvtCheckBox
             // 
             this.modeNvtCheckBox.AutoSize = true;
-            this.modeNvtCheckBox.Location = new System.Drawing.Point(3, 28);
+            this.modeNvtCheckBox.Location = new System.Drawing.Point(4, 32);
+            this.modeNvtCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.modeNvtCheckBox.Name = "modeNvtCheckBox";
-            this.modeNvtCheckBox.Size = new System.Drawing.Size(77, 19);
+            this.modeNvtCheckBox.Size = new System.Drawing.Size(85, 20);
             this.modeNvtCheckBox.TabIndex = 2;
             this.modeNvtCheckBox.Tag = "NVT";
             this.modeNvtCheckBox.Text = "NVT only";
@@ -1411,9 +1495,10 @@
             // keyboardAltCheckBox
             // 
             this.keyboardAltCheckBox.AutoSize = true;
-            this.keyboardAltCheckBox.Location = new System.Drawing.Point(174, 3);
+            this.keyboardAltCheckBox.Location = new System.Drawing.Point(190, 4);
+            this.keyboardAltCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.keyboardAltCheckBox.Name = "keyboardAltCheckBox";
-            this.keyboardAltCheckBox.Size = new System.Drawing.Size(42, 19);
+            this.keyboardAltCheckBox.Size = new System.Drawing.Size(44, 20);
             this.keyboardAltCheckBox.TabIndex = 1;
             this.keyboardAltCheckBox.Tag = "Alt";
             this.keyboardAltCheckBox.Text = "Alt";
@@ -1423,9 +1508,10 @@
             // keyboardCtrlCheckBox
             // 
             this.keyboardCtrlCheckBox.AutoSize = true;
-            this.keyboardCtrlCheckBox.Location = new System.Drawing.Point(86, 3);
+            this.keyboardCtrlCheckBox.Location = new System.Drawing.Point(97, 4);
+            this.keyboardCtrlCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.keyboardCtrlCheckBox.Name = "keyboardCtrlCheckBox";
-            this.keyboardCtrlCheckBox.Size = new System.Drawing.Size(47, 19);
+            this.keyboardCtrlCheckBox.Size = new System.Drawing.Size(48, 20);
             this.keyboardCtrlCheckBox.TabIndex = 3;
             this.keyboardCtrlCheckBox.Tag = "Ctrl";
             this.keyboardCtrlCheckBox.Text = "Ctrl";
@@ -1438,9 +1524,10 @@
             this.chordComboBox.FormattingEnabled = true;
             this.chordComboBox.Items.AddRange(new object[] {
             "None"});
-            this.chordComboBox.Location = new System.Drawing.Point(30, 45);
+            this.chordComboBox.Location = new System.Drawing.Point(40, 55);
+            this.chordComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.chordComboBox.Name = "chordComboBox";
-            this.chordComboBox.Size = new System.Drawing.Size(225, 21);
+            this.chordComboBox.Size = new System.Drawing.Size(299, 24);
             this.chordComboBox.TabIndex = 0;
             this.chordComboBox.SelectedIndexChanged += new System.EventHandler(this.ChordComboBox_IndexChanged);
             // 
@@ -1448,9 +1535,10 @@
             // 
             this.matchTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.matchTypeLabel.AutoSize = true;
-            this.matchTypeLabel.Location = new System.Drawing.Point(29, 292);
+            this.matchTypeLabel.Location = new System.Drawing.Point(39, 359);
+            this.matchTypeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.matchTypeLabel.Name = "matchTypeLabel";
-            this.matchTypeLabel.Size = new System.Drawing.Size(116, 15);
+            this.matchTypeLabel.Size = new System.Drawing.Size(126, 16);
             this.matchTypeLabel.TabIndex = 147;
             this.matchTypeLabel.Text = "4. Select match type";
             // 
@@ -1460,9 +1548,11 @@
             this.selectedKeyGroupBox.Controls.Add(this.keymapSelectedLabel);
             this.selectedKeyGroupBox.Controls.Add(this.keyCharValuePanel);
             this.selectedKeyGroupBox.Controls.Add(this.scanCodeSelectedLabel);
-            this.selectedKeyGroupBox.Location = new System.Drawing.Point(330, 140);
+            this.selectedKeyGroupBox.Location = new System.Drawing.Point(440, 172);
+            this.selectedKeyGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.selectedKeyGroupBox.Name = "selectedKeyGroupBox";
-            this.selectedKeyGroupBox.Size = new System.Drawing.Size(308, 110);
+            this.selectedKeyGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.selectedKeyGroupBox.Size = new System.Drawing.Size(411, 135);
             this.selectedKeyGroupBox.TabIndex = 146;
             this.selectedKeyGroupBox.TabStop = false;
             this.selectedKeyGroupBox.Text = "Selected key";
@@ -1471,7 +1561,8 @@
             // 
             this.selectedKeyLabel.AutoSize = true;
             this.selectedKeyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectedKeyLabel.Location = new System.Drawing.Point(6, 23);
+            this.selectedKeyLabel.Location = new System.Drawing.Point(8, 28);
+            this.selectedKeyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.selectedKeyLabel.Name = "selectedKeyLabel";
             this.selectedKeyLabel.Size = new System.Drawing.Size(130, 17);
             this.selectedKeyLabel.TabIndex = 140;
@@ -1481,7 +1572,8 @@
             // 
             this.keymapSelectedLabel.AutoSize = true;
             this.keymapSelectedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.keymapSelectedLabel.Location = new System.Drawing.Point(6, 41);
+            this.keymapSelectedLabel.Location = new System.Drawing.Point(8, 50);
+            this.keymapSelectedLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.keymapSelectedLabel.Name = "keymapSelectedLabel";
             this.keymapSelectedLabel.Size = new System.Drawing.Size(92, 17);
             this.keymapSelectedLabel.TabIndex = 52;
@@ -1491,10 +1583,10 @@
             // 
             this.keyCharValuePanel.Controls.Add(this.editedKeyCharLabel);
             this.keyCharValuePanel.Controls.Add(this.editedKeyCharValueLabel);
-            this.keyCharValuePanel.Location = new System.Drawing.Point(6, 73);
+            this.keyCharValuePanel.Location = new System.Drawing.Point(8, 90);
             this.keyCharValuePanel.Margin = new System.Windows.Forms.Padding(0);
             this.keyCharValuePanel.Name = "keyCharValuePanel";
-            this.keyCharValuePanel.Size = new System.Drawing.Size(287, 25);
+            this.keyCharValuePanel.Size = new System.Drawing.Size(383, 31);
             this.keyCharValuePanel.TabIndex = 127;
             this.keyCharValuePanel.Visible = false;
             // 
@@ -1505,7 +1597,7 @@
             this.editedKeyCharLabel.Location = new System.Drawing.Point(0, 0);
             this.editedKeyCharLabel.Margin = new System.Windows.Forms.Padding(0);
             this.editedKeyCharLabel.Name = "editedKeyCharLabel";
-            this.editedKeyCharLabel.Size = new System.Drawing.Size(139, 18);
+            this.editedKeyCharLabel.Size = new System.Drawing.Size(151, 18);
             this.editedKeyCharLabel.TabIndex = 126;
             this.editedKeyCharLabel.Text = "`And it produces no char";
             this.editedKeyCharLabel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -1514,8 +1606,8 @@
             // 
             this.editedKeyCharValueLabel.AutoSize = true;
             this.editedKeyCharValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editedKeyCharValueLabel.Location = new System.Drawing.Point(139, 0);
-            this.editedKeyCharValueLabel.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.editedKeyCharValueLabel.Location = new System.Drawing.Point(151, 0);
+            this.editedKeyCharValueLabel.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
             this.editedKeyCharValueLabel.Name = "editedKeyCharValueLabel";
             this.editedKeyCharValueLabel.Size = new System.Drawing.Size(53, 18);
             this.editedKeyCharValueLabel.TabIndex = 127;
@@ -1527,7 +1619,8 @@
             // 
             this.scanCodeSelectedLabel.AutoSize = true;
             this.scanCodeSelectedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scanCodeSelectedLabel.Location = new System.Drawing.Point(6, 54);
+            this.scanCodeSelectedLabel.Location = new System.Drawing.Point(8, 66);
+            this.scanCodeSelectedLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.scanCodeSelectedLabel.Name = "scanCodeSelectedLabel";
             this.scanCodeSelectedLabel.Size = new System.Drawing.Size(100, 17);
             this.scanCodeSelectedLabel.TabIndex = 139;
@@ -1537,9 +1630,10 @@
             // 
             this.defineActionsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.defineActionsLabel.AutoSize = true;
-            this.defineActionsLabel.Location = new System.Drawing.Point(29, 413);
+            this.defineActionsLabel.Location = new System.Drawing.Point(39, 508);
+            this.defineActionsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.defineActionsLabel.Name = "defineActionsLabel";
-            this.defineActionsLabel.Size = new System.Drawing.Size(98, 15);
+            this.defineActionsLabel.Size = new System.Drawing.Size(105, 16);
             this.defineActionsLabel.TabIndex = 145;
             this.defineActionsLabel.Text = "6. Define actions";
             // 
@@ -1549,12 +1643,13 @@
             this.modeAllLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.modeAllLayoutPanel.Controls.Add(this.keyboardActionsInheritedLabel, 0, 1);
             this.modeAllLayoutPanel.Controls.Add(this.keyboardActionsTextBox, 0, 0);
-            this.modeAllLayoutPanel.Location = new System.Drawing.Point(30, 431);
+            this.modeAllLayoutPanel.Location = new System.Drawing.Point(40, 530);
+            this.modeAllLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.modeAllLayoutPanel.Name = "modeAllLayoutPanel";
             this.modeAllLayoutPanel.RowCount = 2;
             this.modeAllLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.modeAllLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.modeAllLayoutPanel.Size = new System.Drawing.Size(608, 98);
+            this.modeAllLayoutPanel.Size = new System.Drawing.Size(811, 121);
             this.modeAllLayoutPanel.TabIndex = 133;
             // 
             // keyboardActionsInheritedLabel
@@ -1562,7 +1657,8 @@
             this.keyboardActionsInheritedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.keyboardActionsInheritedLabel.AutoSize = true;
             this.keyboardActionsInheritedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.keyboardActionsInheritedLabel.Location = new System.Drawing.Point(531, 79);
+            this.keyboardActionsInheritedLabel.Location = new System.Drawing.Point(733, 97);
+            this.keyboardActionsInheritedLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.keyboardActionsInheritedLabel.Name = "keyboardActionsInheritedLabel";
             this.keyboardActionsInheritedLabel.Size = new System.Drawing.Size(74, 15);
             this.keyboardActionsInheritedLabel.TabIndex = 130;
@@ -1575,12 +1671,13 @@
             // keyboardActionsTextBox
             // 
             this.keyboardActionsTextBox.Enabled = false;
-            this.keyboardActionsTextBox.Location = new System.Drawing.Point(3, 3);
+            this.keyboardActionsTextBox.Location = new System.Drawing.Point(4, 4);
+            this.keyboardActionsTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.keyboardActionsTextBox.Multiline = true;
             this.keyboardActionsTextBox.Name = "keyboardActionsTextBox";
             this.keyboardActionsTextBox.ReadOnly = true;
             this.keyboardActionsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.keyboardActionsTextBox.Size = new System.Drawing.Size(602, 73);
+            this.keyboardActionsTextBox.Size = new System.Drawing.Size(801, 89);
             this.keyboardActionsTextBox.TabIndex = 0;
             this.keyboardActionsTextBox.Tag = "ModeAll";
             this.keyboardActionsTextBox.Text = "actions";
@@ -1595,63 +1692,20 @@
             this.keyboardActionsFlowLayoutPanel.Controls.Add(this.keyboardActionsEditButton);
             this.keyboardActionsFlowLayoutPanel.Controls.Add(this.keyboardActionsAddKeyButton);
             this.keyboardActionsFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.keyboardActionsFlowLayoutPanel.Location = new System.Drawing.Point(30, 535);
+            this.keyboardActionsFlowLayoutPanel.Location = new System.Drawing.Point(40, 658);
+            this.keyboardActionsFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.keyboardActionsFlowLayoutPanel.Name = "keyboardActionsFlowLayoutPanel";
-            this.keyboardActionsFlowLayoutPanel.Size = new System.Drawing.Size(250, 32);
+            this.keyboardActionsFlowLayoutPanel.Size = new System.Drawing.Size(333, 40);
             this.keyboardActionsFlowLayoutPanel.TabIndex = 141;
-            // 
-            // keyboardActionsRemoveButton
-            // 
-            this.keyboardActionsRemoveButton.AutoSize = true;
-            this.keyboardActionsRemoveButton.Enabled = false;
-            this.keyboardActionsRemoveButton.ForeColor = System.Drawing.Color.Red;
-            this.keyboardActionsRemoveButton.Location = new System.Drawing.Point(174, 3);
-            this.keyboardActionsRemoveButton.Name = "keyboardActionsRemoveButton";
-            this.keyboardActionsRemoveButton.Size = new System.Drawing.Size(73, 26);
-            this.keyboardActionsRemoveButton.TabIndex = 107;
-            this.keyboardActionsRemoveButton.TabStop = false;
-            this.keyboardActionsRemoveButton.Tag = "Delete";
-            this.keyboardActionsRemoveButton.Text = "❌ Delete";
-            this.toolTip1.SetToolTip(this.keyboardActionsRemoveButton, "Remove definition");
-            this.keyboardActionsRemoveButton.UseVisualStyleBackColor = true;
-            this.keyboardActionsRemoveButton.Click += new System.EventHandler(this.KeyboardAction_Click);
-            // 
-            // keyboardActionsEditButton
-            // 
-            this.keyboardActionsEditButton.AutoSize = true;
-            this.keyboardActionsEditButton.Location = new System.Drawing.Point(93, 3);
-            this.keyboardActionsEditButton.Name = "keyboardActionsEditButton";
-            this.keyboardActionsEditButton.Size = new System.Drawing.Size(75, 26);
-            this.keyboardActionsEditButton.TabIndex = 108;
-            this.keyboardActionsEditButton.TabStop = false;
-            this.keyboardActionsEditButton.Tag = "Edit";
-            this.keyboardActionsEditButton.Text = "🖉 Edit";
-            this.toolTip1.SetToolTip(this.keyboardActionsEditButton, "Edit the actions for this key");
-            this.keyboardActionsEditButton.UseVisualStyleBackColor = true;
-            this.keyboardActionsEditButton.Click += new System.EventHandler(this.KeyboardAction_Click);
-            // 
-            // keyboardActionsAddKeyButton
-            // 
-            this.keyboardActionsAddKeyButton.AutoSize = true;
-            this.keyboardActionsAddKeyButton.ForeColor = System.Drawing.Color.Green;
-            this.keyboardActionsAddKeyButton.Location = new System.Drawing.Point(3, 3);
-            this.keyboardActionsAddKeyButton.Name = "keyboardActionsAddKeyButton";
-            this.keyboardActionsAddKeyButton.Size = new System.Drawing.Size(84, 26);
-            this.keyboardActionsAddKeyButton.TabIndex = 109;
-            this.keyboardActionsAddKeyButton.TabStop = false;
-            this.keyboardActionsAddKeyButton.Tag = "Add";
-            this.keyboardActionsAddKeyButton.Text = "➕ New";
-            this.toolTip1.SetToolTip(this.keyboardActionsAddKeyButton, "Create actions for this key");
-            this.keyboardActionsAddKeyButton.UseVisualStyleBackColor = true;
-            this.keyboardActionsAddKeyButton.Click += new System.EventHandler(this.KeyboardAction_Click);
             // 
             // behaviorLabel
             // 
             this.behaviorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.behaviorLabel.AutoSize = true;
-            this.behaviorLabel.Location = new System.Drawing.Point(29, 350);
+            this.behaviorLabel.Location = new System.Drawing.Point(39, 431);
+            this.behaviorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.behaviorLabel.Name = "behaviorLabel";
-            this.behaviorLabel.Size = new System.Drawing.Size(104, 15);
+            this.behaviorLabel.Size = new System.Drawing.Size(114, 16);
             this.behaviorLabel.TabIndex = 144;
             this.behaviorLabel.Text = "5. Select behavior";
             // 
@@ -1661,17 +1715,19 @@
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.Controls.Add(this.actionsRadioButton);
             this.flowLayoutPanel1.Controls.Add(this.chordRadioButton);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(29, 365);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(39, 449);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(213, 25);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(229, 28);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // actionsRadioButton
             // 
             this.actionsRadioButton.AutoSize = true;
-            this.actionsRadioButton.Location = new System.Drawing.Point(3, 3);
+            this.actionsRadioButton.Location = new System.Drawing.Point(4, 4);
+            this.actionsRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.actionsRadioButton.Name = "actionsRadioButton";
-            this.actionsRadioButton.Size = new System.Drawing.Size(114, 19);
+            this.actionsRadioButton.Size = new System.Drawing.Size(121, 20);
             this.actionsRadioButton.TabIndex = 0;
             this.actionsRadioButton.Tag = "Actions";
             this.actionsRadioButton.Text = "Perform actions";
@@ -1682,9 +1738,10 @@
             // chordRadioButton
             // 
             this.chordRadioButton.AutoSize = true;
-            this.chordRadioButton.Location = new System.Drawing.Point(123, 3);
+            this.chordRadioButton.Location = new System.Drawing.Point(133, 4);
+            this.chordRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.chordRadioButton.Name = "chordRadioButton";
-            this.chordRadioButton.Size = new System.Drawing.Size(87, 19);
+            this.chordRadioButton.Size = new System.Drawing.Size(92, 20);
             this.chordRadioButton.TabIndex = 1;
             this.chordRadioButton.Tag = "Chord";
             this.chordRadioButton.Text = "Start chord";
@@ -1698,17 +1755,19 @@
             this.matchFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.matchFlowLayoutPanel.Controls.Add(this.matchKeyRadioButton);
             this.matchFlowLayoutPanel.Controls.Add(this.matchScanCodeRadioButton);
-            this.matchFlowLayoutPanel.Location = new System.Drawing.Point(29, 307);
+            this.matchFlowLayoutPanel.Location = new System.Drawing.Point(39, 378);
+            this.matchFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.matchFlowLayoutPanel.Name = "matchFlowLayoutPanel";
-            this.matchFlowLayoutPanel.Size = new System.Drawing.Size(176, 25);
+            this.matchFlowLayoutPanel.Size = new System.Drawing.Size(194, 28);
             this.matchFlowLayoutPanel.TabIndex = 2;
             // 
             // matchKeyRadioButton
             // 
             this.matchKeyRadioButton.AutoSize = true;
-            this.matchKeyRadioButton.Location = new System.Drawing.Point(3, 3);
+            this.matchKeyRadioButton.Location = new System.Drawing.Point(4, 4);
+            this.matchKeyRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.matchKeyRadioButton.Name = "matchKeyRadioButton";
-            this.matchKeyRadioButton.Size = new System.Drawing.Size(78, 19);
+            this.matchKeyRadioButton.Size = new System.Drawing.Size(85, 20);
             this.matchKeyRadioButton.TabIndex = 0;
             this.matchKeyRadioButton.Tag = "KeyCode";
             this.matchKeyRadioButton.Text = "Key code";
@@ -1719,9 +1778,10 @@
             // matchScanCodeRadioButton
             // 
             this.matchScanCodeRadioButton.AutoSize = true;
-            this.matchScanCodeRadioButton.Location = new System.Drawing.Point(87, 3);
+            this.matchScanCodeRadioButton.Location = new System.Drawing.Point(97, 4);
+            this.matchScanCodeRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.matchScanCodeRadioButton.Name = "matchScanCodeRadioButton";
-            this.matchScanCodeRadioButton.Size = new System.Drawing.Size(86, 19);
+            this.matchScanCodeRadioButton.Size = new System.Drawing.Size(93, 20);
             this.matchScanCodeRadioButton.TabIndex = 1;
             this.matchScanCodeRadioButton.Tag = "ScanCode";
             this.matchScanCodeRadioButton.Text = "Scan code";
@@ -1732,18 +1792,20 @@
             // keyLabel
             // 
             this.keyLabel.AutoSize = true;
-            this.keyLabel.Location = new System.Drawing.Point(29, 82);
+            this.keyLabel.Location = new System.Drawing.Point(39, 101);
+            this.keyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.keyLabel.Name = "keyLabel";
-            this.keyLabel.Size = new System.Drawing.Size(85, 15);
+            this.keyLabel.Size = new System.Drawing.Size(94, 16);
             this.keyLabel.TabIndex = 142;
             this.keyLabel.Text = "2. Select a key";
             // 
             // chordLabel
             // 
             this.chordLabel.AutoSize = true;
-            this.chordLabel.Location = new System.Drawing.Point(29, 22);
+            this.chordLabel.Location = new System.Drawing.Point(39, 27);
+            this.chordLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.chordLabel.Name = "chordLabel";
-            this.chordLabel.Size = new System.Drawing.Size(146, 15);
+            this.chordLabel.Size = new System.Drawing.Size(160, 16);
             this.chordLabel.TabIndex = 141;
             this.chordLabel.Text = "1. Select a chord-start key";
             // 
@@ -1752,7 +1814,8 @@
             this.matchTypeflowLayoutPanel.AutoSize = true;
             this.matchTypeflowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.matchTypeflowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.matchTypeflowLayoutPanel.Location = new System.Drawing.Point(269, 85);
+            this.matchTypeflowLayoutPanel.Location = new System.Drawing.Point(359, 105);
+            this.matchTypeflowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.matchTypeflowLayoutPanel.Name = "matchTypeflowLayoutPanel";
             this.matchTypeflowLayoutPanel.Size = new System.Drawing.Size(0, 0);
             this.matchTypeflowLayoutPanel.TabIndex = 138;
@@ -1760,24 +1823,12 @@
             // keyboardModifiersLabel
             // 
             this.keyboardModifiersLabel.AutoSize = true;
-            this.keyboardModifiersLabel.Location = new System.Drawing.Point(29, 188);
+            this.keyboardModifiersLabel.Location = new System.Drawing.Point(39, 231);
+            this.keyboardModifiersLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.keyboardModifiersLabel.Name = "keyboardModifiersLabel";
-            this.keyboardModifiersLabel.Size = new System.Drawing.Size(108, 15);
+            this.keyboardModifiersLabel.Size = new System.Drawing.Size(116, 16);
             this.keyboardModifiersLabel.TabIndex = 125;
             this.keyboardModifiersLabel.Text = "3. Select modifiers";
-            // 
-            // keyboardPictureButton
-            // 
-            this.keyboardPictureButton.BackgroundImage = global::Wx3270.Properties.Resources.KeyboardLayoutSmall;
-            this.keyboardPictureButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.keyboardPictureButton.Location = new System.Drawing.Point(29, 103);
-            this.keyboardPictureButton.Name = "keyboardPictureButton";
-            this.keyboardPictureButton.Size = new System.Drawing.Size(170, 70);
-            this.keyboardPictureButton.TabIndex = 131;
-            this.keyboardPictureButton.TabStop = false;
-            this.toolTip1.SetToolTip(this.keyboardPictureButton, "Display keyboard");
-            this.keyboardPictureButton.UseVisualStyleBackColor = true;
-            this.keyboardPictureButton.Click += new System.EventHandler(this.KeyboardPictureButton_Click);
             // 
             // keypadTab
             // 
@@ -1789,9 +1840,10 @@
             this.keypadTab.Controls.Add(this.selectLabel);
             this.keypadTab.Controls.Add(this.panel1);
             this.keypadTab.Controls.Add(this.fakeKeypadPanel);
-            this.keypadTab.Location = new System.Drawing.Point(4, 22);
+            this.keypadTab.Location = new System.Drawing.Point(4, 25);
+            this.keypadTab.Margin = new System.Windows.Forms.Padding(4);
             this.keypadTab.Name = "keypadTab";
-            this.keypadTab.Size = new System.Drawing.Size(675, 624);
+            this.keypadTab.Size = new System.Drawing.Size(903, 771);
             this.keypadTab.TabIndex = 7;
             this.keypadTab.Text = "Keypad";
             this.keypadTab.UseVisualStyleBackColor = true;
@@ -1801,18 +1853,20 @@
             this.keypadTypeFlowLayoutPanel.Controls.Add(this.keypadTypeLabel);
             this.keypadTypeFlowLayoutPanel.Controls.Add(this.type3270RadioButton);
             this.keypadTypeFlowLayoutPanel.Controls.Add(this.typeAplRadioButton);
-            this.keypadTypeFlowLayoutPanel.Location = new System.Drawing.Point(16, 8);
+            this.keypadTypeFlowLayoutPanel.Location = new System.Drawing.Point(21, 10);
+            this.keypadTypeFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.keypadTypeFlowLayoutPanel.Name = "keypadTypeFlowLayoutPanel";
-            this.keypadTypeFlowLayoutPanel.Size = new System.Drawing.Size(305, 20);
+            this.keypadTypeFlowLayoutPanel.Size = new System.Drawing.Size(407, 25);
             this.keypadTypeFlowLayoutPanel.TabIndex = 35;
             // 
             // keypadTypeLabel
             // 
             this.keypadTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.keypadTypeLabel.AutoSize = true;
-            this.keypadTypeLabel.Location = new System.Drawing.Point(3, 5);
+            this.keypadTypeLabel.Location = new System.Drawing.Point(4, 6);
+            this.keypadTypeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.keypadTypeLabel.Name = "keypadTypeLabel";
-            this.keypadTypeLabel.Size = new System.Drawing.Size(76, 15);
+            this.keypadTypeLabel.Size = new System.Drawing.Size(86, 16);
             this.keypadTypeLabel.TabIndex = 36;
             this.keypadTypeLabel.Text = "Keypad type:";
             // 
@@ -1820,9 +1874,10 @@
             // 
             this.type3270RadioButton.AutoSize = true;
             this.type3270RadioButton.Checked = true;
-            this.type3270RadioButton.Location = new System.Drawing.Point(85, 3);
+            this.type3270RadioButton.Location = new System.Drawing.Point(98, 4);
+            this.type3270RadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.type3270RadioButton.Name = "type3270RadioButton";
-            this.type3270RadioButton.Size = new System.Drawing.Size(56, 19);
+            this.type3270RadioButton.Size = new System.Drawing.Size(56, 20);
             this.type3270RadioButton.TabIndex = 0;
             this.type3270RadioButton.TabStop = true;
             this.type3270RadioButton.Tag = "Type3270";
@@ -1832,9 +1887,10 @@
             // typeAplRadioButton
             // 
             this.typeAplRadioButton.AutoSize = true;
-            this.typeAplRadioButton.Location = new System.Drawing.Point(147, 3);
+            this.typeAplRadioButton.Location = new System.Drawing.Point(162, 4);
+            this.typeAplRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.typeAplRadioButton.Name = "typeAplRadioButton";
-            this.typeAplRadioButton.Size = new System.Drawing.Size(50, 19);
+            this.typeAplRadioButton.Size = new System.Drawing.Size(53, 20);
             this.typeAplRadioButton.TabIndex = 1;
             this.typeAplRadioButton.Tag = "TypeApl";
             this.typeAplRadioButton.Text = "APL";
@@ -1851,18 +1907,20 @@
             this.keypadModifiersLayoutPanel.Controls.Add(this.nvtCheckBox);
             this.keypadModifiersLayoutPanel.Controls.Add(this.only3270CheckBox);
             this.keypadModifiersLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.keypadModifiersLayoutPanel.Location = new System.Drawing.Point(556, 76);
+            this.keypadModifiersLayoutPanel.Location = new System.Drawing.Point(741, 94);
+            this.keypadModifiersLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.keypadModifiersLayoutPanel.Name = "keypadModifiersLayoutPanel";
-            this.keypadModifiersLayoutPanel.Size = new System.Drawing.Size(88, 150);
+            this.keypadModifiersLayoutPanel.Size = new System.Drawing.Size(93, 168);
             this.keypadModifiersLayoutPanel.TabIndex = 1;
             this.keypadModifiersLayoutPanel.Tag = "";
             // 
             // shiftCheckBox
             // 
             this.shiftCheckBox.AutoSize = true;
-            this.shiftCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.shiftCheckBox.Location = new System.Drawing.Point(4, 4);
+            this.shiftCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.shiftCheckBox.Name = "shiftCheckBox";
-            this.shiftCheckBox.Size = new System.Drawing.Size(53, 19);
+            this.shiftCheckBox.Size = new System.Drawing.Size(54, 20);
             this.shiftCheckBox.TabIndex = 0;
             this.shiftCheckBox.Tag = "Shift";
             this.shiftCheckBox.Text = "Shift";
@@ -1872,9 +1930,10 @@
             // ctrlCheckBox
             // 
             this.ctrlCheckBox.AutoSize = true;
-            this.ctrlCheckBox.Location = new System.Drawing.Point(3, 28);
+            this.ctrlCheckBox.Location = new System.Drawing.Point(4, 32);
+            this.ctrlCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.ctrlCheckBox.Name = "ctrlCheckBox";
-            this.ctrlCheckBox.Size = new System.Drawing.Size(47, 19);
+            this.ctrlCheckBox.Size = new System.Drawing.Size(48, 20);
             this.ctrlCheckBox.TabIndex = 1;
             this.ctrlCheckBox.Tag = "Ctrl";
             this.ctrlCheckBox.Text = "Ctrl";
@@ -1884,9 +1943,10 @@
             // altCheckBox
             // 
             this.altCheckBox.AutoSize = true;
-            this.altCheckBox.Location = new System.Drawing.Point(3, 53);
+            this.altCheckBox.Location = new System.Drawing.Point(4, 60);
+            this.altCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.altCheckBox.Name = "altCheckBox";
-            this.altCheckBox.Size = new System.Drawing.Size(42, 19);
+            this.altCheckBox.Size = new System.Drawing.Size(44, 20);
             this.altCheckBox.TabIndex = 2;
             this.altCheckBox.Tag = "Alt";
             this.altCheckBox.Text = "Alt";
@@ -1896,9 +1956,10 @@
             // aplCheckBox
             // 
             this.aplCheckBox.AutoSize = true;
-            this.aplCheckBox.Location = new System.Drawing.Point(3, 78);
+            this.aplCheckBox.Location = new System.Drawing.Point(4, 88);
+            this.aplCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.aplCheckBox.Name = "aplCheckBox";
-            this.aplCheckBox.Size = new System.Drawing.Size(51, 19);
+            this.aplCheckBox.Size = new System.Drawing.Size(54, 20);
             this.aplCheckBox.TabIndex = 3;
             this.aplCheckBox.Tag = "Apl";
             this.aplCheckBox.Text = "APL";
@@ -1908,9 +1969,10 @@
             // nvtCheckBox
             // 
             this.nvtCheckBox.AutoSize = true;
-            this.nvtCheckBox.Location = new System.Drawing.Point(3, 103);
+            this.nvtCheckBox.Location = new System.Drawing.Point(4, 116);
+            this.nvtCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.nvtCheckBox.Name = "nvtCheckBox";
-            this.nvtCheckBox.Size = new System.Drawing.Size(77, 19);
+            this.nvtCheckBox.Size = new System.Drawing.Size(85, 20);
             this.nvtCheckBox.TabIndex = 4;
             this.nvtCheckBox.Tag = "ModeNvt";
             this.nvtCheckBox.Text = "NVT only";
@@ -1920,9 +1982,10 @@
             // only3270CheckBox
             // 
             this.only3270CheckBox.AutoSize = true;
-            this.only3270CheckBox.Location = new System.Drawing.Point(3, 128);
+            this.only3270CheckBox.Location = new System.Drawing.Point(4, 144);
+            this.only3270CheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.only3270CheckBox.Name = "only3270CheckBox";
-            this.only3270CheckBox.Size = new System.Drawing.Size(82, 19);
+            this.only3270CheckBox.Size = new System.Drawing.Size(85, 20);
             this.only3270CheckBox.TabIndex = 5;
             this.only3270CheckBox.Tag = "Mode3270";
             this.only3270CheckBox.Text = "3270 only";
@@ -1934,9 +1997,11 @@
             this.keypadPositionGroupBox.Controls.Add(this.centeredButton);
             this.keypadPositionGroupBox.Controls.Add(this.rightButton);
             this.keypadPositionGroupBox.Controls.Add(this.leftButton);
-            this.keypadPositionGroupBox.Location = new System.Drawing.Point(20, 505);
+            this.keypadPositionGroupBox.Location = new System.Drawing.Point(27, 622);
+            this.keypadPositionGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.keypadPositionGroupBox.Name = "keypadPositionGroupBox";
-            this.keypadPositionGroupBox.Size = new System.Drawing.Size(224, 92);
+            this.keypadPositionGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.keypadPositionGroupBox.Size = new System.Drawing.Size(299, 113);
             this.keypadPositionGroupBox.TabIndex = 3;
             this.keypadPositionGroupBox.TabStop = false;
             this.keypadPositionGroupBox.Text = "Initial keypad position";
@@ -1945,9 +2010,10 @@
             // 
             this.centeredButton.AutoSize = true;
             this.centeredButton.Checked = true;
-            this.centeredButton.Location = new System.Drawing.Point(8, 19);
+            this.centeredButton.Location = new System.Drawing.Point(11, 23);
+            this.centeredButton.Margin = new System.Windows.Forms.Padding(4);
             this.centeredButton.Name = "centeredButton";
-            this.centeredButton.Size = new System.Drawing.Size(78, 19);
+            this.centeredButton.Size = new System.Drawing.Size(83, 20);
             this.centeredButton.TabIndex = 0;
             this.centeredButton.TabStop = true;
             this.centeredButton.Tag = "Centered";
@@ -1957,9 +2023,10 @@
             // rightButton
             // 
             this.rightButton.AutoSize = true;
-            this.rightButton.Location = new System.Drawing.Point(8, 65);
+            this.rightButton.Location = new System.Drawing.Point(11, 80);
+            this.rightButton.Margin = new System.Windows.Forms.Padding(4);
             this.rightButton.Name = "rightButton";
-            this.rightButton.Size = new System.Drawing.Size(57, 19);
+            this.rightButton.Size = new System.Drawing.Size(59, 20);
             this.rightButton.TabIndex = 2;
             this.rightButton.Tag = "Right";
             this.rightButton.Text = "Right";
@@ -1968,9 +2035,10 @@
             // leftButton
             // 
             this.leftButton.AutoSize = true;
-            this.leftButton.Location = new System.Drawing.Point(8, 42);
+            this.leftButton.Location = new System.Drawing.Point(11, 52);
+            this.leftButton.Margin = new System.Windows.Forms.Padding(4);
             this.leftButton.Name = "leftButton";
-            this.leftButton.Size = new System.Drawing.Size(48, 19);
+            this.leftButton.Size = new System.Drawing.Size(49, 20);
             this.leftButton.TabIndex = 1;
             this.leftButton.Tag = "Left";
             this.leftButton.Text = "Left";
@@ -1981,9 +2049,11 @@
             this.keypadMappingGroupBox.Controls.Add(this.backgroundTableLayoutPanel);
             this.keypadMappingGroupBox.Controls.Add(this.tableLayoutPanel1);
             this.keypadMappingGroupBox.Enabled = false;
-            this.keypadMappingGroupBox.Location = new System.Drawing.Point(20, 329);
+            this.keypadMappingGroupBox.Location = new System.Drawing.Point(27, 405);
+            this.keypadMappingGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.keypadMappingGroupBox.Name = "keypadMappingGroupBox";
-            this.keypadMappingGroupBox.Size = new System.Drawing.Size(630, 170);
+            this.keypadMappingGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.keypadMappingGroupBox.Size = new System.Drawing.Size(840, 209);
             this.keypadMappingGroupBox.TabIndex = 2;
             this.keypadMappingGroupBox.TabStop = false;
             this.keypadMappingGroupBox.Text = "Key definition";
@@ -1997,11 +2067,12 @@
             this.backgroundTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.backgroundTableLayoutPanel.Controls.Add(this.backgroundGroupBox, 0, 0);
             this.backgroundTableLayoutPanel.Controls.Add(this.keypadRemoveButton, 1, 0);
-            this.backgroundTableLayoutPanel.Location = new System.Drawing.Point(334, 32);
+            this.backgroundTableLayoutPanel.Location = new System.Drawing.Point(445, 39);
+            this.backgroundTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.backgroundTableLayoutPanel.Name = "backgroundTableLayoutPanel";
             this.backgroundTableLayoutPanel.RowCount = 1;
             this.backgroundTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.backgroundTableLayoutPanel.Size = new System.Drawing.Size(231, 119);
+            this.backgroundTableLayoutPanel.Size = new System.Drawing.Size(286, 138);
             this.backgroundTableLayoutPanel.TabIndex = 44;
             // 
             // backgroundGroupBox
@@ -2009,9 +2080,11 @@
             this.backgroundGroupBox.AutoSize = true;
             this.backgroundGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.backgroundGroupBox.Controls.Add(this.backgroundLayoutPanel);
-            this.backgroundGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.backgroundGroupBox.Location = new System.Drawing.Point(4, 4);
+            this.backgroundGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.backgroundGroupBox.Name = "backgroundGroupBox";
-            this.backgroundGroupBox.Size = new System.Drawing.Size(129, 113);
+            this.backgroundGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.backgroundGroupBox.Size = new System.Drawing.Size(151, 130);
             this.backgroundGroupBox.TabIndex = 1;
             this.backgroundGroupBox.TabStop = false;
             this.backgroundGroupBox.Text = "Background image";
@@ -2029,30 +2102,33 @@
             this.backgroundLayoutPanel.Controls.Add(this.insertRadioButton, 0, 1);
             this.backgroundLayoutPanel.Controls.Add(this.blankPictureBox, 1, 0);
             this.backgroundLayoutPanel.Controls.Add(this.deleteRadioButton, 0, 2);
-            this.backgroundLayoutPanel.Location = new System.Drawing.Point(10, 19);
+            this.backgroundLayoutPanel.Location = new System.Drawing.Point(13, 23);
+            this.backgroundLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.backgroundLayoutPanel.Name = "backgroundLayoutPanel";
             this.backgroundLayoutPanel.RowCount = 3;
             this.backgroundLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.backgroundLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.backgroundLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.backgroundLayoutPanel.Size = new System.Drawing.Size(113, 75);
+            this.backgroundLayoutPanel.Size = new System.Drawing.Size(130, 84);
             this.backgroundLayoutPanel.TabIndex = 49;
             // 
             // deletePictureBox
             // 
             this.deletePictureBox.BackgroundImage = global::Wx3270.Properties.Resources.DeletePreview;
-            this.deletePictureBox.Location = new System.Drawing.Point(94, 53);
+            this.deletePictureBox.Location = new System.Drawing.Point(105, 60);
+            this.deletePictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.deletePictureBox.Name = "deletePictureBox";
-            this.deletePictureBox.Size = new System.Drawing.Size(16, 16);
+            this.deletePictureBox.Size = new System.Drawing.Size(21, 20);
             this.deletePictureBox.TabIndex = 5;
             this.deletePictureBox.TabStop = false;
             // 
             // blankRadioButton
             // 
             this.blankRadioButton.AutoSize = true;
-            this.blankRadioButton.Location = new System.Drawing.Point(3, 3);
+            this.blankRadioButton.Location = new System.Drawing.Point(4, 4);
+            this.blankRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.blankRadioButton.Name = "blankRadioButton";
-            this.blankRadioButton.Size = new System.Drawing.Size(80, 19);
+            this.blankRadioButton.Size = new System.Drawing.Size(87, 20);
             this.blankRadioButton.TabIndex = 0;
             this.blankRadioButton.TabStop = true;
             this.blankRadioButton.Tag = "Blank";
@@ -2063,18 +2139,20 @@
             // insertPictureBox
             // 
             this.insertPictureBox.BackgroundImage = global::Wx3270.Properties.Resources.InsertPreview;
-            this.insertPictureBox.Location = new System.Drawing.Point(94, 28);
+            this.insertPictureBox.Location = new System.Drawing.Point(105, 32);
+            this.insertPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.insertPictureBox.Name = "insertPictureBox";
-            this.insertPictureBox.Size = new System.Drawing.Size(16, 16);
+            this.insertPictureBox.Size = new System.Drawing.Size(21, 20);
             this.insertPictureBox.TabIndex = 4;
             this.insertPictureBox.TabStop = false;
             // 
             // insertRadioButton
             // 
             this.insertRadioButton.AutoSize = true;
-            this.insertRadioButton.Location = new System.Drawing.Point(3, 28);
+            this.insertRadioButton.Location = new System.Drawing.Point(4, 32);
+            this.insertRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.insertRadioButton.Name = "insertRadioButton";
-            this.insertRadioButton.Size = new System.Drawing.Size(79, 19);
+            this.insertRadioButton.Size = new System.Drawing.Size(85, 20);
             this.insertRadioButton.TabIndex = 1;
             this.insertRadioButton.TabStop = true;
             this.insertRadioButton.Tag = "Insert";
@@ -2085,41 +2163,26 @@
             // blankPictureBox
             // 
             this.blankPictureBox.BackgroundImage = global::Wx3270.Properties.Resources.BlankPreview;
-            this.blankPictureBox.Location = new System.Drawing.Point(94, 3);
+            this.blankPictureBox.Location = new System.Drawing.Point(105, 4);
+            this.blankPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.blankPictureBox.Name = "blankPictureBox";
-            this.blankPictureBox.Size = new System.Drawing.Size(16, 16);
+            this.blankPictureBox.Size = new System.Drawing.Size(21, 20);
             this.blankPictureBox.TabIndex = 3;
             this.blankPictureBox.TabStop = false;
             // 
             // deleteRadioButton
             // 
             this.deleteRadioButton.AutoSize = true;
-            this.deleteRadioButton.Location = new System.Drawing.Point(3, 53);
+            this.deleteRadioButton.Location = new System.Drawing.Point(4, 60);
+            this.deleteRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.deleteRadioButton.Name = "deleteRadioButton";
-            this.deleteRadioButton.Size = new System.Drawing.Size(85, 19);
+            this.deleteRadioButton.Size = new System.Drawing.Size(93, 20);
             this.deleteRadioButton.TabIndex = 2;
             this.deleteRadioButton.TabStop = true;
             this.deleteRadioButton.Tag = "Delete";
             this.deleteRadioButton.Text = "Delete key";
             this.deleteRadioButton.UseVisualStyleBackColor = true;
             this.deleteRadioButton.Click += new System.EventHandler(this.BackgroundImage_Click);
-            // 
-            // keypadRemoveButton
-            // 
-            this.keypadRemoveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.keypadRemoveButton.AutoSize = true;
-            this.keypadRemoveButton.Enabled = false;
-            this.keypadRemoveButton.ForeColor = System.Drawing.Color.Red;
-            this.keypadRemoveButton.Location = new System.Drawing.Point(145, 46);
-            this.keypadRemoveButton.Margin = new System.Windows.Forms.Padding(10);
-            this.keypadRemoveButton.Name = "keypadRemoveButton";
-            this.keypadRemoveButton.Size = new System.Drawing.Size(76, 26);
-            this.keypadRemoveButton.TabIndex = 43;
-            this.keypadRemoveButton.TabStop = false;
-            this.keypadRemoveButton.Text = "❌ Delete";
-            this.toolTip1.SetToolTip(this.keypadRemoveButton, "Remove definition");
-            this.keypadRemoveButton.UseVisualStyleBackColor = true;
-            this.keypadRemoveButton.Click += new System.EventHandler(this.KeypadRemoveButton_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -2135,25 +2198,27 @@
             this.tableLayoutPanel1.Controls.Add(this.editedButtonActionsLabel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.editedButtonTextTextBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.editedButtonTextSizeLabel, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 19);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 23);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(284, 144);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(365, 172);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // editedButtonActionsTextBox
             // 
             this.editedButtonActionsTextBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.editedButtonActionsTextBox.Location = new System.Drawing.Point(64, 72);
+            this.editedButtonActionsTextBox.Location = new System.Drawing.Point(72, 87);
+            this.editedButtonActionsTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.editedButtonActionsTextBox.Multiline = true;
             this.editedButtonActionsTextBox.Name = "editedButtonActionsTextBox";
             this.editedButtonActionsTextBox.ReadOnly = true;
             this.editedButtonActionsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.editedButtonActionsTextBox.Size = new System.Drawing.Size(217, 54);
+            this.editedButtonActionsTextBox.Size = new System.Drawing.Size(288, 66);
             this.editedButtonActionsTextBox.TabIndex = 2;
             this.editedButtonActionsTextBox.WordWrap = false;
             this.editedButtonActionsTextBox.Click += new System.EventHandler(this.EditedButtonActionsTextBox_Click);
@@ -2163,8 +2228,8 @@
             this.keypadActionsInheritedLabel.AutoSize = true;
             this.keypadActionsInheritedLabel.Dock = System.Windows.Forms.DockStyle.Right;
             this.keypadActionsInheritedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.keypadActionsInheritedLabel.Location = new System.Drawing.Point(210, 129);
-            this.keypadActionsInheritedLabel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.keypadActionsInheritedLabel.Location = new System.Drawing.Point(291, 157);
+            this.keypadActionsInheritedLabel.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.keypadActionsInheritedLabel.Name = "keypadActionsInheritedLabel";
             this.keypadActionsInheritedLabel.Size = new System.Drawing.Size(74, 15);
             this.keypadActionsInheritedLabel.TabIndex = 47;
@@ -2177,9 +2242,10 @@
             // 
             this.editedButtonTextLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.editedButtonTextLabel.AutoSize = true;
-            this.editedButtonTextLabel.Location = new System.Drawing.Point(3, 14);
+            this.editedButtonTextLabel.Location = new System.Drawing.Point(4, 18);
+            this.editedButtonTextLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.editedButtonTextLabel.Name = "editedButtonTextLabel";
-            this.editedButtonTextLabel.Size = new System.Drawing.Size(30, 15);
+            this.editedButtonTextLabel.Size = new System.Drawing.Size(33, 16);
             this.editedButtonTextLabel.TabIndex = 2;
             this.editedButtonTextLabel.Text = "Text";
             // 
@@ -2192,14 +2258,15 @@
             0,
             0,
             131072});
-            this.keypadTextSize.Location = new System.Drawing.Point(64, 46);
+            this.keypadTextSize.Location = new System.Drawing.Point(72, 57);
+            this.keypadTextSize.Margin = new System.Windows.Forms.Padding(4);
             this.keypadTextSize.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.keypadTextSize.Name = "keypadTextSize";
-            this.keypadTextSize.Size = new System.Drawing.Size(217, 20);
+            this.keypadTextSize.Size = new System.Drawing.Size(289, 22);
             this.keypadTextSize.TabIndex = 1;
             this.keypadTextSize.Value = new decimal(new int[] {
             675,
@@ -2212,9 +2279,10 @@
             // 
             this.editedButtonActionsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.editedButtonActionsLabel.AutoSize = true;
-            this.editedButtonActionsLabel.Location = new System.Drawing.Point(3, 91);
+            this.editedButtonActionsLabel.Location = new System.Drawing.Point(4, 112);
+            this.editedButtonActionsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.editedButtonActionsLabel.Name = "editedButtonActionsLabel";
-            this.editedButtonActionsLabel.Size = new System.Drawing.Size(46, 15);
+            this.editedButtonActionsLabel.Size = new System.Drawing.Size(51, 16);
             this.editedButtonActionsLabel.TabIndex = 3;
             this.editedButtonActionsLabel.Text = "Actions";
             // 
@@ -2222,10 +2290,11 @@
             // 
             this.editedButtonTextTextBox.AcceptsReturn = true;
             this.editedButtonTextTextBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.editedButtonTextTextBox.Location = new System.Drawing.Point(64, 3);
+            this.editedButtonTextTextBox.Location = new System.Drawing.Point(72, 4);
+            this.editedButtonTextTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.editedButtonTextTextBox.Multiline = true;
             this.editedButtonTextTextBox.Name = "editedButtonTextTextBox";
-            this.editedButtonTextTextBox.Size = new System.Drawing.Size(217, 37);
+            this.editedButtonTextTextBox.Size = new System.Drawing.Size(288, 45);
             this.editedButtonTextTextBox.TabIndex = 0;
             this.editedButtonTextTextBox.TextChanged += new System.EventHandler(this.EditedButtonTextTextBox_TextChanged);
             this.editedButtonTextTextBox.Validated += new System.EventHandler(this.EditedButtonTextTextBox_Validated);
@@ -2234,27 +2303,30 @@
             // 
             this.editedButtonTextSizeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.editedButtonTextSizeLabel.AutoSize = true;
-            this.editedButtonTextSizeLabel.Location = new System.Drawing.Point(3, 48);
+            this.editedButtonTextSizeLabel.Location = new System.Drawing.Point(4, 60);
+            this.editedButtonTextSizeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.editedButtonTextSizeLabel.Name = "editedButtonTextSizeLabel";
-            this.editedButtonTextSizeLabel.Size = new System.Drawing.Size(55, 15);
+            this.editedButtonTextSizeLabel.Size = new System.Drawing.Size(60, 16);
             this.editedButtonTextSizeLabel.TabIndex = 4;
             this.editedButtonTextSizeLabel.Text = "Text size";
             // 
             // keymapModifiersLabel
             // 
             this.keymapModifiersLabel.AutoSize = true;
-            this.keymapModifiersLabel.Location = new System.Drawing.Point(555, 58);
+            this.keymapModifiersLabel.Location = new System.Drawing.Point(740, 71);
+            this.keymapModifiersLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.keymapModifiersLabel.Name = "keymapModifiersLabel";
-            this.keymapModifiersLabel.Size = new System.Drawing.Size(58, 15);
+            this.keymapModifiersLabel.Size = new System.Drawing.Size(62, 16);
             this.keymapModifiersLabel.TabIndex = 0;
             this.keymapModifiersLabel.Text = "Modifiers";
             // 
             // selectLabel
             // 
             this.selectLabel.AutoSize = true;
-            this.selectLabel.Location = new System.Drawing.Point(17, 35);
+            this.selectLabel.Location = new System.Drawing.Point(23, 43);
+            this.selectLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.selectLabel.Name = "selectLabel";
-            this.selectLabel.Size = new System.Drawing.Size(245, 15);
+            this.selectLabel.Size = new System.Drawing.Size(272, 16);
             this.selectLabel.TabIndex = 34;
             this.selectLabel.Text = "Select a key and a set of keyboard modifiers";
             // 
@@ -2262,7 +2334,8 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Location = new System.Drawing.Point(20, 58);
+            this.panel1.Location = new System.Drawing.Point(27, 71);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(0, 0);
             this.panel1.TabIndex = 0;
@@ -2271,7 +2344,8 @@
             // 
             this.fakeKeypadPanel.AutoSize = true;
             this.fakeKeypadPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.fakeKeypadPanel.Location = new System.Drawing.Point(20, 58);
+            this.fakeKeypadPanel.Location = new System.Drawing.Point(27, 71);
+            this.fakeKeypadPanel.Margin = new System.Windows.Forms.Padding(4);
             this.fakeKeypadPanel.Name = "fakeKeypadPanel";
             this.fakeKeypadPanel.Size = new System.Drawing.Size(0, 0);
             this.fakeKeypadPanel.TabIndex = 0;
@@ -2282,9 +2356,10 @@
             this.colors3279Tab.Controls.Add(this.colorMiscGroupBox);
             this.colors3279Tab.Controls.Add(this.schemeBox);
             this.colors3279Tab.Controls.Add(this.hostColorsBox);
-            this.colors3279Tab.Location = new System.Drawing.Point(4, 22);
+            this.colors3279Tab.Location = new System.Drawing.Point(4, 25);
+            this.colors3279Tab.Margin = new System.Windows.Forms.Padding(4);
             this.colors3279Tab.Name = "colors3279Tab";
-            this.colors3279Tab.Size = new System.Drawing.Size(675, 624);
+            this.colors3279Tab.Size = new System.Drawing.Size(903, 771);
             this.colors3279Tab.TabIndex = 3;
             this.colors3279Tab.Text = "3279 Colors";
             this.colors3279Tab.UseVisualStyleBackColor = true;
@@ -2292,9 +2367,11 @@
             // colorPreviewGroupBox
             // 
             this.colorPreviewGroupBox.Controls.Add(this.colorPreviewTableLayoutPanel);
-            this.colorPreviewGroupBox.Location = new System.Drawing.Point(344, 21);
+            this.colorPreviewGroupBox.Location = new System.Drawing.Point(459, 26);
+            this.colorPreviewGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.colorPreviewGroupBox.Name = "colorPreviewGroupBox";
-            this.colorPreviewGroupBox.Size = new System.Drawing.Size(295, 132);
+            this.colorPreviewGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.colorPreviewGroupBox.Size = new System.Drawing.Size(393, 162);
             this.colorPreviewGroupBox.TabIndex = 28;
             this.colorPreviewGroupBox.TabStop = false;
             this.colorPreviewGroupBox.Text = "Preview";
@@ -2309,23 +2386,24 @@
             this.colorPreviewTableLayoutPanel.Controls.Add(this.colorPreviewSeparatorPictureBox, 0, 1);
             this.colorPreviewTableLayoutPanel.Controls.Add(this.colorPreviewStatusLineLabel, 0, 2);
             this.colorPreviewTableLayoutPanel.Controls.Add(this.colorPreviewScreenPictureBox, 0, 0);
-            this.colorPreviewTableLayoutPanel.Location = new System.Drawing.Point(8, 23);
+            this.colorPreviewTableLayoutPanel.Location = new System.Drawing.Point(11, 28);
+            this.colorPreviewTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.colorPreviewTableLayoutPanel.Name = "colorPreviewTableLayoutPanel";
             this.colorPreviewTableLayoutPanel.RowCount = 3;
             this.colorPreviewTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.colorPreviewTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
             this.colorPreviewTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.colorPreviewTableLayoutPanel.Size = new System.Drawing.Size(207, 97);
+            this.colorPreviewTableLayoutPanel.Size = new System.Drawing.Size(276, 114);
             this.colorPreviewTableLayoutPanel.TabIndex = 0;
             // 
             // colorPreviewSeparatorPictureBox
             // 
             this.colorPreviewSeparatorPictureBox.BackColor = System.Drawing.Color.RoyalBlue;
             this.colorPreviewSeparatorPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.colorPreviewSeparatorPictureBox.Location = new System.Drawing.Point(0, 75);
+            this.colorPreviewSeparatorPictureBox.Location = new System.Drawing.Point(0, 92);
             this.colorPreviewSeparatorPictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.colorPreviewSeparatorPictureBox.Name = "colorPreviewSeparatorPictureBox";
-            this.colorPreviewSeparatorPictureBox.Size = new System.Drawing.Size(207, 2);
+            this.colorPreviewSeparatorPictureBox.Size = new System.Drawing.Size(276, 2);
             this.colorPreviewSeparatorPictureBox.TabIndex = 0;
             this.colorPreviewSeparatorPictureBox.TabStop = false;
             // 
@@ -2336,10 +2414,10 @@
             this.colorPreviewStatusLineLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.colorPreviewStatusLineLabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colorPreviewStatusLineLabel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.colorPreviewStatusLineLabel.Location = new System.Drawing.Point(0, 77);
+            this.colorPreviewStatusLineLabel.Location = new System.Drawing.Point(0, 94);
             this.colorPreviewStatusLineLabel.Margin = new System.Windows.Forms.Padding(0);
             this.colorPreviewStatusLineLabel.Name = "colorPreviewStatusLineLabel";
-            this.colorPreviewStatusLineLabel.Size = new System.Drawing.Size(207, 20);
+            this.colorPreviewStatusLineLabel.Size = new System.Drawing.Size(276, 20);
             this.colorPreviewStatusLineLabel.TabIndex = 1;
             this.colorPreviewStatusLineLabel.Text = "Status Line";
             this.colorPreviewStatusLineLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2349,7 +2427,7 @@
             this.colorPreviewScreenPictureBox.Location = new System.Drawing.Point(0, 0);
             this.colorPreviewScreenPictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.colorPreviewScreenPictureBox.Name = "colorPreviewScreenPictureBox";
-            this.colorPreviewScreenPictureBox.Size = new System.Drawing.Size(207, 75);
+            this.colorPreviewScreenPictureBox.Size = new System.Drawing.Size(276, 92);
             this.colorPreviewScreenPictureBox.TabIndex = 2;
             this.colorPreviewScreenPictureBox.TabStop = false;
             this.colorPreviewScreenPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ColorPreviewScreenPictureBox_Paint);
@@ -2360,9 +2438,11 @@
             this.colorMiscGroupBox.Controls.Add(this.crosshairColorButton);
             this.colorMiscGroupBox.Controls.Add(this.selectionSwatch);
             this.colorMiscGroupBox.Controls.Add(this.selectedButton);
-            this.colorMiscGroupBox.Location = new System.Drawing.Point(27, 533);
+            this.colorMiscGroupBox.Location = new System.Drawing.Point(36, 656);
+            this.colorMiscGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.colorMiscGroupBox.Name = "colorMiscGroupBox";
-            this.colorMiscGroupBox.Size = new System.Drawing.Size(612, 55);
+            this.colorMiscGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.colorMiscGroupBox.Size = new System.Drawing.Size(816, 68);
             this.colorMiscGroupBox.TabIndex = 1;
             this.colorMiscGroupBox.TabStop = false;
             this.colorMiscGroupBox.Text = "Other colors";
@@ -2371,64 +2451,38 @@
             // 
             this.crosshairSwatch.BackColor = System.Drawing.Color.Purple;
             this.crosshairSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crosshairSwatch.Location = new System.Drawing.Point(483, 18);
+            this.crosshairSwatch.Location = new System.Drawing.Point(644, 22);
+            this.crosshairSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.crosshairSwatch.Name = "crosshairSwatch";
-            this.crosshairSwatch.Size = new System.Drawing.Size(121, 21);
+            this.crosshairSwatch.Size = new System.Drawing.Size(161, 25);
             this.crosshairSwatch.TabIndex = 40;
             this.crosshairSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.crosshairSwatch, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
             this.crosshairSwatch.Click += new System.EventHandler(this.CrosshairColorButton_Click);
             // 
-            // crosshairColorButton
-            // 
-            this.crosshairColorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.crosshairColorButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.crosshairColorButton.Location = new System.Drawing.Point(315, 17);
-            this.crosshairColorButton.Name = "crosshairColorButton";
-            this.crosshairColorButton.Size = new System.Drawing.Size(170, 23);
-            this.crosshairColorButton.TabIndex = 39;
-            this.crosshairColorButton.TabStop = false;
-            this.crosshairColorButton.Tag = "";
-            this.crosshairColorButton.Text = "Crosshair Cursor";
-            this.toolTip1.SetToolTip(this.crosshairColorButton, "Color of the crosshair cursor");
-            this.crosshairColorButton.UseVisualStyleBackColor = false;
-            this.crosshairColorButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
-            // 
             // selectionSwatch
             // 
             this.selectionSwatch.BackColor = System.Drawing.Color.DarkGray;
             this.selectionSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.selectionSwatch.Location = new System.Drawing.Point(177, 18);
+            this.selectionSwatch.Location = new System.Drawing.Point(236, 22);
+            this.selectionSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.selectionSwatch.Name = "selectionSwatch";
-            this.selectionSwatch.Size = new System.Drawing.Size(119, 21);
+            this.selectionSwatch.Size = new System.Drawing.Size(158, 25);
             this.selectionSwatch.TabIndex = 38;
             this.selectionSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.selectionSwatch, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
             this.selectionSwatch.Click += new System.EventHandler(this.SelectedButton_Click);
-            // 
-            // selectedButton
-            // 
-            this.selectedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectedButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.selectedButton.Location = new System.Drawing.Point(9, 17);
-            this.selectedButton.Name = "selectedButton";
-            this.selectedButton.Size = new System.Drawing.Size(170, 23);
-            this.selectedButton.TabIndex = 37;
-            this.selectedButton.TabStop = false;
-            this.selectedButton.Tag = "";
-            this.selectedButton.Text = "Selected Text Background";
-            this.toolTip1.SetToolTip(this.selectedButton, "Background color for selected text");
-            this.selectedButton.UseVisualStyleBackColor = false;
-            this.selectedButton.Click += new System.EventHandler(this.SelectedButton_Click);
             // 
             // schemeBox
             // 
             this.schemeBox.Controls.Add(this.customButton);
             this.schemeBox.Controls.Add(this.blackOnWhiteButton);
             this.schemeBox.Controls.Add(this.whiteOnBlackButton);
-            this.schemeBox.Location = new System.Drawing.Point(27, 21);
+            this.schemeBox.Location = new System.Drawing.Point(36, 26);
+            this.schemeBox.Margin = new System.Windows.Forms.Padding(4);
             this.schemeBox.Name = "schemeBox";
-            this.schemeBox.Size = new System.Drawing.Size(296, 132);
+            this.schemeBox.Padding = new System.Windows.Forms.Padding(4);
+            this.schemeBox.Size = new System.Drawing.Size(395, 162);
             this.schemeBox.TabIndex = 0;
             this.schemeBox.TabStop = false;
             this.schemeBox.Text = "Color scheme";
@@ -2436,9 +2490,10 @@
             // customButton
             // 
             this.customButton.AutoSize = true;
-            this.customButton.Location = new System.Drawing.Point(7, 68);
+            this.customButton.Location = new System.Drawing.Point(9, 84);
+            this.customButton.Margin = new System.Windows.Forms.Padding(4);
             this.customButton.Name = "customButton";
-            this.customButton.Size = new System.Drawing.Size(70, 19);
+            this.customButton.Size = new System.Drawing.Size(73, 20);
             this.customButton.TabIndex = 2;
             this.customButton.Text = "Custom";
             this.customButton.UseVisualStyleBackColor = true;
@@ -2446,9 +2501,10 @@
             // blackOnWhiteButton
             // 
             this.blackOnWhiteButton.AutoSize = true;
-            this.blackOnWhiteButton.Location = new System.Drawing.Point(7, 44);
+            this.blackOnWhiteButton.Location = new System.Drawing.Point(9, 54);
+            this.blackOnWhiteButton.Margin = new System.Windows.Forms.Padding(4);
             this.blackOnWhiteButton.Name = "blackOnWhiteButton";
-            this.blackOnWhiteButton.Size = new System.Drawing.Size(107, 19);
+            this.blackOnWhiteButton.Size = new System.Drawing.Size(113, 20);
             this.blackOnWhiteButton.TabIndex = 1;
             this.blackOnWhiteButton.Text = "Black on white";
             this.blackOnWhiteButton.UseVisualStyleBackColor = true;
@@ -2458,9 +2514,10 @@
             // 
             this.whiteOnBlackButton.AutoSize = true;
             this.whiteOnBlackButton.Checked = true;
-            this.whiteOnBlackButton.Location = new System.Drawing.Point(7, 20);
+            this.whiteOnBlackButton.Location = new System.Drawing.Point(9, 25);
+            this.whiteOnBlackButton.Margin = new System.Windows.Forms.Padding(4);
             this.whiteOnBlackButton.Name = "whiteOnBlackButton";
-            this.whiteOnBlackButton.Size = new System.Drawing.Size(108, 19);
+            this.whiteOnBlackButton.Size = new System.Drawing.Size(116, 20);
             this.whiteOnBlackButton.TabIndex = 0;
             this.whiteOnBlackButton.TabStop = true;
             this.whiteOnBlackButton.Text = "White on black";
@@ -2521,9 +2578,11 @@
             this.hostColorsBox.Controls.Add(this.redButton);
             this.hostColorsBox.Controls.Add(this.blueButton);
             this.hostColorsBox.Controls.Add(this.neutralBlackButton);
-            this.hostColorsBox.Location = new System.Drawing.Point(27, 164);
+            this.hostColorsBox.Location = new System.Drawing.Point(36, 202);
+            this.hostColorsBox.Margin = new System.Windows.Forms.Padding(4);
             this.hostColorsBox.Name = "hostColorsBox";
-            this.hostColorsBox.Size = new System.Drawing.Size(612, 358);
+            this.hostColorsBox.Padding = new System.Windows.Forms.Padding(4);
+            this.hostColorsBox.Size = new System.Drawing.Size(815, 439);
             this.hostColorsBox.TabIndex = 1;
             this.hostColorsBox.TabStop = false;
             this.hostColorsBox.Text = "Host colors";
@@ -2531,18 +2590,21 @@
             // backgroundList
             // 
             this.backgroundList.FormattingEnabled = true;
-            this.backgroundList.Location = new System.Drawing.Point(9, 296);
+            this.backgroundList.ItemHeight = 16;
+            this.backgroundList.Location = new System.Drawing.Point(12, 364);
+            this.backgroundList.Margin = new System.Windows.Forms.Padding(4);
             this.backgroundList.Name = "backgroundList";
-            this.backgroundList.Size = new System.Drawing.Size(247, 43);
+            this.backgroundList.Size = new System.Drawing.Size(328, 52);
             this.backgroundList.TabIndex = 16;
             this.backgroundList.SelectedIndexChanged += new System.EventHandler(this.BackgroundList_SelectedIndexChanged);
             // 
             // backgroundLabel
             // 
             this.backgroundLabel.AutoSize = true;
-            this.backgroundLabel.Location = new System.Drawing.Point(6, 280);
+            this.backgroundLabel.Location = new System.Drawing.Point(8, 345);
+            this.backgroundLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.backgroundLabel.Name = "backgroundLabel";
-            this.backgroundLabel.Size = new System.Drawing.Size(143, 15);
+            this.backgroundLabel.Size = new System.Drawing.Size(158, 16);
             this.backgroundLabel.TabIndex = 5;
             this.backgroundLabel.Text = "Display samples against:";
             // 
@@ -2550,9 +2612,10 @@
             // 
             this.whiteSwatch.BackColor = System.Drawing.Color.White;
             this.whiteSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.whiteSwatch.Location = new System.Drawing.Point(439, 245);
+            this.whiteSwatch.Location = new System.Drawing.Point(585, 302);
+            this.whiteSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.whiteSwatch.Name = "whiteSwatch";
-            this.whiteSwatch.Size = new System.Drawing.Size(25, 21);
+            this.whiteSwatch.Size = new System.Drawing.Size(33, 25);
             this.whiteSwatch.TabIndex = 36;
             this.whiteSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.whiteSwatch, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
@@ -2562,9 +2625,10 @@
             // 
             this.graySwatch.BackColor = System.Drawing.Color.Gray;
             this.graySwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.graySwatch.Location = new System.Drawing.Point(131, 245);
+            this.graySwatch.Location = new System.Drawing.Point(175, 302);
+            this.graySwatch.Margin = new System.Windows.Forms.Padding(4);
             this.graySwatch.Name = "graySwatch";
-            this.graySwatch.Size = new System.Drawing.Size(25, 21);
+            this.graySwatch.Size = new System.Drawing.Size(33, 25);
             this.graySwatch.TabIndex = 36;
             this.graySwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.graySwatch, "Gray\r\nHost color X\'FE\'");
@@ -2574,9 +2638,10 @@
             // 
             this.paleTurquoiseSwatch.BackColor = System.Drawing.Color.PaleTurquoise;
             this.paleTurquoiseSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.paleTurquoiseSwatch.Location = new System.Drawing.Point(439, 216);
+            this.paleTurquoiseSwatch.Location = new System.Drawing.Point(585, 266);
+            this.paleTurquoiseSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.paleTurquoiseSwatch.Name = "paleTurquoiseSwatch";
-            this.paleTurquoiseSwatch.Size = new System.Drawing.Size(25, 21);
+            this.paleTurquoiseSwatch.Size = new System.Drawing.Size(33, 25);
             this.paleTurquoiseSwatch.TabIndex = 36;
             this.paleTurquoiseSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.paleTurquoiseSwatch, "Pale Turquoise\r\nHost color X\'FD\'");
@@ -2586,9 +2651,10 @@
             // 
             this.paleGreenSwatch.BackColor = System.Drawing.Color.PaleGreen;
             this.paleGreenSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.paleGreenSwatch.Location = new System.Drawing.Point(131, 216);
+            this.paleGreenSwatch.Location = new System.Drawing.Point(175, 266);
+            this.paleGreenSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.paleGreenSwatch.Name = "paleGreenSwatch";
-            this.paleGreenSwatch.Size = new System.Drawing.Size(25, 21);
+            this.paleGreenSwatch.Size = new System.Drawing.Size(33, 25);
             this.paleGreenSwatch.TabIndex = 36;
             this.paleGreenSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.paleGreenSwatch, "Pale Green\r\nHost color X\'FC\'");
@@ -2598,9 +2664,10 @@
             // 
             this.purpleSwatch.BackColor = System.Drawing.Color.DarkViolet;
             this.purpleSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.purpleSwatch.Location = new System.Drawing.Point(439, 187);
+            this.purpleSwatch.Location = new System.Drawing.Point(585, 230);
+            this.purpleSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.purpleSwatch.Name = "purpleSwatch";
-            this.purpleSwatch.Size = new System.Drawing.Size(25, 21);
+            this.purpleSwatch.Size = new System.Drawing.Size(33, 25);
             this.purpleSwatch.TabIndex = 36;
             this.purpleSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.purpleSwatch, "Purple\r\nHost color X\'FB\'");
@@ -2610,9 +2677,10 @@
             // 
             this.orangeSwatch.BackColor = System.Drawing.Color.Orange;
             this.orangeSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.orangeSwatch.Location = new System.Drawing.Point(131, 187);
+            this.orangeSwatch.Location = new System.Drawing.Point(175, 230);
+            this.orangeSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.orangeSwatch.Name = "orangeSwatch";
-            this.orangeSwatch.Size = new System.Drawing.Size(25, 21);
+            this.orangeSwatch.Size = new System.Drawing.Size(33, 25);
             this.orangeSwatch.TabIndex = 36;
             this.orangeSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.orangeSwatch, "Orange\r\nHost color X\'FA\'");
@@ -2622,9 +2690,10 @@
             // 
             this.deepBlueSwatch.BackColor = System.Drawing.Color.Blue;
             this.deepBlueSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.deepBlueSwatch.Location = new System.Drawing.Point(439, 158);
+            this.deepBlueSwatch.Location = new System.Drawing.Point(585, 194);
+            this.deepBlueSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.deepBlueSwatch.Name = "deepBlueSwatch";
-            this.deepBlueSwatch.Size = new System.Drawing.Size(25, 21);
+            this.deepBlueSwatch.Size = new System.Drawing.Size(33, 25);
             this.deepBlueSwatch.TabIndex = 36;
             this.deepBlueSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.deepBlueSwatch, "Deep Blue\r\nHost color X\'F9\'");
@@ -2634,9 +2703,10 @@
             // 
             this.pinkSwatch.BackColor = System.Drawing.Color.HotPink;
             this.pinkSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pinkSwatch.Location = new System.Drawing.Point(439, 129);
+            this.pinkSwatch.Location = new System.Drawing.Point(585, 159);
+            this.pinkSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.pinkSwatch.Name = "pinkSwatch";
-            this.pinkSwatch.Size = new System.Drawing.Size(25, 21);
+            this.pinkSwatch.Size = new System.Drawing.Size(33, 25);
             this.pinkSwatch.TabIndex = 36;
             this.pinkSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.pinkSwatch, "Pink\r\nHost color X\'F3\'");
@@ -2646,9 +2716,10 @@
             // 
             this.blackSwatch.BackColor = System.Drawing.Color.Black;
             this.blackSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.blackSwatch.Location = new System.Drawing.Point(131, 158);
+            this.blackSwatch.Location = new System.Drawing.Point(175, 194);
+            this.blackSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.blackSwatch.Name = "blackSwatch";
-            this.blackSwatch.Size = new System.Drawing.Size(25, 21);
+            this.blackSwatch.Size = new System.Drawing.Size(33, 25);
             this.blackSwatch.TabIndex = 36;
             this.blackSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.blackSwatch, "Black\r\nHost color X\'F8\'");
@@ -2658,9 +2729,10 @@
             // 
             this.turquoiseSwatch.BackColor = System.Drawing.Color.Turquoise;
             this.turquoiseSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.turquoiseSwatch.Location = new System.Drawing.Point(439, 100);
+            this.turquoiseSwatch.Location = new System.Drawing.Point(585, 123);
+            this.turquoiseSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.turquoiseSwatch.Name = "turquoiseSwatch";
-            this.turquoiseSwatch.Size = new System.Drawing.Size(25, 21);
+            this.turquoiseSwatch.Size = new System.Drawing.Size(33, 25);
             this.turquoiseSwatch.TabIndex = 36;
             this.turquoiseSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.turquoiseSwatch, "Turquoise\r\nHost color X\'F5\'");
@@ -2670,9 +2742,10 @@
             // 
             this.yellowSwatch.BackColor = System.Drawing.Color.Yellow;
             this.yellowSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.yellowSwatch.Location = new System.Drawing.Point(131, 129);
+            this.yellowSwatch.Location = new System.Drawing.Point(175, 159);
+            this.yellowSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.yellowSwatch.Name = "yellowSwatch";
-            this.yellowSwatch.Size = new System.Drawing.Size(25, 21);
+            this.yellowSwatch.Size = new System.Drawing.Size(33, 25);
             this.yellowSwatch.TabIndex = 36;
             this.yellowSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.yellowSwatch, "Yellow\r\nHost color X\'F6\'");
@@ -2682,9 +2755,10 @@
             // 
             this.greenSwatch.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.greenSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.greenSwatch.Location = new System.Drawing.Point(131, 100);
+            this.greenSwatch.Location = new System.Drawing.Point(175, 123);
+            this.greenSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.greenSwatch.Name = "greenSwatch";
-            this.greenSwatch.Size = new System.Drawing.Size(25, 21);
+            this.greenSwatch.Size = new System.Drawing.Size(33, 25);
             this.greenSwatch.TabIndex = 36;
             this.greenSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.greenSwatch, "Green\r\nHost color X\'F4\'\r\nUnprotected text");
@@ -2694,9 +2768,10 @@
             // 
             this.redSwatch.BackColor = System.Drawing.Color.Red;
             this.redSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.redSwatch.Location = new System.Drawing.Point(439, 71);
+            this.redSwatch.Location = new System.Drawing.Point(585, 87);
+            this.redSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.redSwatch.Name = "redSwatch";
-            this.redSwatch.Size = new System.Drawing.Size(25, 21);
+            this.redSwatch.Size = new System.Drawing.Size(33, 25);
             this.redSwatch.TabIndex = 36;
             this.redSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.redSwatch, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
@@ -2706,9 +2781,10 @@
             // 
             this.blueSwatch.BackColor = System.Drawing.Color.RoyalBlue;
             this.blueSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.blueSwatch.Location = new System.Drawing.Point(131, 71);
+            this.blueSwatch.Location = new System.Drawing.Point(175, 87);
+            this.blueSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.blueSwatch.Name = "blueSwatch";
-            this.blueSwatch.Size = new System.Drawing.Size(25, 21);
+            this.blueSwatch.Size = new System.Drawing.Size(33, 25);
             this.blueSwatch.TabIndex = 35;
             this.blueSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.blueSwatch, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
@@ -2718,9 +2794,10 @@
             // 
             this.neutralWhiteSwatch.BackColor = System.Drawing.Color.White;
             this.neutralWhiteSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.neutralWhiteSwatch.Location = new System.Drawing.Point(131, 20);
+            this.neutralWhiteSwatch.Location = new System.Drawing.Point(175, 25);
+            this.neutralWhiteSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.neutralWhiteSwatch.Name = "neutralWhiteSwatch";
-            this.neutralWhiteSwatch.Size = new System.Drawing.Size(25, 39);
+            this.neutralWhiteSwatch.Size = new System.Drawing.Size(33, 48);
             this.neutralWhiteSwatch.TabIndex = 35;
             this.neutralWhiteSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.neutralWhiteSwatch, "Neutral White\r\nHost color X\'F7\'\r\nIntensified protected text");
@@ -2730,9 +2807,10 @@
             // 
             this.neutralBlackSwatch.BackColor = System.Drawing.Color.Black;
             this.neutralBlackSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.neutralBlackSwatch.Location = new System.Drawing.Point(441, 21);
+            this.neutralBlackSwatch.Location = new System.Drawing.Point(588, 26);
+            this.neutralBlackSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.neutralBlackSwatch.Name = "neutralBlackSwatch";
-            this.neutralBlackSwatch.Size = new System.Drawing.Size(25, 39);
+            this.neutralBlackSwatch.Size = new System.Drawing.Size(33, 48);
             this.neutralBlackSwatch.TabIndex = 34;
             this.neutralBlackSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.neutralBlackSwatch, "Neutral Black\r\nHost color X\'F0\'\r\nScreen background color");
@@ -2744,9 +2822,10 @@
             this.neutralWhiteSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.neutralWhiteSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.neutralWhiteSample.ForeColor = System.Drawing.Color.White;
-            this.neutralWhiteSample.Location = new System.Drawing.Point(156, 20);
+            this.neutralWhiteSample.Location = new System.Drawing.Point(208, 25);
+            this.neutralWhiteSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.neutralWhiteSample.Name = "neutralWhiteSample";
-            this.neutralWhiteSample.Size = new System.Drawing.Size(140, 39);
+            this.neutralWhiteSample.Size = new System.Drawing.Size(186, 48);
             this.neutralWhiteSample.TabIndex = 33;
             this.neutralWhiteSample.Text = "Sample Text";
             this.neutralWhiteSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2759,9 +2838,10 @@
             this.greenSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.greenSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.greenSample.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.greenSample.Location = new System.Drawing.Point(156, 100);
+            this.greenSample.Location = new System.Drawing.Point(208, 123);
+            this.greenSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.greenSample.Name = "greenSample";
-            this.greenSample.Size = new System.Drawing.Size(140, 21);
+            this.greenSample.Size = new System.Drawing.Size(186, 25);
             this.greenSample.TabIndex = 32;
             this.greenSample.Text = "Sample Text";
             this.greenSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2774,9 +2854,10 @@
             this.yellowSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.yellowSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.yellowSample.ForeColor = System.Drawing.Color.Yellow;
-            this.yellowSample.Location = new System.Drawing.Point(156, 129);
+            this.yellowSample.Location = new System.Drawing.Point(208, 159);
+            this.yellowSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.yellowSample.Name = "yellowSample";
-            this.yellowSample.Size = new System.Drawing.Size(140, 21);
+            this.yellowSample.Size = new System.Drawing.Size(186, 25);
             this.yellowSample.TabIndex = 31;
             this.yellowSample.Text = "Sample Text";
             this.yellowSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2789,9 +2870,10 @@
             this.paleTurquoiseSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.paleTurquoiseSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paleTurquoiseSample.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.paleTurquoiseSample.Location = new System.Drawing.Point(464, 216);
+            this.paleTurquoiseSample.Location = new System.Drawing.Point(619, 266);
+            this.paleTurquoiseSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.paleTurquoiseSample.Name = "paleTurquoiseSample";
-            this.paleTurquoiseSample.Size = new System.Drawing.Size(140, 21);
+            this.paleTurquoiseSample.Size = new System.Drawing.Size(186, 25);
             this.paleTurquoiseSample.TabIndex = 30;
             this.paleTurquoiseSample.Text = "Sample Text";
             this.paleTurquoiseSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2804,9 +2886,10 @@
             this.whiteSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.whiteSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.whiteSample.ForeColor = System.Drawing.Color.White;
-            this.whiteSample.Location = new System.Drawing.Point(464, 245);
+            this.whiteSample.Location = new System.Drawing.Point(619, 302);
+            this.whiteSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.whiteSample.Name = "whiteSample";
-            this.whiteSample.Size = new System.Drawing.Size(140, 21);
+            this.whiteSample.Size = new System.Drawing.Size(186, 25);
             this.whiteSample.TabIndex = 29;
             this.whiteSample.Text = "Sample Text";
             this.whiteSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2819,9 +2902,10 @@
             this.purpleSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.purpleSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purpleSample.ForeColor = System.Drawing.Color.DarkViolet;
-            this.purpleSample.Location = new System.Drawing.Point(464, 187);
+            this.purpleSample.Location = new System.Drawing.Point(619, 230);
+            this.purpleSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.purpleSample.Name = "purpleSample";
-            this.purpleSample.Size = new System.Drawing.Size(140, 21);
+            this.purpleSample.Size = new System.Drawing.Size(186, 25);
             this.purpleSample.TabIndex = 28;
             this.purpleSample.Text = "Sample Text";
             this.purpleSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2834,9 +2918,10 @@
             this.deepBlueSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.deepBlueSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deepBlueSample.ForeColor = System.Drawing.Color.Blue;
-            this.deepBlueSample.Location = new System.Drawing.Point(464, 158);
+            this.deepBlueSample.Location = new System.Drawing.Point(619, 194);
+            this.deepBlueSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.deepBlueSample.Name = "deepBlueSample";
-            this.deepBlueSample.Size = new System.Drawing.Size(140, 21);
+            this.deepBlueSample.Size = new System.Drawing.Size(186, 25);
             this.deepBlueSample.TabIndex = 27;
             this.deepBlueSample.Text = "Sample Text";
             this.deepBlueSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2849,9 +2934,10 @@
             this.pinkSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pinkSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pinkSample.ForeColor = System.Drawing.Color.HotPink;
-            this.pinkSample.Location = new System.Drawing.Point(464, 129);
+            this.pinkSample.Location = new System.Drawing.Point(619, 159);
+            this.pinkSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.pinkSample.Name = "pinkSample";
-            this.pinkSample.Size = new System.Drawing.Size(140, 21);
+            this.pinkSample.Size = new System.Drawing.Size(186, 25);
             this.pinkSample.TabIndex = 26;
             this.pinkSample.Text = "Sample Text";
             this.pinkSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2864,9 +2950,10 @@
             this.turquoiseSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.turquoiseSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.turquoiseSample.ForeColor = System.Drawing.Color.Turquoise;
-            this.turquoiseSample.Location = new System.Drawing.Point(464, 100);
+            this.turquoiseSample.Location = new System.Drawing.Point(619, 123);
+            this.turquoiseSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.turquoiseSample.Name = "turquoiseSample";
-            this.turquoiseSample.Size = new System.Drawing.Size(140, 21);
+            this.turquoiseSample.Size = new System.Drawing.Size(186, 25);
             this.turquoiseSample.TabIndex = 25;
             this.turquoiseSample.Text = "Sample Text";
             this.turquoiseSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2879,9 +2966,10 @@
             this.graySample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.graySample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.graySample.ForeColor = System.Drawing.Color.Gray;
-            this.graySample.Location = new System.Drawing.Point(156, 245);
+            this.graySample.Location = new System.Drawing.Point(208, 302);
+            this.graySample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.graySample.Name = "graySample";
-            this.graySample.Size = new System.Drawing.Size(140, 21);
+            this.graySample.Size = new System.Drawing.Size(186, 25);
             this.graySample.TabIndex = 24;
             this.graySample.Text = "Sample Text";
             this.graySample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2894,9 +2982,10 @@
             this.orangeSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.orangeSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.orangeSample.ForeColor = System.Drawing.Color.Orange;
-            this.orangeSample.Location = new System.Drawing.Point(156, 187);
+            this.orangeSample.Location = new System.Drawing.Point(208, 230);
+            this.orangeSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.orangeSample.Name = "orangeSample";
-            this.orangeSample.Size = new System.Drawing.Size(140, 21);
+            this.orangeSample.Size = new System.Drawing.Size(186, 25);
             this.orangeSample.TabIndex = 23;
             this.orangeSample.Text = "Sample Text";
             this.orangeSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2909,9 +2998,10 @@
             this.paleGreenSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.paleGreenSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paleGreenSample.ForeColor = System.Drawing.Color.PaleGreen;
-            this.paleGreenSample.Location = new System.Drawing.Point(156, 216);
+            this.paleGreenSample.Location = new System.Drawing.Point(208, 266);
+            this.paleGreenSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.paleGreenSample.Name = "paleGreenSample";
-            this.paleGreenSample.Size = new System.Drawing.Size(140, 21);
+            this.paleGreenSample.Size = new System.Drawing.Size(186, 25);
             this.paleGreenSample.TabIndex = 22;
             this.paleGreenSample.Text = "Sample Text";
             this.paleGreenSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2924,9 +3014,10 @@
             this.blackSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.blackSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.blackSample.ForeColor = System.Drawing.Color.Black;
-            this.blackSample.Location = new System.Drawing.Point(156, 158);
+            this.blackSample.Location = new System.Drawing.Point(208, 194);
+            this.blackSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.blackSample.Name = "blackSample";
-            this.blackSample.Size = new System.Drawing.Size(140, 21);
+            this.blackSample.Size = new System.Drawing.Size(186, 25);
             this.blackSample.TabIndex = 21;
             this.blackSample.Text = "Sample Text";
             this.blackSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2939,9 +3030,10 @@
             this.redSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.redSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.redSample.ForeColor = System.Drawing.Color.Red;
-            this.redSample.Location = new System.Drawing.Point(464, 71);
+            this.redSample.Location = new System.Drawing.Point(619, 87);
+            this.redSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.redSample.Name = "redSample";
-            this.redSample.Size = new System.Drawing.Size(140, 21);
+            this.redSample.Size = new System.Drawing.Size(186, 25);
             this.redSample.TabIndex = 20;
             this.redSample.Text = "Sample Text";
             this.redSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2954,9 +3046,10 @@
             this.blueSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.blueSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.blueSample.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.blueSample.Location = new System.Drawing.Point(156, 71);
+            this.blueSample.Location = new System.Drawing.Point(208, 87);
+            this.blueSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.blueSample.Name = "blueSample";
-            this.blueSample.Size = new System.Drawing.Size(140, 21);
+            this.blueSample.Size = new System.Drawing.Size(186, 25);
             this.blueSample.TabIndex = 19;
             this.blueSample.Text = "Sample Text";
             this.blueSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2969,253 +3062,15 @@
             this.neutralBlackSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.neutralBlackSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.neutralBlackSample.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.neutralBlackSample.Location = new System.Drawing.Point(466, 21);
+            this.neutralBlackSample.Location = new System.Drawing.Point(621, 26);
+            this.neutralBlackSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.neutralBlackSample.Name = "neutralBlackSample";
-            this.neutralBlackSample.Size = new System.Drawing.Size(140, 39);
+            this.neutralBlackSample.Size = new System.Drawing.Size(186, 48);
             this.neutralBlackSample.TabIndex = 17;
             this.neutralBlackSample.Text = "Sample Text";
             this.neutralBlackSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.neutralBlackSample, "Neutral Black\r\nHost color X\'F0\'\r\nScreen background color");
             this.neutralBlackSample.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // whiteButton
-            // 
-            this.whiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.whiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.whiteButton.Location = new System.Drawing.Point(315, 244);
-            this.whiteButton.Name = "whiteButton";
-            this.whiteButton.Size = new System.Drawing.Size(126, 23);
-            this.whiteButton.TabIndex = 15;
-            this.whiteButton.TabStop = false;
-            this.whiteButton.Tag = "white";
-            this.whiteButton.Text = "White";
-            this.toolTip1.SetToolTip(this.whiteButton, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
-            this.whiteButton.UseVisualStyleBackColor = false;
-            this.whiteButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // grayButton
-            // 
-            this.grayButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grayButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.grayButton.Location = new System.Drawing.Point(7, 244);
-            this.grayButton.Name = "grayButton";
-            this.grayButton.Size = new System.Drawing.Size(126, 23);
-            this.grayButton.TabIndex = 14;
-            this.grayButton.TabStop = false;
-            this.grayButton.Tag = "grey";
-            this.grayButton.Text = "Gray";
-            this.toolTip1.SetToolTip(this.grayButton, "Gray\r\nHost color X\'FE\'");
-            this.grayButton.UseVisualStyleBackColor = false;
-            this.grayButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // paleTurquoiseButton
-            // 
-            this.paleTurquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paleTurquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.paleTurquoiseButton.Location = new System.Drawing.Point(315, 215);
-            this.paleTurquoiseButton.Name = "paleTurquoiseButton";
-            this.paleTurquoiseButton.Size = new System.Drawing.Size(126, 23);
-            this.paleTurquoiseButton.TabIndex = 13;
-            this.paleTurquoiseButton.TabStop = false;
-            this.paleTurquoiseButton.Tag = "paleTurquoise";
-            this.paleTurquoiseButton.Text = "Pale Turquoise";
-            this.toolTip1.SetToolTip(this.paleTurquoiseButton, "Pale Turquoise\r\nHost color X\'FD\'");
-            this.paleTurquoiseButton.UseVisualStyleBackColor = false;
-            this.paleTurquoiseButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // paleGreenButton
-            // 
-            this.paleGreenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paleGreenButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.paleGreenButton.Location = new System.Drawing.Point(6, 215);
-            this.paleGreenButton.Name = "paleGreenButton";
-            this.paleGreenButton.Size = new System.Drawing.Size(126, 23);
-            this.paleGreenButton.TabIndex = 12;
-            this.paleGreenButton.TabStop = false;
-            this.paleGreenButton.Tag = "paleGreen";
-            this.paleGreenButton.Text = "Pale Green";
-            this.toolTip1.SetToolTip(this.paleGreenButton, "Pale Green\r\nHost color X\'FC\'");
-            this.paleGreenButton.UseVisualStyleBackColor = false;
-            this.paleGreenButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // purpleButton
-            // 
-            this.purpleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.purpleButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.purpleButton.Location = new System.Drawing.Point(315, 186);
-            this.purpleButton.Name = "purpleButton";
-            this.purpleButton.Size = new System.Drawing.Size(126, 23);
-            this.purpleButton.TabIndex = 11;
-            this.purpleButton.TabStop = false;
-            this.purpleButton.Tag = "purple";
-            this.purpleButton.Text = "Purple";
-            this.toolTip1.SetToolTip(this.purpleButton, "Purple\r\nHost color X\'FB\'");
-            this.purpleButton.UseVisualStyleBackColor = false;
-            this.purpleButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // orangeButton
-            // 
-            this.orangeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.orangeButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.orangeButton.Location = new System.Drawing.Point(7, 186);
-            this.orangeButton.Name = "orangeButton";
-            this.orangeButton.Size = new System.Drawing.Size(126, 23);
-            this.orangeButton.TabIndex = 10;
-            this.orangeButton.TabStop = false;
-            this.orangeButton.Tag = "orange";
-            this.orangeButton.Text = "Orange";
-            this.toolTip1.SetToolTip(this.orangeButton, "Orange\r\nHost color X\'FA\'");
-            this.orangeButton.UseVisualStyleBackColor = false;
-            this.orangeButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // deepBlueButton
-            // 
-            this.deepBlueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deepBlueButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.deepBlueButton.Location = new System.Drawing.Point(315, 157);
-            this.deepBlueButton.Name = "deepBlueButton";
-            this.deepBlueButton.Size = new System.Drawing.Size(126, 23);
-            this.deepBlueButton.TabIndex = 9;
-            this.deepBlueButton.TabStop = false;
-            this.deepBlueButton.Tag = "deepBlue";
-            this.deepBlueButton.Text = "Deep Blue";
-            this.toolTip1.SetToolTip(this.deepBlueButton, "Deep Blue\r\nHost color X\'F9\'");
-            this.deepBlueButton.UseVisualStyleBackColor = false;
-            this.deepBlueButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // blackButton
-            // 
-            this.blackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blackButton.Location = new System.Drawing.Point(6, 157);
-            this.blackButton.Name = "blackButton";
-            this.blackButton.Size = new System.Drawing.Size(126, 23);
-            this.blackButton.TabIndex = 8;
-            this.blackButton.TabStop = false;
-            this.blackButton.Tag = "black";
-            this.blackButton.Text = "Black";
-            this.toolTip1.SetToolTip(this.blackButton, "Black\r\nHost color X\'F8\'");
-            this.blackButton.UseVisualStyleBackColor = false;
-            this.blackButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // neutralWhiteButton
-            // 
-            this.neutralWhiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.neutralWhiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.neutralWhiteButton.Location = new System.Drawing.Point(7, 19);
-            this.neutralWhiteButton.Name = "neutralWhiteButton";
-            this.neutralWhiteButton.Size = new System.Drawing.Size(126, 41);
-            this.neutralWhiteButton.TabIndex = 0;
-            this.neutralWhiteButton.TabStop = false;
-            this.neutralWhiteButton.Tag = "neutralWhite";
-            this.neutralWhiteButton.Text = "Neutral White\r\nScreen Foreground";
-            this.toolTip1.SetToolTip(this.neutralWhiteButton, "Neutral White\r\nHost color X\'F7\'\r\nIntensified protected text");
-            this.neutralWhiteButton.UseVisualStyleBackColor = false;
-            this.neutralWhiteButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // yellowButton
-            // 
-            this.yellowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.yellowButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.yellowButton.Location = new System.Drawing.Point(7, 128);
-            this.yellowButton.Name = "yellowButton";
-            this.yellowButton.Size = new System.Drawing.Size(126, 23);
-            this.yellowButton.TabIndex = 6;
-            this.yellowButton.TabStop = false;
-            this.yellowButton.Tag = "yellow";
-            this.yellowButton.Text = "Yellow";
-            this.toolTip1.SetToolTip(this.yellowButton, "Yellow\r\nHost color X\'F6\'");
-            this.yellowButton.UseVisualStyleBackColor = false;
-            this.yellowButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // turquoiseButton
-            // 
-            this.turquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.turquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.turquoiseButton.Location = new System.Drawing.Point(315, 99);
-            this.turquoiseButton.Name = "turquoiseButton";
-            this.turquoiseButton.Size = new System.Drawing.Size(126, 23);
-            this.turquoiseButton.TabIndex = 5;
-            this.turquoiseButton.TabStop = false;
-            this.turquoiseButton.Tag = "turquoise";
-            this.turquoiseButton.Text = "Turquoise";
-            this.toolTip1.SetToolTip(this.turquoiseButton, "Turquoise\r\nHost color X\'F5\'");
-            this.turquoiseButton.UseVisualStyleBackColor = false;
-            this.turquoiseButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // greenButton
-            // 
-            this.greenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.greenButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.greenButton.Location = new System.Drawing.Point(7, 99);
-            this.greenButton.Name = "greenButton";
-            this.greenButton.Size = new System.Drawing.Size(126, 23);
-            this.greenButton.TabIndex = 4;
-            this.greenButton.TabStop = false;
-            this.greenButton.Tag = "green";
-            this.greenButton.Text = "Green";
-            this.toolTip1.SetToolTip(this.greenButton, "Green\r\nHost color X\'F4\'\r\nUnprotected text");
-            this.greenButton.UseVisualStyleBackColor = false;
-            this.greenButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // pinkButton
-            // 
-            this.pinkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pinkButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pinkButton.Location = new System.Drawing.Point(315, 128);
-            this.pinkButton.Name = "pinkButton";
-            this.pinkButton.Size = new System.Drawing.Size(126, 23);
-            this.pinkButton.TabIndex = 7;
-            this.pinkButton.TabStop = false;
-            this.pinkButton.Tag = "pink";
-            this.pinkButton.Text = "Pink";
-            this.toolTip1.SetToolTip(this.pinkButton, "Pink\r\nHost color X\'F3\'");
-            this.pinkButton.UseVisualStyleBackColor = false;
-            this.pinkButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // redButton
-            // 
-            this.redButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.redButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.redButton.Location = new System.Drawing.Point(315, 70);
-            this.redButton.Name = "redButton";
-            this.redButton.Size = new System.Drawing.Size(126, 23);
-            this.redButton.TabIndex = 3;
-            this.redButton.TabStop = false;
-            this.redButton.Tag = "red";
-            this.redButton.Text = "Red";
-            this.toolTip1.SetToolTip(this.redButton, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
-            this.redButton.UseVisualStyleBackColor = false;
-            this.redButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // blueButton
-            // 
-            this.blueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blueButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.blueButton.Location = new System.Drawing.Point(7, 70);
-            this.blueButton.Name = "blueButton";
-            this.blueButton.Size = new System.Drawing.Size(126, 23);
-            this.blueButton.TabIndex = 2;
-            this.blueButton.TabStop = false;
-            this.blueButton.Tag = "blue";
-            this.blueButton.Text = "Blue";
-            this.toolTip1.SetToolTip(this.blueButton, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
-            this.blueButton.UseVisualStyleBackColor = false;
-            this.blueButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // neutralBlackButton
-            // 
-            this.neutralBlackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.neutralBlackButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.neutralBlackButton.Location = new System.Drawing.Point(316, 20);
-            this.neutralBlackButton.Name = "neutralBlackButton";
-            this.neutralBlackButton.Size = new System.Drawing.Size(126, 41);
-            this.neutralBlackButton.TabIndex = 1;
-            this.neutralBlackButton.TabStop = false;
-            this.neutralBlackButton.Tag = "neutralBlack";
-            this.neutralBlackButton.Text = "Neutral Black\r\nScreen Background";
-            this.toolTip1.SetToolTip(this.neutralBlackButton, "Neutral Black\r\nHost color X\'F0\'\r\nScreen background color");
-            this.neutralBlackButton.UseVisualStyleBackColor = false;
-            this.neutralBlackButton.Click += new System.EventHandler(this.Color_Click);
             // 
             // colors3278Tab
             // 
@@ -3223,9 +3078,10 @@
             this.colors3278Tab.Controls.Add(this.monoPreviewGroupBox);
             this.colors3278Tab.Controls.Add(this.monoColorsBox);
             this.colors3278Tab.Controls.Add(this.monoColorSchemeBox);
-            this.colors3278Tab.Location = new System.Drawing.Point(4, 22);
+            this.colors3278Tab.Location = new System.Drawing.Point(4, 25);
+            this.colors3278Tab.Margin = new System.Windows.Forms.Padding(4);
             this.colors3278Tab.Name = "colors3278Tab";
-            this.colors3278Tab.Size = new System.Drawing.Size(675, 624);
+            this.colors3278Tab.Size = new System.Drawing.Size(903, 771);
             this.colors3278Tab.TabIndex = 6;
             this.colors3278Tab.Text = "3278 Colors";
             this.colors3278Tab.UseVisualStyleBackColor = true;
@@ -3238,9 +3094,11 @@
             this.monoOtherGroupBox.Controls.Add(this.monoSelectBackgroundSwatch);
             this.monoOtherGroupBox.Controls.Add(this.monoCrosshairButton);
             this.monoOtherGroupBox.Controls.Add(this.monoSelectBackground);
-            this.monoOtherGroupBox.Location = new System.Drawing.Point(27, 353);
+            this.monoOtherGroupBox.Location = new System.Drawing.Point(36, 434);
+            this.monoOtherGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.monoOtherGroupBox.Name = "monoOtherGroupBox";
-            this.monoOtherGroupBox.Size = new System.Drawing.Size(616, 61);
+            this.monoOtherGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.monoOtherGroupBox.Size = new System.Drawing.Size(821, 74);
             this.monoOtherGroupBox.TabIndex = 28;
             this.monoOtherGroupBox.TabStop = false;
             this.monoOtherGroupBox.Text = "Other colors";
@@ -3251,9 +3109,10 @@
             this.monoCrosshairSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.monoCrosshairSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monoCrosshairSample.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoCrosshairSample.Location = new System.Drawing.Point(440, 20);
+            this.monoCrosshairSample.Location = new System.Drawing.Point(587, 25);
+            this.monoCrosshairSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.monoCrosshairSample.Name = "monoCrosshairSample";
-            this.monoCrosshairSample.Size = new System.Drawing.Size(170, 21);
+            this.monoCrosshairSample.Size = new System.Drawing.Size(226, 25);
             this.monoCrosshairSample.TabIndex = 38;
             this.monoCrosshairSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.monoCrosshairSample, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
@@ -3265,49 +3124,23 @@
             this.monoSelectBackgroundSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.monoSelectBackgroundSwatch.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monoSelectBackgroundSwatch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoSelectBackgroundSwatch.Location = new System.Drawing.Point(131, 20);
+            this.monoSelectBackgroundSwatch.Location = new System.Drawing.Point(175, 25);
+            this.monoSelectBackgroundSwatch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.monoSelectBackgroundSwatch.Name = "monoSelectBackgroundSwatch";
-            this.monoSelectBackgroundSwatch.Size = new System.Drawing.Size(165, 21);
+            this.monoSelectBackgroundSwatch.Size = new System.Drawing.Size(219, 25);
             this.monoSelectBackgroundSwatch.TabIndex = 20;
             this.monoSelectBackgroundSwatch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.monoSelectBackgroundSwatch, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
             this.monoSelectBackgroundSwatch.Click += new System.EventHandler(this.SelectedButton_Click);
             // 
-            // monoCrosshairButton
-            // 
-            this.monoCrosshairButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoCrosshairButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoCrosshairButton.Location = new System.Drawing.Point(316, 19);
-            this.monoCrosshairButton.Name = "monoCrosshairButton";
-            this.monoCrosshairButton.Size = new System.Drawing.Size(126, 23);
-            this.monoCrosshairButton.TabIndex = 37;
-            this.monoCrosshairButton.TabStop = false;
-            this.monoCrosshairButton.Tag = "red";
-            this.monoCrosshairButton.Text = "Crosshair Cursor";
-            this.toolTip1.SetToolTip(this.monoCrosshairButton, "Color of crosshair cursor");
-            this.monoCrosshairButton.UseVisualStyleBackColor = false;
-            this.monoCrosshairButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
-            // 
-            // monoSelectBackground
-            // 
-            this.monoSelectBackground.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoSelectBackground.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoSelectBackground.Location = new System.Drawing.Point(7, 19);
-            this.monoSelectBackground.Name = "monoSelectBackground";
-            this.monoSelectBackground.Size = new System.Drawing.Size(126, 23);
-            this.monoSelectBackground.TabIndex = 3;
-            this.monoSelectBackground.Tag = "red";
-            this.monoSelectBackground.Text = "Selection Background";
-            this.toolTip1.SetToolTip(this.monoSelectBackground, "Background color of selected text");
-            this.monoSelectBackground.UseVisualStyleBackColor = false;
-            this.monoSelectBackground.Click += new System.EventHandler(this.SelectedButton_Click);
-            // 
             // monoPreviewGroupBox
             // 
             this.monoPreviewGroupBox.Controls.Add(this.monoPreviewTableLayoutPanel);
-            this.monoPreviewGroupBox.Location = new System.Drawing.Point(344, 21);
+            this.monoPreviewGroupBox.Location = new System.Drawing.Point(459, 26);
+            this.monoPreviewGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.monoPreviewGroupBox.Name = "monoPreviewGroupBox";
-            this.monoPreviewGroupBox.Size = new System.Drawing.Size(300, 132);
+            this.monoPreviewGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.monoPreviewGroupBox.Size = new System.Drawing.Size(400, 162);
             this.monoPreviewGroupBox.TabIndex = 27;
             this.monoPreviewGroupBox.TabStop = false;
             this.monoPreviewGroupBox.Text = "Preview";
@@ -3322,23 +3155,24 @@
             this.monoPreviewTableLayoutPanel.Controls.Add(this.monoPreviewSeparatorPictureBox, 0, 1);
             this.monoPreviewTableLayoutPanel.Controls.Add(this.monoPreviewStatusLineLabel, 0, 2);
             this.monoPreviewTableLayoutPanel.Controls.Add(this.monoPreviewScreenPictureBox, 0, 0);
-            this.monoPreviewTableLayoutPanel.Location = new System.Drawing.Point(8, 23);
+            this.monoPreviewTableLayoutPanel.Location = new System.Drawing.Point(11, 28);
+            this.monoPreviewTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.monoPreviewTableLayoutPanel.Name = "monoPreviewTableLayoutPanel";
             this.monoPreviewTableLayoutPanel.RowCount = 3;
             this.monoPreviewTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.monoPreviewTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
             this.monoPreviewTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.monoPreviewTableLayoutPanel.Size = new System.Drawing.Size(207, 97);
+            this.monoPreviewTableLayoutPanel.Size = new System.Drawing.Size(276, 114);
             this.monoPreviewTableLayoutPanel.TabIndex = 0;
             // 
             // monoPreviewSeparatorPictureBox
             // 
             this.monoPreviewSeparatorPictureBox.BackColor = System.Drawing.Color.RoyalBlue;
             this.monoPreviewSeparatorPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.monoPreviewSeparatorPictureBox.Location = new System.Drawing.Point(0, 75);
+            this.monoPreviewSeparatorPictureBox.Location = new System.Drawing.Point(0, 92);
             this.monoPreviewSeparatorPictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.monoPreviewSeparatorPictureBox.Name = "monoPreviewSeparatorPictureBox";
-            this.monoPreviewSeparatorPictureBox.Size = new System.Drawing.Size(207, 2);
+            this.monoPreviewSeparatorPictureBox.Size = new System.Drawing.Size(276, 2);
             this.monoPreviewSeparatorPictureBox.TabIndex = 0;
             this.monoPreviewSeparatorPictureBox.TabStop = false;
             // 
@@ -3349,10 +3183,10 @@
             this.monoPreviewStatusLineLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.monoPreviewStatusLineLabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monoPreviewStatusLineLabel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.monoPreviewStatusLineLabel.Location = new System.Drawing.Point(0, 77);
+            this.monoPreviewStatusLineLabel.Location = new System.Drawing.Point(0, 94);
             this.monoPreviewStatusLineLabel.Margin = new System.Windows.Forms.Padding(0);
             this.monoPreviewStatusLineLabel.Name = "monoPreviewStatusLineLabel";
-            this.monoPreviewStatusLineLabel.Size = new System.Drawing.Size(207, 20);
+            this.monoPreviewStatusLineLabel.Size = new System.Drawing.Size(276, 20);
             this.monoPreviewStatusLineLabel.TabIndex = 1;
             this.monoPreviewStatusLineLabel.Text = "Status Line";
             this.monoPreviewStatusLineLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -3362,7 +3196,7 @@
             this.monoPreviewScreenPictureBox.Location = new System.Drawing.Point(0, 0);
             this.monoPreviewScreenPictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.monoPreviewScreenPictureBox.Name = "monoPreviewScreenPictureBox";
-            this.monoPreviewScreenPictureBox.Size = new System.Drawing.Size(207, 75);
+            this.monoPreviewScreenPictureBox.Size = new System.Drawing.Size(276, 92);
             this.monoPreviewScreenPictureBox.TabIndex = 2;
             this.monoPreviewScreenPictureBox.TabStop = false;
             this.monoPreviewScreenPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.MonoPreviewScreenPictureBox_Paint);
@@ -3381,9 +3215,11 @@
             this.monoColorsBox.Controls.Add(this.monoIntensifiedButton);
             this.monoColorsBox.Controls.Add(this.monoNormalButton);
             this.monoColorsBox.Controls.Add(this.monoBackgroundButton);
-            this.monoColorsBox.Location = new System.Drawing.Point(27, 172);
+            this.monoColorsBox.Location = new System.Drawing.Point(36, 212);
+            this.monoColorsBox.Margin = new System.Windows.Forms.Padding(4);
             this.monoColorsBox.Name = "monoColorsBox";
-            this.monoColorsBox.Size = new System.Drawing.Size(616, 165);
+            this.monoColorsBox.Padding = new System.Windows.Forms.Padding(4);
+            this.monoColorsBox.Size = new System.Drawing.Size(821, 202);
             this.monoColorsBox.TabIndex = 1;
             this.monoColorsBox.TabStop = false;
             this.monoColorsBox.Text = "Host colors";
@@ -3391,18 +3227,21 @@
             // monoBackgroundList
             // 
             this.monoBackgroundList.FormattingEnabled = true;
-            this.monoBackgroundList.Location = new System.Drawing.Point(9, 103);
+            this.monoBackgroundList.ItemHeight = 16;
+            this.monoBackgroundList.Location = new System.Drawing.Point(12, 127);
+            this.monoBackgroundList.Margin = new System.Windows.Forms.Padding(4);
             this.monoBackgroundList.Name = "monoBackgroundList";
-            this.monoBackgroundList.Size = new System.Drawing.Size(287, 43);
+            this.monoBackgroundList.Size = new System.Drawing.Size(381, 52);
             this.monoBackgroundList.TabIndex = 16;
             this.monoBackgroundList.SelectedIndexChanged += new System.EventHandler(this.MonoBackgroundList_SelectedIndexChanged);
             // 
             // monoBackgroundLabel
             // 
             this.monoBackgroundLabel.AutoSize = true;
-            this.monoBackgroundLabel.Location = new System.Drawing.Point(6, 87);
+            this.monoBackgroundLabel.Location = new System.Drawing.Point(8, 107);
+            this.monoBackgroundLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.monoBackgroundLabel.Name = "monoBackgroundLabel";
-            this.monoBackgroundLabel.Size = new System.Drawing.Size(143, 15);
+            this.monoBackgroundLabel.Size = new System.Drawing.Size(158, 16);
             this.monoBackgroundLabel.TabIndex = 5;
             this.monoBackgroundLabel.Text = "Display samples against:";
             // 
@@ -3410,9 +3249,10 @@
             // 
             this.monoIntensifiedSwatch.BackColor = System.Drawing.Color.Lime;
             this.monoIntensifiedSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.monoIntensifiedSwatch.Location = new System.Drawing.Point(440, 50);
+            this.monoIntensifiedSwatch.Location = new System.Drawing.Point(587, 62);
+            this.monoIntensifiedSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.monoIntensifiedSwatch.Name = "monoIntensifiedSwatch";
-            this.monoIntensifiedSwatch.Size = new System.Drawing.Size(25, 21);
+            this.monoIntensifiedSwatch.Size = new System.Drawing.Size(33, 25);
             this.monoIntensifiedSwatch.TabIndex = 36;
             this.monoIntensifiedSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.monoIntensifiedSwatch, "Turquoise\r\nHost color X\'F5\'");
@@ -3422,9 +3262,10 @@
             // 
             this.monoNormalSwatch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.monoNormalSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.monoNormalSwatch.Location = new System.Drawing.Point(131, 50);
+            this.monoNormalSwatch.Location = new System.Drawing.Point(175, 62);
+            this.monoNormalSwatch.Margin = new System.Windows.Forms.Padding(4);
             this.monoNormalSwatch.Name = "monoNormalSwatch";
-            this.monoNormalSwatch.Size = new System.Drawing.Size(25, 21);
+            this.monoNormalSwatch.Size = new System.Drawing.Size(33, 25);
             this.monoNormalSwatch.TabIndex = 36;
             this.monoNormalSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.monoNormalSwatch, "Green\r\nHost color X\'F4\'\r\nUnprotected text");
@@ -3436,9 +3277,10 @@
             this.monoNormalSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.monoNormalSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monoNormalSample.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.monoNormalSample.Location = new System.Drawing.Point(156, 50);
+            this.monoNormalSample.Location = new System.Drawing.Point(208, 62);
+            this.monoNormalSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.monoNormalSample.Name = "monoNormalSample";
-            this.monoNormalSample.Size = new System.Drawing.Size(140, 21);
+            this.monoNormalSample.Size = new System.Drawing.Size(186, 25);
             this.monoNormalSample.TabIndex = 32;
             this.monoNormalSample.Text = "Sample Text";
             this.monoNormalSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3451,9 +3293,10 @@
             this.monoIntensifiedSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.monoIntensifiedSample.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monoIntensifiedSample.ForeColor = System.Drawing.Color.Lime;
-            this.monoIntensifiedSample.Location = new System.Drawing.Point(465, 50);
+            this.monoIntensifiedSample.Location = new System.Drawing.Point(620, 62);
+            this.monoIntensifiedSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.monoIntensifiedSample.Name = "monoIntensifiedSample";
-            this.monoIntensifiedSample.Size = new System.Drawing.Size(145, 21);
+            this.monoIntensifiedSample.Size = new System.Drawing.Size(193, 25);
             this.monoIntensifiedSample.TabIndex = 25;
             this.monoIntensifiedSample.Text = "Sample Text";
             this.monoIntensifiedSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3466,67 +3309,25 @@
             this.monoBackgroundSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.monoBackgroundSwatch.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monoBackgroundSwatch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoBackgroundSwatch.Location = new System.Drawing.Point(131, 21);
+            this.monoBackgroundSwatch.Location = new System.Drawing.Point(175, 26);
+            this.monoBackgroundSwatch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.monoBackgroundSwatch.Name = "monoBackgroundSwatch";
-            this.monoBackgroundSwatch.Size = new System.Drawing.Size(165, 21);
+            this.monoBackgroundSwatch.Size = new System.Drawing.Size(219, 25);
             this.monoBackgroundSwatch.TabIndex = 19;
             this.monoBackgroundSwatch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.monoBackgroundSwatch, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
             this.monoBackgroundSwatch.Click += new System.EventHandler(this.Mono_Click);
-            // 
-            // monoIntensifiedButton
-            // 
-            this.monoIntensifiedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoIntensifiedButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoIntensifiedButton.Location = new System.Drawing.Point(316, 49);
-            this.monoIntensifiedButton.Name = "monoIntensifiedButton";
-            this.monoIntensifiedButton.Size = new System.Drawing.Size(126, 23);
-            this.monoIntensifiedButton.TabIndex = 5;
-            this.monoIntensifiedButton.TabStop = false;
-            this.monoIntensifiedButton.Tag = "";
-            this.monoIntensifiedButton.Text = "Intensified";
-            this.toolTip1.SetToolTip(this.monoIntensifiedButton, "Intensified text color");
-            this.monoIntensifiedButton.UseVisualStyleBackColor = false;
-            this.monoIntensifiedButton.Click += new System.EventHandler(this.Mono_Click);
-            // 
-            // monoNormalButton
-            // 
-            this.monoNormalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoNormalButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoNormalButton.Location = new System.Drawing.Point(7, 49);
-            this.monoNormalButton.Name = "monoNormalButton";
-            this.monoNormalButton.Size = new System.Drawing.Size(126, 23);
-            this.monoNormalButton.TabIndex = 4;
-            this.monoNormalButton.TabStop = false;
-            this.monoNormalButton.Tag = "green";
-            this.monoNormalButton.Text = "Normal";
-            this.toolTip1.SetToolTip(this.monoNormalButton, "Normal text and status line color");
-            this.monoNormalButton.UseVisualStyleBackColor = false;
-            this.monoNormalButton.Click += new System.EventHandler(this.Mono_Click);
-            // 
-            // monoBackgroundButton
-            // 
-            this.monoBackgroundButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoBackgroundButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoBackgroundButton.Location = new System.Drawing.Point(7, 20);
-            this.monoBackgroundButton.Name = "monoBackgroundButton";
-            this.monoBackgroundButton.Size = new System.Drawing.Size(126, 23);
-            this.monoBackgroundButton.TabIndex = 2;
-            this.monoBackgroundButton.TabStop = false;
-            this.monoBackgroundButton.Tag = "blue";
-            this.monoBackgroundButton.Text = "Screen Background";
-            this.toolTip1.SetToolTip(this.monoBackgroundButton, "Screen background color");
-            this.monoBackgroundButton.UseVisualStyleBackColor = false;
-            this.monoBackgroundButton.Click += new System.EventHandler(this.Mono_Click);
             // 
             // monoColorSchemeBox
             // 
             this.monoColorSchemeBox.Controls.Add(this.monoCustomButton);
             this.monoColorSchemeBox.Controls.Add(this.greenOnWhiteButton);
             this.monoColorSchemeBox.Controls.Add(this.greenOnBlackButton);
-            this.monoColorSchemeBox.Location = new System.Drawing.Point(27, 21);
+            this.monoColorSchemeBox.Location = new System.Drawing.Point(36, 26);
+            this.monoColorSchemeBox.Margin = new System.Windows.Forms.Padding(4);
             this.monoColorSchemeBox.Name = "monoColorSchemeBox";
-            this.monoColorSchemeBox.Size = new System.Drawing.Size(296, 132);
+            this.monoColorSchemeBox.Padding = new System.Windows.Forms.Padding(4);
+            this.monoColorSchemeBox.Size = new System.Drawing.Size(395, 162);
             this.monoColorSchemeBox.TabIndex = 0;
             this.monoColorSchemeBox.TabStop = false;
             this.monoColorSchemeBox.Text = "Color scheme";
@@ -3534,9 +3335,10 @@
             // monoCustomButton
             // 
             this.monoCustomButton.AutoSize = true;
-            this.monoCustomButton.Location = new System.Drawing.Point(7, 68);
+            this.monoCustomButton.Location = new System.Drawing.Point(9, 84);
+            this.monoCustomButton.Margin = new System.Windows.Forms.Padding(4);
             this.monoCustomButton.Name = "monoCustomButton";
-            this.monoCustomButton.Size = new System.Drawing.Size(70, 19);
+            this.monoCustomButton.Size = new System.Drawing.Size(73, 20);
             this.monoCustomButton.TabIndex = 2;
             this.monoCustomButton.Text = "Custom";
             this.monoCustomButton.UseVisualStyleBackColor = true;
@@ -3544,9 +3346,10 @@
             // greenOnWhiteButton
             // 
             this.greenOnWhiteButton.AutoSize = true;
-            this.greenOnWhiteButton.Location = new System.Drawing.Point(7, 44);
+            this.greenOnWhiteButton.Location = new System.Drawing.Point(9, 54);
+            this.greenOnWhiteButton.Margin = new System.Windows.Forms.Padding(4);
             this.greenOnWhiteButton.Name = "greenOnWhiteButton";
-            this.greenOnWhiteButton.Size = new System.Drawing.Size(111, 19);
+            this.greenOnWhiteButton.Size = new System.Drawing.Size(116, 20);
             this.greenOnWhiteButton.TabIndex = 1;
             this.greenOnWhiteButton.Text = "Green on white";
             this.greenOnWhiteButton.UseVisualStyleBackColor = true;
@@ -3556,9 +3359,10 @@
             // 
             this.greenOnBlackButton.AutoSize = true;
             this.greenOnBlackButton.Checked = true;
-            this.greenOnBlackButton.Location = new System.Drawing.Point(7, 20);
+            this.greenOnBlackButton.Location = new System.Drawing.Point(9, 25);
+            this.greenOnBlackButton.Margin = new System.Windows.Forms.Padding(4);
             this.greenOnBlackButton.Name = "greenOnBlackButton";
-            this.greenOnBlackButton.Size = new System.Drawing.Size(111, 19);
+            this.greenOnBlackButton.Size = new System.Drawing.Size(119, 20);
             this.greenOnBlackButton.TabIndex = 0;
             this.greenOnBlackButton.TabStop = true;
             this.greenOnBlackButton.Text = "Green on black";
@@ -3568,32 +3372,107 @@
             // fontTab
             // 
             this.fontTab.Controls.Add(this.fontGroupBox);
-            this.fontTab.Location = new System.Drawing.Point(4, 22);
+            this.fontTab.Location = new System.Drawing.Point(4, 25);
+            this.fontTab.Margin = new System.Windows.Forms.Padding(4);
             this.fontTab.Name = "fontTab";
-            this.fontTab.Size = new System.Drawing.Size(675, 624);
+            this.fontTab.Size = new System.Drawing.Size(903, 771);
             this.fontTab.TabIndex = 5;
             this.fontTab.Text = "Font";
             this.fontTab.UseVisualStyleBackColor = true;
             // 
             // fontGroupBox
             // 
+            this.fontGroupBox.Controls.Add(this.fontFlowLayoutPanel);
             this.fontGroupBox.Controls.Add(this.fontPreviewGroupBox);
             this.fontGroupBox.Controls.Add(this.sizeIgnoredLabel);
-            this.fontGroupBox.Controls.Add(this.fontLabel);
-            this.fontGroupBox.Controls.Add(this.fontChangeButton);
-            this.fontGroupBox.Location = new System.Drawing.Point(22, 23);
+            this.fontGroupBox.Location = new System.Drawing.Point(29, 28);
+            this.fontGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.fontGroupBox.Name = "fontGroupBox";
-            this.fontGroupBox.Size = new System.Drawing.Size(628, 563);
+            this.fontGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.fontGroupBox.Size = new System.Drawing.Size(837, 693);
             this.fontGroupBox.TabIndex = 4;
             this.fontGroupBox.TabStop = false;
             this.fontGroupBox.Text = "Display font";
             // 
+            // fontFlowLayoutPanel
+            // 
+            this.fontFlowLayoutPanel.AutoSize = true;
+            this.fontFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.fontFlowLayoutPanel.Controls.Add(this.familyComboBox);
+            this.fontFlowLayoutPanel.Controls.Add(this.fontSizeComboBox);
+            this.fontFlowLayoutPanel.Controls.Add(this.boldButton);
+            this.fontFlowLayoutPanel.Controls.Add(this.italicButton);
+            this.fontFlowLayoutPanel.Location = new System.Drawing.Point(12, 31);
+            this.fontFlowLayoutPanel.Name = "fontFlowLayoutPanel";
+            this.fontFlowLayoutPanel.Size = new System.Drawing.Size(373, 34);
+            this.fontFlowLayoutPanel.TabIndex = 7;
+            // 
+            // familyComboBox
+            // 
+            this.familyComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.familyComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.familyComboBox.DropDownWidth = 325;
+            this.familyComboBox.FormattingEnabled = true;
+            this.familyComboBox.Location = new System.Drawing.Point(3, 5);
+            this.familyComboBox.Name = "familyComboBox";
+            this.familyComboBox.Size = new System.Drawing.Size(242, 23);
+            this.familyComboBox.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.familyComboBox, "Font family");
+            this.familyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.FamilyComboBox_DrawItem);
+            this.familyComboBox.DropDown += new System.EventHandler(this.FamilyComboBox_DropDown);
+            this.familyComboBox.DropDownClosed += new System.EventHandler(this.FamilyComboBox_DropDownClosed);
+            this.familyComboBox.SelectedValueChanged += new System.EventHandler(this.FontFamily_Changed);
+            this.familyComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.Family_Validating);
+            // 
+            // fontSizeComboBox
+            // 
+            this.fontSizeComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.fontSizeComboBox.FormattingEnabled = true;
+            this.fontSizeComboBox.Location = new System.Drawing.Point(251, 5);
+            this.fontSizeComboBox.Name = "fontSizeComboBox";
+            this.fontSizeComboBox.Size = new System.Drawing.Size(51, 24);
+            this.fontSizeComboBox.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.fontSizeComboBox, "Font size");
+            this.fontSizeComboBox.SelectedValueChanged += new System.EventHandler(this.FontSize_Changed);
+            this.fontSizeComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.FontSize_Validating);
+            // 
+            // boldButton
+            // 
+            this.boldButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.boldButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.boldButton.BackColor = System.Drawing.SystemColors.Highlight;
+            this.boldButton.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boldButton.Location = new System.Drawing.Point(308, 3);
+            this.boldButton.Name = "boldButton";
+            this.boldButton.Size = new System.Drawing.Size(28, 28);
+            this.boldButton.TabIndex = 2;
+            this.boldButton.Text = "B";
+            this.toolTip1.SetToolTip(this.boldButton, "Bold");
+            this.boldButton.UseVisualStyleBackColor = false;
+            this.boldButton.Click += new System.EventHandler(this.Bold_Click);
+            // 
+            // italicButton
+            // 
+            this.italicButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.italicButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.italicButton.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.italicButton.Location = new System.Drawing.Point(342, 3);
+            this.italicButton.Name = "italicButton";
+            this.italicButton.Size = new System.Drawing.Size(28, 28);
+            this.italicButton.TabIndex = 3;
+            this.italicButton.Text = "I";
+            this.toolTip1.SetToolTip(this.italicButton, "Italic");
+            this.italicButton.UseVisualStyleBackColor = true;
+            this.italicButton.Click += new System.EventHandler(this.Italic_Click);
+            // 
             // fontPreviewGroupBox
             // 
             this.fontPreviewGroupBox.Controls.Add(this.fontPreviewTableLayoutPanel);
-            this.fontPreviewGroupBox.Location = new System.Drawing.Point(6, 99);
+            this.fontPreviewGroupBox.Location = new System.Drawing.Point(8, 122);
+            this.fontPreviewGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.fontPreviewGroupBox.Name = "fontPreviewGroupBox";
-            this.fontPreviewGroupBox.Size = new System.Drawing.Size(616, 458);
+            this.fontPreviewGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.fontPreviewGroupBox.Size = new System.Drawing.Size(821, 564);
             this.fontPreviewGroupBox.TabIndex = 6;
             this.fontPreviewGroupBox.TabStop = false;
             this.fontPreviewGroupBox.Text = "Preview";
@@ -3608,24 +3487,25 @@
             this.fontPreviewTableLayoutPanel.Controls.Add(this.fontPreviewSeparatorPictureBox, 0, 1);
             this.fontPreviewTableLayoutPanel.Controls.Add(this.fontPreviewStatusLineLabel, 0, 2);
             this.fontPreviewTableLayoutPanel.Controls.Add(this.fontPreviewScreenPictureBox, 0, 0);
-            this.fontPreviewTableLayoutPanel.Location = new System.Drawing.Point(6, 19);
-            this.fontPreviewTableLayoutPanel.MaximumSize = new System.Drawing.Size(573, 440);
+            this.fontPreviewTableLayoutPanel.Location = new System.Drawing.Point(8, 23);
+            this.fontPreviewTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.fontPreviewTableLayoutPanel.MaximumSize = new System.Drawing.Size(764, 542);
             this.fontPreviewTableLayoutPanel.Name = "fontPreviewTableLayoutPanel";
             this.fontPreviewTableLayoutPanel.RowCount = 3;
             this.fontPreviewTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.fontPreviewTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
             this.fontPreviewTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.fontPreviewTableLayoutPanel.Size = new System.Drawing.Size(207, 97);
+            this.fontPreviewTableLayoutPanel.Size = new System.Drawing.Size(276, 114);
             this.fontPreviewTableLayoutPanel.TabIndex = 3;
             // 
             // fontPreviewSeparatorPictureBox
             // 
             this.fontPreviewSeparatorPictureBox.BackColor = System.Drawing.Color.RoyalBlue;
             this.fontPreviewSeparatorPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fontPreviewSeparatorPictureBox.Location = new System.Drawing.Point(0, 75);
+            this.fontPreviewSeparatorPictureBox.Location = new System.Drawing.Point(0, 92);
             this.fontPreviewSeparatorPictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.fontPreviewSeparatorPictureBox.Name = "fontPreviewSeparatorPictureBox";
-            this.fontPreviewSeparatorPictureBox.Size = new System.Drawing.Size(207, 2);
+            this.fontPreviewSeparatorPictureBox.Size = new System.Drawing.Size(276, 2);
             this.fontPreviewSeparatorPictureBox.TabIndex = 0;
             this.fontPreviewSeparatorPictureBox.TabStop = false;
             // 
@@ -3636,10 +3516,10 @@
             this.fontPreviewStatusLineLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fontPreviewStatusLineLabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fontPreviewStatusLineLabel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.fontPreviewStatusLineLabel.Location = new System.Drawing.Point(0, 77);
+            this.fontPreviewStatusLineLabel.Location = new System.Drawing.Point(0, 94);
             this.fontPreviewStatusLineLabel.Margin = new System.Windows.Forms.Padding(0);
             this.fontPreviewStatusLineLabel.Name = "fontPreviewStatusLineLabel";
-            this.fontPreviewStatusLineLabel.Size = new System.Drawing.Size(207, 20);
+            this.fontPreviewStatusLineLabel.Size = new System.Drawing.Size(276, 20);
             this.fontPreviewStatusLineLabel.TabIndex = 1;
             this.fontPreviewStatusLineLabel.Text = "Status Line";
             this.fontPreviewStatusLineLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -3649,7 +3529,7 @@
             this.fontPreviewScreenPictureBox.Location = new System.Drawing.Point(0, 0);
             this.fontPreviewScreenPictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.fontPreviewScreenPictureBox.Name = "fontPreviewScreenPictureBox";
-            this.fontPreviewScreenPictureBox.Size = new System.Drawing.Size(207, 75);
+            this.fontPreviewScreenPictureBox.Size = new System.Drawing.Size(276, 92);
             this.fontPreviewScreenPictureBox.TabIndex = 2;
             this.fontPreviewScreenPictureBox.TabStop = false;
             this.fontPreviewScreenPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.FontPreviewScreenPictureBox_Paint);
@@ -3658,40 +3538,20 @@
             // 
             this.sizeIgnoredLabel.AutoSize = true;
             this.sizeIgnoredLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sizeIgnoredLabel.Location = new System.Drawing.Point(7, 72);
+            this.sizeIgnoredLabel.Location = new System.Drawing.Point(12, 79);
+            this.sizeIgnoredLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.sizeIgnoredLabel.Name = "sizeIgnoredLabel";
             this.sizeIgnoredLabel.Size = new System.Drawing.Size(376, 15);
             this.sizeIgnoredLabel.TabIndex = 4;
             this.sizeIgnoredLabel.Text = "Note: Font size is ignored when the window is maximized or docked";
             // 
-            // fontLabel
-            // 
-            this.fontLabel.AutoSize = true;
-            this.fontLabel.Location = new System.Drawing.Point(6, 21);
-            this.fontLabel.Name = "fontLabel";
-            this.fontLabel.Size = new System.Drawing.Size(88, 15);
-            this.fontLabel.TabIndex = 1;
-            this.fontLabel.Text = "Consolas, 10pt";
-            // 
-            // fontChangeButton
-            // 
-            this.fontChangeButton.AutoSize = true;
-            this.fontChangeButton.Location = new System.Drawing.Point(6, 42);
-            this.fontChangeButton.Name = "fontChangeButton";
-            this.fontChangeButton.Size = new System.Drawing.Size(75, 26);
-            this.fontChangeButton.TabIndex = 2;
-            this.fontChangeButton.TabStop = false;
-            this.fontChangeButton.Text = "Change";
-            this.toolTip1.SetToolTip(this.fontChangeButton, "Change the font");
-            this.fontChangeButton.UseVisualStyleBackColor = true;
-            this.fontChangeButton.Click += new System.EventHandler(this.FontChangeButton_Click);
-            // 
             // soundsTab
             // 
             this.soundsTab.Controls.Add(this.soundsGroupBox);
-            this.soundsTab.Location = new System.Drawing.Point(4, 22);
+            this.soundsTab.Location = new System.Drawing.Point(4, 25);
+            this.soundsTab.Margin = new System.Windows.Forms.Padding(4);
             this.soundsTab.Name = "soundsTab";
-            this.soundsTab.Size = new System.Drawing.Size(675, 624);
+            this.soundsTab.Size = new System.Drawing.Size(903, 771);
             this.soundsTab.TabIndex = 4;
             this.soundsTab.Text = "Sounds";
             this.soundsTab.UseVisualStyleBackColor = true;
@@ -3699,9 +3559,11 @@
             // soundsGroupBox
             // 
             this.soundsGroupBox.Controls.Add(this.soundLayoutPanel);
-            this.soundsGroupBox.Location = new System.Drawing.Point(26, 21);
+            this.soundsGroupBox.Location = new System.Drawing.Point(35, 26);
+            this.soundsGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.soundsGroupBox.Name = "soundsGroupBox";
-            this.soundsGroupBox.Size = new System.Drawing.Size(241, 100);
+            this.soundsGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.soundsGroupBox.Size = new System.Drawing.Size(321, 123);
             this.soundsGroupBox.TabIndex = 10;
             this.soundsGroupBox.TabStop = false;
             this.soundsGroupBox.Text = "Sounds";
@@ -3717,35 +3579,23 @@
             this.soundLayoutPanel.Controls.Add(this.keyboardClickCheckBox, 0, 0);
             this.soundLayoutPanel.Controls.Add(this.audibleBellCheckBox, 0, 1);
             this.soundLayoutPanel.Controls.Add(this.playKeyboardClick, 1, 0);
-            this.soundLayoutPanel.Location = new System.Drawing.Point(13, 23);
+            this.soundLayoutPanel.Location = new System.Drawing.Point(17, 28);
+            this.soundLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.soundLayoutPanel.Name = "soundLayoutPanel";
             this.soundLayoutPanel.RowCount = 2;
             this.soundLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.soundLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.soundLayoutPanel.Size = new System.Drawing.Size(144, 58);
+            this.soundLayoutPanel.Size = new System.Drawing.Size(165, 72);
             this.soundLayoutPanel.TabIndex = 11;
-            // 
-            // playAudibleBell
-            // 
-            this.playAudibleBell.Dock = System.Windows.Forms.DockStyle.Left;
-            this.playAudibleBell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playAudibleBell.Location = new System.Drawing.Point(119, 32);
-            this.playAudibleBell.Name = "playAudibleBell";
-            this.playAudibleBell.Size = new System.Drawing.Size(22, 23);
-            this.playAudibleBell.TabIndex = 9;
-            this.playAudibleBell.Tag = "`";
-            this.playAudibleBell.Text = "▶";
-            this.toolTip1.SetToolTip(this.playAudibleBell, "Play the sound");
-            this.playAudibleBell.UseVisualStyleBackColor = true;
-            this.playAudibleBell.Click += new System.EventHandler(this.ConsoleBellPlayButton_Click);
             // 
             // keyboardClickCheckBox
             // 
             this.keyboardClickCheckBox.AutoSize = true;
             this.keyboardClickCheckBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.keyboardClickCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.keyboardClickCheckBox.Location = new System.Drawing.Point(4, 4);
+            this.keyboardClickCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.keyboardClickCheckBox.Name = "keyboardClickCheckBox";
-            this.keyboardClickCheckBox.Size = new System.Drawing.Size(110, 23);
+            this.keyboardClickCheckBox.Size = new System.Drawing.Size(120, 28);
             this.keyboardClickCheckBox.TabIndex = 5;
             this.keyboardClickCheckBox.Text = "Keyboard Click";
             this.keyboardClickCheckBox.UseVisualStyleBackColor = true;
@@ -3757,36 +3607,24 @@
             this.audibleBellCheckBox.Checked = true;
             this.audibleBellCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.audibleBellCheckBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.audibleBellCheckBox.Location = new System.Drawing.Point(3, 32);
+            this.audibleBellCheckBox.Location = new System.Drawing.Point(4, 40);
+            this.audibleBellCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.audibleBellCheckBox.Name = "audibleBellCheckBox";
-            this.audibleBellCheckBox.Size = new System.Drawing.Size(94, 23);
+            this.audibleBellCheckBox.Size = new System.Drawing.Size(101, 28);
             this.audibleBellCheckBox.TabIndex = 6;
             this.audibleBellCheckBox.Text = "Audible Bell";
             this.audibleBellCheckBox.UseVisualStyleBackColor = true;
             this.audibleBellCheckBox.Click += new System.EventHandler(this.AudibleBell_Click);
             // 
-            // playKeyboardClick
-            // 
-            this.playKeyboardClick.Dock = System.Windows.Forms.DockStyle.Left;
-            this.playKeyboardClick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playKeyboardClick.Location = new System.Drawing.Point(119, 3);
-            this.playKeyboardClick.Name = "playKeyboardClick";
-            this.playKeyboardClick.Size = new System.Drawing.Size(22, 23);
-            this.playKeyboardClick.TabIndex = 8;
-            this.playKeyboardClick.Tag = "`";
-            this.playKeyboardClick.Text = "▶";
-            this.toolTip1.SetToolTip(this.playKeyboardClick, "Play the sound");
-            this.playKeyboardClick.UseVisualStyleBackColor = true;
-            this.playKeyboardClick.Click += new System.EventHandler(this.KeyClickPlayButton_Click);
-            // 
             // serversTab
             // 
             this.serversTab.Controls.Add(this.httpdBox);
             this.serversTab.Controls.Add(this.s3270Box);
-            this.serversTab.Location = new System.Drawing.Point(4, 22);
+            this.serversTab.Location = new System.Drawing.Point(4, 25);
+            this.serversTab.Margin = new System.Windows.Forms.Padding(4);
             this.serversTab.Name = "serversTab";
-            this.serversTab.Padding = new System.Windows.Forms.Padding(3);
-            this.serversTab.Size = new System.Drawing.Size(675, 624);
+            this.serversTab.Padding = new System.Windows.Forms.Padding(4);
+            this.serversTab.Size = new System.Drawing.Size(903, 771);
             this.serversTab.TabIndex = 8;
             this.serversTab.Text = "Servers";
             this.serversTab.UseVisualStyleBackColor = true;
@@ -3796,9 +3634,11 @@
             this.httpdBox.Controls.Add(this.httpdNoConfigLabel);
             this.httpdBox.Controls.Add(this.httpdCheckBox);
             this.httpdBox.Controls.Add(this.httpdLayoutPanel);
-            this.httpdBox.Location = new System.Drawing.Point(321, 29);
+            this.httpdBox.Location = new System.Drawing.Point(428, 36);
+            this.httpdBox.Margin = new System.Windows.Forms.Padding(4);
             this.httpdBox.Name = "httpdBox";
-            this.httpdBox.Size = new System.Drawing.Size(272, 136);
+            this.httpdBox.Padding = new System.Windows.Forms.Padding(4);
+            this.httpdBox.Size = new System.Drawing.Size(363, 167);
             this.httpdBox.TabIndex = 1;
             this.httpdBox.TabStop = false;
             this.httpdBox.Tag = "httpd";
@@ -3808,7 +3648,8 @@
             // 
             this.httpdNoConfigLabel.AutoSize = true;
             this.httpdNoConfigLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.httpdNoConfigLabel.Location = new System.Drawing.Point(10, 105);
+            this.httpdNoConfigLabel.Location = new System.Drawing.Point(13, 129);
+            this.httpdNoConfigLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.httpdNoConfigLabel.Name = "httpdNoConfigLabel";
             this.httpdNoConfigLabel.Size = new System.Drawing.Size(328, 17);
             this.httpdNoConfigLabel.TabIndex = 6;
@@ -3819,9 +3660,10 @@
             // httpdCheckBox
             // 
             this.httpdCheckBox.AutoSize = true;
-            this.httpdCheckBox.Location = new System.Drawing.Point(13, 20);
+            this.httpdCheckBox.Location = new System.Drawing.Point(17, 25);
+            this.httpdCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.httpdCheckBox.Name = "httpdCheckBox";
-            this.httpdCheckBox.Size = new System.Drawing.Size(148, 19);
+            this.httpdCheckBox.Size = new System.Drawing.Size(157, 20);
             this.httpdCheckBox.TabIndex = 0;
             this.httpdCheckBox.Tag = "httpd";
             this.httpdCheckBox.Text = "Listen for connections";
@@ -3841,12 +3683,13 @@
             this.httpdLayoutPanel.Controls.Add(this.httpdAddressBox, 1, 0);
             this.httpdLayoutPanel.Controls.Add(this.httpdPortBox, 1, 1);
             this.httpdLayoutPanel.Enabled = false;
-            this.httpdLayoutPanel.Location = new System.Drawing.Point(6, 43);
+            this.httpdLayoutPanel.Location = new System.Drawing.Point(8, 53);
+            this.httpdLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.httpdLayoutPanel.Name = "httpdLayoutPanel";
             this.httpdLayoutPanel.RowCount = 2;
             this.httpdLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.httpdLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.httpdLayoutPanel.Size = new System.Drawing.Size(213, 52);
+            this.httpdLayoutPanel.Size = new System.Drawing.Size(273, 60);
             this.httpdLayoutPanel.TabIndex = 3;
             this.httpdLayoutPanel.Tag = "httpd";
             // 
@@ -3854,9 +3697,10 @@
             // 
             this.httpdAddressLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.httpdAddressLabel.AutoSize = true;
-            this.httpdAddressLabel.Location = new System.Drawing.Point(3, 5);
+            this.httpdAddressLabel.Location = new System.Drawing.Point(4, 7);
+            this.httpdAddressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.httpdAddressLabel.Name = "httpdAddressLabel";
-            this.httpdAddressLabel.Size = new System.Drawing.Size(51, 15);
+            this.httpdAddressLabel.Size = new System.Drawing.Size(58, 16);
             this.httpdAddressLabel.TabIndex = 0;
             this.httpdAddressLabel.Text = "Address";
             // 
@@ -3864,17 +3708,19 @@
             // 
             this.httpdPortLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.httpdPortLabel.AutoSize = true;
-            this.httpdPortLabel.Location = new System.Drawing.Point(3, 31);
+            this.httpdPortLabel.Location = new System.Drawing.Point(4, 37);
+            this.httpdPortLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.httpdPortLabel.Name = "httpdPortLabel";
-            this.httpdPortLabel.Size = new System.Drawing.Size(29, 15);
+            this.httpdPortLabel.Size = new System.Drawing.Size(31, 16);
             this.httpdPortLabel.TabIndex = 1;
             this.httpdPortLabel.Text = "Port";
             // 
             // httpdAddressBox
             // 
-            this.httpdAddressBox.Location = new System.Drawing.Point(60, 3);
+            this.httpdAddressBox.Location = new System.Drawing.Point(70, 4);
+            this.httpdAddressBox.Margin = new System.Windows.Forms.Padding(4);
             this.httpdAddressBox.Name = "httpdAddressBox";
-            this.httpdAddressBox.Size = new System.Drawing.Size(150, 20);
+            this.httpdAddressBox.Size = new System.Drawing.Size(199, 22);
             this.httpdAddressBox.TabIndex = 0;
             this.httpdAddressBox.Tag = "address";
             this.toolTip1.SetToolTip(this.httpdAddressBox, "IPv4 or IPv6 numeric address");
@@ -3883,9 +3729,10 @@
             // 
             // httpdPortBox
             // 
-            this.httpdPortBox.Location = new System.Drawing.Point(60, 29);
+            this.httpdPortBox.Location = new System.Drawing.Point(70, 34);
+            this.httpdPortBox.Margin = new System.Windows.Forms.Padding(4);
             this.httpdPortBox.Name = "httpdPortBox";
-            this.httpdPortBox.Size = new System.Drawing.Size(150, 20);
+            this.httpdPortBox.Size = new System.Drawing.Size(199, 22);
             this.httpdPortBox.TabIndex = 1;
             this.httpdPortBox.Tag = "port";
             this.toolTip1.SetToolTip(this.httpdPortBox, "TCP port");
@@ -3897,9 +3744,11 @@
             this.s3270Box.Controls.Add(this.s3270NoConfigLabel);
             this.s3270Box.Controls.Add(this.s3270CheckBox);
             this.s3270Box.Controls.Add(this.s3270LayoutPanel);
-            this.s3270Box.Location = new System.Drawing.Point(23, 29);
+            this.s3270Box.Location = new System.Drawing.Point(31, 36);
+            this.s3270Box.Margin = new System.Windows.Forms.Padding(4);
             this.s3270Box.Name = "s3270Box";
-            this.s3270Box.Size = new System.Drawing.Size(272, 136);
+            this.s3270Box.Padding = new System.Windows.Forms.Padding(4);
+            this.s3270Box.Size = new System.Drawing.Size(363, 167);
             this.s3270Box.TabIndex = 0;
             this.s3270Box.TabStop = false;
             this.s3270Box.Tag = "scriptPort";
@@ -3909,7 +3758,8 @@
             // 
             this.s3270NoConfigLabel.AutoSize = true;
             this.s3270NoConfigLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.s3270NoConfigLabel.Location = new System.Drawing.Point(10, 105);
+            this.s3270NoConfigLabel.Location = new System.Drawing.Point(13, 129);
+            this.s3270NoConfigLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.s3270NoConfigLabel.Name = "s3270NoConfigLabel";
             this.s3270NoConfigLabel.Size = new System.Drawing.Size(328, 17);
             this.s3270NoConfigLabel.TabIndex = 5;
@@ -3920,9 +3770,10 @@
             // s3270CheckBox
             // 
             this.s3270CheckBox.AutoSize = true;
-            this.s3270CheckBox.Location = new System.Drawing.Point(13, 20);
+            this.s3270CheckBox.Location = new System.Drawing.Point(17, 25);
+            this.s3270CheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.s3270CheckBox.Name = "s3270CheckBox";
-            this.s3270CheckBox.Size = new System.Drawing.Size(148, 19);
+            this.s3270CheckBox.Size = new System.Drawing.Size(157, 20);
             this.s3270CheckBox.TabIndex = 0;
             this.s3270CheckBox.Tag = "scriptPort";
             this.s3270CheckBox.Text = "Listen for connections";
@@ -3942,12 +3793,13 @@
             this.s3270LayoutPanel.Controls.Add(this.s3270AddressBox, 1, 0);
             this.s3270LayoutPanel.Controls.Add(this.s3270PortBox, 1, 1);
             this.s3270LayoutPanel.Enabled = false;
-            this.s3270LayoutPanel.Location = new System.Drawing.Point(6, 43);
+            this.s3270LayoutPanel.Location = new System.Drawing.Point(8, 53);
+            this.s3270LayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.s3270LayoutPanel.Name = "s3270LayoutPanel";
             this.s3270LayoutPanel.RowCount = 2;
             this.s3270LayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.s3270LayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.s3270LayoutPanel.Size = new System.Drawing.Size(213, 52);
+            this.s3270LayoutPanel.Size = new System.Drawing.Size(273, 60);
             this.s3270LayoutPanel.TabIndex = 3;
             this.s3270LayoutPanel.Tag = "scriptPort";
             // 
@@ -3955,9 +3807,10 @@
             // 
             this.s3270AddressLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.s3270AddressLabel.AutoSize = true;
-            this.s3270AddressLabel.Location = new System.Drawing.Point(3, 5);
+            this.s3270AddressLabel.Location = new System.Drawing.Point(4, 7);
+            this.s3270AddressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.s3270AddressLabel.Name = "s3270AddressLabel";
-            this.s3270AddressLabel.Size = new System.Drawing.Size(51, 15);
+            this.s3270AddressLabel.Size = new System.Drawing.Size(58, 16);
             this.s3270AddressLabel.TabIndex = 0;
             this.s3270AddressLabel.Text = "Address";
             // 
@@ -3965,17 +3818,19 @@
             // 
             this.s3270PortLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.s3270PortLabel.AutoSize = true;
-            this.s3270PortLabel.Location = new System.Drawing.Point(3, 31);
+            this.s3270PortLabel.Location = new System.Drawing.Point(4, 37);
+            this.s3270PortLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.s3270PortLabel.Name = "s3270PortLabel";
-            this.s3270PortLabel.Size = new System.Drawing.Size(29, 15);
+            this.s3270PortLabel.Size = new System.Drawing.Size(31, 16);
             this.s3270PortLabel.TabIndex = 1;
             this.s3270PortLabel.Text = "Port";
             // 
             // s3270AddressBox
             // 
-            this.s3270AddressBox.Location = new System.Drawing.Point(60, 3);
+            this.s3270AddressBox.Location = new System.Drawing.Point(70, 4);
+            this.s3270AddressBox.Margin = new System.Windows.Forms.Padding(4);
             this.s3270AddressBox.Name = "s3270AddressBox";
-            this.s3270AddressBox.Size = new System.Drawing.Size(150, 20);
+            this.s3270AddressBox.Size = new System.Drawing.Size(199, 22);
             this.s3270AddressBox.TabIndex = 1;
             this.s3270AddressBox.Tag = "address";
             this.toolTip1.SetToolTip(this.s3270AddressBox, "IPv4 or IPv6 numeric address");
@@ -3984,9 +3839,10 @@
             // 
             // s3270PortBox
             // 
-            this.s3270PortBox.Location = new System.Drawing.Point(60, 29);
+            this.s3270PortBox.Location = new System.Drawing.Point(70, 34);
+            this.s3270PortBox.Margin = new System.Windows.Forms.Padding(4);
             this.s3270PortBox.Name = "s3270PortBox";
-            this.s3270PortBox.Size = new System.Drawing.Size(150, 20);
+            this.s3270PortBox.Size = new System.Drawing.Size(199, 22);
             this.s3270PortBox.TabIndex = 2;
             this.s3270PortBox.Tag = "port";
             this.toolTip1.SetToolTip(this.s3270PortBox, "TCP port");
@@ -3996,10 +3852,11 @@
             // proxyTab
             // 
             this.proxyTab.Controls.Add(this.proxyGroupBox);
-            this.proxyTab.Location = new System.Drawing.Point(4, 22);
+            this.proxyTab.Location = new System.Drawing.Point(4, 25);
+            this.proxyTab.Margin = new System.Windows.Forms.Padding(4);
             this.proxyTab.Name = "proxyTab";
-            this.proxyTab.Padding = new System.Windows.Forms.Padding(3);
-            this.proxyTab.Size = new System.Drawing.Size(675, 624);
+            this.proxyTab.Padding = new System.Windows.Forms.Padding(4);
+            this.proxyTab.Size = new System.Drawing.Size(903, 771);
             this.proxyTab.TabIndex = 9;
             this.proxyTab.Text = "Proxy";
             this.proxyTab.UseVisualStyleBackColor = true;
@@ -4007,9 +3864,11 @@
             // proxyGroupBox
             // 
             this.proxyGroupBox.Controls.Add(this.proxyTableLayoutPanel);
-            this.proxyGroupBox.Location = new System.Drawing.Point(20, 20);
+            this.proxyGroupBox.Location = new System.Drawing.Point(27, 25);
+            this.proxyGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.proxyGroupBox.Name = "proxyGroupBox";
-            this.proxyGroupBox.Size = new System.Drawing.Size(297, 167);
+            this.proxyGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.proxyGroupBox.Size = new System.Drawing.Size(396, 206);
             this.proxyGroupBox.TabIndex = 1;
             this.proxyGroupBox.TabStop = false;
             this.proxyGroupBox.Tag = "scriptPort";
@@ -4020,7 +3879,7 @@
             this.proxyTableLayoutPanel.AutoSize = true;
             this.proxyTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.proxyTableLayoutPanel.ColumnCount = 2;
-            this.proxyTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.proxyTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
             this.proxyTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.proxyTableLayoutPanel.Controls.Add(this.passwordTextBox, 1, 4);
             this.proxyTableLayoutPanel.Controls.Add(this.usernameTextBox, 1, 3);
@@ -4032,7 +3891,8 @@
             this.proxyTableLayoutPanel.Controls.Add(this.passwordLabel, 0, 4);
             this.proxyTableLayoutPanel.Controls.Add(this.proxyTypeLabel, 0, 0);
             this.proxyTableLayoutPanel.Controls.Add(this.proxyTypeTextBox, 1, 0);
-            this.proxyTableLayoutPanel.Location = new System.Drawing.Point(6, 19);
+            this.proxyTableLayoutPanel.Location = new System.Drawing.Point(8, 23);
+            this.proxyTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.proxyTableLayoutPanel.Name = "proxyTableLayoutPanel";
             this.proxyTableLayoutPanel.RowCount = 5;
             this.proxyTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -4040,15 +3900,16 @@
             this.proxyTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.proxyTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.proxyTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.proxyTableLayoutPanel.Size = new System.Drawing.Size(256, 130);
+            this.proxyTableLayoutPanel.Size = new System.Drawing.Size(340, 150);
             this.proxyTableLayoutPanel.TabIndex = 3;
             // 
             // passwordTextBox
             // 
             this.passwordTextBox.Enabled = false;
-            this.passwordTextBox.Location = new System.Drawing.Point(103, 107);
+            this.passwordTextBox.Location = new System.Drawing.Point(137, 124);
+            this.passwordTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.Size = new System.Drawing.Size(150, 20);
+            this.passwordTextBox.Size = new System.Drawing.Size(199, 22);
             this.passwordTextBox.TabIndex = 4;
             this.passwordTextBox.Tag = "password";
             this.passwordTextBox.Click += new System.EventHandler(this.ProxyEditButton_Click);
@@ -4057,9 +3918,10 @@
             // usernameTextBox
             // 
             this.usernameTextBox.Enabled = false;
-            this.usernameTextBox.Location = new System.Drawing.Point(103, 81);
+            this.usernameTextBox.Location = new System.Drawing.Point(137, 94);
+            this.usernameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(150, 20);
+            this.usernameTextBox.Size = new System.Drawing.Size(199, 22);
             this.usernameTextBox.TabIndex = 3;
             this.usernameTextBox.Tag = "username";
             this.usernameTextBox.Click += new System.EventHandler(this.ProxyEditButton_Click);
@@ -4069,9 +3931,10 @@
             // 
             this.portLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.portLabel.AutoSize = true;
-            this.portLabel.Location = new System.Drawing.Point(3, 57);
+            this.portLabel.Location = new System.Drawing.Point(4, 67);
+            this.portLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.portLabel.Name = "portLabel";
-            this.portLabel.Size = new System.Drawing.Size(29, 15);
+            this.portLabel.Size = new System.Drawing.Size(31, 16);
             this.portLabel.TabIndex = 1;
             this.portLabel.Text = "Port";
             // 
@@ -4079,18 +3942,20 @@
             // 
             this.addressLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.addressLabel.AutoSize = true;
-            this.addressLabel.Location = new System.Drawing.Point(3, 31);
+            this.addressLabel.Location = new System.Drawing.Point(4, 37);
+            this.addressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.addressLabel.Name = "addressLabel";
-            this.addressLabel.Size = new System.Drawing.Size(51, 15);
+            this.addressLabel.Size = new System.Drawing.Size(58, 16);
             this.addressLabel.TabIndex = 0;
             this.addressLabel.Text = "Address";
             // 
             // portTextBox
             // 
             this.portTextBox.Enabled = false;
-            this.portTextBox.Location = new System.Drawing.Point(103, 55);
+            this.portTextBox.Location = new System.Drawing.Point(137, 64);
+            this.portTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.portTextBox.Name = "portTextBox";
-            this.portTextBox.Size = new System.Drawing.Size(150, 20);
+            this.portTextBox.Size = new System.Drawing.Size(199, 22);
             this.portTextBox.TabIndex = 2;
             this.portTextBox.Tag = "port";
             this.toolTip1.SetToolTip(this.portTextBox, "TCP port to connect to");
@@ -4100,9 +3965,10 @@
             // addressTextBox
             // 
             this.addressTextBox.Enabled = false;
-            this.addressTextBox.Location = new System.Drawing.Point(103, 29);
+            this.addressTextBox.Location = new System.Drawing.Point(137, 34);
+            this.addressTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.addressTextBox.Name = "addressTextBox";
-            this.addressTextBox.Size = new System.Drawing.Size(150, 20);
+            this.addressTextBox.Size = new System.Drawing.Size(199, 22);
             this.addressTextBox.TabIndex = 1;
             this.addressTextBox.Tag = "address";
             this.toolTip1.SetToolTip(this.addressTextBox, "Host name or numeric address to connect to");
@@ -4113,9 +3979,10 @@
             // 
             this.usernameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(3, 83);
+            this.usernameLabel.Location = new System.Drawing.Point(4, 97);
+            this.usernameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(65, 15);
+            this.usernameLabel.Size = new System.Drawing.Size(70, 16);
             this.usernameLabel.TabIndex = 3;
             this.usernameLabel.Text = "Username";
             // 
@@ -4123,9 +3990,10 @@
             // 
             this.passwordLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(3, 109);
+            this.passwordLabel.Location = new System.Drawing.Point(4, 127);
+            this.passwordLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(61, 15);
+            this.passwordLabel.Size = new System.Drawing.Size(67, 16);
             this.passwordLabel.TabIndex = 4;
             this.passwordLabel.Text = "Password";
             // 
@@ -4133,17 +4001,19 @@
             // 
             this.proxyTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.proxyTypeLabel.AutoSize = true;
-            this.proxyTypeLabel.Location = new System.Drawing.Point(3, 5);
+            this.proxyTypeLabel.Location = new System.Drawing.Point(4, 7);
+            this.proxyTypeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.proxyTypeLabel.Name = "proxyTypeLabel";
-            this.proxyTypeLabel.Size = new System.Drawing.Size(62, 15);
+            this.proxyTypeLabel.Size = new System.Drawing.Size(70, 16);
             this.proxyTypeLabel.TabIndex = 5;
             this.proxyTypeLabel.Text = "Proxy type";
             // 
             // proxyTypeTextBox
             // 
-            this.proxyTypeTextBox.Location = new System.Drawing.Point(103, 3);
+            this.proxyTypeTextBox.Location = new System.Drawing.Point(137, 4);
+            this.proxyTypeTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.proxyTypeTextBox.Name = "proxyTypeTextBox";
-            this.proxyTypeTextBox.Size = new System.Drawing.Size(150, 20);
+            this.proxyTypeTextBox.Size = new System.Drawing.Size(199, 22);
             this.proxyTypeTextBox.TabIndex = 6;
             this.proxyTypeTextBox.Tag = "type";
             this.proxyTypeTextBox.Click += new System.EventHandler(this.ProxyEditButton_Click);
@@ -4153,10 +4023,11 @@
             // 
             this.miscellaneousTab.Controls.Add(this.warningLabel);
             this.miscellaneousTab.Controls.Add(this.miscellaneousGroupBox);
-            this.miscellaneousTab.Location = new System.Drawing.Point(4, 22);
+            this.miscellaneousTab.Location = new System.Drawing.Point(4, 25);
+            this.miscellaneousTab.Margin = new System.Windows.Forms.Padding(4);
             this.miscellaneousTab.Name = "miscellaneousTab";
-            this.miscellaneousTab.Padding = new System.Windows.Forms.Padding(3);
-            this.miscellaneousTab.Size = new System.Drawing.Size(675, 624);
+            this.miscellaneousTab.Padding = new System.Windows.Forms.Padding(4);
+            this.miscellaneousTab.Size = new System.Drawing.Size(903, 771);
             this.miscellaneousTab.TabIndex = 10;
             this.miscellaneousTab.Text = "Misc";
             this.miscellaneousTab.UseVisualStyleBackColor = true;
@@ -4164,18 +4035,21 @@
             // warningLabel
             // 
             this.warningLabel.AutoSize = true;
-            this.warningLabel.Location = new System.Drawing.Point(16, 16);
+            this.warningLabel.Location = new System.Drawing.Point(21, 20);
+            this.warningLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.warningLabel.Name = "warningLabel";
-            this.warningLabel.Size = new System.Drawing.Size(505, 60);
+            this.warningLabel.Size = new System.Drawing.Size(542, 64);
             this.warningLabel.TabIndex = 1;
             this.warningLabel.Text = resources.GetString("warningLabel.Text");
             // 
             // miscellaneousGroupBox
             // 
             this.miscellaneousGroupBox.Controls.Add(this.miscellaneousTableLayoutPanel);
-            this.miscellaneousGroupBox.Location = new System.Drawing.Point(19, 81);
+            this.miscellaneousGroupBox.Location = new System.Drawing.Point(25, 100);
+            this.miscellaneousGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.miscellaneousGroupBox.Name = "miscellaneousGroupBox";
-            this.miscellaneousGroupBox.Size = new System.Drawing.Size(380, 496);
+            this.miscellaneousGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.miscellaneousGroupBox.Size = new System.Drawing.Size(507, 610);
             this.miscellaneousGroupBox.TabIndex = 0;
             this.miscellaneousGroupBox.TabStop = false;
             this.miscellaneousGroupBox.Text = "Miscellaneous settings";
@@ -4188,7 +4062,8 @@
             this.miscellaneousTableLayoutPanel.ColumnCount = 2;
             this.miscellaneousTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.miscellaneousTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.miscellaneousTableLayoutPanel.Location = new System.Drawing.Point(6, 19);
+            this.miscellaneousTableLayoutPanel.Location = new System.Drawing.Point(8, 23);
+            this.miscellaneousTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.miscellaneousTableLayoutPanel.Name = "miscellaneousTableLayoutPanel";
             this.miscellaneousTableLayoutPanel.RowCount = 30;
             this.miscellaneousTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -4233,19 +4108,20 @@
             this.buttonsLayoutPanel.Controls.Add(this.setToDefaultsButton);
             this.buttonsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonsLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.buttonsLayoutPanel.Location = new System.Drawing.Point(453, 659);
+            this.buttonsLayoutPanel.Location = new System.Drawing.Point(604, 812);
+            this.buttonsLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonsLayoutPanel.Name = "buttonsLayoutPanel";
-            this.buttonsLayoutPanel.Size = new System.Drawing.Size(233, 29);
+            this.buttonsLayoutPanel.Size = new System.Drawing.Size(311, 36);
             this.buttonsLayoutPanel.TabIndex = 0;
             // 
             // helpPictureBox
             // 
             this.helpPictureBox.ContextMenuStrip = this.helpContextMenuStrip;
             this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(210, 3);
-            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(6, 3, 0, 3);
+            this.helpPictureBox.Location = new System.Drawing.Point(280, 4);
+            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(8, 4, 0, 4);
             this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox.Size = new System.Drawing.Size(31, 28);
             this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.helpPictureBox.TabIndex = 8;
             this.helpPictureBox.TabStop = false;
@@ -4277,13 +4153,539 @@
             this.startTourToolStripMenuItem.Text = "Start tour";
             this.startTourToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
             // 
+            // tableLayoutPanel
+            // 
+            this.tableLayoutPanel.AutoSize = true;
+            this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel.ColumnCount = 2;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 600F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel.Controls.Add(this.buttonsLayoutPanel, 1, 1);
+            this.tableLayoutPanel.Controls.Add(this.settingsTabs, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.readOnlyFlowLayoutPanel, 0, 1);
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 2;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel.Size = new System.Drawing.Size(919, 852);
+            this.tableLayoutPanel.TabIndex = 2;
+            // 
+            // readOnlyFlowLayoutPanel
+            // 
+            this.readOnlyFlowLayoutPanel.AutoSize = true;
+            this.readOnlyFlowLayoutPanel.Controls.Add(this.readOnlyLabel);
+            this.readOnlyFlowLayoutPanel.Controls.Add(this.saveACopyButton);
+            this.readOnlyFlowLayoutPanel.Location = new System.Drawing.Point(3, 810);
+            this.readOnlyFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.readOnlyFlowLayoutPanel.Name = "readOnlyFlowLayoutPanel";
+            this.readOnlyFlowLayoutPanel.Size = new System.Drawing.Size(428, 40);
+            this.readOnlyFlowLayoutPanel.TabIndex = 1;
+            // 
+            // readOnlyLabel
+            // 
+            this.readOnlyLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.readOnlyLabel.AutoSize = true;
+            this.readOnlyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.readOnlyLabel.Location = new System.Drawing.Point(4, 11);
+            this.readOnlyLabel.Margin = new System.Windows.Forms.Padding(4);
+            this.readOnlyLabel.Name = "readOnlyLabel";
+            this.readOnlyLabel.Size = new System.Drawing.Size(288, 17);
+            this.readOnlyLabel.TabIndex = 0;
+            this.readOnlyLabel.Text = "Read-only mode: Changes will not be saved.";
+            // 
+            // hostColorDialog
+            // 
+            this.hostColorDialog.AnyColor = true;
+            // 
+            // opacityTimer
+            // 
+            this.opacityTimer.Interval = 2000;
+            this.opacityTimer.Tick += new System.EventHandler(this.OpacityTimer_Tick);
+            // 
+            // keyboardActionsRemoveButton
+            // 
+            this.keyboardActionsRemoveButton.AutoSize = true;
+            this.keyboardActionsRemoveButton.Enabled = false;
+            this.keyboardActionsRemoveButton.ForeColor = System.Drawing.Color.Red;
+            this.keyboardActionsRemoveButton.Location = new System.Drawing.Point(232, 4);
+            this.keyboardActionsRemoveButton.Margin = new System.Windows.Forms.Padding(4);
+            this.keyboardActionsRemoveButton.Name = "keyboardActionsRemoveButton";
+            this.keyboardActionsRemoveButton.Size = new System.Drawing.Size(97, 32);
+            this.keyboardActionsRemoveButton.TabIndex = 107;
+            this.keyboardActionsRemoveButton.TabStop = false;
+            this.keyboardActionsRemoveButton.Tag = "Delete";
+            this.keyboardActionsRemoveButton.Text = "❌ Delete";
+            this.toolTip1.SetToolTip(this.keyboardActionsRemoveButton, "Remove definition");
+            this.keyboardActionsRemoveButton.UseVisualStyleBackColor = true;
+            this.keyboardActionsRemoveButton.Click += new System.EventHandler(this.KeyboardAction_Click);
+            // 
+            // keyboardActionsEditButton
+            // 
+            this.keyboardActionsEditButton.AutoSize = true;
+            this.keyboardActionsEditButton.Location = new System.Drawing.Point(124, 4);
+            this.keyboardActionsEditButton.Margin = new System.Windows.Forms.Padding(4);
+            this.keyboardActionsEditButton.Name = "keyboardActionsEditButton";
+            this.keyboardActionsEditButton.Size = new System.Drawing.Size(100, 32);
+            this.keyboardActionsEditButton.TabIndex = 108;
+            this.keyboardActionsEditButton.TabStop = false;
+            this.keyboardActionsEditButton.Tag = "Edit";
+            this.keyboardActionsEditButton.Text = "🖉 Edit";
+            this.toolTip1.SetToolTip(this.keyboardActionsEditButton, "Edit the actions for this key");
+            this.keyboardActionsEditButton.UseVisualStyleBackColor = true;
+            this.keyboardActionsEditButton.Click += new System.EventHandler(this.KeyboardAction_Click);
+            // 
+            // keyboardActionsAddKeyButton
+            // 
+            this.keyboardActionsAddKeyButton.AutoSize = true;
+            this.keyboardActionsAddKeyButton.ForeColor = System.Drawing.Color.Green;
+            this.keyboardActionsAddKeyButton.Location = new System.Drawing.Point(4, 4);
+            this.keyboardActionsAddKeyButton.Margin = new System.Windows.Forms.Padding(4);
+            this.keyboardActionsAddKeyButton.Name = "keyboardActionsAddKeyButton";
+            this.keyboardActionsAddKeyButton.Size = new System.Drawing.Size(112, 32);
+            this.keyboardActionsAddKeyButton.TabIndex = 109;
+            this.keyboardActionsAddKeyButton.TabStop = false;
+            this.keyboardActionsAddKeyButton.Tag = "Add";
+            this.keyboardActionsAddKeyButton.Text = "➕ New";
+            this.toolTip1.SetToolTip(this.keyboardActionsAddKeyButton, "Create actions for this key");
+            this.keyboardActionsAddKeyButton.UseVisualStyleBackColor = true;
+            this.keyboardActionsAddKeyButton.Click += new System.EventHandler(this.KeyboardAction_Click);
+            // 
+            // keyboardPictureButton
+            // 
+            this.keyboardPictureButton.BackgroundImage = global::Wx3270.Properties.Resources.KeyboardLayoutSmall;
+            this.keyboardPictureButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.keyboardPictureButton.Location = new System.Drawing.Point(39, 127);
+            this.keyboardPictureButton.Margin = new System.Windows.Forms.Padding(4);
+            this.keyboardPictureButton.Name = "keyboardPictureButton";
+            this.keyboardPictureButton.Size = new System.Drawing.Size(227, 86);
+            this.keyboardPictureButton.TabIndex = 131;
+            this.keyboardPictureButton.TabStop = false;
+            this.toolTip1.SetToolTip(this.keyboardPictureButton, "Display keyboard");
+            this.keyboardPictureButton.UseVisualStyleBackColor = true;
+            this.keyboardPictureButton.Click += new System.EventHandler(this.KeyboardPictureButton_Click);
+            // 
+            // keypadRemoveButton
+            // 
+            this.keypadRemoveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.keypadRemoveButton.AutoSize = true;
+            this.keypadRemoveButton.Enabled = false;
+            this.keypadRemoveButton.ForeColor = System.Drawing.Color.Red;
+            this.keypadRemoveButton.Location = new System.Drawing.Point(172, 53);
+            this.keypadRemoveButton.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.keypadRemoveButton.Name = "keypadRemoveButton";
+            this.keypadRemoveButton.Size = new System.Drawing.Size(101, 32);
+            this.keypadRemoveButton.TabIndex = 43;
+            this.keypadRemoveButton.TabStop = false;
+            this.keypadRemoveButton.Text = "❌ Delete";
+            this.toolTip1.SetToolTip(this.keypadRemoveButton, "Remove definition");
+            this.keypadRemoveButton.UseVisualStyleBackColor = true;
+            this.keypadRemoveButton.Click += new System.EventHandler(this.KeypadRemoveButton_Click);
+            // 
+            // crosshairColorButton
+            // 
+            this.crosshairColorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.crosshairColorButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.crosshairColorButton.Location = new System.Drawing.Point(420, 21);
+            this.crosshairColorButton.Margin = new System.Windows.Forms.Padding(4);
+            this.crosshairColorButton.Name = "crosshairColorButton";
+            this.crosshairColorButton.Size = new System.Drawing.Size(227, 28);
+            this.crosshairColorButton.TabIndex = 39;
+            this.crosshairColorButton.TabStop = false;
+            this.crosshairColorButton.Tag = "";
+            this.crosshairColorButton.Text = "Crosshair Cursor";
+            this.toolTip1.SetToolTip(this.crosshairColorButton, "Color of the crosshair cursor");
+            this.crosshairColorButton.UseVisualStyleBackColor = false;
+            this.crosshairColorButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
+            // 
+            // selectedButton
+            // 
+            this.selectedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectedButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.selectedButton.Location = new System.Drawing.Point(12, 21);
+            this.selectedButton.Margin = new System.Windows.Forms.Padding(4);
+            this.selectedButton.Name = "selectedButton";
+            this.selectedButton.Size = new System.Drawing.Size(227, 28);
+            this.selectedButton.TabIndex = 37;
+            this.selectedButton.TabStop = false;
+            this.selectedButton.Tag = "";
+            this.selectedButton.Text = "Selected Text Background";
+            this.toolTip1.SetToolTip(this.selectedButton, "Background color for selected text");
+            this.selectedButton.UseVisualStyleBackColor = false;
+            this.selectedButton.Click += new System.EventHandler(this.SelectedButton_Click);
+            // 
+            // whiteButton
+            // 
+            this.whiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.whiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.whiteButton.Location = new System.Drawing.Point(420, 300);
+            this.whiteButton.Margin = new System.Windows.Forms.Padding(4);
+            this.whiteButton.Name = "whiteButton";
+            this.whiteButton.Size = new System.Drawing.Size(168, 28);
+            this.whiteButton.TabIndex = 15;
+            this.whiteButton.TabStop = false;
+            this.whiteButton.Tag = "white";
+            this.whiteButton.Text = "White";
+            this.toolTip1.SetToolTip(this.whiteButton, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
+            this.whiteButton.UseVisualStyleBackColor = false;
+            this.whiteButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // grayButton
+            // 
+            this.grayButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grayButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.grayButton.Location = new System.Drawing.Point(9, 300);
+            this.grayButton.Margin = new System.Windows.Forms.Padding(4);
+            this.grayButton.Name = "grayButton";
+            this.grayButton.Size = new System.Drawing.Size(168, 28);
+            this.grayButton.TabIndex = 14;
+            this.grayButton.TabStop = false;
+            this.grayButton.Tag = "grey";
+            this.grayButton.Text = "Gray";
+            this.toolTip1.SetToolTip(this.grayButton, "Gray\r\nHost color X\'FE\'");
+            this.grayButton.UseVisualStyleBackColor = false;
+            this.grayButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // paleTurquoiseButton
+            // 
+            this.paleTurquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paleTurquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.paleTurquoiseButton.Location = new System.Drawing.Point(420, 265);
+            this.paleTurquoiseButton.Margin = new System.Windows.Forms.Padding(4);
+            this.paleTurquoiseButton.Name = "paleTurquoiseButton";
+            this.paleTurquoiseButton.Size = new System.Drawing.Size(168, 28);
+            this.paleTurquoiseButton.TabIndex = 13;
+            this.paleTurquoiseButton.TabStop = false;
+            this.paleTurquoiseButton.Tag = "paleTurquoise";
+            this.paleTurquoiseButton.Text = "Pale Turquoise";
+            this.toolTip1.SetToolTip(this.paleTurquoiseButton, "Pale Turquoise\r\nHost color X\'FD\'");
+            this.paleTurquoiseButton.UseVisualStyleBackColor = false;
+            this.paleTurquoiseButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // paleGreenButton
+            // 
+            this.paleGreenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paleGreenButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.paleGreenButton.Location = new System.Drawing.Point(8, 265);
+            this.paleGreenButton.Margin = new System.Windows.Forms.Padding(4);
+            this.paleGreenButton.Name = "paleGreenButton";
+            this.paleGreenButton.Size = new System.Drawing.Size(168, 28);
+            this.paleGreenButton.TabIndex = 12;
+            this.paleGreenButton.TabStop = false;
+            this.paleGreenButton.Tag = "paleGreen";
+            this.paleGreenButton.Text = "Pale Green";
+            this.toolTip1.SetToolTip(this.paleGreenButton, "Pale Green\r\nHost color X\'FC\'");
+            this.paleGreenButton.UseVisualStyleBackColor = false;
+            this.paleGreenButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // purpleButton
+            // 
+            this.purpleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.purpleButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.purpleButton.Location = new System.Drawing.Point(420, 229);
+            this.purpleButton.Margin = new System.Windows.Forms.Padding(4);
+            this.purpleButton.Name = "purpleButton";
+            this.purpleButton.Size = new System.Drawing.Size(168, 28);
+            this.purpleButton.TabIndex = 11;
+            this.purpleButton.TabStop = false;
+            this.purpleButton.Tag = "purple";
+            this.purpleButton.Text = "Purple";
+            this.toolTip1.SetToolTip(this.purpleButton, "Purple\r\nHost color X\'FB\'");
+            this.purpleButton.UseVisualStyleBackColor = false;
+            this.purpleButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // orangeButton
+            // 
+            this.orangeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.orangeButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.orangeButton.Location = new System.Drawing.Point(9, 229);
+            this.orangeButton.Margin = new System.Windows.Forms.Padding(4);
+            this.orangeButton.Name = "orangeButton";
+            this.orangeButton.Size = new System.Drawing.Size(168, 28);
+            this.orangeButton.TabIndex = 10;
+            this.orangeButton.TabStop = false;
+            this.orangeButton.Tag = "orange";
+            this.orangeButton.Text = "Orange";
+            this.toolTip1.SetToolTip(this.orangeButton, "Orange\r\nHost color X\'FA\'");
+            this.orangeButton.UseVisualStyleBackColor = false;
+            this.orangeButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // deepBlueButton
+            // 
+            this.deepBlueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deepBlueButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.deepBlueButton.Location = new System.Drawing.Point(420, 193);
+            this.deepBlueButton.Margin = new System.Windows.Forms.Padding(4);
+            this.deepBlueButton.Name = "deepBlueButton";
+            this.deepBlueButton.Size = new System.Drawing.Size(168, 28);
+            this.deepBlueButton.TabIndex = 9;
+            this.deepBlueButton.TabStop = false;
+            this.deepBlueButton.Tag = "deepBlue";
+            this.deepBlueButton.Text = "Deep Blue";
+            this.toolTip1.SetToolTip(this.deepBlueButton, "Deep Blue\r\nHost color X\'F9\'");
+            this.deepBlueButton.UseVisualStyleBackColor = false;
+            this.deepBlueButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // blackButton
+            // 
+            this.blackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blackButton.Location = new System.Drawing.Point(8, 193);
+            this.blackButton.Margin = new System.Windows.Forms.Padding(4);
+            this.blackButton.Name = "blackButton";
+            this.blackButton.Size = new System.Drawing.Size(168, 28);
+            this.blackButton.TabIndex = 8;
+            this.blackButton.TabStop = false;
+            this.blackButton.Tag = "black";
+            this.blackButton.Text = "Black";
+            this.toolTip1.SetToolTip(this.blackButton, "Black\r\nHost color X\'F8\'");
+            this.blackButton.UseVisualStyleBackColor = false;
+            this.blackButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // neutralWhiteButton
+            // 
+            this.neutralWhiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.neutralWhiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.neutralWhiteButton.Location = new System.Drawing.Point(9, 23);
+            this.neutralWhiteButton.Margin = new System.Windows.Forms.Padding(4);
+            this.neutralWhiteButton.Name = "neutralWhiteButton";
+            this.neutralWhiteButton.Size = new System.Drawing.Size(168, 50);
+            this.neutralWhiteButton.TabIndex = 0;
+            this.neutralWhiteButton.TabStop = false;
+            this.neutralWhiteButton.Tag = "neutralWhite";
+            this.neutralWhiteButton.Text = "Neutral White\r\nScreen Foreground";
+            this.toolTip1.SetToolTip(this.neutralWhiteButton, "Neutral White\r\nHost color X\'F7\'\r\nIntensified protected text");
+            this.neutralWhiteButton.UseVisualStyleBackColor = false;
+            this.neutralWhiteButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // yellowButton
+            // 
+            this.yellowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yellowButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.yellowButton.Location = new System.Drawing.Point(9, 158);
+            this.yellowButton.Margin = new System.Windows.Forms.Padding(4);
+            this.yellowButton.Name = "yellowButton";
+            this.yellowButton.Size = new System.Drawing.Size(168, 28);
+            this.yellowButton.TabIndex = 6;
+            this.yellowButton.TabStop = false;
+            this.yellowButton.Tag = "yellow";
+            this.yellowButton.Text = "Yellow";
+            this.toolTip1.SetToolTip(this.yellowButton, "Yellow\r\nHost color X\'F6\'");
+            this.yellowButton.UseVisualStyleBackColor = false;
+            this.yellowButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // turquoiseButton
+            // 
+            this.turquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.turquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.turquoiseButton.Location = new System.Drawing.Point(420, 122);
+            this.turquoiseButton.Margin = new System.Windows.Forms.Padding(4);
+            this.turquoiseButton.Name = "turquoiseButton";
+            this.turquoiseButton.Size = new System.Drawing.Size(168, 28);
+            this.turquoiseButton.TabIndex = 5;
+            this.turquoiseButton.TabStop = false;
+            this.turquoiseButton.Tag = "turquoise";
+            this.turquoiseButton.Text = "Turquoise";
+            this.toolTip1.SetToolTip(this.turquoiseButton, "Turquoise\r\nHost color X\'F5\'");
+            this.turquoiseButton.UseVisualStyleBackColor = false;
+            this.turquoiseButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // greenButton
+            // 
+            this.greenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.greenButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.greenButton.Location = new System.Drawing.Point(9, 122);
+            this.greenButton.Margin = new System.Windows.Forms.Padding(4);
+            this.greenButton.Name = "greenButton";
+            this.greenButton.Size = new System.Drawing.Size(168, 28);
+            this.greenButton.TabIndex = 4;
+            this.greenButton.TabStop = false;
+            this.greenButton.Tag = "green";
+            this.greenButton.Text = "Green";
+            this.toolTip1.SetToolTip(this.greenButton, "Green\r\nHost color X\'F4\'\r\nUnprotected text");
+            this.greenButton.UseVisualStyleBackColor = false;
+            this.greenButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // pinkButton
+            // 
+            this.pinkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pinkButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pinkButton.Location = new System.Drawing.Point(420, 158);
+            this.pinkButton.Margin = new System.Windows.Forms.Padding(4);
+            this.pinkButton.Name = "pinkButton";
+            this.pinkButton.Size = new System.Drawing.Size(168, 28);
+            this.pinkButton.TabIndex = 7;
+            this.pinkButton.TabStop = false;
+            this.pinkButton.Tag = "pink";
+            this.pinkButton.Text = "Pink";
+            this.toolTip1.SetToolTip(this.pinkButton, "Pink\r\nHost color X\'F3\'");
+            this.pinkButton.UseVisualStyleBackColor = false;
+            this.pinkButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // redButton
+            // 
+            this.redButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.redButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.redButton.Location = new System.Drawing.Point(420, 86);
+            this.redButton.Margin = new System.Windows.Forms.Padding(4);
+            this.redButton.Name = "redButton";
+            this.redButton.Size = new System.Drawing.Size(168, 28);
+            this.redButton.TabIndex = 3;
+            this.redButton.TabStop = false;
+            this.redButton.Tag = "red";
+            this.redButton.Text = "Red";
+            this.toolTip1.SetToolTip(this.redButton, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
+            this.redButton.UseVisualStyleBackColor = false;
+            this.redButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // blueButton
+            // 
+            this.blueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blueButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.blueButton.Location = new System.Drawing.Point(9, 86);
+            this.blueButton.Margin = new System.Windows.Forms.Padding(4);
+            this.blueButton.Name = "blueButton";
+            this.blueButton.Size = new System.Drawing.Size(168, 28);
+            this.blueButton.TabIndex = 2;
+            this.blueButton.TabStop = false;
+            this.blueButton.Tag = "blue";
+            this.blueButton.Text = "Blue";
+            this.toolTip1.SetToolTip(this.blueButton, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
+            this.blueButton.UseVisualStyleBackColor = false;
+            this.blueButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // neutralBlackButton
+            // 
+            this.neutralBlackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.neutralBlackButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.neutralBlackButton.Location = new System.Drawing.Point(421, 25);
+            this.neutralBlackButton.Margin = new System.Windows.Forms.Padding(4);
+            this.neutralBlackButton.Name = "neutralBlackButton";
+            this.neutralBlackButton.Size = new System.Drawing.Size(168, 50);
+            this.neutralBlackButton.TabIndex = 1;
+            this.neutralBlackButton.TabStop = false;
+            this.neutralBlackButton.Tag = "neutralBlack";
+            this.neutralBlackButton.Text = "Neutral Black\r\nScreen Background";
+            this.toolTip1.SetToolTip(this.neutralBlackButton, "Neutral Black\r\nHost color X\'F0\'\r\nScreen background color");
+            this.neutralBlackButton.UseVisualStyleBackColor = false;
+            this.neutralBlackButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // monoCrosshairButton
+            // 
+            this.monoCrosshairButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoCrosshairButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoCrosshairButton.Location = new System.Drawing.Point(421, 23);
+            this.monoCrosshairButton.Margin = new System.Windows.Forms.Padding(4);
+            this.monoCrosshairButton.Name = "monoCrosshairButton";
+            this.monoCrosshairButton.Size = new System.Drawing.Size(168, 28);
+            this.monoCrosshairButton.TabIndex = 37;
+            this.monoCrosshairButton.TabStop = false;
+            this.monoCrosshairButton.Tag = "red";
+            this.monoCrosshairButton.Text = "Crosshair Cursor";
+            this.toolTip1.SetToolTip(this.monoCrosshairButton, "Color of crosshair cursor");
+            this.monoCrosshairButton.UseVisualStyleBackColor = false;
+            this.monoCrosshairButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
+            // 
+            // monoSelectBackground
+            // 
+            this.monoSelectBackground.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoSelectBackground.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoSelectBackground.Location = new System.Drawing.Point(9, 23);
+            this.monoSelectBackground.Margin = new System.Windows.Forms.Padding(4);
+            this.monoSelectBackground.Name = "monoSelectBackground";
+            this.monoSelectBackground.Size = new System.Drawing.Size(168, 28);
+            this.monoSelectBackground.TabIndex = 3;
+            this.monoSelectBackground.Tag = "red";
+            this.monoSelectBackground.Text = "Selection Background";
+            this.toolTip1.SetToolTip(this.monoSelectBackground, "Background color of selected text");
+            this.monoSelectBackground.UseVisualStyleBackColor = false;
+            this.monoSelectBackground.Click += new System.EventHandler(this.SelectedButton_Click);
+            // 
+            // monoIntensifiedButton
+            // 
+            this.monoIntensifiedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoIntensifiedButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoIntensifiedButton.Location = new System.Drawing.Point(421, 60);
+            this.monoIntensifiedButton.Margin = new System.Windows.Forms.Padding(4);
+            this.monoIntensifiedButton.Name = "monoIntensifiedButton";
+            this.monoIntensifiedButton.Size = new System.Drawing.Size(168, 28);
+            this.monoIntensifiedButton.TabIndex = 5;
+            this.monoIntensifiedButton.TabStop = false;
+            this.monoIntensifiedButton.Tag = "";
+            this.monoIntensifiedButton.Text = "Intensified";
+            this.toolTip1.SetToolTip(this.monoIntensifiedButton, "Intensified text color");
+            this.monoIntensifiedButton.UseVisualStyleBackColor = false;
+            this.monoIntensifiedButton.Click += new System.EventHandler(this.Mono_Click);
+            // 
+            // monoNormalButton
+            // 
+            this.monoNormalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoNormalButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoNormalButton.Location = new System.Drawing.Point(9, 60);
+            this.monoNormalButton.Margin = new System.Windows.Forms.Padding(4);
+            this.monoNormalButton.Name = "monoNormalButton";
+            this.monoNormalButton.Size = new System.Drawing.Size(168, 28);
+            this.monoNormalButton.TabIndex = 4;
+            this.monoNormalButton.TabStop = false;
+            this.monoNormalButton.Tag = "green";
+            this.monoNormalButton.Text = "Normal";
+            this.toolTip1.SetToolTip(this.monoNormalButton, "Normal text and status line color");
+            this.monoNormalButton.UseVisualStyleBackColor = false;
+            this.monoNormalButton.Click += new System.EventHandler(this.Mono_Click);
+            // 
+            // monoBackgroundButton
+            // 
+            this.monoBackgroundButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoBackgroundButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoBackgroundButton.Location = new System.Drawing.Point(9, 25);
+            this.monoBackgroundButton.Margin = new System.Windows.Forms.Padding(4);
+            this.monoBackgroundButton.Name = "monoBackgroundButton";
+            this.monoBackgroundButton.Size = new System.Drawing.Size(168, 28);
+            this.monoBackgroundButton.TabIndex = 2;
+            this.monoBackgroundButton.TabStop = false;
+            this.monoBackgroundButton.Tag = "blue";
+            this.monoBackgroundButton.Text = "Screen Background";
+            this.toolTip1.SetToolTip(this.monoBackgroundButton, "Screen background color");
+            this.monoBackgroundButton.UseVisualStyleBackColor = false;
+            this.monoBackgroundButton.Click += new System.EventHandler(this.Mono_Click);
+            // 
+            // playAudibleBell
+            // 
+            this.playAudibleBell.Dock = System.Windows.Forms.DockStyle.Left;
+            this.playAudibleBell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playAudibleBell.Location = new System.Drawing.Point(132, 40);
+            this.playAudibleBell.Margin = new System.Windows.Forms.Padding(4);
+            this.playAudibleBell.Name = "playAudibleBell";
+            this.playAudibleBell.Size = new System.Drawing.Size(29, 28);
+            this.playAudibleBell.TabIndex = 9;
+            this.playAudibleBell.Tag = "`";
+            this.playAudibleBell.Text = "▶";
+            this.toolTip1.SetToolTip(this.playAudibleBell, "Play the sound");
+            this.playAudibleBell.UseVisualStyleBackColor = true;
+            this.playAudibleBell.Click += new System.EventHandler(this.ConsoleBellPlayButton_Click);
+            // 
+            // playKeyboardClick
+            // 
+            this.playKeyboardClick.Dock = System.Windows.Forms.DockStyle.Left;
+            this.playKeyboardClick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playKeyboardClick.Location = new System.Drawing.Point(132, 4);
+            this.playKeyboardClick.Margin = new System.Windows.Forms.Padding(4);
+            this.playKeyboardClick.Name = "playKeyboardClick";
+            this.playKeyboardClick.Size = new System.Drawing.Size(29, 28);
+            this.playKeyboardClick.TabIndex = 8;
+            this.playKeyboardClick.Tag = "`";
+            this.playKeyboardClick.Text = "▶";
+            this.toolTip1.SetToolTip(this.playKeyboardClick, "Play the sound");
+            this.playKeyboardClick.UseVisualStyleBackColor = true;
+            this.playKeyboardClick.Click += new System.EventHandler(this.KeyClickPlayButton_Click);
+            // 
             // redoButton
             // 
             this.redoButton.Enabled = false;
-            this.redoButton.Location = new System.Drawing.Point(169, 3);
-            this.redoButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.redoButton.Location = new System.Drawing.Point(225, 4);
+            this.redoButton.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
             this.redoButton.Name = "redoButton";
-            this.redoButton.Size = new System.Drawing.Size(35, 23);
+            this.redoButton.Size = new System.Drawing.Size(47, 28);
             this.redoButton.TabIndex = 2;
             this.redoButton.TabStop = false;
             this.redoButton.Tag = "`";
@@ -4294,9 +4696,10 @@
             // undoButton
             // 
             this.undoButton.Enabled = false;
-            this.undoButton.Location = new System.Drawing.Point(128, 3);
+            this.undoButton.Location = new System.Drawing.Point(170, 4);
+            this.undoButton.Margin = new System.Windows.Forms.Padding(4);
             this.undoButton.Name = "undoButton";
-            this.undoButton.Size = new System.Drawing.Size(35, 23);
+            this.undoButton.Size = new System.Drawing.Size(47, 28);
             this.undoButton.TabIndex = 1;
             this.undoButton.TabStop = false;
             this.undoButton.Tag = "`";
@@ -4306,9 +4709,10 @@
             // 
             // setToDefaultsButton
             // 
-            this.setToDefaultsButton.Location = new System.Drawing.Point(30, 3);
+            this.setToDefaultsButton.Location = new System.Drawing.Point(39, 4);
+            this.setToDefaultsButton.Margin = new System.Windows.Forms.Padding(4);
             this.setToDefaultsButton.Name = "setToDefaultsButton";
-            this.setToDefaultsButton.Size = new System.Drawing.Size(92, 23);
+            this.setToDefaultsButton.Size = new System.Drawing.Size(123, 28);
             this.setToDefaultsButton.TabIndex = 0;
             this.setToDefaultsButton.TabStop = false;
             this.setToDefaultsButton.Text = "Set to Defaults";
@@ -4316,87 +4720,31 @@
             this.setToDefaultsButton.UseVisualStyleBackColor = true;
             this.setToDefaultsButton.Click += new System.EventHandler(this.DefaultsButton_Click);
             // 
-            // tableLayoutPanel
-            // 
-            this.tableLayoutPanel.AutoSize = true;
-            this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel.ColumnCount = 2;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 450F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel.Controls.Add(this.buttonsLayoutPanel, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.settingsTabs, 0, 0);
-            this.tableLayoutPanel.Controls.Add(this.readOnlyFlowLayoutPanel, 0, 1);
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 2;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel.Size = new System.Drawing.Size(689, 691);
-            this.tableLayoutPanel.TabIndex = 2;
-            // 
-            // readOnlyFlowLayoutPanel
-            // 
-            this.readOnlyFlowLayoutPanel.AutoSize = true;
-            this.readOnlyFlowLayoutPanel.Controls.Add(this.readOnlyLabel);
-            this.readOnlyFlowLayoutPanel.Controls.Add(this.saveACopyButton);
-            this.readOnlyFlowLayoutPanel.Location = new System.Drawing.Point(2, 658);
-            this.readOnlyFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.readOnlyFlowLayoutPanel.Name = "readOnlyFlowLayoutPanel";
-            this.readOnlyFlowLayoutPanel.Size = new System.Drawing.Size(382, 31);
-            this.readOnlyFlowLayoutPanel.TabIndex = 1;
-            // 
-            // readOnlyLabel
-            // 
-            this.readOnlyLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.readOnlyLabel.AutoSize = true;
-            this.readOnlyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.readOnlyLabel.Location = new System.Drawing.Point(3, 7);
-            this.readOnlyLabel.Margin = new System.Windows.Forms.Padding(3);
-            this.readOnlyLabel.Name = "readOnlyLabel";
-            this.readOnlyLabel.Size = new System.Drawing.Size(288, 17);
-            this.readOnlyLabel.TabIndex = 0;
-            this.readOnlyLabel.Text = "Read-only mode: Changes will not be saved.";
-            // 
             // saveACopyButton
             // 
             this.saveACopyButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.saveACopyButton.AutoSize = true;
-            this.saveACopyButton.Location = new System.Drawing.Point(297, 3);
+            this.saveACopyButton.Location = new System.Drawing.Point(300, 4);
+            this.saveACopyButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveACopyButton.Name = "saveACopyButton";
-            this.saveACopyButton.Size = new System.Drawing.Size(82, 25);
+            this.saveACopyButton.Size = new System.Drawing.Size(124, 32);
             this.saveACopyButton.TabIndex = 1;
             this.saveACopyButton.Text = "Save a copy";
             this.toolTip1.SetToolTip(this.saveACopyButton, "Save a copy of this profile and switch to it");
             this.saveACopyButton.UseVisualStyleBackColor = true;
             this.saveACopyButton.Click += new System.EventHandler(this.SaveACopyButtonClick);
             // 
-            // hostColorDialog
-            // 
-            this.hostColorDialog.AnyColor = true;
-            // 
-            // screenFontDialog
-            // 
-            this.screenFontDialog.AllowVerticalFonts = false;
-            this.screenFontDialog.FixedPitchOnly = true;
-            this.screenFontDialog.FontMustExist = true;
-            this.screenFontDialog.MinSize = 1;
-            this.screenFontDialog.ShowEffects = false;
-            // 
-            // opacityTimer
-            // 
-            this.opacityTimer.Interval = 2000;
-            this.opacityTimer.Tick += new System.EventHandler(this.OpacityTimer_Tick);
-            // 
             // Settings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(148)))), ((int)(((byte)(202)))));
-            this.ClientSize = new System.Drawing.Size(817, 805);
+            this.ClientSize = new System.Drawing.Size(1089, 991);
             this.Controls.Add(this.tableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Settings";
@@ -4533,6 +4881,7 @@
             this.fontTab.ResumeLayout(false);
             this.fontGroupBox.ResumeLayout(false);
             this.fontGroupBox.PerformLayout();
+            this.fontFlowLayoutPanel.ResumeLayout(false);
             this.fontPreviewGroupBox.ResumeLayout(false);
             this.fontPreviewGroupBox.PerformLayout();
             this.fontPreviewTableLayoutPanel.ResumeLayout(false);
@@ -4645,9 +4994,6 @@
         private System.Windows.Forms.RadioButton blackOnWhiteButton;
         private System.Windows.Forms.RadioButton whiteOnBlackButton;
         private System.Windows.Forms.TabPage fontTab;
-        private Wx3270.NoSelectButton fontChangeButton;
-        private System.Windows.Forms.Label fontLabel;
-        private System.Windows.Forms.FontDialog screenFontDialog;
         private System.Windows.Forms.GroupBox cursorGroupBox;
         private System.Windows.Forms.RadioButton underscoreCursorButton;
         private System.Windows.Forms.RadioButton blockCursorButton;
@@ -4880,5 +5226,10 @@
         private System.Windows.Forms.ToolStripMenuItem displayHelpInBrowserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startTourToolStripMenuItem;
         private System.Windows.Forms.CheckBox followerCheckBox;
+        private System.Windows.Forms.FlowLayoutPanel fontFlowLayoutPanel;
+        private System.Windows.Forms.ComboBox familyComboBox;
+        private System.Windows.Forms.ComboBox fontSizeComboBox;
+        private System.Windows.Forms.Button boldButton;
+        private System.Windows.Forms.Button italicButton;
     }
 }

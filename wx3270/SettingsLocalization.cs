@@ -39,6 +39,8 @@ namespace Wx3270
             I18n.LocalizeGlobal(Message.DeferredUntilDisconnected, "changes deferred until disconnected");
             I18n.LocalizeGlobal(Message.DeferredUntilDisconnectedPopUp, "One or more settings have been deferred until the current connection is disconnected.");
             I18n.LocalizeGlobal(Message.ReadOnly, "This wx3270 window is running in read-only mode, because another window has the '{0}' profile open.\r\n\r\nRead-only windows are marked [RO] in the window title.\r\n\r\nSettings changed in this window will not be saved.\r\n\r\nSettings changed in the other window will also be changed in this window. To stop this, un-check the 'Read-only follower' option in the Settings window or use the '{1}' command-line option.");
+            I18n.LocalizeGlobal(Message.InvalidFontName, "Invalid font name");
+            I18n.LocalizeGlobal(Message.InvalidFontSize, "Invalid font size");
 
             I18n.LocalizeGlobal(SettingPath("opacity"), "window opacity");
 
@@ -151,6 +153,16 @@ The button labels include a count of how many Undo and Redo operations are saved
             /// Read-only profile.
             /// </summary>
             public static readonly string ReadOnly = I18n.Combine(MessageName, "readOnly");
+
+            /// <summary>
+            /// Invalid font name.
+            /// </summary>
+            public static readonly string InvalidFontName = I18n.Combine(MessageName, "invalidFontName");
+
+            /// <summary>
+            /// Invalid font size.
+            /// </summary>
+            public static readonly string InvalidFontSize = I18n.Combine(MessageName, "invalidFontSize");
         }
     }
 }
