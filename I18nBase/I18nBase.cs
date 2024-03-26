@@ -30,6 +30,16 @@ namespace I18nBase
         private const string CatalogDir = "MessageCatalog";
 
         /// <summary>
+        /// The prefix attached to untranslated messages.
+        /// </summary>
+        private const string UntranslatedPrefix = "[*] ";
+
+        /// <summary>
+        /// Display format for untranslated messages.
+        /// </summary>
+        private const string UntranslatedMessage = "? {0}";
+
+        /// <summary>
         /// Regular expression for action names.
         /// </summary>
         private static readonly Regex ActionRegex = new Regex("[A-Za-z][A-Za-z0-9_]*\\(\\)");
@@ -137,7 +147,7 @@ namespace I18nBase
                                 localized.Clear();
                                 foreach (var kvp in localizedCaseSensitive)
                                 {
-                                    localized[kvp.Key] = kvp.Value;
+                                    localized[kvp.Key] = kvp.Value.StartsWith(UntranslatedPrefix) ? kvp.Value.Substring(UntranslatedPrefix.Length) : kvp.Value;
                                 }
 
                                 UsingMessageCatalog = true;
@@ -285,7 +295,11 @@ namespace I18nBase
 
             if (!AllowDynamic)
             {
+#if DEBUG
                 throw new Exception($"Unitialized i18n for {path}");
+#else
+                return string.Format(UntranslatedMessage, s);
+#endif
             }
 
             if (localizeWordMethodInfo == null)
