@@ -64,6 +64,7 @@ namespace Wx3270
         /// </summary>
         internal class NativeMethods
         {
+#pragma warning disable SA1600 // Elements should be documented
             /// <summary>
             /// String length for font family.
             /// </summary>
@@ -199,6 +200,7 @@ namespace Wx3270
                 public uint ntmCellHeight;
                 public uint ntmAvgWidth;
             }
+#pragma warning restore SA1600 // Elements should be documented
         }
     }
 }
