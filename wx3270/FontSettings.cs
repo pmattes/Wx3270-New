@@ -5,8 +5,12 @@
 namespace Wx3270
 {
     using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Drawing;
+    using System.Linq;
     using System.Windows.Forms;
+    using System.Windows.Media.TextFormatting;
     using I18nBase;
 
     /// <summary>
@@ -23,6 +27,21 @@ namespace Wx3270
         /// The screen sample.
         /// </summary>
         private ScreenSample fontScreenSample;
+
+        /// <summary>
+        /// The font family names.
+        /// </summary>
+        private IEnumerable<string> familyNames = new List<string>();
+
+        /// <summary>
+        /// The saved familyComboBox font.
+        /// </summary>
+        private Font familyComboBoxFont;
+
+        /// <summary>
+        /// The saved family combo box height.
+        /// </summary>
+        private int familyComboBoxItemHeight;
 
         /// <summary>
         /// Static localization.
@@ -46,11 +65,11 @@ namespace Wx3270
                 Tour.BodyKey(nameof(Settings), nameof(fontPreviewScreenPictureBox)),
 @"This window previews how the font will appear on the main window's emulator display.");
 
-            // Preview screen.
-            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(fontChangeButton)), "Change button");
+            // Font selector.
+            I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(fontFlowLayoutPanel)), "Font selection");
             I18n.LocalizeGlobal(
-                Tour.BodyKey(nameof(Settings), nameof(fontChangeButton)),
-@"Click to change the font.");
+                Tour.BodyKey(nameof(Settings), nameof(fontFlowLayoutPanel)),
+@"Use these controls to select the font family, size and style.");
 
 #pragma warning restore SA1137 // Elements should have the same indentation
 #pragma warning restore SA1118 // Parameter should not span multiple lines
@@ -85,7 +104,6 @@ namespace Wx3270
         /// <param name="colorMode">True if in 3279 mode.</param>
         public void SetFont(Font font, Colors colors, bool colorMode)
         {
-            this.fontLabel.Text = FriendlyName(font);
             this.fontScreenSample.ScreenBox.ScreenNewFont(font, this.CreateSampleImage(this.ColorMode));
             this.fontScreenSample.Invalidate();
             this.fontPreviewStatusLineLabel.Font = font;
@@ -96,21 +114,6 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Screen font change button.
-        /// </summary>
-        public void ChangeFont()
-        {
-            // Pop up the font dialog.
-            this.screenFontDialog.Font = this.editedFont;
-            if (this.screenFontDialog.ShowDialog() == DialogResult.Cancel)
-            {
-                return;
-            }
-
-            this.PropagateNewFont(this.screenFontDialog.Font);
-        }
-
-        /// <summary>
         /// Propagate the new font.
         /// </summary>
         /// <param name="newFont">New font.</param>
@@ -118,7 +121,6 @@ namespace Wx3270
         {
             // Propagate to the setting dialog.
             this.SetFont(newFont, this.editedColors, this.colorButton.Checked);
-            this.fontLabel.Text = FriendlyName(newFont);
             this.fontScreenSample.ScreenBox.ScreenNewFont(newFont, this.CreateSampleImage(this.ColorMode));
             this.fontScreenSample.Invalidate();
             this.fontPreviewStatusLineLabel.Font = newFont;
@@ -171,12 +173,18 @@ namespace Wx3270
             // Set up handler for dynamic font changes.
             this.mainScreen.DynamicFontEvent += this.DynamicFontChange;
 
+            // Initialize the font combo boxes.
+            this.familyNames = new FixedWidthFontEnumerator().Names;
+            this.familyComboBox.Items.AddRange(this.familyNames.ToArray());
+            this.fontSizeComboBox.Items.Clear();
+            this.fontSizeComboBox.Items.AddRange(new[] { 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 }.Select(i => i.ToString()).ToArray());
+
             // Register our tour.
             var nodes = new[]
             {
                 ((Control)this.fontTab, (int?)null, Orientation.Centered),
                 (this.fontPreviewScreenPictureBox, null, Orientation.UpperLeftTight),
-                (this.fontChangeButton, null, Orientation.UpperLeft),
+                (this.fontFlowLayoutPanel, null, Orientation.UpperLeft),
             };
             this.RegisterTour(this.fontTab, nodes);
         }
@@ -193,17 +201,37 @@ namespace Wx3270
             {
                 var newFont = newProfile.Font.Font();
                 this.SetFont(newFont, newProfile.Colors, newProfile.ColorMode);
-            }
-        }
 
-        /// <summary>
-        /// Handler for the font change button.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void FontChangeButtonClick(object sender, EventArgs e)
-        {
-            this.ChangeFont();
+                // Set up the font options.
+                this.SafeControlModify(
+                    new[] { this.familyComboBox, this.fontSizeComboBox },
+                    () =>
+                    {
+                        this.familyComboBox.Text = newProfile.Font.Name;
+                        this.fontSizeComboBox.Text = newProfile.Font.EmSize.ToString();
+                        if (newProfile.Font.Style.HasFlag(FontStyle.Bold))
+                        {
+                            this.boldButton.ForeColor = SystemColors.Control;
+                            this.boldButton.BackColor = SystemColors.Highlight;
+                        }
+                        else
+                        {
+                            this.boldButton.ForeColor = SystemColors.ControlText;
+                            this.boldButton.BackColor = SystemColors.Control;
+                        }
+
+                        if (newProfile.Font.Style.HasFlag(FontStyle.Italic))
+                        {
+                            this.italicButton.ForeColor = SystemColors.Control;
+                            this.italicButton.BackColor = SystemColors.Highlight;
+                        }
+                        else
+                        {
+                            this.italicButton.ForeColor = SystemColors.ControlText;
+                            this.italicButton.BackColor = SystemColors.Control;
+                        }
+                    });
+            }
         }
 
         /// <summary>
@@ -225,10 +253,192 @@ namespace Wx3270
         {
             // Propagate the results to the setting dialog.
             this.SetFont(font, this.editedColors, this.colorButton.Checked);
-            this.fontLabel.Text = FriendlyName(font);
+            this.fontSizeComboBox.Text = font.SizeInPoints.ToString();
             this.fontScreenSample.ScreenBox.ScreenNewFont(font, this.CreateSampleImage(this.ColorMode));
             this.fontScreenSample.Invalidate();
             this.fontPreviewStatusLineLabel.Font = font;
+        }
+
+        /// <summary>
+        /// Push out a font family change.
+        /// </summary>
+        /// <param name="text">Family name.</param>
+        private void FontFamilyPush(string text)
+        {
+            this.ProfileManager.PushAndSave(
+                current =>
+                {
+                    current.Font = new FontProfile(new Font(text, float.Parse(this.fontSizeComboBox.Text), current.Font.Font().Style, GraphicsUnit.Point));
+                },
+                ChangeName(ChangeKeyword.Font));
+        }
+
+        /// <summary>
+        /// The font family selection changed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FontFamilyChanged(object sender, EventArgs e)
+        {
+            if (!this.lockedControls.Contains(this.familyComboBox) && this.familyComboBox.SelectedIndex >= 0)
+            {
+                this.FontFamilyPush(this.familyComboBox.Text);
+            }
+        }
+
+        /// <summary>
+        /// The font family is validating.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FamilyValidating(object sender, CancelEventArgs e)
+        {
+            if (this.lockedControls.Contains(this.familyComboBox))
+            {
+                return;
+            }
+
+            var text = this.familyComboBox.Text;
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                this.familyComboBox.Text = this.ProfileManager.Current.Font.Name;
+                return;
+            }
+
+            if (!this.familyNames.Contains(text, StringComparer.OrdinalIgnoreCase))
+            {
+                ErrorBox.Show(I18n.Get(Message.InvalidFontName), I18n.Get(Title.Settings));
+                e.Cancel = true;
+                return;
+            }
+
+            this.FontFamilyPush(text);
+        }
+
+        /// <summary>
+        /// Push a new font size to the profile.
+        /// </summary>
+        /// <param name="text">Font size text.</param>
+        private void FontSizePush(string text)
+        {
+            this.ProfileManager.PushAndSave(
+                current =>
+                {
+                    current.Font = new FontProfile(new Font(this.familyComboBox.Text, float.Parse(text), current.Font.Font().Style, System.Drawing.GraphicsUnit.Point));
+                },
+                ChangeName(ChangeKeyword.Font));
+        }
+
+        /// <summary>
+        /// The font size index changed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FontSizeChanged(object sender, EventArgs e)
+        {
+            if (!this.lockedControls.Contains(this.fontSizeComboBox) && this.fontSizeComboBox.SelectedIndex >= 0)
+            {
+                this.FontSizePush(this.fontSizeComboBox.Text);
+            }
+        }
+
+        /// <summary>
+        /// The font size is validating.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FontSizeValidating(object sender, CancelEventArgs e)
+        {
+            if (this.lockedControls.Contains(this.fontSizeComboBox))
+            {
+                return;
+            }
+
+            var text = this.fontSizeComboBox.Text;
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                this.fontSizeComboBox.Text = this.ProfileManager.Current.Font.EmSize.ToString();
+                return;
+            }
+
+            if (!float.TryParse(text, out float size) || size <= 0.0 || size > 100.0)
+            {
+                ErrorBox.Show(I18n.Get(Message.InvalidFontSize), I18n.Get(Title.Settings));
+                e.Cancel = true;
+                return;
+            }
+
+            this.FontSizePush(text);
+        }
+
+        /// <summary>
+        /// The Bold button was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void BoldClick(object sender, EventArgs e)
+        {
+            // Flip the state of bold.
+            this.ProfileManager.PushAndSave(
+                current =>
+                {
+                    var currentFont = current.Font.Font();
+                    current.Font = new FontProfile(new Font(currentFont, currentFont.Style ^ FontStyle.Bold));
+                },
+                ChangeName(ChangeKeyword.Font));
+        }
+
+        /// <summary>
+        /// The Italic button was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void ItalicClick(object sender, EventArgs e)
+        {
+            // Flip the state of italic.
+            this.ProfileManager.PushAndSave(
+                current =>
+                {
+                    var currentFont = current.Font.Font();
+                    current.Font = new FontProfile(new Font(currentFont, currentFont.Style ^ FontStyle.Italic));
+                },
+                ChangeName(ChangeKeyword.Font));
+        }
+
+        /// <summary>
+        /// The familyComboBox needs to be drawn.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event agruments.</param>
+        private void FamilyComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            var font = new Font((string)this.familyComboBox.Items[e.Index], this.familyComboBox.Font.SizeInPoints, FontStyle.Regular);
+            e.DrawBackground();
+            e.Graphics.DrawString(font.Name, font, Brushes.Black, e.Bounds.X, e.Bounds.Y);
+        }
+
+        /// <summary>
+        /// The family combo box drop down was opened.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FamilyComboBoxDropDown(object sender, EventArgs e)
+        {
+            this.familyComboBoxFont = this.familyComboBox.Font;
+            this.familyComboBoxItemHeight = this.familyComboBox.ItemHeight;
+            this.familyComboBox.Font = new Font(this.familyComboBox.Font.Name, 16.0F, this.familyComboBox.Font.Style);
+            this.familyComboBox.ItemHeight = 24;
+        }
+
+        /// <summary>
+        /// The family combo box drop down was closed.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FamilyComboBoxDropDownClosed(object sender, EventArgs e)
+        {
+            this.familyComboBox.Font = this.familyComboBoxFont;
+            this.familyComboBox.ItemHeight = this.familyComboBoxItemHeight;
         }
     }
 }

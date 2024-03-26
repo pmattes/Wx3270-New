@@ -142,6 +142,7 @@
     <Compile Include="Contracts\IInitialLocation.cs" />
     <Compile Include="Contracts\IModelsDb.cs" />
     <Compile Include="Contracts\ITerminalName.cs" />
+    <Compile Include="FixedWidthFontEnumerator.cs" />
     <Compile Include="ShortcutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
