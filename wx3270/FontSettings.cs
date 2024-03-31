@@ -10,7 +10,6 @@ namespace Wx3270
     using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
-    using System.Windows.Media.TextFormatting;
     using I18nBase;
 
     /// <summary>
@@ -161,6 +160,11 @@ namespace Wx3270
                 this.fontPreviewSeparatorPictureBox,
                 this.ColorMode);
 
+            // Initialize the font combo boxes.
+            this.familyNames = new FixedWidthFontEnumerator().Names;
+            this.familyComboBox.Items.AddRange(this.familyNames.ToArray());
+            this.fontSizeComboBox.Items.AddRange(new[] { 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 }.Select(i => i.ToString()).ToArray());
+
             // Set up handler for profile changes.
             this.ProfileManager.AddChangeTo(this.FontProfileChanged);
 
@@ -172,12 +176,6 @@ namespace Wx3270
 
             // Set up handler for dynamic font changes.
             this.mainScreen.DynamicFontEvent += this.DynamicFontChange;
-
-            // Initialize the font combo boxes.
-            this.familyNames = new FixedWidthFontEnumerator().Names;
-            this.familyComboBox.Items.AddRange(this.familyNames.ToArray());
-            this.fontSizeComboBox.Items.Clear();
-            this.fontSizeComboBox.Items.AddRange(new[] { 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 }.Select(i => i.ToString()).ToArray());
 
             // Register our tour.
             var nodes = new[]
@@ -287,35 +285,6 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// The font family is validating.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void FamilyValidating(object sender, CancelEventArgs e)
-        {
-            if (this.lockedControls.Contains(this.familyComboBox))
-            {
-                return;
-            }
-
-            var text = this.familyComboBox.Text;
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                this.familyComboBox.Text = this.ProfileManager.Current.Font.Name;
-                return;
-            }
-
-            if (!this.familyNames.Contains(text, StringComparer.OrdinalIgnoreCase))
-            {
-                ErrorBox.Show(I18n.Get(Message.InvalidFontName), I18n.Get(Title.Settings));
-                e.Cancel = true;
-                return;
-            }
-
-            this.FontFamilyPush(text);
-        }
-
-        /// <summary>
         /// Push a new font size to the profile.
         /// </summary>
         /// <param name="text">Font size text.</param>
@@ -412,9 +381,23 @@ namespace Wx3270
         /// <param name="e">Event agruments.</param>
         private void FamilyComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            if (e.Index < 0 || e.Bounds.Y == this.familyComboBox.Location.Y)
+            {
+                // Drawing the current value (no index set yet) or drawing the new selection.
+                e.DrawBackground();
+                var fontName = (e.Index >= 0) ? (string)this.familyComboBox.Items[e.Index] : "Unknown";
+                TextRenderer.DrawText(
+                    e.Graphics,
+                    fontName,
+                    this.familyComboBox.Font,
+                    new Point(e.Bounds.X, e.Bounds.Y),
+                    e.ForeColor);
+                return;
+            }
+
             var font = new Font((string)this.familyComboBox.Items[e.Index], this.familyComboBox.Font.SizeInPoints, FontStyle.Regular);
             e.DrawBackground();
-            e.Graphics.DrawString(font.Name, font, Brushes.Black, e.Bounds.X, e.Bounds.Y);
+            TextRenderer.DrawText(e.Graphics, font.Name, font, new Point(e.Bounds.X, e.Bounds.Y), e.ForeColor);
         }
 
         /// <summary>
@@ -426,7 +409,7 @@ namespace Wx3270
         {
             this.familyComboBoxFont = this.familyComboBox.Font;
             this.familyComboBoxItemHeight = this.familyComboBox.ItemHeight;
-            this.familyComboBox.Font = new Font(this.familyComboBox.Font.Name, 16.0F, this.familyComboBox.Font.Style);
+            this.familyComboBox.Font = new Font(this.familyComboBox.Font.Name, 14.0F, this.familyComboBox.Font.Style);
             this.familyComboBox.ItemHeight = 24;
         }
 
@@ -437,6 +420,15 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void FamilyComboBoxDropDownClosed(object sender, EventArgs e)
         {
+            // Here's an interesting quirk, found by trial and error.
+            // When a ComboBox has DropDownStyle set to DropDown, the value is highlighted with a blue background when the control has focus.
+            // When it is set to DropDownList, the value is more subtly highlighted, with a gray border.
+            // However, when the DrawMode is OwnerDrawFixed (I'm drawing it myself), this changes, and the value is highlighted
+            // with a blue background in both DropDownStyle modes. I do not like that.
+            // To fix that, I could try to do something clever here like move the focus elsewhere or even mess with the colors I draw with,
+            // but the net effect would be funky tab behavior -- either because the focus really has jumped for no good reason with
+            // the first workaround, or because the focus hasn't jumped but it looks like it has for the second.
+            // Apparently I just get to live with it.
             this.familyComboBox.Font = this.familyComboBoxFont;
             this.familyComboBox.ItemHeight = this.familyComboBoxItemHeight;
         }

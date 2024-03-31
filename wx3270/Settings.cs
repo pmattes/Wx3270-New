@@ -1168,16 +1168,6 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// The font family is validating.
-        /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Event arguments.</param>
-        private void Family_Validating(object sender, CancelEventArgs e)
-        {
-            this.FamilyValidating(sender, e);
-        }
-
-        /// <summary>
         /// The font size changed.
         /// </summary>
         /// <param name="sender">Event sender.</param>

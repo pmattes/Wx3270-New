@@ -892,6 +892,7 @@
             // modelComboBox
             // 
             this.modelComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.modelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.modelComboBox.FormattingEnabled = true;
             this.modelComboBox.Items.AddRange(new object[] {
             "(none)"});
@@ -3411,6 +3412,7 @@
             // 
             this.familyComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.familyComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.familyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.familyComboBox.DropDownWidth = 325;
             this.familyComboBox.FormattingEnabled = true;
             this.familyComboBox.Location = new System.Drawing.Point(3, 5);
@@ -3422,7 +3424,6 @@
             this.familyComboBox.DropDown += new System.EventHandler(this.FamilyComboBox_DropDown);
             this.familyComboBox.DropDownClosed += new System.EventHandler(this.FamilyComboBox_DropDownClosed);
             this.familyComboBox.SelectedValueChanged += new System.EventHandler(this.FontFamily_Changed);
-            this.familyComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.Family_Validating);
             // 
             // fontSizeComboBox
             // 
