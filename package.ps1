@@ -1,6 +1,9 @@
 ﻿param (
     # Archive flag
-    [switch]$archive = $false
+    [switch]$archive = $false,
+    # Commit flag
+    [switch]$commit = $false
+
 )
 
 # Set up constants.
@@ -64,4 +67,15 @@ if ($archive)
     $bgpdir = "www/download/wx3270/{0:D2}.{1:D2}" -f [int]$verparts[0],[int]$verparts[1]
     & ssh bgp.nu "mkdir -p $bgpdir"
     & scp $files bgp.nu:$bgpdir/
+}
+
+# Commit.
+if ($commit)
+{
+    Write-Host -ForegroundColor Green 'Committing'
+    & git add .
+    & git commit -m$version
+    & git tag -a -m$version $version
+    & git push
+    & git push --tags
 }
