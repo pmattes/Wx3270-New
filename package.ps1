@@ -67,6 +67,7 @@ if ($archive)
     $bgpdir = "www/download/wx3270/{0:D2}.{1:D2}" -f [int]$verparts[0],[int]$verparts[1]
     & ssh bgp.nu "mkdir -p $bgpdir"
     & scp $files bgp.nu:$bgpdir/
+    & scp $files pmattes@frs.sourceforge.net:/home/frs/p/x3270/wx3270/
 }
 
 # Commit.
