@@ -1566,7 +1566,7 @@
   "Tour.form.nextButton.toolTip": "Passer à l'élément suivant de la visite guidée",
   "Tour.form.previousButton": "← Précédent",
   "Tour.form.previousButton.toolTip": "Passer à l'élément précédent de la visite guidée",
-  "Tour.form.stopToursButton": "Arrêter toutes les visites guidées",
+  "Tour.form.stopToursButton": "Arrêter toutes les\r\nvisites guidées",
   "Tour.form.stopToursButton.toolTip": "Cesser d'afficher automatiquement les visites guidées",
   "Tour.form.title": "Visite guidée",
   "Tour.HostEditor.1.Body": "Utilisez l'éditeur de connexion pour définir ou modifier une connexion à un hôte.\r\n\r\nA Une connexion possède des paramètres de base tels que le nom/l'adresse de l'hôte et le port TCP.\r\n\r\nSi vous souhaitez modifier un paramètre que vous ne voyez pas ici, tel que les couleurs ou les mappages de clavier, il s'agit de paramètres par profil et ils sont modifiés à partir de la fenêtre Paramètres.",
