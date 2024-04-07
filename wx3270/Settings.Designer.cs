@@ -120,6 +120,9 @@
             this.keyboardActionsInheritedLabel = new System.Windows.Forms.Label();
             this.keyboardActionsTextBox = new System.Windows.Forms.TextBox();
             this.keyboardActionsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.keyboardActionsRemoveButton = new Wx3270.NoSelectButton();
+            this.keyboardActionsEditButton = new Wx3270.NoSelectButton();
+            this.keyboardActionsAddKeyButton = new Wx3270.NoSelectButton();
             this.behaviorLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.actionsRadioButton = new System.Windows.Forms.RadioButton();
@@ -131,6 +134,7 @@
             this.chordLabel = new System.Windows.Forms.Label();
             this.matchTypeflowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.keyboardModifiersLabel = new System.Windows.Forms.Label();
+            this.keyboardPictureButton = new Wx3270.NoSelectButton();
             this.keypadTab = new System.Windows.Forms.TabPage();
             this.keypadTypeFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.keypadTypeLabel = new System.Windows.Forms.Label();
@@ -157,6 +161,7 @@
             this.insertRadioButton = new System.Windows.Forms.RadioButton();
             this.blankPictureBox = new System.Windows.Forms.PictureBox();
             this.deleteRadioButton = new System.Windows.Forms.RadioButton();
+            this.keypadRemoveButton = new Wx3270.NoSelectButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.editedButtonActionsTextBox = new System.Windows.Forms.TextBox();
             this.keypadActionsInheritedLabel = new System.Windows.Forms.Label();
@@ -177,7 +182,9 @@
             this.colorPreviewScreenPictureBox = new System.Windows.Forms.PictureBox();
             this.colorMiscGroupBox = new System.Windows.Forms.GroupBox();
             this.crosshairSwatch = new System.Windows.Forms.PictureBox();
+            this.crosshairColorButton = new Wx3270.NoSelectButton();
             this.selectionSwatch = new System.Windows.Forms.PictureBox();
+            this.selectedButton = new Wx3270.NoSelectButton();
             this.schemeBox = new System.Windows.Forms.GroupBox();
             this.customButton = new System.Windows.Forms.RadioButton();
             this.blackOnWhiteButton = new System.Windows.Forms.RadioButton();
@@ -217,10 +224,28 @@
             this.redSample = new System.Windows.Forms.Label();
             this.blueSample = new System.Windows.Forms.Label();
             this.neutralBlackSample = new System.Windows.Forms.Label();
+            this.whiteButton = new Wx3270.NoSelectButton();
+            this.grayButton = new Wx3270.NoSelectButton();
+            this.paleTurquoiseButton = new Wx3270.NoSelectButton();
+            this.paleGreenButton = new Wx3270.NoSelectButton();
+            this.purpleButton = new Wx3270.NoSelectButton();
+            this.orangeButton = new Wx3270.NoSelectButton();
+            this.deepBlueButton = new Wx3270.NoSelectButton();
+            this.blackButton = new Wx3270.NoSelectButton();
+            this.neutralWhiteButton = new Wx3270.NoSelectButton();
+            this.yellowButton = new Wx3270.NoSelectButton();
+            this.turquoiseButton = new Wx3270.NoSelectButton();
+            this.greenButton = new Wx3270.NoSelectButton();
+            this.pinkButton = new Wx3270.NoSelectButton();
+            this.redButton = new Wx3270.NoSelectButton();
+            this.blueButton = new Wx3270.NoSelectButton();
+            this.neutralBlackButton = new Wx3270.NoSelectButton();
             this.colors3278Tab = new System.Windows.Forms.TabPage();
             this.monoOtherGroupBox = new System.Windows.Forms.GroupBox();
             this.monoCrosshairSample = new System.Windows.Forms.Label();
             this.monoSelectBackgroundSwatch = new System.Windows.Forms.Label();
+            this.monoCrosshairButton = new Wx3270.NoSelectButton();
+            this.monoSelectBackground = new Wx3270.NoSelectButton();
             this.monoPreviewGroupBox = new System.Windows.Forms.GroupBox();
             this.monoPreviewTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.monoPreviewSeparatorPictureBox = new System.Windows.Forms.PictureBox();
@@ -234,6 +259,9 @@
             this.monoNormalSample = new System.Windows.Forms.Label();
             this.monoIntensifiedSample = new System.Windows.Forms.Label();
             this.monoBackgroundSwatch = new System.Windows.Forms.Label();
+            this.monoIntensifiedButton = new Wx3270.NoSelectButton();
+            this.monoNormalButton = new Wx3270.NoSelectButton();
+            this.monoBackgroundButton = new Wx3270.NoSelectButton();
             this.monoColorSchemeBox = new System.Windows.Forms.GroupBox();
             this.monoCustomButton = new System.Windows.Forms.RadioButton();
             this.greenOnWhiteButton = new System.Windows.Forms.RadioButton();
@@ -254,8 +282,10 @@
             this.soundsTab = new System.Windows.Forms.TabPage();
             this.soundsGroupBox = new System.Windows.Forms.GroupBox();
             this.soundLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.playAudibleBell = new Wx3270.NoSelectButton();
             this.keyboardClickCheckBox = new System.Windows.Forms.CheckBox();
             this.audibleBellCheckBox = new System.Windows.Forms.CheckBox();
+            this.playKeyboardClick = new Wx3270.NoSelectButton();
             this.serversTab = new System.Windows.Forms.TabPage();
             this.httpdBox = new System.Windows.Forms.GroupBox();
             this.httpdNoConfigLabel = new System.Windows.Forms.Label();
@@ -295,47 +325,17 @@
             this.helpContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.displayHelpInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startTourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.redoButton = new Wx3270.NoSelectButton();
+            this.undoButton = new Wx3270.NoSelectButton();
+            this.setToDefaultsButton = new Wx3270.NoSelectButton();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.readOnlyFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.readOnlyLabel = new System.Windows.Forms.Label();
+            this.saveACopyButton = new Wx3270.NoSelectButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.hostColorDialog = new System.Windows.Forms.ColorDialog();
             this.opacityTimer = new System.Windows.Forms.Timer(this.components);
             this.printerSaveFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.keyboardActionsRemoveButton = new Wx3270.NoSelectButton();
-            this.keyboardActionsEditButton = new Wx3270.NoSelectButton();
-            this.keyboardActionsAddKeyButton = new Wx3270.NoSelectButton();
-            this.keyboardPictureButton = new Wx3270.NoSelectButton();
-            this.keypadRemoveButton = new Wx3270.NoSelectButton();
-            this.crosshairColorButton = new Wx3270.NoSelectButton();
-            this.selectedButton = new Wx3270.NoSelectButton();
-            this.whiteButton = new Wx3270.NoSelectButton();
-            this.grayButton = new Wx3270.NoSelectButton();
-            this.paleTurquoiseButton = new Wx3270.NoSelectButton();
-            this.paleGreenButton = new Wx3270.NoSelectButton();
-            this.purpleButton = new Wx3270.NoSelectButton();
-            this.orangeButton = new Wx3270.NoSelectButton();
-            this.deepBlueButton = new Wx3270.NoSelectButton();
-            this.blackButton = new Wx3270.NoSelectButton();
-            this.neutralWhiteButton = new Wx3270.NoSelectButton();
-            this.yellowButton = new Wx3270.NoSelectButton();
-            this.turquoiseButton = new Wx3270.NoSelectButton();
-            this.greenButton = new Wx3270.NoSelectButton();
-            this.pinkButton = new Wx3270.NoSelectButton();
-            this.redButton = new Wx3270.NoSelectButton();
-            this.blueButton = new Wx3270.NoSelectButton();
-            this.neutralBlackButton = new Wx3270.NoSelectButton();
-            this.monoCrosshairButton = new Wx3270.NoSelectButton();
-            this.monoSelectBackground = new Wx3270.NoSelectButton();
-            this.monoIntensifiedButton = new Wx3270.NoSelectButton();
-            this.monoNormalButton = new Wx3270.NoSelectButton();
-            this.monoBackgroundButton = new Wx3270.NoSelectButton();
-            this.playAudibleBell = new Wx3270.NoSelectButton();
-            this.playKeyboardClick = new Wx3270.NoSelectButton();
-            this.redoButton = new Wx3270.NoSelectButton();
-            this.undoButton = new Wx3270.NoSelectButton();
-            this.setToDefaultsButton = new Wx3270.NoSelectButton();
-            this.saveACopyButton = new Wx3270.NoSelectButton();
             this.settingsTabs.SuspendLayout();
             this.optionsTab.SuspendLayout();
             this.descriptionGroupBox.SuspendLayout();
@@ -1699,6 +1699,54 @@
             this.keyboardActionsFlowLayoutPanel.Size = new System.Drawing.Size(333, 40);
             this.keyboardActionsFlowLayoutPanel.TabIndex = 141;
             // 
+            // keyboardActionsRemoveButton
+            // 
+            this.keyboardActionsRemoveButton.AutoSize = true;
+            this.keyboardActionsRemoveButton.Enabled = false;
+            this.keyboardActionsRemoveButton.ForeColor = System.Drawing.Color.Red;
+            this.keyboardActionsRemoveButton.Location = new System.Drawing.Point(232, 4);
+            this.keyboardActionsRemoveButton.Margin = new System.Windows.Forms.Padding(4);
+            this.keyboardActionsRemoveButton.Name = "keyboardActionsRemoveButton";
+            this.keyboardActionsRemoveButton.Size = new System.Drawing.Size(97, 32);
+            this.keyboardActionsRemoveButton.TabIndex = 107;
+            this.keyboardActionsRemoveButton.TabStop = false;
+            this.keyboardActionsRemoveButton.Tag = "Delete";
+            this.keyboardActionsRemoveButton.Text = "❌ Delete";
+            this.toolTip1.SetToolTip(this.keyboardActionsRemoveButton, "Remove definition");
+            this.keyboardActionsRemoveButton.UseVisualStyleBackColor = true;
+            this.keyboardActionsRemoveButton.Click += new System.EventHandler(this.KeyboardAction_Click);
+            // 
+            // keyboardActionsEditButton
+            // 
+            this.keyboardActionsEditButton.AutoSize = true;
+            this.keyboardActionsEditButton.Location = new System.Drawing.Point(124, 4);
+            this.keyboardActionsEditButton.Margin = new System.Windows.Forms.Padding(4);
+            this.keyboardActionsEditButton.Name = "keyboardActionsEditButton";
+            this.keyboardActionsEditButton.Size = new System.Drawing.Size(100, 32);
+            this.keyboardActionsEditButton.TabIndex = 108;
+            this.keyboardActionsEditButton.TabStop = false;
+            this.keyboardActionsEditButton.Tag = "Edit";
+            this.keyboardActionsEditButton.Text = "🖉 Edit";
+            this.toolTip1.SetToolTip(this.keyboardActionsEditButton, "Edit the actions for this key");
+            this.keyboardActionsEditButton.UseVisualStyleBackColor = true;
+            this.keyboardActionsEditButton.Click += new System.EventHandler(this.KeyboardAction_Click);
+            // 
+            // keyboardActionsAddKeyButton
+            // 
+            this.keyboardActionsAddKeyButton.AutoSize = true;
+            this.keyboardActionsAddKeyButton.ForeColor = System.Drawing.Color.Green;
+            this.keyboardActionsAddKeyButton.Location = new System.Drawing.Point(4, 4);
+            this.keyboardActionsAddKeyButton.Margin = new System.Windows.Forms.Padding(4);
+            this.keyboardActionsAddKeyButton.Name = "keyboardActionsAddKeyButton";
+            this.keyboardActionsAddKeyButton.Size = new System.Drawing.Size(112, 32);
+            this.keyboardActionsAddKeyButton.TabIndex = 109;
+            this.keyboardActionsAddKeyButton.TabStop = false;
+            this.keyboardActionsAddKeyButton.Tag = "Add";
+            this.keyboardActionsAddKeyButton.Text = "➕ New";
+            this.toolTip1.SetToolTip(this.keyboardActionsAddKeyButton, "Create actions for this key");
+            this.keyboardActionsAddKeyButton.UseVisualStyleBackColor = true;
+            this.keyboardActionsAddKeyButton.Click += new System.EventHandler(this.KeyboardAction_Click);
+            // 
             // behaviorLabel
             // 
             this.behaviorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -1830,6 +1878,20 @@
             this.keyboardModifiersLabel.Size = new System.Drawing.Size(116, 16);
             this.keyboardModifiersLabel.TabIndex = 125;
             this.keyboardModifiersLabel.Text = "3. Select modifiers";
+            // 
+            // keyboardPictureButton
+            // 
+            this.keyboardPictureButton.BackgroundImage = global::Wx3270.Properties.Resources.KeyboardLayoutSmall;
+            this.keyboardPictureButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.keyboardPictureButton.Location = new System.Drawing.Point(39, 127);
+            this.keyboardPictureButton.Margin = new System.Windows.Forms.Padding(4);
+            this.keyboardPictureButton.Name = "keyboardPictureButton";
+            this.keyboardPictureButton.Size = new System.Drawing.Size(227, 86);
+            this.keyboardPictureButton.TabIndex = 131;
+            this.keyboardPictureButton.TabStop = false;
+            this.toolTip1.SetToolTip(this.keyboardPictureButton, "Display keyboard");
+            this.keyboardPictureButton.UseVisualStyleBackColor = true;
+            this.keyboardPictureButton.Click += new System.EventHandler(this.KeyboardPictureButton_Click);
             // 
             // keypadTab
             // 
@@ -2185,6 +2247,23 @@
             this.deleteRadioButton.UseVisualStyleBackColor = true;
             this.deleteRadioButton.Click += new System.EventHandler(this.BackgroundImage_Click);
             // 
+            // keypadRemoveButton
+            // 
+            this.keypadRemoveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.keypadRemoveButton.AutoSize = true;
+            this.keypadRemoveButton.Enabled = false;
+            this.keypadRemoveButton.ForeColor = System.Drawing.Color.Red;
+            this.keypadRemoveButton.Location = new System.Drawing.Point(172, 53);
+            this.keypadRemoveButton.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.keypadRemoveButton.Name = "keypadRemoveButton";
+            this.keypadRemoveButton.Size = new System.Drawing.Size(101, 32);
+            this.keypadRemoveButton.TabIndex = 43;
+            this.keypadRemoveButton.TabStop = false;
+            this.keypadRemoveButton.Text = "❌ Delete";
+            this.toolTip1.SetToolTip(this.keypadRemoveButton, "Remove definition");
+            this.keypadRemoveButton.UseVisualStyleBackColor = true;
+            this.keypadRemoveButton.Click += new System.EventHandler(this.KeypadRemoveButton_Click);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AutoSize = true;
@@ -2461,6 +2540,22 @@
             this.toolTip1.SetToolTip(this.crosshairSwatch, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
             this.crosshairSwatch.Click += new System.EventHandler(this.CrosshairColorButton_Click);
             // 
+            // crosshairColorButton
+            // 
+            this.crosshairColorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.crosshairColorButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.crosshairColorButton.Location = new System.Drawing.Point(420, 21);
+            this.crosshairColorButton.Margin = new System.Windows.Forms.Padding(4);
+            this.crosshairColorButton.Name = "crosshairColorButton";
+            this.crosshairColorButton.Size = new System.Drawing.Size(227, 28);
+            this.crosshairColorButton.TabIndex = 39;
+            this.crosshairColorButton.TabStop = false;
+            this.crosshairColorButton.Tag = "";
+            this.crosshairColorButton.Text = "Crosshair Cursor";
+            this.toolTip1.SetToolTip(this.crosshairColorButton, "Color of the crosshair cursor");
+            this.crosshairColorButton.UseVisualStyleBackColor = false;
+            this.crosshairColorButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
+            // 
             // selectionSwatch
             // 
             this.selectionSwatch.BackColor = System.Drawing.Color.DarkGray;
@@ -2473,6 +2568,22 @@
             this.selectionSwatch.TabStop = false;
             this.toolTip1.SetToolTip(this.selectionSwatch, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
             this.selectionSwatch.Click += new System.EventHandler(this.SelectedButton_Click);
+            // 
+            // selectedButton
+            // 
+            this.selectedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectedButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.selectedButton.Location = new System.Drawing.Point(12, 21);
+            this.selectedButton.Margin = new System.Windows.Forms.Padding(4);
+            this.selectedButton.Name = "selectedButton";
+            this.selectedButton.Size = new System.Drawing.Size(227, 28);
+            this.selectedButton.TabIndex = 37;
+            this.selectedButton.TabStop = false;
+            this.selectedButton.Tag = "";
+            this.selectedButton.Text = "Selected Text Background";
+            this.toolTip1.SetToolTip(this.selectedButton, "Background color for selected text");
+            this.selectedButton.UseVisualStyleBackColor = false;
+            this.selectedButton.Click += new System.EventHandler(this.SelectedButton_Click);
             // 
             // schemeBox
             // 
@@ -3073,6 +3184,261 @@
             this.toolTip1.SetToolTip(this.neutralBlackSample, "Neutral Black\r\nHost color X\'F0\'\r\nScreen background color");
             this.neutralBlackSample.Click += new System.EventHandler(this.Color_Click);
             // 
+            // whiteButton
+            // 
+            this.whiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.whiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.whiteButton.Location = new System.Drawing.Point(420, 300);
+            this.whiteButton.Margin = new System.Windows.Forms.Padding(4);
+            this.whiteButton.Name = "whiteButton";
+            this.whiteButton.Size = new System.Drawing.Size(168, 28);
+            this.whiteButton.TabIndex = 15;
+            this.whiteButton.TabStop = false;
+            this.whiteButton.Tag = "white";
+            this.whiteButton.Text = "White";
+            this.toolTip1.SetToolTip(this.whiteButton, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
+            this.whiteButton.UseVisualStyleBackColor = false;
+            this.whiteButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // grayButton
+            // 
+            this.grayButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grayButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.grayButton.Location = new System.Drawing.Point(9, 300);
+            this.grayButton.Margin = new System.Windows.Forms.Padding(4);
+            this.grayButton.Name = "grayButton";
+            this.grayButton.Size = new System.Drawing.Size(168, 28);
+            this.grayButton.TabIndex = 14;
+            this.grayButton.TabStop = false;
+            this.grayButton.Tag = "grey";
+            this.grayButton.Text = "Gray";
+            this.toolTip1.SetToolTip(this.grayButton, "Gray\r\nHost color X\'FE\'");
+            this.grayButton.UseVisualStyleBackColor = false;
+            this.grayButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // paleTurquoiseButton
+            // 
+            this.paleTurquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paleTurquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.paleTurquoiseButton.Location = new System.Drawing.Point(420, 265);
+            this.paleTurquoiseButton.Margin = new System.Windows.Forms.Padding(4);
+            this.paleTurquoiseButton.Name = "paleTurquoiseButton";
+            this.paleTurquoiseButton.Size = new System.Drawing.Size(168, 28);
+            this.paleTurquoiseButton.TabIndex = 13;
+            this.paleTurquoiseButton.TabStop = false;
+            this.paleTurquoiseButton.Tag = "paleTurquoise";
+            this.paleTurquoiseButton.Text = "Pale Turquoise";
+            this.toolTip1.SetToolTip(this.paleTurquoiseButton, "Pale Turquoise\r\nHost color X\'FD\'");
+            this.paleTurquoiseButton.UseVisualStyleBackColor = false;
+            this.paleTurquoiseButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // paleGreenButton
+            // 
+            this.paleGreenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paleGreenButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.paleGreenButton.Location = new System.Drawing.Point(8, 265);
+            this.paleGreenButton.Margin = new System.Windows.Forms.Padding(4);
+            this.paleGreenButton.Name = "paleGreenButton";
+            this.paleGreenButton.Size = new System.Drawing.Size(168, 28);
+            this.paleGreenButton.TabIndex = 12;
+            this.paleGreenButton.TabStop = false;
+            this.paleGreenButton.Tag = "paleGreen";
+            this.paleGreenButton.Text = "Pale Green";
+            this.toolTip1.SetToolTip(this.paleGreenButton, "Pale Green\r\nHost color X\'FC\'");
+            this.paleGreenButton.UseVisualStyleBackColor = false;
+            this.paleGreenButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // purpleButton
+            // 
+            this.purpleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.purpleButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.purpleButton.Location = new System.Drawing.Point(420, 229);
+            this.purpleButton.Margin = new System.Windows.Forms.Padding(4);
+            this.purpleButton.Name = "purpleButton";
+            this.purpleButton.Size = new System.Drawing.Size(168, 28);
+            this.purpleButton.TabIndex = 11;
+            this.purpleButton.TabStop = false;
+            this.purpleButton.Tag = "purple";
+            this.purpleButton.Text = "Purple";
+            this.toolTip1.SetToolTip(this.purpleButton, "Purple\r\nHost color X\'FB\'");
+            this.purpleButton.UseVisualStyleBackColor = false;
+            this.purpleButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // orangeButton
+            // 
+            this.orangeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.orangeButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.orangeButton.Location = new System.Drawing.Point(9, 229);
+            this.orangeButton.Margin = new System.Windows.Forms.Padding(4);
+            this.orangeButton.Name = "orangeButton";
+            this.orangeButton.Size = new System.Drawing.Size(168, 28);
+            this.orangeButton.TabIndex = 10;
+            this.orangeButton.TabStop = false;
+            this.orangeButton.Tag = "orange";
+            this.orangeButton.Text = "Orange";
+            this.toolTip1.SetToolTip(this.orangeButton, "Orange\r\nHost color X\'FA\'");
+            this.orangeButton.UseVisualStyleBackColor = false;
+            this.orangeButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // deepBlueButton
+            // 
+            this.deepBlueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deepBlueButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.deepBlueButton.Location = new System.Drawing.Point(420, 193);
+            this.deepBlueButton.Margin = new System.Windows.Forms.Padding(4);
+            this.deepBlueButton.Name = "deepBlueButton";
+            this.deepBlueButton.Size = new System.Drawing.Size(168, 28);
+            this.deepBlueButton.TabIndex = 9;
+            this.deepBlueButton.TabStop = false;
+            this.deepBlueButton.Tag = "deepBlue";
+            this.deepBlueButton.Text = "Deep Blue";
+            this.toolTip1.SetToolTip(this.deepBlueButton, "Deep Blue\r\nHost color X\'F9\'");
+            this.deepBlueButton.UseVisualStyleBackColor = false;
+            this.deepBlueButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // blackButton
+            // 
+            this.blackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blackButton.Location = new System.Drawing.Point(8, 193);
+            this.blackButton.Margin = new System.Windows.Forms.Padding(4);
+            this.blackButton.Name = "blackButton";
+            this.blackButton.Size = new System.Drawing.Size(168, 28);
+            this.blackButton.TabIndex = 8;
+            this.blackButton.TabStop = false;
+            this.blackButton.Tag = "black";
+            this.blackButton.Text = "Black";
+            this.toolTip1.SetToolTip(this.blackButton, "Black\r\nHost color X\'F8\'");
+            this.blackButton.UseVisualStyleBackColor = false;
+            this.blackButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // neutralWhiteButton
+            // 
+            this.neutralWhiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.neutralWhiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.neutralWhiteButton.Location = new System.Drawing.Point(9, 23);
+            this.neutralWhiteButton.Margin = new System.Windows.Forms.Padding(4);
+            this.neutralWhiteButton.Name = "neutralWhiteButton";
+            this.neutralWhiteButton.Size = new System.Drawing.Size(168, 50);
+            this.neutralWhiteButton.TabIndex = 0;
+            this.neutralWhiteButton.TabStop = false;
+            this.neutralWhiteButton.Tag = "neutralWhite";
+            this.neutralWhiteButton.Text = "Neutral White\r\nScreen Foreground";
+            this.toolTip1.SetToolTip(this.neutralWhiteButton, "Neutral White\r\nHost color X\'F7\'\r\nIntensified protected text");
+            this.neutralWhiteButton.UseVisualStyleBackColor = false;
+            this.neutralWhiteButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // yellowButton
+            // 
+            this.yellowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yellowButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.yellowButton.Location = new System.Drawing.Point(9, 158);
+            this.yellowButton.Margin = new System.Windows.Forms.Padding(4);
+            this.yellowButton.Name = "yellowButton";
+            this.yellowButton.Size = new System.Drawing.Size(168, 28);
+            this.yellowButton.TabIndex = 6;
+            this.yellowButton.TabStop = false;
+            this.yellowButton.Tag = "yellow";
+            this.yellowButton.Text = "Yellow";
+            this.toolTip1.SetToolTip(this.yellowButton, "Yellow\r\nHost color X\'F6\'");
+            this.yellowButton.UseVisualStyleBackColor = false;
+            this.yellowButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // turquoiseButton
+            // 
+            this.turquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.turquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.turquoiseButton.Location = new System.Drawing.Point(420, 122);
+            this.turquoiseButton.Margin = new System.Windows.Forms.Padding(4);
+            this.turquoiseButton.Name = "turquoiseButton";
+            this.turquoiseButton.Size = new System.Drawing.Size(168, 28);
+            this.turquoiseButton.TabIndex = 5;
+            this.turquoiseButton.TabStop = false;
+            this.turquoiseButton.Tag = "turquoise";
+            this.turquoiseButton.Text = "Turquoise";
+            this.toolTip1.SetToolTip(this.turquoiseButton, "Turquoise\r\nHost color X\'F5\'");
+            this.turquoiseButton.UseVisualStyleBackColor = false;
+            this.turquoiseButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // greenButton
+            // 
+            this.greenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.greenButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.greenButton.Location = new System.Drawing.Point(9, 122);
+            this.greenButton.Margin = new System.Windows.Forms.Padding(4);
+            this.greenButton.Name = "greenButton";
+            this.greenButton.Size = new System.Drawing.Size(168, 28);
+            this.greenButton.TabIndex = 4;
+            this.greenButton.TabStop = false;
+            this.greenButton.Tag = "green";
+            this.greenButton.Text = "Green";
+            this.toolTip1.SetToolTip(this.greenButton, "Green\r\nHost color X\'F4\'\r\nUnprotected text");
+            this.greenButton.UseVisualStyleBackColor = false;
+            this.greenButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // pinkButton
+            // 
+            this.pinkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pinkButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pinkButton.Location = new System.Drawing.Point(420, 158);
+            this.pinkButton.Margin = new System.Windows.Forms.Padding(4);
+            this.pinkButton.Name = "pinkButton";
+            this.pinkButton.Size = new System.Drawing.Size(168, 28);
+            this.pinkButton.TabIndex = 7;
+            this.pinkButton.TabStop = false;
+            this.pinkButton.Tag = "pink";
+            this.pinkButton.Text = "Pink";
+            this.toolTip1.SetToolTip(this.pinkButton, "Pink\r\nHost color X\'F3\'");
+            this.pinkButton.UseVisualStyleBackColor = false;
+            this.pinkButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // redButton
+            // 
+            this.redButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.redButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.redButton.Location = new System.Drawing.Point(420, 86);
+            this.redButton.Margin = new System.Windows.Forms.Padding(4);
+            this.redButton.Name = "redButton";
+            this.redButton.Size = new System.Drawing.Size(168, 28);
+            this.redButton.TabIndex = 3;
+            this.redButton.TabStop = false;
+            this.redButton.Tag = "red";
+            this.redButton.Text = "Red";
+            this.toolTip1.SetToolTip(this.redButton, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
+            this.redButton.UseVisualStyleBackColor = false;
+            this.redButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // blueButton
+            // 
+            this.blueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blueButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.blueButton.Location = new System.Drawing.Point(9, 86);
+            this.blueButton.Margin = new System.Windows.Forms.Padding(4);
+            this.blueButton.Name = "blueButton";
+            this.blueButton.Size = new System.Drawing.Size(168, 28);
+            this.blueButton.TabIndex = 2;
+            this.blueButton.TabStop = false;
+            this.blueButton.Tag = "blue";
+            this.blueButton.Text = "Blue";
+            this.toolTip1.SetToolTip(this.blueButton, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
+            this.blueButton.UseVisualStyleBackColor = false;
+            this.blueButton.Click += new System.EventHandler(this.Color_Click);
+            // 
+            // neutralBlackButton
+            // 
+            this.neutralBlackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.neutralBlackButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.neutralBlackButton.Location = new System.Drawing.Point(421, 25);
+            this.neutralBlackButton.Margin = new System.Windows.Forms.Padding(4);
+            this.neutralBlackButton.Name = "neutralBlackButton";
+            this.neutralBlackButton.Size = new System.Drawing.Size(168, 50);
+            this.neutralBlackButton.TabIndex = 1;
+            this.neutralBlackButton.TabStop = false;
+            this.neutralBlackButton.Tag = "neutralBlack";
+            this.neutralBlackButton.Text = "Neutral Black\r\nScreen Background";
+            this.toolTip1.SetToolTip(this.neutralBlackButton, "Neutral Black\r\nHost color X\'F0\'\r\nScreen background color");
+            this.neutralBlackButton.UseVisualStyleBackColor = false;
+            this.neutralBlackButton.Click += new System.EventHandler(this.Color_Click);
+            // 
             // colors3278Tab
             // 
             this.colors3278Tab.Controls.Add(this.monoOtherGroupBox);
@@ -3133,6 +3499,37 @@
             this.monoSelectBackgroundSwatch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.monoSelectBackgroundSwatch, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
             this.monoSelectBackgroundSwatch.Click += new System.EventHandler(this.SelectedButton_Click);
+            // 
+            // monoCrosshairButton
+            // 
+            this.monoCrosshairButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoCrosshairButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoCrosshairButton.Location = new System.Drawing.Point(421, 23);
+            this.monoCrosshairButton.Margin = new System.Windows.Forms.Padding(4);
+            this.monoCrosshairButton.Name = "monoCrosshairButton";
+            this.monoCrosshairButton.Size = new System.Drawing.Size(168, 28);
+            this.monoCrosshairButton.TabIndex = 37;
+            this.monoCrosshairButton.TabStop = false;
+            this.monoCrosshairButton.Tag = "red";
+            this.monoCrosshairButton.Text = "Crosshair Cursor";
+            this.toolTip1.SetToolTip(this.monoCrosshairButton, "Color of crosshair cursor");
+            this.monoCrosshairButton.UseVisualStyleBackColor = false;
+            this.monoCrosshairButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
+            // 
+            // monoSelectBackground
+            // 
+            this.monoSelectBackground.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoSelectBackground.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoSelectBackground.Location = new System.Drawing.Point(9, 23);
+            this.monoSelectBackground.Margin = new System.Windows.Forms.Padding(4);
+            this.monoSelectBackground.Name = "monoSelectBackground";
+            this.monoSelectBackground.Size = new System.Drawing.Size(168, 28);
+            this.monoSelectBackground.TabIndex = 3;
+            this.monoSelectBackground.Tag = "red";
+            this.monoSelectBackground.Text = "Selection Background";
+            this.toolTip1.SetToolTip(this.monoSelectBackground, "Background color of selected text");
+            this.monoSelectBackground.UseVisualStyleBackColor = false;
+            this.monoSelectBackground.Click += new System.EventHandler(this.SelectedButton_Click);
             // 
             // monoPreviewGroupBox
             // 
@@ -3318,6 +3715,54 @@
             this.monoBackgroundSwatch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.monoBackgroundSwatch, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
             this.monoBackgroundSwatch.Click += new System.EventHandler(this.Mono_Click);
+            // 
+            // monoIntensifiedButton
+            // 
+            this.monoIntensifiedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoIntensifiedButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoIntensifiedButton.Location = new System.Drawing.Point(421, 60);
+            this.monoIntensifiedButton.Margin = new System.Windows.Forms.Padding(4);
+            this.monoIntensifiedButton.Name = "monoIntensifiedButton";
+            this.monoIntensifiedButton.Size = new System.Drawing.Size(168, 28);
+            this.monoIntensifiedButton.TabIndex = 5;
+            this.monoIntensifiedButton.TabStop = false;
+            this.monoIntensifiedButton.Tag = "";
+            this.monoIntensifiedButton.Text = "Intensified";
+            this.toolTip1.SetToolTip(this.monoIntensifiedButton, "Intensified text color");
+            this.monoIntensifiedButton.UseVisualStyleBackColor = false;
+            this.monoIntensifiedButton.Click += new System.EventHandler(this.Mono_Click);
+            // 
+            // monoNormalButton
+            // 
+            this.monoNormalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoNormalButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoNormalButton.Location = new System.Drawing.Point(9, 60);
+            this.monoNormalButton.Margin = new System.Windows.Forms.Padding(4);
+            this.monoNormalButton.Name = "monoNormalButton";
+            this.monoNormalButton.Size = new System.Drawing.Size(168, 28);
+            this.monoNormalButton.TabIndex = 4;
+            this.monoNormalButton.TabStop = false;
+            this.monoNormalButton.Tag = "green";
+            this.monoNormalButton.Text = "Normal";
+            this.toolTip1.SetToolTip(this.monoNormalButton, "Normal text and status line color");
+            this.monoNormalButton.UseVisualStyleBackColor = false;
+            this.monoNormalButton.Click += new System.EventHandler(this.Mono_Click);
+            // 
+            // monoBackgroundButton
+            // 
+            this.monoBackgroundButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoBackgroundButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.monoBackgroundButton.Location = new System.Drawing.Point(9, 25);
+            this.monoBackgroundButton.Margin = new System.Windows.Forms.Padding(4);
+            this.monoBackgroundButton.Name = "monoBackgroundButton";
+            this.monoBackgroundButton.Size = new System.Drawing.Size(168, 28);
+            this.monoBackgroundButton.TabIndex = 2;
+            this.monoBackgroundButton.TabStop = false;
+            this.monoBackgroundButton.Tag = "blue";
+            this.monoBackgroundButton.Text = "Screen Background";
+            this.toolTip1.SetToolTip(this.monoBackgroundButton, "Screen background color");
+            this.monoBackgroundButton.UseVisualStyleBackColor = false;
+            this.monoBackgroundButton.Click += new System.EventHandler(this.Mono_Click);
             // 
             // monoColorSchemeBox
             // 
@@ -3589,6 +4034,21 @@
             this.soundLayoutPanel.Size = new System.Drawing.Size(165, 72);
             this.soundLayoutPanel.TabIndex = 11;
             // 
+            // playAudibleBell
+            // 
+            this.playAudibleBell.Dock = System.Windows.Forms.DockStyle.Left;
+            this.playAudibleBell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playAudibleBell.Location = new System.Drawing.Point(132, 40);
+            this.playAudibleBell.Margin = new System.Windows.Forms.Padding(4);
+            this.playAudibleBell.Name = "playAudibleBell";
+            this.playAudibleBell.Size = new System.Drawing.Size(29, 28);
+            this.playAudibleBell.TabIndex = 9;
+            this.playAudibleBell.Tag = "`";
+            this.playAudibleBell.Text = "▶";
+            this.toolTip1.SetToolTip(this.playAudibleBell, "Play the sound");
+            this.playAudibleBell.UseVisualStyleBackColor = true;
+            this.playAudibleBell.Click += new System.EventHandler(this.ConsoleBellPlayButton_Click);
+            // 
             // keyboardClickCheckBox
             // 
             this.keyboardClickCheckBox.AutoSize = true;
@@ -3616,6 +4076,21 @@
             this.audibleBellCheckBox.Text = "Audible Bell";
             this.audibleBellCheckBox.UseVisualStyleBackColor = true;
             this.audibleBellCheckBox.Click += new System.EventHandler(this.AudibleBell_Click);
+            // 
+            // playKeyboardClick
+            // 
+            this.playKeyboardClick.Dock = System.Windows.Forms.DockStyle.Left;
+            this.playKeyboardClick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playKeyboardClick.Location = new System.Drawing.Point(132, 4);
+            this.playKeyboardClick.Margin = new System.Windows.Forms.Padding(4);
+            this.playKeyboardClick.Name = "playKeyboardClick";
+            this.playKeyboardClick.Size = new System.Drawing.Size(29, 28);
+            this.playKeyboardClick.TabIndex = 8;
+            this.playKeyboardClick.Tag = "`";
+            this.playKeyboardClick.Text = "▶";
+            this.toolTip1.SetToolTip(this.playKeyboardClick, "Play the sound");
+            this.playKeyboardClick.UseVisualStyleBackColor = true;
+            this.playKeyboardClick.Click += new System.EventHandler(this.KeyClickPlayButton_Click);
             // 
             // serversTab
             // 
@@ -4154,6 +4629,47 @@
             this.startTourToolStripMenuItem.Text = "Start tour";
             this.startTourToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuClick);
             // 
+            // redoButton
+            // 
+            this.redoButton.Enabled = false;
+            this.redoButton.Location = new System.Drawing.Point(225, 4);
+            this.redoButton.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
+            this.redoButton.Name = "redoButton";
+            this.redoButton.Size = new System.Drawing.Size(47, 28);
+            this.redoButton.TabIndex = 2;
+            this.redoButton.TabStop = false;
+            this.redoButton.Tag = "`";
+            this.redoButton.Text = "↷";
+            this.redoButton.UseVisualStyleBackColor = true;
+            this.redoButton.Click += new System.EventHandler(this.RedoButton_Click);
+            // 
+            // undoButton
+            // 
+            this.undoButton.Enabled = false;
+            this.undoButton.Location = new System.Drawing.Point(170, 4);
+            this.undoButton.Margin = new System.Windows.Forms.Padding(4);
+            this.undoButton.Name = "undoButton";
+            this.undoButton.Size = new System.Drawing.Size(47, 28);
+            this.undoButton.TabIndex = 1;
+            this.undoButton.TabStop = false;
+            this.undoButton.Tag = "`";
+            this.undoButton.Text = "↶";
+            this.undoButton.UseVisualStyleBackColor = true;
+            this.undoButton.Click += new System.EventHandler(this.UndoButton_Click);
+            // 
+            // setToDefaultsButton
+            // 
+            this.setToDefaultsButton.Location = new System.Drawing.Point(39, 4);
+            this.setToDefaultsButton.Margin = new System.Windows.Forms.Padding(4);
+            this.setToDefaultsButton.Name = "setToDefaultsButton";
+            this.setToDefaultsButton.Size = new System.Drawing.Size(123, 28);
+            this.setToDefaultsButton.TabIndex = 0;
+            this.setToDefaultsButton.TabStop = false;
+            this.setToDefaultsButton.Text = "Set to Defaults";
+            this.toolTip1.SetToolTip(this.setToDefaultsButton, "Revert to all default values");
+            this.setToDefaultsButton.UseVisualStyleBackColor = true;
+            this.setToDefaultsButton.Click += new System.EventHandler(this.DefaultsButton_Click);
+            // 
             // tableLayoutPanel
             // 
             this.tableLayoutPanel.AutoSize = true;
@@ -4196,531 +4712,6 @@
             this.readOnlyLabel.TabIndex = 0;
             this.readOnlyLabel.Text = "Read-only mode: Changes will not be saved.";
             // 
-            // hostColorDialog
-            // 
-            this.hostColorDialog.AnyColor = true;
-            // 
-            // opacityTimer
-            // 
-            this.opacityTimer.Interval = 2000;
-            this.opacityTimer.Tick += new System.EventHandler(this.OpacityTimer_Tick);
-            // 
-            // keyboardActionsRemoveButton
-            // 
-            this.keyboardActionsRemoveButton.AutoSize = true;
-            this.keyboardActionsRemoveButton.Enabled = false;
-            this.keyboardActionsRemoveButton.ForeColor = System.Drawing.Color.Red;
-            this.keyboardActionsRemoveButton.Location = new System.Drawing.Point(232, 4);
-            this.keyboardActionsRemoveButton.Margin = new System.Windows.Forms.Padding(4);
-            this.keyboardActionsRemoveButton.Name = "keyboardActionsRemoveButton";
-            this.keyboardActionsRemoveButton.Size = new System.Drawing.Size(97, 32);
-            this.keyboardActionsRemoveButton.TabIndex = 107;
-            this.keyboardActionsRemoveButton.TabStop = false;
-            this.keyboardActionsRemoveButton.Tag = "Delete";
-            this.keyboardActionsRemoveButton.Text = "❌ Delete";
-            this.toolTip1.SetToolTip(this.keyboardActionsRemoveButton, "Remove definition");
-            this.keyboardActionsRemoveButton.UseVisualStyleBackColor = true;
-            this.keyboardActionsRemoveButton.Click += new System.EventHandler(this.KeyboardAction_Click);
-            // 
-            // keyboardActionsEditButton
-            // 
-            this.keyboardActionsEditButton.AutoSize = true;
-            this.keyboardActionsEditButton.Location = new System.Drawing.Point(124, 4);
-            this.keyboardActionsEditButton.Margin = new System.Windows.Forms.Padding(4);
-            this.keyboardActionsEditButton.Name = "keyboardActionsEditButton";
-            this.keyboardActionsEditButton.Size = new System.Drawing.Size(100, 32);
-            this.keyboardActionsEditButton.TabIndex = 108;
-            this.keyboardActionsEditButton.TabStop = false;
-            this.keyboardActionsEditButton.Tag = "Edit";
-            this.keyboardActionsEditButton.Text = "🖉 Edit";
-            this.toolTip1.SetToolTip(this.keyboardActionsEditButton, "Edit the actions for this key");
-            this.keyboardActionsEditButton.UseVisualStyleBackColor = true;
-            this.keyboardActionsEditButton.Click += new System.EventHandler(this.KeyboardAction_Click);
-            // 
-            // keyboardActionsAddKeyButton
-            // 
-            this.keyboardActionsAddKeyButton.AutoSize = true;
-            this.keyboardActionsAddKeyButton.ForeColor = System.Drawing.Color.Green;
-            this.keyboardActionsAddKeyButton.Location = new System.Drawing.Point(4, 4);
-            this.keyboardActionsAddKeyButton.Margin = new System.Windows.Forms.Padding(4);
-            this.keyboardActionsAddKeyButton.Name = "keyboardActionsAddKeyButton";
-            this.keyboardActionsAddKeyButton.Size = new System.Drawing.Size(112, 32);
-            this.keyboardActionsAddKeyButton.TabIndex = 109;
-            this.keyboardActionsAddKeyButton.TabStop = false;
-            this.keyboardActionsAddKeyButton.Tag = "Add";
-            this.keyboardActionsAddKeyButton.Text = "➕ New";
-            this.toolTip1.SetToolTip(this.keyboardActionsAddKeyButton, "Create actions for this key");
-            this.keyboardActionsAddKeyButton.UseVisualStyleBackColor = true;
-            this.keyboardActionsAddKeyButton.Click += new System.EventHandler(this.KeyboardAction_Click);
-            // 
-            // keyboardPictureButton
-            // 
-            this.keyboardPictureButton.BackgroundImage = global::Wx3270.Properties.Resources.KeyboardLayoutSmall;
-            this.keyboardPictureButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.keyboardPictureButton.Location = new System.Drawing.Point(39, 127);
-            this.keyboardPictureButton.Margin = new System.Windows.Forms.Padding(4);
-            this.keyboardPictureButton.Name = "keyboardPictureButton";
-            this.keyboardPictureButton.Size = new System.Drawing.Size(227, 86);
-            this.keyboardPictureButton.TabIndex = 131;
-            this.keyboardPictureButton.TabStop = false;
-            this.toolTip1.SetToolTip(this.keyboardPictureButton, "Display keyboard");
-            this.keyboardPictureButton.UseVisualStyleBackColor = true;
-            this.keyboardPictureButton.Click += new System.EventHandler(this.KeyboardPictureButton_Click);
-            // 
-            // keypadRemoveButton
-            // 
-            this.keypadRemoveButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.keypadRemoveButton.AutoSize = true;
-            this.keypadRemoveButton.Enabled = false;
-            this.keypadRemoveButton.ForeColor = System.Drawing.Color.Red;
-            this.keypadRemoveButton.Location = new System.Drawing.Point(172, 53);
-            this.keypadRemoveButton.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.keypadRemoveButton.Name = "keypadRemoveButton";
-            this.keypadRemoveButton.Size = new System.Drawing.Size(101, 32);
-            this.keypadRemoveButton.TabIndex = 43;
-            this.keypadRemoveButton.TabStop = false;
-            this.keypadRemoveButton.Text = "❌ Delete";
-            this.toolTip1.SetToolTip(this.keypadRemoveButton, "Remove definition");
-            this.keypadRemoveButton.UseVisualStyleBackColor = true;
-            this.keypadRemoveButton.Click += new System.EventHandler(this.KeypadRemoveButton_Click);
-            // 
-            // crosshairColorButton
-            // 
-            this.crosshairColorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.crosshairColorButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.crosshairColorButton.Location = new System.Drawing.Point(420, 21);
-            this.crosshairColorButton.Margin = new System.Windows.Forms.Padding(4);
-            this.crosshairColorButton.Name = "crosshairColorButton";
-            this.crosshairColorButton.Size = new System.Drawing.Size(227, 28);
-            this.crosshairColorButton.TabIndex = 39;
-            this.crosshairColorButton.TabStop = false;
-            this.crosshairColorButton.Tag = "";
-            this.crosshairColorButton.Text = "Crosshair Cursor";
-            this.toolTip1.SetToolTip(this.crosshairColorButton, "Color of the crosshair cursor");
-            this.crosshairColorButton.UseVisualStyleBackColor = false;
-            this.crosshairColorButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
-            // 
-            // selectedButton
-            // 
-            this.selectedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectedButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.selectedButton.Location = new System.Drawing.Point(12, 21);
-            this.selectedButton.Margin = new System.Windows.Forms.Padding(4);
-            this.selectedButton.Name = "selectedButton";
-            this.selectedButton.Size = new System.Drawing.Size(227, 28);
-            this.selectedButton.TabIndex = 37;
-            this.selectedButton.TabStop = false;
-            this.selectedButton.Tag = "";
-            this.selectedButton.Text = "Selected Text Background";
-            this.toolTip1.SetToolTip(this.selectedButton, "Background color for selected text");
-            this.selectedButton.UseVisualStyleBackColor = false;
-            this.selectedButton.Click += new System.EventHandler(this.SelectedButton_Click);
-            // 
-            // whiteButton
-            // 
-            this.whiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.whiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.whiteButton.Location = new System.Drawing.Point(420, 300);
-            this.whiteButton.Margin = new System.Windows.Forms.Padding(4);
-            this.whiteButton.Name = "whiteButton";
-            this.whiteButton.Size = new System.Drawing.Size(168, 28);
-            this.whiteButton.TabIndex = 15;
-            this.whiteButton.TabStop = false;
-            this.whiteButton.Tag = "white";
-            this.whiteButton.Text = "White";
-            this.toolTip1.SetToolTip(this.whiteButton, "White\r\nHost color X\'FF\'\r\nProtected intensified text");
-            this.whiteButton.UseVisualStyleBackColor = false;
-            this.whiteButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // grayButton
-            // 
-            this.grayButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grayButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.grayButton.Location = new System.Drawing.Point(9, 300);
-            this.grayButton.Margin = new System.Windows.Forms.Padding(4);
-            this.grayButton.Name = "grayButton";
-            this.grayButton.Size = new System.Drawing.Size(168, 28);
-            this.grayButton.TabIndex = 14;
-            this.grayButton.TabStop = false;
-            this.grayButton.Tag = "grey";
-            this.grayButton.Text = "Gray";
-            this.toolTip1.SetToolTip(this.grayButton, "Gray\r\nHost color X\'FE\'");
-            this.grayButton.UseVisualStyleBackColor = false;
-            this.grayButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // paleTurquoiseButton
-            // 
-            this.paleTurquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paleTurquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.paleTurquoiseButton.Location = new System.Drawing.Point(420, 265);
-            this.paleTurquoiseButton.Margin = new System.Windows.Forms.Padding(4);
-            this.paleTurquoiseButton.Name = "paleTurquoiseButton";
-            this.paleTurquoiseButton.Size = new System.Drawing.Size(168, 28);
-            this.paleTurquoiseButton.TabIndex = 13;
-            this.paleTurquoiseButton.TabStop = false;
-            this.paleTurquoiseButton.Tag = "paleTurquoise";
-            this.paleTurquoiseButton.Text = "Pale Turquoise";
-            this.toolTip1.SetToolTip(this.paleTurquoiseButton, "Pale Turquoise\r\nHost color X\'FD\'");
-            this.paleTurquoiseButton.UseVisualStyleBackColor = false;
-            this.paleTurquoiseButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // paleGreenButton
-            // 
-            this.paleGreenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paleGreenButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.paleGreenButton.Location = new System.Drawing.Point(8, 265);
-            this.paleGreenButton.Margin = new System.Windows.Forms.Padding(4);
-            this.paleGreenButton.Name = "paleGreenButton";
-            this.paleGreenButton.Size = new System.Drawing.Size(168, 28);
-            this.paleGreenButton.TabIndex = 12;
-            this.paleGreenButton.TabStop = false;
-            this.paleGreenButton.Tag = "paleGreen";
-            this.paleGreenButton.Text = "Pale Green";
-            this.toolTip1.SetToolTip(this.paleGreenButton, "Pale Green\r\nHost color X\'FC\'");
-            this.paleGreenButton.UseVisualStyleBackColor = false;
-            this.paleGreenButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // purpleButton
-            // 
-            this.purpleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.purpleButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.purpleButton.Location = new System.Drawing.Point(420, 229);
-            this.purpleButton.Margin = new System.Windows.Forms.Padding(4);
-            this.purpleButton.Name = "purpleButton";
-            this.purpleButton.Size = new System.Drawing.Size(168, 28);
-            this.purpleButton.TabIndex = 11;
-            this.purpleButton.TabStop = false;
-            this.purpleButton.Tag = "purple";
-            this.purpleButton.Text = "Purple";
-            this.toolTip1.SetToolTip(this.purpleButton, "Purple\r\nHost color X\'FB\'");
-            this.purpleButton.UseVisualStyleBackColor = false;
-            this.purpleButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // orangeButton
-            // 
-            this.orangeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.orangeButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.orangeButton.Location = new System.Drawing.Point(9, 229);
-            this.orangeButton.Margin = new System.Windows.Forms.Padding(4);
-            this.orangeButton.Name = "orangeButton";
-            this.orangeButton.Size = new System.Drawing.Size(168, 28);
-            this.orangeButton.TabIndex = 10;
-            this.orangeButton.TabStop = false;
-            this.orangeButton.Tag = "orange";
-            this.orangeButton.Text = "Orange";
-            this.toolTip1.SetToolTip(this.orangeButton, "Orange\r\nHost color X\'FA\'");
-            this.orangeButton.UseVisualStyleBackColor = false;
-            this.orangeButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // deepBlueButton
-            // 
-            this.deepBlueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deepBlueButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.deepBlueButton.Location = new System.Drawing.Point(420, 193);
-            this.deepBlueButton.Margin = new System.Windows.Forms.Padding(4);
-            this.deepBlueButton.Name = "deepBlueButton";
-            this.deepBlueButton.Size = new System.Drawing.Size(168, 28);
-            this.deepBlueButton.TabIndex = 9;
-            this.deepBlueButton.TabStop = false;
-            this.deepBlueButton.Tag = "deepBlue";
-            this.deepBlueButton.Text = "Deep Blue";
-            this.toolTip1.SetToolTip(this.deepBlueButton, "Deep Blue\r\nHost color X\'F9\'");
-            this.deepBlueButton.UseVisualStyleBackColor = false;
-            this.deepBlueButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // blackButton
-            // 
-            this.blackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blackButton.Location = new System.Drawing.Point(8, 193);
-            this.blackButton.Margin = new System.Windows.Forms.Padding(4);
-            this.blackButton.Name = "blackButton";
-            this.blackButton.Size = new System.Drawing.Size(168, 28);
-            this.blackButton.TabIndex = 8;
-            this.blackButton.TabStop = false;
-            this.blackButton.Tag = "black";
-            this.blackButton.Text = "Black";
-            this.toolTip1.SetToolTip(this.blackButton, "Black\r\nHost color X\'F8\'");
-            this.blackButton.UseVisualStyleBackColor = false;
-            this.blackButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // neutralWhiteButton
-            // 
-            this.neutralWhiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.neutralWhiteButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.neutralWhiteButton.Location = new System.Drawing.Point(9, 23);
-            this.neutralWhiteButton.Margin = new System.Windows.Forms.Padding(4);
-            this.neutralWhiteButton.Name = "neutralWhiteButton";
-            this.neutralWhiteButton.Size = new System.Drawing.Size(168, 50);
-            this.neutralWhiteButton.TabIndex = 0;
-            this.neutralWhiteButton.TabStop = false;
-            this.neutralWhiteButton.Tag = "neutralWhite";
-            this.neutralWhiteButton.Text = "Neutral White\r\nScreen Foreground";
-            this.toolTip1.SetToolTip(this.neutralWhiteButton, "Neutral White\r\nHost color X\'F7\'\r\nIntensified protected text");
-            this.neutralWhiteButton.UseVisualStyleBackColor = false;
-            this.neutralWhiteButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // yellowButton
-            // 
-            this.yellowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.yellowButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.yellowButton.Location = new System.Drawing.Point(9, 158);
-            this.yellowButton.Margin = new System.Windows.Forms.Padding(4);
-            this.yellowButton.Name = "yellowButton";
-            this.yellowButton.Size = new System.Drawing.Size(168, 28);
-            this.yellowButton.TabIndex = 6;
-            this.yellowButton.TabStop = false;
-            this.yellowButton.Tag = "yellow";
-            this.yellowButton.Text = "Yellow";
-            this.toolTip1.SetToolTip(this.yellowButton, "Yellow\r\nHost color X\'F6\'");
-            this.yellowButton.UseVisualStyleBackColor = false;
-            this.yellowButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // turquoiseButton
-            // 
-            this.turquoiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.turquoiseButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.turquoiseButton.Location = new System.Drawing.Point(420, 122);
-            this.turquoiseButton.Margin = new System.Windows.Forms.Padding(4);
-            this.turquoiseButton.Name = "turquoiseButton";
-            this.turquoiseButton.Size = new System.Drawing.Size(168, 28);
-            this.turquoiseButton.TabIndex = 5;
-            this.turquoiseButton.TabStop = false;
-            this.turquoiseButton.Tag = "turquoise";
-            this.turquoiseButton.Text = "Turquoise";
-            this.toolTip1.SetToolTip(this.turquoiseButton, "Turquoise\r\nHost color X\'F5\'");
-            this.turquoiseButton.UseVisualStyleBackColor = false;
-            this.turquoiseButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // greenButton
-            // 
-            this.greenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.greenButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.greenButton.Location = new System.Drawing.Point(9, 122);
-            this.greenButton.Margin = new System.Windows.Forms.Padding(4);
-            this.greenButton.Name = "greenButton";
-            this.greenButton.Size = new System.Drawing.Size(168, 28);
-            this.greenButton.TabIndex = 4;
-            this.greenButton.TabStop = false;
-            this.greenButton.Tag = "green";
-            this.greenButton.Text = "Green";
-            this.toolTip1.SetToolTip(this.greenButton, "Green\r\nHost color X\'F4\'\r\nUnprotected text");
-            this.greenButton.UseVisualStyleBackColor = false;
-            this.greenButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // pinkButton
-            // 
-            this.pinkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pinkButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pinkButton.Location = new System.Drawing.Point(420, 158);
-            this.pinkButton.Margin = new System.Windows.Forms.Padding(4);
-            this.pinkButton.Name = "pinkButton";
-            this.pinkButton.Size = new System.Drawing.Size(168, 28);
-            this.pinkButton.TabIndex = 7;
-            this.pinkButton.TabStop = false;
-            this.pinkButton.Tag = "pink";
-            this.pinkButton.Text = "Pink";
-            this.toolTip1.SetToolTip(this.pinkButton, "Pink\r\nHost color X\'F3\'");
-            this.pinkButton.UseVisualStyleBackColor = false;
-            this.pinkButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // redButton
-            // 
-            this.redButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.redButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.redButton.Location = new System.Drawing.Point(420, 86);
-            this.redButton.Margin = new System.Windows.Forms.Padding(4);
-            this.redButton.Name = "redButton";
-            this.redButton.Size = new System.Drawing.Size(168, 28);
-            this.redButton.TabIndex = 3;
-            this.redButton.TabStop = false;
-            this.redButton.Tag = "red";
-            this.redButton.Text = "Red";
-            this.toolTip1.SetToolTip(this.redButton, "Red\r\nHost color X\'F2\'\r\nIntensified unprotected text");
-            this.redButton.UseVisualStyleBackColor = false;
-            this.redButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // blueButton
-            // 
-            this.blueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blueButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.blueButton.Location = new System.Drawing.Point(9, 86);
-            this.blueButton.Margin = new System.Windows.Forms.Padding(4);
-            this.blueButton.Name = "blueButton";
-            this.blueButton.Size = new System.Drawing.Size(168, 28);
-            this.blueButton.TabIndex = 2;
-            this.blueButton.TabStop = false;
-            this.blueButton.Tag = "blue";
-            this.blueButton.Text = "Blue";
-            this.toolTip1.SetToolTip(this.blueButton, "Blue\r\nHost color X\'F1\'\r\nBorders, status line and protected text");
-            this.blueButton.UseVisualStyleBackColor = false;
-            this.blueButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // neutralBlackButton
-            // 
-            this.neutralBlackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.neutralBlackButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.neutralBlackButton.Location = new System.Drawing.Point(421, 25);
-            this.neutralBlackButton.Margin = new System.Windows.Forms.Padding(4);
-            this.neutralBlackButton.Name = "neutralBlackButton";
-            this.neutralBlackButton.Size = new System.Drawing.Size(168, 50);
-            this.neutralBlackButton.TabIndex = 1;
-            this.neutralBlackButton.TabStop = false;
-            this.neutralBlackButton.Tag = "neutralBlack";
-            this.neutralBlackButton.Text = "Neutral Black\r\nScreen Background";
-            this.toolTip1.SetToolTip(this.neutralBlackButton, "Neutral Black\r\nHost color X\'F0\'\r\nScreen background color");
-            this.neutralBlackButton.UseVisualStyleBackColor = false;
-            this.neutralBlackButton.Click += new System.EventHandler(this.Color_Click);
-            // 
-            // monoCrosshairButton
-            // 
-            this.monoCrosshairButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoCrosshairButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoCrosshairButton.Location = new System.Drawing.Point(421, 23);
-            this.monoCrosshairButton.Margin = new System.Windows.Forms.Padding(4);
-            this.monoCrosshairButton.Name = "monoCrosshairButton";
-            this.monoCrosshairButton.Size = new System.Drawing.Size(168, 28);
-            this.monoCrosshairButton.TabIndex = 37;
-            this.monoCrosshairButton.TabStop = false;
-            this.monoCrosshairButton.Tag = "red";
-            this.monoCrosshairButton.Text = "Crosshair Cursor";
-            this.toolTip1.SetToolTip(this.monoCrosshairButton, "Color of crosshair cursor");
-            this.monoCrosshairButton.UseVisualStyleBackColor = false;
-            this.monoCrosshairButton.Click += new System.EventHandler(this.CrosshairColorButton_Click);
-            // 
-            // monoSelectBackground
-            // 
-            this.monoSelectBackground.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoSelectBackground.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoSelectBackground.Location = new System.Drawing.Point(9, 23);
-            this.monoSelectBackground.Margin = new System.Windows.Forms.Padding(4);
-            this.monoSelectBackground.Name = "monoSelectBackground";
-            this.monoSelectBackground.Size = new System.Drawing.Size(168, 28);
-            this.monoSelectBackground.TabIndex = 3;
-            this.monoSelectBackground.Tag = "red";
-            this.monoSelectBackground.Text = "Selection Background";
-            this.toolTip1.SetToolTip(this.monoSelectBackground, "Background color of selected text");
-            this.monoSelectBackground.UseVisualStyleBackColor = false;
-            this.monoSelectBackground.Click += new System.EventHandler(this.SelectedButton_Click);
-            // 
-            // monoIntensifiedButton
-            // 
-            this.monoIntensifiedButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoIntensifiedButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoIntensifiedButton.Location = new System.Drawing.Point(421, 60);
-            this.monoIntensifiedButton.Margin = new System.Windows.Forms.Padding(4);
-            this.monoIntensifiedButton.Name = "monoIntensifiedButton";
-            this.monoIntensifiedButton.Size = new System.Drawing.Size(168, 28);
-            this.monoIntensifiedButton.TabIndex = 5;
-            this.monoIntensifiedButton.TabStop = false;
-            this.monoIntensifiedButton.Tag = "";
-            this.monoIntensifiedButton.Text = "Intensified";
-            this.toolTip1.SetToolTip(this.monoIntensifiedButton, "Intensified text color");
-            this.monoIntensifiedButton.UseVisualStyleBackColor = false;
-            this.monoIntensifiedButton.Click += new System.EventHandler(this.Mono_Click);
-            // 
-            // monoNormalButton
-            // 
-            this.monoNormalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoNormalButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoNormalButton.Location = new System.Drawing.Point(9, 60);
-            this.monoNormalButton.Margin = new System.Windows.Forms.Padding(4);
-            this.monoNormalButton.Name = "monoNormalButton";
-            this.monoNormalButton.Size = new System.Drawing.Size(168, 28);
-            this.monoNormalButton.TabIndex = 4;
-            this.monoNormalButton.TabStop = false;
-            this.monoNormalButton.Tag = "green";
-            this.monoNormalButton.Text = "Normal";
-            this.toolTip1.SetToolTip(this.monoNormalButton, "Normal text and status line color");
-            this.monoNormalButton.UseVisualStyleBackColor = false;
-            this.monoNormalButton.Click += new System.EventHandler(this.Mono_Click);
-            // 
-            // monoBackgroundButton
-            // 
-            this.monoBackgroundButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monoBackgroundButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.monoBackgroundButton.Location = new System.Drawing.Point(9, 25);
-            this.monoBackgroundButton.Margin = new System.Windows.Forms.Padding(4);
-            this.monoBackgroundButton.Name = "monoBackgroundButton";
-            this.monoBackgroundButton.Size = new System.Drawing.Size(168, 28);
-            this.monoBackgroundButton.TabIndex = 2;
-            this.monoBackgroundButton.TabStop = false;
-            this.monoBackgroundButton.Tag = "blue";
-            this.monoBackgroundButton.Text = "Screen Background";
-            this.toolTip1.SetToolTip(this.monoBackgroundButton, "Screen background color");
-            this.monoBackgroundButton.UseVisualStyleBackColor = false;
-            this.monoBackgroundButton.Click += new System.EventHandler(this.Mono_Click);
-            // 
-            // playAudibleBell
-            // 
-            this.playAudibleBell.Dock = System.Windows.Forms.DockStyle.Left;
-            this.playAudibleBell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playAudibleBell.Location = new System.Drawing.Point(132, 40);
-            this.playAudibleBell.Margin = new System.Windows.Forms.Padding(4);
-            this.playAudibleBell.Name = "playAudibleBell";
-            this.playAudibleBell.Size = new System.Drawing.Size(29, 28);
-            this.playAudibleBell.TabIndex = 9;
-            this.playAudibleBell.Tag = "`";
-            this.playAudibleBell.Text = "▶";
-            this.toolTip1.SetToolTip(this.playAudibleBell, "Play the sound");
-            this.playAudibleBell.UseVisualStyleBackColor = true;
-            this.playAudibleBell.Click += new System.EventHandler(this.ConsoleBellPlayButton_Click);
-            // 
-            // playKeyboardClick
-            // 
-            this.playKeyboardClick.Dock = System.Windows.Forms.DockStyle.Left;
-            this.playKeyboardClick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playKeyboardClick.Location = new System.Drawing.Point(132, 4);
-            this.playKeyboardClick.Margin = new System.Windows.Forms.Padding(4);
-            this.playKeyboardClick.Name = "playKeyboardClick";
-            this.playKeyboardClick.Size = new System.Drawing.Size(29, 28);
-            this.playKeyboardClick.TabIndex = 8;
-            this.playKeyboardClick.Tag = "`";
-            this.playKeyboardClick.Text = "▶";
-            this.toolTip1.SetToolTip(this.playKeyboardClick, "Play the sound");
-            this.playKeyboardClick.UseVisualStyleBackColor = true;
-            this.playKeyboardClick.Click += new System.EventHandler(this.KeyClickPlayButton_Click);
-            // 
-            // redoButton
-            // 
-            this.redoButton.Enabled = false;
-            this.redoButton.Location = new System.Drawing.Point(225, 4);
-            this.redoButton.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
-            this.redoButton.Name = "redoButton";
-            this.redoButton.Size = new System.Drawing.Size(47, 28);
-            this.redoButton.TabIndex = 2;
-            this.redoButton.TabStop = false;
-            this.redoButton.Tag = "`";
-            this.redoButton.Text = "↷";
-            this.redoButton.UseVisualStyleBackColor = true;
-            this.redoButton.Click += new System.EventHandler(this.RedoButton_Click);
-            // 
-            // undoButton
-            // 
-            this.undoButton.Enabled = false;
-            this.undoButton.Location = new System.Drawing.Point(170, 4);
-            this.undoButton.Margin = new System.Windows.Forms.Padding(4);
-            this.undoButton.Name = "undoButton";
-            this.undoButton.Size = new System.Drawing.Size(47, 28);
-            this.undoButton.TabIndex = 1;
-            this.undoButton.TabStop = false;
-            this.undoButton.Tag = "`";
-            this.undoButton.Text = "↶";
-            this.undoButton.UseVisualStyleBackColor = true;
-            this.undoButton.Click += new System.EventHandler(this.UndoButton_Click);
-            // 
-            // setToDefaultsButton
-            // 
-            this.setToDefaultsButton.Location = new System.Drawing.Point(39, 4);
-            this.setToDefaultsButton.Margin = new System.Windows.Forms.Padding(4);
-            this.setToDefaultsButton.Name = "setToDefaultsButton";
-            this.setToDefaultsButton.Size = new System.Drawing.Size(123, 28);
-            this.setToDefaultsButton.TabIndex = 0;
-            this.setToDefaultsButton.TabStop = false;
-            this.setToDefaultsButton.Text = "Set to Defaults";
-            this.toolTip1.SetToolTip(this.setToDefaultsButton, "Revert to all default values");
-            this.setToDefaultsButton.UseVisualStyleBackColor = true;
-            this.setToDefaultsButton.Click += new System.EventHandler(this.DefaultsButton_Click);
-            // 
             // saveACopyButton
             // 
             this.saveACopyButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -4734,6 +4725,15 @@
             this.toolTip1.SetToolTip(this.saveACopyButton, "Save a copy of this profile and switch to it");
             this.saveACopyButton.UseVisualStyleBackColor = true;
             this.saveACopyButton.Click += new System.EventHandler(this.SaveACopyButtonClick);
+            // 
+            // hostColorDialog
+            // 
+            this.hostColorDialog.AnyColor = true;
+            // 
+            // opacityTimer
+            // 
+            this.opacityTimer.Interval = 2000;
+            this.opacityTimer.Tick += new System.EventHandler(this.OpacityTimer_Tick);
             // 
             // Settings
             // 

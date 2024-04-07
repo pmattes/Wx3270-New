@@ -146,20 +146,21 @@ namespace Wx3270
         /// Create the sample screen image.
         /// </summary>
         /// <param name="color">True if in 3279 (color) mode.</param>
+        /// <param name="withExtras">True to include extra characters.</param>
         /// <returns>Sample image.</returns>
-        public ScreenImage CreateSampleImage(bool color)
+        public ScreenImage CreateSampleImage(bool color, bool withExtras = false)
         {
             var image = new ScreenImage
             {
-                MaxRows = 5,
-                MaxColumns = 29,
-                LogicalRows = 5,
-                LogicalColumns = 29,
+                MaxRows = withExtras ? 8 : 5,
+                MaxColumns = withExtras ? 32 : 29,
+                LogicalRows = withExtras ? 8 : 5,
+                LogicalColumns = withExtras ? 32 : 29,
                 ColorMode = color,
                 CursorEnabled = true,
                 CursorRow1 = 4,
                 CursorColumn1 = 2,
-                Image = new Cell[5, 29],
+                Image = withExtras ? new Cell[8, 32] : new Cell[5, 29],
                 Settings = new SettingsDictionary(),
             };
             for (var row = 0; row < image.MaxRows; row++)
@@ -207,6 +208,22 @@ namespace Wx3270
                 color ? HostColor.NeutralWhite : HostColor.NeutralWhite,
                 color ? GraphicRendition.None : GraphicRendition.Highlight,
                 this.LocalizeSample("Intensified Protected Field"));
+            if (withExtras)
+            {
+                PaintImage(
+                    image,
+                    6,
+                    color ? HostColor.Blue : HostColor.NeutralWhite,
+                    GraphicRendition.None,
+                    "01234567879!@#¬$€£%^&*()[]{}<>«»");
+                PaintImage(
+                    image,
+                    7,
+                    color ? HostColor.Blue : HostColor.NeutralWhite,
+                    GraphicRendition.None,
+                    "_=+-\\|;:'\",./?¿ÁáÆæÈèÏïÑñÔôØøßÚú");
+            }
+
             return image;
         }
 
@@ -377,6 +394,7 @@ namespace Wx3270
         /// <param name="layoutPanel">Layout panel (background).</param>
         /// <param name="statusLine">Status line.</param>
         /// <param name="separator">Separator between screen and status line.</param>
+        /// <param name="withExtras">True to include extra text.</param>
         private void SamplePaint(
             object sender,
             PaintEventArgs e,
@@ -384,14 +402,15 @@ namespace Wx3270
             ScreenBox screenBox,
             TableLayoutPanel layoutPanel,
             Label statusLine,
-            PictureBox separator)
+            PictureBox separator,
+            bool withExtras)
         {
             // Set up the sample status line.
             layoutPanel.BackColor = color ? this.editedColors.HostColors[HostColor.NeutralBlack] : this.editedColors.MonoColors.Background;
             statusLine.ForeColor = color ? this.editedColors.HostColors[HostColor.Blue] : this.editedColors.MonoColors.Normal;
             separator.BackColor = statusLine.ForeColor;
 
-            var sampleImage = this.CreateSampleImage(color);
+            var sampleImage = this.CreateSampleImage(color: color, withExtras: withExtras);
             if (this.monoCaseCheckBox.Checked)
             {
                 sampleImage.Settings.Add(B3270.Setting.MonoCase, true);
@@ -415,9 +434,9 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         /// <param name="screenSample">Sample box.</param>
         /// <param name="color">Optional color mode override.</param>
-        private void SamplePaint(object sender, PaintEventArgs e, ScreenSample screenSample, bool? color = null)
+        private void SamplePaint(object sender, PaintEventArgs e, ScreenSample screenSample, bool? color = null, bool withExtras = false)
         {
-            this.SamplePaint(sender, e, color.HasValue ? color.Value : this.ColorMode, screenSample.ScreenBox, screenSample.LayoutPanel, screenSample.StatusLine, screenSample.Separator);
+            this.SamplePaint(sender, e, color.HasValue ? color.Value : this.ColorMode, screenSample.ScreenBox, screenSample.LayoutPanel, screenSample.StatusLine, screenSample.Separator, withExtras);
         }
 
         /// <summary>
@@ -1372,20 +1391,22 @@ namespace Wx3270
             /// <param name="statusLine">Status line.</param>
             /// <param name="separator">Separator between screen and status line.</param>
             /// <param name="colorMode">True if in 3279 mode.</param>
+            /// <param name="withExtras">True to include extra characters.</param>
             public ScreenSample(
                 Settings settings,
                 PictureBox screenPictureBox,
                 TableLayoutPanel tableLayoutPanel,
                 Label statusLine,
                 PictureBox separator,
-                bool colorMode)
+                bool colorMode,
+                bool withExtras)
             {
                 this.settings = settings;
                 this.ScreenBox = new ScreenBox("Sample", screenPictureBox);
                 this.LayoutPanel = tableLayoutPanel;
                 this.StatusLine = statusLine;
                 this.Separator = separator;
-                this.ScreenBox.ScreenNewFont(statusLine.Font, settings.CreateSampleImage(colorMode));
+                this.ScreenBox.ScreenNewFont(statusLine.Font, settings.CreateSampleImage(colorMode, withExtras));
                 this.ScreenBox.Activated(true);
             }
 
@@ -1412,9 +1433,10 @@ namespace Wx3270
             /// <summary>
             /// Invalidate the screen so it gets redrawn.
             /// </summary>
-            public void Invalidate()
+            /// <param name="withExtras">True to include extra characters.</param>
+            public void Invalidate(bool withExtras = false)
             {
-                this.ScreenBox.ScreenNeedsDrawing("settings sample", true, this.settings.CreateSampleImage(this.settings.ColorMode));
+                this.ScreenBox.ScreenNeedsDrawing("settings sample", true, this.settings.CreateSampleImage(this.settings.ColorMode, withExtras));
             }
         }
     }

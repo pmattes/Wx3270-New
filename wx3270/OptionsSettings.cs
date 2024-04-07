@@ -318,7 +318,8 @@ You can also define the window title here. This is a per-profile setting; you ca
                 this.optionsPreviewLayoutPanel,
                 this.optionsPreviewStatusLineLabel,
                 this.optionsPreviewSeparatorPictureBox,
-                this.ColorMode);
+                colorMode: this.ColorMode,
+                withExtras: false);
 
             // Set up the printer list.
             foreach (var printer in PrinterSettings.InstalledPrinters)

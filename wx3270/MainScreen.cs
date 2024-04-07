@@ -11,6 +11,7 @@ namespace Wx3270
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using System.Windows.Forms.VisualStyles;
     using I18nBase;
     using Wx3270.Contracts;
 
@@ -746,15 +747,18 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
 
             // Change the foreground color in the OIA.
             var fg = colorMode ? this.colors.HostColors[HostColor.Blue] : this.colors.MonoColors.Normal;
-            foreach (var oiaField in this.oiaLayoutPanel.Controls)
+            var oiaControls = new Control[this.oiaLayoutPanel.Controls.Count + this.oiaLockFlowLayoutPanel.Controls.Count];
+            this.oiaLayoutPanel.Controls.CopyTo(oiaControls, 0);
+            this.oiaLockFlowLayoutPanel.Controls.CopyTo(oiaControls, this.oiaLayoutPanel.Controls.Count);
+            foreach (var oiaField in oiaControls)
             {
-                if (colorMode && oiaField == (object)this.oiaLock)
+                if (colorMode && (oiaField == this.oiaLock || oiaField == this.oiaLockNative))
                 {
-                    this.oiaLock.ForeColor = this.colors.HostColors[this.oiaLock.Tag != null ? HostColor.Red : HostColor.NeutralWhite];
+                    oiaField.ForeColor = this.colors.HostColors[this.oiaLock.Tag != null ? HostColor.Red : HostColor.NeutralWhite];
                 }
                 else
                 {
-                    ((Control)oiaField).ForeColor = fg;
+                    oiaField.ForeColor = fg;
                 }
             }
 
@@ -2728,6 +2732,12 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                     oiaField.Font = try3270Font;
                 }
             }
+
+            // Do the lock fields explicitly.
+            this.oiaLock.Font = try3270Font;
+            this.oiaLockNative.Font = font;
+            this.oiaTiming.Font = try3270Font;
+            this.oiaTimingNative.Font = font;
         }
 
         /// <summary>
