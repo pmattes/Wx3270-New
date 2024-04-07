@@ -31,6 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainScreen));
             this.oiaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.oiaLockFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.oiaLock = new System.Windows.Forms.Label();
+            this.resetContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oiaLockNative = new System.Windows.Forms.Label();
             this.oia4AB = new System.Windows.Forms.Label();
             this.oiaTLS = new System.Windows.Forms.Label();
             this.oiaLu = new System.Windows.Forms.Label();
@@ -43,9 +48,6 @@
             this.oiaTypeahead = new System.Windows.Forms.Label();
             this.oiaAltShift = new System.Windows.Forms.Label();
             this.oiaCx = new System.Windows.Forms.Label();
-            this.oiaLock = new System.Windows.Forms.Label();
-            this.resetContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oiaReverse = new System.Windows.Forms.Label();
             this.topLeftLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.startLeftPictureBox = new System.Windows.Forms.PictureBox();
@@ -172,6 +174,8 @@
             this.smallerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.snapWindowSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayHelpInBrowserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.startTourToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crosshairPictureBox = new System.Windows.Forms.PictureBox();
@@ -233,9 +237,10 @@
             this.noFlashTimer = new System.Windows.Forms.Timer(this.components);
             this.menuBarHideTimer = new System.Windows.Forms.Timer(this.components);
             this.overlayMenuBarTimer = new System.Windows.Forms.Timer(this.components);
-            this.displayHelpInBrowserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.startTourToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.timeFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.oiaTimingNative = new System.Windows.Forms.Label();
             this.oiaLayoutPanel.SuspendLayout();
+            this.oiaLockFlowLayoutPanel.SuspendLayout();
             this.resetContextMenuStrip.SuspendLayout();
             this.topLeftLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startLeftPictureBox)).BeginInit();
@@ -266,6 +271,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.crosshairPictureBox)).BeginInit();
             this.ScrollBarLayoutPanel.SuspendLayout();
             this.mainScreenPanel.SuspendLayout();
+            this.timeFlowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // oiaLayoutPanel
@@ -311,10 +317,11 @@
             this.oiaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.500101F));
             this.oiaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.500101F));
             this.oiaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.4961F));
+            this.oiaLayoutPanel.Controls.Add(this.timeFlowLayoutPanel, 32, 0);
+            this.oiaLayoutPanel.Controls.Add(this.oiaLockFlowLayoutPanel, 3, 0);
             this.oiaLayoutPanel.Controls.Add(this.oia4AB, 0, 0);
             this.oiaLayoutPanel.Controls.Add(this.oiaTLS, 25, 0);
             this.oiaLayoutPanel.Controls.Add(this.oiaLu, 26, 0);
-            this.oiaLayoutPanel.Controls.Add(this.oiaTiming, 32, 0);
             this.oiaLayoutPanel.Controls.Add(this.oiaCursor, 35, 0);
             this.oiaLayoutPanel.Controls.Add(this.oiaScript, 20, 0);
             this.oiaLayoutPanel.Controls.Add(this.oiaScreentrace, 19, 0);
@@ -323,7 +330,6 @@
             this.oiaLayoutPanel.Controls.Add(this.oiaTypeahead, 16, 0);
             this.oiaLayoutPanel.Controls.Add(this.oiaAltShift, 14, 0);
             this.oiaLayoutPanel.Controls.Add(this.oiaCx, 12, 0);
-            this.oiaLayoutPanel.Controls.Add(this.oiaLock, 3, 0);
             this.oiaLayoutPanel.Controls.Add(this.oiaReverse, 24, 0);
             this.oiaLayoutPanel.ForeColor = System.Drawing.Color.RoyalBlue;
             this.oiaLayoutPanel.Location = new System.Drawing.Point(0, 168);
@@ -331,204 +337,42 @@
             this.oiaLayoutPanel.Name = "oiaLayoutPanel";
             this.oiaLayoutPanel.RowCount = 1;
             this.oiaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.oiaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.oiaLayoutPanel.Size = new System.Drawing.Size(972, 41);
             this.oiaLayoutPanel.TabIndex = 0;
             this.oiaLayoutPanel.Tag = "<nowalk>";
             // 
-            // oia4AB
+            // oiaLockFlowLayoutPanel
             // 
-            this.oia4AB.AutoSize = true;
-            this.oiaLayoutPanel.SetColumnSpan(this.oia4AB, 3);
-            this.oia4AB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.oia4AB.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.oia4AB.Location = new System.Drawing.Point(0, 0);
-            this.oia4AB.Margin = new System.Windows.Forms.Padding(0);
-            this.oia4AB.Name = "oia4AB";
-            this.oia4AB.Size = new System.Drawing.Size(72, 41);
-            this.oia4AB.TabIndex = 4;
-            this.oia4AB.Text = "4A̲B";
-            this.oia4AB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.oia4AB, "Network state");
-            // 
-            // oiaTLS
-            // 
-            this.oiaTLS.AutoSize = true;
-            this.oiaTLS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.oiaTLS.Font = new System.Drawing.Font("Consolas", 12F);
-            this.oiaTLS.ForeColor = System.Drawing.Color.Red;
-            this.oiaTLS.Location = new System.Drawing.Point(604, 0);
-            this.oiaTLS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.oiaTLS.Name = "oiaTLS";
-            this.oiaTLS.Size = new System.Drawing.Size(16, 41);
-            this.oiaTLS.TabIndex = 4;
-            this.oiaTLS.Text = "🔓";
-            this.oiaTLS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // oiaLu
-            // 
-            this.oiaLu.AutoSize = true;
-            this.oiaLayoutPanel.SetColumnSpan(this.oiaLu, 6);
-            this.oiaLu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.oiaLu.Font = new System.Drawing.Font("Consolas", 12F);
-            this.oiaLu.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.oiaLu.Location = new System.Drawing.Point(628, 0);
-            this.oiaLu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.oiaLu.Name = "oiaLu";
-            this.oiaLu.Size = new System.Drawing.Size(135, 41);
-            this.oiaLu.TabIndex = 4;
-            this.oiaLu.Tag = "Main";
-            this.oiaLu.Text = "LU34567X";
-            this.oiaLu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.oiaLu, "Logical Unit name");
-            // 
-            // oiaTiming
-            // 
-            this.oiaTiming.AutoSize = true;
-            this.oiaLayoutPanel.SetColumnSpan(this.oiaTiming, 3);
-            this.oiaTiming.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.oiaTiming.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.oiaTiming.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.oiaTiming.Location = new System.Drawing.Point(767, 0);
-            this.oiaTiming.Margin = new System.Windows.Forms.Padding(0);
-            this.oiaTiming.Name = "oiaTiming";
-            this.oiaTiming.Size = new System.Drawing.Size(72, 41);
-            this.oiaTiming.TabIndex = 4;
-            this.oiaTiming.Text = "🕓:00";
-            this.oiaTiming.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.oiaTiming, "Command time");
-            // 
-            // oiaCursor
-            // 
-            this.oiaCursor.AutoSize = true;
-            this.oiaLayoutPanel.SetColumnSpan(this.oiaCursor, 5);
-            this.oiaCursor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.oiaCursor.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.oiaCursor.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.oiaCursor.Location = new System.Drawing.Point(839, 0);
-            this.oiaCursor.Margin = new System.Windows.Forms.Padding(0);
-            this.oiaCursor.Name = "oiaCursor";
-            this.oiaCursor.Size = new System.Drawing.Size(133, 41);
-            this.oiaCursor.TabIndex = 4;
-            this.oiaCursor.Tag = "Main";
-            this.oiaCursor.Text = "000/000";
-            this.oiaCursor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // oiaScript
-            // 
-            this.oiaScript.AutoSize = true;
-            this.oiaScript.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.oiaScript.Font = new System.Drawing.Font("Consolas", 12F);
-            this.oiaScript.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.oiaScript.Location = new System.Drawing.Point(552, 0);
-            this.oiaScript.Margin = new System.Windows.Forms.Padding(0);
-            this.oiaScript.Name = "oiaScript";
-            this.oiaScript.Size = new System.Drawing.Size(24, 41);
-            this.oiaScript.TabIndex = 8;
-            this.oiaScript.Text = "s";
-            this.oiaScript.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // oiaScreentrace
-            // 
-            this.oiaScreentrace.AutoSize = true;
-            this.oiaScreentrace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.oiaScreentrace.Font = new System.Drawing.Font("Consolas", 12F);
-            this.oiaScreentrace.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.oiaScreentrace.Location = new System.Drawing.Point(528, 0);
-            this.oiaScreentrace.Margin = new System.Windows.Forms.Padding(0);
-            this.oiaScreentrace.Name = "oiaScreentrace";
-            this.oiaScreentrace.Size = new System.Drawing.Size(24, 41);
-            this.oiaScreentrace.TabIndex = 7;
-            this.oiaScreentrace.Text = "#";
-            this.oiaScreentrace.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // oiaPrinter
-            // 
-            this.oiaPrinter.AutoSize = true;
-            this.oiaPrinter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.oiaPrinter.Font = new System.Drawing.Font("Consolas", 12F);
-            this.oiaPrinter.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.oiaPrinter.Location = new System.Drawing.Point(504, 0);
-            this.oiaPrinter.Margin = new System.Windows.Forms.Padding(0);
-            this.oiaPrinter.Name = "oiaPrinter";
-            this.oiaPrinter.Size = new System.Drawing.Size(24, 41);
-            this.oiaPrinter.TabIndex = 7;
-            this.oiaPrinter.Text = "🖶 ";
-            this.oiaPrinter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // oiaInsert
-            // 
-            this.oiaInsert.AutoSize = true;
-            this.oiaInsert.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.oiaInsert.Font = new System.Drawing.Font("Consolas", 12F);
-            this.oiaInsert.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.oiaInsert.Location = new System.Drawing.Point(480, 0);
-            this.oiaInsert.Margin = new System.Windows.Forms.Padding(0);
-            this.oiaInsert.Name = "oiaInsert";
-            this.oiaInsert.Size = new System.Drawing.Size(24, 41);
-            this.oiaInsert.TabIndex = 7;
-            this.oiaInsert.Text = "^";
-            this.oiaInsert.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // oiaTypeahead
-            // 
-            this.oiaTypeahead.AutoSize = true;
-            this.oiaTypeahead.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.oiaTypeahead.Font = new System.Drawing.Font("Consolas", 12F);
-            this.oiaTypeahead.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.oiaTypeahead.Location = new System.Drawing.Point(456, 0);
-            this.oiaTypeahead.Margin = new System.Windows.Forms.Padding(0);
-            this.oiaTypeahead.Name = "oiaTypeahead";
-            this.oiaTypeahead.Size = new System.Drawing.Size(24, 41);
-            this.oiaTypeahead.TabIndex = 6;
-            this.oiaTypeahead.Text = "T";
-            this.oiaTypeahead.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // oiaAltShift
-            // 
-            this.oiaAltShift.AutoSize = true;
-            this.oiaLayoutPanel.SetColumnSpan(this.oiaAltShift, 2);
-            this.oiaAltShift.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.oiaAltShift.Font = new System.Drawing.Font("Consolas", 12F);
-            this.oiaAltShift.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.oiaAltShift.Location = new System.Drawing.Point(408, 0);
-            this.oiaAltShift.Margin = new System.Windows.Forms.Padding(0);
-            this.oiaAltShift.Name = "oiaAltShift";
-            this.oiaAltShift.Size = new System.Drawing.Size(48, 41);
-            this.oiaAltShift.TabIndex = 5;
-            this.oiaAltShift.Text = "A⇑";
-            this.oiaAltShift.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // oiaCx
-            // 
-            this.oiaCx.AutoSize = true;
-            this.oiaLayoutPanel.SetColumnSpan(this.oiaCx, 2);
-            this.oiaCx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.oiaCx.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.oiaCx.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.oiaCx.Location = new System.Drawing.Point(360, 0);
-            this.oiaCx.Margin = new System.Windows.Forms.Padding(0);
-            this.oiaCx.Name = "oiaCx";
-            this.oiaCx.Size = new System.Drawing.Size(48, 41);
-            this.oiaCx.TabIndex = 4;
-            this.oiaCx.Text = "Cx";
-            this.oiaCx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.oiaLockFlowLayoutPanel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.oiaLockFlowLayoutPanel.AutoSize = true;
+            this.oiaLockFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.oiaLayoutPanel.SetColumnSpan(this.oiaLockFlowLayoutPanel, 9);
+            this.oiaLockFlowLayoutPanel.Controls.Add(this.oiaLock);
+            this.oiaLockFlowLayoutPanel.Controls.Add(this.oiaLockNative);
+            this.oiaLockFlowLayoutPanel.Location = new System.Drawing.Point(72, 6);
+            this.oiaLockFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaLockFlowLayoutPanel.Name = "oiaLockFlowLayoutPanel";
+            this.oiaLockFlowLayoutPanel.Size = new System.Drawing.Size(103, 29);
+            this.oiaLockFlowLayoutPanel.TabIndex = 10;
+            this.oiaLockFlowLayoutPanel.WrapContents = false;
             // 
             // oiaLock
             // 
+            this.oiaLock.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.oiaLock.AutoSize = true;
-            this.oiaLayoutPanel.SetColumnSpan(this.oiaLock, 12);
             this.oiaLock.ContextMenuStrip = this.resetContextMenuStrip;
-            this.oiaLock.Dock = System.Windows.Forms.DockStyle.Fill;
             this.oiaLock.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.oiaLock.ForeColor = System.Drawing.Color.White;
-            this.oiaLock.Location = new System.Drawing.Point(72, 0);
+            this.oiaLock.Location = new System.Drawing.Point(0, 0);
             this.oiaLock.Margin = new System.Windows.Forms.Padding(0);
             this.oiaLock.Name = "oiaLock";
-            this.oiaLock.Size = new System.Drawing.Size(288, 41);
+            this.oiaLock.Size = new System.Drawing.Size(62, 29);
             this.oiaLock.TabIndex = 4;
-            this.oiaLock.Text = " ❌ Not connected";
-            this.oiaLock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.oiaLock.Text = "❌ NC";
+            this.oiaLock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.oiaLock, "Keyboard locked: Not connected");
+            this.oiaLock.UseCompatibleTextRendering = true;
             // 
             // resetContextMenuStrip
             // 
@@ -546,6 +390,208 @@
             this.resetToolStripMenuItem.Text = "Reset";
             this.resetToolStripMenuItem.Click += new System.EventHandler(this.ResetToolStripMenuItem_Click);
             // 
+            // oiaLockNative
+            // 
+            this.oiaLockNative.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.oiaLockNative.AutoSize = true;
+            this.oiaLockNative.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oiaLockNative.ForeColor = System.Drawing.Color.White;
+            this.oiaLockNative.Location = new System.Drawing.Point(62, 0);
+            this.oiaLockNative.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaLockNative.Name = "oiaLockNative";
+            this.oiaLockNative.Size = new System.Drawing.Size(41, 29);
+            this.oiaLockNative.TabIndex = 5;
+            this.oiaLockNative.Text = "NNN";
+            this.oiaLockNative.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.oiaLockNative.UseCompatibleTextRendering = true;
+            // 
+            // oia4AB
+            // 
+            this.oia4AB.AutoSize = true;
+            this.oiaLayoutPanel.SetColumnSpan(this.oia4AB, 3);
+            this.oia4AB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oia4AB.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oia4AB.Location = new System.Drawing.Point(0, 0);
+            this.oia4AB.Margin = new System.Windows.Forms.Padding(0);
+            this.oia4AB.Name = "oia4AB";
+            this.oia4AB.Size = new System.Drawing.Size(72, 41);
+            this.oia4AB.TabIndex = 4;
+            this.oia4AB.Text = "4A̲B";
+            this.oia4AB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.oia4AB, "Network state");
+            this.oia4AB.UseCompatibleTextRendering = true;
+            // 
+            // oiaTLS
+            // 
+            this.oiaTLS.AutoSize = true;
+            this.oiaTLS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaTLS.Font = new System.Drawing.Font("Consolas", 12F);
+            this.oiaTLS.ForeColor = System.Drawing.Color.Red;
+            this.oiaTLS.Location = new System.Drawing.Point(604, 0);
+            this.oiaTLS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.oiaTLS.Name = "oiaTLS";
+            this.oiaTLS.Size = new System.Drawing.Size(16, 41);
+            this.oiaTLS.TabIndex = 4;
+            this.oiaTLS.Text = "🔓";
+            this.oiaTLS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.oiaTLS.UseCompatibleTextRendering = true;
+            // 
+            // oiaLu
+            // 
+            this.oiaLu.AutoSize = true;
+            this.oiaLayoutPanel.SetColumnSpan(this.oiaLu, 6);
+            this.oiaLu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaLu.Font = new System.Drawing.Font("Consolas", 12F);
+            this.oiaLu.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaLu.Location = new System.Drawing.Point(628, 0);
+            this.oiaLu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.oiaLu.Name = "oiaLu";
+            this.oiaLu.Size = new System.Drawing.Size(135, 41);
+            this.oiaLu.TabIndex = 4;
+            this.oiaLu.Tag = "Main";
+            this.oiaLu.Text = "LU34567X";
+            this.oiaLu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.oiaLu, "Logical Unit name");
+            this.oiaLu.UseCompatibleTextRendering = true;
+            // 
+            // oiaTiming
+            // 
+            this.oiaTiming.AutoSize = true;
+            this.oiaTiming.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oiaTiming.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaTiming.Location = new System.Drawing.Point(0, 0);
+            this.oiaTiming.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaTiming.Name = "oiaTiming";
+            this.oiaTiming.Size = new System.Drawing.Size(18, 29);
+            this.oiaTiming.TabIndex = 4;
+            this.oiaTiming.Text = "🕓";
+            this.oiaTiming.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.oiaTiming, "Command time");
+            this.oiaTiming.UseCompatibleTextRendering = true;
+            // 
+            // oiaCursor
+            // 
+            this.oiaCursor.AutoSize = true;
+            this.oiaLayoutPanel.SetColumnSpan(this.oiaCursor, 5);
+            this.oiaCursor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaCursor.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oiaCursor.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaCursor.Location = new System.Drawing.Point(839, 0);
+            this.oiaCursor.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaCursor.Name = "oiaCursor";
+            this.oiaCursor.Size = new System.Drawing.Size(133, 41);
+            this.oiaCursor.TabIndex = 4;
+            this.oiaCursor.Tag = "Main";
+            this.oiaCursor.Text = "000/000";
+            this.oiaCursor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.oiaCursor.UseCompatibleTextRendering = true;
+            // 
+            // oiaScript
+            // 
+            this.oiaScript.AutoSize = true;
+            this.oiaScript.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaScript.Font = new System.Drawing.Font("Consolas", 12F);
+            this.oiaScript.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaScript.Location = new System.Drawing.Point(480, 0);
+            this.oiaScript.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaScript.Name = "oiaScript";
+            this.oiaScript.Size = new System.Drawing.Size(24, 41);
+            this.oiaScript.TabIndex = 8;
+            this.oiaScript.Text = "s";
+            this.oiaScript.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // oiaScreentrace
+            // 
+            this.oiaScreentrace.AutoSize = true;
+            this.oiaScreentrace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaScreentrace.Font = new System.Drawing.Font("Consolas", 12F);
+            this.oiaScreentrace.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaScreentrace.Location = new System.Drawing.Point(456, 0);
+            this.oiaScreentrace.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaScreentrace.Name = "oiaScreentrace";
+            this.oiaScreentrace.Size = new System.Drawing.Size(24, 41);
+            this.oiaScreentrace.TabIndex = 7;
+            this.oiaScreentrace.Text = "#";
+            this.oiaScreentrace.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.oiaScreentrace.UseCompatibleTextRendering = true;
+            // 
+            // oiaPrinter
+            // 
+            this.oiaPrinter.AutoSize = true;
+            this.oiaPrinter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaPrinter.Font = new System.Drawing.Font("Consolas", 12F);
+            this.oiaPrinter.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaPrinter.Location = new System.Drawing.Point(432, 0);
+            this.oiaPrinter.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaPrinter.Name = "oiaPrinter";
+            this.oiaPrinter.Size = new System.Drawing.Size(24, 41);
+            this.oiaPrinter.TabIndex = 7;
+            this.oiaPrinter.Text = "🖶 ";
+            this.oiaPrinter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.oiaPrinter.UseCompatibleTextRendering = true;
+            // 
+            // oiaInsert
+            // 
+            this.oiaInsert.AutoSize = true;
+            this.oiaInsert.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaInsert.Font = new System.Drawing.Font("Consolas", 12F);
+            this.oiaInsert.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaInsert.Location = new System.Drawing.Point(408, 0);
+            this.oiaInsert.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaInsert.Name = "oiaInsert";
+            this.oiaInsert.Size = new System.Drawing.Size(24, 41);
+            this.oiaInsert.TabIndex = 7;
+            this.oiaInsert.Text = "^";
+            this.oiaInsert.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.oiaInsert.UseCompatibleTextRendering = true;
+            // 
+            // oiaTypeahead
+            // 
+            this.oiaTypeahead.AutoSize = true;
+            this.oiaTypeahead.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaTypeahead.Font = new System.Drawing.Font("Consolas", 12F);
+            this.oiaTypeahead.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaTypeahead.Location = new System.Drawing.Point(384, 0);
+            this.oiaTypeahead.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaTypeahead.Name = "oiaTypeahead";
+            this.oiaTypeahead.Size = new System.Drawing.Size(24, 41);
+            this.oiaTypeahead.TabIndex = 6;
+            this.oiaTypeahead.Text = "T";
+            this.oiaTypeahead.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.oiaTypeahead.UseCompatibleTextRendering = true;
+            // 
+            // oiaAltShift
+            // 
+            this.oiaAltShift.AutoSize = true;
+            this.oiaLayoutPanel.SetColumnSpan(this.oiaAltShift, 2);
+            this.oiaAltShift.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaAltShift.Font = new System.Drawing.Font("Consolas", 12F);
+            this.oiaAltShift.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaAltShift.Location = new System.Drawing.Point(336, 0);
+            this.oiaAltShift.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaAltShift.Name = "oiaAltShift";
+            this.oiaAltShift.Size = new System.Drawing.Size(48, 41);
+            this.oiaAltShift.TabIndex = 5;
+            this.oiaAltShift.Text = "A⇑";
+            this.oiaAltShift.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.oiaAltShift.UseCompatibleTextRendering = true;
+            // 
+            // oiaCx
+            // 
+            this.oiaCx.AutoSize = true;
+            this.oiaLayoutPanel.SetColumnSpan(this.oiaCx, 2);
+            this.oiaCx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.oiaCx.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oiaCx.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaCx.Location = new System.Drawing.Point(288, 0);
+            this.oiaCx.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaCx.Name = "oiaCx";
+            this.oiaCx.Size = new System.Drawing.Size(48, 41);
+            this.oiaCx.TabIndex = 4;
+            this.oiaCx.Text = "Cx";
+            this.oiaCx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.oiaCx.UseCompatibleTextRendering = true;
+            // 
             // oiaReverse
             // 
             this.oiaReverse.AutoSize = true;
@@ -558,6 +604,7 @@
             this.oiaReverse.TabIndex = 9;
             this.oiaReverse.Text = "R";
             this.oiaReverse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.oiaReverse.UseCompatibleTextRendering = true;
             // 
             // topLeftLayoutPanel
             // 
@@ -1582,12 +1629,12 @@
             this.settingsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.screenBoxContextMenuStrip.Name = "contextMenuStrip";
-            this.screenBoxContextMenuStrip.Size = new System.Drawing.Size(215, 344);
+            this.screenBoxContextMenuStrip.Size = new System.Drawing.Size(161, 316);
             // 
             // fullScreenToolStripMenuItem
             // 
             this.fullScreenToolStripMenuItem.Name = "fullScreenToolStripMenuItem";
-            this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
             this.fullScreenToolStripMenuItem.Tag = "FullScreen";
             this.fullScreenToolStripMenuItem.Text = "Full screen";
             this.fullScreenToolStripMenuItem.Click += new System.EventHandler(this.ScreenBoxContextClick);
@@ -1598,7 +1645,7 @@
             this.temporaryToolStripMenuItem,
             this.permanentToolStripMenuItem});
             this.menuBarToolStripMenuItem.Name = "menuBarToolStripMenuItem";
-            this.menuBarToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.menuBarToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
             this.menuBarToolStripMenuItem.Text = "Menu bar";
             // 
             // temporaryToolStripMenuItem
@@ -1626,7 +1673,7 @@
             this.pasteToolStripMenuItem1,
             this.cutToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // copyToolStripMenuItem1
@@ -1659,7 +1706,7 @@
             this.openActionsWindowToolStripMenuItem});
             this.actionsToolStripMenuItem.Image = global::Wx3270.Properties.Resources.StartClearer;
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
-            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
             this.actionsToolStripMenuItem.Text = "Actions";
             // 
             // openActionsWindowToolStripMenuItem
@@ -1673,7 +1720,7 @@
             // 
             this.connectToolStripMenuItem.Image = global::Wx3270.Properties.Resources.PowerPlug32;
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
             this.connectToolStripMenuItem.Text = "Connect";
             // 
             // keypadToolStripMenuItem
@@ -1683,7 +1730,7 @@
             this.openAPLKeypadToolStripMenuItem});
             this.keypadToolStripMenuItem.Image = global::Wx3270.Properties.Resources.KeypadSmallHollow3;
             this.keypadToolStripMenuItem.Name = "keypadToolStripMenuItem";
-            this.keypadToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.keypadToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
             this.keypadToolStripMenuItem.Text = "Keypad";
             // 
             // openKeypadToolStripMenuItem
@@ -1708,7 +1755,7 @@
             this.openProfilesWindowToolStripMenuItem});
             this.profilesToolStripMenuItem.Image = global::Wx3270.Properties.Resources.Folder;
             this.profilesToolStripMenuItem.Name = "profilesToolStripMenuItem";
-            this.profilesToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.profilesToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
             this.profilesToolStripMenuItem.Text = "Profiles";
             // 
             // openProfilesWindowToolStripMenuItem
@@ -1723,7 +1770,7 @@
             this.openMacrosWindowToolStripMenuItem});
             this.macrosToolStripMenuItem.Image = global::Wx3270.Properties.Resources.Tape4;
             this.macrosToolStripMenuItem.Name = "macrosToolStripMenuItem";
-            this.macrosToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.macrosToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
             this.macrosToolStripMenuItem.Text = "Macros";
             // 
             // openMacrosWindowToolStripMenuItem
@@ -1741,7 +1788,7 @@
             this.snapWindowSizeToolStripMenuItem});
             this.fontToolStripMenuItem.Image = global::Wx3270.Properties.Resources.ToggleDown3wide;
             this.fontToolStripMenuItem.Name = "fontToolStripMenuItem";
-            this.fontToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.fontToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
             this.fontToolStripMenuItem.Text = "Font";
             // 
             // biggerToolStripMenuItem
@@ -1775,14 +1822,30 @@
             this.startTourToolStripMenuItem1});
             this.helpToolStripMenuItem.Image = global::Wx3270.Properties.Resources.Question23c;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
             this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // displayHelpInBrowserToolStripMenuItem1
+            // 
+            this.displayHelpInBrowserToolStripMenuItem1.Name = "displayHelpInBrowserToolStripMenuItem1";
+            this.displayHelpInBrowserToolStripMenuItem1.Size = new System.Drawing.Size(247, 26);
+            this.displayHelpInBrowserToolStripMenuItem1.Tag = "Help";
+            this.displayHelpInBrowserToolStripMenuItem1.Text = "Display help in browser";
+            this.displayHelpInBrowserToolStripMenuItem1.Click += new System.EventHandler(this.HelpClick);
+            // 
+            // startTourToolStripMenuItem1
+            // 
+            this.startTourToolStripMenuItem1.Name = "startTourToolStripMenuItem1";
+            this.startTourToolStripMenuItem1.Size = new System.Drawing.Size(247, 26);
+            this.startTourToolStripMenuItem1.Tag = "Tour";
+            this.startTourToolStripMenuItem1.Text = "Start tour";
+            this.startTourToolStripMenuItem1.Click += new System.EventHandler(this.HelpClick);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Image = global::Wx3270.Properties.Resources.KnobBlueCenter6;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsBox_Click);
             // 
@@ -1790,7 +1853,7 @@
             // 
             this.quitToolStripMenuItem.Image = global::Wx3270.Properties.Resources.ErrorIcon;
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
             this.quitToolStripMenuItem.Tag = "Exit";
             this.quitToolStripMenuItem.Text = "Exit wx3270";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.ScreenBoxContextClick);
@@ -2197,21 +2260,34 @@
             this.overlayMenuBarTimer.Interval = 25;
             this.overlayMenuBarTimer.Tick += new System.EventHandler(this.OverlayMenuBarTimer_Tick);
             // 
-            // displayHelpInBrowserToolStripMenuItem1
+            // timeFlowLayoutPanel
             // 
-            this.displayHelpInBrowserToolStripMenuItem1.Name = "displayHelpInBrowserToolStripMenuItem1";
-            this.displayHelpInBrowserToolStripMenuItem1.Size = new System.Drawing.Size(247, 26);
-            this.displayHelpInBrowserToolStripMenuItem1.Tag = "Help";
-            this.displayHelpInBrowserToolStripMenuItem1.Text = "Display help in browser";
-            this.displayHelpInBrowserToolStripMenuItem1.Click += new System.EventHandler(this.HelpClick);
+            this.timeFlowLayoutPanel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.timeFlowLayoutPanel.AutoSize = true;
+            this.timeFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.oiaLayoutPanel.SetColumnSpan(this.timeFlowLayoutPanel, 3);
+            this.timeFlowLayoutPanel.Controls.Add(this.oiaTiming);
+            this.timeFlowLayoutPanel.Controls.Add(this.oiaTimingNative);
+            this.timeFlowLayoutPanel.Location = new System.Drawing.Point(767, 6);
+            this.timeFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.timeFlowLayoutPanel.Name = "timeFlowLayoutPanel";
+            this.timeFlowLayoutPanel.Size = new System.Drawing.Size(36, 29);
+            this.timeFlowLayoutPanel.TabIndex = 10;
+            this.timeFlowLayoutPanel.WrapContents = false;
             // 
-            // startTourToolStripMenuItem1
+            // oiaTimingNative
             // 
-            this.startTourToolStripMenuItem1.Name = "startTourToolStripMenuItem1";
-            this.startTourToolStripMenuItem1.Size = new System.Drawing.Size(247, 26);
-            this.startTourToolStripMenuItem1.Tag = "Tour";
-            this.startTourToolStripMenuItem1.Text = "Start tour";
-            this.startTourToolStripMenuItem1.Click += new System.EventHandler(this.HelpClick);
+            this.oiaTimingNative.AutoSize = true;
+            this.oiaTimingNative.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oiaTimingNative.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaTimingNative.Location = new System.Drawing.Point(18, 0);
+            this.oiaTimingNative.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaTimingNative.Name = "oiaTimingNative";
+            this.oiaTimingNative.Size = new System.Drawing.Size(18, 29);
+            this.oiaTimingNative.TabIndex = 5;
+            this.oiaTimingNative.Text = "0";
+            this.oiaTimingNative.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.oiaTimingNative.UseCompatibleTextRendering = true;
             // 
             // MainScreen
             // 
@@ -2239,6 +2315,8 @@
             this.Resize += new System.EventHandler(this.MainScreen_Resize);
             this.oiaLayoutPanel.ResumeLayout(false);
             this.oiaLayoutPanel.PerformLayout();
+            this.oiaLockFlowLayoutPanel.ResumeLayout(false);
+            this.oiaLockFlowLayoutPanel.PerformLayout();
             this.resetContextMenuStrip.ResumeLayout(false);
             this.topLeftLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.startLeftPictureBox)).EndInit();
@@ -2273,6 +2351,8 @@
             this.ScrollBarLayoutPanel.PerformLayout();
             this.mainScreenPanel.ResumeLayout(false);
             this.mainScreenPanel.PerformLayout();
+            this.timeFlowLayoutPanel.ResumeLayout(false);
+            this.timeFlowLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2485,6 +2565,10 @@
         private System.Windows.Forms.ToolStripMenuItem startTourToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem displayHelpInBrowserToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem startTourToolStripMenuItem1;
+        private System.Windows.Forms.FlowLayoutPanel oiaLockFlowLayoutPanel;
+        private System.Windows.Forms.Label oiaLockNative;
+        private System.Windows.Forms.FlowLayoutPanel timeFlowLayoutPanel;
+        private System.Windows.Forms.Label oiaTimingNative;
     }
 }
 

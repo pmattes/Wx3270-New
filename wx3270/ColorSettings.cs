@@ -341,14 +341,16 @@ When selecting a new color, it is a good idea to cycle through each of the optio
                 this.colorPreviewTableLayoutPanel,
                 this.colorPreviewStatusLineLabel,
                 this.colorPreviewSeparatorPictureBox,
-                true);
+                colorMode: true,
+                withExtras: false);
             this.monoScreenSample = new ScreenSample(
                 this,
                 this.monoPreviewScreenPictureBox,
                 this.monoPreviewTableLayoutPanel,
                 this.monoPreviewStatusLineLabel,
                 this.monoPreviewSeparatorPictureBox,
-                false);
+                colorMode: false,
+                withExtras: false);
 
             // Set up event handlers for edited colors changes.
             // This needs to happen before the AddChangeTo call below, because the callback may be called

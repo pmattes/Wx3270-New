@@ -103,8 +103,8 @@ namespace Wx3270
         /// <param name="colorMode">True if in 3279 mode.</param>
         public void SetFont(Font font, Colors colors, bool colorMode)
         {
-            this.fontScreenSample.ScreenBox.ScreenNewFont(font, this.CreateSampleImage(this.ColorMode));
-            this.fontScreenSample.Invalidate();
+            this.fontScreenSample.ScreenBox.ScreenNewFont(font, this.CreateSampleImage(this.ColorMode, withExtras: true));
+            this.fontScreenSample.Invalidate(withExtras: true);
             this.fontPreviewStatusLineLabel.Font = font;
 
             this.editedFont = font;
@@ -120,8 +120,8 @@ namespace Wx3270
         {
             // Propagate to the setting dialog.
             this.SetFont(newFont, this.editedColors, this.colorButton.Checked);
-            this.fontScreenSample.ScreenBox.ScreenNewFont(newFont, this.CreateSampleImage(this.ColorMode));
-            this.fontScreenSample.Invalidate();
+            this.fontScreenSample.ScreenBox.ScreenNewFont(newFont, this.CreateSampleImage(this.ColorMode, withExtras: true));
+            this.fontScreenSample.Invalidate(withExtras: true);
             this.fontPreviewStatusLineLabel.Font = newFont;
 
             // Change the profile.
@@ -142,7 +142,7 @@ namespace Wx3270
         /// <param name="colorMode">True if in 3279 mode.</param>
         public void RecolorFontTab(Colors colors, bool colorMode)
         {
-            this.fontScreenSample.Invalidate();
+            this.fontScreenSample.Invalidate(withExtras: true);
         }
 
         /// <summary>
@@ -158,7 +158,8 @@ namespace Wx3270
                 this.fontPreviewTableLayoutPanel,
                 this.fontPreviewStatusLineLabel,
                 this.fontPreviewSeparatorPictureBox,
-                this.ColorMode);
+                this.ColorMode,
+                true);
 
             // Initialize the font combo boxes.
             this.familyNames = new FixedWidthFontEnumerator().Names;
@@ -240,7 +241,7 @@ namespace Wx3270
         private void FontPreviewScreenPictureBoxPaint(object sender, PaintEventArgs e)
         {
             // Use the standard method.
-            this.SamplePaint(sender, e, this.fontScreenSample);
+            this.SamplePaint(sender, e, this.fontScreenSample, withExtras: true);
         }
 
         /// <summary>
@@ -252,8 +253,8 @@ namespace Wx3270
             // Propagate the results to the setting dialog.
             this.SetFont(font, this.editedColors, this.colorButton.Checked);
             this.fontSizeComboBox.Text = font.SizeInPoints.ToString();
-            this.fontScreenSample.ScreenBox.ScreenNewFont(font, this.CreateSampleImage(this.ColorMode));
-            this.fontScreenSample.Invalidate();
+            this.fontScreenSample.ScreenBox.ScreenNewFont(font, this.CreateSampleImage(this.ColorMode, withExtras: true));
+            this.fontScreenSample.Invalidate(withExtras: true);
             this.fontPreviewStatusLineLabel.Font = font;
         }
 
@@ -385,19 +386,20 @@ namespace Wx3270
             {
                 // Drawing the current value (no index set yet) or drawing the new selection.
                 e.DrawBackground();
-                var fontName = (e.Index >= 0) ? (string)this.familyComboBox.Items[e.Index] : "Unknown";
+                var selectedFontName = (e.Index >= 0) ? (string)this.familyComboBox.Items[e.Index] : "Unknown";
                 TextRenderer.DrawText(
                     e.Graphics,
-                    fontName,
+                    selectedFontName,
                     this.familyComboBox.Font,
                     new Point(e.Bounds.X, e.Bounds.Y),
                     e.ForeColor);
                 return;
             }
 
-            var font = new Font((string)this.familyComboBox.Items[e.Index], this.familyComboBox.Font.SizeInPoints, FontStyle.Regular);
+            var fontName = (string)this.familyComboBox.Items[e.Index];
+            var font = new Font(fontName, this.familyComboBox.Font.SizeInPoints, FontStyle.Regular);
             e.DrawBackground();
-            TextRenderer.DrawText(e.Graphics, font.Name, font, new Point(e.Bounds.X, e.Bounds.Y), e.ForeColor);
+            TextRenderer.DrawText(e.Graphics, fontName, font, new Point(e.Bounds.X, e.Bounds.Y), e.ForeColor);
         }
 
         /// <summary>
