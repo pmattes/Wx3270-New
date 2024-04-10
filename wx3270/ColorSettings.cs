@@ -198,7 +198,7 @@ These settings are applied only when wx3270 is emulating a 3279 (color) terminal
             I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(optionsPreviewScreenPictureBox)), "Preview window");
             I18n.LocalizeGlobal(
                 Tour.BodyKey(nameof(Settings), nameof(optionsPreviewScreenPictureBox)),
-@"This miniature emulator widow displays the effect of the current set of options.");
+@"This miniature emulator window displays the effect of the current set of options.");
 
             // Color scheme.
             I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(schemeBox)), "Color scheme");
@@ -253,7 +253,7 @@ These settings are applied only when wx3270 is emulating a 3278 (monochrome) ter
             I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(monoPreviewScreenPictureBox)), "Preview window");
             I18n.LocalizeGlobal(
                 Tour.BodyKey(nameof(Settings), nameof(monoPreviewScreenPictureBox)),
-@"This miniature emulator widow displays the effect of the current set of options.");
+@"This miniature emulator window displays the effect of the current set of options.");
 
             // Color scheme.
             I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(monoColorSchemeBox)), "Color scheme");
