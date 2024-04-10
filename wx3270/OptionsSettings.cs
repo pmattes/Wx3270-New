@@ -200,7 +200,7 @@ If this setting is changed while connected, the change will not take effect unti
             I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(miscGroupBox)), "Miscellaneous options");
             I18n.LocalizeGlobal(
                 Tour.BodyKey(nameof(Settings), nameof(miscGroupBox)),
-@"This is an grab-bag of miscellaneous options. The x3270 Wiki is the best place to find the specific definitions of each.");
+@"This is a grab-bag of miscellaneous options. The x3270 Wiki is the best place to find the specific definitions of each.");
 
             // Cursor box.
             I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(cursorGroupBox)), "Cursor settings");
