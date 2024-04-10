@@ -160,7 +160,7 @@ namespace Wx3270
             I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(optionsSampleGroupBox)), "Preview display");
             I18n.LocalizeGlobal(
                 Tour.BodyKey(nameof(Settings), nameof(optionsSampleGroupBox)),
-@"This miniature emulator widow displays the effect of the current set of options.");
+@"This miniature emulator window displays the effect of the current set of options.");
 
             // Display box.
             I18n.LocalizeGlobal(Tour.TitleKey(nameof(Settings), nameof(displayGroupBox)), "Color emulation");

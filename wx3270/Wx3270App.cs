@@ -50,7 +50,7 @@ namespace Wx3270
             (Constants.Option.Maximize, string.Empty, "Create the window maximized"),
             (Constants.Option.Model, "model-number", "Override the default 3270 model number"),
             (Constants.Option.NoButtons, string.Empty, "Do not display the menu bar"),
-            (Constants.Option.NoBorder, string.Empty, "Create the widow without a border"),
+            (Constants.Option.NoBorder, string.Empty, "Create the window without a border"),
             (Constants.Option.NoProfile, string.Empty, "Operate without a profile (use system default settings)"),
             (Constants.Option.NoScrollBar, string.Empty, "Do not display the scroll bar"),
             (Constants.Option.NoSplash, string.Empty, "Do not display the splash screen"),
