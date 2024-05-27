@@ -1437,14 +1437,14 @@ The button labels include a count of how many Undo and Redo operations are saved
                 this.profileSwitchToButton.Enabled = !this.connected && !profileNode.IsBroken && !profileNode.IsDefaults && !profileNode.IsCurrent;
                 this.profileMergeFromButton.Enabled = !profileNode.IsBroken && !profileNode.IsCurrent;
                 this.profileExportButton.Enabled = !profileNode.IsBroken && !profileNode.IsDefaults;
-                this.profileDefaultButton.Enabled = !profileNode.IsBroken && !profileNode.IsDefaults;
+                this.profileDefaultButton.Enabled = !profileNode.IsBroken && !profileNode.IsDefaults && profileNode.Profile.ProfileType == ProfileType.Full;
 
                 // Set common buttons.
                 this.commonEditButton.Enabled = this.app.Allowed(Restrictions.SwitchProfile) && !profileNode.IsDefaults && !profileNode.IsCurrent && !profileNode.IsBroken;
                 this.commonDuplicateButton.Enabled = !profileNode.IsBroken;
                 this.commonRenameButton.Enabled = !profileNode.IsDefaults && !profileNode.IsCurrent && !profileNode.IsBroken;
                 this.commonDeleteButton.Enabled = !profileNode.IsDefaults && !profileNode.IsCurrent;
-                this.commonShortcutButton.Enabled = true;
+                this.commonShortcutButton.Enabled = !profileNode.IsDefaults && profileNode.Profile.ProfileType == ProfileType.Full;
 
                 // Set connection buttons.
                 this.connectionNewButton.Enabled = profileNode.Profile?.ProfileType == ProfileType.Full;
@@ -1455,6 +1455,10 @@ The button labels include a count of how many Undo and Redo operations are saved
 
                 // Set folder buttons.
                 this.folderUnwatchButton.Enabled = false;
+
+                // Set context menu strip buttons.
+                this.profileShortcutToolStripMenuItem.Enabled = profileNode.Profile.ProfileType == ProfileType.Full;
+                this.profileSetAsDefaultToolStripMenuItem.Enabled = profileNode.Profile.ProfileType == ProfileType.Full;
                 return;
             }
 
