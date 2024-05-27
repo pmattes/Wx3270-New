@@ -958,7 +958,7 @@ namespace Wx3270
 
         /// <inheritdoc />
         public bool IsCurrentPathName(string profilePathName) =>
-            (string.IsNullOrEmpty(profilePathName) && string.IsNullOrEmpty(this.Current.PathName)) ||
+            (string.IsNullOrEmpty(profilePathName) && string.IsNullOrEmpty(this.Current?.PathName)) ||
             (!string.IsNullOrEmpty(this.Current?.PathName) && HPathUtil.ArePathsEqual(SafeGetFullPath(profilePathName), this.Current.PathName));
 
         /// <inheritdoc />
