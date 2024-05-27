@@ -666,15 +666,8 @@ namespace Wx3270
         /// <inheritdoc />
         public bool Save(string profilePathName = null, Profile profile = null)
         {
-            if (profilePathName == null)
-            {
-                profilePathName = this.Current.PathName;
-            }
-
-            if (profile == null)
-            {
-                profile = this.Current;
-            }
+            profilePathName ??= this.Current.PathName;
+            profile ??= this.Current;
 
             var isCurrent = this.IsCurrentPathName(profilePathName);
             if (isCurrent && profile.ReadOnly)
@@ -964,7 +957,9 @@ namespace Wx3270
         }
 
         /// <inheritdoc />
-        public bool IsCurrentPathName(string profilePathName) => !string.IsNullOrEmpty(this.Current?.PathName) && HPathUtil.ArePathsEqual(SafeGetFullPath(profilePathName), this.Current.PathName);
+        public bool IsCurrentPathName(string profilePathName) =>
+            (string.IsNullOrEmpty(profilePathName) && string.IsNullOrEmpty(this.Current.PathName)) ||
+            (!string.IsNullOrEmpty(this.Current?.PathName) && HPathUtil.ArePathsEqual(SafeGetFullPath(profilePathName), this.Current.PathName));
 
         /// <inheritdoc />
         public bool IsDefaultPathName(string profilePathName)
