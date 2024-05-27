@@ -2506,7 +2506,7 @@ The button labels include a count of how many Undo and Redo operations are saved
 
             // Re-map the type if the profile is something other than defaults.
             var from = profile.Name;
-            var isDefaults = treatAsDefaults || from.Equals(Wx3270.ProfileManager.DefaultValuesName);
+            var isDefaults = treatAsDefaults || from.Equals(Wx3270.ProfileManager.DefaultValuesName) || from.Equals(Wx3270.ProfileManager.NoProfileName);
             if (!isDefaults && profileType == ProfileType.Full)
             {
                 profileType = profile.ProfileType;
