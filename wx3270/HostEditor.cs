@@ -1005,7 +1005,7 @@ wx3270 will look for the certifcate in the current user's Personal store.");
 
                 if (string.IsNullOrEmpty(this.connectionNameTextBox.Text))
                 {
-                    this.connectionNameTextBox.Text = this.HostNameTextBox.Text + " " + this.PortTextBox.Text;
+                    this.connectionNameTextBox.Text = (this.HostNameTextBox.Text + " " + this.PortTextBox.Text).Trim(' ');
                 }
             }
 
