@@ -266,21 +266,6 @@ The Shift, Ctrl and Alt modifiers refer to modifier keys on the keyboard. The AP
             }
 
             List<string> names = new List<string>();
-            if (mod.HasFlag(KeyboardModifier.Shift))
-            {
-                names.Add(I18n.Get(I18n.Combine(KeypadString.ModifierName, KeyboardModifier.Shift.ToString())));
-            }
-
-            if (mod.HasFlag(KeyboardModifier.Ctrl))
-            {
-                names.Add(I18n.Get(I18n.Combine(KeypadString.ModifierName, KeyboardModifier.Ctrl.ToString())));
-            }
-
-            if (mod.HasFlag(KeyboardModifier.Alt))
-            {
-                names.Add(I18n.Get(I18n.Combine(KeypadString.ModifierName, KeyboardModifier.Alt.ToString())));
-            }
-
             if (mod.HasFlag(KeyboardModifier.Apl))
             {
                 names.Add("APL");
@@ -294,6 +279,21 @@ The Shift, Ctrl and Alt modifiers refer to modifier keys on the keyboard. The AP
             if (mod.HasFlag(KeyboardModifier.ModeNvt))
             {
                 names.Add("NVT");
+            }
+
+            if (mod.HasFlag(KeyboardModifier.Shift))
+            {
+                names.Add(I18n.Get(I18n.Combine(KeypadString.ModifierName, KeyboardModifier.Shift.ToString())));
+            }
+
+            if (mod.HasFlag(KeyboardModifier.Ctrl))
+            {
+                names.Add(I18n.Get(I18n.Combine(KeypadString.ModifierName, KeyboardModifier.Ctrl.ToString())));
+            }
+
+            if (mod.HasFlag(KeyboardModifier.Alt))
+            {
+                names.Add(I18n.Get(I18n.Combine(KeypadString.ModifierName, KeyboardModifier.Alt.ToString())));
             }
 
             return string.Join("-", names);

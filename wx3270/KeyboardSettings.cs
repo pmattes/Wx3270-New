@@ -459,7 +459,7 @@ The mapping for key and modifiers will only apply when that key is pressed in se
                     this.keyboardActionsTextBox.Enabled = false;
                     this.keyboardActionsTextBox.BackColor = System.Drawing.SystemColors.Control;
                     var inheritedName = new List<string>();
-                    var modifier = matchedModifier == KeyboardModifier.None ? string.Empty : matchedModifier.ToString().Replace(",", string.Empty);
+                    var modifier = matchedModifier == KeyboardModifier.None ? string.Empty : ModifierName(matchedModifier);
                     if (!string.IsNullOrEmpty(modifier))
                     {
                         inheritedName.Add(modifier);
@@ -468,7 +468,7 @@ The mapping for key and modifiers will only apply when that key is pressed in se
                     inheritedName.Add(this.EditedKeyString);
                     this.keyboardActionsInheritedLabel.Text = string.Format(
                         I18n.Get(KeyboardString.InheritedFrom),
-                        string.Join(" ", inheritedName));
+                        string.Join("-", inheritedName));
                     this.keyboardActionsInheritedLabel.Visible = true;
                     toolTip = I18n.Get(KeyboardToolTip.ClickToOverride);
                     this.keyboardActionsAddKeyButton.Enabled = true;
@@ -819,6 +819,25 @@ The mapping for key and modifiers will only apply when that key is pressed in se
         }
 
         /// <summary>
+        /// Tests whether the matching keymap entry inherits from a 3270-mode-specific entry.
+        /// </summary>
+        /// <returns>True if it does.</returns>
+        private bool Inherits3270()
+        {
+            return this.editedKeyboardMap.TryGetClosestMatch(
+                this.editedKey.ToStringExtended(),
+                KeyHelper.ScanName(this.editedScanCode),
+                this.currentKeyboardMod | this.CurrentMapModifier | KeyboardModifier.Mode3270,
+                KeyMap<KeyboardMap>.ProfileChord(this.ChordName),
+                out _,
+                out _,
+                out KeyboardModifier matchedModifier,
+                out MatchType matchType)
+                && !(this.forceMatchType.HasValue && matchType != this.forceMatchType.Value)
+                && matchedModifier.HasFlag(KeyboardModifier.Mode3270);
+        }
+
+        /// <summary>
         /// The display keyboard map layout button was checked.
         /// </summary>
         /// <param name="sender">Event sender.</param>
@@ -862,6 +881,11 @@ The mapping for key and modifiers will only apply when that key is pressed in se
                     this.keyboardCtrlCheckBox.Checked = this.currentKeyboardMod.HasFlag(KeyboardModifier.Ctrl);
                     this.keyboardAltCheckBox.Checked = this.currentKeyboardMod.HasFlag(KeyboardModifier.Alt);
                     this.keyboardAplModeCheckBox.Checked = this.currentKeyboardMod.HasFlag(KeyboardModifier.Apl);
+
+                    // If there is a match for this key and modifiers in 3270 mode, turn on 3270 mode.
+                    // This prevents people from thinking they have created a mapping that does not apply in 3270 mode, when
+                    // they intended it to. E.g., Alt-e.
+                    this.mode3270checkBox.Checked = this.Inherits3270();
                 }
                 finally
                 {
