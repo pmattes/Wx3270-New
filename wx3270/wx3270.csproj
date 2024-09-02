@@ -143,6 +143,9 @@
     <Compile Include="Contracts\IModelsDb.cs" />
     <Compile Include="Contracts\ITerminalName.cs" />
     <Compile Include="FixedWidthFontEnumerator.cs" />
+    <Compile Include="UnpaddedLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ShortcutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
