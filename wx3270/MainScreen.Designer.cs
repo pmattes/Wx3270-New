@@ -31,15 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainScreen));
             this.oiaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.timeFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.oiaLockFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.oiaLock = new System.Windows.Forms.Label();
             this.resetContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.oiaLockNative = new System.Windows.Forms.Label();
             this.oia4AB = new System.Windows.Forms.Label();
             this.oiaTLS = new System.Windows.Forms.Label();
             this.oiaLu = new System.Windows.Forms.Label();
-            this.oiaTiming = new System.Windows.Forms.Label();
             this.oiaCursor = new System.Windows.Forms.Label();
             this.oiaScript = new System.Windows.Forms.Label();
             this.oiaScreentrace = new System.Windows.Forms.Label();
@@ -237,9 +235,12 @@
             this.noFlashTimer = new System.Windows.Forms.Timer(this.components);
             this.menuBarHideTimer = new System.Windows.Forms.Timer(this.components);
             this.overlayMenuBarTimer = new System.Windows.Forms.Timer(this.components);
-            this.timeFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.oiaTimingNative = new System.Windows.Forms.Label();
+            this.oiaTiming = new Wx3270.UnpaddedLabel();
+            this.oiaTimingNative = new Wx3270.UnpaddedLabel();
+            this.oiaLock = new System.Windows.Forms.Label();
+            this.oiaLockNative = new System.Windows.Forms.Label();
             this.oiaLayoutPanel.SuspendLayout();
+            this.timeFlowLayoutPanel.SuspendLayout();
             this.oiaLockFlowLayoutPanel.SuspendLayout();
             this.resetContextMenuStrip.SuspendLayout();
             this.topLeftLayoutPanel.SuspendLayout();
@@ -271,7 +272,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.crosshairPictureBox)).BeginInit();
             this.ScrollBarLayoutPanel.SuspendLayout();
             this.mainScreenPanel.SuspendLayout();
-            this.timeFlowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // oiaLayoutPanel
@@ -337,10 +337,25 @@
             this.oiaLayoutPanel.Name = "oiaLayoutPanel";
             this.oiaLayoutPanel.RowCount = 1;
             this.oiaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.oiaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.oiaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.oiaLayoutPanel.Size = new System.Drawing.Size(972, 41);
             this.oiaLayoutPanel.TabIndex = 0;
             this.oiaLayoutPanel.Tag = "<nowalk>";
+            // 
+            // timeFlowLayoutPanel
+            // 
+            this.timeFlowLayoutPanel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.timeFlowLayoutPanel.AutoSize = true;
+            this.timeFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.oiaLayoutPanel.SetColumnSpan(this.timeFlowLayoutPanel, 3);
+            this.timeFlowLayoutPanel.Controls.Add(this.oiaTiming);
+            this.timeFlowLayoutPanel.Controls.Add(this.oiaTimingNative);
+            this.timeFlowLayoutPanel.Location = new System.Drawing.Point(767, 9);
+            this.timeFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.timeFlowLayoutPanel.Name = "timeFlowLayoutPanel";
+            this.timeFlowLayoutPanel.Size = new System.Drawing.Size(32, 23);
+            this.timeFlowLayoutPanel.TabIndex = 10;
+            this.timeFlowLayoutPanel.WrapContents = false;
             // 
             // oiaLockFlowLayoutPanel
             // 
@@ -350,29 +365,12 @@
             this.oiaLayoutPanel.SetColumnSpan(this.oiaLockFlowLayoutPanel, 9);
             this.oiaLockFlowLayoutPanel.Controls.Add(this.oiaLock);
             this.oiaLockFlowLayoutPanel.Controls.Add(this.oiaLockNative);
-            this.oiaLockFlowLayoutPanel.Location = new System.Drawing.Point(72, 6);
+            this.oiaLockFlowLayoutPanel.Location = new System.Drawing.Point(72, 9);
             this.oiaLockFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.oiaLockFlowLayoutPanel.Name = "oiaLockFlowLayoutPanel";
-            this.oiaLockFlowLayoutPanel.Size = new System.Drawing.Size(103, 29);
+            this.oiaLockFlowLayoutPanel.Size = new System.Drawing.Size(87, 23);
             this.oiaLockFlowLayoutPanel.TabIndex = 10;
             this.oiaLockFlowLayoutPanel.WrapContents = false;
-            // 
-            // oiaLock
-            // 
-            this.oiaLock.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.oiaLock.AutoSize = true;
-            this.oiaLock.ContextMenuStrip = this.resetContextMenuStrip;
-            this.oiaLock.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.oiaLock.ForeColor = System.Drawing.Color.White;
-            this.oiaLock.Location = new System.Drawing.Point(0, 0);
-            this.oiaLock.Margin = new System.Windows.Forms.Padding(0);
-            this.oiaLock.Name = "oiaLock";
-            this.oiaLock.Size = new System.Drawing.Size(62, 29);
-            this.oiaLock.TabIndex = 4;
-            this.oiaLock.Text = "❌ NC";
-            this.oiaLock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.oiaLock, "Keyboard locked: Not connected");
-            this.oiaLock.UseCompatibleTextRendering = true;
             // 
             // resetContextMenuStrip
             // 
@@ -390,21 +388,6 @@
             this.resetToolStripMenuItem.Text = "Reset";
             this.resetToolStripMenuItem.Click += new System.EventHandler(this.ResetToolStripMenuItem_Click);
             // 
-            // oiaLockNative
-            // 
-            this.oiaLockNative.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.oiaLockNative.AutoSize = true;
-            this.oiaLockNative.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.oiaLockNative.ForeColor = System.Drawing.Color.White;
-            this.oiaLockNative.Location = new System.Drawing.Point(62, 0);
-            this.oiaLockNative.Margin = new System.Windows.Forms.Padding(0);
-            this.oiaLockNative.Name = "oiaLockNative";
-            this.oiaLockNative.Size = new System.Drawing.Size(41, 29);
-            this.oiaLockNative.TabIndex = 5;
-            this.oiaLockNative.Text = "NNN";
-            this.oiaLockNative.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.oiaLockNative.UseCompatibleTextRendering = true;
-            // 
             // oia4AB
             // 
             this.oia4AB.AutoSize = true;
@@ -419,7 +402,7 @@
             this.oia4AB.Text = "4A̲B";
             this.oia4AB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.oia4AB, "Network state");
-            this.oia4AB.UseCompatibleTextRendering = true;
+            this.oia4AB.UseCompatibleTextRendering = false;
             // 
             // oiaTLS
             // 
@@ -434,7 +417,7 @@
             this.oiaTLS.TabIndex = 4;
             this.oiaTLS.Text = "🔓";
             this.oiaTLS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.oiaTLS.UseCompatibleTextRendering = true;
+            this.oiaTLS.UseCompatibleTextRendering = false;
             // 
             // oiaLu
             // 
@@ -452,22 +435,7 @@
             this.oiaLu.Text = "LU34567X";
             this.oiaLu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.oiaLu, "Logical Unit name");
-            this.oiaLu.UseCompatibleTextRendering = true;
-            // 
-            // oiaTiming
-            // 
-            this.oiaTiming.AutoSize = true;
-            this.oiaTiming.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.oiaTiming.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.oiaTiming.Location = new System.Drawing.Point(0, 0);
-            this.oiaTiming.Margin = new System.Windows.Forms.Padding(0);
-            this.oiaTiming.Name = "oiaTiming";
-            this.oiaTiming.Size = new System.Drawing.Size(18, 29);
-            this.oiaTiming.TabIndex = 4;
-            this.oiaTiming.Text = "🕓";
-            this.oiaTiming.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.oiaTiming, "Command time");
-            this.oiaTiming.UseCompatibleTextRendering = true;
+            this.oiaLu.UseCompatibleTextRendering = false;
             // 
             // oiaCursor
             // 
@@ -484,7 +452,7 @@
             this.oiaCursor.Tag = "Main";
             this.oiaCursor.Text = "000/000";
             this.oiaCursor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.oiaCursor.UseCompatibleTextRendering = true;
+            this.oiaCursor.UseCompatibleTextRendering = false;
             // 
             // oiaScript
             // 
@@ -513,7 +481,7 @@
             this.oiaScreentrace.TabIndex = 7;
             this.oiaScreentrace.Text = "#";
             this.oiaScreentrace.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.oiaScreentrace.UseCompatibleTextRendering = true;
+            this.oiaScreentrace.UseCompatibleTextRendering = false;
             // 
             // oiaPrinter
             // 
@@ -528,7 +496,7 @@
             this.oiaPrinter.TabIndex = 7;
             this.oiaPrinter.Text = "🖶 ";
             this.oiaPrinter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.oiaPrinter.UseCompatibleTextRendering = true;
+            this.oiaPrinter.UseCompatibleTextRendering = false;
             // 
             // oiaInsert
             // 
@@ -543,7 +511,7 @@
             this.oiaInsert.TabIndex = 7;
             this.oiaInsert.Text = "^";
             this.oiaInsert.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.oiaInsert.UseCompatibleTextRendering = true;
+            this.oiaInsert.UseCompatibleTextRendering = false;
             // 
             // oiaTypeahead
             // 
@@ -558,7 +526,7 @@
             this.oiaTypeahead.TabIndex = 6;
             this.oiaTypeahead.Text = "T";
             this.oiaTypeahead.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.oiaTypeahead.UseCompatibleTextRendering = true;
+            this.oiaTypeahead.UseCompatibleTextRendering = false;
             // 
             // oiaAltShift
             // 
@@ -574,7 +542,7 @@
             this.oiaAltShift.TabIndex = 5;
             this.oiaAltShift.Text = "A⇑";
             this.oiaAltShift.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.oiaAltShift.UseCompatibleTextRendering = true;
+            this.oiaAltShift.UseCompatibleTextRendering = false;
             // 
             // oiaCx
             // 
@@ -590,7 +558,7 @@
             this.oiaCx.TabIndex = 4;
             this.oiaCx.Text = "Cx";
             this.oiaCx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.oiaCx.UseCompatibleTextRendering = true;
+            this.oiaCx.UseCompatibleTextRendering = false;
             // 
             // oiaReverse
             // 
@@ -604,7 +572,7 @@
             this.oiaReverse.TabIndex = 9;
             this.oiaReverse.Text = "R";
             this.oiaReverse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.oiaReverse.UseCompatibleTextRendering = true;
+            this.oiaReverse.UseCompatibleTextRendering = false;
             // 
             // topLeftLayoutPanel
             // 
@@ -2260,34 +2228,60 @@
             this.overlayMenuBarTimer.Interval = 25;
             this.overlayMenuBarTimer.Tick += new System.EventHandler(this.OverlayMenuBarTimer_Tick);
             // 
-            // timeFlowLayoutPanel
+            // oiaTiming
             // 
-            this.timeFlowLayoutPanel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.timeFlowLayoutPanel.AutoSize = true;
-            this.timeFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.oiaLayoutPanel.SetColumnSpan(this.timeFlowLayoutPanel, 3);
-            this.timeFlowLayoutPanel.Controls.Add(this.oiaTiming);
-            this.timeFlowLayoutPanel.Controls.Add(this.oiaTimingNative);
-            this.timeFlowLayoutPanel.Location = new System.Drawing.Point(767, 6);
-            this.timeFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.timeFlowLayoutPanel.Name = "timeFlowLayoutPanel";
-            this.timeFlowLayoutPanel.Size = new System.Drawing.Size(36, 29);
-            this.timeFlowLayoutPanel.TabIndex = 10;
-            this.timeFlowLayoutPanel.WrapContents = false;
+            this.oiaTiming.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oiaTiming.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.oiaTiming.Location = new System.Drawing.Point(0, 0);
+            this.oiaTiming.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaTiming.Name = "oiaTiming";
+            this.oiaTiming.Size = new System.Drawing.Size(21, 23);
+            this.oiaTiming.TabIndex = 4;
+            this.oiaTiming.Text = "🕓";
+            this.oiaTiming.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.oiaTiming, "Command time");
             // 
             // oiaTimingNative
             // 
-            this.oiaTimingNative.AutoSize = true;
             this.oiaTimingNative.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.oiaTimingNative.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.oiaTimingNative.Location = new System.Drawing.Point(18, 0);
+            this.oiaTimingNative.Location = new System.Drawing.Point(21, 0);
             this.oiaTimingNative.Margin = new System.Windows.Forms.Padding(0);
             this.oiaTimingNative.Name = "oiaTimingNative";
-            this.oiaTimingNative.Size = new System.Drawing.Size(18, 29);
+            this.oiaTimingNative.Size = new System.Drawing.Size(11, 23);
             this.oiaTimingNative.TabIndex = 5;
             this.oiaTimingNative.Text = "0";
             this.oiaTimingNative.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.oiaTimingNative.UseCompatibleTextRendering = true;
+            // 
+            // oiaLock
+            // 
+            this.oiaLock.AutoSize = true;
+            this.oiaLock.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.oiaLock.ContextMenuStrip = this.resetContextMenuStrip;
+            this.oiaLock.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oiaLock.ForeColor = System.Drawing.Color.White;
+            this.oiaLock.Location = new System.Drawing.Point(0, 0);
+            this.oiaLock.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaLock.Name = "oiaLock";
+            this.oiaLock.Size = new System.Drawing.Size(54, 23);
+            this.oiaLock.TabIndex = 4;
+            this.oiaLock.Text = "❌ NC";
+            this.oiaLock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.oiaLock, "Keyboard locked: Not connected");
+            // 
+            // oiaLockNative
+            // 
+            this.oiaLockNative.AutoSize = true;
+            this.oiaLockNative.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.oiaLockNative.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oiaLockNative.ForeColor = System.Drawing.Color.White;
+            this.oiaLockNative.Location = new System.Drawing.Point(54, 0);
+            this.oiaLockNative.Margin = new System.Windows.Forms.Padding(0);
+            this.oiaLockNative.Name = "oiaLockNative";
+            this.oiaLockNative.Size = new System.Drawing.Size(33, 23);
+            this.oiaLockNative.TabIndex = 5;
+            this.oiaLockNative.Text = "NNN";
+            this.oiaLockNative.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainScreen
             // 
@@ -2315,8 +2309,8 @@
             this.Resize += new System.EventHandler(this.MainScreen_Resize);
             this.oiaLayoutPanel.ResumeLayout(false);
             this.oiaLayoutPanel.PerformLayout();
+            this.timeFlowLayoutPanel.ResumeLayout(false);
             this.oiaLockFlowLayoutPanel.ResumeLayout(false);
-            this.oiaLockFlowLayoutPanel.PerformLayout();
             this.resetContextMenuStrip.ResumeLayout(false);
             this.topLeftLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.startLeftPictureBox)).EndInit();
@@ -2351,8 +2345,6 @@
             this.ScrollBarLayoutPanel.PerformLayout();
             this.mainScreenPanel.ResumeLayout(false);
             this.mainScreenPanel.PerformLayout();
-            this.timeFlowLayoutPanel.ResumeLayout(false);
-            this.timeFlowLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2373,7 +2365,7 @@
         private System.Windows.Forms.PictureBox actionsBox;
         private System.Windows.Forms.PictureBox keypadBox;
         private System.Windows.Forms.PictureBox settingsBox;
-        public System.Windows.Forms.Label oiaTiming;
+        public UnpaddedLabel oiaTiming;
         public System.Windows.Forms.Label oiaCx;
         public System.Windows.Forms.Label oiaCursor;
         public System.Windows.Forms.Label oiaLu;
@@ -2568,7 +2560,7 @@
         private System.Windows.Forms.FlowLayoutPanel oiaLockFlowLayoutPanel;
         private System.Windows.Forms.Label oiaLockNative;
         private System.Windows.Forms.FlowLayoutPanel timeFlowLayoutPanel;
-        private System.Windows.Forms.Label oiaTimingNative;
+        private UnpaddedLabel oiaTimingNative;
     }
 }
 
