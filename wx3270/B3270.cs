@@ -567,6 +567,11 @@ namespace Wx3270
             public const string Text = "text";
 
             /// <summary>
+            /// Boolean array of stderr indicators for text.
+            /// </summary>
+            public const string TextErr = "text-err";
+
+            /// <summary>
             /// Type of indication.
             /// </summary>
             public const string Type = "type";
@@ -622,6 +627,16 @@ namespace Wx3270
             /// The user interface.
             /// </summary>
             public const string Ui = "ui";
+
+            /// <summary>
+            /// A keymap entry.
+            /// </summary>
+            public const string Keymap = "keymap";
+
+            /// <summary>
+            /// A keypad entry.
+            /// </summary>
+            public const string Keypad = "keypad";
         }
 
         /// <summary>

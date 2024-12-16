@@ -28,7 +28,7 @@ namespace Wx3270
         /// <summary>
         /// Minimum compatible version.
         /// </summary>
-        private const string MinVersion = "4.0";
+        private const string MinVersion = "4.4";
 
         /// <summary>
         /// Localization group for message box titles.
@@ -721,17 +721,28 @@ namespace Wx3270
         /// <param name="attributes">Element attributes.</param>
         private void StartRunResult(string name, AttributeDict attributes)
         {
+            // Get the success/failure state.
+            var success = false;
+            if (attributes.TryGetValue(B3270.Attribute.Success, out string successString) && successString.Equals(B3270.Value.True))
+            {
+                success = true;
+            }
+
             // Get the result text.
             if (!attributes.TryGetValue(B3270.Attribute.Text, out string text))
             {
                 text = string.Empty;
             }
 
-            // Get the success/failure state.
-            bool success = false;
-            if (attributes.TryGetValue(B3270.Attribute.Success, out string successString) && successString.Equals(B3270.Value.True))
+            // Prune 'text' according to 'text-err'.
+            if (!success && attributes.TryGetValue(B3270.Attribute.TextErr, out string textErrString))
             {
-                success = true;
+                var textErrQueue = new Queue<string>(textErrString.Split(new char[] { ',' }));
+                var textList = text.Split(new char[] { '\n' });
+                if (textErrQueue.Count == textList.Count())
+                {
+                    text = string.Join("\n", textList.Where(t => textErrQueue.Dequeue().Equals(B3270.Value.True, StringComparison.OrdinalIgnoreCase)));
+                }
             }
 
             // Get the tag.
