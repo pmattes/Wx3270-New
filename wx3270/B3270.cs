@@ -622,6 +622,16 @@ namespace Wx3270
             /// The user interface.
             /// </summary>
             public const string Ui = "ui";
+
+            /// <summary>
+            /// A keymap entry.
+            /// </summary>
+            public const string Keymap = "keymap";
+
+            /// <summary>
+            /// A keypad entry.
+            /// </summary>
+            public const string Keypad = "keypad";
         }
 
         /// <summary>

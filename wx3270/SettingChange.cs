@@ -88,7 +88,7 @@ namespace Wx3270
                 this.SettingsDictionary.Add(settingName, settingValue);
 
                 // Do not reflect UI-caused settings back to the UI.
-                if (!cause.Equals(B3270.Cause.Ui, StringComparison.InvariantCultureIgnoreCase))
+                if (!new[] { B3270.Cause.Ui, B3270.Cause.Keymap, B3270.Cause.Keypad }.Contains(cause, StringComparer.OrdinalIgnoreCase))
                 {
                     foreach (var handler in this.handlers.Where(h => h.Filter == null || h.Filter.Contains(settingName, StringComparer.InvariantCultureIgnoreCase)))
                     {
