@@ -55,11 +55,6 @@ namespace Wx3270
         private int keypadEnterDown;
 
         /// <summary>
-        /// Keypad enter key up transitions.
-        /// </summary>
-        private int keypadEnterUp;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="KeyHandler"/> class.
         /// </summary>
         /// <param name="app">Application instance.</param>
@@ -109,20 +104,9 @@ namespace Wx3270
         /// <returns>True if message was processed.</returns>
         public bool CmdKey(Message msg, Keys keyData)
         {
-            if ((int)msg.WParam != (int)Keys.Return || ((int)msg.LParam & 0x01000000) == 0)
+            if ((int)msg.WParam == (int)Keys.Return && ((int)msg.LParam & 0x01000000) != 0 && msg.Msg == NativeMethods.WM_KEYDOWN)
             {
-                // Not an extended return key.
-                return false;
-            }
-
-            switch (msg.Msg)
-            {
-                case NativeMethods.WM_KEYDOWN:
-                    this.keypadEnterDown++;
-                    break;
-                case NativeMethods.WM_KEYUP:
-                    this.keypadEnterUp++;
-                    break;
+                this.keypadEnterDown++;
             }
 
             return false;
@@ -285,6 +269,12 @@ namespace Wx3270
             if (keyCode != Keys.ShiftKey && keyCode != Keys.ControlKey && keyCode != Keys.Menu)
             {
                 // Forget this key.
+                if (keyCode == Keys.Return && !this.nonModsPressed.Contains(keyCode))
+                {
+                    Trace.Line(Trace.Type.Key, "ProcessKeyUp: Synthesizing NumPadReturn");
+                    keyCode = KeyboardUtil.NumPadReturn;
+                }
+
                 this.nonModsPressed.Remove(keyCode);
                 return;
             }
@@ -352,7 +342,7 @@ namespace Wx3270
             }
 
             // Last modifier released.
-            Trace.Line(Trace.Type.Key, "KeyCapture_KeyUp success {0}{1}", first, this.modDisqualified ? " (ignored)" : string.Empty);
+            Trace.Line(Trace.Type.Key, "ProcessKeyUp success {0}{1}", first, this.modDisqualified ? " (ignored)" : string.Empty);
             if (!this.modDisqualified)
             {
                 var scanCode = KeyboardUtil.VkeyToScanCode(first, InputLanguage.CurrentInputLanguage);
