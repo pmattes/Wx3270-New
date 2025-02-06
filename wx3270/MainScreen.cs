@@ -11,7 +11,6 @@ namespace Wx3270
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Forms;
-    using System.Windows.Forms.VisualStyles;
     using I18nBase;
     using Wx3270.Contracts;
 
@@ -1678,6 +1677,9 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// </summary>
         private void WhenReadyInit()
         {
+            // Tell the back end our Window handle.
+            this.BackEnd.RunAction(new BackEndAction(B3270.Action.Set, B3270.Setting.WindowId, this.Handle), Wx3270.BackEnd.Ignore());
+
             // If there is a command-line model change, update the profile directly and save it.
             if (this.App.Model != null || this.App.Oversize != null)
             {
