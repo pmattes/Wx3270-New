@@ -1144,6 +1144,11 @@ namespace Wx3270
             /// The visible control characters setting.
             /// </summary>
             public const string VisibleControl = "visibleControl";
+
+            /// <summary>
+            /// The Window ID setting.
+            /// </summary>
+            public const string WindowId = "windowId";
         }
 
         /// <summary>
@@ -1491,6 +1496,11 @@ namespace Wx3270
         /// </summary>
         public class CommandLineOption
         {
+            /// <summary>
+            /// Alias option.
+            /// </summary>
+            public const string Alias = "-alias";
+
             /// <summary>
             /// Minimum version option.
             /// </summary>

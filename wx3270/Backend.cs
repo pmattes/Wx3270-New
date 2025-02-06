@@ -28,7 +28,7 @@ namespace Wx3270
         /// <summary>
         /// Minimum compatible version.
         /// </summary>
-        private const string MinVersion = "4.0";
+        private const string MinVersion = "4.1";
 
         /// <summary>
         /// Localization group for message box titles.
@@ -275,10 +275,12 @@ namespace Wx3270
             this.b3270.Exited += this.Exited;
             this.b3270.EnableRaisingEvents = true;
             this.b3270.StartInfo.Arguments = string.Format(
-                "{0} {1} {2} \"{3}\"",
+                "{0} {1} {2} {3} {4} \"{5}\"",
                 B3270.CommandLineOption.Utf8,
                 B3270.CommandLineOption.MinVersion,
                 MinVersion,
+                B3270.CommandLineOption.Alias,
+                "wx3270",
                 this.startupProfilePath);
 
             // Create a thread to read b3270's standard error, but don't start it right away.
