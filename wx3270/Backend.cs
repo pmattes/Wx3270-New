@@ -28,7 +28,7 @@ namespace Wx3270
         /// <summary>
         /// Minimum compatible version.
         /// </summary>
-        private const string MinVersion = "4.1";
+        private const string MinVersion = "4.4.3";
 
         /// <summary>
         /// Localization group for message box titles.
