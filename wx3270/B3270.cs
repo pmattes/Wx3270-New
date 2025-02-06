@@ -567,6 +567,11 @@ namespace Wx3270
             public const string Text = "text";
 
             /// <summary>
+            /// Boolean array identifying which lines of text are errors.
+            /// </summary>
+            public const string TextErr = "text-err";
+
+            /// <summary>
             /// Type of indication.
             /// </summary>
             public const string Type = "type";

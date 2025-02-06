@@ -736,6 +736,17 @@ namespace Wx3270
                 success = true;
             }
 
+            // Prune 'text' according to 'text-err'.
+            if (!success && attributes.TryGetValue(B3270.Attribute.TextErr, out string textErrString))
+            {
+                var textErrQueue = new Queue<string>(textErrString.Split(new char[] { ',' }));
+                var textList = text.Split(new char[] { '\n' });
+                if (textErrQueue.Count == textList.Count())
+                {
+                    text = string.Join("\n", textList.Where(t => textErrQueue.Dequeue().Equals(B3270.Value.True, StringComparison.OrdinalIgnoreCase)));
+                }
+            }
+
             // Get the tag.
             if (!attributes.TryGetValue(B3270.Attribute.RTag, out string tag))
             {
