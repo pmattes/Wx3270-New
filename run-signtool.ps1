@@ -30,6 +30,19 @@ $json = @'
 '@
 $json | Out-File -FilePath $tempJson -Encoding ascii
 
+function Sign {
+    param (
+      [string]$FileName
+    )
+    $out = (& $signtool sign /v /td SHA256 /tr $timestamp /fd SHA256 /dlib $dlib /dmdf $tempjson "$FileName")
+    if ((Get-AuthenticodeSignature "$FileName").Status -ne "Valid")
+    {
+        Write-Error "$FileName not signed"
+        Write-Error "Signtool output: $out"
+        exit 1
+    }
+}
+
 # Sign, suppressing output.
 $count = 0
 foreach ($file in $args[0])
@@ -37,22 +50,8 @@ foreach ($file in $args[0])
     $percent = ($count / $args[0].Count) * 100
     $remaining = ($args[0].Count - $count) * 5
     $count = $count + 1
-    Write-Progress -Activity "Signing" -CurrentOperation $file -PercentComplete $percent -SecondsRemaining $remaining
-    $out = (& $signtool sign /v /td SHA256 /tr $timestamp /fd SHA256 /dlib $dlib /dmdf $tempjson $file)
-    if ((Get-AuthenticodeSignature $file).Status -ne "Valid")
-    {
-        Write-Error "$file not signed"
-        Write-Error "Signtool output: $out"
-    }
+    Write-Progress -Activity "Signing" -CurrentOperation "$file" -PercentComplete $percent -SecondsRemaining $remaining
+    Sign("$file")
 }
 Write-Progress -Activity "Signing" -Completed
 Remove-Item $tempJson
-
-# Check.
-$invalid = ($args[0] | Where-Object { (Get-AuthenticodeSignature $_).Status -ne "Valid" })
-if ($invalid.Count -ne 0)
-{
-    # Signtool failed.
-    Write-Error "File(s) were not signed: $invalid"
-    exit 1
-}
