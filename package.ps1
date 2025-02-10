@@ -12,7 +12,6 @@ $inno = 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
 $ErrorActionPreference = 'Stop'
 
 # Set up Azure login to do signing.
-Import-Module Az
 Connect-AzAccount | Out-Null
 
 # Build.
