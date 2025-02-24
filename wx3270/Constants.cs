@@ -110,6 +110,11 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             public const string Allow = "-allow";
 
             /// <summary>
+            /// Enables Audible Bell sounds
+            /// </summary>
+            public const string Bell = "-bell";
+
+            /// <summary>
             /// The connection option.
             /// </summary>
             public const string Connection = "-connection";
@@ -188,6 +193,11 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             /// The no-border option.
             /// </summary>
             public const string NoBorder = "-noborder";
+
+            /// <summary>
+            /// Disables Audible Bell sound.
+            /// </summary>
+            public const string NoBell = "-nobell";
 
             /// <summary>
             /// The no-buttons option.
