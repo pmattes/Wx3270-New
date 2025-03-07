@@ -244,6 +244,10 @@ namespace Wx3270
                     this.Scan(subdir, newFolder);
                 }
             }
+            catch (UnauthorizedAccessException)
+            {
+                // This happens when trying to walk through an NTFS junction.
+            }
             catch (Exception e)
             {
                 ErrorBox.Show(e.Message, I18n.Get(Title.DirectoryWakError));
