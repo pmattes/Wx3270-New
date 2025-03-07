@@ -37,6 +37,7 @@ namespace Wx3270
         private static readonly (string option, string args, string explanation)[] CommandLineOptions = new[]
         {
             (Constants.Option.Allow, "operation[,operation...]", "Allow the specified restricted operations"),
+            (Constants.Option.Bell, string.Empty, "Enable bell sound"),
             (Constants.Option.Connection, "connection-name", "Start a particular connection"),
             (Constants.Option.Console, string.Empty, "Attach a console at start-up (for debugging)"),
             (Constants.Option.Culture, "culture-name", "Override the system default culture for messages"),
@@ -51,6 +52,7 @@ namespace Wx3270
             (Constants.Option.Model, "model-number", "Override the default 3270 model number"),
             (Constants.Option.NoButtons, string.Empty, "Do not display the menu bar"),
             (Constants.Option.NoBorder, string.Empty, "Create the window without a border"),
+            (Constants.Option.NoBell, string.Empty, "Disable bell sound"),
             (Constants.Option.NoProfile, string.Empty, "Operate without a profile (use system default settings)"),
             (Constants.Option.NoScrollBar, string.Empty, "Do not display the scroll bar"),
             (Constants.Option.NoSplash, string.Empty, "Do not display the splash screen"),
@@ -86,6 +88,11 @@ namespace Wx3270
         /// The terminal bell.
         /// </summary>
         private Bell bell;
+
+        /// <summary>
+        /// No bell mode modifier.
+        /// </summary>
+         private bool NoBellMode = false;
 
         /// <summary>
         /// Screen state.
@@ -437,6 +444,16 @@ namespace Wx3270
         public bool NoBorder { get; private set; }
 
         /// <summary>
+        /// Disable bell sound.
+        /// </summary>
+        public bool NoBell { get; private set; }
+
+        /// <summary>
+        /// Disable bell sound.
+        /// </summary>
+        public bool Bell { get; private set; }
+         
+        /// <summary>
         /// Gets a value indicating whether the scroll bar should be removed.
         /// </summary>
         public bool NoScrollBar { get; private set; }
@@ -655,6 +672,12 @@ Options:
                         case Constants.Option.NoBorder:
                             this.NoBorder = true;
                             break;
+                        case Constants.Option.Bell:
+                            this.Bell = true;
+                            break;
+                        case Constants.Option.NoBell:
+                            this.NoBellMode = true;
+                            break;
                         case Constants.Option.NoButtons:
                             this.NoButtons = true;
                             break;
@@ -761,7 +784,7 @@ Options:
                 this.Usage($"Missing parameter value for {args[i - 1]}");
             }
 
-            if (lastOpt.HasValue)
+                        if (lastOpt.HasValue)
             {
                 var positionalArgs = args.Skip(lastOpt.Value).ToList();
                 var dashed = positionalArgs.Where(a => a.StartsWith("-"));
@@ -916,6 +939,17 @@ Options:
                 profileName = fullProfilePath;
             }
 
+            // Override the profile's audible bell setting based on the command-line.
+            if (this.NoBellMode)
+            {
+                // Disable bell sound.
+                this.ProfileManager.Current.AudibleBell = false;
+            }
+            else if (this.Bell)
+            {
+                // Enable bell sound.
+                this.ProfileManager.Current.AudibleBell = true;
+            }
             // Start the profile tree.
             this.ProfileTracker = new ProfileTracker(this, Wx3270.ProfileManager.ProfileDirectory);
             this.ProfileTracker.Watch(Wx3270.ProfileManager.ProfileDirectory);
@@ -932,7 +966,7 @@ Options:
             // This is a little awkward because the profile tracker needs to be started after the profile manager,
             // but the profile manager needs the profile tracker.
             this.ProfileManager.SetProfileList(this.ProfileTracker);
-
+            
             // Start a back end instance.
             Wx3270.BackEnd.DebugFlag = false;
             startupConfig.MergeProfile(this.Current);
@@ -975,7 +1009,7 @@ Options:
 
             this.Prompt = new Prompt(this.BackEnd);
             this.Cmd = new Cmd(this.BackEnd);
-
+            
             this.bell = new Bell(this);
 
             s.Stop();
