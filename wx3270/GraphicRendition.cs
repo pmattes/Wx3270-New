@@ -86,5 +86,15 @@ namespace Wx3270
         /// Is blinking on.
         /// </summary>
         IsBlinkingOn = 0x8000,
+
+        /// <summary>
+        /// Left half of a split DBCS character.
+        /// </summary>
+        LeftHalf = 0x10000,
+
+        /// <summary>
+        /// Right half of a split DBCS character.
+        /// </summary>
+        RightHalf = 0x20000,
     }
 }
