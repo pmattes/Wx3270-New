@@ -537,9 +537,7 @@ namespace Wx3270
                     // Invert foreground and background for the block cursor and for inverted text.
                     if ((drawingCursorLocation && !altCursor) || (!image.ColorMode && gr.HasFlag(GraphicRendition.Reverse)))
                     {
-                        var x = backgroundColor;
-                        backgroundColor = foregroundColor;
-                        foregroundColor = x;
+                        (foregroundColor, backgroundColor) = (backgroundColor, foregroundColor);
                     }
 
                     // Finally, if the text is selected, and we're not drawing a block cursor, use the selection color as the background.

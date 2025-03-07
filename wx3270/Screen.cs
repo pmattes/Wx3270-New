@@ -579,10 +579,17 @@ namespace Wx3270
                 {
                     if (text != null)
                     {
-                        // DBCS characters are stored with the real character in the first location, and a 0 in the second.
-                        // The right-hand side of a DBCS cell is the *only* time a 0 will appear in Text.
-                        if (!dbcs || (i & 1) == 0)
+                        if (gr.HasValue && (gr.Value.HasFlag(GraphicRendition.LeftHalf) || gr.Value.HasFlag(GraphicRendition.RightHalf)))
                         {
+                            // Half of a split DBCS character.
+                            // Eventually we will be able to draw the correct half glyph, but for now, draw a blob.
+                            this.screenImage.Image[this.curRow, column].Text = gr.Value.HasFlag(GraphicRendition.LeftHalf) ? '◖' : '◗';
+                            text = text.Skip(1).ToArray();
+                        }
+                        else if (!dbcs || (i & 1) == 0)
+                        {
+                            // DBCS characters are stored with the real character in the first location, and a 0 in the second.
+                            // The right-hand side of a DBCS cell is the *only* time a 0 will appear in Text.
                             var t = text[0];
                             if (t >= 0xd800 && t <= 0xdb7f)
                             {
