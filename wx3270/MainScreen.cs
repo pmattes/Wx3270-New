@@ -1674,37 +1674,12 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         }
 
         /// <summary>
-        /// Process a dialog indication.
-        /// </summary>
-        /// <param name="name">Element name.</param>
-        /// <param name="attributes">Element attributes.</param>
-        private void StartDialog(string name, AttributeDict attributes)
-        {
-            if (attributes.TryGetValue(B3270.Attribute.WindowId, out string window_id)
-                && window_id.StartsWith("0x")
-                && long.TryParse(window_id.Substring(2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out long hwnd))
-            {
-                if (NativeMethods.SetForegroundWindow((IntPtr)hwnd))
-                {
-                    Trace.Line(Trace.Type.Window, "Brought back-end dialog to the foreground");
-                }
-                else
-                {
-                    Trace.Line(Trace.Type.Window, "Could not bring back-end dialog to the foreground");
-                }
-            }
-        }
-
-        /// <summary>
         /// Initialization once the back end is ready.
         /// </summary>
         private void WhenReadyInit()
         {
             // Tell the back end our Window handle.
             this.BackEnd.RunAction(new BackEndAction(B3270.Action.Set, B3270.Setting.WindowId, this.Handle), Wx3270.BackEnd.Ignore());
-
-            // Get ready for dialog indications.
-            this.BackEnd.RegisterStart(B3270.Indication.Dialog, this.StartDialog);
 
             // If there is a command-line model change, update the profile directly and save it.
             if (this.App.Model != null || this.App.Oversize != null)

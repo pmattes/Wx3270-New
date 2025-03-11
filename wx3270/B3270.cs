@@ -156,11 +156,6 @@ namespace Wx3270
             public const string Cursor = "cursor";
 
             /// <summary>
-            /// Dialog popped up.
-            /// </summary>
-            public const string Dialog = "dialog";
-
-            /// <summary>
             /// Screen was erased and possibly resized.
             /// </summary>
             public const string Erase = "erase";
@@ -600,11 +595,6 @@ namespace Wx3270
             /// The value of an element.
             /// </summary>
             public const string Value = "value";
-
-            /// <summary>
-            /// The window identifier.
-            /// </summary>
-            public const string WindowId = "window-id";
         }
 
         /// <summary>
