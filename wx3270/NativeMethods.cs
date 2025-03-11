@@ -282,14 +282,5 @@ namespace Wx3270
             [In] MessageBoxCheckFlags uType,
             [In] MessageBoxReturnValue iDefault,
             [In] string pszRegVal);
-
-        /// <summary>
-        /// The Win32 SetForegroundWindow call.
-        /// </summary>
-        /// <param name="hwnd">Window handle.</param>
-        /// <returns>True if window was brought to the foreground.</returns>
-        [DllImport("user32.dll", EntryPoint = "SetForegroundWindow")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetForegroundWindow([In] IntPtr hwnd);
     }
 }
