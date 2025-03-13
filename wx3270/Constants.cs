@@ -91,7 +91,7 @@ namespace Wx3270
         /// <summary>
         /// The copyright message.
         /// </summary>
-        public const string Copyright = @"Copyright © 2016-2024 Paul Mattes.
+        public const string Copyright = @"Copyright © 2016-2025 Paul Mattes.
 All rights reserved.
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
