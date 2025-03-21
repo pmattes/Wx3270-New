@@ -2526,26 +2526,30 @@ The button labels include a count of how many Undo and Redo operations are saved
             }
 
             // Copy the file.
-            if (isDefaults)
+            Profile saveProfile = profile;
+            if (isDefaults || profile.ReadOnly)
             {
                 this.autoRenamePath = (this.PathCombine(DefaultDirNodeName, newName), autoSwitchTo);
 
                 // For non-full profiles, clear out the corresponding config item.
-                Profile saveProfile = Profile.DefaultProfile;
-                if (profileType != ProfileType.Full)
+                if (isDefaults)
                 {
-                    saveProfile = saveProfile.Clone();
-                    saveProfile.ProfileType = profileType;
-                    switch (profileType)
+                    saveProfile = Profile.DefaultProfile;
+                    if (profileType != ProfileType.Full)
                     {
-                        case ProfileType.KeyboardMapTemplate:
-                            saveProfile.KeyboardMap = new KeyMap<KeyboardMap>();
-                            break;
-                        case ProfileType.KeypadMapTemplate:
-                            saveProfile.KeypadMap = new KeyMap<KeypadMap>();
-                            break;
-                        default:
-                            break;
+                        saveProfile = saveProfile.Clone();
+                        saveProfile.ProfileType = profileType;
+                        switch (profileType)
+                        {
+                            case ProfileType.KeyboardMapTemplate:
+                                saveProfile.KeyboardMap = new KeyMap<KeyboardMap>();
+                                break;
+                            case ProfileType.KeypadMapTemplate:
+                                saveProfile.KeypadMap = new KeyMap<KeypadMap>();
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
 
