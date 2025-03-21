@@ -2308,6 +2308,14 @@ The button labels include a count of how many Undo and Redo operations are saved
         {
             if (e.Node is ProfileTreeNode profileNode)
             {
+                if (profileNode.IsCurrent)
+                {
+                    // No can do.
+                    e.CancelEdit = true;
+                    e.Node.EndEdit(true);
+                    return;
+                }
+
                 var switchAfterRename = profileNode.SwitchAfterRename;
                 profileNode.SwitchAfterRename = false;
                 if (string.IsNullOrEmpty(e.Label) || !Nickname.ValidNickname(e.Label))
