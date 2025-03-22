@@ -205,7 +205,7 @@ namespace Wx3270
                 }
 
                 // Add unknown prefixes as options.
-                foreach (var prefix in this.app.HostPrefix.Prefixes)
+                foreach (var prefix in this.app.HostPrefixDb.Prefixes)
                 {
                     if (!this.sets.ContainsKey(prefix.ToString()))
                     {

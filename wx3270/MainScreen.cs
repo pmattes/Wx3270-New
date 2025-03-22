@@ -8,7 +8,7 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
-    using System.Globalization;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Forms;
@@ -1625,12 +1625,16 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             I18n.LocalizeGlobal(Title.FullScreen, "Full Screen Mode");
             I18n.LocalizeGlobal(Title.MenuBarDisabled, "Menu Bar Disabled");
             I18n.LocalizeGlobal(Title.MenuBarEnabled, "Menu Bar Enabled");
+            I18n.LocalizeGlobal(Title.CommandLineOverrides, "Command-Line Overrides");
+            I18n.LocalizeGlobal(Title.AutoImport, "Auto-Import");
             I18n.LocalizeGlobal(ErrorMessage.NoSuchConnection, "No such connection");
             I18n.LocalizeGlobal(ErrorMessage.InvalidPrefixes, "Invalid prefix(es) in command-line host");
             I18n.LocalizeGlobal(ErrorMessage.MenuBarToggle, "To display the menu bar again, right-click on the main screen and select 'Menu bar'.");
             I18n.LocalizeGlobal(ErrorMessage.MenuBarToggleNop, "The menu bar is not displayed in full screen mode. Right-click on the main screen for the context menu.");
             I18n.LocalizeGlobal(ErrorMessage.FullScreenToggle, "To exit full screen mode, right-click on the main screen and select 'Full screen'.");
             I18n.LocalizeGlobal(ErrorMessage.RecordingDiscarded, "Pending macro recording discarded");
+            I18n.LocalizeGlobal(ErrorMessage.UnsupportedResource, "Unsupported resource values:");
+            I18n.LocalizeGlobal(ErrorMessage.ImportedSession, "Imported wc3270 session to wx3270 profile");
             I18n.LocalizeGlobal(SaveType.CommandLineHost, "Command-line host connection");
 
             // Initialize the OIA fields.
@@ -1674,6 +1678,103 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         }
 
         /// <summary>
+        /// Import the wc3270 session and merge in the -xrm options.
+        /// </summary>
+        /// <returns>Host entry to add.</returns>
+        private HostEntry MergeXrmAndWc3270Session()
+        {
+            HostEntry importHost = null;
+            HostEntry xrmHost = null;
+            Profile importedProfile = null;
+
+            // First try the import of the wc3270 profile.
+            if (!string.IsNullOrEmpty(this.App.Wc3270ImportProfileName))
+            {
+                // When we auto-import a wc3270 profile, we start with a default wx3270 profile (because we're in no-profile mode) and modify it according to the wc3270 profile.
+                // Then we apply the -xrm options, which override the wc3270 profile, including the hostname.
+                var import = new Wc3270Import(this.App);
+                try
+                {
+                    import.Read(this.App.Wc3270ImportProfileName);
+                    importedProfile = import.Digest(out importHost, out _, this.App.NoProfileMode ? this.ProfileManager.Current : new Profile(), addHostEntry: false, setAutoConnect: true);
+                }
+                catch (Exception ex)
+                {
+                    ErrorBox.Show(ex.Message, this.App.Wc3270ImportProfileName);
+                }
+            }
+
+            // Apply the -xrm options.
+            if (this.App.XrmOptions.Count() > 0)
+            {
+                var import = new Wc3270Import(this.App);
+                IEnumerable<string> unmatched = null;
+                try
+                {
+                    import.Read("Command line", this.App.XrmOptions, fromFile: false);
+                    import.Digest(out xrmHost, out unmatched, importedProfile ?? this.ProfileManager.Current, addHostEntry: false, fromFile: false, setAutoConnect: false);
+                }
+                catch (Exception ex)
+                {
+                    ErrorBox.Show(ex.Message, I18n.Get(Title.CommandLineOverrides));
+                }
+
+                if (unmatched != null && unmatched.Count() > 0)
+                {
+                    ErrorBox.Show(
+                        I18n.Get(ErrorMessage.UnsupportedResource) + Environment.NewLine + string.Join(", ", unmatched),
+                        I18n.Get(Title.CommandLineOverrides),
+                        MessageBoxIcon.Warning);
+                }
+            }
+
+            var addHost = xrmHost ?? importHost;
+            if (addHost != null)
+            {
+                // Add the new profile if it doesn't exist.
+                var modProfile = importedProfile ?? this.ProfileManager.Current;
+                var existing_host = modProfile.Hosts.FirstOrDefault(h => h.Name.Equals(addHost.Name, StringComparison.InvariantCultureIgnoreCase));
+                if (existing_host == null)
+                {
+                    modProfile.Hosts = modProfile.Hosts.Append(addHost);
+                }
+            }
+
+            if (importedProfile != null && !this.App.NoProfileMode)
+            {
+                // We did an import. Save it and switch to it.
+                var baseName = importedProfile.Name;
+                var name = baseName;
+                var path = Wx3270.ProfileManager.ProfilePath(name);
+                var index = 2;
+                while (File.Exists(path))
+                {
+                    name = $"{baseName} ({index++})";
+                    path = Wx3270.ProfileManager.ProfilePath(name);
+                }
+
+                this.ProfileManager.Current.Name = name;
+                if (this.ProfileManager.Save(path, importedProfile))
+                {
+                    if (this.ProfileManager.Load(path))
+                    {
+                        ErrorBox.Show(
+                            I18n.Get(ErrorMessage.ImportedSession) + $" '{name}'",
+                            I18n.Get(Title.AutoImport),
+                            MessageBoxIcon.Information);
+                    }
+                }
+            }
+            else if (!this.ProfileManager.Current.ReadOnly && this.App.XrmOptions.Count() > 0)
+            {
+                // Save the -xrm changes.
+                this.ProfileManager.Save();
+            }
+
+            return addHost;
+        }
+
+        /// <summary>
         /// Initialization once the back end is ready.
         /// </summary>
         private void WhenReadyInit()
@@ -1681,57 +1782,20 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             // Tell the back end our Window handle.
             this.BackEnd.RunAction(new BackEndAction(B3270.Action.Set, B3270.Setting.WindowId, this.Handle), Wx3270.BackEnd.Ignore());
 
-            // If there is a command-line model change, update the profile directly and save it.
-            if (this.App.Model != null || this.App.Oversize != null)
-            {
-                if (this.App.Model != null)
-                {
-                    // current.Oversize = this.App.Oversize
-                    this.ProfileManager.Current.Model = this.App.Model.ModelNumber;
-                    this.ProfileManager.Current.ExtendedMode = this.App.Model.Extended;
-                    this.ProfileManager.Current.ColorMode = this.App.Model.Color;
-                }
-
-                if (this.App.Oversize != null)
-                {
-                    if (this.App.Oversize.Columns == 0 && this.App.Oversize.Rows == 0)
-                    {
-                        this.ProfileManager.Current.Oversize = new Profile.OversizeClass { Columns = 0, Rows = 0 };
-                    }
-                    else
-                    {
-                        var model = this.App.ModelsDb.Models[this.ProfileManager.Current.Model];
-                        void OversizeError(string message)
-                        {
-                            ErrorBox.Show(
-                                $"Ignoring invalid {Constants.Option.Oversize} '{this.App.Oversize}': {message}",
-                                "wx3270 Command Line Error",
-                                MessageBoxIcon.Warning);
-                        }
-
-                        if (this.App.Oversize.Columns < model.Columns || this.App.Oversize.Rows < model.Rows)
-                        {
-                            OversizeError($"smaller than model {this.ProfileManager.Current.Model} dimensions");
-                        }
-                        else if (!this.ProfileManager.Current.ExtendedMode)
-                        {
-                            OversizeError($"extended data stream mode disabled");
-                        }
-                        else
-                        {
-                            this.ProfileManager.Current.Oversize = new Profile.OversizeClass { Columns = this.App.Oversize.Columns, Rows = this.App.Oversize.Rows };
-                        }
-                    }
-                }
-
-                this.ProfileManager.Save();
-            }
+            // Merge in -xrm options.
+            var xrmHost = this.MergeXrmAndWc3270Session();
 
             // Push out the initial profile.
             this.ProfileManager.PushFirst();
 
             // Display the main screen window.
             this.Show();
+
+            // Figure out which host to connect to. The hierarchy is:
+            //  Command-line host spec first.
+            //  -xrm / -set / .wc3270 hostname spec second.
+            //  -connection third.
+            //  Auto-connect host in the profile fourth.
 
             // Set up command-line host connection.
             var alreadyConnecting = false;
@@ -1745,18 +1809,18 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                     if (hostEntry != null)
                     {
                         // Modify the entry with the host spec.
-                        hostEntry = new HostEntry(hostEntry, this.App.CommandLineB3270HostSpec, this.App.HostPrefix.Prefixes) { Name = this.App.Connection };
+                        hostEntry = new HostEntry(hostEntry, this.App.CommandLineB3270HostSpec, this.App.HostPrefixDb.Prefixes) { Name = this.App.Connection };
                         this.ProfileManager.PushAndSave(
                             current =>
                             {
-                                current.Hosts = current.Hosts.Select(host => host.Name.Equals(this.App.Connection) ? hostEntry : host).ToList();
+                                current.Hosts = current.Hosts.Select(host => host.Name.Equals(this.App.Connection, StringComparison.InvariantCultureIgnoreCase) ? hostEntry : host).ToList();
                             },
                             I18n.Get(SaveType.CommandLineHost));
                     }
                     else
                     {
                         // Create a new entry by that name, using the host spec.
-                        hostEntry = new HostEntry(this.App.CommandLineB3270HostSpec, this.App.HostPrefix.Prefixes) { Name = this.App.Connection, Profile = this.ProfileManager.Current };
+                        hostEntry = new HostEntry(this.App.CommandLineB3270HostSpec, this.App.HostPrefixDb.Prefixes) { Name = this.App.Connection, Profile = this.ProfileManager.Current };
                         this.ProfileManager.PushAndSave(
                             current =>
                             {
@@ -1768,22 +1832,22 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 else
                 {
                     // No connection specified. Look for a match.
-                    hostEntry = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.Name == HostEntry.AutoName(this.App.CommandLineB3270HostSpec));
+                    hostEntry = this.ProfileManager.Current.Hosts.FirstOrDefault(h => h.Name.Equals(HostEntry.AutoName(this.App.CommandLineB3270HostSpec), StringComparison.InvariantCultureIgnoreCase));
                     if (hostEntry != null)
                     {
-                        // Modify the entry with the host spec.
-                        hostEntry = new HostEntry(hostEntry, this.App.CommandLineB3270HostSpec, this.App.HostPrefix.Prefixes) { Name = hostEntry.Name };
+                        // Replace the entry with the host spec.
+                        hostEntry = new HostEntry(hostEntry, this.App.CommandLineB3270HostSpec, this.App.HostPrefixDb.Prefixes) { Name = hostEntry.Name };
                         this.ProfileManager.PushAndSave(
                             current =>
                             {
-                                current.Hosts = current.Hosts.Select(host => host.Name.Equals(hostEntry.Name) ? hostEntry : host).ToList();
+                                current.Hosts = current.Hosts.Select(host => host.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase) ? hostEntry : host).ToList();
                             },
                             I18n.Get(SaveType.CommandLineHost));
                     }
                     else
                     {
                         // Create a new entry, using the host spec.
-                        hostEntry = new HostEntry(this.App.CommandLineB3270HostSpec, this.App.HostPrefix.Prefixes)
+                        hostEntry = new HostEntry(this.App.CommandLineB3270HostSpec, this.App.HostPrefixDb.Prefixes)
                         {
                             Name = HostEntry.AutoName(this.App.CommandLineB3270HostSpec),
                             Profile = this.ProfileManager.Current,
@@ -1807,6 +1871,14 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 }
 
                 this.Connect.ConnectToHost(hostEntry);
+                alreadyConnecting = true;
+            }
+
+            // Set up auto-connect from a wc3270 profile or -xrm hostname.
+            if (xrmHost != null && !alreadyConnecting)
+            {
+                // Connect to it.
+                this.Connect.ConnectToHost(xrmHost);
                 alreadyConnecting = true;
             }
 
@@ -4244,6 +4316,16 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             /// Menu bar enabled.
             /// </summary>
             public static readonly string MenuBarEnabled = I18n.Combine(TitleName, "menuBarEnabled");
+
+            /// <summary>
+            /// Command-line overrides.
+            /// </summary>
+            public static readonly string CommandLineOverrides = I18n.Combine(TitleName, "commandLineOverrides");
+
+            /// <summary>
+            /// Auto-import.
+            /// </summary>
+            public static readonly string AutoImport = I18n.Combine(TitleName, "autoImport");
         }
 
         /// <summary>
@@ -4280,6 +4362,16 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             /// Informational pop-up about discarding a pending macro recording.
             /// </summary>
             public static readonly string RecordingDiscarded = I18n.Combine(MessageName, "recordingDiscarded");
+
+            /// <summary>
+            /// Unsupported resources on the command line.
+            /// </summary>
+            public static readonly string UnsupportedResource = I18n.Combine(MessageName, "unsupportedResource");
+
+            /// <summary>
+            /// Informational pop-up about auto-import.
+            /// </summary>
+            public static readonly string ImportedSession = I18n.Combine(MessageName, "importedSession");
         }
 
         /// <summary>

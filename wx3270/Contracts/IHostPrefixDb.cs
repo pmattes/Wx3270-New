@@ -1,4 +1,4 @@
-﻿// <copyright file="IHostPrefix.cs" company="Paul Mattes">
+﻿// <copyright file="IHostPrefixDb.cs" company="Paul Mattes">
 //     Copyright (c) Paul Mattes. All rights reserved.
 // </copyright>
 
@@ -7,7 +7,7 @@ namespace Wx3270.Contracts
     /// <summary>
     /// Host prefix processor.
     /// </summary>
-    public interface IHostPrefix : IBackEndEvent
+    public interface IHostPrefixDb
     {
         /// <summary>
         /// Gets the host prefixes.

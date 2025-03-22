@@ -7,6 +7,7 @@ namespace Wx3270
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using static System.Net.Mime.MediaTypeNames;
 
     /// <summary>
     /// Proxy setting parser.
@@ -14,17 +15,17 @@ namespace Wx3270
     public class ProxyParser
     {
         /// <summary>
-        /// List of proxy names.
+        /// Dictionary of proxies.
         /// </summary>
-        private readonly List<string> names;
+        private IProxiesDb proxiesDb;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProxyParser"/> class.
         /// </summary>
-        /// <param name="names">List of proxy names.</param>
-        public ProxyParser(IEnumerable<string> names)
+        /// <param name="proxiesDb">Proxies database.</param>
+        public ProxyParser(IProxiesDb proxiesDb)
         {
-            this.names = names.ToList();
+            this.proxiesDb = proxiesDb;
         }
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace Wx3270
         /// <remarks>
         /// This is a hand-crafted parser rather than a regex, because the regex would be impenetrable.
         /// </remarks>
-        public bool TryParse(string text, out string proxyType, out string address, out string port, out string username, out string password, out string failReason, bool nullIsNone = false)
+        public bool TryParse(string text, out string proxyType, out string address, out ushort? port, out string username, out string password, out string failReason, bool nullIsNone = false)
         {
             proxyType = null;
             address = null;
@@ -77,7 +78,7 @@ namespace Wx3270
             }
 
             proxyType = text.Substring(0, colon);
-            if (!this.names.Contains(proxyType, StringComparer.InvariantCultureIgnoreCase))
+            if (!this.proxiesDb.Proxies.Keys.Contains(proxyType, StringComparer.InvariantCultureIgnoreCase))
             {
                 failReason = "Invalid type name";
                 return false;
@@ -103,6 +104,7 @@ namespace Wx3270
                 text = text.Substring(at + 1);
             }
 
+            string portString = null;
             if (text.StartsWith("["))
             {
                 // Handle address in brackets.
@@ -124,7 +126,7 @@ namespace Wx3270
                         return false;
                     }
 
-                    port = text.Substring(1);
+                    portString = text.Substring(1);
                 }
             }
             else
@@ -138,7 +140,7 @@ namespace Wx3270
                 else
                 {
                     address = text.Substring(0, colon);
-                    port = text.Substring(colon + 1);
+                    portString = text.Substring(colon + 1);
                 }
             }
 
@@ -155,12 +157,63 @@ namespace Wx3270
             {
                 failReason = "Empty password";
             }
-            else if (port != null && !ushort.TryParse(port, out _))
+            else if (portString != null)
             {
-                failReason = "Invalid port";
+                if (ushort.TryParse(portString, out ushort portInt) && portInt > 0)
+                {
+                    port = portInt;
+                }
+                else
+                {
+                    failReason = "Invalid port";
+                }
+            }
+
+            if (failReason == null && username != null && !this.proxiesDb.Proxies[proxyType].TakesUsername)
+            {
+                failReason = $"Cannot specify username with {proxyType}";
+            }
+
+            if (failReason == null && port == null && this.proxiesDb.Proxies[proxyType].DefaultPort == null)
+            {
+                failReason = $"Must specify port with {proxyType}";
             }
 
             return failReason == null;
+        }
+
+        /// <summary>
+        /// Parses a proxy string.
+        /// </summary>
+        /// <param name="input">String to parse.</param>
+        /// <param name="proxy">Returned proxy object.</param>
+        /// <returns>True for success.</returns>
+        public bool TryParse(string input, out Profile.ProxyClass proxy)
+        {
+            proxy = null;
+            var success = this.TryParse(input, out string proxyType, out string address, out ushort? port, out string username, out string password, out _, nullIsNone: true);
+            if (!success)
+            {
+                return false;
+            }
+
+            if (proxyType == null && address == null && port == null && username == null && password == null)
+            {
+                proxy = new Profile.ProxyClass();
+            }
+            else
+            {
+                proxy = new Profile.ProxyClass
+                {
+                    Type = proxyType,
+                    Address = address,
+                    Port = port.HasValue ? (int?)port.Value : null,
+                    Username = username,
+                    Password = password,
+                };
+            }
+
+            return true;
         }
     }
 }

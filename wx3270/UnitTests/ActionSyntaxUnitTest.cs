@@ -15,6 +15,19 @@ namespace Wx3270
     public class ActionSyntaxUnitTest
     {
         /// <summary>
+        /// Setup for the action synax tests.
+        /// </summary>
+        [TestInitialize]
+        public void Setup()
+        {
+            I18n.LocalizeGlobal("ActionSyntax.message.invalidActionNameCharacter", "Invalid action name character");
+            I18n.LocalizeGlobal("ActionSyntax.message.expectedLParen", "Expected '('");
+            I18n.LocalizeGlobal("ActionSyntax.message.expectedRParen", "Expected ')'");
+            I18n.LocalizeGlobal("ActionSyntax.message.expectedDQuote", "Expected '\"'");
+            I18n.LocalizeGlobal("ActionSyntax.message.expectedCommaRParen", "Expected ',)'");
+        }
+
+        /// <summary>
         /// Test basic success cases.
         /// </summary>
         [TestMethod]

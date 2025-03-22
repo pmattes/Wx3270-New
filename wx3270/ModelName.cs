@@ -57,7 +57,7 @@ namespace Wx3270
                 Name = name,
                 ModelNumber = m.Groups["model"].Success ? int.Parse(m.Groups["model"].Value) : Profile.DefaultProfile.Model,
                 Color = !m.Groups["color"].Success || m.Groups["color"].Value == "9",
-                Extended = !m.Groups["color"].Success || m.Groups["extended"].Success,
+                Extended = true,
             };
             return true;
         }

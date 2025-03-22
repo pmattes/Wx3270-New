@@ -164,8 +164,8 @@
             this.purplePanel.Location = new System.Drawing.Point(0, 0);
             this.purplePanel.Margin = new System.Windows.Forms.Padding(0);
             this.purplePanel.Name = "purplePanel";
-            this.purplePanel.Padding = new System.Windows.Forms.Padding(15);
-            this.purplePanel.Size = new System.Drawing.Size(744, 687);
+            this.purplePanel.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
+            this.purplePanel.Size = new System.Drawing.Size(992, 846);
             this.purplePanel.TabIndex = 0;
             // 
             // notPurplePanel
@@ -173,9 +173,10 @@
             this.notPurplePanel.AutoSize = true;
             this.notPurplePanel.BackColor = System.Drawing.SystemColors.Control;
             this.notPurplePanel.Controls.Add(this.innerTableLayoutPanel);
-            this.notPurplePanel.Location = new System.Drawing.Point(16, 42);
+            this.notPurplePanel.Location = new System.Drawing.Point(21, 52);
+            this.notPurplePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.notPurplePanel.Name = "notPurplePanel";
-            this.notPurplePanel.Size = new System.Drawing.Size(710, 627);
+            this.notPurplePanel.Size = new System.Drawing.Size(947, 772);
             this.notPurplePanel.TabIndex = 6;
             // 
             // innerTableLayoutPanel
@@ -186,11 +187,12 @@
             this.innerTableLayoutPanel.Controls.Add(this.lowerPanel, 0, 1);
             this.innerTableLayoutPanel.Controls.Add(this.treeView, 0, 0);
             this.innerTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.innerTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.innerTableLayoutPanel.Name = "innerTableLayoutPanel";
             this.innerTableLayoutPanel.RowCount = 2;
             this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.innerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.innerTableLayoutPanel.Size = new System.Drawing.Size(707, 624);
+            this.innerTableLayoutPanel.Size = new System.Drawing.Size(943, 768);
             this.innerTableLayoutPanel.TabIndex = 0;
             // 
             // lowerPanel
@@ -199,9 +201,10 @@
             this.lowerPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lowerPanel.Controls.Add(this.lowerTableLayoutPanel);
             this.lowerPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lowerPanel.Location = new System.Drawing.Point(3, 379);
+            this.lowerPanel.Location = new System.Drawing.Point(4, 473);
+            this.lowerPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lowerPanel.Name = "lowerPanel";
-            this.lowerPanel.Size = new System.Drawing.Size(701, 242);
+            this.lowerPanel.Size = new System.Drawing.Size(935, 291);
             this.lowerPanel.TabIndex = 6;
             // 
             // lowerTableLayoutPanel
@@ -217,6 +220,7 @@
             this.lowerTableLayoutPanel.Controls.Add(this.useShiftLabel, 0, 4);
             this.lowerTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lowerTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.lowerTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lowerTableLayoutPanel.Name = "lowerTableLayoutPanel";
             this.lowerTableLayoutPanel.RowCount = 5;
             this.lowerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -224,7 +228,7 @@
             this.lowerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.lowerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.lowerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.lowerTableLayoutPanel.Size = new System.Drawing.Size(701, 242);
+            this.lowerTableLayoutPanel.Size = new System.Drawing.Size(935, 291);
             this.lowerTableLayoutPanel.TabIndex = 1;
             // 
             // folderGroupBox
@@ -233,9 +237,11 @@
             this.folderGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.folderGroupBox.Controls.Add(this.flowLayoutPanel4);
             this.folderGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.folderGroupBox.Location = new System.Drawing.Point(3, 171);
+            this.folderGroupBox.Location = new System.Drawing.Point(4, 209);
+            this.folderGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.folderGroupBox.Name = "folderGroupBox";
-            this.folderGroupBox.Size = new System.Drawing.Size(695, 51);
+            this.folderGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.folderGroupBox.Size = new System.Drawing.Size(927, 61);
             this.folderGroupBox.TabIndex = 4;
             this.folderGroupBox.TabStop = false;
             this.folderGroupBox.Text = "Folder";
@@ -248,17 +254,19 @@
             this.flowLayoutPanel4.Controls.Add(this.folderNewButton);
             this.flowLayoutPanel4.Controls.Add(this.folderUnwatchButton);
             this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 16);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(4, 17);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(689, 32);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(919, 40);
             this.flowLayoutPanel4.TabIndex = 6;
             // 
             // folderIconPictureBox
             // 
             this.folderIconPictureBox.Image = global::Wx3270.Properties.Resources.FolderGreen;
-            this.folderIconPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.folderIconPictureBox.Location = new System.Drawing.Point(4, 4);
+            this.folderIconPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.folderIconPictureBox.Name = "folderIconPictureBox";
-            this.folderIconPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.folderIconPictureBox.Size = new System.Drawing.Size(31, 28);
             this.folderIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.folderIconPictureBox.TabIndex = 2;
             this.folderIconPictureBox.TabStop = false;
@@ -267,9 +275,10 @@
             // 
             this.folderNewButton.AutoSize = true;
             this.folderNewButton.ForeColor = System.Drawing.Color.Green;
-            this.folderNewButton.Location = new System.Drawing.Point(32, 3);
+            this.folderNewButton.Location = new System.Drawing.Point(43, 4);
+            this.folderNewButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.folderNewButton.Name = "folderNewButton";
-            this.folderNewButton.Size = new System.Drawing.Size(90, 26);
+            this.folderNewButton.Size = new System.Drawing.Size(120, 32);
             this.folderNewButton.TabIndex = 3;
             this.folderNewButton.Tag = "WatchNew";
             this.folderNewButton.Text = "➕ New";
@@ -281,9 +290,10 @@
             // 
             this.folderUnwatchButton.AutoSize = true;
             this.folderUnwatchButton.ForeColor = System.Drawing.Color.Red;
-            this.folderUnwatchButton.Location = new System.Drawing.Point(128, 3);
+            this.folderUnwatchButton.Location = new System.Drawing.Point(171, 4);
+            this.folderUnwatchButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.folderUnwatchButton.Name = "folderUnwatchButton";
-            this.folderUnwatchButton.Size = new System.Drawing.Size(104, 26);
+            this.folderUnwatchButton.Size = new System.Drawing.Size(139, 32);
             this.folderUnwatchButton.TabIndex = 1;
             this.folderUnwatchButton.Tag = "StopWatching";
             this.folderUnwatchButton.Text = "Stop Watching";
@@ -297,9 +307,11 @@
             this.profileGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.profileGroupBox.Controls.Add(this.profileFlowLayoutPanel);
             this.profileGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.profileGroupBox.Location = new System.Drawing.Point(3, 114);
+            this.profileGroupBox.Location = new System.Drawing.Point(4, 140);
+            this.profileGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.profileGroupBox.Name = "profileGroupBox";
-            this.profileGroupBox.Size = new System.Drawing.Size(695, 51);
+            this.profileGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.profileGroupBox.Size = new System.Drawing.Size(927, 61);
             this.profileGroupBox.TabIndex = 3;
             this.profileGroupBox.TabStop = false;
             this.profileGroupBox.Text = "Profile";
@@ -316,17 +328,19 @@
             this.profileFlowLayoutPanel.Controls.Add(this.profileExportButton);
             this.profileFlowLayoutPanel.Controls.Add(this.profileDefaultButton);
             this.profileFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.profileFlowLayoutPanel.Location = new System.Drawing.Point(3, 16);
+            this.profileFlowLayoutPanel.Location = new System.Drawing.Point(4, 17);
+            this.profileFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.profileFlowLayoutPanel.Name = "profileFlowLayoutPanel";
-            this.profileFlowLayoutPanel.Size = new System.Drawing.Size(689, 32);
+            this.profileFlowLayoutPanel.Size = new System.Drawing.Size(919, 40);
             this.profileFlowLayoutPanel.TabIndex = 6;
             // 
             // profileIconPictureBox
             // 
             this.profileIconPictureBox.Image = global::Wx3270.Properties.Resources.Folder;
-            this.profileIconPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.profileIconPictureBox.Location = new System.Drawing.Point(4, 4);
+            this.profileIconPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.profileIconPictureBox.Name = "profileIconPictureBox";
-            this.profileIconPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.profileIconPictureBox.Size = new System.Drawing.Size(31, 28);
             this.profileIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.profileIconPictureBox.TabIndex = 6;
             this.profileIconPictureBox.TabStop = false;
@@ -336,9 +350,10 @@
             this.profileNewButton.AutoSize = true;
             this.profileNewButton.ContextMenuStrip = this.newProfileContextMenuStrip;
             this.profileNewButton.ForeColor = System.Drawing.Color.Green;
-            this.profileNewButton.Location = new System.Drawing.Point(32, 3);
+            this.profileNewButton.Location = new System.Drawing.Point(43, 4);
+            this.profileNewButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.profileNewButton.Name = "profileNewButton";
-            this.profileNewButton.Size = new System.Drawing.Size(90, 26);
+            this.profileNewButton.Size = new System.Drawing.Size(120, 32);
             this.profileNewButton.TabIndex = 0;
             this.profileNewButton.Tag = "New";
             this.profileNewButton.Text = "➕ New";
@@ -383,9 +398,10 @@
             // profileSwitchToButton
             // 
             this.profileSwitchToButton.AutoSize = true;
-            this.profileSwitchToButton.Location = new System.Drawing.Point(128, 3);
+            this.profileSwitchToButton.Location = new System.Drawing.Point(171, 4);
+            this.profileSwitchToButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.profileSwitchToButton.Name = "profileSwitchToButton";
-            this.profileSwitchToButton.Size = new System.Drawing.Size(91, 26);
+            this.profileSwitchToButton.Size = new System.Drawing.Size(121, 32);
             this.profileSwitchToButton.TabIndex = 1;
             this.profileSwitchToButton.Tag = "SwitchTo";
             this.profileSwitchToButton.Text = "→ Switch To";
@@ -396,9 +412,10 @@
             // profileMergeFromButton
             // 
             this.profileMergeFromButton.AutoSize = true;
-            this.profileMergeFromButton.Location = new System.Drawing.Point(225, 3);
+            this.profileMergeFromButton.Location = new System.Drawing.Point(300, 4);
+            this.profileMergeFromButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.profileMergeFromButton.Name = "profileMergeFromButton";
-            this.profileMergeFromButton.Size = new System.Drawing.Size(106, 26);
+            this.profileMergeFromButton.Size = new System.Drawing.Size(141, 32);
             this.profileMergeFromButton.TabIndex = 2;
             this.profileMergeFromButton.Tag = "MergeFrom";
             this.profileMergeFromButton.Text = "← Merge From";
@@ -409,9 +426,10 @@
             // profileImportButton
             // 
             this.profileImportButton.AutoSize = true;
-            this.profileImportButton.Location = new System.Drawing.Point(337, 3);
+            this.profileImportButton.Location = new System.Drawing.Point(449, 4);
+            this.profileImportButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.profileImportButton.Name = "profileImportButton";
-            this.profileImportButton.Size = new System.Drawing.Size(90, 26);
+            this.profileImportButton.Size = new System.Drawing.Size(120, 32);
             this.profileImportButton.TabIndex = 3;
             this.profileImportButton.Tag = "Import";
             this.profileImportButton.Text = "↓ Import";
@@ -423,9 +441,10 @@
             // profileExportButton
             // 
             this.profileExportButton.AutoSize = true;
-            this.profileExportButton.Location = new System.Drawing.Point(433, 3);
+            this.profileExportButton.Location = new System.Drawing.Point(577, 4);
+            this.profileExportButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.profileExportButton.Name = "profileExportButton";
-            this.profileExportButton.Size = new System.Drawing.Size(90, 26);
+            this.profileExportButton.Size = new System.Drawing.Size(120, 32);
             this.profileExportButton.TabIndex = 4;
             this.profileExportButton.Tag = "Export";
             this.profileExportButton.Text = "↑ Export";
@@ -436,9 +455,10 @@
             // profileDefaultButton
             // 
             this.profileDefaultButton.AutoSize = true;
-            this.profileDefaultButton.Location = new System.Drawing.Point(529, 3);
+            this.profileDefaultButton.Location = new System.Drawing.Point(705, 4);
+            this.profileDefaultButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.profileDefaultButton.Name = "profileDefaultButton";
-            this.profileDefaultButton.Size = new System.Drawing.Size(100, 26);
+            this.profileDefaultButton.Size = new System.Drawing.Size(133, 32);
             this.profileDefaultButton.TabIndex = 5;
             this.profileDefaultButton.Tag = "Default";
             this.profileDefaultButton.Text = "Set as Default";
@@ -452,9 +472,11 @@
             this.commonGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.commonGroupBox.Controls.Add(this.commonFlowLayoutPanel);
             this.commonGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.commonGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.commonGroupBox.Location = new System.Drawing.Point(4, 4);
+            this.commonGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.commonGroupBox.Name = "commonGroupBox";
-            this.commonGroupBox.Size = new System.Drawing.Size(695, 51);
+            this.commonGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.commonGroupBox.Size = new System.Drawing.Size(927, 61);
             this.commonGroupBox.TabIndex = 0;
             this.commonGroupBox.TabStop = false;
             this.commonGroupBox.Text = "Common";
@@ -470,17 +492,19 @@
             this.commonFlowLayoutPanel.Controls.Add(this.commonShortcutButton);
             this.commonFlowLayoutPanel.Controls.Add(this.commonDeleteButton);
             this.commonFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.commonFlowLayoutPanel.Location = new System.Drawing.Point(3, 16);
+            this.commonFlowLayoutPanel.Location = new System.Drawing.Point(4, 17);
+            this.commonFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.commonFlowLayoutPanel.Name = "commonFlowLayoutPanel";
-            this.commonFlowLayoutPanel.Size = new System.Drawing.Size(689, 32);
+            this.commonFlowLayoutPanel.Size = new System.Drawing.Size(919, 40);
             this.commonFlowLayoutPanel.TabIndex = 7;
             // 
             // commonIconPictureBox
             // 
             this.commonIconPictureBox.Image = global::Wx3270.Properties.Resources.wx3270;
-            this.commonIconPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.commonIconPictureBox.Location = new System.Drawing.Point(4, 4);
+            this.commonIconPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.commonIconPictureBox.Name = "commonIconPictureBox";
-            this.commonIconPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.commonIconPictureBox.Size = new System.Drawing.Size(31, 28);
             this.commonIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.commonIconPictureBox.TabIndex = 5;
             this.commonIconPictureBox.TabStop = false;
@@ -488,9 +512,10 @@
             // commonEditButton
             // 
             this.commonEditButton.AutoSize = true;
-            this.commonEditButton.Location = new System.Drawing.Point(32, 3);
+            this.commonEditButton.Location = new System.Drawing.Point(43, 4);
+            this.commonEditButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.commonEditButton.Name = "commonEditButton";
-            this.commonEditButton.Size = new System.Drawing.Size(90, 26);
+            this.commonEditButton.Size = new System.Drawing.Size(120, 32);
             this.commonEditButton.TabIndex = 0;
             this.commonEditButton.Tag = "Edit";
             this.commonEditButton.Text = "✎ Edit";
@@ -501,9 +526,10 @@
             // commonDuplicateButton
             // 
             this.commonDuplicateButton.AutoSize = true;
-            this.commonDuplicateButton.Location = new System.Drawing.Point(128, 3);
+            this.commonDuplicateButton.Location = new System.Drawing.Point(171, 4);
+            this.commonDuplicateButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.commonDuplicateButton.Name = "commonDuplicateButton";
-            this.commonDuplicateButton.Size = new System.Drawing.Size(90, 26);
+            this.commonDuplicateButton.Size = new System.Drawing.Size(120, 32);
             this.commonDuplicateButton.TabIndex = 1;
             this.commonDuplicateButton.Tag = "Duplicate";
             this.commonDuplicateButton.Text = "Duplicate";
@@ -514,9 +540,10 @@
             // commonRenameButton
             // 
             this.commonRenameButton.AutoSize = true;
-            this.commonRenameButton.Location = new System.Drawing.Point(224, 3);
+            this.commonRenameButton.Location = new System.Drawing.Point(299, 4);
+            this.commonRenameButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.commonRenameButton.Name = "commonRenameButton";
-            this.commonRenameButton.Size = new System.Drawing.Size(90, 26);
+            this.commonRenameButton.Size = new System.Drawing.Size(120, 32);
             this.commonRenameButton.TabIndex = 2;
             this.commonRenameButton.Tag = "Rename";
             this.commonRenameButton.Text = "Rename";
@@ -527,9 +554,10 @@
             // commonShortcutButton
             // 
             this.commonShortcutButton.AutoSize = true;
-            this.commonShortcutButton.Location = new System.Drawing.Point(320, 3);
+            this.commonShortcutButton.Location = new System.Drawing.Point(427, 4);
+            this.commonShortcutButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.commonShortcutButton.Name = "commonShortcutButton";
-            this.commonShortcutButton.Size = new System.Drawing.Size(90, 26);
+            this.commonShortcutButton.Size = new System.Drawing.Size(120, 32);
             this.commonShortcutButton.TabIndex = 4;
             this.commonShortcutButton.Tag = "Shortcut";
             this.commonShortcutButton.Text = "Shortcut";
@@ -541,9 +569,10 @@
             // 
             this.commonDeleteButton.AutoSize = true;
             this.commonDeleteButton.ForeColor = System.Drawing.Color.Red;
-            this.commonDeleteButton.Location = new System.Drawing.Point(416, 3);
+            this.commonDeleteButton.Location = new System.Drawing.Point(555, 4);
+            this.commonDeleteButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.commonDeleteButton.Name = "commonDeleteButton";
-            this.commonDeleteButton.Size = new System.Drawing.Size(90, 26);
+            this.commonDeleteButton.Size = new System.Drawing.Size(120, 32);
             this.commonDeleteButton.TabIndex = 3;
             this.commonDeleteButton.Tag = "Delete";
             this.commonDeleteButton.Text = "❌ Delete";
@@ -556,9 +585,11 @@
             this.connectionGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.connectionGroupBox.Controls.Add(this.connectionFlowLayoutPanel);
             this.connectionGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.connectionGroupBox.Location = new System.Drawing.Point(3, 60);
+            this.connectionGroupBox.Location = new System.Drawing.Point(4, 73);
+            this.connectionGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.connectionGroupBox.Name = "connectionGroupBox";
-            this.connectionGroupBox.Size = new System.Drawing.Size(695, 48);
+            this.connectionGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.connectionGroupBox.Size = new System.Drawing.Size(927, 59);
             this.connectionGroupBox.TabIndex = 2;
             this.connectionGroupBox.TabStop = false;
             this.connectionGroupBox.Text = "Connection";
@@ -571,17 +602,19 @@
             this.connectionFlowLayoutPanel.Controls.Add(this.connectionNewButton);
             this.connectionFlowLayoutPanel.Controls.Add(this.connectionConnectButton);
             this.connectionFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.connectionFlowLayoutPanel.Location = new System.Drawing.Point(3, 16);
+            this.connectionFlowLayoutPanel.Location = new System.Drawing.Point(4, 17);
+            this.connectionFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.connectionFlowLayoutPanel.Name = "connectionFlowLayoutPanel";
-            this.connectionFlowLayoutPanel.Size = new System.Drawing.Size(689, 29);
+            this.connectionFlowLayoutPanel.Size = new System.Drawing.Size(919, 38);
             this.connectionFlowLayoutPanel.TabIndex = 7;
             // 
             // connectionIconPictureBox
             // 
             this.connectionIconPictureBox.Image = global::Wx3270.Properties.Resources.PowerPlug32;
-            this.connectionIconPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.connectionIconPictureBox.Location = new System.Drawing.Point(4, 4);
+            this.connectionIconPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.connectionIconPictureBox.Name = "connectionIconPictureBox";
-            this.connectionIconPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.connectionIconPictureBox.Size = new System.Drawing.Size(31, 28);
             this.connectionIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.connectionIconPictureBox.TabIndex = 2;
             this.connectionIconPictureBox.TabStop = false;
@@ -590,9 +623,10 @@
             // 
             this.connectionNewButton.AutoSize = true;
             this.connectionNewButton.ForeColor = System.Drawing.Color.Green;
-            this.connectionNewButton.Location = new System.Drawing.Point(32, 3);
+            this.connectionNewButton.Location = new System.Drawing.Point(43, 4);
+            this.connectionNewButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.connectionNewButton.Name = "connectionNewButton";
-            this.connectionNewButton.Size = new System.Drawing.Size(90, 26);
+            this.connectionNewButton.Size = new System.Drawing.Size(120, 32);
             this.connectionNewButton.TabIndex = 0;
             this.connectionNewButton.Tag = "New";
             this.connectionNewButton.Text = "➕ New";
@@ -603,9 +637,10 @@
             // connectionConnectButton
             // 
             this.connectionConnectButton.AutoSize = true;
-            this.connectionConnectButton.Location = new System.Drawing.Point(128, 3);
+            this.connectionConnectButton.Location = new System.Drawing.Point(171, 4);
+            this.connectionConnectButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.connectionConnectButton.Name = "connectionConnectButton";
-            this.connectionConnectButton.Size = new System.Drawing.Size(90, 26);
+            this.connectionConnectButton.Size = new System.Drawing.Size(120, 32);
             this.connectionConnectButton.TabIndex = 1;
             this.connectionConnectButton.Tag = "Connect";
             this.connectionConnectButton.Text = "🗲 Connect";
@@ -618,7 +653,8 @@
             this.useShiftLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.useShiftLabel.AutoSize = true;
             this.useShiftLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.useShiftLabel.Location = new System.Drawing.Point(3, 225);
+            this.useShiftLabel.Location = new System.Drawing.Point(4, 274);
+            this.useShiftLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.useShiftLabel.Name = "useShiftLabel";
             this.useShiftLabel.Size = new System.Drawing.Size(419, 17);
             this.useShiftLabel.TabIndex = 5;
@@ -632,12 +668,13 @@
             this.treeView.ImageIndex = 0;
             this.treeView.ImageList = this.imageList1;
             this.treeView.LabelEdit = true;
-            this.treeView.Location = new System.Drawing.Point(3, 3);
+            this.treeView.Location = new System.Drawing.Point(4, 4);
+            this.treeView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.treeView.Name = "treeView";
             this.treeView.PathSeparator = "*";
             this.treeView.SelectedImageIndex = 0;
             this.treeView.ShowNodeToolTips = true;
-            this.treeView.Size = new System.Drawing.Size(701, 370);
+            this.treeView.Size = new System.Drawing.Size(935, 461);
             this.treeView.TabIndex = 1;
             this.treeView.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.TreeView_BeforeLabelEdit);
             this.treeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.TreeView_AfterLabelEdit);
@@ -657,20 +694,20 @@
             this.flowLayoutPanel1.Controls.Add(this.redoButton);
             this.flowLayoutPanel1.Controls.Add(this.undoButton);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(615, 10);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(820, 12);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(111, 29);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(148, 36);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // helpPictureBox
             // 
             this.helpPictureBox.ContextMenuStrip = this.helpContextMenuStrip;
             this.helpPictureBox.Image = global::Wx3270.Properties.Resources.Question23c;
-            this.helpPictureBox.Location = new System.Drawing.Point(88, 3);
-            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(6, 3, 0, 3);
+            this.helpPictureBox.Location = new System.Drawing.Point(117, 4);
+            this.helpPictureBox.Margin = new System.Windows.Forms.Padding(8, 4, 0, 4);
             this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(23, 23);
+            this.helpPictureBox.Size = new System.Drawing.Size(31, 28);
             this.helpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.helpPictureBox.TabIndex = 2;
             this.helpPictureBox.TabStop = false;
@@ -706,10 +743,10 @@
             // 
             this.redoButton.AutoSize = true;
             this.redoButton.Enabled = false;
-            this.redoButton.Location = new System.Drawing.Point(47, 3);
-            this.redoButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.redoButton.Location = new System.Drawing.Point(62, 4);
+            this.redoButton.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
             this.redoButton.Name = "redoButton";
-            this.redoButton.Size = new System.Drawing.Size(35, 25);
+            this.redoButton.Size = new System.Drawing.Size(47, 28);
             this.redoButton.TabIndex = 1;
             this.redoButton.Tag = "`";
             this.redoButton.Text = "↷";
@@ -719,9 +756,10 @@
             // undoButton
             // 
             this.undoButton.Enabled = false;
-            this.undoButton.Location = new System.Drawing.Point(6, 3);
+            this.undoButton.Location = new System.Drawing.Point(7, 4);
+            this.undoButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.undoButton.Name = "undoButton";
-            this.undoButton.Size = new System.Drawing.Size(35, 27);
+            this.undoButton.Size = new System.Drawing.Size(47, 28);
             this.undoButton.TabIndex = 0;
             this.undoButton.Tag = "`";
             this.undoButton.Text = "↶";
@@ -734,10 +772,10 @@
             this.topFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.topFlowLayoutPanel.Controls.Add(this.topNewConnectionButton);
             this.topFlowLayoutPanel.Controls.Add(this.topDisconnectButton);
-            this.topFlowLayoutPanel.Location = new System.Drawing.Point(12, 10);
+            this.topFlowLayoutPanel.Location = new System.Drawing.Point(16, 12);
             this.topFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.topFlowLayoutPanel.Name = "topFlowLayoutPanel";
-            this.topFlowLayoutPanel.Size = new System.Drawing.Size(274, 33);
+            this.topFlowLayoutPanel.Size = new System.Drawing.Size(365, 40);
             this.topFlowLayoutPanel.TabIndex = 0;
             // 
             // topNewConnectionButton
@@ -745,9 +783,10 @@
             this.topNewConnectionButton.AutoSize = true;
             this.topNewConnectionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.topNewConnectionButton.ForeColor = System.Drawing.Color.Green;
-            this.topNewConnectionButton.Location = new System.Drawing.Point(3, 3);
+            this.topNewConnectionButton.Location = new System.Drawing.Point(4, 4);
+            this.topNewConnectionButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.topNewConnectionButton.Name = "topNewConnectionButton";
-            this.topNewConnectionButton.Size = new System.Drawing.Size(136, 27);
+            this.topNewConnectionButton.Size = new System.Drawing.Size(181, 32);
             this.topNewConnectionButton.TabIndex = 1;
             this.topNewConnectionButton.Tag = "NewConnection";
             this.topNewConnectionButton.Text = "🗲 New Connection";
@@ -760,9 +799,10 @@
             this.topDisconnectButton.Enabled = false;
             this.topDisconnectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.topDisconnectButton.ForeColor = System.Drawing.Color.Red;
-            this.topDisconnectButton.Location = new System.Drawing.Point(145, 3);
+            this.topDisconnectButton.Location = new System.Drawing.Point(193, 4);
+            this.topDisconnectButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.topDisconnectButton.Name = "topDisconnectButton";
-            this.topDisconnectButton.Size = new System.Drawing.Size(126, 27);
+            this.topDisconnectButton.Size = new System.Drawing.Size(168, 32);
             this.topDisconnectButton.TabIndex = 1;
             this.topDisconnectButton.Tag = "Disconnect";
             this.topDisconnectButton.Text = "🗲 Disconnect";
@@ -1040,13 +1080,14 @@
             // 
             // ProfileTree
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1292, 734);
+            this.ClientSize = new System.Drawing.Size(1723, 903);
             this.Controls.Add(this.purplePanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProfileTree";

@@ -32,7 +32,7 @@ namespace Wx3270
                 new TestInstance("3278-2-E", true, new ModelName { ModelNumber = 2, Color = false, Extended = true }),
 
                 // Not extended.
-                new TestInstance("3278-2", true, new ModelName { ModelNumber = 2, Color = false, Extended = false }),
+                new TestInstance("3278-2", true, new ModelName { ModelNumber = 2, Color = false, Extended = true }),
 
                 // Lower case.
                 new TestInstance("ibm-3279-2-e", true, new ModelName { ModelNumber = 2, Color = true, Extended = true }),

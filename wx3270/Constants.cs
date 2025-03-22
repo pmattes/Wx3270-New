@@ -256,6 +256,11 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             public const string ScriptPortOnce = "-scriptportonce";
 
             /// <summary>
+            /// Set option (set wc3270-style resource).
+            /// </summary>
+            public const string Set = "-set";
+
+            /// <summary>
             /// Make this window the topmost.
             /// </summary>
             public const string Topmost = "-topmost";
@@ -284,6 +289,11 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             /// Write a version string to a file and exit.
             /// </summary>
             public const string Vfile = "-vfile";
+
+            /// <summary>
+            /// Specify a wc3270-style settings override.
+            /// </summary>
+            public const string Xrm = "-xrm";
         }
 
         /// <summary>

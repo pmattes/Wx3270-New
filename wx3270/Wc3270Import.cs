@@ -8,9 +8,8 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Text;
     using System.Text.RegularExpressions;
-
+    using System.Windows.Media.Animation;
     using Wx3270.Contracts;
 
     /// <summary>
@@ -26,17 +25,7 @@ namespace Wx3270
         /// <summary>
         /// Regular expression for line parsing.
         /// </summary>
-        private const string LineRegex = @"\s*(wc3270\.|\*)(?<resource>[a-zA-Z0-9.]+)\s*:\s*(?<value>.*)\s*";
-
-        /// <summary>
-        /// Regular expression for hostname parsing.
-        /// </summary>
-        private const string HostRegex = @"((?<tls>L:))?((?<lu>[a-zA-Z0-9-_,]+)@)?(\[(?<host>[^\]]+)]|(?<host>[^:]+))(:(?<port>[0-9]+))?";
-
-        /// <summary>
-        /// Regular expression for the oversize option.
-        /// </summary>
-        private const string OversizeRegex = @"(?<cols>\d+)x(?<rows>\d+)";
+        private const string LineRegex = @"\s*(wc3270\.|wx3270\.|b3270\.|\*)(?<resource>[a-zA-Z0-9.]+)\s*:\s*(?<value>.*)\s*";
 
         /// <summary>
         /// Regular expression for a macro definition.
@@ -49,29 +38,14 @@ namespace Wx3270
         private readonly Regex lineRegex = new Regex(LineRegex);
 
         /// <summary>
-        /// The host regular expression parser.
-        /// </summary>
-        private readonly Regex hostRegex = new Regex(HostRegex);
-
-        /// <summary>
-        /// The oversize regular expression parser.
-        /// </summary>
-        private readonly Regex oversizeRegex = new Regex(OversizeRegex);
-
-        /// <summary>
         /// The macros regular expression parser.
         /// </summary>
         private readonly Regex macrosRegex = new Regex(MacrosRegex);
 
         /// <summary>
-        /// The code page database.
+        /// The back end database.
         /// </summary>
-        private readonly ICodePageDb codePageDb;
-
-        /// <summary>
-        /// The models database.
-        /// </summary>
-        private readonly IModelsDb modelsDb;
+        private readonly IBackEndDb backEndDb;
 
         /// <summary>
         /// The file name.
@@ -81,18 +55,16 @@ namespace Wx3270
         /// <summary>
         /// Initializes a new instance of the <see cref="Wc3270Import"/> class.
         /// </summary>
-        /// <param name="codePageDb">Code page database.</param>
-        /// <param name="modelsDb">Models database.</param>
-        public Wc3270Import(ICodePageDb codePageDb, IModelsDb modelsDb)
+        /// <param name="backEndDb">Back end database.</param>
+        public Wc3270Import(IBackEndDb backEndDb)
         {
-            this.codePageDb = codePageDb;
-            this.modelsDb = modelsDb;
+            this.backEndDb = backEndDb;
         }
 
         /// <summary>
         /// Gets or sets the attributes read from the file.
         /// </summary>
-        private Dictionary<string, Wc3270Resource> Attributes { get; set; } = new Dictionary<string, Wc3270Resource>();
+        private Dictionary<string, Wc3270Resource> Attributes { get; set; } = new Dictionary<string, Wc3270Resource>(StringComparer.InvariantCultureIgnoreCase);
 
         /// <summary>
         /// Read a wc3270 profile and pick out the parts we can support.
@@ -100,30 +72,37 @@ namespace Wx3270
         /// <param name="profileName">Pathname of profile.</param>
         public void Read(string profileName)
         {
+            this.Read(profileName, File.ReadLines(profileName), fromFile: true);
+        }
+
+        /// <summary>
+        /// Read a wc3270 profile from a set of strings.
+        /// </summary>
+        /// <param name="profileName">Path name.</param>
+        /// <param name="lines">Set of strings.</param>
+        /// <param name="fromFile">True if the resources came from a file.</param>
+        public void Read(string profileName, IEnumerable<string> lines, bool fromFile = true)
+        {
             this.fileName = profileName;
-            using (var file = new StreamReader(profileName, Encoding.GetEncoding(NativeMethods.GetACP())))
+            var wholeLine = string.Empty;
+            var lineNumber = 0;
+            foreach (var line in lines)
             {
-                var wholeLine = string.Empty;
-                string line;
-                var lineNumber = 0;
-                while ((line = file.ReadLine()) != null)
+                lineNumber++;
+                var ln = line.TrimStart(' ', '\t');
+                if (string.IsNullOrWhiteSpace(ln) || ln.StartsWith("!") || ln.StartsWith("#"))
                 {
-                    lineNumber++;
-                    line = line.TrimStart(' ', '\t');
-                    if (string.IsNullOrWhiteSpace(line) || line.StartsWith("!") || line.StartsWith("#"))
-                    {
-                        continue;
-                    }
-
-                    if (line.EndsWith("\\"))
-                    {
-                        wholeLine += line.TrimEnd('\\');
-                        continue;
-                    }
-
-                    this.Parse(wholeLine + line, lineNumber);
-                    wholeLine = string.Empty;
+                    continue;
                 }
+
+                if (ln.EndsWith("\\"))
+                {
+                    wholeLine += ln.TrimEnd('\\');
+                    continue;
+                }
+
+                this.Parse(wholeLine + ln, lineNumber, fromFile: fromFile);
+                wholeLine = string.Empty;
             }
         }
 
@@ -132,16 +111,17 @@ namespace Wx3270
         /// </summary>
         /// <param name="line">Line to parse.</param>
         /// <param name="lineNumber">Line number.</param>
-        public void Parse(string line, int lineNumber = 0)
+        /// <param name="fromFile">True if resources came from a file.</param>
+        public void Parse(string line, int lineNumber = 0, bool fromFile = true)
         {
             // Do the basic syntax check.
             var match = this.lineRegex.Match(line);
             if (!match.Success)
             {
-                throw this.FatalException("syntax error", lineNumber);
+                throw this.FatalException("resource syntax error", lineNumber, fromFile);
             }
 
-            // Just remember the latest value for each resource.
+            // Remember just the latest value for each resource.
             this.Attributes[match.Groups["resource"].Value] = new Wc3270Resource(match.Groups["value"].Value, lineNumber);
         }
 
@@ -151,123 +131,196 @@ namespace Wx3270
         /// <returns>Profile with overridden values.</returns>
         public Profile Digest()
         {
-            // Start with a default profile.
-            var profile = new Profile();
+            return this.Digest(out _, out _);
+        }
+
+        /// <summary>
+        /// Digest the parsed values.
+        /// </summary>
+        /// <param name="host">Returned true if the profile has a hostname in it.</param>
+        /// <param name="unmatched">Returned set of unmatched resources.</param>
+        /// <param name="profile">Optional profile to modify.</param>
+        /// <param name="addHostEntry">If true, add any hostname resource to the profile.</param>
+        /// <param name="fromFile">If true, the values came from a file.</param>
+        /// <param name="setAutoConnect">If true, added host entries should include auto-connect.</param>
+        /// <returns>Profile with overridden values.</returns>
+        public Profile Digest(out HostEntry host, out IEnumerable<string> unmatched, Profile profile = null, bool addHostEntry = true, bool fromFile = true, bool setAutoConnect = true)
+        {
+            host = null;
+            unmatched = null;
+            var unmatchedList = new List<string>();
+
+            // Start with a default profile if none is specified.
+            profile ??= new Profile();
+            if (fromFile)
+            {
+                // Assume they want the same name as the file they are importing.
+                profile.Imported = true;
+                profile.Name = Path.GetFileNameWithoutExtension(this.fileName);
+            }
+
             HostEntry hostEntry = null;
 
             // Set defaults for values that can't be checked until all of the attributes have been processed.
-            var verifyHostCert = true;
-            var alwaysInsert = false;
             var neutralBlack = 0;
             var neutralWhite = 15;
             Profile.OversizeClass oversize = null;
 
             // Validate the last-appearing values of each attribute.
             // Earlier values may be wrong, but they are ignored when read by wc3270.
-            foreach (var pair in this.Attributes)
+            foreach (var pair in this.Attributes.OrderBy(kv => kv.Key, new HostnameFirstComparer()))
             {
                 var resourceName = pair.Key;
                 var value = pair.Value.Value;
                 var lineNumber = pair.Value.LineNumber;
-                switch (resourceName)
+                var canonDict = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+                foreach (var s in new[]
                 {
-                    case Wc3270.Resource.Hostname: /* L:lu@name:port */
-                        var hostMatch = this.hostRegex.Match(value);
-                        if (!hostMatch.Success)
+                    // Ugly: This list needs to be maintained when support for new resources is added.
+                    // But it allows me to use a simple switch statement below, and also lets me generate error messages
+                    // with the canonical name.
+                    // Ideally Wc3270.Resource should be an enum, but there are no string enums in C#.
+                    Wc3270.Resource.AltCursor, Wc3270.Resource.AlwaysInsert, Wc3270.Resource.BellMode, Wc3270.Resource.Charset, Wc3270.Resource.CodePage,
+                    Wc3270.Resource.ConsoleColorForHostColorNeutralBlack, Wc3270.Resource.ConsoleColorForHostColorNeutralWhite,
+                    Wc3270.Resource.Crosshair, Wc3270.Resource.Hostname, Wc3270.Resource.Macros, Wc3270.Resource.Model,
+                    Wc3270.Resource.Oversize, Wc3270.Resource.PrinterCodepage, Wc3270.Resource.PrinterLu, Wc3270.Resource.PrinterName,
+                    Wc3270.Resource.Proxy, Wc3270.Resource.Title, Wc3270.Resource.VerifyHostCert,
+                })
+                {
+                    canonDict[s] = s;
+                }
+
+                if (!canonDict.TryGetValue(resourceName, out string canonName))
+                {
+                    unmatchedList.Add(resourceName);
+                    continue;
+                }
+
+                switch (canonName)
+                {
+                    case Wc3270.Resource.AltCursor:
+                        if (!bool.TryParse(value, out bool altCursor))
                         {
-                            throw this.FatalException("host syntax error", lineNumber);
+                            throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
                         }
 
-                        if (hostEntry == null)
-                        {
-                            hostEntry = new HostEntry
-                            {
-                                Name = hostMatch.Groups["host"].Value,
-                                Host = hostMatch.Groups["host"].Value,
-                                AutoConnect = AutoConnect.Connect,
-                            };
-                            profile.Hosts = new[] { hostEntry };
-                        }
-
-                        if (hostMatch.Groups["tls"].Success)
-                        {
-                            // L:
-                            hostEntry.Prefixes = B3270.Prefix.TlsTunnel;
-                        }
-
-                        if (hostMatch.Groups["lu"].Success)
-                        {
-                            // LU@
-                            var lu = hostMatch.Groups["lu"].Value;
-                            if (lu.Split(new[] { ',' }, StringSplitOptions.None).Length != lu.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Length)
-                            {
-                                throw this.FatalException("host LU syntax error", lineNumber);
-                            }
-
-                            hostEntry.LuNames = lu;
-                        }
-
-                        if (hostMatch.Groups["port"].Success)
-                        {
-                            // :port
-                            hostEntry.Port = hostMatch.Groups["port"].Value;
-                        }
-
+                        profile.CursorType = altCursor ? CursorType.Underscore : CursorType.Block;
                         break;
-                    case Wc3270.Resource.Proxy: /* type[name]:port, no support yet */
-                        break;
-                    case Wc3270.Resource.Model: /* 2 3 4 5 */
-                        if (!int.TryParse(value, out int model) || model < 2 || model > 5)
+                    case Wc3270.Resource.AlwaysInsert:
+                        if (!bool.TryParse(value, out bool alwaysInsert))
                         {
-                            throw this.FatalException($"invalid {resourceName} '{value}'", lineNumber);
+                            throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
                         }
 
-                        profile.Model = model;
+                        profile.AlwaysInsert = alwaysInsert;
                         break;
-                    case Wc3270.Resource.Oversize: /* cols x rows */
-                        var oversizeMatch = this.oversizeRegex.Match(value);
-                        if (!oversizeMatch.Success
-                            || !int.TryParse(oversizeMatch.Groups["cols"].Value, out int cols)
-                            || !int.TryParse(oversizeMatch.Groups["rows"].Value, out int rows)
-                            || cols * rows > Settings.OversizeMax)
-                        {
-                            throw this.FatalException($"invalid {resourceName} '{value}'", lineNumber);
-                        }
-
-                        oversize = new Profile.OversizeClass() { Columns = cols, Rows = rows };
+                    case Wc3270.Resource.BellMode:
+                        profile.AudibleBell = !value.Equals("none", StringComparison.InvariantCultureIgnoreCase) &&
+                            !value.Equals("flash", StringComparison.InvariantCultureIgnoreCase);
                         break;
-                    case Wc3270.Resource.CodePage: /* name */
-                    case Wc3270.Resource.Charset: /* name */
-                        profile.HostCodePage = this.codePageDb.CanonicalName(value);
+                    case Wc3270.Resource.Charset: // name
+                    case Wc3270.Resource.CodePage: // name
+                        profile.HostCodePage = this.backEndDb.CodePageDb.CanonicalName(value);
                         if (profile.HostCodePage == null)
                         {
-                            throw this.FatalException($"invalid {resourceName} '{value}'", lineNumber);
+                            throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
                         }
 
                         break;
-                    case Wc3270.Resource.Crosshair: /* true/false */
-                        bool crosshair;
-                        if (!bool.TryParse(value, out crosshair))
+                    case Wc3270.Resource.ConsoleColorForHostColorNeutralBlack: // 15 for reverse video
+                        if (!int.TryParse(value, out neutralBlack) || neutralBlack < 0 || neutralBlack > 15)
                         {
-                            throw this.FatalException($"invalid {resourceName} '{value}'", lineNumber);
-                        }
-
-                        profile.CrosshairCursor = true;
-                        break;
-                    case Wc3270.Resource.AltCursor: /* true/false */
-                        bool altCursor;
-                        if (!bool.TryParse(value, out altCursor))
-                        {
-                            throw this.FatalException($"invalid {resourceName} '{value}'", lineNumber);
-                        }
-
-                        if (profile.CursorType == CursorType.Block)
-                        {
-                            profile.CursorType = CursorType.Underscore;
+                            throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
                         }
 
                         break;
-                    case Wc3270.Resource.PrinterLu: /* name or "." */
+                    case Wc3270.Resource.ConsoleColorForHostColorNeutralWhite: // 0 for reverse video
+                        if (!int.TryParse(value, out neutralWhite) || neutralWhite < 0 || neutralWhite > 15)
+                        {
+                            throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
+                        }
+
+                        break;
+                    case Wc3270.Resource.Crosshair: // true/false
+                        if (!bool.TryParse(value, out bool crosshair))
+                        {
+                            throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
+                        }
+
+                        profile.CrosshairCursor = crosshair;
+                        break;
+                    case Wc3270.Resource.Hostname: // L:lu@name:port
+                        if (!B3270HostSpec.TryParse(value, out B3270HostSpec hostSpec))
+                        {
+                            throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
+                        }
+
+                        hostEntry = new HostEntry(hostSpec, this.backEndDb.HostPrefixDb.Prefixes) { AutoConnect = setAutoConnect ? AutoConnect.Connect : AutoConnect.None, };
+                        if (addHostEntry &&
+                            !profile.Hosts.Any(h => h.Name.Equals(hostEntry.Name, StringComparison.InvariantCultureIgnoreCase)))
+                        {
+                            // Append this host.
+                            profile.Hosts = profile.Hosts.Append(hostEntry);
+                        }
+
+                        host = hostEntry;
+                        break;
+                    case Wc3270.Resource.Macros:
+                        {
+                            var newMacros = new List<MacroEntry>();
+                            var macros = value.Split(new[] { "\\n" }, StringSplitOptions.None);
+                            var entry = 1;
+                            foreach (var macro in macros)
+                            {
+                                var macroMatch = this.macrosRegex.Match(macro);
+                                if (!macroMatch.Success)
+                                {
+                                    throw this.FatalException($"invalid {canonName} syntax, entry {entry}", lineNumber, fromFile);
+                                }
+
+                                var name = macroMatch.Groups["name"].Value;
+                                var commands = macroMatch.Groups["commands"].Value;
+                                if (newMacros.Any(m => m.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)))
+                                {
+                                    throw this.FatalException($"invalid {canonName}: duplicate name '{name}'", lineNumber, fromFile);
+                                }
+
+                                var index = 0;
+                                if (!ActionSyntax.CheckLine(commands, out _, ref index, out string errorText))
+                                {
+                                    throw this.FatalException($"invalid {canonName} '{name}': {errorText}", lineNumber, fromFile);
+                                }
+
+                                newMacros.Add(new MacroEntry() { Name = name, Macro = commands });
+                                entry++;
+                            }
+
+                            profile.Macros = profile.Macros.Concat(newMacros).ToList();
+                        }
+
+                        break;
+                    case Wc3270.Resource.Model: // 2 3 4 5
+                        if (!ModelName.TryParse(value, out ModelName model))
+                        {
+                            throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
+                        }
+
+                        profile.Model = model.ModelNumber;
+                        profile.ColorMode = model.Color;
+                        profile.ExtendedMode = model.Extended; // XXX -- likely wrong now
+                        break;
+                    case Wc3270.Resource.Oversize: // cols x rows
+                        if (!Oversize.TryParse(value, out Oversize os))
+                        {
+                            throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
+                        }
+
+                        oversize = new Profile.OversizeClass() { Columns = os.Columns, Rows = os.Rows };
+                        break;
+                    case Wc3270.Resource.PrinterCodepage:
+                        profile.PrinterCodePage = value;
+                        break;
+                    case Wc3270.Resource.PrinterLu: // name or "."
                         if (hostEntry != null)
                         {
                             if (value == ".")
@@ -285,79 +338,41 @@ namespace Wx3270
                     case Wc3270.Resource.PrinterName:
                         profile.Printer = value;
                         break;
-                    case Wc3270.Resource.PrinterCodepage:
-                        profile.PrinterCodePage = value;
-                        break;
-                    case Wc3270.Resource.ConsoleColorForHostColorNeutralBlack: /* 15 for reverse video */
-                        if (!int.TryParse(value, out neutralBlack) || neutralBlack < 0 || neutralBlack > 15)
+                    case Wc3270.Resource.Proxy: // type[name]:port
+                        var parser = new ProxyParser(this.backEndDb.ProxiesDb);
+                        if (!parser.TryParse(value, out Profile.ProxyClass proxy))
                         {
-                            throw this.FatalException($"invalid {resourceName} '{value}'", lineNumber);
+                            throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
                         }
 
+                        profile.Proxy = proxy;
                         break;
-                    case Wc3270.Resource.ConsoleColorForHostColorNeutralWhite: /* 0 for reverse video */
-                        if (!int.TryParse(value, out neutralWhite) || neutralWhite < 0 || neutralWhite > 15)
+                    case Wc3270.Resource.Title: // string
+                        profile.WindowTitle = value;
+                        break;
+                    case Wc3270.Resource.VerifyHostCert: // true/false
+                        if (!bool.TryParse(value, out bool verifyHostCert))
                         {
-                            throw this.FatalException($"invalid {resourceName} '{value}'", lineNumber);
+                            throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
                         }
 
-                        break;
-                    case Wc3270.Resource.VerifyHostCert: /* true/false */
-                        if (!bool.TryParse(value, out verifyHostCert))
+                        if (hostEntry != null)
                         {
-                            throw this.FatalException($"invalid {resourceName} '{value}'", lineNumber);
-                        }
-
-                        break;
-                    case Wc3270.Resource.AlwaysInsert: /* true/false */
-                        if (!bool.TryParse(value, out alwaysInsert))
-                        {
-                            throw this.FatalException($"invalid {resourceName} '{value}'", lineNumber);
-                        }
-
-                        break;
-                    case Wc3270.Resource.Macros:
-                        {
-                            var newMacros = new List<MacroEntry>();
-                            var macros = value.Split(new[] { "\\n" }, StringSplitOptions.None);
-                            var entry = 1;
-                            foreach (var macro in macros)
+                            if (verifyHostCert)
                             {
-                                var macroMatch = this.macrosRegex.Match(macro);
-                                if (!macroMatch.Success)
-                                {
-                                    throw this.FatalException($"invalid {resourceName} syntax, entry {entry}", lineNumber);
-                                }
-
-                                var name = macroMatch.Groups["name"].Value;
-                                var commands = macroMatch.Groups["commands"].Value;
-                                if (newMacros.Any(m => m.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)))
-                                {
-                                    throw this.FatalException($"invalid {resourceName}: duplicate name '{name}'", lineNumber);
-                                }
-
-                                var index = 0;
-                                if (!ActionSyntax.CheckLine(commands, out _, ref index, out string errorText))
-                                {
-                                    throw this.FatalException($"invalid {resourceName} '{name}': {errorText}", lineNumber);
-                                }
-
-                                newMacros.Add(new MacroEntry() { Name = name, Macro = commands });
-                                entry++;
+                                hostEntry.Prefixes = hostEntry.Prefixes.Replace(B3270.Prefix.NoVerifyCert, string.Empty);
                             }
-
-                            profile.Macros = newMacros;
+                            else
+                            {
+                                if (!hostEntry.Prefixes.Contains(B3270.Prefix.NoVerifyCert))
+                                {
+                                    hostEntry.Prefixes += B3270.Prefix.NoVerifyCert;
+                                }
+                            }
                         }
 
-                        break;
-                    default:
                         break;
                 }
-            }
-
-            if (hostEntry != null && verifyHostCert == false)
-            {
-                hostEntry.Prefixes += B3270.Prefix.NoVerifyCert;
             }
 
             if (neutralBlack == 15 && neutralWhite == 0)
@@ -369,27 +384,23 @@ namespace Wx3270
             if (oversize != null)
             {
                 // Oversize might conflict with model.
-                if (profile.Oversize.Rows < this.modelsDb.DefaultRows(profile.Model)
-                    || profile.Oversize.Columns < this.modelsDb.DefaultColumns(profile.Model))
+                if (oversize.Rows >= this.backEndDb.ModelsDb.DefaultRows(profile.Model)
+                    && oversize.Columns >= this.backEndDb.ModelsDb.DefaultColumns(profile.Model))
                 {
-                    throw this.FatalException(
-                        $"{Wc3270.Resource.Oversize} '{this.Attributes["oversize"].Value}' conflicts with {Wc3270.Resource.Model} '{profile.Model}'",
-                        this.Attributes["oversize"].LineNumber);
+                    profile.Oversize = oversize;
                 }
-
-                profile.Oversize = oversize;
+                else
+                {
+                    profile.Oversize = new Profile.OversizeClass();
+                }
             }
-            else
+            else if (profile.Oversize.Rows < this.backEndDb.ModelsDb.DefaultRows(profile.Model).Value
+                || profile.Oversize.Columns < this.backEndDb.ModelsDb.DefaultColumns(profile.Model).Value)
             {
-                profile.Oversize.Rows = this.modelsDb.DefaultRows(profile.Model).Value;
-                profile.Oversize.Columns = this.modelsDb.DefaultColumns(profile.Model).Value;
+                profile.Oversize = new Profile.OversizeClass();
             }
 
-            if (alwaysInsert)
-            {
-                profile.AlwaysInsert = true;
-            }
-
+            unmatched = unmatchedList;
             return profile;
         }
 
@@ -398,10 +409,45 @@ namespace Wx3270
         /// </summary>
         /// <param name="message">Error message.</param>
         /// <param name="lineNumber">Line number.</param>
+        /// <param name="fromFile">True if resources came from a file.</param>
         /// <returns>Error message with location.</returns>
-        private Exception FatalException(string message, int lineNumber)
+        private Exception FatalException(string message, int lineNumber, bool fromFile)
         {
-            return new InvalidDataException($"{this.fileName}, line {lineNumber}: {message}");
+            return new InvalidDataException(fromFile ? $"{this.fileName}, line {lineNumber}: {message}" : $"Command line: {message}");
+        }
+
+        /// <summary>
+        /// Class to return 'hostname' as the first element of an ordered list.
+        /// </summary>
+        private class HostnameFirstComparer : IComparer<string>
+        {
+            /// <summary>
+            /// Compares two strings for sorting.
+            /// </summary>
+            /// <param name="x">First string.</param>
+            /// <param name="y">Second string.</param>
+            /// <returns>Usual return values for Compare.</returns>
+            public int Compare(string x, string y)
+            {
+                var xh = x.Equals(Wc3270.Resource.Hostname, StringComparison.InvariantCultureIgnoreCase);
+                var yh = x.Equals(Wc3270.Resource.Hostname, StringComparison.InvariantCultureIgnoreCase);
+                if (xh && yh)
+                {
+                    return 0;
+                }
+
+                if (xh)
+                {
+                    return -1;
+                }
+
+                if (yh)
+                {
+                    return 1;
+                }
+
+                return string.Compare(x, y, ignoreCase: true);
+            }
         }
 
         /// <summary>

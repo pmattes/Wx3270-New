@@ -164,12 +164,12 @@ namespace Wx3270
             switch (name)
             {
                 case B3270.Setting.Proxy:
-                    var parser = new ProxyParser(this.App.ProxiesDb.Proxies.Keys);
+                    var parser = new ProxyParser(this.App.ProxiesDb);
                     if (!parser.TryParse(
                         stringValue,
                         out string proxyType,
                         out string address,
-                        out string port,
+                        out ushort? port,
                         out string username,
                         out string password,
                         out string failReason,
@@ -184,7 +184,7 @@ namespace Wx3270
                         {
                             current.Proxy.Type = proxyType;
                             current.Proxy.Address = address;
-                            current.Proxy.Port = (port != null) ? ushort.Parse(port) : (int?)null;
+                            current.Proxy.Port = port.HasValue ? (int?)port.Value : null;
                             current.Proxy.Username = username;
                             current.Proxy.Password = password;
                         },

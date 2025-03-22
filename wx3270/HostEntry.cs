@@ -311,7 +311,18 @@ namespace Wx3270
         /// <returns>Mapped name.</returns>
         public static string AutoName(B3270HostSpec hostSpec)
         {
-            return hostSpec.Host + ((hostSpec.Port != null) ? (" " + hostSpec.Port) : string.Empty);
+            return AutoName(hostSpec.Host, hostSpec.Port);
+        }
+
+        /// <summary>
+        /// Maps a host name and port onto an automatically-generated host entry name.
+        /// </summary>
+        /// <param name="hostName">Host name.</param>
+        /// <param name="port">TCP port.</param>
+        /// <returns>Mapped name.</returns>
+        public static string AutoName(string hostName, string port)
+        {
+            return hostName + (!string.IsNullOrEmpty(port) ? (" " + port) : string.Empty);
         }
 
         /// <summary>

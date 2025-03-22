@@ -204,6 +204,11 @@ namespace Wx3270
         public string DisplayFolder { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the profile was imported from wc3270.
+        /// </summary>
+        public bool Imported { get; set; }
+
+        /// <summary>
         /// Gets or sets the profile version.
         /// </summary>
         [JsonProperty]

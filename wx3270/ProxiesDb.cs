@@ -10,7 +10,7 @@ namespace Wx3270
     /// <summary>
     /// Handler for model indications from the back end.
     /// </summary>
-    public class ProxiesDb : BackEndEvent
+    public class ProxiesDb : BackEndEvent, IProxiesDb
     {
         /// <summary>
         /// The dictionary of proxies.

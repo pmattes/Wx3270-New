@@ -10,7 +10,6 @@ namespace Wx3270
     using System.Drawing;
     using System.IO;
     using System.Linq;
-    using System.Security.RightsManagement;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
@@ -29,7 +28,7 @@ namespace Wx3270
     /// <summary>
     /// The main control class.
     /// </summary>
-    public class Wx3270App : IUpdate, IConnectionState
+    public class Wx3270App : IUpdate, IConnectionState, IBackEndDb
     {
         /// <summary>
         /// Command-line options.
@@ -61,10 +60,12 @@ namespace Wx3270
             (Constants.Option.Restrict, "operation[,operation...]", "Disable the specified restricted operations"),
             (Constants.Option.ScriptPort, "[address:]port", "Start an s3270 scripting server"),
             (Constants.Option.ScriptPortOnce, string.Empty, "Exit wx3270 as soon as the first s3270 scripting session ends"),
+            (Constants.Option.Set, "resource[=value]", "Set wc3270-style resource value"),
             (Constants.Option.Topmost, string.Empty, "Make wx3270 the topmost window"),
             (Constants.Option.Trace, string.Empty, "Turn on back-end tracing and all types of user interface tracing"),
             (Constants.Option.UiTrace, "type[,type]", "Turn on back-end tracing and the specified types of user interface tracing"),
             (Constants.Option.V, "[file-name]", "Display a copyright message and exit|Optionally write message to file"),
+            (Constants.Option.Xrm, "\"wc3270.resource: value\"", "Set wc3270-style resource value"),
         };
 
         /// <summary>
@@ -81,6 +82,11 @@ namespace Wx3270
         /// The screen update interface.
         /// </summary>
         private readonly IUpdate update;
+
+        /// <summary>
+        /// The -xrm options.
+        /// </summary>
+        private readonly List<string> xrmOptions = new List<string>();
 
         /// <summary>
         /// The terminal bell.
@@ -101,6 +107,26 @@ namespace Wx3270
         /// Backing field for <see cref="AplMode"/>.
         /// </summary>
         private bool aplMode;
+
+        /// <summary>
+        /// The code page database.
+        /// </summary>
+        private CodePageDb codePageDb;
+
+        /// <summary>
+        /// The models database.
+        /// </summary>
+        private ModelsDb modelsDb;
+
+        /// <summary>
+        /// The proxies database.
+        /// </summary>
+        private ProxiesDb proxiesDb;
+
+        /// <summary>
+        /// The host prefix database.
+        /// </summary>
+        private HostPrefixDb hostPrefixDb;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Wx3270App"/> class.
@@ -199,16 +225,6 @@ namespace Wx3270
         public bool Maximize { get; private set; }
 
         /// <summary>
-        /// Gets the 3270 model.
-        /// </summary>
-        public ModelName Model { get; private set; }
-
-        /// <summary>
-        /// Gets the oversize dimensions.
-        /// </summary>
-        public Oversize Oversize { get; private set; }
-
-        /// <summary>
         /// Gets a value indicating whether to go to full screen at start-up.
         /// </summary>
         public bool FullScreen { get; private set; }
@@ -219,7 +235,7 @@ namespace Wx3270
         public bool Detached { get; set; }
 
         /// <summary>
-        /// Gets the command-line host connection.
+        /// Gets the command-line host connection name.
         /// </summary>
         public string Connection { get; private set; }
 
@@ -358,30 +374,32 @@ namespace Wx3270
         /// </summary>
         public string ChordName { get; set; }
 
-        /// <summary>
-        /// Gets the code page database.
-        /// </summary>
-        public CodePageDb CodePageDb { get; private set; }
+        /// <inheritdoc/>
+        public ICodePageDb CodePageDb => this.codePageDb;
 
-        /// <summary>
-        /// Gets the models database.
-        /// </summary>
-        public ModelsDb ModelsDb { get; private set; }
+        /// <inheritdoc/>
+        public IModelsDb ModelsDb => this.modelsDb;
 
-        /// <summary>
-        /// Gets the proxies database.
-        /// </summary>
-        public ProxiesDb ProxiesDb { get; private set; }
+        /// <inheritdoc/>
+        public IProxiesDb ProxiesDb => this.proxiesDb;
 
-        /// <summary>
-        /// Gets the host prefixes.
-        /// </summary>
-        public IHostPrefix HostPrefix { get; private set; }
+        /// <inheritdoc/>
+        public IHostPrefixDb HostPrefixDb => this.hostPrefixDb;
 
         /// <summary>
         /// Gets the known B3270 settings.
         /// </summary>
         public HashSet<string> KnownSettings { get; private set; } = new KnownSettings().Settings;
+
+        /// <summary>
+        /// Gets the -xrm options.
+        /// </summary>
+        public IEnumerable<string> XrmOptions => this.xrmOptions;
+
+        /// <summary>
+        /// Gets the import (wc3270) profile name.
+        /// </summary>
+        public string Wc3270ImportProfileName { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether APL mode is set.
@@ -478,7 +496,8 @@ namespace Wx3270
         {
             var ret = @"Usage:
     wx3270 [options] [hostname[:port]]
-    wx3270 [options] [profilename.wx3270]
+    wx3270 [options] wx3270-profile-path
+    wx3270 [options] wc3270-session-file-path
 Hostname can use full wc3270 syntax
 Options:
 ";
@@ -645,12 +664,7 @@ Options:
                             this.Maximize = true;
                             break;
                         case Constants.Option.Model:
-                            if (!ModelName.TryParse(args[++i], out ModelName model))
-                            {
-                                this.Usage($"Invalid model '{args[i]}'");
-                            }
-
-                            this.Model = model;
+                            this.xrmOptions.Add(Wc3270.Resource.Format(Wc3270.Resource.Model, args[++i]));
                             break;
                         case Constants.Option.NoBorder:
                             this.NoBorder = true;
@@ -671,21 +685,7 @@ Options:
                             this.NoWatchMode = true;
                             break;
                         case Constants.Option.Oversize:
-                            var oversizeString = args[++i];
-                            if (!string.IsNullOrEmpty(oversizeString))
-                            {
-                                if (!Oversize.TryParse(oversizeString, out Oversize oversize))
-                                {
-                                    this.Usage($"Invalid oversize '{oversizeString}'");
-                                }
-
-                                this.Oversize = oversize;
-                            }
-                            else
-                            {
-                                this.Oversize = new Oversize { Columns = 0, Rows = 0 };
-                            }
-
+                            this.xrmOptions.Add(Wc3270.Resource.Format(Wc3270.Resource.Oversize, args[++i]));
                             break;
                         case Constants.Option.Profile:
                             profileName = args[++i];
@@ -703,6 +703,23 @@ Options:
                             break;
                         case Constants.Option.ScriptPortOnce:
                             startupConfig.ScriptPortOnce = true;
+                            break;
+                        case Constants.Option.Set:
+                            var setting = args[++i];
+                            var equals = setting.IndexOf('=');
+                            if (equals > 0)
+                            {
+                                this.xrmOptions.Add(Wc3270.Resource.Format(setting.Substring(0, equals), setting.Substring(equals + 1)));
+                            }
+                            else if (equals < 0)
+                            {
+                                this.xrmOptions.Add(Wc3270.Resource.Format(setting, "true"));
+                            }
+                            else
+                            {
+                                this.Usage($"Invalid {Constants.Option.Set} syntax: {setting}");
+                            }
+
                             break;
                         case Constants.Option.Restrict:
                             this.ParseAllowRestrict(Constants.Option.Restrict, args[++i], ref restrict);
@@ -745,6 +762,9 @@ Options:
                             File.WriteAllText(args[++i], "wx3270 " + Profile.VersionClass.FullVersion, Encoding.UTF8);
                             Environment.Exit(0);
                             break;
+                        case Constants.Option.Xrm:
+                            this.xrmOptions.Add(args[++i]);
+                            break;
                         default:
                             if (args[i].StartsWith("-"))
                             {
@@ -775,11 +795,6 @@ Options:
                     this.Usage("Extra arguments");
                 }
 
-                if (this.Connection != null)
-                {
-                    this.Usage("Cannot specify " + Constants.Option.Connection + " and a positional host name");
-                }
-
                 if (positionalArgs[0].EndsWith(Wx3270.ProfileManager.Suffix, StringComparison.OrdinalIgnoreCase))
                 {
                     // They specified a profile name as a host, like wc3270.
@@ -794,6 +809,26 @@ Options:
                     }
 
                     profileName = positionalArgs[0];
+                }
+                else if (positionalArgs[0].EndsWith(Wc3270Import.Suffix, StringComparison.OrdinalIgnoreCase))
+                {
+                    // They specified a wc3270 profile name as a host.
+                    if (positionalArgs.Count > 1)
+                    {
+                        this.Usage("Cannot specify a profile name and a positional port");
+                    }
+
+                    if (profileName != null)
+                    {
+                        this.Usage("Cannot specify " + Constants.Option.Profile + " and an auto-import profile name");
+                    }
+
+                    if (this.Connection != null)
+                    {
+                        this.Usage("Cannot specify " + Constants.Option.Connection + " and an auto-import profile name");
+                    }
+
+                    this.Wc3270ImportProfileName = positionalArgs[0];
                 }
                 else
                 {
@@ -870,6 +905,12 @@ Options:
                 Tour.SuppressAutoTours = true;
             }
 
+            // If we're doing an import but can't save, then we're in no-profile mode.
+            if (!string.IsNullOrEmpty(this.Wc3270ImportProfileName) && this.ReadOnlyMode)
+            {
+                this.NoProfileMode = true;
+            }
+
             // Attach a console, if they asked for one.
             if (attachConsole)
             {
@@ -897,7 +938,7 @@ Options:
                 ErrorBox.Show(e.Message, "wx3270 Localization", MessageBoxIcon.Information);
             }
 
-            // No profile means read-only and (I think) no-watch.
+            // No profile means read-only and no-watch.
             if (this.NoProfileMode)
             {
                 this.ReadOnlyMode = true;
@@ -948,10 +989,10 @@ Options:
             this.BackEnd.Register(this.Stats = new Stats());
             this.BackEnd.Register(this.ConnectAttempt = new ConnectAttempt());
             this.BackEnd.Register(this.WindowTitle = new WindowTitle());
-            this.BackEnd.Register(this.CodePageDb = new CodePageDb());
-            this.BackEnd.Register(this.ModelsDb = new ModelsDb());
-            this.BackEnd.Register(this.ProxiesDb = new ProxiesDb());
-            this.BackEnd.Register(this.HostPrefix = new HostPrefix());
+            this.BackEnd.Register(this.codePageDb = new CodePageDb());
+            this.BackEnd.Register(this.modelsDb = new ModelsDb());
+            this.BackEnd.Register(this.proxiesDb = new ProxiesDb());
+            this.BackEnd.Register(this.hostPrefixDb = new HostPrefixDb());
 
             // Register specialized/cacheing indication handlers.
             this.SettingChange = new SettingChange(this.BackEnd);

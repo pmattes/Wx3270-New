@@ -29,7 +29,7 @@ namespace Wx3270
         /// <summary>
         /// The proxies database (proxy type definitions).
         /// </summary>
-        private readonly ProxiesDb proxiesDb;
+        private readonly IProxiesDb proxiesDb;
 
         /// <summary>
         /// The control that receives the initial focus.
@@ -47,7 +47,7 @@ namespace Wx3270
         /// <param name="proxy">Initial proxy value.</param>
         /// <param name="proxiesDb">Proxies database.</param>
         /// <param name="tag">Tag to match.</param>
-        public ProxyEditor(Profile.ProxyClass proxy, ProxiesDb proxiesDb, string tag)
+        public ProxyEditor(Profile.ProxyClass proxy, IProxiesDb proxiesDb, string tag)
         {
             this.InitializeComponent();
             this.ProxyValue = (Profile.ProxyClass)proxy.Clone();

@@ -20,6 +20,11 @@ namespace Wx3270
             public const string AltCursor = "altCursor";
 
             /// <summary>
+            /// The bell mode.
+            /// </summary>
+            public const string BellMode = "bellMode";
+
+            /// <summary>
             /// The host code page (old form).
             /// </summary>
             public const string Charset = "charset";
@@ -85,6 +90,11 @@ namespace Wx3270
             public const string Proxy = "proxy";
 
             /// <summary>
+            /// The window title.
+            /// </summary>
+            public const string Title = "title";
+
+            /// <summary>
             /// The toggle for verifying host TLS certificates.
             /// </summary>
             public const string VerifyHostCert = "verifyHostCert";
@@ -93,6 +103,17 @@ namespace Wx3270
             /// Always revert to insert mode.
             /// </summary>
             public const string AlwaysInsert = "alwaysInsert";
+
+            /// <summary>
+            /// Formats an -xrm value.
+            /// </summary>
+            /// <param name="resource">Resource name.</param>
+            /// <param name="value">Resource value.</param>
+            /// <returns>Formatted -xrm string.</returns>
+            public static string Format(string resource, string value)
+            {
+                return "wc3270." + resource + ": " + value;
+            }
         }
     }
 }

@@ -59,7 +59,7 @@ namespace Wx3270
         }
 
         /// <summary>
-        /// Converts a <see cref="ModelDimensions"/> to a string.
+        /// Converts a <see cref="Proxy"/> to a string.
         /// </summary>
         /// <returns>String representation.</returns>
         public override string ToString()

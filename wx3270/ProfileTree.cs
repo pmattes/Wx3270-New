@@ -8,11 +8,9 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Diagnostics.Contracts;
     using System.Drawing;
     using System.IO;
     using System.Linq;
-    using System.Runtime.InteropServices.WindowsRuntime;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
     using I18nBase;
@@ -2525,7 +2523,7 @@ The button labels include a count of how many Undo and Redo operations are saved
             }
 
             // Find a unique new name.
-            string baseName = isDefaults ? I18n.Get(typeDict[profileType]) : from + " - " + I18n.Get(Message.Copy);
+            string baseName = profile.Imported ? from : (isDefaults ? I18n.Get(typeDict[profileType]) : from + " - " + I18n.Get(Message.Copy));
             var newName = baseName;
             var n = 2;
             while (File.Exists(profile.MappedPath(newName)))
@@ -2757,7 +2755,7 @@ The button labels include a count of how many Undo and Redo operations are saved
                 // Import of wc3270 profile.
                 try
                 {
-                    var import = new Wc3270Import(this.app.CodePageDb, this.app.ModelsDb);
+                    var import = new Wc3270Import(this.app);
                     import.Read(importName);
                     this.ProfileManager.Save(destProfilePath, import.Digest());
                 }

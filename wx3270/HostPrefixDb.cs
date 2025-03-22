@@ -1,4 +1,4 @@
-﻿// <copyright file="HostPrefix.cs" company="Paul Mattes">
+﻿// <copyright file="HostPrefixDb.cs" company="Paul Mattes">
 //     Copyright (c) Paul Mattes. All rights reserved.
 // </copyright>
 
@@ -10,13 +10,13 @@ namespace Wx3270
     /// <summary>
     /// Host prefix processor.
     /// </summary>
-    public class HostPrefix : BackEndEvent, IHostPrefix
+    public class HostPrefixDb : BackEndEvent, IHostPrefixDb
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HostPrefix"/> class.
+        /// Initializes a new instance of the <see cref="HostPrefixDb"/> class.
         /// </summary>
         /// <param name="invoke">Invoke interface for callbacks.</param>
-        public HostPrefix()
+        public HostPrefixDb()
         {
             this.Def = new[]
             {

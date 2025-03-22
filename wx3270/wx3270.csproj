@@ -139,7 +139,9 @@
     <Compile Include="AplMode.cs" />
     <Compile Include="B3270HostSpec.cs" />
     <Compile Include="Contracts\ICell.cs" />
+    <Compile Include="Contracts\IBackEndDb.cs" />
     <Compile Include="Contracts\IInitialLocation.cs" />
+    <Compile Include="Contracts\IProxiesDb.cs" />
     <Compile Include="Contracts\IModelsDb.cs" />
     <Compile Include="Contracts\ITerminalName.cs" />
     <Compile Include="FixedWidthFontEnumerator.cs" />
@@ -185,7 +187,7 @@
     <Compile Include="Contracts\IBrush.cs" />
     <Compile Include="Contracts\INormalize.cs" />
     <Compile Include="Contracts\IOpacity.cs" />
-    <Compile Include="Contracts\IHostPrefix.cs" />
+    <Compile Include="Contracts\IHostPrefixDb.cs" />
     <Compile Include="AplKeypad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,7 +286,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Trace.cs" />
-    <Compile Include="HostPrefix.cs" />
+    <Compile Include="HostPrefixDb.cs" />
     <Compile Include="WindowTitle.cs" />
     <Compile Include="WatchNode.cs" />
     <Compile Include="Constants.cs" />
