@@ -402,6 +402,11 @@ namespace Wx3270
         public string Wc3270ImportProfileName { get; private set; }
 
         /// <summary>
+        /// Gets the main window, for pop-up parenting purposes.
+        /// </summary>
+        public Control MainWindow => this.control;
+
+        /// <summary>
         /// Gets or sets a value indicating whether APL mode is set.
         /// </summary>
         public bool AplMode
@@ -664,7 +669,7 @@ Options:
                             this.Maximize = true;
                             break;
                         case Constants.Option.Model:
-                            this.xrmOptions.Add(Wc3270.Resource.Format(Wc3270.Resource.Model, args[++i]));
+                            this.xrmOptions.Add(B3270.ResourceFormat.Value(B3270.Setting.Model, args[++i]));
                             break;
                         case Constants.Option.NoBorder:
                             this.NoBorder = true;
@@ -685,7 +690,7 @@ Options:
                             this.NoWatchMode = true;
                             break;
                         case Constants.Option.Oversize:
-                            this.xrmOptions.Add(Wc3270.Resource.Format(Wc3270.Resource.Oversize, args[++i]));
+                            this.xrmOptions.Add(B3270.ResourceFormat.Value(B3270.Setting.Oversize, args[++i]));
                             break;
                         case Constants.Option.Profile:
                             profileName = args[++i];
@@ -709,11 +714,11 @@ Options:
                             var equals = setting.IndexOf('=');
                             if (equals > 0)
                             {
-                                this.xrmOptions.Add(Wc3270.Resource.Format(setting.Substring(0, equals), setting.Substring(equals + 1)));
+                                this.xrmOptions.Add(B3270.ResourceFormat.Value(setting.Substring(0, equals), setting.Substring(equals + 1)));
                             }
                             else if (equals < 0)
                             {
-                                this.xrmOptions.Add(Wc3270.Resource.Format(setting, "true"));
+                                this.xrmOptions.Add(B3270.ResourceFormat.Value(setting, "true"));
                             }
                             else
                             {
@@ -985,7 +990,7 @@ Options:
             this.BackEnd.Register(this.oia = new Oia(this.update));
             this.BackEnd.Register(this.TlsHello = new TlsHello());
             this.BackEnd.Register(this.Hello = new Hello());
-            this.BackEnd.Register(this.Popup = new Popup());
+            this.BackEnd.Register(this.Popup = new Popup(this.MainWindow));
             this.BackEnd.Register(this.Stats = new Stats());
             this.BackEnd.Register(this.ConnectAttempt = new ConnectAttempt());
             this.BackEnd.Register(this.WindowTitle = new WindowTitle());

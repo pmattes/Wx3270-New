@@ -180,11 +180,11 @@ namespace Wx3270
                     // But it allows me to use a simple switch statement below, and also lets me generate error messages
                     // with the canonical name.
                     // Ideally Wc3270.Resource should be an enum, but there are no string enums in C#.
-                    Wc3270.Resource.AltCursor, Wc3270.Resource.AlwaysInsert, Wc3270.Resource.BellMode, Wc3270.Resource.Charset, Wc3270.Resource.CodePage,
+                    B3270.Setting.AltCursor, B3270.Setting.AlwaysInsert, Wc3270.Resource.BellMode, Wc3270.Resource.Charset, B3270.Setting.CodePage,
                     Wc3270.Resource.ConsoleColorForHostColorNeutralBlack, Wc3270.Resource.ConsoleColorForHostColorNeutralWhite,
-                    Wc3270.Resource.Crosshair, Wc3270.Resource.Hostname, Wc3270.Resource.Macros, Wc3270.Resource.Model,
-                    Wc3270.Resource.Oversize, Wc3270.Resource.PrinterCodepage, Wc3270.Resource.PrinterLu, Wc3270.Resource.PrinterName,
-                    Wc3270.Resource.Proxy, Wc3270.Resource.Title, Wc3270.Resource.VerifyHostCert,
+                    B3270.Setting.Crosshair, Wc3270.Resource.Hostname, Wc3270.Resource.Macros, B3270.Setting.Model,
+                    B3270.Setting.Oversize, Wc3270.Resource.PrinterCodepage, B3270.Setting.PrinterLu, B3270.Setting.PrinterName,
+                    B3270.Setting.Proxy, Wc3270.Resource.Title, B3270.Setting.VerifyHostCert,
                 })
                 {
                     canonDict[s] = s;
@@ -198,7 +198,7 @@ namespace Wx3270
 
                 switch (canonName)
                 {
-                    case Wc3270.Resource.AltCursor:
+                    case B3270.Setting.AltCursor:
                         if (!bool.TryParse(value, out bool altCursor))
                         {
                             throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
@@ -206,7 +206,7 @@ namespace Wx3270
 
                         profile.CursorType = altCursor ? CursorType.Underscore : CursorType.Block;
                         break;
-                    case Wc3270.Resource.AlwaysInsert:
+                    case B3270.Setting.AlwaysInsert:
                         if (!bool.TryParse(value, out bool alwaysInsert))
                         {
                             throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
@@ -219,7 +219,7 @@ namespace Wx3270
                             !value.Equals("flash", StringComparison.InvariantCultureIgnoreCase);
                         break;
                     case Wc3270.Resource.Charset: // name
-                    case Wc3270.Resource.CodePage: // name
+                    case B3270.Setting.CodePage: // name
                         profile.HostCodePage = this.backEndDb.CodePageDb.CanonicalName(value);
                         if (profile.HostCodePage == null)
                         {
@@ -241,7 +241,7 @@ namespace Wx3270
                         }
 
                         break;
-                    case Wc3270.Resource.Crosshair: // true/false
+                    case B3270.Setting.Crosshair: // true/false
                         if (!bool.TryParse(value, out bool crosshair))
                         {
                             throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
@@ -299,7 +299,7 @@ namespace Wx3270
                         }
 
                         break;
-                    case Wc3270.Resource.Model: // 2 3 4 5
+                    case B3270.Setting.Model: // 2 3 4 5
                         if (!ModelName.TryParse(value, out ModelName model))
                         {
                             throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
@@ -309,7 +309,7 @@ namespace Wx3270
                         profile.ColorMode = model.Color;
                         profile.ExtendedMode = model.Extended; // XXX -- likely wrong now
                         break;
-                    case Wc3270.Resource.Oversize: // cols x rows
+                    case B3270.Setting.Oversize: // cols x rows
                         if (!Oversize.TryParse(value, out Oversize os))
                         {
                             throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);
@@ -320,7 +320,7 @@ namespace Wx3270
                     case Wc3270.Resource.PrinterCodepage:
                         profile.PrinterCodePage = value;
                         break;
-                    case Wc3270.Resource.PrinterLu: // name or "."
+                    case B3270.Setting.PrinterLu: // name or "."
                         if (hostEntry != null)
                         {
                             if (value == ".")
@@ -335,10 +335,10 @@ namespace Wx3270
                         }
 
                         break;
-                    case Wc3270.Resource.PrinterName:
+                    case B3270.Setting.PrinterName:
                         profile.Printer = value;
                         break;
-                    case Wc3270.Resource.Proxy: // type[name]:port
+                    case B3270.Setting.Proxy: // type[name]:port
                         var parser = new ProxyParser(this.backEndDb.ProxiesDb);
                         if (!parser.TryParse(value, out Profile.ProxyClass proxy))
                         {
@@ -350,7 +350,7 @@ namespace Wx3270
                     case Wc3270.Resource.Title: // string
                         profile.WindowTitle = value;
                         break;
-                    case Wc3270.Resource.VerifyHostCert: // true/false
+                    case B3270.Setting.VerifyHostCert: // true/false
                         if (!bool.TryParse(value, out bool verifyHostCert))
                         {
                             throw this.FatalException($"invalid {canonName} '{value}'", lineNumber, fromFile);

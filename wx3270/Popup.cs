@@ -20,14 +20,21 @@ namespace Wx3270
         private static readonly string TitleName = I18n.PopUpTitleName(nameof(Popup));
 
         /// <summary>
+        /// The main window.
+        /// </summary>
+        private readonly Control mainWindow;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Popup"/> class.
         /// </summary>
-        public Popup()
+        /// <param name="mainWindow">Main window.</param>
+        public Popup(Control mainWindow)
         {
             this.Def = new[]
             {
                 new BackEndEventDef(B3270.Indication.Popup, this.StartPopup),
             };
+            this.mainWindow = (Form)mainWindow;
         }
 
         /// <summary>
@@ -66,25 +73,25 @@ namespace Wx3270
                     }
                     else
                     {
-                        ErrorBox.Show(text, I18n.Get(Title.Error));
+                        ErrorBox.Show(this.mainWindow, text, I18n.Get(Title.Error));
                     }
 
                     break;
                 case B3270.PopupType.Error:
-                    ErrorBox.Show(text, I18n.Get(Title.Error));
+                    ErrorBox.Show(this.mainWindow, text, I18n.Get(Title.Error));
                     break;
                 case B3270.PopupType.Info:
-                    ErrorBox.Show(text, I18n.Get(Title.Info), MessageBoxIcon.Information);
+                    ErrorBox.Show(this.mainWindow, text, I18n.Get(Title.Info), MessageBoxIcon.Information);
                     break;
                 case B3270.PopupType.Printer:
-                    ErrorBox.Show(text, I18n.Get(Title.Printer), errorOverride ? MessageBoxIcon.Error : MessageBoxIcon.Information);
+                    ErrorBox.Show(this.mainWindow, text, I18n.Get(Title.Printer), errorOverride ? MessageBoxIcon.Error : MessageBoxIcon.Information);
                     break;
                 case B3270.PopupType.Child:
-                    ErrorBox.Show(text, I18n.Get(Title.Child), errorOverride ? MessageBoxIcon.Error : MessageBoxIcon.Information);
+                    ErrorBox.Show(this.mainWindow, text, I18n.Get(Title.Child), errorOverride ? MessageBoxIcon.Error : MessageBoxIcon.Information);
                     break;
                 default:
                 case B3270.PopupType.Result:
-                    ErrorBox.Show(text, I18n.Get(Title.Result), MessageBoxIcon.Information);
+                    ErrorBox.Show(this.mainWindow, text, I18n.Get(Title.Result), MessageBoxIcon.Information);
                     break;
             }
         }

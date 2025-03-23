@@ -341,9 +341,11 @@ namespace Wx3270
             this.writer.Flush();
 
             // Set up an XmlReader to listen to b3270.
-            var readerSettings = new XmlReaderSettings();
-            readerSettings.IgnoreWhitespace = true;
-            readerSettings.Async = true;
+            var readerSettings = new XmlReaderSettings
+            {
+                IgnoreWhitespace = true,
+                Async = true,
+            };
             this.xmlReader = XmlReader.Create(this.b3270.StandardOutput, readerSettings);
             this.xmlReaderTask = this.ReadEmulatorStream(this.xmlReader);
 

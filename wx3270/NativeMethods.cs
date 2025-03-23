@@ -79,6 +79,14 @@ namespace Wx3270
         public const int SRCCOPY = 0xCC0020;
 
         /// <summary>
+        /// Delegate for a window procedure.
+        /// </summary>
+        /// <param name="windowHandle">Window handle.</param>
+        /// <param name="lp">Long parameter.</param>
+        /// <returns>False for success.</returns>
+        public delegate bool EnumThreadWndProc(IntPtr windowHandle, IntPtr lp);
+
+        /// <summary>
         /// Flags for the uType parameter of <see cref="SHMessageBoxCheck"/>.
         /// </summary>
         public enum MessageBoxCheckFlags : uint
@@ -282,5 +290,80 @@ namespace Wx3270
             [In] MessageBoxCheckFlags uType,
             [In] MessageBoxReturnValue iDefault,
             [In] string pszRegVal);
+
+        /// <summary>
+        /// Enumerates thread windows.
+        /// </summary>
+        /// <param name="tid">Thread identifier.</param>
+        /// <param name="callback">Callback method.</param>
+        /// <param name="lp">Long parameter.</param>
+        /// <returns>False for success.</returns>
+        [DllImport("user32.dll")]
+        public static extern bool EnumThreadWindows(int tid, EnumThreadWndProc callback, IntPtr lp);
+
+        /// <summary>
+        /// Gets the current thread identifier.
+        /// </summary>
+        /// <returns>Thread identifier.</returns>
+        [DllImport("kernel32.dll")]
+        public static extern int GetCurrentThreadId();
+
+        /// <summary>
+        /// Gets the class name for a window.
+        /// </summary>
+        /// <param name="hWnd">Window handle.</param>
+        /// <param name="buffer">Result buffer.</param>
+        /// <param name="buflen">Length of result buffer.</param>
+        /// <returns>Length of class name.</returns>
+        [DllImport("user32.dll")]
+        public static extern int GetClassName(IntPtr hWnd, StringBuilder buffer, int buflen);
+
+        /// <summary>
+        /// Gets a window rectangle.
+        /// </summary>
+        /// <param name="hWnd">Window handle.</param>
+        /// <param name="rc">Returned rectangle.</param>
+        /// <returns>False for success.</returns>
+        [DllImport("user32.dll")]
+        public static extern bool GetWindowRect(IntPtr hWnd, out RECT rc);
+
+        /// <summary>
+        /// Moves a window.
+        /// </summary>
+        /// <param name="hWnd">Window handle.</param>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        /// <param name="w">Window width.</param>
+        /// <param name="h">Window height.</param>
+        /// <param name="repaint">True to repaint the window.</param>
+        /// <returns>False for success.</returns>
+        [DllImport("user32.dll")]
+        public static extern bool MoveWindow(IntPtr hWnd, int x, int y, int w, int h, bool repaint);
+
+        /// <summary>
+        /// Rectangle structure.
+        /// </summary>
+        public struct RECT
+        {
+            /// <summary>
+            /// X coordinate of left edge.
+            /// </summary>
+            public int Left;
+
+            /// <summary>
+            /// Y coordinate of top edge.
+            /// </summary>
+            public int Top;
+
+            /// <summary>
+            /// X coordinate of right edge.
+            /// </summary>
+            public int Right;
+
+            /// <summary>
+            /// Y coordinate of bottom edge.
+            /// </summary>
+            public int Bottom;
+        }
     }
 }

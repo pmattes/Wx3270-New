@@ -59,6 +59,9 @@ namespace Wx3270
                 opacity.OpacityEvent += (percent) => this.Opacity = percent / 100.0;
             }
 
+            // Add to the error box.
+            ErrorBox.SetFormMapping(this, (Form)this.app.MainWindow);
+
             // Process restrictions.
             if (app?.Restricted(Restrictions.GetHelp) == true)
             {

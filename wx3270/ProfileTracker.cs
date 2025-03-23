@@ -250,7 +250,7 @@ namespace Wx3270
             }
             catch (Exception e)
             {
-                ErrorBox.Show(e.Message, I18n.Get(Title.DirectoryWakError));
+                ErrorBox.Show(this.app.MainWindow, e.Message, I18n.Get(Title.DirectoryWakError));
                 return;
             }
 

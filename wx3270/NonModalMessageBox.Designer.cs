@@ -157,6 +157,7 @@ namespace Wx3270
             this.buttonFlowLayoutPanel.PerformLayout();
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
+            this.Activated += new System.EventHandler(this.FormActivated);
             this.ResumeLayout(false);
             this.PerformLayout();
 

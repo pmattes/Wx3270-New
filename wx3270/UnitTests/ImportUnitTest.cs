@@ -18,11 +18,6 @@ namespace Wx3270
     public class ImportUnitTest
     {
         /// <summary>
-        /// The legal host prefixes.
-        /// </summary>
-        private const string Prefixes = "LY";
-
-        /// <summary>
         /// Test the <see cref="Wc3270Import.Parse"/> method.
         /// </summary>
         [TestMethod]
@@ -92,26 +87,26 @@ namespace Wx3270
         {
             var tests = new Tuple<string, string, Action<Profile>>[]
             {
-                new Tuple<string, string, Action<Profile>>(Wc3270.Resource.AltCursor, "true", (profile) => Assert.AreEqual(CursorType.Underscore, profile.CursorType, Wc3270.Resource.AltCursor)),
-                new Tuple<string, string, Action<Profile>>(Wc3270.Resource.AlwaysInsert, "true", (profile) => Assert.AreEqual(true, profile.AlwaysInsert, Wc3270.Resource.AlwaysInsert)),
+                new Tuple<string, string, Action<Profile>>(B3270.Setting.AltCursor, "true", (profile) => Assert.AreEqual(CursorType.Underscore, profile.CursorType, B3270.Setting.AltCursor)),
+                new Tuple<string, string, Action<Profile>>(B3270.Setting.AlwaysInsert, "true", (profile) => Assert.AreEqual(true, profile.AlwaysInsert, B3270.Setting.AlwaysInsert)),
                 new Tuple<string, string, Action<Profile>>(Wc3270.Resource.BellMode, "none", (profile) => Assert.AreEqual(false, profile.AudibleBell, Wc3270.Resource.BellMode)),
                 new Tuple<string, string, Action<Profile>>(Wc3270.Resource.BellMode, "beep", (profile) => Assert.AreEqual(true, profile.AudibleBell, Wc3270.Resource.BellMode)),
                 new Tuple<string, string, Action<Profile>>(Wc3270.Resource.Charset, "page1", (profile) => Assert.AreEqual("page1", profile.HostCodePage, Wc3270.Resource.Charset)),
-                new Tuple<string, string, Action<Profile>>(Wc3270.Resource.CodePage, "page1", (profile) => Assert.AreEqual("page1", profile.HostCodePage, Wc3270.Resource.CodePage)),
-                new Tuple<string, string, Action<Profile>>(Wc3270.Resource.Crosshair, "true", (profile) => Assert.AreEqual(true, profile.CrosshairCursor, Wc3270.Resource.Crosshair)),
+                new Tuple<string, string, Action<Profile>>(B3270.Setting.CodePage, "page1", (profile) => Assert.AreEqual("page1", profile.HostCodePage, B3270.Setting.CodePage)),
+                new Tuple<string, string, Action<Profile>>(B3270.Setting.Crosshair, "true", (profile) => Assert.AreEqual(true, profile.CrosshairCursor, B3270.Setting.Crosshair)),
                 new Tuple<string, string, Action<Profile>>(
                     Wc3270.Resource.Macros,
                     "a: Foo()\\nb: Bar()",
                     (profile) => Assert.IsTrue(new[] { new MacroEntry { Name = "a", Macro = "Foo()" }, new MacroEntry { Name = "b", Macro = "Bar()" } }.SequenceEqual(profile.Macros), Wc3270.Resource.Macros)),
                 new Tuple<string, string, Action<Profile>>(Wc3270.Resource.PrinterCodepage, "123", (profile) => Assert.AreEqual("123", profile.PrinterCodePage, Wc3270.Resource.PrinterCodepage)),
-                new Tuple<string, string, Action<Profile>>(Wc3270.Resource.PrinterName, "fred", (profile) => Assert.AreEqual("fred", profile.Printer, Wc3270.Resource.PrinterName)),
+                new Tuple<string, string, Action<Profile>>(B3270.Setting.PrinterName, "fred", (profile) => Assert.AreEqual("fred", profile.Printer, B3270.Setting.PrinterName)),
                 new Tuple<string, string, Action<Profile>>(Wc3270.Resource.Title, "hello", (profile) => Assert.AreEqual("hello", profile.WindowTitle, Wc3270.Resource.Title)),
             };
 
             var import = new Wc3270Import(new FakeBackEndDb());
             foreach (var test in tests)
             {
-                import.Parse(Wc3270.Resource.Format(test.Item1, test.Item2));
+                import.Parse(B3270.ResourceFormat.Value(test.Item1, test.Item2));
                 var profile = import.Digest();
                 test.Item3(profile);
             }
@@ -124,8 +119,8 @@ namespace Wx3270
         public void TestReverseVideo()
         {
             var import = new Wc3270Import(new FakeBackEndDb());
-            import.Parse(Wc3270.Resource.Format(Wc3270.Resource.ConsoleColorForHostColorNeutralBlack, "15"));
-            import.Parse(Wc3270.Resource.Format(Wc3270.Resource.ConsoleColorForHostColorNeutralWhite, "0"));
+            import.Parse(B3270.ResourceFormat.Value(Wc3270.Resource.ConsoleColorForHostColorNeutralBlack, "15"));
+            import.Parse(B3270.ResourceFormat.Value(Wc3270.Resource.ConsoleColorForHostColorNeutralWhite, "0"));
             var profile = import.Digest();
             Assert.AreEqual(Settings.BlackOnWhiteScheme, profile.Colors.HostColors);
         }
@@ -137,14 +132,14 @@ namespace Wx3270
         public void TestModel()
         {
             var import = new Wc3270Import(new FakeBackEndDb());
-            import.Parse(Wc3270.Resource.Format(Wc3270.Resource.Model, "3278-3"));
+            import.Parse(B3270.ResourceFormat.Value(B3270.Setting.Model, "3278-3"));
             var profile = import.Digest();
             Assert.AreEqual(3, profile.Model);
             Assert.AreEqual(false, profile.ColorMode);
             Assert.AreEqual(true, profile.ExtendedMode);
 
             import = new Wc3270Import(new FakeBackEndDb());
-            import.Parse(Wc3270.Resource.Format(Wc3270.Resource.Model, "5"));
+            import.Parse(B3270.ResourceFormat.Value(B3270.Setting.Model, "5"));
             profile = import.Digest();
             Assert.AreEqual(5, profile.Model);
             Assert.AreEqual(true, profile.ColorMode);
@@ -159,13 +154,13 @@ namespace Wx3270
         {
             // Copied properly.
             var import = new Wc3270Import(new FakeBackEndDb());
-            import.Parse(Wc3270.Resource.Format(Wc3270.Resource.Oversize, "100x120"));
+            import.Parse(B3270.ResourceFormat.Value(B3270.Setting.Oversize, "100x120"));
             var profile = import.Digest();
             Assert.IsTrue(new Profile.OversizeClass { Columns = 100, Rows = 120 }.Equals(profile.Oversize));
 
             // Too small.
             import = new Wc3270Import(new FakeBackEndDb());
-            import.Parse(Wc3270.Resource.Format(Wc3270.Resource.Oversize, "10x10"));
+            import.Parse(B3270.ResourceFormat.Value(B3270.Setting.Oversize, "10x10"));
             profile = import.Digest();
             Assert.IsTrue(new Profile.OversizeClass().Equals(profile.Oversize));
         }
@@ -178,9 +173,9 @@ namespace Wx3270
         {
             // Digest resources with PrinterLu before Hostname.
             var import = new Wc3270Import(new FakeBackEndDb());
-            import.Parse(Wc3270.Resource.Format(Wc3270.Resource.PrinterLu, "fred"));
-            import.Parse(Wc3270.Resource.Format(Wc3270.Resource.VerifyHostCert, "false"));
-            import.Parse(Wc3270.Resource.Format(Wc3270.Resource.Hostname, "localhost:2001"));
+            import.Parse(B3270.ResourceFormat.Value(B3270.Setting.PrinterLu, "fred"));
+            import.Parse(B3270.ResourceFormat.Value(B3270.Setting.VerifyHostCert, "false"));
+            import.Parse(B3270.ResourceFormat.Value(Wc3270.Resource.Hostname, "localhost:2001"));
             var profile = import.Digest();
 
             // Verify that PrinterLu and VerifyCert were applied to the profile.
@@ -198,8 +193,8 @@ namespace Wx3270
         public void TestUnsupported()
         {
             var import = new Wc3270Import(new FakeBackEndDb());
-            import.Parse(Wc3270.Resource.Format("foo", "bar"));
-            import.Parse(Wc3270.Resource.Format("baz", "biff"));
+            import.Parse(B3270.ResourceFormat.Value("foo", "bar"));
+            import.Parse(B3270.ResourceFormat.Value("baz", "biff"));
             _ = import.Digest(out _, out IEnumerable<string> unmatched, fromFile: false);
             var expectedUnmatched = new[] { "foo", "baz" };
             Assert.AreEqual(expectedUnmatched.Count(), unmatched.Count());
@@ -274,7 +269,7 @@ namespace Wx3270
         private class FakePrefixDb : IHostPrefixDb
         {
             /// <inheritdoc/>
-            public string Prefixes => this.Prefixes;
+            public string Prefixes => "LY";
         }
 
         /// <summary>
