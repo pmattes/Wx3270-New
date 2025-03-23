@@ -55,7 +55,7 @@ namespace Wx3270
             if (onActiveForm)
             {
                 Form activeForm = Form.ActiveForm;
-                if (FormMap.TryGetValue(activeForm, out Form mappedForm))
+                if (activeForm != null && FormMap.TryGetValue(activeForm, out Form mappedForm))
                 {
                     activeForm = mappedForm;
                 }
