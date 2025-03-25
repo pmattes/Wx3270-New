@@ -160,13 +160,36 @@ namespace Wx3270
                 MessageBoxIcon.None => 0U,
                 _ => 0U,
             };
-            NativeMethods.SHMessageBoxCheckW(
-                handle,
-                text,
-                AttributedTitle(title),
-                NativeMethods.MessageBoxCheckFlags.MB_OK | iconFlags,
-                NativeMethods.MessageBoxReturnValue.IDOK,
-                "wx3270." + stopKey);
+            Form activeForm = Form.ActiveForm;
+            if (activeForm != null && FormMap.TryGetValue(activeForm, out Form mappedForm))
+            {
+                activeForm = mappedForm;
+            }
+
+            if (activeForm != null)
+            {
+                using (new CenterDialog(activeForm))
+                {
+                    NativeMethods.SHMessageBoxCheckW(
+                        activeForm.Handle,
+                        text,
+                        title,
+                        NativeMethods.MessageBoxCheckFlags.MB_OK | iconFlags,
+                        NativeMethods.MessageBoxReturnValue.IDOK,
+                        "wx3270." + stopKey);
+                }
+            }
+            else
+            {
+                // No active form.
+                NativeMethods.SHMessageBoxCheckW(
+                    handle,
+                    text,
+                    AttributedTitle(title),
+                    NativeMethods.MessageBoxCheckFlags.MB_OK | iconFlags,
+                    NativeMethods.MessageBoxReturnValue.IDOK,
+                    "wx3270." + stopKey);
+            }
         }
 
         /// <summary>
