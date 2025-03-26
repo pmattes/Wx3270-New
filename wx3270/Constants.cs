@@ -210,14 +210,19 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             public const string NoSplash = "-nosplash";
 
             /// <summary>
+            /// The no watch option.
+            /// </summary>
+            public const string NoWatch = "-nowatch";
+
+            /// <summary>
             /// The oversize option.
             /// </summary>
             public const string Oversize = "-oversize";
 
             /// <summary>
-            /// The no watch option.
+            /// The portable option.
             /// </summary>
-            public const string NoWatch = "-nowatch";
+            public const string Portable = "-portable";
 
             /// <summary>
             /// The profile option.

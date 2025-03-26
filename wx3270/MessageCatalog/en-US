@@ -1479,6 +1479,7 @@
   "ShortcutDialog.form.xNumericUpDown": "0",
   "ShortcutDialog.form.yLabel": "Y",
   "ShortcutDialog.form.yNumericUpDown": "0",
+  "StopDialog.NotAgain": "In the future, do not show me this dialog box",
   "Tour.Actions.aboutTab.Body": "Use this tab to display copyright and configuration information.",
   "Tour.Actions.aboutTab.Title": "Tour: About",
   "Tour.Actions.actionsTab.Body": "Use this tab to perform various utility and diagnostic actions.",

@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="HostNameUnitTest.cs" />
     <Compile Include="HostSpecUnitTest.cs" />
+    <Compile Include="FakeRegistryUnitTest.cs" />
     <Compile Include="ModelNameUnitTest.cs" />
     <Compile Include="InsertNicelyUnitTest.cs" />
     <Compile Include="OversizeUnitTest.cs" />

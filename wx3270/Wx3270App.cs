@@ -54,6 +54,7 @@ namespace Wx3270
             (Constants.Option.NoScrollBar, string.Empty, "Do not display the scroll bar"),
             (Constants.Option.NoSplash, string.Empty, "Do not display the splash screen"),
             (Constants.Option.Oversize, "columnsxrows", "Override the default screen dimensions"),
+            (Constants.Option.Portable, string.Empty, "Run in portable mode (no registry, no profile directory)"),
             (Constants.Option.Profile, "profile-name", "Use the specified profile instead of Base"),
             (Constants.Option.ReadOnly, string.Empty, "Open the profile in read-only mode (do not save changed settings)"),
             (Constants.Option.ReadWrite, string.Empty, "Open the profile in read/write mode and warn if it can't be opened"),
@@ -178,6 +179,16 @@ namespace Wx3270
             /// </summary>
             Both = Restrict | Allow,
         }
+
+        /// <summary>
+        /// Gets the Registry wrapper.
+        /// </summary>
+        public static ISimplifiedRegistry SimplifiedRegistry { get; private set; }
+
+        /// <summary>
+        /// Gets a value indicating whether the application is in portable mode.
+        /// </summary>
+        public static bool StaticPortable { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether we are running on Windows.
@@ -405,6 +416,11 @@ namespace Wx3270
         /// Gets the main window, for pop-up parenting purposes.
         /// </summary>
         public Control MainWindow => this.control;
+
+        /// <summary>
+        /// Gets a value indicating whether the app is running in Portable mode.
+        /// </summary>
+        public bool Portable { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether APL mode is set.
@@ -692,6 +708,10 @@ Options:
                         case Constants.Option.Oversize:
                             this.xrmOptions.Add(B3270.ResourceFormat.Value(B3270.Setting.Oversize, args[++i]));
                             break;
+                        case Constants.Option.Portable:
+                            this.Portable = true;
+                            StaticPortable = true;
+                            break;
                         case Constants.Option.Profile:
                             profileName = args[++i];
                             break;
@@ -881,23 +901,26 @@ Options:
             }
 
             // Get additional restrictions from the Registry.
-            var key = Registry.LocalMachine.OpenSubKey(Constants.Misc.RegistryKey, false);
-            if (key != null)
+            if (!this.Portable)
             {
-                var value = (string)key.GetValue(Constants.Misc.RestrictionsValue);
-                if (value != null)
+                var key = Registry.LocalMachine.OpenSubKey(Constants.Misc.RegistryKey, writable: false);
+                if (key != null)
                 {
-                    if (Enum.TryParse(value, true, out Restrictions r))
+                    var value = (string)key.GetValue(Constants.Misc.RestrictionsValue);
+                    if (value != null)
                     {
-                        this.Restrictions |= r;
+                        if (Enum.TryParse(value, true, out Restrictions r))
+                        {
+                            this.Restrictions |= r;
+                        }
+                        else
+                        {
+                            ErrorBox.Show($"Invalid restrictions in the registry, ignoring: '{value}'", "Registry Error");
+                        }
                     }
-                    else
-                    {
-                        ErrorBox.Show($"Invalid restrictions in the registry, ignoring: '{value}'", "Registry Error");
-                    }
-                }
 
-                key.Close();
+                    key.Close();
+                }
             }
 
             if (this.Restrictions.HasFlag(Restrictions.ModifyProfiles))
@@ -905,7 +928,7 @@ Options:
                 this.ReadOnlyMode = true;
             }
 
-            if (this.Restrictions.HasFlag(Restrictions.GetHelp))
+            if (this.Restrictions.HasFlag(Restrictions.GetHelp) || this.Portable)
             {
                 Tour.SuppressAutoTours = true;
             }
@@ -914,6 +937,13 @@ Options:
             if (!string.IsNullOrEmpty(this.Wc3270ImportProfileName) && this.ReadOnlyMode)
             {
                 this.NoProfileMode = true;
+            }
+
+            // No profile means read-only and no-watch.
+            if (this.NoProfileMode)
+            {
+                this.ReadOnlyMode = true;
+                this.NoWatchMode = true;
             }
 
             // Attach a console, if they asked for one.
@@ -943,12 +973,8 @@ Options:
                 ErrorBox.Show(e.Message, "wx3270 Localization", MessageBoxIcon.Information);
             }
 
-            // No profile means read-only and no-watch.
-            if (this.NoProfileMode)
-            {
-                this.ReadOnlyMode = true;
-                this.NoWatchMode = true;
-            }
+            // Set up the Registry wrapper.
+            SimplifiedRegistry = SimplifiedRegistryFactory.Get(this.Portable);
 
             // Load the profile for the first time, so we can use its settings to create basic objects.
             this.ProfileManager = new ProfileManager(this);

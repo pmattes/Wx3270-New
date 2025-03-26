@@ -21,7 +21,7 @@ namespace Wx3270
         {
             get
             {
-                var key = Registry.CurrentUser.CreateSubKey(Constants.Misc.WatchKey);
+                var key = Wx3270App.SimplifiedRegistry.CurrentUserCreateSubKey(Constants.Misc.WatchKey);
                 var dirNames = key.GetValueNames().Select(name => key.GetValue(name)).Cast<string>().ToArray();
                 key.Close();
                 return dirNames;
@@ -35,7 +35,7 @@ namespace Wx3270
         public static void Add(string directory)
         {
             // Create a registry key.
-            var key = Registry.CurrentUser.CreateSubKey(Constants.Misc.WatchKey);
+            var key = Wx3270App.SimplifiedRegistry.CurrentUserCreateSubKey(Constants.Misc.WatchKey);
             if (!key.GetValueNames().Any(valueName => ((string)key.GetValue(valueName)).Equals(directory, StringComparison.OrdinalIgnoreCase)))
             {
                 // No key yet. Add one.
@@ -62,7 +62,7 @@ namespace Wx3270
         public static bool Delete(string directory)
         {
             bool deleted = false;
-            var key = Registry.CurrentUser.CreateSubKey(Constants.Misc.WatchKey);
+            var key = Wx3270App.SimplifiedRegistry.CurrentUserCreateSubKey(Constants.Misc.WatchKey);
             foreach (var valueName in key.GetValueNames())
             {
                 var regDir = (string)key.GetValue(valueName);

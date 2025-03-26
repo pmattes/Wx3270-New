@@ -145,12 +145,20 @@ namespace Wx3270
             this.App = app;
 
             // Get the default profile path from the registry.
-            var key = Registry.CurrentUser.CreateSubKey(Constants.Misc.RegistryKey);
+            var key = Wx3270App.SimplifiedRegistry.CurrentUserCreateSubKey(Constants.Misc.RegistryKey);
             var defaultProfilePath = (string)key.GetValue(DefaultProfileRegistryValue);
             if (defaultProfilePath == null)
             {
                 // Use the default, and save it, in case they pick a different language later.
-                defaultProfilePath = SafeGetFullPath(SeedProfilePath);
+                if (app.Portable)
+                {
+                    defaultProfilePath = SafeGetFullPath(Path.Combine(Application.StartupPath, I18n.Get(StringKey.Base) + Suffix));
+                }
+                else
+                {
+                    defaultProfilePath = SafeGetFullPath(SeedProfilePath);
+                }
+
                 key.SetValue(DefaultProfileRegistryValue, defaultProfilePath);
             }
 
@@ -316,15 +324,18 @@ namespace Wx3270
         /// Ensures that the profile directory exists.
         /// </summary>
         /// <param name="forWindows">If true, create Windows artifacts.</param>
+        /// <param name="portable">If true, running in portable mode.</param>
         /// <returns>True if directory now exists.</returns>
-        public static bool CreateProfileDirectory(bool forWindows)
+        public static bool CreateProfileDirectory(bool forWindows, bool portable)
         {
+            var createdDirectory = false;
             if (!Directory.Exists(ProfileDirectory))
             {
                 try
                 {
                     // Create the directory.
                     Directory.CreateDirectory(ProfileDirectory);
+                    createdDirectory = true;
                 }
                 catch (Exception e)
                 {
@@ -338,41 +349,45 @@ namespace Wx3270
                 return true;
             }
 
-            // Set the read-only attribute on the profile directory, so file explorer looks for Desktop.ini.
-            // Note that this doesn't actually make the directory read-only.
-            // Also get rid of the System attribute, which might have been set by an earlier version of this code.
-            try
+            if (createdDirectory && !portable)
             {
-                File.SetAttributes(ProfileDirectory, (File.GetAttributes(ProfileDirectory) & ~FileAttributes.System) | FileAttributes.ReadOnly);
-            }
-            catch (Exception e)
-            {
-                ErrorBox.Show(e.Message, I18n.Get(Title.ProfileDesktopIniError));
-                return true;
-            }
-
-            var iniPath = Path.Combine(ProfileDirectory, "Desktop.ini");
-            if (!File.Exists(iniPath))
-            {
+                // Set the read-only attribute on the profile directory, so file explorer looks for Desktop.ini.
+                // Note that this doesn't actually make the directory read-only.
+                // Also get rid of the System attribute, which might have been set by an earlier version of this code.
                 try
                 {
-                    // Create Desktop.ini.
-                    using (var outStream = File.Create(iniPath))
-                    {
-                        using var writer = new StreamWriter(outStream, new UnicodeEncoding());
-                        writer.WriteLine("[.ShellClassInfo]");
-                        writer.WriteLine("ConfirmFileOp=0");
-                        writer.WriteLine("IconFile=" + Application.ExecutablePath);
-                        writer.WriteLine("IconIndex=0");
-                        writer.WriteLine("InfoTip=wx3270 Profiles");
-                    }
-
-                    File.SetAttributes(iniPath, File.GetAttributes(iniPath) | FileAttributes.System | FileAttributes.Hidden);
+                    File.SetAttributes(ProfileDirectory, (File.GetAttributes(ProfileDirectory) & ~FileAttributes.System) | FileAttributes.ReadOnly);
                 }
                 catch (Exception e)
                 {
                     ErrorBox.Show(e.Message, I18n.Get(Title.ProfileDesktopIniError));
                     return true;
+                }
+
+                // Give the directory an icon.
+                var iniPath = Path.Combine(ProfileDirectory, "Desktop.ini");
+                if (!File.Exists(iniPath))
+                {
+                    try
+                    {
+                        // Create Desktop.ini.
+                        using (var outStream = File.Create(iniPath))
+                        {
+                            using var writer = new StreamWriter(outStream, new UnicodeEncoding());
+                            writer.WriteLine("[.ShellClassInfo]");
+                            writer.WriteLine("ConfirmFileOp=0");
+                            writer.WriteLine("IconFile=" + Application.ExecutablePath);
+                            writer.WriteLine("IconIndex=0");
+                            writer.WriteLine("InfoTip=wx3270 Profiles");
+                        }
+
+                        File.SetAttributes(iniPath, File.GetAttributes(iniPath) | FileAttributes.System | FileAttributes.Hidden);
+                    }
+                    catch (Exception e)
+                    {
+                        ErrorBox.Show(e.Message, I18n.Get(Title.ProfileDesktopIniError));
+                        return true;
+                    }
                 }
             }
 
@@ -516,7 +531,7 @@ namespace Wx3270
         public void CreateProfileDirectoryAndProfile()
         {
             // Create the default profile directory.
-            CreateProfileDirectory(this.App.IsWindows);
+            CreateProfileDirectory(this.App.IsWindows, this.App.Portable);
 
             // Create the base profile.
             if (!File.Exists(DefaultProfilePath))
@@ -964,7 +979,7 @@ namespace Wx3270
         /// <inheritdoc />
         public bool IsDefaultPathName(string profilePathName)
         {
-            var key = Registry.CurrentUser.CreateSubKey(Constants.Misc.RegistryKey);
+            var key = Wx3270App.SimplifiedRegistry.CurrentUserCreateSubKey(Constants.Misc.RegistryKey);
             var defaultProfile = (string)key.GetValue(DefaultProfileRegistryValue);
             key.Close();
             return defaultProfile != null && SafeGetFullPath(defaultProfile) == profilePathName;
@@ -980,7 +995,7 @@ namespace Wx3270
         public void SetDefaultProfile(Profile profile)
         {
             // Remember the old value and set the new one.
-            var key = Registry.CurrentUser.CreateSubKey(Constants.Misc.RegistryKey);
+            var key = Wx3270App.SimplifiedRegistry.CurrentUserCreateSubKey(Constants.Misc.RegistryKey);
             var oldValue = (string)key.GetValue(DefaultProfileRegistryValue);
             key.SetValue(DefaultProfileRegistryValue, profile.PathName);
             key.Close();
@@ -1768,13 +1783,13 @@ namespace Wx3270
                 var op = (DefaultProfileConfigAction)from.Pop();
                 if (op.IsUndo)
                 {
-                    var key = Registry.CurrentUser.CreateSubKey(Constants.Misc.RegistryKey);
+                    var key = Wx3270App.SimplifiedRegistry.CurrentUserCreateSubKey(Constants.Misc.RegistryKey);
                     key.SetValue(DefaultProfileRegistryValue, op.OldPath);
                     key.Close();
                 }
                 else
                 {
-                    var key = Registry.CurrentUser.CreateSubKey(Constants.Misc.RegistryKey);
+                    var key = Wx3270App.SimplifiedRegistry.CurrentUserCreateSubKey(Constants.Misc.RegistryKey);
                     key.SetValue(DefaultProfileRegistryValue, op.NewPath);
                     key.Close();
                 }

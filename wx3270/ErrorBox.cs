@@ -7,6 +7,7 @@ namespace Wx3270
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.Runtime.CompilerServices;
     using System.Text;
     using System.Windows.Forms;
 
@@ -151,29 +152,44 @@ namespace Wx3270
         /// <param name="icon">Icon to display.</param>
         public static void ShowWithStop(IntPtr handle, string text, string title, string stopKey, MessageBoxIcon icon = MessageBoxIcon.Information)
         {
-            NativeMethods.MessageBoxCheckFlags iconFlags = icon switch
-            {
-                MessageBoxIcon.Information => NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
-                MessageBoxIcon.Error => NativeMethods.MessageBoxCheckFlags.MB_ICONEXCLAMATION,
-                MessageBoxIcon.Warning => NativeMethods.MessageBoxCheckFlags.MB_ICONEXCLAMATION,
-                MessageBoxIcon.Question => NativeMethods.MessageBoxCheckFlags.MB_ICONQUESTION,
-                MessageBoxIcon.None => 0U,
-                _ => 0U,
-            };
             Form activeForm = Form.ActiveForm;
             if (activeForm != null && FormMap.TryGetValue(activeForm, out Form mappedForm))
             {
                 activeForm = mappedForm;
             }
 
-            if (activeForm != null)
+            if (!Wx3270.Wx3270App.StaticPortable)
             {
-                using (new CenterDialog(activeForm))
+                NativeMethods.MessageBoxCheckFlags iconFlags = icon switch
                 {
+                    MessageBoxIcon.Information => NativeMethods.MessageBoxCheckFlags.MB_ICONINFORMATION,
+                    MessageBoxIcon.Error => NativeMethods.MessageBoxCheckFlags.MB_ICONEXCLAMATION,
+                    MessageBoxIcon.Warning => NativeMethods.MessageBoxCheckFlags.MB_ICONEXCLAMATION,
+                    MessageBoxIcon.Question => NativeMethods.MessageBoxCheckFlags.MB_ICONQUESTION,
+                    MessageBoxIcon.None => 0U,
+                    _ => 0U,
+                };
+
+                if (activeForm != null)
+                {
+                    using (new CenterDialog(activeForm))
+                    {
+                        NativeMethods.SHMessageBoxCheckW(
+                            activeForm.Handle,
+                            text,
+                            title,
+                            NativeMethods.MessageBoxCheckFlags.MB_OK | iconFlags,
+                            NativeMethods.MessageBoxReturnValue.IDOK,
+                            "wx3270." + stopKey);
+                    }
+                }
+                else
+                {
+                    // No active form.
                     NativeMethods.SHMessageBoxCheckW(
-                        activeForm.Handle,
+                        handle,
                         text,
-                        title,
+                        AttributedTitle(title),
                         NativeMethods.MessageBoxCheckFlags.MB_OK | iconFlags,
                         NativeMethods.MessageBoxReturnValue.IDOK,
                         "wx3270." + stopKey);
@@ -181,14 +197,32 @@ namespace Wx3270
             }
             else
             {
-                // No active form.
-                NativeMethods.SHMessageBoxCheckW(
-                    handle,
-                    text,
-                    AttributedTitle(title),
-                    NativeMethods.MessageBoxCheckFlags.MB_OK | iconFlags,
-                    NativeMethods.MessageBoxReturnValue.IDOK,
-                    "wx3270." + stopKey);
+                // Use the fake registry and our home-grown dialog.
+                Icon iconObject = icon switch
+                {
+                    MessageBoxIcon.Information => SystemIcons.Information,
+                    MessageBoxIcon.Error => SystemIcons.Error,
+                    MessageBoxIcon.Warning => SystemIcons.Warning,
+                    MessageBoxIcon.Question => SystemIcons.Question,
+                    MessageBoxIcon.None => null,
+                    _ => null,
+                };
+
+                var r = SimplifiedRegistryFactory.Get(fake: true);
+                using (var key = r.CurrentUserCreateSubKey("stop"))
+                {
+                    if (key.GetValue(stopKey) == null)
+                    {
+                        using (var stopDialog = new StopDialog(title, text, iconObject))
+                        {
+                            stopDialog.ShowDialog(activeForm);
+                            if (stopDialog.NotAgain)
+                            {
+                                key.SetValue(stopKey, "true");
+                            }
+                        }
+                    }
+                }
             }
         }
 

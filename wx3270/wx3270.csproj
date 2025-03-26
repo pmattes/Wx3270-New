@@ -138,6 +138,8 @@
     <Compile Include="ActionSyntax.cs" />
     <Compile Include="AplMode.cs" />
     <Compile Include="B3270HostSpec.cs" />
+    <Compile Include="Contracts\ISimplifiedRegistryKey.cs" />
+    <Compile Include="Contracts\ISimplifiedRegistry.cs" />
     <Compile Include="Contracts\ICell.cs" />
     <Compile Include="Contracts\IBackEndDb.cs" />
     <Compile Include="Contracts\IInitialLocation.cs" />
@@ -145,6 +147,15 @@
     <Compile Include="Contracts\IModelsDb.cs" />
     <Compile Include="Contracts\ITerminalName.cs" />
     <Compile Include="FixedWidthFontEnumerator.cs" />
+    <Compile Include="FakeRegistry.cs" />
+    <Compile Include="RealRegistry.cs" />
+    <Compile Include="SimplifiedRegistryFactory.cs" />
+    <Compile Include="StopDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StopDialog.Designer.cs">
+      <DependentUpon>StopDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnpaddedLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -573,6 +584,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShortcutDialog.resx">
       <DependentUpon>ShortcutDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StopDialog.resx">
+      <DependentUpon>StopDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tour.resx">
       <DependentUpon>Tour.cs</DependentUpon>
