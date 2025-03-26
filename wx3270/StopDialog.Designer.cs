@@ -75,6 +75,7 @@
             this.messageLabel.Name = "messageLabel";
             this.messageLabel.Size = new System.Drawing.Size(417, 78);
             this.messageLabel.TabIndex = 1;
+            this.messageLabel.Tag = "`";
             this.messageLabel.Text = "This is a potentially rather large label. I want it to wrap. Just like this. Wrap" +
     ", wrap, wrap. Wrapppity, wrappity, wrappity, foo.\r\n\r\nAnd it could have multiple " +
     "lines. Lines, lines, lines.\r\n\r\nHey!";
@@ -158,6 +159,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "`";
             this.Text = "StopDialog";
             this.topFlowLayoutPanel.ResumeLayout(false);
             this.topFlowLayoutPanel.PerformLayout();

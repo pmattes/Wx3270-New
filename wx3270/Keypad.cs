@@ -60,7 +60,7 @@ namespace Wx3270
             }
 
             // Add to the error box.
-            ErrorBox.SetFormMapping(this, (Form)this.app.MainWindow);
+            ErrorBox.SetFormMapping(this, (Form)this.app?.MainWindow);
 
             // Process restrictions.
             if (app?.Restricted(Restrictions.GetHelp) == true)

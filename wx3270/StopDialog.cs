@@ -17,16 +17,6 @@ namespace Wx3270
     public partial class StopDialog : Form
     {
         /// <summary>
-        /// Message to click yes or no to save text to clipboard.
-        /// </summary>
-        private static readonly string NotAgainName = I18n.Combine(nameof(StopDialog), "NotAgain");
-
-        /// <summary>
-        /// The English text of the not-again message.
-        /// </summary>
-        private static readonly string NotAgainText = "In the future, do not show me this dialog box";
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="StopDialog"/> class.
         /// </summary>
         /// <param name="title">Dialog title.</param>
@@ -47,7 +37,7 @@ namespace Wx3270
             }
 
             // Localize.
-            this.notAgainCheckBox.Text = I18n.Get(NotAgainName);
+            I18n.Localize(this);
         }
 
         /// <summary>
@@ -61,7 +51,7 @@ namespace Wx3270
         [I18nInit]
         public static void Localize()
         {
-            I18n.LocalizeGlobal(NotAgainName, NotAgainText);
+            new StopDialog("`Nothing", "`Nothing", null).Dispose();
         }
     }
 }
