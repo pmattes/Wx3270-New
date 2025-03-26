@@ -1074,7 +1074,7 @@ Use with care.");
         /// <param name="e">Event arguments.</param>
         private void HelpClick(object sender, EventArgs e)
         {
-            Tour.HelpMenuClick(sender, e, "Actions/" + Wx3270App.FormatHelpTag((string)this.actionsTabs.SelectedTab.Tag), () => this.RunTour(this.actionsTabs.SelectedTab));
+            Tour.HelpMenuClick(sender, e, "Actions/" + Wx3270App.FormatHelpTag((string)this.actionsTabs.SelectedTab.Tag), () => this.RunTour(this.actionsTabs.SelectedTab, isExplicit: true));
         }
 
         /// <summary>
@@ -1094,11 +1094,12 @@ Use with care.");
         /// Run the tour for a particular tab page.
         /// </summary>
         /// <param name="selectedTab">Selected tab.</param>
-        private void RunTour(TabPage selectedTab)
+        /// <param name="isExplicit">True if invoked explicitly.</param>
+        private void RunTour(TabPage selectedTab, bool isExplicit = false)
         {
             if (this.tours.TryGetValue(selectedTab, out IEnumerable<(Control, int?, Orientation)> tabNodes))
             {
-                Tour.Navigate(selectedTab, tabNodes);
+                Tour.Navigate(selectedTab, tabNodes, isExplicit: isExplicit);
             }
         }
 

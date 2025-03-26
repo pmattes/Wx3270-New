@@ -3613,13 +3613,14 @@ The button labels include a count of how many Undo and Redo operations are saved
         /// <param name="e">Event arguments.</param>
         private void HelpMenuClick(object sender, EventArgs e)
         {
-            Tour.HelpMenuClick(sender, e, "Profiles", this.RunTour);
+            Tour.HelpMenuClick(sender, e, "Profiles", () => this.RunTour(isExplicit: true));
         }
 
         /// <summary>
         /// Run the tour.
         /// </summary>
-        private void RunTour()
+        /// <param name="isExplicit">True if invoked explicitly.</param>
+        private void RunTour(bool isExplicit = false)
         {
             var nodes = new[]
             {
@@ -3647,7 +3648,7 @@ The button labels include a count of how many Undo and Redo operations are saved
                 (this.undoButton, null, Orientation.UpperRight),
                 (this.helpPictureBox, null, Orientation.UpperRight),
             };
-            Tour.Navigate(this, nodes);
+            Tour.Navigate(this, nodes, isExplicit: isExplicit);
         }
 
         /// <summary>

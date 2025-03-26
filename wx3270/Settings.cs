@@ -838,7 +838,8 @@ namespace Wx3270
         /// Run the tour for a particular tab page.
         /// </summary>
         /// <param name="selectedTab">Selected tab.</param>
-        private void RunTour(TabPage selectedTab)
+        /// <param name="isExplicit">True if invoked explicitly.</param>
+        private void RunTour(TabPage selectedTab, bool isExplicit = false)
         {
             var nodes = new List<(Control, int?, Orientation)>();
             if (this.tours.TryGetValue(selectedTab, out IEnumerable<(Control, int?, Orientation)> tabNodes))
@@ -855,7 +856,7 @@ namespace Wx3270
                 (this.helpPictureBox, null, Orientation.LowerRight),
             };
             nodes.AddRange(commonButtonNodes);
-            Tour.Navigate(selectedTab, nodes);
+            Tour.Navigate(selectedTab, nodes, isExplicit: isExplicit);
         }
 
         /// <summary>
@@ -1152,7 +1153,7 @@ namespace Wx3270
         /// <param name="e">Event arguments.</param>
         private void HelpMenuClick(object sender, EventArgs e)
         {
-            Tour.HelpMenuClick(sender, e, "Settings/" + Wx3270App.FormatHelpTag(this.settingsTabs.SelectedTab.Name), () => this.RunTour(this.settingsTabs.SelectedTab));
+            Tour.HelpMenuClick(sender, e, "Settings/" + Wx3270App.FormatHelpTag(this.settingsTabs.SelectedTab.Name), () => this.RunTour(this.settingsTabs.SelectedTab, isExplicit: true));
         }
 
         /// <summary>

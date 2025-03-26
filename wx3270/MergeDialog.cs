@@ -366,7 +366,7 @@ The 'Merge' option means that settings which overlap existing settings will be o
         /// <param name="e">Event arguments.</param>
         private void HelpMenuClick(object sender, EventArgs e)
         {
-            Tour.HelpMenuClick(sender, e, "Merge", this.RunTour);
+            Tour.HelpMenuClick(sender, e, "Merge", () => this.RunTour(isExplicit: true));
         }
 
         /// <summary>
@@ -386,7 +386,8 @@ The 'Merge' option means that settings which overlap existing settings will be o
         /// <summary>
         /// Run the tour.
         /// </summary>
-        private void RunTour()
+        /// <param name="isExplicit">True if invoked explicitly.</param>
+        private void RunTour(bool isExplicit = false)
         {
             var nodes = new[]
             {
@@ -397,7 +398,7 @@ The 'Merge' option means that settings which overlap existing settings will be o
                 (this.mergeButton, null, Orientation.LowerLeft),
                 (this.helpPictureBox, null, Orientation.LowerRight),
             };
-            Tour.Navigate(this, nodes);
+            Tour.Navigate(this, nodes, isExplicit: isExplicit);
         }
 
         /// <summary>

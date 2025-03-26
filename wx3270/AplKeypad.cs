@@ -171,14 +171,15 @@ You may continue to type on the keyboard while the keypad window has focus.");
         /// <summary>
         /// Run the tour.
         /// </summary>
-        private void RunTour()
+        /// <param name="isExplicit">True is explicitly invoked.</param>
+        private void RunTour(bool isExplicit = false)
         {
             var nodes = new[]
             {
                 ((Control)this.graveButton, (int?)null, Orientation.UpperLeft),
                 (this.helpPictureBox, null, Orientation.LowerRight),
             };
-            Tour.Navigate(this, nodes);
+            Tour.Navigate(this, nodes, isExplicit: isExplicit);
         }
 
         /// <summary>
@@ -291,7 +292,7 @@ You may continue to type on the keyboard while the keypad window has focus.");
         /// <param name="e">Event arguments.</param>
         private void HelpMenuClick(object sender, EventArgs e)
         {
-            Tour.HelpMenuClick(sender, e, "APL keypad", this.RunTour);
+            Tour.HelpMenuClick(sender, e, "APL keypad", () => this.RunTour(isExplicit: true));
         }
 
         /// <summary>

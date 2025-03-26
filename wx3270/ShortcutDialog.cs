@@ -167,7 +167,8 @@ Detached mode, which only has effect if the window is also in read-only mode, pr
         /// <summary>
         /// Runs the tour.
         /// </summary>
-        private void RunTour()
+        /// <param name="isExplicit">True if invoked explicitly.</param>
+        private void RunTour(bool isExplicit = false)
         {
             var nodes = new[]
             {
@@ -182,7 +183,7 @@ Detached mode, which only has effect if the window is also in read-only mode, pr
                 (this.saveButton, null, Orientation.LowerRight),
                 (this.helpPictureBox, null, Orientation.LowerRight),
             };
-            Tour.Navigate(this, nodes);
+            Tour.Navigate(this, nodes, isExplicit: isExplicit);
         }
 
         /// <summary>
@@ -192,7 +193,7 @@ Detached mode, which only has effect if the window is also in read-only mode, pr
         /// <param name="e">Event arguments.</param>
         private void HelpMenuClick(object sender, System.EventArgs e)
         {
-            Tour.HelpMenuClick(sender, e, "Shortcut Options", this.RunTour);
+            Tour.HelpMenuClick(sender, e, "Shortcut Options", () => this.RunTour(isExplicit: true));
         }
 
         /// <summary>

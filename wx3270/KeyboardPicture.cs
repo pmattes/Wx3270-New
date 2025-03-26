@@ -1370,13 +1370,14 @@ This selection applies only when the display mode is 'wx3270 actions'.");
         /// <param name="e">Event arguments.</param>
         private void HelpMenuClick(object sender, EventArgs e)
         {
-            Tour.HelpMenuClick(sender, e, "Keymap" + this.PictureMode.ToString(), this.RunTour);
+            Tour.HelpMenuClick(sender, e, "Keymap" + this.PictureMode.ToString(), () => this.RunTour(isExplicit: true));
         }
 
         /// <summary>
         /// Run the tour.
         /// </summary>
-        private void RunTour()
+        /// <param name="isExplicit">True if invoked explicitly.</param>
+        private void RunTour(bool isExplicit = false)
         {
             (Control, int?, Orientation)[] nodes;
             switch (this.PictureMode)
@@ -1409,7 +1410,7 @@ This selection applies only when the display mode is 'wx3270 actions'.");
                     return;
             }
 
-            Tour.Navigate(this, nodes, this.PictureMode.ToString());
+            Tour.Navigate(this, nodes, this.PictureMode.ToString(), isExplicit: isExplicit);
         }
 
         /// <summary>

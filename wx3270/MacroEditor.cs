@@ -1053,13 +1053,14 @@ The recorded actions will replace the entire contents of the 'Macro text' box.")
         /// <param name="e">Event arguments.</param>
         private void HelpMenuClick(object sender, EventArgs e)
         {
-            Tour.HelpMenuClick(sender, e, "MacroEditor", this.RunTour);
+            Tour.HelpMenuClick(sender, e, "MacroEditor", () => this.RunTour(isExplicit: true));
         }
 
         /// <summary>
         /// Run the tour.
         /// </summary>
-        private void RunTour()
+        /// <param name="isExplicit">True if invoked explicitly.</param>
+        private void RunTour(bool isExplicit = false)
         {
             var nodes = new List<(Control control, int? index, Orientation orientation)>
             {
@@ -1074,7 +1075,7 @@ The recorded actions will replace the entire contents of the 'Macro text' box.")
                 (this.editorCancelButton, null, Orientation.LowerRight),
                 (this.helpPictureBox, null, Orientation.LowerRight),
             }.Where(n => this.canChangeName || n.control != this.nameTextBox).ToList();
-            Tour.Navigate(this, nodes);
+            Tour.Navigate(this, nodes, isExplicit: isExplicit);
         }
 
         /// <summary>

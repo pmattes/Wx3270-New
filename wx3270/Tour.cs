@@ -133,12 +133,24 @@ namespace Wx3270
         private bool controlMadeVisible;
 
         /// <summary>
+        /// True if this is an explicit tour.
+        /// </summary>
+        private bool isExplicit;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Tour"/> class.
         /// </summary>
-        public Tour()
+        /// <param name="isExplicit">True if this is an explicit (manually-requested) tour.</param>
+        public Tour(bool isExplicit = false)
         {
             this.InitializeComponent();
+            this.isExplicit = isExplicit;
             I18n.Localize(this, this.toolTip1);
+
+            if (this.isExplicit)
+            {
+                this.stopToursButton.Visible = false;
+            }
         }
 
         /// <summary>
@@ -260,9 +272,10 @@ namespace Wx3270
         /// <param name="parent">Parent control.</param>
         /// <param name="nodes">Tour nodes.</param>
         /// <param name="suffix">Optional suffix.</param>
-        public static void Navigate(Control parent, IEnumerable<(Control control, int? iteration, Orientation orientation)> nodes, string suffix = null)
+        /// <param name="isExplicit">If true, this was an explicit invocation from a Help button.</param>
+        public static void Navigate(Control parent, IEnumerable<(Control control, int? iteration, Orientation orientation)> nodes, string suffix = null, bool isExplicit = false)
         {
-            var tour = new Tour();
+            var tour = new Tour(isExplicit);
             tour.NavigateFrom(parent, nodes, suffix);
         }
 
@@ -467,12 +480,17 @@ namespace Wx3270
 
             this.Close();
 
-            // Remind them how to take the tour again.
-            ErrorBox.ShowWithStop(
-                this.parent.Handle,
-                I18n.Get(TourReminderBody),
-                I18n.Get(TourReminderTitle),
-                Constants.StopKey.Tour);
+            if (!this.isExplicit)
+            {
+                // Remind them how to take the tour again.
+                ErrorBox.SetFormMapping(this, this.parent.FindForm());
+                ErrorBox.ShowWithStop(
+                    this.parent.Handle,
+                    I18n.Get(TourReminderBody),
+                    I18n.Get(TourReminderTitle),
+                    Constants.StopKey.Tour);
+                ErrorBox.RemoveFormMapping(this);
+            }
         }
 
         /// <summary>

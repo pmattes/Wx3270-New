@@ -1348,7 +1348,8 @@ wx3270 will look for the certifcate in the current user's Personal store.");
         /// <summary>
         /// Runs the tour.
         /// </summary>
-        private void RunTour()
+        /// <param name="isExplicit">True if invoked explicitly.</param>
+        private void RunTour(bool isExplicit = false)
         {
             if (this.editingMode == HostEditingMode.QuickConnect)
             {
@@ -1386,7 +1387,7 @@ wx3270 will look for the certifcate in the current user's Personal store.");
                     (this.okButton, null, Orientation.LowerRight),
                     (this.helpPictureBox, null, Orientation.LowerRight),
                 };
-                Tour.Navigate(this, nodes);
+                Tour.Navigate(this, nodes, isExplicit: isExplicit);
             }
             else
             {
@@ -1417,7 +1418,7 @@ wx3270 will look for the certifcate in the current user's Personal store.");
                     (this.cancelButton, null, Orientation.LowerRight),
                     (this.helpPictureBox, null, Orientation.LowerRight),
                 };
-                Tour.Navigate(this, nodes);
+                Tour.Navigate(this, nodes, isExplicit: isExplicit);
             }
         }
 
@@ -1428,7 +1429,7 @@ wx3270 will look for the certifcate in the current user's Personal store.");
         /// <param name="e">Event arguments.</param>
         private void HelpMenuClick(object sender, EventArgs e)
         {
-            Tour.HelpMenuClick(sender, e, "ConnectionEditor", this.RunTour);
+            Tour.HelpMenuClick(sender, e, "ConnectionEditor", () => this.RunTour(isExplicit: true));
         }
 
         /// <summary>

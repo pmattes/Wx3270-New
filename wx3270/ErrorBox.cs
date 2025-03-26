@@ -7,7 +7,6 @@ namespace Wx3270
     using System;
     using System.Collections.Generic;
     using System.Drawing;
-    using System.Runtime.CompilerServices;
     using System.Text;
     using System.Windows.Forms;
 
@@ -35,13 +34,23 @@ namespace Wx3270
         private static readonly Dictionary<Form, Form> FormMap = new Dictionary<Form, Form>();
 
         /// <summary>
-        /// Adds a keypad form to the list.
+        /// Adds a form to the mapping list.
         /// </summary>
         /// <param name="fromForm">Form to map.</param>
         /// <param name="toForm">Form to map it to.</param>
         public static void SetFormMapping(Form fromForm, Form toForm)
         {
             FormMap[fromForm] = toForm;
+        }
+
+        /// <summary>
+        /// Removes a form from the list.
+        /// </summary>
+        /// <param name="fromForm">Form to map.</param>
+        /// <param name="toForm">Form to map it to.</param>
+        public static void RemoveFormMapping(Form form)
+        {
+            FormMap.Remove(form);
         }
 
         /// <summary>

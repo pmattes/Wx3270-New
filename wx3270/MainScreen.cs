@@ -3731,7 +3731,8 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         /// <summary>
         /// Run the tour.
         /// </summary>
-        private void RunTour()
+        /// <param name="isExplicit">True if invoked explicitly.</param>
+        private void RunTour(bool isExplicit = false)
         {
             var nodes = new List<(Control, int?, Orientation)>
             {
@@ -3761,7 +3762,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 (this, 3, Orientation.Centered),
             });
 
-            Tour.Navigate(this, nodes);
+            Tour.Navigate(this, nodes, isExplicit: isExplicit);
         }
 
         /// <summary>
@@ -4279,7 +4280,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 this.HideOverlayMenuBar();
             }
 
-            Tour.HelpMenuClick(sender, e, "Main", this.RunTour);
+            Tour.HelpMenuClick(sender, e, "Main", () => this.RunTour(isExplicit: true));
         }
 
         /// <summary>

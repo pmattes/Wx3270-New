@@ -390,13 +390,14 @@ Not all proxy types allow passwords, and not all servers that allow them require
         /// <param name="e">Event arguments.</param>
         private void HelpMenuClick(object sender, EventArgs e)
         {
-            Tour.HelpMenuClick(sender, e, Wx3270App.FormatHelpTag(nameof(ProxyEditor)), this.RunTour);
+            Tour.HelpMenuClick(sender, e, Wx3270App.FormatHelpTag(nameof(ProxyEditor)), () => this.RunTour(isExplicit: true));
         }
 
         /// <summary>
         /// Run the tour.
         /// </summary>
-        private void RunTour()
+        /// <param name="isExplicit">True if invoked explicitly.</param>
+        private void RunTour(bool isExplicit = false)
         {
             var nodes = new[]
             {
@@ -410,7 +411,7 @@ Not all proxy types allow passwords, and not all servers that allow them require
                 (this.okButton, null, Orientation.LowerRight),
                 (this.helpPictureBox, null, Orientation.LowerRight),
             };
-            Tour.Navigate(this, nodes);
+            Tour.Navigate(this, nodes, isExplicit: isExplicit);
         }
 
         /// <summary>
