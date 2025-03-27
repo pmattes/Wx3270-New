@@ -3995,6 +3995,11 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 return PassthruResult.Failure;
             }
 
+            if (this.overlayMenuBarDisplayed)
+            {
+                this.HideOverlayMenuBar();
+            }
+
             return this.DoFullScreen();
         }
 
@@ -4029,7 +4034,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 this.topBar.Location = new Point(0, -this.TopLayoutPanel.Height);
                 this.screenBoxPanel.Controls.Add(this.topBar);
                 this.topBar.BringToFront();
-                this.overlayMenuBarStep = -OverlayMenuBarSteps;
+                this.overlayMenuBarStep = 0;
                 this.overlayMenuBarDirection = 1;
                 this.overlayMenuBarTimer.Start();
             }
@@ -4127,7 +4132,8 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             else if (this.overlayMenuBarDirection > 0)
             {
                 // Move the overlay menu bar down.
-                this.TopLayoutPanel.Location = new Point(0, (this.TopLayoutPanel.Height * ++this.overlayMenuBarStep / OverlayMenuBarSteps) - this.TopLayoutPanel.Height);
+                // The extra shift when in full screen mode is a hack. I don't know why it is necessary.
+                this.TopLayoutPanel.Location = new Point(0, (this.TopLayoutPanel.Height * (++this.overlayMenuBarStep + (this.fullScreen ? 1 : 0)) / OverlayMenuBarSteps) - this.TopLayoutPanel.Height);
                 this.topBar.Location = new Point(0, this.TopLayoutPanel.Location.Y + this.TopLayoutPanel.Height);
 
                 if (this.overlayMenuBarStep >= OverlayMenuBarSteps)
