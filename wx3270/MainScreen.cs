@@ -3995,9 +3995,13 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 return PassthruResult.Failure;
             }
 
-            if (this.overlayMenuBarDisplayed)
+            if (this.overlayMenuBarDisplayed || this.overlayMenuBarTimer.Enabled)
             {
-                this.HideOverlayMenuBar();
+                // Make the overlay menu bar disappear.
+                this.TopLayoutPanel.Location = new Point(0, -(this.TopLayoutPanel.Height + this.topBar.Height));
+                this.topBar.Location = new Point(0, this.TopLayoutPanel.Location.Y + this.TopLayoutPanel.Height);
+                this.overlayMenuBarDisplayed = false;
+                this.overlayMenuBarTimer.Stop();
             }
 
             return this.DoFullScreen();
@@ -4132,8 +4136,10 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             else if (this.overlayMenuBarDirection > 0)
             {
                 // Move the overlay menu bar down.
-                // The extra shift when in full screen mode is a hack. I don't know why it is necessary.
-                this.TopLayoutPanel.Location = new Point(0, (this.TopLayoutPanel.Height * (++this.overlayMenuBarStep + (this.fullScreen ? 1 : 0)) / OverlayMenuBarSteps) - this.TopLayoutPanel.Height);
+                // When in full-screen mode, Y coordinates are offset by the reported Y location of this window. I do not know why this is.
+                // Full-screen windows also bleed over into other monitors a bit. Seems to be a Windows thing.
+                // So this is likely to break in the future when this behavior is corrected.
+                this.TopLayoutPanel.Location = new Point(0, (this.TopLayoutPanel.Height * ++this.overlayMenuBarStep / OverlayMenuBarSteps) - this.TopLayoutPanel.Height + (this.fullScreen ? -this.Location.Y : 0));
                 this.topBar.Location = new Point(0, this.TopLayoutPanel.Location.Y + this.TopLayoutPanel.Height);
 
                 if (this.overlayMenuBarStep >= OverlayMenuBarSteps)
