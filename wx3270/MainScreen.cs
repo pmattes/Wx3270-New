@@ -196,6 +196,11 @@ namespace Wx3270
         private bool fullScreen = false;
 
         /// <summary>
+        /// The rectange for the window prior to full screen mode.
+        /// </summary>
+        private Rectangle preFullScreenRectangle;
+
+        /// <summary>
         /// True if the overlay menu bar is displayed.
         /// </summary>
         private bool overlayMenuBarDisplayed = false;
@@ -345,7 +350,7 @@ namespace Wx3270
         /// <summary>
         /// Gets a value indicating whether the window is maximized.
         /// </summary>
-        public bool Maximized => this.WindowState == FormWindowState.Maximized;
+        public bool Maximized => (this.WindowState == FormWindowState.Maximized) || this.fullScreen;
 
         /// <summary>
         /// Gets the default screen font.
@@ -885,7 +890,15 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             var wasMaximized = false;
             if (this.Maximized)
             {
-                this.Restore("scrollbar toggle start");
+                if (this.fullScreen)
+                {
+                    this.Size = this.preFullScreenRectangle.Size;
+                }
+                else
+                {
+                    this.Restore("scrollbar toggle start");
+                }
+
                 wasMaximized = true;
             }
 
@@ -917,7 +930,14 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             // Return to maximized if needed.
             if (wasMaximized)
             {
-                this.Maximize("scrollbar toggle end");
+                if (this.fullScreen)
+                {
+                    this.Size = System.Windows.Forms.Screen.GetWorkingArea(this).Size;
+                }
+                else
+                {
+                    this.Maximize("scrollbar toggle end");
+                }
             }
 
             return size;
@@ -970,6 +990,12 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         {
             if (this.App.NoButtons || displayed == !this.menuBarDisabled)
             {
+                return null;
+            }
+
+            if (this.fullScreen)
+            {
+                this.menuBarDisabled = !displayed;
                 return null;
             }
 
@@ -3927,7 +3953,10 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         private void SetFullScreen(bool withWarning = true)
         {
             this.resizeLocked = true;
-            this.Maximize("full screen");
+            this.preFullScreenRectangle = new Rectangle(this.Location.X, this.Location.Y, this.Size.Width, this.Size.Height);
+
+            // this.Maximize("full screen");
+            this.fullScreen = true;
 
             if (!this.menuBarDisabled)
             {
@@ -3947,10 +3976,14 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             this.ControlBox = false;
             this.FormBorderStyle = FormBorderStyle.None;
             this.snapBox.Enabled = false;
-            this.fullScreen = true;
             this.fullScreenToolStripMenuItem.Checked = this.fullScreen;
             Trace.Line(Trace.Type.Window, "SetFullScreen unlocking");
             this.resizeLocked = false;
+
+            // Do the actual resize to full screen, with locking turned off.
+            var workingArea = System.Windows.Forms.Screen.GetWorkingArea(this);
+            this.Location = workingArea.Location;
+            this.Size = workingArea.Size;
 
             if (withWarning)
             {
@@ -4038,7 +4071,9 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 this.snapBox.Enabled = true;
                 this.fullScreen = false;
                 this.resizeLocked = false;
-                this.Restore("fullscreen");
+
+                this.Location = this.preFullScreenRectangle.Location;
+                this.Size = this.preFullScreenRectangle.Size;
             }
             else
             {
