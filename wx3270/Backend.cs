@@ -242,7 +242,10 @@ namespace Wx3270
                     writer.WriteLine(B3270.ResourceFormat.Value(B3270.ResourceName.Oversize, this.startupConfig.OversizeParameter));
                 }
 
-                writer.WriteLine(B3270.ResourceFormat.Value(B3270.ResourceName.TraceDir, Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory).Replace(@"\", @"\\")));
+                var traceDir = this.startupConfig.Portable ?
+                    Application.StartupPath :
+                    Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                writer.WriteLine(B3270.ResourceFormat.Value(B3270.ResourceName.TraceDir, traceDir.Replace(@"\", @"\\")));
                 if (this.startupConfig.Trace)
                 {
                     writer.WriteLine(B3270.ResourceFormat.Value(B3270.ResourceName.Trace, B3270.Value.True));

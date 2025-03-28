@@ -62,6 +62,11 @@ namespace Wx3270
         public int OversizeColumns { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the UI is in portable mode.
+        /// </summary>
+        public bool Portable { get; set; }
+
+        /// <summary>
         /// Gets the derived model parameter.
         /// </summary>
         public string ModelParameter => string.Format(
@@ -78,7 +83,7 @@ namespace Wx3270
             string.Empty;
 
         /// <summary>
-        /// Merge fields from a profile into a startup config,
+        /// Merge fields from a profile into a startup config.
         /// </summary>
         /// <param name="profile">Profile to merge</param>
         public void MergeProfile(Profile profile)

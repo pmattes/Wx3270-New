@@ -711,6 +711,7 @@ Options:
                         case Constants.Option.Portable:
                             this.Portable = true;
                             StaticPortable = true;
+                            startupConfig.Portable = true;
                             break;
                         case Constants.Option.Profile:
                             profileName = args[++i];
