@@ -2073,12 +2073,13 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "fullScreenToolStripMenuItem", Constants.Action.FullScreen + "()");
             this.UpdateContextKeyMapping(this.editToolStripMenuItem.DropDownItems, "copyToolStripMenuItem", Constants.Action.Copy + "()");
             this.UpdateContextKeyMapping(this.editToolStripMenuItem.DropDownItems, "pasteToolStripMenuItem", Constants.Action.Paste + "()");
+            this.UpdateContextKeyMapping(this.editToolStripMenuItem.DropDownItems, "pasteNoMarginToolStripMenuItem", Constants.Action.Paste + "(" + B3270.PasteStringOption.NoMargin + ")");
             this.UpdateContextKeyMapping(this.editToolStripMenuItem.DropDownItems, "cutToolStripMenuItem", Constants.Action.Cut + "()");
             this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "biggerToolStripMenuItem", Constants.Action.StepEfont + $"({Constants.Misc.Bigger})");
             this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "smallerToolStripMenuItem", Constants.Action.StepEfont + $"({Constants.Misc.Smaller})");
-            this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "quitToolStripMenuItem", B3270.Action.Quit + "(-force)");
-            this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "exitWx3270ToolStripMenuItem", B3270.Action.Quit + "(-force)");
-            this.UpdateContextKeyMapping(this.actionsMenuStrip.Items, "exitWx3270ToolStripMenuItem", B3270.Action.Quit + "(-force)");
+            this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "quitToolStripMenuItem", B3270.Action.Quit + "(" + B3270.QuitOption.Force + ")");
+            this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, "exitWx3270ToolStripMenuItem", B3270.Action.Quit + "(" + B3270.QuitOption.Force + ")");
+            this.UpdateContextKeyMapping(this.actionsMenuStrip.Items, "exitWx3270ToolStripMenuItem", B3270.Action.Quit + "(" + B3270.QuitOption.Force + ")");
             for (var i = 1; i <= 24; i++)
             {
                 this.UpdateContextKeyMapping(this.screenBoxContextMenuStrip.Items, $"pF{i}ToolStripMenuItem", B3270.Action.PF + $"({i})");
@@ -4277,6 +4278,9 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                     break;
                 case "Paste":
                     this.App.SelectionManager.Paste(out _);
+                    break;
+                case "PasteNoMargin":
+                    this.App.SelectionManager.Paste(out _, nomargin: true);
                     break;
                 case "Cut":
                     this.App.SelectionManager.Cut(out _);

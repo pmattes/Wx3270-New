@@ -979,6 +979,7 @@ Options:
 
             // Load the profile for the first time, so we can use its settings to create basic objects.
             this.ProfileManager = new ProfileManager(this);
+            OptionsCrossbar.SetupProfile(this.ProfileManager);
             if (!this.NoProfileMode)
             {
                 if (!this.ProfileManager.LoadCreate(profileName, readOnly: this.ReadOnlyMode, out string fullProfilePath))

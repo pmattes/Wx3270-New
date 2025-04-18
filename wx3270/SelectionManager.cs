@@ -9,7 +9,6 @@ namespace Wx3270
     using System.Diagnostics;
     using System.Drawing;
     using System.Linq;
-    using System.Linq.Expressions;
     using System.Text;
     using System.Windows.Forms;
 
@@ -220,7 +219,7 @@ namespace Wx3270
         }
 
         /// <inheritdoc />
-        public PassthruResult Paste(out string result)
+        public PassthruResult Paste(out string result, bool noMargin = false)
         {
             result = string.Empty;
 
@@ -249,7 +248,10 @@ namespace Wx3270
             }
 
             Trace.Line(Trace.Type.Clipboard, "Paste: got {0}", data);
-            var action = new BackEndAction(B3270.Action.PasteString, "0x" + string.Join(string.Empty, Encoding.UTF8.GetBytes(data).Select(b => b.ToString("x2"))));
+            var hexData = "0x" + string.Join(string.Empty, Encoding.UTF8.GetBytes(data).Select(b => b.ToString("x2")));
+            var action = noMargin ?
+                new BackEndAction(B3270.Action.PasteString, B3270.PasteStringOption.NoMargin, hexData) :
+                new BackEndAction(B3270.Action.PasteString, hexData);
             this.app.BackEnd.RunAction(action, ErrorBox.Completion(I18n.Get(Title.Paste)));
             return PassthruResult.Success;
         }
@@ -915,15 +917,29 @@ namespace Wx3270
         private PassthruResult UiPaste(string commandName, IEnumerable<string> arguments, out string result, string tag)
         {
             result = string.Empty;
+            var noMargin = false;
 
             // Validate the arguments.
             if (arguments.Any())
             {
-                result = Constants.Action.Paste + " takes 0 arguments";
-                return PassthruResult.Failure;
+                if (arguments.First().Equals(B3270.PasteStringOption.NoMargin, StringComparison.OrdinalIgnoreCase))
+                {
+                    noMargin = true;
+                }
+                else
+                {
+                    result = "Usage: " + Constants.Action.Paste + "([" + B3270.PasteStringOption.NoMargin + "])";
+                    return PassthruResult.Failure;
+                }
+
+                if (arguments.Count() > 1)
+                {
+                    result = Constants.Action.Paste + " takes 0 or 1 argument";
+                    return PassthruResult.Failure;
+                }
             }
 
-            return this.Paste(out result);
+            return this.Paste(out result, noMargin);
         }
 
         /// <summary>

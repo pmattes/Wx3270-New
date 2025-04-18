@@ -366,7 +366,7 @@ namespace Wx3270
             this.traceEnabled = false;
 
             // Push a Quit through the emulator.
-            this.RunAction(new BackEndAction(B3270.Action.Quit, "-force"), ErrorBox.Ignore());
+            this.RunAction(new BackEndAction(B3270.Action.Quit, B3270.QuitOption.Force), ErrorBox.Ignore());
         }
 
         /// <inheritdoc />

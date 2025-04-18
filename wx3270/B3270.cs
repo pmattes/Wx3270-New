@@ -1600,6 +1600,28 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Options for the PasteString action.
+        /// </summary>
+        public class PasteStringOption
+        {
+            /// <summary>
+            /// Disable margin wrapping.
+            /// </summary>
+            public const string NoMargin = "-nomargin";
+        }
+
+        /// <summary>
+        /// Options for the Quit action.
+        /// </summary>
+        public class QuitOption
+        {
+            /// <summary>
+            /// Quit even if connected.
+            /// </summary>
+            public const string Force = "-force";
+        }
+
+        /// <summary>
         /// Text character names recognized by the Key() action.
         /// </summary>
         public class CharacterName

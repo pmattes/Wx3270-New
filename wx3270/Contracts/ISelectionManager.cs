@@ -57,8 +57,9 @@ namespace Wx3270.Contracts
         /// Paste from clipboard.
         /// </summary>
         /// <param name="result">Returned result.</param>
+        /// <param name="nomargin">True to disable margined paste.</param>
         /// <returns>Pass-through result.</returns>
-        PassthruResult Paste(out string result);
+        PassthruResult Paste(out string result, bool nomargin = false);
 
         /// <summary>
         /// Cut to clipboard.
