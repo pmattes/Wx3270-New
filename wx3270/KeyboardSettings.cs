@@ -284,8 +284,6 @@ The mapping for key and modifiers will only apply when that key is pressed in se
             // Play with focus.
             this.keyboardActionsTextBox.GotFocus += (sender, args) => this.keyboardActionsEditButton.Focus();
 
-
-
             // Set up message box titles.
             I18n.LocalizeGlobal(Title.OldProfile, "Old Profile Version Detected");
 
