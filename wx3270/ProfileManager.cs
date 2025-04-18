@@ -193,7 +193,7 @@ namespace Wx3270
         public event ChangeHandler ProfileClosing = (profile) => { };
 
         /// <inheritdoc />
-        public event OldVersionHandler OldVersion = (Profile.VersionClass oldVersion, ref bool saved) => { };
+        public event OldVersionHandler OldVersion = (Profile profile, Profile.VersionClass oldVersion) => { };
 
         /// <summary>
         /// Gets the directory where profiles are kept.
@@ -1430,15 +1430,12 @@ namespace Wx3270
             this.currentFileStream = stream;
 
             // Tell interested parties that we've loaded up an old version.
-            if (oldVersion != null)
+            if (oldVersion != null && !this.Current.ReadOnly)
             {
-                var saved = false;
-                this.OldVersion(oldVersion, ref saved);
-                if (!saved)
-                {
-                    // Write the profile back out with the new version number applied.
-                    this.Save();
-                }
+                this.OldVersion(this.Current, oldVersion);
+
+                // Write the profile back out with the new version number applied.
+                this.Save();
             }
 
             return true;

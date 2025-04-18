@@ -1369,8 +1369,6 @@
   "Settings.keyboardTab.string.Undefined": "non défini",
   "Settings.keyboardTab.string.UndoKey": "Modifier la touche",
   "Settings.keyboardTab.string.UndoKeypad": "Position du pavé numérique",
-  "Settings.keyboardTab.string.updateKeyboardVersion": "Mettre à jour la définition de clavier à la nouvelle version",
-  "Settings.keyboardTab.string.updateKeymapVersion": "Mettre à jour la définition de clavier à la nouvelle version",
   "Settings.keyboardTab.toolTip.string.ClickToAdd": "Cliquer pour ajouter une définition",
   "Settings.keyboardTab.toolTip.string.ClickToEdit": "Cliquer pour modifier la définition",
   "Settings.keyboardTab.toolTip.string.ClickToOverride": "Actions héritées de définition moins spécifiques\r\nCliquer pour créer une définition spécifique",

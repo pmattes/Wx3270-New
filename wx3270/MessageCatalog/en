@@ -1368,7 +1368,6 @@
   "Settings.keyboardTab.string.Undefined": "not defined",
   "Settings.keyboardTab.string.UndoKey": "key change",
   "Settings.keyboardTab.string.UndoKeypad": "keypad position",
-  "Settings.keyboardTab.string.updateKeymapVersion": "Update keyboard map for newer version",
   "Settings.keyboardTab.toolTip.string.ClickToAdd": "Click to add definition",
   "Settings.keyboardTab.toolTip.string.ClickToEdit": "Click to edit definition",
   "Settings.keyboardTab.toolTip.string.ClickToOverride": "Actions inherited from less-specific definition\r\nClick to create specific definition",

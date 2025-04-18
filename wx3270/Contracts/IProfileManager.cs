@@ -68,9 +68,9 @@ namespace Wx3270.Contracts
     /// <summary>
     /// Old version delegate.
     /// </summary>
+    /// <param name="profile">Profile to modify.</param>
     /// <param name="oldVersion">Old version.</param>
-    /// <param name="saved">Set to true if the profile was modified and saved.</param>
-    public delegate void OldVersionHandler(Profile.VersionClass oldVersion, ref bool saved);
+    public delegate void OldVersionHandler(Profile profile, Profile.VersionClass oldVersion);
 
     /// <summary>
     /// Profile manager.
@@ -172,7 +172,7 @@ namespace Wx3270.Contracts
         /// Load a profile, creating it if necessary.
         /// </summary>
         /// <param name="profile">Profile name.</param>
-        /// <param name="readOnly"><see cref="true"/> to open the profile read-only (and not create)</param>
+        /// <param name="readOnly"><see cref="true"/> to open the profile read-only (and not create).</param>
         /// <param name="profilePath">Returned full profile path.</param>
         /// <returns><see cref="true"/>if profile loaded successfully.</returns>
         bool LoadCreate(string profile, bool readOnly, out string profilePath);

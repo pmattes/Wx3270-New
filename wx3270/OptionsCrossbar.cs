@@ -8,6 +8,7 @@ namespace Wx3270
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Windows.Forms;
     using Wx3270.Contracts;
     using static Wx3270.Settings;
 
@@ -164,6 +165,53 @@ namespace Wx3270
         }
 
         /// <summary>
+        /// Set up profile manager events.
+        /// </summary>
+        /// <param name="profileManager">Profile manager.</param>
+        public static void SetupProfile(IProfileManager profileManager)
+        {
+            // Subscribe to old version events.
+            profileManager.OldVersion += (Profile profile, Profile.VersionClass oldVersion) =>
+            {
+                var addedMappings = Profile.PerVersionAddedKeyboardMaps.Where(kv => kv.Key > oldVersion).Select(kv => kv.Value).ToList();
+                if (addedMappings.Any())
+                {
+                    var newKeys = new List<string>();
+                    foreach (var mapping in addedMappings)
+                    {
+                        foreach (var entry in mapping)
+                        {
+                            newKeys.Add(KeyMap<KeyboardMap>.DecodeKeyName(entry.Key));
+                        }
+                    }
+
+                    var joinedStrings = string.Join(", ", newKeys.ToArray(), 0, newKeys.Count - 1);
+                    if (newKeys.Count > 1)
+                    {
+                        joinedStrings += " " + I18n.Get(KeyboardString.And) + " " + newKeys.Last();
+                    }
+
+                    var yesNo = MessageBox.Show(
+                        string.Format(I18n.Get(Settings.Message.OldProfile), oldVersion, joinedStrings),
+                        I18n.Get(Title.OldProfile),
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button2);
+                    if (yesNo == DialogResult.Yes)
+                    {
+                        foreach (var mapping in addedMappings)
+                        {
+                            foreach (var entry in mapping)
+                            {
+                                profile.KeyboardMap[entry.Key] = entry.Value;
+                            }
+                        }
+                    }
+                }
+            };
+        }
+
+        /// <summary>
         /// Construct a value for toggling the model.
         /// </summary>
         /// <param name="colorMode">Color mode.</param>
@@ -231,7 +279,7 @@ namespace Wx3270
                 // Something new was deferred.
                 ErrorBox.ShowWithStop(
                     this.MainWindowHandle,
-                    I18n.Get(Message.DeferredUntilDisconnectedPopUp),
+                    I18n.Get(Settings.Message.DeferredUntilDisconnectedPopUp),
                     I18n.Get(Title.Settings),
                     Constants.StopKey.Deferred);
             }

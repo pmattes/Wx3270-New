@@ -188,7 +188,6 @@ namespace Wx3270
             I18n.LocalizeGlobal(KeyboardString.DefaultInputChar, "Default input");
             I18n.LocalizeGlobal(KeyboardString.UndoKey, "key change");
             I18n.LocalizeGlobal(KeyboardString.UndoKeypadPosition, "keypad position");
-            I18n.LocalizeGlobal(KeyboardString.UpdateKeymapVersion, "Update keyboard map for newer version");
 
             // Set up the tour.
 #pragma warning disable SA1118 // Parameter should not span multiple lines
@@ -285,50 +284,7 @@ The mapping for key and modifiers will only apply when that key is pressed in se
             // Play with focus.
             this.keyboardActionsTextBox.GotFocus += (sender, args) => this.keyboardActionsEditButton.Focus();
 
-            // Subscribe to old version events.
-            this.ProfileManager.OldVersion += (Profile.VersionClass oldVersion, ref bool saved) =>
-            {
-                var addedMappings = Profile.PerVersionAddedKeyboardMaps.Where(kv => kv.Key > oldVersion).Select(kv => kv.Value).ToList();
-                if (addedMappings.Any())
-                {
-                    var newKeys = new List<string>();
-                    foreach (var mapping in addedMappings)
-                    {
-                        foreach (var entry in mapping)
-                        {
-                            newKeys.Add(KeyMap<KeyboardMap>.DecodeKeyName(entry.Key));
-                        }
-                    }
 
-                    var joinedStrings = string.Join(", ", newKeys.ToArray(), 0, newKeys.Count - 1);
-                    if (newKeys.Count > 1)
-                    {
-                        joinedStrings += " " + I18n.Get(KeyboardString.And) + " " + newKeys.Last();
-                    }
-
-                    var yesNo = MessageBox.Show(
-                        string.Format(I18n.Get(Message.OldProfile), oldVersion, joinedStrings),
-                        I18n.Get(Title.OldProfile),
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question,
-                        MessageBoxDefaultButton.Button2);
-                    if (yesNo == DialogResult.Yes)
-                    {
-                        saved |= this.ProfileManager.PushAndSave(
-                            (current) =>
-                            {
-                                foreach (var mapping in addedMappings)
-                                {
-                                    foreach (var entry in mapping)
-                                    {
-                                        current.KeyboardMap[entry.Key] = entry.Value;
-                                    }
-                                }
-                            },
-                            I18n.Get(KeyboardString.UpdateKeymapVersion));
-                    }
-                }
-            };
 
             // Set up message box titles.
             I18n.LocalizeGlobal(Title.OldProfile, "Old Profile Version Detected");
@@ -1030,7 +986,7 @@ The mapping for key and modifiers will only apply when that key is pressed in se
         /// <summary>
         /// Localized strings.
         /// </summary>
-        private static class KeyboardString
+        public static class KeyboardString
         {
             /// <summary>
             /// An undefined action.
@@ -1106,11 +1062,6 @@ The mapping for key and modifiers will only apply when that key is pressed in se
             /// The word 'and'.
             /// </summary>
             public static readonly string And = I18n.Combine(KeyboardStringBase, "and");
-
-            /// <summary>
-            /// Change name for updating the keyboard map.
-            /// </summary>
-            public static readonly string UpdateKeymapVersion = I18n.Combine(KeyboardStringBase, "updateKeymapVersion");
         }
 
         /// <summary>
