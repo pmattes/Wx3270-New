@@ -173,28 +173,13 @@ namespace Wx3270
             // Subscribe to old version events.
             profileManager.OldVersion += (Profile profile, Profile.VersionClass oldVersion) =>
             {
-                var addedMappings = Profile.PerVersionAddedKeyboardMaps.Where(kv => kv.Key > oldVersion).Select(kv => kv.Value).ToList();
+                var addedMappings = Profile.PerVersionAddedKeyboardMaps.Where(kv => kv.Key > oldVersion).SelectMany(kv => kv.Value).ToList();
                 if (addedMappings.Any())
                 {
-                    var newKeys = new List<string>();
-                    foreach (var mapping in addedMappings)
-                    {
-                        foreach (var entry in mapping)
-                        {
-                            newKeys.Add(KeyMap<KeyboardMap>.DecodeKeyName(entry.Key));
-                        }
-                    }
-
-                    string joinedStrings = null;
-                    if (newKeys.Count > 1)
-                    {
-                        joinedStrings = string.Join(", ", newKeys.ToArray(), 0, newKeys.Count - 1) + " " + I18n.Get(KeyboardString.And) + " " + newKeys.Last();
-                    }
-                    else
-                    {
-                        joinedStrings = newKeys[0];
-                    }
-
+                    var newKeys = addedMappings.Select(mapping => KeyMap<KeyboardMap>.DecodeKeyName(mapping.Key)).ToList();
+                    var joinedStrings = newKeys.Count == 1 ?
+                        newKeys.First() :
+                        string.Join(", ", newKeys.ToArray(), 0, newKeys.Count - 1) + " " + I18n.Get(KeyboardString.And) + " " + newKeys.Last();
                     var yesNo = MessageBox.Show(
                         string.Format(I18n.Get(Settings.Message.OldProfile), oldVersion, joinedStrings),
                         I18n.Get(Title.OldProfile),
@@ -205,10 +190,7 @@ namespace Wx3270
                     {
                         foreach (var mapping in addedMappings)
                         {
-                            foreach (var entry in mapping)
-                            {
-                                profile.KeyboardMap[entry.Key] = entry.Value;
-                            }
+                            profile.KeyboardMap[mapping.Key] = mapping.Value;
                         }
                     }
                 }
