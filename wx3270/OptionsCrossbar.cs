@@ -185,10 +185,14 @@ namespace Wx3270
                         }
                     }
 
-                    var joinedStrings = string.Join(", ", newKeys.ToArray(), 0, newKeys.Count - 1);
+                    string joinedStrings = null;
                     if (newKeys.Count > 1)
                     {
-                        joinedStrings += " " + I18n.Get(KeyboardString.And) + " " + newKeys.Last();
+                        joinedStrings = string.Join(", ", newKeys.ToArray(), 0, newKeys.Count - 1) + " " + I18n.Get(KeyboardString.And) + " " + newKeys.Last();
+                    }
+                    else
+                    {
+                        joinedStrings = newKeys[0];
                     }
 
                     var yesNo = MessageBox.Show(
