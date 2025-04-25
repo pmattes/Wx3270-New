@@ -540,7 +540,7 @@ Options:
             var version = typeof(Wx3270App).Assembly.GetName().Version;
             var fullPath = new[]
             {
-                "http://x3270.bgp.nu/wx3270-help",
+                "https://x3270.bgp.nu/wx3270-help",
                 version.Major + "." + version.Minor,
                 I18nBase.EffectiveCulture,
                 path,
