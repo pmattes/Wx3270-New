@@ -42,6 +42,7 @@ namespace Wx3270
             (Constants.Option.Detached, string.Empty, "Do not synchronize profile changes in read-only mode"),
             (Constants.Option.DumpLocalization, "file-name", "Dump the en-US localization database to a file"),
             (Constants.Option.Edit, string.Empty, "Open the profile in edit mode (do not auto-connect to a host)|Requires the " + Constants.Option.Profile + " option"),
+            (Constants.Option.EmergencyTrace, string.Empty, "Write user-interface traces to a file on the desktop (for debugging)"),
             (Constants.Option.FullScreen, string.Empty, "Enter full-screen mode at start-up"),
             (Constants.Option.Help1, string.Empty, "Display command-line help"),
             (Constants.Option.Httpd, "[address:]port", "Start an HTTP server"),
@@ -73,6 +74,11 @@ namespace Wx3270
         /// Title group name for localization.
         /// </summary>
         private static readonly string TitleName = I18n.PopUpTitleName(nameof(Wx3270App));
+
+        /// <summary>
+        /// True if there is a console attached.
+        /// </summary>
+        private static bool consoleAttached;
 
         /// <summary>
         /// The main form (which runs the UI thread).
@@ -194,11 +200,6 @@ namespace Wx3270
         /// Gets a value indicating whether we are running on Windows.
         /// </summary>
         public bool IsWindows { get; private set; }
-
-        /// <summary>
-        /// Gets a value indicating whether a console has been attached.
-        /// </summary>
-        public bool ConsoleAttached { get; private set; }
 
         /// <summary>
         /// Gets the wx3270 prompt.
@@ -589,6 +590,41 @@ Options:
         }
 
         /// <summary>
+        /// Attach a Windows console to the process.
+        /// </summary>
+        public static void AttachConsole()
+        {
+            if (consoleAttached)
+            {
+                return;
+            }
+
+            consoleAttached = true;
+
+            if (!NativeMethods.AllocConsole())
+            {
+                // This message may be displayed before localization is complete.
+                ErrorBox.Show(
+                    "AllocConsole " + I18n.Get(Message.Failed, RawText.Failed),
+                    I18n.Get(Title.SystemError, RawText.SystemError));
+                return;
+            }
+
+            // Set the console output encoding to UTF-8 to match b3270.
+            Console.OutputEncoding = new UTF8Encoding();
+
+            // Display the warning message.
+            Console.WriteLine("wx3270 " + I18n.Get(Message.ConsoleHeader, RawText.ConsoleHeader));
+            Console.WriteLine();
+            var foreground = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(I18n.Get(Message.ConsoleCautionPrefix, RawText.ConsoleCautionPrefix) + ":");
+            Console.ForegroundColor = foreground;
+            Console.WriteLine(" " + I18n.Get(Message.ConsoleCaution, RawText.ConsoleCaution) + ".");
+            Console.WriteLine();
+        }
+
+        /// <summary>
         /// Initializes the application.
         /// </summary>
         /// <param name="args">Command line arguments.</param>
@@ -606,7 +642,7 @@ Options:
 
             var s = new Stopwatch();
             s.Start();
-            Trace.Line(Trace.Type.Window, "Wx3270App Init start");
+            Trace.Line(Trace.Type.Window, $"Wx3270App {Profile.VersionClass.FullVersion} Init start");
 
             // Parse command line arguments.
             int? lastOpt = null;
@@ -645,6 +681,11 @@ Options:
                         case Constants.Option.Edit:
                             this.EditMode = true;
                             this.ReadWriteMode = true;
+                            break;
+                        case Constants.Option.EmergencyTrace:
+                        case Constants.Option.Trace:
+                            startupConfig.Trace = true;
+                            Trace.Flags = Trace.Type.All;
                             break;
                         case Constants.Option.FullScreen:
                             this.FullScreen = true;
@@ -753,10 +794,6 @@ Options:
                             break;
                         case Constants.Option.Topmost:
                             this.Topmost = true;
-                            break;
-                        case Constants.Option.Trace:
-                            startupConfig.Trace = true;
-                            Trace.Flags = Trace.Type.All;
                             break;
                         case Constants.Option.UiTrace:
                             if (!Enum.TryParse(args[++i], true, out Trace.Type traceFlags))
@@ -950,7 +987,7 @@ Options:
             // Attach a console, if they asked for one.
             if (attachConsole)
             {
-                this.AttachConsole();
+                AttachConsole();
             }
 
             // Set up PATH to include the install folder, so scripts can find things like x3270if.exe.
@@ -1074,41 +1111,6 @@ Options:
         public object Invoke(Delegate d)
         {
             return this.control.Invoke(d);
-        }
-
-        /// <summary>
-        /// Attach a Windows console to the process.
-        /// </summary>
-        public void AttachConsole()
-        {
-            if (this.ConsoleAttached)
-            {
-                return;
-            }
-
-            this.ConsoleAttached = true;
-
-            if (!NativeMethods.AllocConsole())
-            {
-                // This message may be displayed before localization is complete.
-                ErrorBox.Show(
-                    "AllocConsole " + I18n.Get(Message.Failed, RawText.Failed),
-                    I18n.Get(Title.SystemError, RawText.SystemError));
-                return;
-            }
-
-            // Set the console output encoding to UTF-8 to match b3270.
-            Console.OutputEncoding = new UTF8Encoding();
-
-            // Display the warning message.
-            Console.WriteLine("wx3270 " + I18n.Get(Message.ConsoleHeader, RawText.ConsoleHeader));
-            Console.WriteLine();
-            var foreground = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write(I18n.Get(Message.ConsoleCautionPrefix, RawText.ConsoleCautionPrefix) + ":");
-            Console.ForegroundColor = foreground;
-            Console.WriteLine(" " + I18n.Get(Message.ConsoleCaution, RawText.ConsoleCaution) + ".");
-            Console.WriteLine();
         }
 
         /// <summary>

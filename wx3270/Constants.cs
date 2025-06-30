@@ -140,6 +140,11 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             public const string Edit = "-edit";
 
             /// <summary>
+            /// Save traces directly on the desktop.
+            /// </summary>
+            public const string EmergencyTrace = "-emergencytrace";
+
+            /// <summary>
             /// The full-screen option.
             /// </summary>
             public const string FullScreen = "-fullscreen";

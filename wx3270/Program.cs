@@ -6,6 +6,7 @@ namespace Wx3270
 {
     using System;
     using System.Diagnostics;
+    using System.IO;
     using System.Linq;
     using System.Windows.Forms;
 
@@ -33,13 +34,38 @@ namespace Wx3270
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                // Proceed with initialization. */
+                // Start the splash screen.
                 var splash = new Splash();
                 if (!args.Any(arg => arg.ToLowerInvariant() == Constants.Option.NoSplash))
                 {
                     splash.Start();
                 }
 
+                // Handle the -console and -trace command-line options, which can help with debugging start-up issues.
+                if (args.Any(arg => arg.ToLowerInvariant() == Constants.Option.Console))
+                {
+                    Wx3270App.AttachConsole();
+                }
+
+                if (args.Any(arg => arg.ToLowerInvariant() == Constants.Option.Trace))
+                {
+                    Trace.Flags = Trace.Type.All;
+                }
+
+                if (args.Any(arg => arg.ToLowerInvariant() == Constants.Option.EmergencyTrace))
+                {
+                    try
+                    {
+                        Trace.StreamWriter = new StreamWriter(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), $"wx3270.trace.{Process.GetCurrentProcess().Id}.txt"));
+                    }
+                    catch (Exception)
+                    {
+                    }
+
+                    Trace.Flags = Trace.Type.All;
+                }
+
+                // Proceed with initialization.
                 var main = new MainScreen();
                 mainControl = main;
                 app = new Wx3270App(main, main, splash);

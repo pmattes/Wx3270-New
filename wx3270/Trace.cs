@@ -6,7 +6,7 @@ namespace Wx3270
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Runtime.CompilerServices;
+    using System.IO;
     using Wx3270.Contracts;
 
     /// <summary>
@@ -86,6 +86,11 @@ namespace Wx3270
         public static IBackEnd BackEnd { get; set; }
 
         /// <summary>
+        /// Gets or sets the emergency file stream.
+        /// </summary>
+        public static StreamWriter StreamWriter { get; set; }
+
+        /// <summary>
         /// Generate a line of  trace output.
         /// </summary>
         /// <param name="type">Trace type.</param>
@@ -148,6 +153,8 @@ namespace Wx3270
             try
             {
                 Console.WriteLine(text);
+                StreamWriter?.WriteLine(text);
+                StreamWriter?.Flush();
             }
             catch (Exception)
             {
