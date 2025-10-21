@@ -179,6 +179,7 @@ namespace Wx3270
                 { "cp937", new[] { "Chinese traditional" } },
                 { "cp939", new[] { "Japanese (Latin)" } },
                 { "cp1026", new[] { "Turkish" } },
+                { "cp1123", new[] { "Ukrainian" } },
                 { "cp1140", new[] { "English (US) with Euro" } },
                 { "cp1141", new[] { "German with Euro" } },
                 { "cp1142", new[] { "Norwegian with Euro" } },
@@ -189,6 +190,7 @@ namespace Wx3270
                 { "cp1147", new[] { "French with Euro" } },
                 { "cp1148", new[] { "Belgium with Euro" } },
                 { "cp1149", new[] { "Icelandic with Euro" } },
+                { "cp1158", new[] { "Ukrainian with Euro" } },
                 { "cp1160", new[] { "Thai" } },
                 { "cp1388", new[] { "Chinese GB18030" } },
             };
