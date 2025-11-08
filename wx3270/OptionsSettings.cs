@@ -322,9 +322,16 @@ You can also define the window title here. This is a per-profile setting; you ca
                 withExtras: false);
 
             // Set up the printer list.
-            foreach (var printer in PrinterSettings.InstalledPrinters)
+            try
             {
-                this.printerComboBox.Items.Add(printer);
+                foreach (var printer in PrinterSettings.InstalledPrinters)
+                {
+                    this.printerComboBox.Items.Add(printer);
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.Line(Trace.Type.Window, $"Cannot get installed printers, exception '{ex.Message}'");
             }
 
             // Set up the scroll bar and menu bar checkboxes.
