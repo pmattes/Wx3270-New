@@ -44,7 +44,7 @@ namespace Wx3270
         /// <remarks>
         /// CHANGE THIS WHEN THE RELEASE PHASE CHANGES.
         /// </remarks>
-        public static Phases Phase => Phases.Alpha;
+        public static Phases Phase => Phases.Beta;
 
         /// <summary>
         /// Gets the name of the release phase.
