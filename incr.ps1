@@ -142,7 +142,7 @@ $files.ForEach({$_ -replace '^', 'wx3270\bin\x86\Release\'}) | Compress-Archive 
 # Archive.
 if ($archive)
 {
-    Write-Host -ForegroundColor Green 'Archiving'
+    Write-Host -ForegroundColor Green 'Archiving to spork'
     $files = "wx3270-$version-setup.exe", "wx3270-$version-noinstall64.zip", "wx3270-$version-noinstall32.zip"
     # We need to use Git bash to run scp and ssh because Powershell and cmd.exe cannot see the C:\Windows\System32\OpenSSH directory,
     # when running the VS developer prompt. Not sure why that is.
@@ -150,8 +150,10 @@ if ($archive)
     & $gitbash -c "scp $files 10.0.0.12:psrc/x3270/Release/"
     $verparts = $version -replace "[a-z]+.*", "" -split "\."
     $bgpdir = "www/download/wx3270/{0:D2}.{1:D2}" -f [int]$verparts[0],[int]$verparts[1]
+    Write-Host -ForegroundColor Green 'Archiving to bgp.nu'
     & $gitbash -c "ssh bgp.nu mkdir -p $bgpdir"
     & $gitbash -c "scp $files bgp.nu:$bgpdir/"
+    Write-Host -ForegroundColor Green 'Archiving to Sourceforge'
     & $gitbash -c "scp $files pmattes@frs.sourceforge.net:/home/frs/p/x3270/wx3270"
 }
 
