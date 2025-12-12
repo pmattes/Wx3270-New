@@ -4332,6 +4332,27 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         }
 
         /// <summary>
+        /// The 'About wx3270' help menu item was clicked.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void AboutWx3270ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.overlayMenuBarDisplayed)
+            {
+                this.HideOverlayMenuBar();
+            }
+
+            if (!this.ActionsDialog.Visible)
+            {
+                this.ActionsDialog.Show(this);
+            }
+
+            this.ActionsDialog.Activate();
+            this.ActionsDialog.About();
+        }
+
+        /// <summary>
         /// Message box titles.
         /// </summary>
         private static class Title

@@ -81,6 +81,14 @@ wx3270 does not have localizations for all cultures, so it might be using a less
         }
 
         /// <summary>
+        /// Pop up the file About tab.
+        /// </summary>
+        public void About()
+        {
+            this.actionsTabs.SelectedTab = this.aboutTab;
+        }
+
+        /// <summary>
         /// Localize the About tab.
         /// </summary>
         private static void AboutLocalize()

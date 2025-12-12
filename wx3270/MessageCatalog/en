@@ -565,6 +565,7 @@
   "MainScreen.form.connectPictureBox.disconnectMenuItem": "Disconnect",
   "MainScreen.form.connectPictureBox.quickConnectMenuItem": "Quick connect",
   "MainScreen.form.connectPictureBox.toolTip": "Connect to a host",
+  "MainScreen.form.helpPictureBox.aboutWx3270ToolStripMenuItem": "About wx3270",
   "MainScreen.form.helpPictureBox.displayHelpInBrowserToolStripMenuItem": "Display help in browser",
   "MainScreen.form.helpPictureBox.startTourToolStripMenuItem": "Start tour",
   "MainScreen.form.helpPictureBox.toolTip": "Get help",
