@@ -139,6 +139,7 @@
             this.helpContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.displayHelpInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startTourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutWx3270ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TopLayoutPanel = new System.Windows.Forms.Panel();
             this.TopRightLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.settingsBox = new System.Windows.Forms.PictureBox();
@@ -240,7 +241,7 @@
             this.noFlashTimer = new System.Windows.Forms.Timer(this.components);
             this.menuBarHideTimer = new System.Windows.Forms.Timer(this.components);
             this.overlayMenuBarTimer = new System.Windows.Forms.Timer(this.components);
-            this.aboutWx3270ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutWx3270ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.oiaLayoutPanel.SuspendLayout();
             this.timeFlowLayoutPanel.SuspendLayout();
             this.oiaLockFlowLayoutPanel.SuspendLayout();
@@ -1461,6 +1462,13 @@
             this.startTourToolStripMenuItem.Text = "Start tour";
             this.startTourToolStripMenuItem.Click += new System.EventHandler(this.HelpClick);
             // 
+            // aboutWx3270ToolStripMenuItem
+            // 
+            this.aboutWx3270ToolStripMenuItem.Name = "aboutWx3270ToolStripMenuItem";
+            this.aboutWx3270ToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
+            this.aboutWx3270ToolStripMenuItem.Text = "About wx3270";
+            this.aboutWx3270ToolStripMenuItem.Click += new System.EventHandler(this.AboutWx3270ToolStripMenuItem_Click);
+            // 
             // TopLayoutPanel
             // 
             this.TopLayoutPanel.BackColor = System.Drawing.Color.Transparent;
@@ -1843,7 +1851,8 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.displayHelpInBrowserToolStripMenuItem1,
-            this.startTourToolStripMenuItem1});
+            this.startTourToolStripMenuItem1,
+            this.aboutWx3270ToolStripMenuItem1});
             this.helpToolStripMenuItem.Image = global::Wx3270.Properties.Resources.Question23c;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
@@ -2284,12 +2293,12 @@
             this.overlayMenuBarTimer.Interval = 25;
             this.overlayMenuBarTimer.Tick += new System.EventHandler(this.OverlayMenuBarTimer_Tick);
             // 
-            // aboutWx3270ToolStripMenuItem
+            // aboutWx3270ToolStripMenuItem1
             // 
-            this.aboutWx3270ToolStripMenuItem.Name = "aboutWx3270ToolStripMenuItem";
-            this.aboutWx3270ToolStripMenuItem.Size = new System.Drawing.Size(233, 24);
-            this.aboutWx3270ToolStripMenuItem.Text = "About wx3270";
-            this.aboutWx3270ToolStripMenuItem.Click += new System.EventHandler(this.AboutWx3270ToolStripMenuItem_Click);
+            this.aboutWx3270ToolStripMenuItem1.Name = "aboutWx3270ToolStripMenuItem1";
+            this.aboutWx3270ToolStripMenuItem1.Size = new System.Drawing.Size(233, 24);
+            this.aboutWx3270ToolStripMenuItem1.Text = "About wx3270";
+            this.aboutWx3270ToolStripMenuItem1.Click += new System.EventHandler(this.AboutWx3270ToolStripMenuItem_Click);
             // 
             // MainScreen
             // 
@@ -2300,7 +2309,7 @@
             this.Controls.Add(this.mainScreenPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(449, 223);
             this.Name = "MainScreen";
             this.Text = "`wx3270";
@@ -2572,6 +2581,7 @@
         private UnpaddedLabel oiaTimingNative;
         private System.Windows.Forms.ToolStripMenuItem pasteNoMarginToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutWx3270ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutWx3270ToolStripMenuItem1;
     }
 }
 
