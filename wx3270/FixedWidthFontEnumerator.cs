@@ -34,7 +34,7 @@ namespace Wx3270
                 NativeMethods.EnumFontFamiliesEx(hdc, ref logfont, new NativeMethods.FONTENUMPROC(this.FontFamilyCallback), IntPtr.Zero, 0);
                 graphics.ReleaseHdc();
 
-                return this.tempNames.OrderBy(f => f).ToList();
+                return this.tempNames.OrderBy(f => f).Distinct().ToList();
             }
         }
 
@@ -50,7 +50,6 @@ namespace Wx3270
         {
             if ((lpelf.elfLogFont.lfPitchAndFamily & 0x3) == NativeMethods.FIXED_PITCH
                 && (fontType & NativeMethods.TRUETYPE_FONTTYPE) != 0
-                && lpelf.elfScript == "Western"
                 && !lpelf.elfFullName.StartsWith("@"))
             {
                 this.tempNames.Add(lpelf.elfLogFont.lfFaceName);
