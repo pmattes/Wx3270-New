@@ -22,7 +22,7 @@ OutputBaseFilename=wx3270-%VERSION%-setup
 OutputDir=.
 SolidCompression=yes
 WizardSmallImageFile=wx3270\wx3270.bmp
-SignTool=mystandard $f
+SignTool=mystandard -command $q& { & $$Env:mydir\run-signtool.ps1 '$f' }$q
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -30,7 +30,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 [Components]
 Name: "base"; Description: "Basic executables"; Types: full compact custom; Flags: fixed
 Name: "x3270is"; Description: "x3270is script interface DLL"; Types: full compact custom
-Name: "ibm3270fonts"; Description: "IBM 3270 fonts (Ricardo Bánffy)"; Types: full compact custom
+Name: "ibm3270fonts"; Description: "IBM 3270 fonts (Ricardo BÃ¡nffy)"; Types: full compact custom
 
 [Files]
 ; x64 files

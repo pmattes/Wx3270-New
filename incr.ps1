@@ -21,6 +21,12 @@ param (
 # Any error kills the script.
 $ErrorActionPreference = 'Stop'
 
+# We are now PS7-specific.
+if ($PSVersionTable.PSVersion.Major -lt 7) {
+    Write-Error "This script requires PowerShell 7"
+    exit 1
+}
+
 # '-go' means 'do it all for real'
 if ($go) {
     $archive = $true
@@ -128,7 +134,8 @@ Set-Content -Encoding UTF8 -Path tmp.iss -Value $iss
 Write-Host -ForegroundColor Green 'Running Inno Setup'
 $cwd = (Get-Location)
 if ($sign) {
-    $signparm = '/smystandard="' + "powershell.exe $cwd\run-signtool.ps1 `$p" + '"'
+    $Env:mydir = (Get-Location)
+    $signparm = '/smystandard=pwsh.exe $p'
 }
 & $inno $signparm /Qp tmp.iss
 Remove-Item tmp.iss
@@ -138,6 +145,10 @@ Write-Host -ForegroundColor Green 'Creating no-install zipfiles'
 $files = Get-Content noinstall-files.txt
 $files.ForEach({$_ -replace '^', 'wx3270\bin\x64\Release\'}) | Compress-Archive -Force -DestinationPath "wx3270-$version-noinstall64.zip"
 $files.ForEach({$_ -replace '^', 'wx3270\bin\x86\Release\'}) | Compress-Archive -Force -DestinationPath "wx3270-$version-noinstall32.zip"
+
+# Get the sizes and SHA values.
+Write-host -ForegroundColor Green 'Sizes and SHA values'
+& python3 sha.py wx3270-$version-setup.exe wx3270-$version-noinstall64.zip wx3270-$version-noinstall32.zip
 
 # Archive.
 if ($archive)
