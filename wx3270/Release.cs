@@ -1,4 +1,4 @@
-﻿// <copyright file="Release.cs" company="Paul Mattes">
+// <copyright file="Release.cs" company="Paul Mattes">
 //     Copyright (c) Paul Mattes. All rights reserved.
 // </copyright>
 
@@ -15,7 +15,7 @@ namespace Wx3270
         /// <remarks>
         /// CHANGE THIS WHENEVER PRE-RELEASE CODE IS CUT, AND MAKE SURE IT IS NULL WHEN A TAGGED RELEASE IS CUT.
         /// </remarks>
-        private const string PreReleaseIteration = "A";
+        private const string PreReleaseIteration = null;
 
         /// <summary>
         /// Release phases.
