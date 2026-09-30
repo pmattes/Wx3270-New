@@ -151,6 +151,12 @@ namespace Wx3270.Contracts
         void RegisterPassthru(string commandName, Passthru action, string helpText = null, string helpParams = null);
 
         /// <summary>
+        /// Report a change in the window state to the emulator.
+        /// </summary>
+        /// <param name="attributes">Window-change attributes.</param>
+        void ReportWindowChange(AttributeDict attributes);
+
+        /// <summary>
         /// Pass-through completion.
         /// </summary>
         /// <param name="success">True if action succeeded.</param>

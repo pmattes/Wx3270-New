@@ -28,7 +28,7 @@ namespace Wx3270
         /// <summary>
         /// Minimum compatible version.
         /// </summary>
-        private const string MinVersion = "4.4.3";
+        private const string MinVersion = "4.6";
 
         /// <summary>
         /// Localization group for message box titles.
@@ -469,6 +469,22 @@ namespace Wx3270
             else
             {
                 this.pendingPassthruDefinitions.Add(new Tuple<string, string, string>(commandName, helpText, helpParams));
+            }
+        }
+
+        /// <inheritdoc />
+        public void ReportWindowChange(AttributeDict attributes)
+        {
+            lock (this.writerSync)
+            {
+                this.writer.WriteStartElement(B3270.Operation.WindowChange);
+                foreach (var attribute in attributes)
+                {
+                    this.writer.WriteAttributeString(attribute.Key, attribute.Value);
+                }
+
+                this.writer.WriteEndElement();
+                this.writer.Flush();
             }
         }
 

@@ -46,8 +46,7 @@ namespace Wx3270
         /// <summary>
         /// Removes a form from the list.
         /// </summary>
-        /// <param name="fromForm">Form to map.</param>
-        /// <param name="toForm">Form to map it to.</param>
+        /// <param name="form">Form to remove.</param>
         public static void RemoveFormMapping(Form form)
         {
             FormMap.Remove(form);

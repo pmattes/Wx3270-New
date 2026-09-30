@@ -108,6 +108,11 @@ namespace Wx3270
             /// The succeed operation (complete a pass-through operation successfully).
             /// </summary>
             public const string Succeed = "succeed";
+
+            /// <summary>
+            /// Report a change to the window state.
+            /// </summary>
+            public const string WindowChange = "window-change";
         }
 
         /// <summary>
@@ -299,6 +304,11 @@ namespace Wx3270
             /// The window title changed.
             /// </summary>
             public const string WindowTitle = "window-title";
+
+            /// <summary>
+            /// A requested or reported window change.
+            /// </summary>
+            public const string WindowChange = "window-change";
         }
 
         /// <summary>
@@ -350,6 +360,11 @@ namespace Wx3270
             /// Number of bytes sent.
             /// </summary>
             public const string BytesSent = "bytes-sent";
+
+            /// <summary>
+            /// Height of a window or display.
+            /// </summary>
+            public const string Height = "height";
 
             /// <summary>
             /// Cause of connection state change.
@@ -450,6 +465,11 @@ namespace Wx3270
             /// Name for toggles.
             /// </summary>
             public const string Name = "name";
+
+            /// <summary>
+            /// Window stacking order.
+            /// </summary>
+            public const string Order = "order";
 
             /// <summary>
             /// TLS options.
@@ -557,6 +577,11 @@ namespace Wx3270
             public const string State = "state";
 
             /// <summary>
+            /// Window-change operation.
+            /// </summary>
+            public const string Operation = "operation";
+
+            /// <summary>
             /// Top of the thumb.
             /// </summary>
             public const string Top = "top";
@@ -587,6 +612,21 @@ namespace Wx3270
             public const string Verified = "verified";
 
             /// <summary>
+            /// Width of a window or display.
+            /// </summary>
+            public const string Width = "width";
+
+            /// <summary>
+            /// Window X coordinate.
+            /// </summary>
+            public const string X = "x";
+
+            /// <summary>
+            /// Window Y coordinate.
+            /// </summary>
+            public const string Y = "y";
+
+            /// <summary>
             /// Code version.
             /// </summary>
             public const string Version = "version";
@@ -595,6 +635,92 @@ namespace Wx3270
             /// The value of an element.
             /// </summary>
             public const string Value = "value";
+        }
+
+        /// <summary>
+        /// Values used by the window-change operation and indication.
+        /// </summary>
+        public class WindowChange
+        {
+            /// <summary>
+            /// Move the window.
+            /// </summary>
+            public const string Move = "move";
+
+            /// <summary>
+            /// Refresh the window.
+            /// </summary>
+            public const string Refresh = "refresh";
+
+            /// <summary>
+            /// Resize the window or display.
+            /// </summary>
+            public const string Size = "size";
+
+            /// <summary>
+            /// Change the window stacking order.
+            /// </summary>
+            public const string Stack = "stack";
+
+            /// <summary>
+            /// Change the window state.
+            /// </summary>
+            public const string State = "state";
+
+            /// <summary>
+            /// Change the window title.
+            /// </summary>
+            public const string Title = "title";
+
+            /// <summary>
+            /// Character-cell size.
+            /// </summary>
+            public const string Character = "character";
+
+            /// <summary>
+            /// Screen size.
+            /// </summary>
+            public const string Screen = "screen";
+
+            /// <summary>
+            /// Window size.
+            /// </summary>
+            public const string Window = "window";
+
+            /// <summary>
+            /// Raise the window.
+            /// </summary>
+            public const string Raise = "raise";
+
+            /// <summary>
+            /// Lower the window.
+            /// </summary>
+            public const string Lower = "lower";
+
+            /// <summary>
+            /// Normal window state.
+            /// </summary>
+            public const string Normal = "normal";
+
+            /// <summary>
+            /// Iconified window state.
+            /// </summary>
+            public const string Iconified = "iconified";
+
+            /// <summary>
+            /// Maximized window state.
+            /// </summary>
+            public const string Maximized = "maximized";
+
+            /// <summary>
+            /// Full-screen window state.
+            /// </summary>
+            public const string FullScreen = "full-screen";
+
+            /// <summary>
+            /// Toggle full-screen mode.
+            /// </summary>
+            public const string ToggleFullScreen = "toggle-full-screen";
         }
 
         /// <summary>

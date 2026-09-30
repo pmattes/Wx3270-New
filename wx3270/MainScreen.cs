@@ -246,6 +246,11 @@ namespace Wx3270
         private bool resizeLocked;
 
         /// <summary>
+        /// True while applying a back-end window resize.
+        /// </summary>
+        private bool windowChangeResize;
+
+        /// <summary>
         /// The last window location before a maximize or docking.
         /// </summary>
         private Point? lastLocation;
@@ -1116,6 +1121,30 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         }
 
         /// <summary>
+        /// Parse a signed window-change integer attribute.
+        /// </summary>
+        /// <param name="attributes">Operation attributes.</param>
+        /// <param name="name">Attribute name.</param>
+        /// <param name="value">Parsed integer.</param>
+        /// <returns>True if the attribute exists and is valid.</returns>
+        private static bool TryGetWindowChangeInteger(AttributeDict attributes, string name, out int value)
+        {
+            value = 0;
+            return attributes.TryGetValue(name, out string text) && TryGetWindowChangeInteger(text, out value);
+        }
+
+        /// <summary>
+        /// Parse a signed window-change integer value.
+        /// </summary>
+        /// <param name="text">Text value.</param>
+        /// <param name="value">Parsed integer.</param>
+        /// <returns>True if the value is a valid integer.</returns>
+        private static bool TryGetWindowChangeInteger(string text, out int value)
+        {
+            return int.TryParse(text, out value);
+        }
+
+        /// <summary>
         /// Tests for a window being arranged (docked).
         /// </summary>
         /// <returns>True if window is arranged.</returns>
@@ -1416,6 +1445,8 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                 {
                     this.DynamicFontEvent(font);
                 }
+
+                this.ReportWindowSize(B3270.WindowChange.Character);
             };
 
             Trace.Line(
@@ -1502,6 +1533,17 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
 
             // When the emulator is ready, there is more iniitialization to do.
             this.App.BackEnd.OnReady += this.WhenReadyInit;
+
+            // Handle window operations requested by the emulator.
+            this.BackEnd.RegisterStart(
+                B3270.Indication.WindowChange,
+                (name, attrs) =>
+                {
+                    if (!this.IsDisposed && this.IsHandleCreated)
+                    {
+                        this.Invoke(new MethodInvoker(() => this.ProcessWindowChange(attrs)));
+                    }
+                });
 
             // Register the Chord action.
             this.BackEnd.RegisterPassthru(Constants.Action.Chord, this.Chord);
@@ -1816,6 +1858,18 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
 
             // Display the main screen window.
             this.Show();
+
+            // Report our initial window state to the emulator, so XTWINOPS queries have valid data.
+            this.ReportWindowState();
+            this.ReportWindowMove();
+            this.ReportWindowSize(B3270.WindowChange.Window);
+            this.ReportWindowSize(B3270.WindowChange.Character);
+            this.ReportWindowSize(B3270.WindowChange.Screen);
+            this.ReportWindowTitle();
+
+            // Watch for further window state changes to report.
+            this.LocationChanged += (sender, e) => this.ReportWindowMove();
+            this.TextChanged += (sender, e) => this.ReportWindowTitle();
 
             // Figure out which host to connect to. The hierarchy is:
             //  Command-line host spec first.
@@ -2969,6 +3023,313 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         }
 
         /// <summary>
+        /// Apply a window operation requested by the emulator.
+        /// </summary>
+        /// <param name="attributes">Operation attributes.</param>
+        private void ProcessWindowChange(AttributeDict attributes)
+        {
+            if (!attributes.TryGetValue(B3270.Attribute.Operation, out string operation))
+            {
+                Trace.Line(Trace.Type.BackEnd, "Ignoring window-change without an operation");
+                return;
+            }
+
+            switch (operation.ToLowerInvariant())
+            {
+                case B3270.WindowChange.Move:
+                    if (TryGetWindowChangeInteger(attributes, B3270.Attribute.X, out int x) &&
+                        x >= short.MinValue &&
+                        x <= short.MaxValue &&
+                        TryGetWindowChangeInteger(attributes, B3270.Attribute.Y, out int y) &&
+                        y >= short.MinValue &&
+                        y <= short.MaxValue)
+                    {
+                        if (this.fullScreen)
+                        {
+                            this.preFullScreenRectangle.Location = new Point(x, y);
+                        }
+                        else
+                        {
+                            this.Location = new Point(x, y);
+                        }
+                    }
+                    else
+                    {
+                        Trace.Line(Trace.Type.BackEnd, "Ignoring invalid window-change move");
+                    }
+
+                    break;
+
+                case B3270.WindowChange.Refresh:
+                    this.Refresh();
+                    break;
+
+                case B3270.WindowChange.Size:
+                    this.ProcessWindowSize(attributes);
+                    break;
+
+                case B3270.WindowChange.Stack:
+                    if (attributes.TryGetValue(B3270.Attribute.Order, out string order))
+                    {
+                        if (order.Equals(B3270.WindowChange.Raise, StringComparison.OrdinalIgnoreCase))
+                        {
+                            this.BringToFront();
+                        }
+                        else if (order.Equals(B3270.WindowChange.Lower, StringComparison.OrdinalIgnoreCase))
+                        {
+                            this.SendToBack();
+                        }
+                        else
+                        {
+                            Trace.Line(Trace.Type.BackEnd, $"Ignoring unknown window-change stacking order '{order}'");
+                        }
+                    }
+                    else
+                    {
+                        Trace.Line(Trace.Type.BackEnd, "Ignoring window-change stack without an order");
+                    }
+
+                    break;
+
+                case B3270.WindowChange.State:
+                    if (attributes.TryGetValue(B3270.Attribute.State, out string state))
+                    {
+                        this.ProcessWindowState(state);
+                    }
+                    else
+                    {
+                        Trace.Line(Trace.Type.BackEnd, "Ignoring window-change state without a state");
+                    }
+
+                    break;
+
+                default:
+                    Trace.Line(Trace.Type.BackEnd, $"Ignoring unknown window-change operation '{operation}'");
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Apply a window size request.
+        /// </summary>
+        /// <param name="attributes">Operation attributes.</param>
+        private void ProcessWindowSize(AttributeDict attributes)
+        {
+            if (!attributes.TryGetValue(B3270.Attribute.Type, out string type) ||
+                !type.Equals(B3270.WindowChange.Window, StringComparison.OrdinalIgnoreCase))
+            {
+                Trace.Line(Trace.Type.BackEnd, "Ignoring window-change size with an unsupported type");
+                return;
+            }
+
+            var hasWidth = attributes.TryGetValue(B3270.Attribute.Width, out string widthText);
+            var hasHeight = attributes.TryGetValue(B3270.Attribute.Height, out string heightText);
+            if (!hasWidth && !hasHeight)
+            {
+                Trace.Line(Trace.Type.BackEnd, "Ignoring window-change size with no width or height");
+                return;
+            }
+
+            var parsedWidth = 0;
+            var parsedHeight = 0;
+            if ((hasWidth && !TryGetWindowChangeInteger(widthText, out parsedWidth)) ||
+                (hasHeight && !TryGetWindowChangeInteger(heightText, out parsedHeight)))
+            {
+                Trace.Line(Trace.Type.BackEnd, "Ignoring invalid window-change size");
+                return;
+            }
+
+            if ((hasWidth && (parsedWidth < 0 || parsedWidth > ushort.MaxValue)) ||
+                (hasHeight && (parsedHeight < 0 || parsedHeight > ushort.MaxValue)))
+            {
+                Trace.Line(Trace.Type.BackEnd, "Ignoring out-of-range window-change size");
+                return;
+            }
+
+            var requestedSize = this.fullScreen ? this.preFullScreenRectangle.Size : this.Size;
+            var newWidth = hasWidth ? parsedWidth : requestedSize.Width;
+            var newHeight = hasHeight ? parsedHeight : requestedSize.Height;
+            var newSize = new Size(
+                Math.Max(this.MinimumSize.Width, newWidth),
+                Math.Max(this.MinimumSize.Height, newHeight));
+
+            if (this.fullScreen)
+            {
+                this.preFullScreenRectangle.Size = newSize;
+                return;
+            }
+
+            this.windowChangeResize = true;
+            try
+            {
+                this.Size = newSize;
+            }
+            finally
+            {
+                this.windowChangeResize = false;
+            }
+        }
+
+        /// <summary>
+        /// Apply a window state request.
+        /// </summary>
+        /// <param name="state">Requested state.</param>
+        private void ProcessWindowState(string state)
+        {
+            if (state.Equals(B3270.WindowChange.FullScreen, StringComparison.OrdinalIgnoreCase))
+            {
+                if (!this.fullScreen)
+                {
+                    this.WindowState = FormWindowState.Normal;
+                    this.DoFullScreen(withWarning: false);
+                }
+
+                return;
+            }
+
+            if (state.Equals(B3270.WindowChange.ToggleFullScreen, StringComparison.OrdinalIgnoreCase))
+            {
+                if (!this.fullScreen)
+                {
+                    this.WindowState = FormWindowState.Normal;
+                }
+
+                this.DoFullScreen(withWarning: false);
+                return;
+            }
+
+            if (this.fullScreen)
+            {
+                this.DoFullScreen(withWarning: false);
+            }
+
+            if (state.Equals(B3270.WindowChange.Normal, StringComparison.OrdinalIgnoreCase))
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else if (state.Equals(B3270.WindowChange.Iconified, StringComparison.OrdinalIgnoreCase))
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
+            else if (state.Equals(B3270.WindowChange.Maximized, StringComparison.OrdinalIgnoreCase))
+            {
+                this.Maximize("XTWINOPS");
+            }
+            else
+            {
+                Trace.Line(Trace.Type.BackEnd, $"Ignoring unknown window-change state '{state}'");
+            }
+        }
+
+        /// <summary>
+        /// Report the current window state (normal/iconified/maximized/full-screen) to the emulator.
+        /// </summary>
+        private void ReportWindowState()
+        {
+            string state;
+            if (this.fullScreen)
+            {
+                state = B3270.WindowChange.FullScreen;
+            }
+            else if (this.WindowState == FormWindowState.Minimized)
+            {
+                state = B3270.WindowChange.Iconified;
+            }
+            else if (this.WindowState == FormWindowState.Maximized)
+            {
+                state = B3270.WindowChange.Maximized;
+            }
+            else
+            {
+                state = B3270.WindowChange.Normal;
+            }
+
+            this.SendWindowChange(B3270.WindowChange.State, attributes =>
+            {
+                attributes[B3270.Attribute.State] = state;
+            });
+        }
+
+        /// <summary>
+        /// Report the current window position to the emulator.
+        /// </summary>
+        private void ReportWindowMove()
+        {
+            var location = this.fullScreen ? this.preFullScreenRectangle.Location : this.Location;
+            this.SendWindowChange(B3270.WindowChange.Move, attributes =>
+            {
+                attributes[B3270.Attribute.X] = location.X.ToString();
+                attributes[B3270.Attribute.Y] = location.Y.ToString();
+            });
+        }
+
+        /// <summary>
+        /// Report a window dimension to the emulator.
+        /// </summary>
+        /// <param name="type">Size type: window, character, or screen.</param>
+        private void ReportWindowSize(string type)
+        {
+            Size size;
+            switch (type)
+            {
+                case B3270.WindowChange.Window:
+                    size = this.fullScreen ? this.preFullScreenRectangle.Size : this.Size;
+                    break;
+                case B3270.WindowChange.Character:
+                    if (this.screenBox == null)
+                    {
+                        return;
+                    }
+
+                    size = this.screenBox.CellSize;
+                    break;
+                case B3270.WindowChange.Screen:
+                    size = System.Windows.Forms.Screen.FromControl(this).Bounds.Size;
+                    break;
+                default:
+                    return;
+            }
+
+            this.SendWindowChange(B3270.WindowChange.Size, attributes =>
+            {
+                attributes[B3270.Attribute.Type] = type;
+                attributes[B3270.Attribute.Width] = size.Width.ToString();
+                attributes[B3270.Attribute.Height] = size.Height.ToString();
+            });
+        }
+
+        /// <summary>
+        /// Report the current window title to the emulator.
+        /// </summary>
+        private void ReportWindowTitle()
+        {
+            this.SendWindowChange(B3270.WindowChange.Title, attributes =>
+            {
+                attributes[B3270.Attribute.Text] = this.Text;
+            });
+        }
+
+        /// <summary>
+        /// Send a window-change report to the emulator.
+        /// </summary>
+        /// <param name="operation">Operation name.</param>
+        /// <param name="populate">Callback to add operation-specific attributes.</param>
+        private void SendWindowChange(string operation, Action<AttributeDict> populate)
+        {
+            if (this.App?.BackEnd?.Ready != true)
+            {
+                return;
+            }
+
+            var attributes = new AttributeDict
+            {
+                [B3270.Attribute.Operation] = operation,
+            };
+            populate(attributes);
+            this.BackEnd.ReportWindowChange(attributes);
+        }
+
+        /// <summary>
         /// Form load method.
         /// </summary>
         /// <param name="sender">Event sender.</param>
@@ -3167,7 +3528,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                         var arrText = isWindowArranged ? "arranged" : string.Empty;
                         Trace.Line(Trace.Type.Window, $" ==> resize {arrText}");
                         this.screenBox.Maximize(this.Maximized || this.IsWindowArranged(), this.ClientSize);
-                        if (this.WindowState == FormWindowState.Normal && !this.IsWindowArranged())
+                        if (!this.windowChangeResize && this.WindowState == FormWindowState.Normal && !this.IsWindowArranged())
                         {
                             // Not maximized, not docked. Restore the font stored in the profile, and snap.
                             Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} un-maximized/undocked -> restore font and snap");
@@ -3178,7 +3539,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                             var newFont = this.screenBox.RecomputeFont(this.ClientSize, ResizeType.Dynamic);
                             var fontProfile = new FontProfile(newFont);
                             Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} after RecomputeFont -> {fontProfile}");
-                            if (!isWindowArranged && this.WindowState == FormWindowState.Normal && this.FormBorderStyle != FormBorderStyle.None)
+                            if (!this.windowChangeResize && !isWindowArranged && this.WindowState == FormWindowState.Normal && this.FormBorderStyle != FormBorderStyle.None)
                             {
                                 if (this.ProfileManager.PushAndSave(
                                     (current) =>
@@ -3197,6 +3558,8 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
                     break;
             }
 
+            this.ReportWindowState();
+            this.ReportWindowSize(B3270.WindowChange.Window);
             Trace.Line(Trace.Type.Window, $"Resize #{resizeCount} done");
         }
 
@@ -4084,6 +4447,11 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
 
             this.fullScreenToolStripMenuItem.Checked = this.fullScreen;
             this.temporaryToolStripMenuItem.Enabled = this.fullScreen | this.menuBarDisabled;
+
+            // MainScreen_Resize skips reporting while resizeLocked is set, which SetFullScreen relies on
+            // while entering full-screen mode, so report the resulting state and size explicitly here.
+            this.ReportWindowState();
+            this.ReportWindowSize(B3270.WindowChange.Window);
             return PassthruResult.Success;
         }
 
