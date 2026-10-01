@@ -152,13 +152,16 @@ namespace Wx3270
                 // Use the default, and save it, in case they pick a different language later.
                 if (app.Portable)
                 {
-                    defaultProfilePath = SafeGetFullPath(Path.Combine(Application.StartupPath, I18n.Get(StringKey.Base) + Suffix));
+                    // In portable mode, the default profile lives in the install directory, which is where wx3270.exe is run from,
+                    // whether it was installed or not.
+                    defaultProfilePath = Path.Combine(Application.StartupPath, I18n.Get(StringKey.Base) + Suffix);
                 }
                 else
                 {
                     defaultProfilePath = SafeGetFullPath(SeedProfilePath);
                 }
 
+                // Save the default profile path in the registry.
                 key.SetValue(DefaultProfileRegistryValue, defaultProfilePath);
             }
 

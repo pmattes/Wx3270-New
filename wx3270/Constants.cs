@@ -200,6 +200,11 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             public const string NoButtons = "-nobuttons";
 
             /// <summary>
+            /// The no-portable option, to ignore the presence of a portable-mode flag file.
+            /// </summary>
+            public const string NoPortable = "-noportable";
+
+            /// <summary>
             /// The no-profile option.
             /// </summary>
             public const string NoProfile = "-noprofile";
@@ -467,6 +472,16 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             /// The Windows null device.
             /// </summary>
             public const string NullDevice = "NUL:";
+
+            /// <summary>
+            /// The name of the portable-mode flag file.
+            /// </summary>
+            public const string PortableFlagFile = "portable.txt";
+
+            /// <summary>
+            /// The name of the install path substitution variable.
+            /// </summary>
+            public const string InstallSubst = "%INSTALL%";
         }
     }
 }

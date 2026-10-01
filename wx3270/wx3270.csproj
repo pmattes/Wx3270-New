@@ -809,6 +809,9 @@
       <Link>x3270if.exe</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="portable.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Python\x3270if\common.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -861,7 +864,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rem if not exist "$(SolutionDir)MessageCatalog" mkdir "$(SolutionDir)MessageCatalog"
-rem xcopy /S /I /Y "$(SolutionDir)MessageCatalog" "$(TargetDir)\MessageCatalog"</PostBuildEvent>
+rem xcopy /S /I /Y "$(SolutionDir)MessageCatalog" "$(TargetDir)\MessageCatalog"
+</PostBuildEvent>
   </PropertyGroup>
   <!-- <Import Project="C:\Program Files (x86)\MSBuild\StyleCop\v5.0\StyleCop.Targets" /> -->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -871,4 +875,8 @@ rem xcopy /S /I /Y "$(SolutionDir)MessageCatalog" "$(TargetDir)\MessageCatalog"<
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PreBuildEvent>if exist "$(TargetDir)\Base.wx3270" erase "$(TargetDir)\Base.wx3270"
+if exist "$(TargetDir)\registry-v2.json" erase "$(TargetDir)\registry-v2.json"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

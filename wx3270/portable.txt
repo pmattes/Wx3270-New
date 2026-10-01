@@ -1,0 +1,9 @@
+If this file exists in the same directory as the wx3270 executable, wx3270 will run in portable mode.
+
+In portable mode, wx3270 will not write any configuration files to the user's home directory, and will instead store all configuration data in the same directory as the executable.
+It will also not create or read any registry entries, instead using the local directory for all settings.
+
+This is useful for running wx3270 from a USB drive or other portable storage device, or for copying it over from one machine to another without needing to install it.
+It also prevents wx3270's behavior from being affected by any existing configuration files or registry entries on the host machine.
+
+If you extracted wx3270 from a 'noinstall' zip file (which includes this file), you can remove this file to disable automatic portable mode.

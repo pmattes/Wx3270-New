@@ -44,7 +44,8 @@ namespace Wx3270
             /// <summary>
             /// The file name.
             /// </summary>
-            private const string JsonFileName = "registry.json";
+            /// <remarks>This is called 'v2' to avoid reading an old version that does not use %INSTALL% for the installation path.</remarks>
+            private const string JsonFileName = "registry-v2.json";
 
             /// <summary>
             /// The file path.
@@ -116,7 +117,14 @@ namespace Wx3270
                     return null;
                 }
 
-                return ((JValue)value).Value;
+                // Some magic. If the value starts with %INSTALL%, replace it with the actual installation path.
+                var stringValue = ((JValue)value).Value as string;
+                if (stringValue != null && stringValue.StartsWith(Constants.Misc.InstallSubst))
+                {
+                    stringValue = stringValue.Replace(Constants.Misc.InstallSubst, Application.StartupPath);
+                }
+
+                return stringValue;
             }
 
             /// <inheritdoc/>
@@ -147,6 +155,12 @@ namespace Wx3270
                 if (keyObject.ContainsKey(name))
                 {
                     keyObject.Remove(name);
+                }
+
+                // Some magic. If the value starts with the installation path, replace it with %INSTALL%.
+                if (stringValue.StartsWith(Application.StartupPath))
+                {
+                    stringValue = stringValue.Replace(Application.StartupPath, Constants.Misc.InstallSubst);
                 }
 
                 keyObject.Add(name, new JValue(stringValue));

@@ -51,6 +51,7 @@ namespace Wx3270
             (Constants.Option.Model, "model-number", "Override the default 3270 model number"),
             (Constants.Option.NoButtons, string.Empty, "Do not display the menu bar"),
             (Constants.Option.NoBorder, string.Empty, "Create the window without a border"),
+            (Constants.Option.NoPortable, string.Empty, "Ignore the presence of '" + Constants.Misc.PortableFlagFile + "'"),
             (Constants.Option.NoProfile, string.Empty, "Operate without a profile (use system default settings)"),
             (Constants.Option.NoScrollBar, string.Empty, "Do not display the scroll bar"),
             (Constants.Option.NoSplash, string.Empty, "Do not display the splash screen"),
@@ -639,6 +640,8 @@ Options:
             var restrict = Restrictions.None;
             var allow = Restrictions.None;
             var restrictAllow = RestrictAllow.Neither;
+            var portable = false;
+            var noPortable = false;
 
             var s = new Stopwatch();
             s.Start();
@@ -734,6 +737,9 @@ Options:
                         case Constants.Option.NoButtons:
                             this.NoButtons = true;
                             break;
+                        case Constants.Option.NoPortable:
+                            noPortable = true;
+                            break;
                         case Constants.Option.NoProfile:
                             this.NoProfileMode = true;
                             break;
@@ -750,9 +756,7 @@ Options:
                             this.xrmOptions.Add(B3270.ResourceFormat.Value(B3270.Setting.Oversize, args[++i]));
                             break;
                         case Constants.Option.Portable:
-                            this.Portable = true;
-                            StaticPortable = true;
-                            startupConfig.Portable = true;
+                            portable = true;
                             break;
                         case Constants.Option.Profile:
                             profileName = args[++i];
@@ -938,6 +942,19 @@ Options:
                     break;
             }
 
+            // Get implicit portable mode from the presence of the portable flag file.
+            if (File.Exists(Path.Combine(Application.StartupPath, Constants.Misc.PortableFlagFile)))
+            {
+                portable = true;
+            }
+
+            if (portable && !noPortable)
+            {
+                this.Portable = true;
+                StaticPortable = true;
+                startupConfig.Portable = true;
+            }
+
             // Get additional restrictions from the Registry.
             if (!this.Portable)
             {
@@ -1012,7 +1029,7 @@ Options:
             }
 
             // Set up the Registry wrapper.
-            SimplifiedRegistry = SimplifiedRegistryFactory.Get(this.Portable);
+            SimplifiedRegistry = SimplifiedRegistryFactory.Get(fake: this.Portable);
 
             // Load the profile for the first time, so we can use its settings to create basic objects.
             this.ProfileManager = new ProfileManager(this);
