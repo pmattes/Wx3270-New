@@ -4533,10 +4533,7 @@
             // miscellaneousTableLayoutPanel
             // 
             this.miscellaneousTableLayoutPanel.AutoScroll = true;
-            this.miscellaneousTableLayoutPanel.AutoSize = true;
-            this.miscellaneousTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.miscellaneousTableLayoutPanel.ColumnCount = 2;
-            this.miscellaneousTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.miscellaneousTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.miscellaneousTableLayoutPanel.Location = new System.Drawing.Point(8, 23);
             this.miscellaneousTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
@@ -4572,7 +4569,7 @@
             this.miscellaneousTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.miscellaneousTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.miscellaneousTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.miscellaneousTableLayoutPanel.Size = new System.Drawing.Size(0, 0);
+            this.miscellaneousTableLayoutPanel.Size = new System.Drawing.Size(490, 570);
             this.miscellaneousTableLayoutPanel.TabIndex = 0;
             // 
             // buttonsLayoutPanel

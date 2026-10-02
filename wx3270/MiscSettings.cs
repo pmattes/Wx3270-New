@@ -6,6 +6,7 @@ namespace Wx3270
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows.Forms;
     using I18nBase;
 
@@ -18,6 +19,11 @@ namespace Wx3270
         /// The unknown settings.
         /// </summary>
         private readonly Dictionary<string, string> miscSettings = new Dictionary<string, string>();
+
+        /// <summary>
+        /// The labels for the unknown settings.
+        /// </summary>
+        private readonly Dictionary<string, Label> miscLabels = new Dictionary<string, Label>();
 
         /// <summary>
         /// The text boxes for the unknown settings.
@@ -160,8 +166,19 @@ For any setting listed here, subsequent versions of wx3270 may add explicit supp
             textBox.Validated += new EventHandler(this.MiscTextValidated);
             this.miscellaneousTableLayoutPanel.Controls.Add(textBox, 1, this.miscSettings.Count);
             this.miscTextBox[name] = textBox;
+            this.miscLabels[name] = label;
             this.miscSettings[name] = value;
             this.miscellaneousTableLayoutPanel.RowCount = this.miscSettings.Count;
+
+            // Re-sort the table by name.
+            var index = 0;
+            foreach (var key in this.miscSettings.Keys.OrderBy(k => k))
+            {
+                var row = this.miscellaneousTableLayoutPanel.GetRow(this.miscTextBox[key]);
+                this.miscellaneousTableLayoutPanel.SetRow(this.miscLabels[key], index);
+                this.miscellaneousTableLayoutPanel.SetRow(this.miscTextBox[key], index);
+                index++;
+            }
         }
 
         /// <summary>
