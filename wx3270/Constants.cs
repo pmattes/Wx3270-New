@@ -476,7 +476,7 @@ THIS SOFTWARE IS PROVIDED BY PAUL MATTES ""AS IS"" AND ANY EXPRESS OR IMPLIED WA
             /// <summary>
             /// The name of the portable-mode flag file.
             /// </summary>
-            public const string PortableFlagFile = "portable.txt";
+            public const string PortableFlagFile = "PORTABLE.txt";
 
             /// <summary>
             /// The name of the install path substitution variable.

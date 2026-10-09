@@ -132,7 +132,6 @@ Set-Content -Encoding UTF8 -Path tmp.iss -Value $iss
 
 # Run Inno Setup to create the installer.
 Write-Host -ForegroundColor Green 'Running Inno Setup'
-$cwd = (Get-Location)
 if ($sign) {
     $Env:mydir = (Get-Location)
     $signparm = '/smystandard=pwsh.exe $p'
@@ -143,8 +142,8 @@ Remove-Item tmp.iss
 # Create the no-install zipfiles.
 Write-Host -ForegroundColor Green 'Creating no-install zipfiles'
 $files = Get-Content noinstall-files.txt
-$files.ForEach({$_ -replace '^', 'wx3270\bin\x64\Release\'}) | Compress-Archive -Force -DestinationPath "wx3270-$version-noinstall64.zip"
-$files.ForEach({$_ -replace '^', 'wx3270\bin\x86\Release\'}) | Compress-Archive -Force -DestinationPath "wx3270-$version-noinstall32.zip"
+$files.ForEach({$_ -replace '^', 'wx3270\bin\x64\Release\'}) + @('wx3270\PORTABLE.txt') | Compress-Archive -Force -DestinationPath "wx3270-$version-noinstall64.zip"
+$files.ForEach({$_ -replace '^', 'wx3270\bin\x86\Release\'}) + @('wx3270\PORTABLE.txt') | Compress-Archive -Force -DestinationPath "wx3270-$version-noinstall32.zip"
 
 # Get the sizes and SHA values.
 Write-host -ForegroundColor Green 'Sizes and SHA values'

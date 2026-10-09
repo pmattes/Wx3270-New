@@ -809,9 +809,6 @@
       <Link>x3270if.exe</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="portable.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Python\x3270if\common.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
