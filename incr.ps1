@@ -93,7 +93,9 @@ if ($pre) {
 }
 
 # Set up Azure login to do signing.
-Connect-AzAccount | Out-Null 
+if ($sign) {
+    Connect-AzAccount | Out-Null
+}
 
 # Build.
 Write-Host -ForegroundColor Green 'Building x86'
