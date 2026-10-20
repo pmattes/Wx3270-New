@@ -84,7 +84,7 @@ class TestWx3270Smoke(cti.cti):
 
         # Make sure the image is correct.
         if not filecmp.cmp(name, 'Test/ibmlink.gif'):
-            os.system(f'start name')
+            os.system(f'start {name}')
         self.assertTrue(filecmp.cmp(name, 'Test/ibmlink.gif'))
         os.unlink(name)
 

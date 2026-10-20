@@ -332,6 +332,12 @@ namespace Wx3270
         public bool ShowTiming { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the Upshift indicator reflects capitalization.
+        /// </summary>
+        [JsonProperty("upshiftCaps")]
+        public bool UpshiftCaps { get; set; } = true;
+
+        /// <summary>
         /// Gets or sets a value indicating whether to default to insert mode.
         /// </summary>
         [JsonProperty]

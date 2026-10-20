@@ -7,6 +7,7 @@ namespace Wx3270
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.Windows.Forms;
     using Wx3270.Contracts;
 
     /// <summary>
@@ -14,6 +15,11 @@ namespace Wx3270
     /// </summary>
     public partial class MainScreen
     {
+        /// <summary>
+        /// True if Caps Lock is toggled on.
+        /// </summary>
+        private bool capsLock;
+
         /// <summary>
         /// Gets the keyboard modifier.
         /// </summary>
@@ -314,21 +320,26 @@ namespace Wx3270
         /// </summary>
         /// <param name="mod">New keyboard modifiers.</param>
         /// <param name="mask">Modifier mask.</param>
-        public void ChangeOiaMod(KeyboardModifier mod, KeyboardModifier mask)
+        /// <param name="force">True to update even if the keyboard state is unchanged.</param>
+        public void ChangeOiaMod(KeyboardModifier mod, KeyboardModifier mask, bool force = false)
         {
-            if ((this.Mod & mask) == (mod & mask))
+            var capsLock = Control.IsKeyLocked(Keys.CapsLock);
+            if (!force && (this.Mod & mask) == (mod & mask) && this.capsLock == capsLock)
             {
                 return;
             }
 
             this.Mod = (this.Mod & ~mask) | (mod & mask);
+            this.capsLock = capsLock;
+            var shift = this.Mod.HasFlag(KeyboardModifier.Shift);
+            var upshift = this.ProfileManager.Current.UpshiftCaps ? shift != this.capsLock : shift;
 
             if (this.oia3270Font)
             {
                 this.oiaAltShift.Text = string.Format(
                     "{0}{1}{2}",
                     this.Mod.HasFlag(KeyboardModifier.Alt) ? "A" : " ",
-                    this.Mod.HasFlag(KeyboardModifier.Shift) ? OiaFont.Symbol.UpShift : " ",
+                    upshift ? OiaFont.Symbol.UpShift : " ",
                     this.Mod.HasFlag(KeyboardModifier.Apl) ? "α" : " ");
             }
             else
@@ -336,7 +347,7 @@ namespace Wx3270
                 this.oiaAltShift.Text = string.Format(
                     "{0}{1}{2}",
                     this.Mod.HasFlag(KeyboardModifier.Alt) ? "A" : " ",
-                    this.Mod.HasFlag(KeyboardModifier.Shift) ? "⇑" : " ",
+                    upshift ? "⇑" : " ",
                     this.Mod.HasFlag(KeyboardModifier.Apl) ? VersionSpecific.AplDisplay : " ");
             }
 
@@ -346,7 +357,12 @@ namespace Wx3270
                 toolTip.Add("Alt");
             }
 
-            if (this.Mod.HasFlag(KeyboardModifier.Shift))
+            if (this.ProfileManager.Current.UpshiftCaps && this.capsLock)
+            {
+                toolTip.Add("Caps Lock");
+            }
+
+            if (shift)
             {
                 toolTip.Add("Shift");
             }

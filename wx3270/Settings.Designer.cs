@@ -85,6 +85,7 @@
             this.typeaheadCheckBox = new System.Windows.Forms.CheckBox();
             this.nopCheckBox = new System.Windows.Forms.CheckBox();
             this.showTimingCheckBox = new System.Windows.Forms.CheckBox();
+            this.upshiftCapsCheckBox = new System.Windows.Forms.CheckBox();
             this.alwaysInsertCheckBox = new System.Windows.Forms.CheckBox();
             this.scrollbarCheckBox = new System.Windows.Forms.CheckBox();
             this.retryCheckBox = new System.Windows.Forms.CheckBox();
@@ -1144,6 +1145,7 @@
             this.miscFlowLayoutPanel.Controls.Add(this.typeaheadCheckBox);
             this.miscFlowLayoutPanel.Controls.Add(this.nopCheckBox);
             this.miscFlowLayoutPanel.Controls.Add(this.showTimingCheckBox);
+            this.miscFlowLayoutPanel.Controls.Add(this.upshiftCapsCheckBox);
             this.miscFlowLayoutPanel.Controls.Add(this.alwaysInsertCheckBox);
             this.miscFlowLayoutPanel.Controls.Add(this.scrollbarCheckBox);
             this.miscFlowLayoutPanel.Controls.Add(this.retryCheckBox);
@@ -1212,15 +1214,31 @@
             this.toolTip1.SetToolTip(this.showTimingCheckBox, "Display command timing in the OIA");
             this.showTimingCheckBox.UseVisualStyleBackColor = true;
             this.showTimingCheckBox.CheckedChanged += new System.EventHandler(this.MiscCheckBox_Changed);
-            // 
+            //
+            // upshiftCapsCheckBox
+            //
+            this.upshiftCapsCheckBox.AutoSize = true;
+            this.upshiftCapsCheckBox.Checked = true;
+            this.upshiftCapsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.upshiftCapsCheckBox.Location = new System.Drawing.Point(4, 116);
+            this.upshiftCapsCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.upshiftCapsCheckBox.Name = "upshiftCapsCheckBox";
+            this.upshiftCapsCheckBox.Size = new System.Drawing.Size(196, 20);
+            this.upshiftCapsCheckBox.TabIndex = 4;
+            this.upshiftCapsCheckBox.Tag = "upshiftCaps";
+            this.upshiftCapsCheckBox.Text = "Upshift shows Caps Lock";
+            this.toolTip1.SetToolTip(this.upshiftCapsCheckBox, "Display Upshift when Caps Lock or Shift, but not both, is active");
+            this.upshiftCapsCheckBox.UseVisualStyleBackColor = true;
+            this.upshiftCapsCheckBox.CheckedChanged += new System.EventHandler(this.MiscLocalCheckBox_Changed);
+            //
             // alwaysInsertCheckBox
-            // 
+            //
             this.alwaysInsertCheckBox.AutoSize = true;
-            this.alwaysInsertCheckBox.Location = new System.Drawing.Point(4, 116);
+            this.alwaysInsertCheckBox.Location = new System.Drawing.Point(4, 144);
             this.alwaysInsertCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.alwaysInsertCheckBox.Name = "alwaysInsertCheckBox";
             this.alwaysInsertCheckBox.Size = new System.Drawing.Size(158, 20);
-            this.alwaysInsertCheckBox.TabIndex = 4;
+            this.alwaysInsertCheckBox.TabIndex = 5;
             this.alwaysInsertCheckBox.Tag = "alwaysInsert";
             this.alwaysInsertCheckBox.Text = "Default to insert mode";
             this.toolTip1.SetToolTip(this.alwaysInsertCheckBox, "Default to insert mode after sending a command to the host");
@@ -1230,11 +1248,11 @@
             // scrollbarCheckBox
             // 
             this.scrollbarCheckBox.AutoSize = true;
-            this.scrollbarCheckBox.Location = new System.Drawing.Point(4, 144);
+            this.scrollbarCheckBox.Location = new System.Drawing.Point(204, 4);
             this.scrollbarCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.scrollbarCheckBox.Name = "scrollbarCheckBox";
             this.scrollbarCheckBox.Size = new System.Drawing.Size(86, 20);
-            this.scrollbarCheckBox.TabIndex = 5;
+            this.scrollbarCheckBox.TabIndex = 6;
             this.scrollbarCheckBox.Tag = "ScrollBar";
             this.scrollbarCheckBox.Text = "Scroll bar";
             this.toolTip1.SetToolTip(this.scrollbarCheckBox, "Display the scroll bar on the right edge of the window");
@@ -1244,11 +1262,11 @@
             // retryCheckBox
             // 
             this.retryCheckBox.AutoSize = true;
-            this.retryCheckBox.Location = new System.Drawing.Point(170, 4);
+            this.retryCheckBox.Location = new System.Drawing.Point(204, 32);
             this.retryCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.retryCheckBox.Name = "retryCheckBox";
             this.retryCheckBox.Size = new System.Drawing.Size(129, 20);
-            this.retryCheckBox.TabIndex = 6;
+            this.retryCheckBox.TabIndex = 7;
             this.retryCheckBox.Tag = "retry";
             this.retryCheckBox.Text = "Retry connection";
             this.toolTip1.SetToolTip(this.retryCheckBox, "Keep trying to connect to the host");
@@ -1258,11 +1276,11 @@
             // preferIpv4CheckBox
             // 
             this.preferIpv4CheckBox.AutoSize = true;
-            this.preferIpv4CheckBox.Location = new System.Drawing.Point(170, 32);
+            this.preferIpv4CheckBox.Location = new System.Drawing.Point(204, 60);
             this.preferIpv4CheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.preferIpv4CheckBox.Name = "preferIpv4CheckBox";
             this.preferIpv4CheckBox.Size = new System.Drawing.Size(162, 20);
-            this.preferIpv4CheckBox.TabIndex = 7;
+            this.preferIpv4CheckBox.TabIndex = 8;
             this.preferIpv4CheckBox.Tag = "preferIpv4";
             this.preferIpv4CheckBox.Text = "Prefer IPv4 addresses";
             this.toolTip1.SetToolTip(this.preferIpv4CheckBox, "Prefer IPv4 addresses when connecting to a host by name");
@@ -1272,11 +1290,11 @@
             // preferIpv6CheckBox
             // 
             this.preferIpv6CheckBox.AutoSize = true;
-            this.preferIpv6CheckBox.Location = new System.Drawing.Point(170, 60);
+            this.preferIpv6CheckBox.Location = new System.Drawing.Point(204, 88);
             this.preferIpv6CheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.preferIpv6CheckBox.Name = "preferIpv6CheckBox";
             this.preferIpv6CheckBox.Size = new System.Drawing.Size(162, 20);
-            this.preferIpv6CheckBox.TabIndex = 8;
+            this.preferIpv6CheckBox.TabIndex = 9;
             this.preferIpv6CheckBox.Tag = "preferIpv6";
             this.preferIpv6CheckBox.Text = "Prefer IPv6 addresses";
             this.toolTip1.SetToolTip(this.preferIpv6CheckBox, "Prefer IPv6 addresses when connecting to a host by name");
@@ -1286,11 +1304,11 @@
             // menuBarCheckBox
             // 
             this.menuBarCheckBox.AutoSize = true;
-            this.menuBarCheckBox.Location = new System.Drawing.Point(169, 86);
+            this.menuBarCheckBox.Location = new System.Drawing.Point(204, 116);
             this.menuBarCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.menuBarCheckBox.Name = "menuBarCheckBox";
             this.menuBarCheckBox.Size = new System.Drawing.Size(85, 20);
-            this.menuBarCheckBox.TabIndex = 9;
+            this.menuBarCheckBox.TabIndex = 10;
             this.menuBarCheckBox.Tag = "MenuBar";
             this.menuBarCheckBox.Text = "Menu bar";
             this.toolTip1.SetToolTip(this.menuBarCheckBox, "Display the menu bar at the top of the window");
@@ -1300,11 +1318,11 @@
             // followerCheckBox
             // 
             this.followerCheckBox.AutoSize = true;
-            this.followerCheckBox.Location = new System.Drawing.Point(170, 112);
+            this.followerCheckBox.Location = new System.Drawing.Point(204, 144);
             this.followerCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.followerCheckBox.Name = "followerCheckBox";
             this.followerCheckBox.Size = new System.Drawing.Size(141, 20);
-            this.followerCheckBox.TabIndex = 10;
+            this.followerCheckBox.TabIndex = 11;
             this.followerCheckBox.Text = "Read-only follower";
             this.toolTip1.SetToolTip(this.followerCheckBox, "Synchronize changes from the read/write\r\ninstance using the same profile");
             this.followerCheckBox.UseVisualStyleBackColor = true;
@@ -5169,6 +5187,7 @@
         private NoSelectButton setToDefaultsButton;
         private System.Windows.Forms.CheckBox alwaysInsertCheckBox;
         private System.Windows.Forms.CheckBox showTimingCheckBox;
+        private System.Windows.Forms.CheckBox upshiftCapsCheckBox;
         private System.Windows.Forms.ComboBox modelComboBox;
         private System.Windows.Forms.TabPage proxyTab;
         private System.Windows.Forms.GroupBox proxyGroupBox;

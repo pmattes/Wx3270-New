@@ -61,6 +61,7 @@ namespace Wx3270
             { ChangeKeyword.PrinterType, "printer type" },
             { ChangeKeyword.PrinterSavePath, "printer save path" },
             { ChangeKeyword.MenuBar, "hide menu bar" },
+            { ChangeKeyword.UpshiftCaps, "Upshift Caps Lock behavior" },
         };
 
         /// <summary>
@@ -1371,6 +1372,11 @@ namespace Wx3270
             /// Menu bar.
             /// </summary>
             public const string MenuBar = "MenuBar";
+
+            /// <summary>
+            /// Upshift Caps Lock behavior.
+            /// </summary>
+            public const string UpshiftCaps = "upshiftCaps";
         }
 
         /// <summary>

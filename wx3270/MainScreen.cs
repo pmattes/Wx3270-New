@@ -692,6 +692,14 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
         }
 
         /// <summary>
+        /// Refresh the OIA modifier indication.
+        /// </summary>
+        public void RefreshOiaMod()
+        {
+            this.ChangeOiaMod(this.Mod, KeyboardModifier.None, force: true);
+        }
+
+        /// <summary>
         /// APL mode changed.
         /// </summary>
         /// <param name="apl">True if APL mode.</param>
@@ -868,6 +876,11 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
             if (!this.isActivated && !this.keypadActive.Any())
             {
                 this.screenBox.Activated(false);
+            }
+
+            if (activated)
+            {
+                this.RefreshOiaMod();
             }
         }
 
@@ -2625,6 +2638,11 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
 
             // Update macros. It's not worth setting up a separate crossbar for this.
             this.macroEntries.Entries = newProfile.Macros;
+
+            if (oldProfile == null || oldProfile.UpshiftCaps != newProfile.UpshiftCaps)
+            {
+                this.RefreshOiaMod();
+            }
         }
 
         /// <summary>
@@ -3631,6 +3649,7 @@ Press Alt-F4 or Alt-Q to exit wx3270.");
 
             // Handle the activation.
             this.App.KeyHandler.Activate();
+            this.RefreshOiaMod();
 
             // Run the tour if the menu bar is not displayed.
             if (!this.MenuBarVisible && !this.toured && !Tour.IsComplete(this))

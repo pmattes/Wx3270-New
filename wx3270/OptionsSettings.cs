@@ -795,6 +795,7 @@ You can also define the window title here. This is a per-profile setting; you ca
                 (this.typeaheadCheckBox, profile.Typeahead),
                 (this.showTimingCheckBox, profile.ShowTiming),
                 (this.alwaysInsertCheckBox, profile.AlwaysInsert),
+                (this.upshiftCapsCheckBox, profile.UpshiftCaps),
             };
             foreach (var box in checkBoxes)
             {
@@ -971,7 +972,7 @@ You can also define the window title here. This is a per-profile setting; you ca
         /// <param name="e">Event arguments.</param>
         private void MiscLocalCheckBoxChanged(object sender, EventArgs e)
         {
-            if (!(sender is CheckBox checkBox))
+            if (!(sender is CheckBox checkBox) || this.lockedControls.Contains(checkBox))
             {
                 return;
             }
@@ -992,6 +993,12 @@ You can also define the window title here. This is a per-profile setting; you ca
                         this.mainScreen.FixedMenuBarSwitch(checkBox.Checked);
                     }
 
+                    break;
+                case ChangeKeyword.UpshiftCaps:
+                    this.ProfileManager.PushAndSave(
+                        (current) => current.UpshiftCaps = checkBox.Checked,
+                        ChangeName(ChangeKeyword.UpshiftCaps));
+                    this.mainScreen.RefreshOiaMod();
                     break;
             }
         }
